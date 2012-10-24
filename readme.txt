@@ -65,7 +65,7 @@ Adjust your theme settings and add widgets as desired.
 
 You're now ready to start adding vehicles to your site. You'll find a short form on the Dashboard to let you quickly add vehicles or you can click on "Add New" listed under "Cars for Sale"
 
- 
+
 == Frequently Asked Questions ==
 
 How do I add people to my staff page?
@@ -113,7 +113,7 @@ If you add ?sales_code=0 to the url for your site it will remove the cookie that
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
-1.0.0 - Initial Public ReleaseThis is more information about the PlugIn
+1.0.0 - Initial Public Release
 
 == Upgrade Notice ==
 None
