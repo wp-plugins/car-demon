@@ -36,7 +36,7 @@ Turn features on and off easily letting you customize your site with ease. Inven
 
 Super Fast Load Times
 
-Car Demon is optimized to load super fast, helping to reduce visitor bounce rates. With site load time now being used as a ranking factor, you\'ll never have to worry about your site getting hit with a Google performance penalty.
+Car Demon is optimized to load super fast, helping to reduce visitor bounce rates. With site load time now being used as a ranking factor, you'll never have to worry about your site getting hit with a Google performance penalty.
 
 
 == Installation ==
@@ -45,25 +45,25 @@ Car Demon is optimized to load super fast, helping to reduce visitor bounce rate
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
 
 
-Go to your admin area and expand the menu for \"Cars for Sale\" and click on \"Car Demon Settings\". Adjust your settings as desired then click \"Update Car Demon\".
+Go to your admin area and expand the menu for "Cars for Sale" and click on "Car Demon Settings". Adjust your settings as desired then click "Update Car Demon".
 
 
-We\'ve also included a few buttons on this page to help you quickly create your lead forms. You can also use the shortcodes to add forms to any post or page. It is suggested that you only add one form per page.
+We've also included a few buttons on this page to help you quickly create your lead forms. You can also use the shortcodes to add forms to any post or page. It is suggested that you only add one form per page.
 
 
-Now it\'s time to setup your contact information.
+Now it's time to setup your contact information.
 
 
-If you sell vehicles at more than one location then go to your admin area and expand the menu for \"Cars for Sale\", click on locations and add an entry for each lot.
+If you sell vehicles at more than one location then go to your admin area and expand the menu for "Cars for Sale", click on locations and add an entry for each lot.
 
 
-After you have setup your locations click on \"Contact Settings\", fill out and save the form for each location, INCLUDING THE DEFAULT. It is important to check and make sure your Finance Disclaimer and Descriptions are legal for your state. We take no responsibility for the legality of the default entries.
+After you have setup your locations click on "Contact Settings", fill out and save the form for each location, INCLUDING THE DEFAULT. It is important to check and make sure your Finance Disclaimer and Descriptions are legal for your state. We take no responsibility for the legality of the default entries.
 
 
 Adjust your theme settings and add widgets as desired.
 
 
-You\'re now ready to start adding vehicles to your site. You\'ll find a short form on the Dashboard to let you quickly add vehicles or you can click on \"Add New\" listed under \"Cars for Sale\"
+You're now ready to start adding vehicles to your site. You'll find a short form on the Dashboard to let you quickly add vehicles or you can click on "Add New" listed under "Cars for Sale"
 
  
 == Frequently Asked Questions ==
@@ -71,34 +71,34 @@ You\'re now ready to start adding vehicles to your site. You\'ll find a short fo
 How do I add people to my staff page?
 
 
-You\'ll need to add them as users to the website, you can make them subscribers if you\'d like. On their profile page you\'ll see a section labeled \"Extra Profile Information\", add a photo (120x120 suggested), a job title, a location and then click a radio button that matches their duties. Click save and you should now see them listed on your staff page.
+You'll need to add them as users to the website, you can make them subscribers if you'd like. On their profile page you'll see a section labeled "Extra Profile Information", add a photo (120x120 suggested), a job title, a location and then click a radio button that matches their duties. Click save and you should now see them listed on your staff page.
 
 
 How do I route the different forms to different people?
 
 
-You do this on the \"Contact Settings Page\" under \"Cars for Sale\".
+You do this on the "Contact Settings Page" under "Cars for Sale".
 
 
 How do I setup a sales person with an affiliate link?
 
 
-On each user profile page there is a segment called \"Advanced Sales Information\", the custom URL can be used by the sales person to customize the site with their information. \"Under Custom Site Leads\" you\'ll need to put a check next to each type of form they should receive. If you have multiple locations you can also decide if they should receive leads for just their location or for all locations.
+On each user profile page there is a segment called "Advanced Sales Information", the custom URL can be used by the sales person to customize the site with their information. "Under Custom Site Leads" you'll need to put a check next to each type of form they should receive. If you have multiple locations you can also decide if they should receive leads for just their location or for all locations.
 
 
-For example, let\'s say we have a sale person name Bill. He only sells new cars and has permission to bid on trades, but doesn\'t have permission to work finance. You would check the \"New Car Sales\" and \"Trade\" boxes. Bill will now receive all \"New Car\" & \"Trade\" contact forms from anyone who entered the site using his affiliate link. His name and phone number will also appear on all new vehicle pages.
+For example, let's say we have a sale person name Bill. He only sells new cars and has permission to bid on trades, but doesn't have permission to work finance. You would check the "New Car Sales" and "Trade" boxes. Bill will now receive all "New Car" & "Trade" contact forms from anyone who entered the site using his affiliate link. His name and phone number will also appear on all new vehicle pages.
 
 
-The querystring for the affiliate link can be used on almost any page. Simply add it to the end of the url and you\'re set.
+The querystring for the affiliate link can be used on almost any page. Simply add it to the end of the url and you're set.
 
 
-If you\'re using the Car Demon theme or Car Demon front page you can add custom headers for each sales person and even a custom slide on the homepage.
+If you're using the Car Demon theme or Car Demon front page you can add custom headers for each sales person and even a custom slide on the homepage.
 
 
 What happens if someone using an affiliate link uses the email a friend button?
 
 
-All links in the email they recieve will contain the affiliate link, so the original sales person will still receive any future contacts from their friend. This is especially handy if a sales person wants to email a car to a potential customer. If the sales person is viewing the site with their own affiliate link then any vehicle they email to a customer with the \"Email a Friend\" feature will contain all of their contact info.
+All links in the email they recieve will contain the affiliate link, so the original sales person will still receive any future contacts from their friend. This is especially handy if a sales person wants to email a car to a potential customer. If the sales person is viewing the site with their own affiliate link then any vehicle they email to a customer with the "Email a Friend" feature will contain all of their contact info.
 
 
 How do I clear an affiliate link?
@@ -110,7 +110,7 @@ If you add ?sales_code=0 to the url for your site it will remove the cookie that
 == Screenshots ==
 1. This is a quick look at the inventory management screen. You can quickly change prices and mark vehicles sold without opening each vehicle.
 
-2. Here's a glance of what you can do with Car Demon and some of it\'s extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
+2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
 1.0.0 - Initial Public ReleaseThis is more information about the PlugIn
