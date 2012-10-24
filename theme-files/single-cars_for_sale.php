@@ -7,6 +7,7 @@
  * @since CarDemon 1.0
  */
 $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+wp_enqueue_script('jquery');
 get_header(); ?>
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo $car_demon_pluginpath; ?>/css/car-demon-single-car.css" />
 <script type="text/JavaScript">
