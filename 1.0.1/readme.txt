@@ -86,7 +86,7 @@ How do I setup a sales person with an affiliate link?
 On each user profile page there is a segment called "Advanced Sales Information", the custom URL can be used by the sales person to customize the site with their information. "Under Custom Site Leads" you'll need to put a check next to each type of form they should receive. If you have multiple locations you can also decide if they should receive leads for just their location or for all locations.
 
 
-For example, let's say we have a sale person name Bill. He only sells new cars and has permission to bid on trades, but doesn't have permission to work finance. You would check the "New Car Sales" and "Trade" boxes. Bill will now receive all "New Car" & "Trade" contact forms from anyone who entered the site using his affiliate link. His name and phone number will also appear on all new vehicle pages.
+For example, let's say we have a sales person name Bill. He only sells new cars and has permission to bid on trades, but doesn't have permission to work finance. You would check the "New Car Sales" and "Trade" boxes. Bill will now receive all "New Car" & "Trade" contact forms from anyone who entered the site using his affiliate link. His name and phone number will also appear on all new vehicle pages.
 
 
 The querystring for the affiliate link can be used on almost any page. Simply add it to the end of the url and you're set.
