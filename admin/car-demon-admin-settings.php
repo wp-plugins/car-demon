@@ -13,7 +13,7 @@ function get_my_post_thumbnail_id_detail_eil( $post_id = NULL ) {
 	return $my_pic;
 }
 
-add_filter('default_hidden_meta_boxes', 'car_demon_hidden_meta_boxes', 10, 2);
+//add_filter('default_hidden_meta_boxes', 'car_demon_hidden_meta_boxes', 10, 2);
 function be_hidden_meta_boxes($hidden, $screen) {
 	if ( 'cars-for-sale' == $screen->base )
 		$hidden = array('postcustom', 'slugdiv', 'trackbacksdiv', 'postexcerpt', 'commentstatusdiv', 'commentsdiv', 'authordiv', 'revisionsdiv');
