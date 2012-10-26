@@ -1,5 +1,6 @@
 <?php
 function car_demon_dynamic_load() {
+	$html = '';
 	if ($_SESSION['car_demon_options']['dynamic_load'] == 'Yes') {
 		$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 		$pluginpath = str_replace('includes', 'theme-files', $pluginpath);

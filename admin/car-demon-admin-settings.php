@@ -13,6 +13,13 @@ function get_my_post_thumbnail_id_detail_eil( $post_id = NULL ) {
 	return $my_pic;
 }
 
+add_filter('default_hidden_meta_boxes', 'car_demon_hidden_meta_boxes', 10, 2);
+function be_hidden_meta_boxes($hidden, $screen) {
+	if ( 'cars-for-sale' == $screen->base )
+		$hidden = array('postcustom', 'slugdiv', 'trackbacksdiv', 'postexcerpt', 'commentstatusdiv', 'commentsdiv', 'authordiv', 'revisionsdiv');
+	return $hidden;
+}
+
 function car_demon_admin_car_scripts() {
 	$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$pluginpath = str_replace('admin', '', $pluginpath);
@@ -106,7 +113,7 @@ function car_demon_admin_car_scripts() {
 
 function car_demon_plugin_options_do_page() {
 	screen_icon();
-	echo "<h2>" . wp_get_themes() . __(' Options', 'car-demon') . "</h2>";
+	echo "<h2>". __('Car Demon Contact Options', 'car-demon') . "</h2>";
 	admin_contact_forms();
 }
 
@@ -161,6 +168,7 @@ function admin_contact_forms() {
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );
+	$holder = '';
 	$location_list = '';
 	$location_name_list = '';
 	foreach ($locations as $location) {
@@ -225,49 +233,49 @@ function admin_contact_forms() {
 		<textarea name="<?php echo $current_location; ?>_default_description" id="<?php echo $current_location; ?>_default_description" style="width:580px;height:100px;"><?php echo $default_description; ?></textarea>
 		<br />
 		<span class="cd_admin_form_label">Service Name</span>
-		<input type="text" value="<?php echo get_option($current_location.'_service_name') ?>" name="<?php echo $current_location; ?>_service_name" id="<?php echo $current_location; ?>_service_name" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_service_name')) ?>" name="<?php echo $current_location; ?>_service_name" id="<?php echo $current_location; ?>_service_name" />
 		<br />
 		<span class="cd_admin_form_label">Service Number</span>
-		<input type="text" value="<?php echo get_option($current_location.'_service_number') ?>" name="<?php echo $current_location; ?>_service_number" id="<?php echo $current_location; ?>_service_number" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_service_number')) ?>" name="<?php echo $current_location; ?>_service_number" id="<?php echo $current_location; ?>_service_number" />
 		<br />
 		<span class="cd_admin_form_label">Service Email</span>
-		<input type="text" value="<?php echo get_option($current_location.'_service_email') ?>" name="<?php echo $current_location; ?>_service_email" id="<?php echo $current_location; ?>_service_email" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_service_email')) ?>" name="<?php echo $current_location; ?>_service_email" id="<?php echo $current_location; ?>_service_email" />
 		<br />
 		<span class="cd_admin_form_label">Parts Name</span>
-		<input type="text" value="<?php echo get_option($current_location.'_parts_name') ?>" name="<?php echo $current_location; ?>_parts_name" id="<?php echo $current_location; ?>_parts_name" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_parts_name')) ?>" name="<?php echo $current_location; ?>_parts_name" id="<?php echo $current_location; ?>_parts_name" />
 		<br />
 		<span class="cd_admin_form_label">Parts Number</span>
-		<input type="text" value="<?php echo get_option($current_location.'_parts_number') ?>" name="<?php echo $current_location; ?>_parts_number" id="<?php echo $current_location; ?>_parts_number" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_parts_number')) ?>" name="<?php echo $current_location; ?>_parts_number" id="<?php echo $current_location; ?>_parts_number" />
 		<br />
 		<span class="cd_admin_form_label">Parts Email</span>
-		<input type="text" value="<?php echo get_option($current_location.'_parts_email') ?>" name="<?php echo $current_location; ?>_parts_email" id="<?php echo $current_location; ?>_parts_email" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_parts_email')) ?>" name="<?php echo $current_location; ?>_parts_email" id="<?php echo $current_location; ?>_parts_email" />
 		<br />
 		<span class="cd_admin_form_label">Finance Name</span>
-		<input type="text" value="<?php echo get_option($current_location.'_finance_name') ?>" name="<?php echo $current_location; ?>_finance_name" id="<?php echo $current_location; ?>_finance_name" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_finance_name')) ?>" name="<?php echo $current_location; ?>_finance_name" id="<?php echo $current_location; ?>_finance_name" />
 		<br />
 		<span class="cd_admin_form_label">Finance Number</span>
-		<input type="text" value="<?php echo get_option($current_location.'_finance_number') ?>" name="<?php echo $current_location; ?>_finance_number" id="<?php echo $current_location; ?>_finance_number" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_finance_number')) ?>" name="<?php echo $current_location; ?>_finance_number" id="<?php echo $current_location; ?>_finance_number" />
 		<br />
 		<span class="cd_admin_form_label">Finance Email</span>
-		<input type="text" value="<?php echo get_option($current_location.'_finance_email') ?>" name="<?php echo $current_location; ?>_finance_email" id="<?php echo $current_location; ?>_finance_email" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_finance_email')) ?>" name="<?php echo $current_location; ?>_finance_email" id="<?php echo $current_location; ?>_finance_email" />
 		<br />
 		<span class="cd_admin_form_label">Link to Finance Form</span>
-		<input type="text" value="<?php echo get_option($current_location.'_finance_url') ?>" name="<?php echo $current_location; ?>_finance_url" id="<?php echo $current_location; ?>_finance_url" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_finance_url')) ?>" name="<?php echo $current_location; ?>_finance_url" id="<?php echo $current_location; ?>_finance_url" />
 		<br />
 		<span class="cd_admin_form_label">Pop Up Finance Form</span>
 		<select name="<?php echo $current_location; ?>_finance_popup" id="<?php echo $current_location; ?>_finance_popup">
-			<option value="<?php echo get_option($current_location.'_finance_popup') ?>"><?php echo get_option($current_location.'_finance_popup') ?></option>
+			<option value="<?php echo strip_tags(get_option($current_location.'_finance_popup')) ?>"><?php echo get_option($current_location.'_finance_popup') ?></option>
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
 		</select>
 		&nbsp;Width: <input name="<?php echo $current_location; ?>_finance_width" id="<?php echo $current_location; ?>_finance_width" type="text" style="width:50px;" value="<?php echo get_option($current_location.'_finance_width') ?>" />&nbsp;Height: <input name="<?php echo $current_location; ?>_finance_height" id="<?php echo $current_location; ?>_finance_height" type="text" style="width:50px;" value="<?php echo get_option($current_location.'_finance_height') ?>" /> (800px X 600px optimal)
 		<br />
 		<?php
-			$finance_disclaimer = get_option($current_location.'_finance_disclaimer');
+			$finance_disclaimer =  wp_kses_post(get_option($current_location.'_finance_disclaimer'));
 			if (strlen($finance_disclaimer) < 2) {
 				$finance_disclaimer = get_default_finance_disclaimer();
 			}
-			$finance_description = get_option($current_location.'_finance_description');
+			$finance_description =  wp_kses_post(get_option($current_location.'_finance_description'));
 			if (strlen($finance_description) < 2) {
 				$finance_description = get_default_finance_description();
 			}
@@ -279,51 +287,44 @@ function admin_contact_forms() {
 		<textarea name="<?php echo $current_location; ?>_finance_description" id="<?php echo $current_location; ?>_finance_description" style="width:580px;height:100px;"><?php echo $finance_description; ?></textarea>
 		<br />
 		<span class="cd_admin_form_label">Trade Name</span>
-		<input type="text" value="<?php echo get_option($current_location.'_trade_name') ?>" name="<?php echo $current_location; ?>_trade_name" id="<?php echo $current_location; ?>_trade_name" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_trade_name')) ?>" name="<?php echo $current_location; ?>_trade_name" id="<?php echo $current_location; ?>_trade_name" />
 		<br />
 		<span class="cd_admin_form_label">Trade Number</span>
-		<input type="text" value="<?php echo get_option($current_location.'_trade_number') ?>" name="<?php echo $current_location; ?>_trade_number" id="<?php echo $current_location; ?>_trade_number" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_trade_number')) ?>" name="<?php echo $current_location; ?>_trade_number" id="<?php echo $current_location; ?>_trade_number" />
 		<br />
 		<span class="cd_admin_form_label">Trade Email</span>
-		<input type="text" value="<?php echo get_option($current_location.'_trade_email') ?>" name="<?php echo $current_location; ?>_trade_email" id="<?php echo $current_location; ?>_trade_email" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_trade_email')) ?>" name="<?php echo $current_location; ?>_trade_email" id="<?php echo $current_location; ?>_trade_email" />
 		<br />
 		<span class="cd_admin_form_label">Link to Trade Form</span>
-		<input type="text" value="<?php echo get_option($current_location.'_trade_url') ?>" name="<?php echo $current_location; ?>_trade_url" id="<?php echo $current_location; ?>_trade_url" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_trade_url')) ?>" name="<?php echo $current_location; ?>_trade_url" id="<?php echo $current_location; ?>_trade_url" />
 		<br />
 		<span class="cd_admin_form_label">Show Prices on New</span>
 		<select name="<?php echo $current_location; ?>_show_new_prices" id="<?php echo $current_location; ?>_show_new_prices">
-			<option value="<?php echo get_option($current_location.'_show_new_prices') ?>"><?php echo get_option($current_location.'_show_new_prices') ?></option>
+			<option value="<?php echo strip_tags(get_option($current_location.'_show_new_prices')) ?>"><?php echo strip_tags(get_option($current_location.'_show_new_prices')) ?></option>
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
 		</select>&nbsp;If No use: 
-			<input type="text" value="<?php echo get_option($current_location.'_no_new_price') ?>" name="<?php echo $current_location; ?>_no_new_price" id="<?php echo $current_location; ?>_no_new_price" style="width:282px;" />
+			<input type="text" value="<?php echo strip_tags(get_option($current_location.'_no_new_price')) ?>" name="<?php echo $current_location; ?>_no_new_price" id="<?php echo $current_location; ?>_no_new_price" style="width:282px;" />
 		<br />
 		<span class="cd_admin_form_label">Show Prices on Used</span>
 		<select name="<?php echo $current_location; ?>_show_used_prices" id="<?php echo $current_location; ?>_show_used_prices">
-			<option value="<?php echo get_option($current_location.'_show_used_prices') ?>"><?php echo get_option($current_location.'_show_used_prices') ?></option>
+			<option value="<?php echo strip_tags(get_option($current_location.'_show_used_prices')) ?>"><?php echo strip_tags(get_option($current_location.'_show_used_prices')) ?></option>
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
 		</select>&nbsp;If No use: 
-			<input type="text" value="<?php echo get_option($current_location.'_no_used_price') ?>" name="<?php echo $current_location; ?>_no_used_price" id="<?php echo $current_location; ?>_no_used_price" style="width:282px;" />
+			<input type="text" value="<?php echo strip_tags(get_option($current_location.'_no_used_price')) ?>" name="<?php echo $current_location; ?>_no_used_price" id="<?php echo $current_location; ?>_no_used_price" style="width:282px;" />
 		<br />
 		<span class="cd_admin_form_label">New Large Photo Url</span>
-		<input type="text" value="<?php echo get_option($current_location.'_new_large_photo_url') ?>" name="<?php echo $current_location; ?>_new_large_photo_url" id="<?php echo $current_location; ?>_new_large_photo_url" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_new_large_photo_url')) ?>" name="<?php echo $current_location; ?>_new_large_photo_url" id="<?php echo $current_location; ?>_new_large_photo_url" />
 		<br />
 		<span class="cd_admin_form_label">New Small Photo Url</span>
-		<input type="text" value="<?php echo get_option($current_location.'_new_small_photo_url') ?>" name="<?php echo $current_location; ?>_new_small_photo_url" id="<?php echo $current_location; ?>_new_small_photo_url" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_new_small_photo_url')) ?>" name="<?php echo $current_location; ?>_new_small_photo_url" id="<?php echo $current_location; ?>_new_small_photo_url" />
 		<br />
 		<span class="cd_admin_form_label">Used Large Photo Url</span>
-		<input type="text" value="<?php echo get_option($current_location.'_used_large_photo_url') ?>" name="<?php echo $current_location; ?>_used_large_photo_url" id="<?php echo $current_location; ?>_used_large_photo_url" />
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_used_large_photo_url')) ?>" name="<?php echo $current_location; ?>_used_large_photo_url" id="<?php echo $current_location; ?>_used_large_photo_url" />
 		<br />
 		<span class="cd_admin_form_label">Used Small Photo Url</span>
-		<input type="text" value="<?php echo get_option($current_location.'_used_small_photo_url') ?>" name="<?php echo $current_location; ?>_used_small_photo_url" id="<?php echo $current_location; ?>_used_small_photo_url" />
-		<!--br />
-		<span class="cd_admin_form_label">Send ADFxml Leads?</span>
-		<select name="<?php echo $current_location; ?>_adfxml" id="<?php echo $current_location; ?>_adfxml">
-			<option value="<?php echo get_option($current_location.'_adfxml') ?>"><?php echo get_option($current_location.'_adfxml') ?></option>
-			<option value="Yes">Yes</option>
-			<option value="No">No</option>
-		</select-->
+		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_used_small_photo_url')) ?>" name="<?php echo $current_location; ?>_used_small_photo_url" id="<?php echo $current_location; ?>_used_small_photo_url" />
 		<?php
 			$car_demon_settings_hook = apply_filters('car_demon_admin_hook', $holder, $current_location);
 		?>
@@ -345,6 +346,9 @@ function update_car_location_options() {
 		'echo'               => 0,
 		'taxonomy'           => 'vehicle_location'
 		);
+	$location_list = '';
+	$location_list_array = '';
+	$holder = '';
 	$locations = get_categories( $args );
 	foreach ($locations as $location) {
 		$location_list .= ','.$location->slug;
@@ -404,7 +408,6 @@ function update_car_location_options() {
 		if ($_POST[$current_location.'_used_small_photo_url']) { update_option($current_location.'_used_small_photo_url', $_POST[$current_location.'_used_small_photo_url']); }
 		if ($_POST[$current_location.'_no_new_price']) { update_option($current_location.'_no_new_price', $_POST[$current_location.'_no_new_price']); }
 		if ($_POST[$current_location.'_no_used_price']) { update_option($current_location.'_no_used_price', $_POST[$current_location.'_no_used_price']); }
-		if ($_POST[$current_location.'_adfxml']) { update_option($current_location.'_adfxml', $_POST[$current_location.'_adfxml']); }
 		$car_demon_settings_hook = apply_filters('car_demon_admin_update_hook', $holder, $current_location);
 	}
 }
@@ -444,11 +447,11 @@ function car_demon_options() {
 
 function car_demon_settings_options_do_page() {
 	echo '<div id="icon-tools" class="icon32"></div><h1>'.__('Car Demon Settings', 'car-demon').'</h1>';
-	if ($_POST['reset_car_demon']) {
+	if (isset($_POST['reset_car_demon'])) {
 		reset_car_demon();
 	}
 	else {
-		if($_POST['update_car_demon'] == 1) {
+		if(isset($_POST['update_car_demon']) == 1) {
 			update_car_demon_settings();
 		}
 	}
@@ -530,7 +533,7 @@ function car_demon_settings_options_do_page() {
 	echo '<div style="width:500px;">';
 		echo '<p>Car Demon comes with support for adding several custom forms and pages. You can quickly and easily add these pages by clicking the buttons below or you can create your own pages and simply paste the shortcode you want to use into the content of the page.</p>';
 	echo '</div>';
-	if ($_POST['add_page']) {
+	if (isset($_POST['add_page'])) {
 		$title = $_POST['title'];
 		$type = $_POST['type'];
 		$new_page_id = car_demon_add_page($title, $type);
@@ -588,23 +591,24 @@ function car_demon_settings_options_do_page() {
 
 function update_car_demon_settings() {
 	$new = array();
-	$new['vinquery_id'] = $_POST['vinquery_id'];
-	$new['vinquery_type'] = $_POST['vinquery_type'];
-	$new['use_about'] = $_POST['use_about'];
-	$new['adfxml'] = $_POST['adfxml'];
-	$new['use_compare'] = $_POST['use_compare'];
-	$new['secure_finance'] = $_POST['secure_finance'];
-	$new['use_theme_files'] = $_POST['use_theme_files'];
-	$new['dynamic_load'] = $_POST['dynamic_load'];
-	$mobile_chat_code = $_POST['mobile_chat_code'];
+	if (isset($_POST['vinquery_id'])) $new['vinquery_id'] = $_POST['vinquery_id'];
+	if (isset($_POST['vinquery_type'])) $new['vinquery_type'] = $_POST['vinquery_type'];
+	if (isset($_POST['use_about'])) $new['use_about'] = $_POST['use_about'];
+	if (isset($_POST['adfxml'])) $new['adfxml'] = $_POST['adfxml'];
+	if (isset($_POST['use_compare'])) $new['use_compare'] = $_POST['use_compare'];
+	if (isset($_POST['secure_finance'])) $new['secure_finance'] = $_POST['secure_finance'];
+	if (isset($_POST['use_theme_files'])) $new['use_theme_files'] = $_POST['use_theme_files'];
+	if (isset($_POST['dynamic_load'])) $new['dynamic_load'] = $_POST['dynamic_load'];
+	if (isset($_POST['mobile_chat_code'])) $mobile_chat_code = $_POST['mobile_chat_code'];
+	$mobile_chat_code = '';
 	$mobile_chat_code = str_replace("\'", "'", $mobile_chat_code);
 	$mobile_chat_code = str_replace('\"', '"', $mobile_chat_code);
 	$mobile_chat_code = str_replace('\\', '', $mobile_chat_code);	
 	$new['mobile_chat_code'] = $mobile_chat_code;
-	$new['custom_header_type'] = $_POST['custom_header_type'];
-	$new['mobile_theme'] = $_POST['mobile_theme'];
-	$new['mobile_logo'] = $_POST['mobile_logo'];
-	$new['mobile_header'] = $_POST['mobile_header'];
+	if (isset($_POST['custom_header_type'])) $new['custom_header_type'] = $_POST['custom_header_type'];
+	if (isset($_POST['mobile_theme'])) $new['mobile_theme'] = $_POST['mobile_theme'];
+	if (isset($_POST['mobile_logo'])) $new['mobile_logo'] = $_POST['mobile_logo'];
+	if (isset($_POST['mobile_header'])) $new['mobile_header'] = $_POST['mobile_header'];
 	update_option( 'car_demon_options', $new );
 	echo '<h3 style="color:#FF0000;">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }

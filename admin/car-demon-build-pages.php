@@ -19,7 +19,7 @@ function car_demon_add_page($title, $type) {
 		$content = '[-trade-]';
 	}
 	elseif ($type == 'staff') {
-		$content = '[-staff-]';
+		$content = '[-staff_page-]';
 	}
 	$current_user = wp_get_current_user();
 	$user_id = $current_user->ID;

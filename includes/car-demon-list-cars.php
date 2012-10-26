@@ -53,7 +53,7 @@ function car_demon_display_car_list($post_id) {
 		$detail_output .= '<a href="'.$link.'" class="search_btn" style="margin-left:20px;">View Details</a>';
 	$detail_output .= '</div>';
 	$img_output = "<div style='position:absolute;'><img title='Click for price on this ".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image' width='180px' height='135px' src='";
-	$img_output .= wp_get_attachment_thumb_url( get_post_thumbnail_id( $post_id ) );
+	$img_output .= wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 	$img_output .= "' /></div>";
 	$ribbon = 'ribbon-just-added';
 	$ribbon = 'ribbon-great-deal';

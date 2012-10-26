@@ -4,7 +4,7 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
@@ -86,7 +86,7 @@ How do I setup a sales person with an affiliate link?
 On each user profile page there is a segment called "Advanced Sales Information", the custom URL can be used by the sales person to customize the site with their information. "Under Custom Site Leads" you'll need to put a check next to each type of form they should receive. If you have multiple locations you can also decide if they should receive leads for just their location or for all locations.
 
 
-For example, let's say we have a sale person name Bill. He only sells new cars and has permission to bid on trades, but doesn't have permission to work finance. You would check the "New Car Sales" and "Trade" boxes. Bill will now receive all "New Car" & "Trade" contact forms from anyone who entered the site using his affiliate link. His name and phone number will also appear on all new vehicle pages.
+For example, let's say we have a sales person name Bill. He only sells new cars and has permission to bid on trades, but doesn't have permission to work finance. You would check the "New Car Sales" and "Trade" boxes. Bill will now receive all "New Car" & "Trade" contact forms from anyone who entered the site using his affiliate link. His name and phone number will also appear on all new vehicle pages.
 
 
 The querystring for the affiliate link can be used on almost any page. Simply add it to the end of the url and you're set.
@@ -113,6 +113,14 @@ If you add ?sales_code=0 to the url for your site it will remove the cookie that
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+1.0.2 - Cleaned up vehicle edit page and removed redundant items.
+		Tried to make it easier to manage the options on each vehicle.
+		Moved vehicle price fields in with other vehicle options.
+		Changed function used to retrieve main thumbnail image on single vehicle page.
+		Sanitized additional data input on admin side to prevent rogue editor from causing potential issues.
+		
+1.0.1 - Fixed jQuery conflict on single cars theme page
+
 1.0.0 - Initial Public Release
 
 == Upgrade Notice ==

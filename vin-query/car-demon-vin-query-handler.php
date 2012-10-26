@@ -68,23 +68,38 @@ if ($_GET['decode'] == 'update') {
 	$vin_query_decode = get_post_meta($post_id, "decode_string", true);
 	$vin_query_decode[$fld] = $_POST['val'];
 	update_post_meta($post_id, 'decode_string', $vin_query_decode);	
-	if ($fld == 'decoded_model_year') {
+	if ($fld == 'decoded_body_style') {
+		wp_set_post_terms( $post_id, $val, 'vehicle_body_style', false );
+	} elseif ($fld == 'decoded_model_year') {
 		wp_set_post_terms( $post_id, $val, 'vehicle_year', false );
-	}
-	if ($fld == 'decoded_make') {
+	} elseif ($fld == 'decoded_make') {
 		wp_set_post_terms( $post_id, $val, 'vehicle_make', false );
-	}
-	if ($fld == 'decoded_model') {
+	} elseif ($fld == 'decoded_model') {
 		wp_set_post_terms( $post_id, $val, 'vehicle_model', false );
-	}
-	if ($fld == 'decoded_transmission_long') {
-		update_post_meta($post_id, '_transmission_value', $_POST['val']);	
-	}
-	if ($fld == 'decoded_engine_type') {
+	} elseif ($fld == 'decoded_transmission_long') {
+		update_post_meta($post_id, '_transmission_value', $_POST['val']);
+	} elseif ($fld == 'decoded_engine_type') {
 		update_post_meta($post_id, '_engine_value', $_POST['val']);	
-	}
-	if ($fld == 'decoded_trim_level') {
-		update_post_meta($post_id, '_trim_value', $_POST['val']);	
+	} elseif ($fld == 'condition') {
+		wp_set_post_terms( $post_id, $val, 'vehicle_condition', false );
+	} elseif ($fld == 'decoded_trim_level') {
+		update_post_meta($post_id, '_trim_value', $_POST['val']);
+	} elseif ($fld == 'stock_num') {
+		update_post_meta($post_id, '_stock_value', $_POST['val']);
+	} elseif ($fld == 'msrp') {
+		update_post_meta($post_id, '_msrp_value', $_POST['val']);
+	} elseif ($fld == 'rebates') {
+		update_post_meta($post_id, '_rebates_value', $_POST['val']);
+	} elseif ($fld == 'discount') {
+		update_post_meta($post_id, '_discount_value', $_POST['val']);
+	} elseif ($fld == 'price') {
+		update_post_meta($post_id, '_price_value', $_POST['val']);
+	} elseif ($fld == 'exterior_color') {
+		update_post_meta($post_id, '_exterior_color_value', $_POST['val']);
+	} elseif ($fld == 'interior_color') {
+		update_post_meta($post_id, '_interior_color_value', $_POST['val']);
+	} elseif ($fld == 'mileage') {
+		update_post_meta($post_id, '_mileage_value', $_POST['val']);
 	}
 }
 if ($_GET['decode'] == 'remove') {

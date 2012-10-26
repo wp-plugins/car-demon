@@ -12,7 +12,7 @@ function car_demon_create_post_type() {
       'public' => true,
       'rewrite' => array('slug' => 'cars-for-sale'),
 	  'has_archive' => true,
-	  'supports' => array('title','editor','thumbnail','custom-fields')
+	  'supports' => array('title','editor','thumbnail')
     )
   );
 }
@@ -58,7 +58,8 @@ function car_demon_mytax_init() {
       'label' => __('Condition', 'car-demon'),
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
-      'rewrite' => array('slug' => 'condition')
+      'rewrite' => array('slug' => 'condition'),
+	  'show_ui' => false
     )
   );
   register_taxonomy(
@@ -68,7 +69,8 @@ function car_demon_mytax_init() {
       'label' => __('Body Style', 'car-demon'),
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
-      'rewrite' => array('slug' => 'body_style')
+      'rewrite' => array('slug' => 'body_style'),
+	  'show_ui' => false
     )
   );
   register_taxonomy(

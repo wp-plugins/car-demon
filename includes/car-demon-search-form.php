@@ -185,17 +185,17 @@ function car_demon_search_tran() {
 	$prefix = $wpdb->prefix;
 	$sql = 'SELECT DISTINCT meta_value from '.$prefix.'postmeta WHERE meta_key="_transmission_value"';
 	$trans = $wpdb->get_results($sql);
-	if (!empty($trans)) {
-		$x = '<select id="search_dropdown_tran" name="search_dropdown_tran" class="search_dropdown_sm">';
-			$x .= '<option value="">Any</option>';
+	$x = '<select id="search_dropdown_tran" name="search_dropdown_tran" class="search_dropdown_sm">';
+		$x .= '<option value="">Any</option>';
+		if (!empty($trans)) {
 			foreach($trans as $tran) {
 				if (!empty($tran->meta_value)) {
 					if ($current_trans == $tran->meta_value) {$select = ' selected';} else {$select = '';}
 					$x .='<option value="'.$tran->meta_value.'"'.$select.'>'.$tran->meta_value.'</option>';
 				}
 			}
-			$x .= '</select>';
-	}
+		}
+	$x .= '</select>';
 	return $x;
 }
 

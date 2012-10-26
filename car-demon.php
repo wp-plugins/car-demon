@@ -4,7 +4,7 @@ Plugin Name: Car Demon
 Plugin URI: http://www.CarDemons.com/
 Description:  Car Demon is a PlugIn designed for car dealers.
 Author: CarDemons
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://www.CarDemons.com/
 */
 
@@ -410,8 +410,8 @@ function car_demon_theme_redirect() {
 		$plugindir = dirname( __FILE__ );
 		// Custom Post Type cars_for_sale
 		$template_directory = get_template_directory();
-		if ($wp->query_vars["post_type"] == 'cars_for_sale') {
-			if ($wp->query_vars["cars_for_sale"]) {
+		if (isset($wp->query_vars["post_type"]) == 'cars_for_sale') {
+			if (isset($wp->query_vars["cars_for_sale"])) {
 				$templatefilename = 'single-cars_for_sale.php';
 			} else {
 				$templatefilename = 'archive-cars_for_sale.php';	
@@ -423,7 +423,7 @@ function car_demon_theme_redirect() {
 			}
 			do_car_demon_theme_redirect($return_template);
 		// Custom Taxonomy
-		} elseif ($wp->query_vars["vehicle_condition"]) {
+		} elseif (isset($wp->query_vars["vehicle_condition"])) {
 			$templatefilename = 'archive-cars_for_sale.php';
 			if (file_exists($template_directory . '/' . $templatefilename)) {
 				$return_template = $template_directory . '/' . $templatefilename;
@@ -431,7 +431,7 @@ function car_demon_theme_redirect() {
 				$return_template = $plugindir . '/theme-files/' . $templatefilename;
 			}
 			do_car_demon_theme_redirect($return_template);
-		} elseif ($wp->query_vars["vehicle_year"]) {
+		} elseif (isset($wp->query_vars["vehicle_year"])) {
 			$templatefilename = 'archive-cars_for_sale.php';
 			if (file_exists($template_directory . '/' . $templatefilename)) {
 				$return_template = $template_directory . '/' . $templatefilename;
@@ -439,7 +439,7 @@ function car_demon_theme_redirect() {
 				$return_template = $plugindir . '/theme-files/' . $templatefilename;
 			}
 			do_car_demon_theme_redirect($return_template);
-		} elseif ($wp->query_vars["vehicle_make"]) {
+		} elseif (isset($wp->query_vars["vehicle_make"])) {
 			$templatefilename = 'archive-cars_for_sale.php';
 			if (file_exists($template_directory . '/' . $templatefilename)) {
 				$return_template = $template_directory . '/' . $templatefilename;
@@ -447,7 +447,7 @@ function car_demon_theme_redirect() {
 				$return_template = $plugindir . '/theme-files/' . $templatefilename;
 			}
 			do_car_demon_theme_redirect($return_template);
-		} elseif ($wp->query_vars["vehicle_model"]) {
+		} elseif (isset($wp->query_vars["vehicle_model"])) {
 			$templatefilename = 'archive-cars_for_sale.php';
 			if (file_exists($template_directory . '/' . $templatefilename)) {
 				$return_template = $template_directory . '/' . $templatefilename;
@@ -455,7 +455,7 @@ function car_demon_theme_redirect() {
 				$return_template = $plugindir . '/theme-files/' . $templatefilename;
 			}
 			do_car_demon_theme_redirect($return_template);
-		} elseif ($wp->query_vars["vehicle_location"]) {
+		} elseif (isset($wp->query_vars["vehicle_location"])) {
 			$templatefilename = 'archive-cars_for_sale.php';
 			if (file_exists($template_directory . '/' . $templatefilename)) {
 				$return_template = $template_directory . '/' . $templatefilename;
@@ -463,7 +463,7 @@ function car_demon_theme_redirect() {
 				$return_template = $plugindir . '/theme-files/' . $templatefilename;
 			}
 			do_car_demon_theme_redirect($return_template);
-		} elseif ($wp->query_vars["vehicle_body_style"]) {
+		} elseif (isset($wp->query_vars["vehicle_body_style"])) {
 			$templatefilename = 'archive-cars_for_sale.php';
 			if (file_exists($template_directory . '/' . $templatefilename)) {
 				$return_template = $template_directory . '/' . $templatefilename;
@@ -472,7 +472,7 @@ function car_demon_theme_redirect() {
 			}
 			do_car_demon_theme_redirect($return_template);
 		// Search Cars
-		} elseif ($wp->query_vars["s"] == 'cars') {
+		} elseif (isset($wp->query_vars["s"]) == 'cars') {
 			if ($_GET['car']==1) {
 				$templatefilename = 'search.php';
 				$return_template = $plugindir . '/theme-files/' . $templatefilename;

@@ -1,4 +1,6 @@
 <?php
+// This file is being deprecated and replaced by information stored in the decode array
+
 $val1 = array(
 	"name" => "_exterior_color",
 	"std" => "",
@@ -101,21 +103,21 @@ $val20 = array(
 	"description" => "Discounts for vehicles.");
 
 $new_meta_boxes = array(
-	"subtitle18" => $val18,
-	"subtitle19" => $val19,
-	"subtitle20" => $val20,
-	"subtitle4" => $val4,
-	"subtitle" => $val1,
-	"subtitle2" => $val2,
-	"subtitle3" => $val3,
-	"subtitle5" => $val5,
+//	"subtitle18" => $val18,
+//	"subtitle19" => $val19,
+//	"subtitle20" => $val20,
+//	"subtitle4" => $val4,
+//	"subtitle" => $val1,
+//	"subtitle2" => $val2,
+//	"subtitle3" => $val3,
+//	"subtitle5" => $val5,
 //	"subtitle6" => $val6,
 	"subtitle7" => $val7,
 //	"subtitle8" => $val8,
-	"subtitle9" => $val9,
-	"subtitle10" => $val10,
+//	"subtitle9" => $val9,
+//	"subtitle10" => $val10,
 //	"subtitle11" => $val11,
-	"subtitle12" => $val12,
+//	"subtitle12" => $val12,
 //	"subtitle13" => $val13,
 //	"subtitle14" => $val14,
 //	"subtitle15" => $val15,
@@ -175,6 +177,6 @@ function car_demon_save_postdata( $post_id ) {
 	}
 }
 
-add_action('admin_menu', 'car_demon_create_meta_box');
-add_action('save_post', 'car_demon_save_postdata');
+//add_action('admin_menu', 'car_demon_create_meta_box');
+//add_action('save_post', 'car_demon_save_postdata');
 ?>

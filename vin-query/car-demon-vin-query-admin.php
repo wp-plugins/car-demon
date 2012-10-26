@@ -424,12 +424,69 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 	if (isset($vin_query_decode["decoded_overall_length"])) {$decoded_overall_length = $vin_query_decode["decoded_overall_length"]; } else {$decoded_overall_length = ''; }
 	if (isset($vin_query_decode["decoded_overall_width"])) {$decoded_overall_width = $vin_query_decode["decoded_overall_width"]; } else {$decoded_overall_width = ''; }
 	if (isset($vin_query_decode["decoded_overall_height"])) {$decoded_overall_height = $vin_query_decode["decoded_overall_height"]; } else {$decoded_overall_height = ''; }
+	// Meta Fields
+	$stock_num = wp_kses_data(get_post_meta($post_id, '_stock_value', true));
+	$retail_price = wp_kses_data(get_post_meta($post_id, '_msrp_value', true));
+	$rebates = wp_kses_data(get_post_meta($post_id, '_rebates_value', true));
+	$discount = wp_kses_data(get_post_meta($post_id, '_discount_value', true));
+	$price = wp_kses_data(get_post_meta($post_id, '_price_value',true));
+	$exterior_color = wp_kses_data(get_post_meta($post_id, '_exterior_color_value', true));
+	$interior_color = wp_kses_data(get_post_meta($post_id, '_interior_color_value', true));
+	$mileage = wp_kses_data(get_post_meta($post_id, '_mileage_value', true));
+	$condition = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_condition', '','', '', '' )),0);
+	/*
+	The folling fields have been deprecated
+		$cylinders = get_post_meta($post_id, '_cylinders_value', true);
+		$doors = get_post_meta($post_id, '_doors_value', true);
+		$fuel_type = get_post_meta($post_id, '_fuel_type_value', true);
+	*/
 	$remove_decode_btn = '<input onclick="remove_decode('. $post_id .')" type="button" name="remove_decode_vin_'.$post_id.'" id="remove_decode_vin_'.$post_id.'" value="Reset All Fileds" class="btn" />';
 	$x = '
 	<table width="800px" style="font-size:12px;">
 	  <tr style="color:Black;background-color:#CCCCCC;">
 		<td><strong>VIN #</strong></td>
 		<td><input type="text" id="decode_vehicle_vin" disabled="true" onchange="update_admin_decode(this, '.$post_id.')" value="'.$vehicle_vin.'" />'.$remove_decode_btn.'</td>
+	  </tr>
+	  <tr style="color:Black;background-color:white;">
+		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Stock Number</td>
+		<td><input type="text" id="stock_num" onchange="update_admin_decode(this, '.$post_id.')" value="'.$stock_num.'" /></td>
+	  </tr>
+	  <tr style="color:Black;background-color:#EEEEEE;">
+		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Mileage</td>
+		<td><input type="text" id="mileage" onchange="update_admin_decode(this, '.$post_id.')" value="'.$mileage.'" /></td>
+	  </tr>
+	  <tr style="color:Black;background-color:#CCCCCC;">
+		<td colspan="2"><strong>Pricing</strong></td>
+	  </tr>
+	  <tr style="color:Black;background-color:#EEEEEE;">
+		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Retail Price</td>
+		<td><input type="text" id="msrp" onchange="update_admin_decode(this, '.$post_id.')" value="'.$retail_price.'" /></td>
+	  </tr>
+	  <tr style="color:Black;background-color:white;">
+		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Rebates</td>
+		<td><input type="text" id="rebates" onchange="update_admin_decode(this, '.$post_id.')" value="'.$rebates.'" /></td>
+	  </tr>
+	  <tr style="color:Black;background-color:#EEEEEE;">
+		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Discount</td>
+		<td><input type="text" id="discount" onchange="update_admin_decode(this, '.$post_id.')" value="'.$discount.'" /></td>
+	  </tr>
+	  <tr style="color:Black;background-color:white;">
+		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Asking Price</td>
+		<td><input type="text" id="price" onchange="update_admin_decode(this, '.$post_id.')" value="'.$price.'" /></td>
+	  </tr>
+	  <tr style="color:Black;background-color:#CCCCCC;">
+		<td colspan="2"><strong>Details</strong></td>
+	  </tr>
+	  <tr style="color:Black;background-color:#EEEEEE;">
+		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Condition</td>
+		<td>
+			<select id="condition" onchange="update_admin_decode(this, '.$post_id.')">
+				<option value="'.$condition.'">'.$condition.'</option>
+				<option value="Used">Used</option>
+				<option "Certified Used">Certified Used</option>
+				<option "New">New</option>
+			</select>
+		</td>
 	  </tr>
 	  <tr style="color:Black;background-color:#EEEEEE;">
 		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Model Year</td>
@@ -447,6 +504,19 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Trim</td>
 		<td><input type="text" id="decoded_trim_level" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_trim_level.'" /></td>
 	  </tr>
+
+	  <tr style="color:Black;background-color:#EEEEEE;">
+		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Exterior Color</td>
+		<td><input type="text" id="exterior_color" onchange="update_admin_decode(this, '.$post_id.')" value="'.$exterior_color.'" /></td>
+	  </tr>
+	  <tr style="color:Black;background-color:white;">
+		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Interior color</td>
+		<td><input type="text" id="interior_color" onchange="update_admin_decode(this, '.$post_id.')" value="'.$interior_color.'" /></td>
+	  </tr>
+	  
+	  
+	  
+	  
 	  <tr style="color:Black;background-color:#EEEEEE;">
 		<td style="white-space:nowrap;width:320px;">&nbsp;&nbsp;&nbsp;Manufactured in</td>
 		<td><input type="text" id="decoded_manufactured_in" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_manufactured_in.'" /></td>
@@ -1111,6 +1181,11 @@ function decode_select($fld, $val, $post_id) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('vin-query','',$car_demon_pluginpath);
 	$val = trim($val);
+	$no_check = '';
+	$standard_checked = '';
+	$option_checked = '';
+	$na_checked = '';
+	$img = '';
 	if ($val == '') {
 		$no_check = ' selected';
 		$img = '<img id="img_'.$fld.'" src="'.$car_demon_pluginpath . 'theme-files/images/spacer.gif" width="22" height="24" title="Standard Option" alt="Standard Option" />';	
