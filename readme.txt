@@ -128,6 +128,8 @@ By default Car Demon will display vehicles titles as Year Make Model Stock #, th
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+1.0.5 - 1.0.4 Would not update to repository. Rebuit new tag and committed.
+
 1.0.4 - Fixed issue on single vehicle page to prevent error when 
 	pulling similiar body styles when no body style has been entered.
 	
