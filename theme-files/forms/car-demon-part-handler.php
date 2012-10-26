@@ -44,7 +44,7 @@ if ($_GET['send_part']) {
 			$eol="\n";
 		}
 		$to = $part_email;
-		if ($_COOKIE["sales_code"]) {
+		if (isset($_COOKIE["sales_code"])) {
 			$user_id = $_COOKIE["sales_code"];
 			$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 			$location_approved = 0;
@@ -71,7 +71,7 @@ if ($_GET['send_part']) {
 			$headers .= "BCC: ".$admin_email."\r\n";
 		}
 		$headers .= "MIME-Version: 1.0\r\n";
-		if (($_SESSION['car_demon_options']['adfxml_parts']) == 'Yes') {
+		if (isset($_SESSION['car_demon_options']['adfxml_parts']) == 'Yes') {
 			$semi_rand = md5(time());
 			$mime_boundary = "==MULTIPART_BOUNDARY_".$semi_rand;
 			$headers .= 'Content-Type: multipart/alternative; boundary="'.$mime_boundary.'"'.$eol;
@@ -88,6 +88,8 @@ if ($_GET['send_part']) {
 		else {
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 		}
+		$holder = '';
+		$post_id = '';
 		mail($to, $subject, $email_body, $headers);
 		apply_filters('car_demon_mail_hook_complete', $holder, 'parts', $to, $subject, $email_body, $headers, $_POST['email'], $post_id, $part_location);
 		$thanks = '<h1>'.__('Thank You', 'car-demon').'</h1>';
@@ -224,6 +226,8 @@ function get_part_email($part_location) {
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );
+	$location_list = '';
+	$location_name_list = '';
 	foreach ($locations as $location) {
 		$location_list .= ','.$location->slug;
 		$location_name_list .= ','.$location->cat_name;
@@ -254,6 +258,7 @@ function get_part_email($part_location) {
 function get_part_list() {
 	$part_list = $_POST['part_list'];
 	$parts = explode(',',$part_list);
+	$x = '';
 	foreach ($parts as $part) {
 		$part_array = explode(':',$part);
 		$x .= '<tr>

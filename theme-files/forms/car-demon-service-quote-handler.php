@@ -16,7 +16,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-if ($_GET['send_service']) {
+if (isset($_GET['send_service'])) {
 	require($newPath.'wp-content/plugins/car-demon/forms/car-demon-form-key-class.php');
 	$cd_formKey = new cd_formKey();
 	if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
@@ -44,7 +44,7 @@ if ($_GET['send_service']) {
 			$eol="\n";
 		}
 		$to = $service_email;
-		if ($_COOKIE["sales_code"]) {
+		if (isset($_COOKIE["sales_code"])) {
 			$user_id = $_COOKIE["sales_code"];
 			$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 			$location_approved = 0;
@@ -71,7 +71,7 @@ if ($_GET['send_service']) {
 			$headers .= "BCC: ".$admin_email."\r\n";
 		}
 		$headers .= "MIME-Version: 1.0\r\n";
-		if (($_SESSION['car_demon_options']['adfxml_service']) == 'Yes') {
+		if (isset($_SESSION['car_demon_options']['adfxml_service']) == 'Yes') {
 			$semi_rand = md5(time());
 			$mime_boundary = "==MULTIPART_BOUNDARY_".$semi_rand;
 			$headers .= 'Content-Type: multipart/alternative; boundary="'.$mime_boundary.'"'.$eol;
@@ -89,6 +89,8 @@ if ($_GET['send_service']) {
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 		}
 		mail($to, $subject, $email_body, $headers);
+		$post_id = '';
+		$holder = '';
 		apply_filters('car_demon_mail_hook_complete', $holder, 'service_quote', $to, $subject, $email_body, $headers, $_POST['email'], $post_id, $service_location);
 		$thanks = '<h1>'.__('Thank You', 'car-demon').'</h1>';
 		$thanks .= '<h2>'.__('Your Service Quote has been sent.', 'car-demon').'</h2>';
@@ -223,6 +225,8 @@ function get_service_email($service_location) {
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );
+	$location_list = '';
+	$location_name_list = '';
 	foreach ($locations as $location) {
 		$location_list .= ','.$location->slug;
 		$location_name_list .= ','.$location->cat_name;

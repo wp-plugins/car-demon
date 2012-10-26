@@ -70,7 +70,6 @@ if ($_GET['car']) {
 		if ($_GET['search_dropdown_body']) {
 			$my_query = array_merge ($my_query, array('vehicle_body_style' => $_GET['search_dropdown_body']));
 		}
-//	query_posts( $my_query );
 	$search_query = new WP_Query();
     $search_query->query($my_query);
 	$total_results = $search_query->found_posts;

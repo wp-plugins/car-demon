@@ -1,7 +1,6 @@
 <?php
 function car_demon_header() {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	wp_enqueue_script('jquery');
 	?>
 	<script src="<?php echo $car_demon_pluginpath; ?>theme-files/js/jquery.lightbox_me.js"></script>
 	<script src="<?php echo $car_demon_pluginpath; ?>theme-files/js/jquery.autocomplete.js"></script>

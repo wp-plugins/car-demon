@@ -1202,15 +1202,20 @@ function show_finance_form() {
 		  <td colspan="3"><div>
 <fieldset class="cd-fs2">
 			<textarea id="txtDisclosure" name="txtDisclosure" rows="4" style="float:right;width:430px;margin-right:30px;height:365px;font-size:9px;" tabindex="96">
-<?php echo get_this_dislaimer($_GET['stock_num']); ?>
+<?php 
+		if (isset($_GET['stock_num'])) {
+			$this_stock_num = $_GET['stock_num'];
+		} else {
+			$this_stock_num = '';
+		}
+		echo get_this_dislaimer($this_stock_num); ?>
 							  </textarea>
 <legend class="fin_legend">Purchase Information</legend>
 <?php
-		if (empty($_GET['stock_num'])) {
+		if (empty($this_stock_num)) {
 			echo select_finance_for_vehicle(0);
 			echo '<ol class="cd-ol" id="show_voi"></ol>';
-		}
-		else {
+		} else {
 			echo select_finance_for_vehicle(1);
 			echo get_finance_for_vehicle($_GET['stock_num']);
 		}

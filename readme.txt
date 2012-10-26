@@ -4,7 +4,7 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
@@ -65,6 +65,10 @@ Adjust your theme settings and add widgets as desired.
 
 You're now ready to start adding vehicles to your site. You'll find a short form on the Dashboard to let you quickly add vehicles or you can click on "Add New" listed under "Cars for Sale"
 
+Please make sure you add a price to your vehicles. If you don't wish the price to be seen you can select "Do Not Show Prices" on the contact settings page.
+
+Vehicles will not display in the search results until they have been marked published AND a price has been added to them.
+
 
 == Frequently Asked Questions ==
 
@@ -107,21 +111,45 @@ How do I clear an affiliate link?
 If you add ?sales_code=0 to the url for your site it will remove the cookie that stores the sales persons affiliate information and will restore the site to normal lead routing.
 
 
+Why don't my vehicles appear in the search even though I've published them?
+
+
+Please make sure you add a price to your vehicles. If you don't wish the price to be seen you can select "Do Not Show Prices" on the contact settings page.
+
+
+Why don't my vehicles have titles even though I've entered a title for them?
+
+
+By default Car Demon will display vehicles titles as Year Make Model Stock #, the title field is currently only used for descriptive purposes on the back end.
+
 == Screenshots ==
 1. This is a quick look at the inventory management screen. You can quickly change prices and mark vehicles sold without opening each vehicle.
 
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+1.0.4 - Fixed issue on single vehicle page to prevent error when 
+	pulling similiar body styles when no body style has been entered.
+	
+	Updated ReadMe file for clarity on adding vehicles.
+	
+	Removed unneeded jQuery references.
+	
+	Changed paths for jQuery form handlers.
+
+1.0.3 - Resolved issue with mini add vehicle form on dashboard.
+
 1.0.2 - Cleaned up vehicle edit page and removed redundant items.
 
 	Tried to make it easier to manage the options on each vehicle.
 
 	Moved vehicle price fields in with other vehicle options.
 
-	Changed function used to retrieve main thumbnail image on single vehicle page.
+	Changed function used to retrieve main thumbnail image 
+	on single vehicle page.
 
-	Sanitized additional data input on admin side to prevent rogue editor from causing potential issues.
+	Sanitized additional data input on admin side to prevent rogue 
+	editor from causing potential issues.
 		
 1.0.1 - Fixed jQuery conflict on single cars theme page
 

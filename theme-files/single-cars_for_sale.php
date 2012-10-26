@@ -7,7 +7,6 @@
  * @since CarDemon 1.0
  */
 $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-wp_enqueue_script('jquery');
 get_header(); ?>
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo $car_demon_pluginpath; ?>/css/car-demon-single-car.css" />
 <script type="text/JavaScript">
@@ -659,17 +658,21 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('widgets','',$car_demon_pluginpath);
 	$my_tag_id = get_term_by('slug', $body_style, 'vehicle_body_style');
-	$my_search = " AND $wpdb->term_taxonomy.taxonomy = 'vehicle_body_style' AND $wpdb->term_taxonomy.term_id IN(".$my_tag_id->term_id.")";
-	$str_sql = "SELECT wposts.ID
-		FROM $wpdb->posts wposts
-			LEFT JOIN $wpdb->postmeta wpostmeta ON wposts.ID = wpostmeta.post_id 
-			LEFT JOIN $wpdb->term_relationships ON (wposts.ID = $wpdb->term_relationships.object_id)
-			LEFT JOIN $wpdb->term_taxonomy ON ($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
-		WHERE wposts.post_type='cars_for_sale'
-			AND wpostmeta.meta_key = 'sold'
-			AND wpostmeta.meta_value = 'no'".$my_search.'
-			ORDER BY ID LIMIT 4';
-	$the_lists = $wpdb->get_results($str_sql);
+	if (!empty($body_style)) {
+		$my_search = " AND $wpdb->term_taxonomy.taxonomy = 'vehicle_body_style' AND $wpdb->term_taxonomy.term_id IN(".$my_tag_id->term_id.")";
+		$str_sql = "SELECT wposts.ID
+			FROM $wpdb->posts wposts
+				LEFT JOIN $wpdb->postmeta wpostmeta ON wposts.ID = wpostmeta.post_id 
+				LEFT JOIN $wpdb->term_relationships ON (wposts.ID = $wpdb->term_relationships.object_id)
+				LEFT JOIN $wpdb->term_taxonomy ON ($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
+			WHERE wposts.post_type='cars_for_sale'
+				AND wpostmeta.meta_key = 'sold'
+				AND wpostmeta.meta_value = 'no'".$my_search.'
+				ORDER BY ID LIMIT 4';
+		$the_lists = $wpdb->get_results($str_sql);
+	} else {
+		$the_lists = '';
+	}
 	$car = '';
 	$cnt = 0;
 	if (!empty($the_lists)) {

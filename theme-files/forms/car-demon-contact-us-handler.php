@@ -16,7 +16,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-if ($_GET['send_contact']) {
+if (isset($_GET['send_contact'])) {
 	require($newPath.'wp-content/plugins/car-demon/forms/car-demon-form-key-class.php');
 	$cd_formKey = new cd_formKey();
 	if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
@@ -25,7 +25,6 @@ if ($_GET['send_contact']) {
 	}
 	else {
 		$request_body = send_contact_request();
-		$contact_location = $_POST['contact_location'];
 		$contact_email = $_POST['send_to'];
 		$admin_email = get_bloginfo('admin_email');
 		$site_name = get_bloginfo('name');
@@ -51,7 +50,7 @@ if ($_GET['send_contact']) {
 			$headers .= "BCC: ".$admin_email.$eol;
 		}
 		$headers .= "MIME-Version: 1.0".$eol;
-		if (($_SESSION['car_demon_options']['adfxml']) == 'Yes') {
+		if (isset($_SESSION['car_demon_options']['adfxml']) == 'Yes') {
 			$semi_rand = md5(time());
 			$mime_boundary = "==MULTIPART_BOUNDARY_".$semi_rand;
 			$headers .= 'Content-Type: multipart/alternative; boundary="'.$mime_boundary.'"'.$eol;
@@ -69,6 +68,8 @@ if ($_GET['send_contact']) {
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 		}
 		mail($to, $subject, $email_body, $headers);
+		$post_id = '';
+		$holder = '';
 		apply_filters('car_demon_mail_hook_complete', $holder, 'contact_us', $to, $subject, $email_body, $headers, $_POST['email'], $post_id, $_POST['send_to_name']);
 		$thanks = '<h1>'.__('Thank You', 'car-demon').'</h1>';
 		$thanks .= '<h2>'.__('Your Message has been sent.', 'car-demon').'</h2>';

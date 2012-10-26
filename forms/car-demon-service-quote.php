@@ -99,7 +99,7 @@ function car_demon_service_quote() {
 				jQuery.ajax({
 					type: \'POST\',
 					data: {\'your_name\': your_name,\'phone\':phone, \'email\':email, \'service_location\':service_location, \'year\':year, \'make\':make, \'model\':model, \'miles\':miles, \'vin\':vin, \'service_needed\':service_needed, \'form_key\':form_key'.$hook_form_js_data.'},
-					url: "'.$car_demon_pluginpath.'forms/car-demon-service-quote-handler.php?send_service=1",
+					url: "'.$car_demon_pluginpath.'theme-files/forms/car-demon-service-quote-handler.php?send_service=1",
 					timeout: 2000,
 					error: function() {},
 					dataType: "html",

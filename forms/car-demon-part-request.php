@@ -148,7 +148,7 @@ function car_demon_part_request() {
 				jQuery.ajax({
 					type: \'POST\',
 					data: {\'your_name\': your_name,\'phone\':phone, \'email\':email, \'part_location\':part_location,\'year\':year, \'make\':make, \'model\':model, \'part_needed\':part_needed, \'number_of_parts\':number_of_parts, \'part_list\': str, \'form_key\':form_key'.$hook_form_js_data.'},
-					url: "'.$car_demon_pluginpath.'forms/car-demon-part-handler.php?send_part=1",
+					url: "'.$car_demon_pluginpath.'theme-files/forms/car-demon-part-handler.php?send_part=1",
 					timeout: 2000,
 					error: function() {},
 					dataType: "html",

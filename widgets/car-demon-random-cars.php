@@ -99,6 +99,7 @@ function car_demon_display_random_cars($stop) {
 	$total_cars = count_all_cars();
 	$total_cars = $total_cars - 7;
 	$start_at = rand(1,$total_cars);
+	if ($start_at < 0) $start_at = 0;
 	$str_sql = "
 		SELECT wposts.ID
 		FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta

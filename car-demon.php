@@ -4,7 +4,7 @@ Plugin Name: Car Demon
 Plugin URI: http://www.CarDemons.com/
 Description:  Car Demon is a PlugIn designed for car dealers.
 Author: CarDemons
-Version: 1.0.3
+Version: 1.0.4
 Author URI: http://www.CarDemons.com/
 */
 
@@ -46,6 +46,13 @@ include( 'car-demon-header.php' );
 
 add_filter('the_content', 'car_demon_shortcodes');
 add_filter('wp_head', 'car_demon_header');
+
+function car_demon_init() {
+	if (!is_admin()) {
+		wp_enqueue_script('jquery');
+	}
+}
+add_action('init', 'car_demon_init');
 
 function start_car_demon() {
 	if (!session_id()) {
@@ -337,6 +344,7 @@ function get_car_from_stock($selected_car) {
 
 function get_car_id_from_stock($selected_car) {
 	global $wpdb;
+	$post_id = '';
 	$prefix = $wpdb->prefix;
 	$sql = "Select post_id, meta_value from ".$prefix."postmeta WHERE meta_key='_stock_value' and meta_value = '".$selected_car."'";
 	$posts = $wpdb->get_results($sql);

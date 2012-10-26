@@ -18,27 +18,27 @@ else {
 }
 ?>
 <?php
-if ($_GET['show_stock']==1) {
+if (isset($_GET['show_stock'])==1) {
 	$stock_num = $_POST['stock_num'];
 	echo get_trade_for_vehicle($stock_num);
 }
-if ($_GET['show_stock']==2) {
+if (isset($_GET['show_stock'])==2) {
 	$car_title = $_POST['car_title'];
 	$post_id = get_car_id_from_title($car_title);
 	$stock_num = get_post_meta($post_id, "_stock_value", true);
 	echo get_trade_for_vehicle($stock_num);
 }
-if ($_GET['send_trade']) {
-	echo send_trade_email();
+if (isset($_GET['send_trade'])) {
+	echo send_trade_email($newPath);
 }
-if ($_GET['action']=='findStock') {
+if (isset($_GET['action'])=='findStock') {
 	echo car_demon_find_stock_info();
 }
-if ($_GET['action']=='findVehicle') {
+if (isset($_GET['action'])=='findVehicle') {
 	echo car_demon_find_car_info();
 }
 
-function send_trade_email() {
+function send_trade_email($newPath) {
 	require($newPath.'wp-content/plugins/car-demon/forms/car-demon-form-key-class.php');
 	$cd_formKey = new cd_formKey();
 	if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
@@ -74,7 +74,7 @@ function send_trade_email() {
 			$eol="\n";
 		}
 		$to = $trade_email;
-		if ($_COOKIE["sales_code"]) {
+		if (isset($_COOKIE["sales_code"])) {
 			$user_id = $_COOKIE["sales_code"];
 			$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 			$location_approved = 0;
@@ -121,11 +121,11 @@ function send_trade_email() {
 		mail($to, $subject, $email_body, $headers);
 		$selected_car = $_POST['selected_car'];
 		$car_id = get_car_id_from_stock($selected_car);
-		apply_filters('car_demon_mail_hook_complete', $holder, 'trade', $to, $subject, $email_body, $headers, $_POST['email'], $post_id,$trade_location);
+		$holder = '';		
+		apply_filters('car_demon_mail_hook_complete', $holder, 'trade', $to, $subject, $email_body, $headers, $_POST['email'], $car_id,$trade_location);
 		$thanks = '<h1>'.__('Thank You').'</h1>';
 		$thanks .= '<h2>'.__('Your Trade Request has been sent.', 'car-demon').'</h2>';
 		$thanks .= '<h3>'.__('You should receive a confirmation shortly.', 'car-demon').'</h3>';
-		$thanks .= '<h4>'.__('The information you sent is below.', 'car-demon').'</h4>';
 		$thanks .= '<h4>'.__('If you have questions or concerns please call and let us know.', 'car-demon').'</h4>';
 		echo $thanks;
 	}
@@ -371,6 +371,8 @@ function get_trade_email($trade_location) {
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );
+	$location_list = '';
+	$location_name_list = '';
 	foreach ($locations as $location) {
 		$location_list .= ','.$location->slug;
 		$location_name_list .= ','.$location->cat_name;
