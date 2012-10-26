@@ -16,7 +16,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-if (isset($_POST['$post_id'])) $post_id = $_POST['post_id'];
+if (isset($_POST['post_id'])) $post_id = $_POST['post_id'];
 if ($_GET['decode'] == "post") {
 	$vin = $_POST['vin'];
 	car_demon_get_vin_query($post_id, $vin);
