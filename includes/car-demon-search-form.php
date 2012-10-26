@@ -38,13 +38,19 @@ function car_demon_search_form() {
 				<div id="car-demon-searchr5c1" class=""><?php echo car_demon_search_models();?></div>
 			</div>
 		</div>
-		<div id="car-demon-searchr6c1" class="search_min_price"><?php _e('Min Price','car-demon'); ?>:<br /><?php echo car_demon_search_price('Min'); ?></div>
-		<div id="car-demon-searchr6c2" class="search_max_price"><?php _e('Max Price','car-demon'); ?>:<br /><?php echo car_demon_search_price('Max'); ?></div>
-		<div id="car-demon-searchr7c1" class="search_trans"><?php _e('Trans','car-demon'); ?>:<br /><?php echo car_demon_search_tran(); ?></div>
-		<div id="car-demon-searchr7c2" class="search_mileage"><?php _e('Mileage','car-demon'); ?>:<br /><?php echo car_demon_search_miles(); ?></div>
-		<div id="car-demon-searchr8c1" class="search_body"><?php _e('Body Type','car-demon'); ?>:<br /><?php echo car_demon_search_body(); ?></div>
-		<div id="car-demon-searchr8c2" class="search_button_box" style="margin-top:20px;">
-		  <input type="submit" name="submit_search" id="submit_search" value="<?php _e('Search','car-demon'); ?>" class="search_btn">
+		<div>
+			<div id="car-demon-searchr6c1" class="search_min_price"><?php _e('Min Price','car-demon'); ?>:<br /><?php echo car_demon_search_price('Min'); ?></div>
+			<div id="car-demon-searchr6c2" class="search_max_price"><?php _e('Max Price','car-demon'); ?>:<br /><?php echo car_demon_search_price('Max'); ?></div>
+		</div>
+		<div>
+			<div id="car-demon-searchr7c1" class="search_trans"><?php _e('Trans','car-demon'); ?>:<br /><?php echo car_demon_search_tran(); ?></div>
+			<div id="car-demon-searchr7c2" class="search_mileage"><?php _e('Mileage','car-demon'); ?>:<br /><?php echo car_demon_search_miles(); ?></div>
+		</div>
+		<div>
+			<div id="car-demon-searchr8c1" class="search_body"><?php _e('Body Type','car-demon'); ?>:<br /><?php echo car_demon_search_body(); ?></div>
+			<div id="car-demon-searchr8c2" class="search_button_box" style="margin-top:20px;">
+			  <input type="submit" name="submit_search" id="submit_search" value="<?php _e('Search','car-demon'); ?>" class="search_btn">
+			</div>
 		</div>
 		<div id="car-demon-searchr9c1" class="search_footer"></div>
 </form>
@@ -185,17 +191,17 @@ function car_demon_search_tran() {
 	$prefix = $wpdb->prefix;
 	$sql = 'SELECT DISTINCT meta_value from '.$prefix.'postmeta WHERE meta_key="_transmission_value"';
 	$trans = $wpdb->get_results($sql);
-	$x = '<select id="search_dropdown_tran" name="search_dropdown_tran" class="search_dropdown_sm">';
-		$x .= '<option value="">Any</option>';
-		if (!empty($trans)) {
+	if (!empty($trans)) {
+		$x = '<select id="search_dropdown_tran" name="search_dropdown_tran" class="search_dropdown_sm">';
+			$x .= '<option value="">Any</option>';
 			foreach($trans as $tran) {
 				if (!empty($tran->meta_value)) {
 					if ($current_trans == $tran->meta_value) {$select = ' selected';} else {$select = '';}
 					$x .='<option value="'.$tran->meta_value.'"'.$select.'>'.$tran->meta_value.'</option>';
 				}
 			}
-		}
-	$x .= '</select>';
+			$x .= '</select>';
+	}
 	return $x;
 }
 
