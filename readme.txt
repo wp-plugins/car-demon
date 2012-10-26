@@ -114,10 +114,14 @@ If you add ?sales_code=0 to the url for your site it will remove the cookie that
 
 == Changelog ==
 1.0.2 - Cleaned up vehicle edit page and removed redundant items.
-		Tried to make it easier to manage the options on each vehicle.
-		Moved vehicle price fields in with other vehicle options.
-		Changed function used to retrieve main thumbnail image on single vehicle page.
-		Sanitized additional data input on admin side to prevent rogue editor from causing potential issues.
+
+	Tried to make it easier to manage the options on each vehicle.
+
+	Moved vehicle price fields in with other vehicle options.
+
+	Changed function used to retrieve main thumbnail image on single vehicle page.
+
+	Sanitized additional data input on admin side to prevent rogue editor from causing potential issues.
 		
 1.0.1 - Fixed jQuery conflict on single cars theme page
 
