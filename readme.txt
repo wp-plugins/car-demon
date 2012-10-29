@@ -4,7 +4,7 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
@@ -72,19 +72,24 @@ Vehicles will not display in the search results until they have been marked publ
 
 == Frequently Asked Questions ==
 
-How do I add people to my staff page?
+* How do I view just a basic list of my vehicles?
+
+First go to your admin area and click settings, then select permalinks. Add this as a custom permalink; /%postname%/%post_id%
+Now click save. You should now be able to go to http://my_site/cars-for-sale and see a list of all your vehicles.
+
+* How do I add people to my staff page?
 
 
 You'll need to add them as users to the website, you can make them subscribers if you'd like. On their profile page you'll see a section labeled "Extra Profile Information", add a photo (120x120 suggested), a job title, a location and then click a radio button that matches their duties. Click save and you should now see them listed on your staff page.
 
 
-How do I route the different forms to different people?
+* How do I route the different forms to different people?
 
 
 You do this on the "Contact Settings Page" under "Cars for Sale".
 
 
-How do I setup a sales person with an affiliate link?
+* How do I setup a sales person with an affiliate link?
 
 
 On each user profile page there is a segment called "Advanced Sales Information", the custom URL can be used by the sales person to customize the site with their information. "Under Custom Site Leads" you'll need to put a check next to each type of form they should receive. If you have multiple locations you can also decide if they should receive leads for just their location or for all locations.
@@ -99,25 +104,25 @@ The querystring for the affiliate link can be used on almost any page. Simply ad
 If you're using the Car Demon theme or Car Demon front page you can add custom headers for each sales person and even a custom slide on the homepage.
 
 
-What happens if someone using an affiliate link uses the email a friend button?
+* What happens if someone using an affiliate link uses the email a friend button?
 
 
 All links in the email they recieve will contain the affiliate link, so the original sales person will still receive any future contacts from their friend. This is especially handy if a sales person wants to email a car to a potential customer. If the sales person is viewing the site with their own affiliate link then any vehicle they email to a customer with the "Email a Friend" feature will contain all of their contact info.
 
 
-How do I clear an affiliate link?
+* How do I clear an affiliate link?
 
 
 If you add ?sales_code=0 to the url for your site it will remove the cookie that stores the sales persons affiliate information and will restore the site to normal lead routing.
 
 
-Why don't my vehicles appear in the search even though I've published them?
+* Why don't my vehicles appear in the search even though I've published them?
 
 
 Please make sure you add a price to your vehicles. If you don't wish the price to be seen you can select "Do Not Show Prices" on the contact settings page.
 
 
-Why don't my vehicles have titles even though I've entered a title for them?
+* Why don't my vehicles have titles even though I've entered a title for them?
 
 
 By default Car Demon will display vehicles titles as Year Make Model Stock #, the title field is currently only used for descriptive purposes on the back end.
@@ -128,34 +133,29 @@ By default Car Demon will display vehicles titles as Year Make Model Stock #, th
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
-1.0.5 - Previous version would not update to repository.
-
-1.0.4 - Fixed issue on single vehicle page to prevent error when 
-	pulling similiar body styles when no body style has been entered.
-	
-	Updated ReadMe file for clarity on adding vehicles.
-	
-	Removed unneeded jQuery references.
-	
-	Changed paths for jQuery form handlers.
-
-1.0.3 - Resolved issue with mini add vehicle form on dashboard.
-
-1.0.2 - Cleaned up vehicle edit page and removed redundant items.
-
-	Tried to make it easier to manage the options on each vehicle.
-
-	Moved vehicle price fields in with other vehicle options.
-
-	Changed function used to retrieve main thumbnail image 
-	on single vehicle page.
-
-	Sanitized additional data input on admin side to prevent rogue 
-	editor from causing potential issues.
-		
-1.0.1 - Fixed jQuery conflict on single cars theme page
-
-1.0.0 - Initial Public Release
+= 1.0.6 =
+* Fixed css issue with search widget kicking field onto next row when
+* when viewing on iPad.
+* Cleaned up search forms.
+= 1.0.5 =
+* 1.0.4 Would not update to repository. Rebuit new tag and committed.
+= 1.0.4 =
+* Fixed issue on single vehicle page to prevent error when pulling similiar body styles when no body style has been entered.
+* Updated ReadMe file for clarity on adding vehicles.
+* Removed unneeded jQuery references.
+* Changed paths for jQuery form handlers.
+= 1.0.3 =
+* Resolved issue with mini add vehicle form on dashboard.
+= 1.0.2 =
+* Cleaned up vehicle edit page and removed redundant items.
+* Tried to make it easier to manage the options on each vehicle.
+* Moved vehicle price fields in with other vehicle options.
+* Changed function used to retrieve main thumbnail image on single vehicle page.
+* Sanitized additional data input on admin side to prevent rogue editor from causing potential issues.
+= 1.0.1 = 
+* Fixed jQuery conflict on single cars theme page
+= 1.0.0 =
+* Initial Public Release
 
 == Upgrade Notice ==
 None

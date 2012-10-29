@@ -170,17 +170,17 @@ function car_demon_save_custom_user_profile_fields( $user_id ) {
 	update_user_meta( $user_id, 'facebook_page', $_POST['facebook_page'] );
 	update_user_meta( $user_id, 'phone_number', $_POST['phone_number'] );
 	update_user_meta( $user_id, 'lead_locations', $_POST['lead_locations'] );	
-	if ($_POST['lead_new_cars']) { update_user_meta( $user_id, 'lead_new_cars', $_POST['lead_new_cars'] ); }
+	if (isset($_POST['lead_new_cars'])) { update_user_meta( $user_id, 'lead_new_cars', $_POST['lead_new_cars'] ); }
 		else { delete_user_meta( $user_id, 'lead_new_cars'); }
-	if ($_POST['lead_used_cars']) { update_user_meta( $user_id, 'lead_used_cars', $_POST['lead_used_cars'] ); }
+	if (isset($_POST['lead_used_cars'])) { update_user_meta( $user_id, 'lead_used_cars', $_POST['lead_used_cars'] ); }
 		else { delete_user_meta( $user_id, 'lead_used_cars'); }
-	if ($_POST['lead_trade']) { update_user_meta( $user_id, 'lead_trade', $_POST['lead_trade'] ); }
+	if (isset($_POST['lead_trade'])) { update_user_meta( $user_id, 'lead_trade', $_POST['lead_trade'] ); }
 		else { delete_user_meta( $user_id, 'lead_trade'); }
-	if ($_POST['lead_finance']) { update_user_meta( $user_id, 'lead_finance', $_POST['lead_finance'] ); }
+	if (isset($_POST['lead_finance'])) { update_user_meta( $user_id, 'lead_finance', $_POST['lead_finance'] ); }
 		else { delete_user_meta( $user_id, 'lead_finance'); }
-	if ($_POST['lead_parts']) { update_user_meta( $user_id, 'lead_parts', $_POST['lead_parts'] ); }
+	if (isset($_POST['lead_parts'])) { update_user_meta( $user_id, 'lead_parts', $_POST['lead_parts'] ); }
 		else { delete_user_meta( $user_id, 'lead_parts'); }
-	if ($_POST['lead_service']) { update_user_meta( $user_id, 'lead_service', $_POST['lead_service'] ); }
+	if (isset($_POST['lead_service'])) { update_user_meta( $user_id, 'lead_service', $_POST['lead_service'] ); }
 		else { delete_user_meta( $user_id, 'lead_service'); }
 }
 add_action( 'show_user_profile', 'car_demon_add_custom_user_profile_fields' );
@@ -198,6 +198,8 @@ function car_demon_select_user_location($current_user_location) {
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );
+	$location_list = '';
+	$location_name_list = '';
 	$cnt = 0;
 	foreach ($locations as $location) {
 		$cnt = $cnt + 1;

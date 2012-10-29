@@ -99,7 +99,7 @@ $sort_desc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=desc"
 <?php while ( have_posts() ) : the_post();
 	$post_id = $post->ID;
 	echo car_demon_display_car_list($post_id);
-endwhile; // End the loop. Whew. ?>	
+endwhile; // End the loop. Whew. ?>
 				<?php /* Display navigation to next/previous pages when applicable */ ?>
 				<?php if (  $wp_query->max_num_pages > 1 ) : ?>
 						<div id="cd-nav-below" class="navigation" style="float:left;">

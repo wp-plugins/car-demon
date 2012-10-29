@@ -18,8 +18,16 @@ if ($_GET['car']) {
 		$order_by_dir = $_GET['order_by_dir'];
 	}	
 	$paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
-	$min_price = $_GET['search_dropdown_Min_price'];
-	$max_price = $_GET['search_dropdown_Max_price'];
+	if (isset($_GET['search_dropdown_Min_price'])) {
+		$min_price = $_GET['search_dropdown_Min_price'];
+	} else {
+		$min_price = '';
+	}
+	if (isset($_GET['search_dropdown_Max_price'])) {
+		$max_price = $_GET['search_dropdown_Max_price'];
+	} else {
+		$max_price = '';
+	}
 	$meta_query = array(
 			array(
 				'key' => 'sold',
@@ -27,14 +35,20 @@ if ($_GET['car']) {
 				'compare' => '='
 			)
 		);
-	if ($_GET['stock']) {
-		$meta_query = array_merge($meta_query, array(array('key' => '_stock_value','value' => $_GET['stock'], 'compare' => '=', 'type' => 'text')));
+	if (isset($_GET['stock'])) {
+		if ($_GET['stock']) {
+			$meta_query = array_merge($meta_query, array(array('key' => '_stock_value','value' => $_GET['stock'], 'compare' => '=', 'type' => 'text')));
+		}
 	}
-	if ($_GET['search_dropdown_miles']) {
-		$meta_query = array_merge($meta_query, array(array('key' => '_mileage_value','value' => $_GET['search_dropdown_miles'], 'compare' => '<', 'type' => 'numeric')));
+	if (isset($_GET['search_dropdown_miles'])) {
+		if ($_GET['search_dropdown_miles']) {
+			$meta_query = array_merge($meta_query, array(array('key' => '_mileage_value','value' => $_GET['search_dropdown_miles'], 'compare' => '<', 'type' => 'numeric')));
+		}
 	}
-	if ($_GET['search_dropdown_tran']) {
-		$meta_query = array_merge($meta_query, array(array('key' => '_transmission_value','value' => $_GET['search_dropdown_tran'], 'compare' => '=', 'type' => 'text')));
+	if (isset($_GET['search_dropdown_tran'])) {
+		if ($_GET['search_dropdown_tran']) {
+			$meta_query = array_merge($meta_query, array(array('key' => '_transmission_value','value' => $_GET['search_dropdown_tran'], 'compare' => '=', 'type' => 'text')));
+		}
 	}
 	if ($max_price > 0) {
 		if ($min_price == 0) { $min_price = 1; }
@@ -55,20 +69,30 @@ if ($_GET['car']) {
 			'meta_key' => $order_by,
 			'order'    => $order_by_dir
 		);
-		if ($_GET['search_year']) {
-			$my_query = array_merge ($my_query, array('vehicle_year' => $_GET['search_year']));
+		if (isset($_GET['search_year'])) {
+			if ($_GET['search_year']) {
+				$my_query = array_merge ($my_query, array('vehicle_year' => $_GET['search_year']));
+			}
 		}
-		if ($_GET['search_condition']) {
-			$my_query = array_merge ($my_query, array('vehicle_condition' => $_GET['search_condition']));
+		if (isset($_GET['search_condition'])) {
+			if ($_GET['search_condition']) {
+				$my_query = array_merge ($my_query, array('vehicle_condition' => $_GET['search_condition']));
+			}
 		}
-		if ($_GET['search_make']) {
-			$my_query = array_merge ($my_query, array('vehicle_make' => $_GET['search_make']));
+		if (isset($_GET['search_make'])) {
+			if ($_GET['search_make']) {
+				$my_query = array_merge ($my_query, array('vehicle_make' => $_GET['search_make']));
+			}
 		}
 		if (isset($_GET['search_model'])) {
-			$my_query = array_merge ($my_query, array('vehicle_model' => $_GET['search_model']));
+			if ($_GET['search_model']) {
+				$my_query = array_merge ($my_query, array('vehicle_model' => $_GET['search_model']));
+			}
 		}
-		if ($_GET['search_dropdown_body']) {
-			$my_query = array_merge ($my_query, array('vehicle_body_style' => $_GET['search_dropdown_body']));
+		if (isset($_GET['search_dropdown_body'])) {
+			if ($_GET['search_dropdown_body']) {
+				$my_query = array_merge ($my_query, array('vehicle_body_style' => $_GET['search_dropdown_body']));
+			}
 		}
 	$search_query = new WP_Query();
     $search_query->query($my_query);

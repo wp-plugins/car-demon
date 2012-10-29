@@ -34,20 +34,55 @@ function car_demon_search_form() {
 				<div><?php echo car_demon_search_years(); ?></div>
 			</div>
 			<div style="float:left;">
-				<div id="car-demon-searchr3c1" class=""><?php _e('Model','car-demon'); ?>:</div>
-				<div id="car-demon-searchr5c1" class=""><?php echo car_demon_search_models();?></div>
+				<div style="float:left;width:85px;"><?php _e('Model','car-demon'); ?>:</div>
+				<div><?php echo car_demon_search_models();?></div>
 			</div>
 		</div>
 		<div>
-			<div id="car-demon-searchr6c1" class="search_min_price"><?php _e('Min Price','car-demon'); ?>:<br /><?php echo car_demon_search_price('Min'); ?></div>
-			<div id="car-demon-searchr6c2" class="search_max_price"><?php _e('Max Price','car-demon'); ?>:<br /><?php echo car_demon_search_price('Max'); ?></div>
+			<div id="car-demon-searchr6c1" class="search_min_price">
+				<div style="float:left;width:85px;">
+					<?php _e('Min Price','car-demon'); ?>:
+				</div>
+				<div>
+					<?php echo car_demon_search_price('Min'); ?>
+				</div>
+			</div>
+			<div id="car-demon-searchr6c2" class="search_max_price">
+				<div style="float:left;width:85px;">
+					<?php _e('Max Price','car-demon'); ?>:
+				</div>
+				<div>
+					<?php echo car_demon_search_price('Max'); ?>
+				</div>
+			</div>
 		</div>
 		<div>
-			<div id="car-demon-searchr7c1" class="search_trans"><?php _e('Trans','car-demon'); ?>:<br /><?php echo car_demon_search_tran(); ?></div>
-			<div id="car-demon-searchr7c2" class="search_mileage"><?php _e('Mileage','car-demon'); ?>:<br /><?php echo car_demon_search_miles(); ?></div>
+			<div id="car-demon-searchr7c1" class="search_trans">
+				<div style="float:left;width:85px;">
+					<?php _e('Trans','car-demon'); ?>:
+				</div>
+				<div>
+					<?php echo car_demon_search_tran(); ?>
+				</div>
+			</div>
+			<div id="car-demon-searchr7c2" class="search_mileage">
+				<div style="float:left;width:85px;">
+					<?php _e('Mileage','car-demon'); ?>:
+				</div>
+				<div>
+					<?php echo car_demon_search_miles(); ?>
+				</div>
+			</div>
 		</div>
 		<div>
-			<div id="car-demon-searchr8c1" class="search_body"><?php _e('Body Type','car-demon'); ?>:<br /><?php echo car_demon_search_body(); ?></div>
+			<div id="car-demon-searchr8c1" class="search_body">
+				<div style="float:left;width:85px;">
+					<?php _e('Body Type','car-demon'); ?>:
+				</div>
+				<div>
+					<?php echo car_demon_search_body(); ?>
+				</div>
+			</div>
 			<div id="car-demon-searchr8c2" class="search_button_box" style="margin-top:20px;">
 			  <input type="submit" name="submit_search" id="submit_search" value="<?php _e('Search','car-demon'); ?>" class="search_btn">
 			</div>
@@ -131,7 +166,12 @@ function car_demon_select_years() {
 }
 
 function car_demon_get_years_dropdown($taxonomies, $args) {
-	$current_year = $_GET['search_year'];
+	if (isset($_GET['search_year'])) {
+		$current_year = $_GET['search_year'];
+	}
+	else {
+		$current_year = '';
+	}
 	$myterms = get_terms($taxonomies, $args);
 	$output = '<select id="search_year" name="search_year" class="">
 			<option value="">Any</option>';
@@ -273,44 +313,62 @@ return $output;
 
 function car_demon_get_searched_by() {
 	$searched = '';
-	if ($_GET['search_condition']) {
-		$searched .= '<span class="remove_search" onclick="remove_search(\'search_condition\', \''.$_GET['search_condition'].'\');">x</span> <span class="remove_search_title">Condition:</span> ';
-		$searched .= $_GET['search_condition'] .', ';
+	if (isset($_GET['search_condition'])) {
+		if ($_GET['search_condition']) {
+			$searched .= '<span class="remove_search" onclick="remove_search(\'search_condition\', \''.$_GET['search_condition'].'\');">x</span> <span class="remove_search_title">Condition:</span> ';
+			$searched .= $_GET['search_condition'] .', ';
+		}
 	}
-	if ($_GET['search_year']) {
-		$searched .= '<span class="remove_search" onclick="remove_search(\'search_year\', \''.$_GET['search_year'].'\');">x</span> <span class="remove_search_title">Year:</span> ';
-		$searched .= $_GET['search_year'];
+	if (isset($_GET['search_year'])) {
+		if ($_GET['search_year']) {
+			$searched .= '<span class="remove_search" onclick="remove_search(\'search_year\', \''.$_GET['search_year'].'\');">x</span> <span class="remove_search_title">Year:</span> ';
+			$searched .= $_GET['search_year'];
+		}
 	}
-	if ($_GET['search_make']) {
-		$searched .= '<span class="remove_search" onclick="remove_search(\'search_make\', \''.$_GET['search_make'].'\');">x</span> <span class="remove_search_title">Make:</span> ';
-		$search_make_array = $_GET['search_make'];
-		$search_make_array = explode(',', $search_make_array);
-		$search_make = $search_make_array[1];
-		$searched .= $search_make .', ';
+	if (isset($_GET['search_make'])) {
+		if ($_GET['search_make']) {
+			$searched .= '<span class="remove_search" onclick="remove_search(\'search_make\', \''.$_GET['search_make'].'\');">x</span> <span class="remove_search_title">Make:</span> ';
+			$search_make_array = $_GET['search_make'];
+			$search_make_array = explode(',', $search_make_array);
+			$search_make = $search_make_array[1];
+			$searched .= $search_make .', ';
+		}
 	}
 	if (isset($_GET['search_model'])) {
-		$searched .= '<span class="remove_search" onclick="remove_search(\'search_model\', \''.$_GET['search_model'].'\');">x</span> <span class="remove_search_title">Model:</span> ';
-		$searched .= $_GET['search_model'] .', ';
+		if ($_GET['search_model']) {
+			$searched .= '<span class="remove_search" onclick="remove_search(\'search_model\', \''.$_GET['search_model'].'\');">x</span> <span class="remove_search_title">Model:</span> ';
+			$searched .= $_GET['search_model'] .', ';
+		}
 	}
-	if ($_GET['search_dropdown_Min_price']) {
-		$searched .= '<span class="remove_search" onclick="remove_search(\'search_dropdown_Min_price\', \''.$_GET['search_dropdown_Min_price'].'\');">x</span> <span class="remove_search_title">Min Price:</span> ';
-		$searched .= $_GET['search_dropdown_Min_price'] .', ';
+	if (isset($_GET['search_dropdown_Min_price'])) {
+		if ($_GET['search_dropdown_Min_price']) {
+			$searched .= '<span class="remove_search" onclick="remove_search(\'search_dropdown_Min_price\', \''.$_GET['search_dropdown_Min_price'].'\');">x</span> <span class="remove_search_title">Min Price:</span> ';
+			$searched .= $_GET['search_dropdown_Min_price'] .', ';
+		}
 	}
-	if ($_GET['search_dropdown_Max_price']) {
-		$searched .= '<span class="remove_search" onclick="remove_search(\'search_dropdown_Max_price\', \''.$_GET['search_dropdown_Max_price'].'\');">x</span> <span class="remove_search_title">Max Price:</span> ';
-		$searched .= $_GET['search_dropdown_Max_price'] .', ';
+	if (isset($_GET['search_dropdown_Max_price'])) {
+		if ($_GET['search_dropdown_Max_price']) {
+			$searched .= '<span class="remove_search" onclick="remove_search(\'search_dropdown_Max_price\', \''.$_GET['search_dropdown_Max_price'].'\');">x</span> <span class="remove_search_title">Max Price:</span> ';
+			$searched .= $_GET['search_dropdown_Max_price'] .', ';
+		}
 	}
-	if ($_GET['search_dropdown_tran']) {
-		$searched .= '<span class="remove_search" onclick="remove_search(\'search_dropdown_tran\', \''.$_GET['search_dropdown_tran'].'\');">x</span> <span class="remove_search_title">Transmission:</span> ';
-		$searched .= $_GET['search_dropdown_tran'] .', ';
+	if (isset($_GET['search_dropdown_tran'])) {
+		if ($_GET['search_dropdown_tran']) {
+			$searched .= '<span class="remove_search" onclick="remove_search(\'search_dropdown_tran\', \''.$_GET['search_dropdown_tran'].'\');">x</span> <span class="remove_search_title">Transmission:</span> ';
+			$searched .= $_GET['search_dropdown_tran'] .', ';
+		}
 	}
-	if ($_GET['search_dropdown_miles']) {
-		$searched .= '<span class="remove_search" onclick="remove_search(\'search_dropdown_miles\', \''.$_GET['search_dropdown_miles'].'\');">x</span> <span class="remove_search_title">Miles:</span> ';
-		$searched .= $_GET['search_dropdown_miles'] .', ';
+	if (isset($_GET['search_dropdown_miles'])) {
+		if ($_GET['search_dropdown_miles']) {
+			$searched .= '<span class="remove_search" onclick="remove_search(\'search_dropdown_miles\', \''.$_GET['search_dropdown_miles'].'\');">x</span> <span class="remove_search_title">Miles:</span> ';
+			$searched .= $_GET['search_dropdown_miles'] .', ';
+		}
 	}
-	if ($_GET['search_dropdown_body']) {
-		$searched .= '<span class="remove_search" onclick="remove_search(\'search_dropdown_body\', \''.$_GET['search_dropdown_body'].'\');">x</span> <span class="remove_search_title">Body Style:</span> ';
-		$searched .= $_GET['search_dropdown_body'] .', ';
+	if (isset($_GET['search_dropdown_body'])) {
+		if ($_GET['search_dropdown_body']) {
+			$searched .= '<span class="remove_search" onclick="remove_search(\'search_dropdown_body\', \''.$_GET['search_dropdown_body'].'\');">x</span> <span class="remove_search_title">Body Style:</span> ';
+			$searched .= $_GET['search_dropdown_body'] .', ';
+		}
 	}
 	$searched .= '@@';
 	$searched = str_replace(', @@', '', $searched);

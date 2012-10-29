@@ -78,7 +78,6 @@ function car_demon_display_car_list($post_id) {
 				'.$detail_output.'
 			</div>
 		</div>';
-		
 	return $car;
 }
 ?>
