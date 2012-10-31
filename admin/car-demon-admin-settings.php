@@ -458,18 +458,33 @@ function car_demon_settings_options_do_page() {
 	echo '<form action="" method="post">';
 		echo '<input type="hidden" name="update_car_demon" value="1" />';
 		echo '<hr />';
-
 		echo '<br />'.__('Disable Finance Form if it isn\'t loaded with SSL', 'car-demon').':<br />';
 		echo '<select name="secure_finance">
 			<option value="'.$car_demon_options['secure_finance'].'">'.$car_demon_options['secure_finance'].'</option>
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
 			</select><br />';
-
-		echo '<br />*'.__('VinQuery.com ID', 'car-demon').':<br />';
+		echo '<br />*'.__('VinQuery.com Access Code', 'car-demon').':<br />';
 		echo '<input type="text" name="vinquery_id" value="'.$car_demon_options['vinquery_id'].'" />';
 		echo '*(optional)<br />';
-		$vinquery_type = $car_demon_options['vinquery_type'];
+		$vinquery_type_num = $car_demon_options['vinquery_type'];
+		if ($vinquery_type_num == 0) {
+			$vinquery_type_name = __('Basic', 'car-demon');
+		} elseif ($vinquery_type_num == 1) {
+			$vinquery_type_name = __('Standard', 'car-demon');
+		} elseif ($vinquery_type_num == 2) {
+			$vinquery_type_name = __('Extended', 'car-demon');
+		} elseif ($vinquery_type_num == 3) {
+			$vinquery_type_name = __('Lite', 'car-demon');
+		}
+		echo '<br />'.__('VinQuery.com Report Type', 'car-demon').':<br />';
+		echo '<select name="vinquery_type">
+				<option value="'.$vinquery_type_num.'">'.$vinquery_type_name.'</option>
+				<option value="2">'.__('Extended', 'car-demon').'</option>
+				<option value="1">'. __('Standard', 'car-demon') .'</option>
+				<option value="0">'. __('Basic', 'car-demon') .'</option>
+				<option value="3">'. __('Lite', 'car-demon') .'</option>
+			</select><br />';
 		echo '<br />'.__('Include ADFxml with Leads?', 'car-demon').':<br />';
 		echo '<select name="adfxml">
 				<option value="'.$car_demon_options['adfxml'].'">'.$car_demon_options['adfxml'].'</option>

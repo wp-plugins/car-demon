@@ -1,6 +1,9 @@
 <?php
 function car_demon_get_vin_query($post_id, $vin) {
 	$report_type = '1';
+	if (isset($_SESSION['car_demon_options']['vinquery_type'])) {
+		$report_type = $_SESSION['car_demon_options']['vinquery_type'];
+	}
 	$vinquery_id = $_SESSION['car_demon_options']['vinquery_id'];
 	$decode_saved = get_post_meta($post_id, 'decode_saved');
 	if (empty($decode_saved)) {

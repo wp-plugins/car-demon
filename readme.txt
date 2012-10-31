@@ -4,7 +4,7 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
@@ -133,9 +133,13 @@ By default Car Demon will display vehicles titles as Year Make Model Stock #, th
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+= 1.0.8 =
+* Changed label on VinQuery.com ID  to VinQuery.com Access Code to match correct terminology.
+* Added option to manually select VinQuery Report Type.
+= 1.0.7 =
+* Did some minor code consolidation.
 = 1.0.6 =
-* Fixed css issue with search widget kicking field onto next row when
-* when viewing on iPad.
+* Fixed css issue with search widget kicking field onto next row when viewing on iPad.
 * Cleaned up search forms.
 = 1.0.5 =
 * 1.0.4 Would not update to repository. Rebuit new tag and committed.
