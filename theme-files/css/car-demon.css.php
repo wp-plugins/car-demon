@@ -1,19 +1,46 @@
 <?php
-function car_demon_css($car_demon_pluginpath) {
-	$theme_color = '4D525D';
-	$theme_color_highlight = '333';
-	$theme_color_shadow = '999';
-	$theme_color_button = '0000aa';
-	$theme_color_button_hover = '999';
-	$theme_color_button_shadow = '999';
-	if (!empty($_SESSION['car_demon_options']['theme_color'])) { $theme_color = $_SESSION['car_demon_options']['theme_color']; }
-	if (!empty($_SESSION['car_demon_options']['theme_color_highlight'])) { $theme_color_highlight = $_SESSION['car_demon_options']['theme_color_highlight']; }
-	if (!empty($_SESSION['car_demon_options']['theme_color_shadow'])) { $theme_color_shadow = $_SESSION['car_demon_options']['theme_color_shadow']; }
-	if (!empty($_SESSION['car_demon_options']['theme_color_button'])) { $theme_color_button = $_SESSION['car_demon_options']['theme_color_button']; }
-	if (!empty($_SESSION['car_demon_options']['theme_color_button_hover'])) { $theme_color_button_hover = $_SESSION['car_demon_options']['theme_color_button_hover']; }
-	if (!empty($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme_color_button_shadow = $_SESSION['car_demon_options']['theme_color_button_shadow']; }
-?>
+ob_start ("ob_gzhandler");
+header("Content-type: text/css; charset: UTF-8");
+header("Cache-Control: must-revalidate");
+$offset = 60 * 60 ;
+$ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
+header($ExpStr);
 
+$newPath = dirname(__FILE__);
+if (!stristr(PHP_OS, 'WIN')) {
+	$is_it_iis = 'Apache';
+}
+else {
+	$is_it_iis = 'Win';
+}
+
+if ($is_it_iis == 'Apache') {
+	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/css', '', $newPath);
+	include_once($newPath."/wp-load.php");
+	include_once($newPath."/wp-includes/wp-db.php");
+}
+else {
+	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\css', '', $newPath);
+	include_once($newPath."\wp-load.php");
+	include_once($newPath."\wp-includes/wp-db.php");
+}
+$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+$car_demon_pluginpath = str_replace('theme-files/css','',$car_demon_pluginpath);
+
+$theme_color = '4D525D';
+$theme_color_highlight = '333';
+$theme_color_shadow = '999';
+$theme_color_button = '0000aa';
+$theme_color_button_hover = '999';
+$theme_color_button_shadow = '999';
+if (isset($_SESSION['car_demon_options']['theme_color'])) { $theme_color = $_SESSION['car_demon_options']['theme_color']; }
+if (isset($_SESSION['car_demon_options']['theme_color_highlight'])) { $theme_color_highlight = $_SESSION['car_demon_options']['theme_color_highlight']; }
+if (isset($_SESSION['car_demon_options']['theme_color_shadow'])) { $theme_color_shadow = $_SESSION['car_demon_options']['theme_color_shadow']; }
+if (isset($_SESSION['car_demon_options']['theme_color_button'])) { $theme_color_button = $_SESSION['car_demon_options']['theme_color_button']; }
+if (isset($_SESSION['car_demon_options']['theme_color_button_hover'])) { $theme_color_button_hover = $_SESSION['car_demon_options']['theme_color_button_hover']; }
+if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme_color_button_shadow = $_SESSION['car_demon_options']['theme_color_button_shadow']; }
+
+?>
 /* =Search Button
 -------------------------------------------------------------- */
 .search_btn {
@@ -286,8 +313,3 @@ ol.cd-ol li {
 	color: #303030;
 	background-color: #FFFFFF;
 }
-
-
-<?php
-}
-?>
