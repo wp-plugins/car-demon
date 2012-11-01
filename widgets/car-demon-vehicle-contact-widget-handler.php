@@ -18,9 +18,11 @@ else {
 }
 if ($_GET['send_contact']) {
 	$request_body = send_contact_request();
-	$contact_location = $_POST['contact_location'];
+	if (isset($_POST['contact_location'])) {
+		$contact_location = $_POST['contact_location'];
+	}
 	$contact_email = $_POST['send_to'];
-	if ($_COOKIE["sales_code"]) {
+	if (isset($_COOKIE["sales_code"])) {
 		$user_id = $_COOKIE["sales_code"];
 		$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 		$location_approved = 0;
@@ -97,6 +99,7 @@ if ($_GET['send_contact']) {
 	$contact_location = strtolower($contact_location);
 	$contact_location = str_replace(' ', '-', $contact_location);
 	$post_id = $_POST['car_id'];
+	$holder = '';
 	apply_filters('car_demon_mail_hook_complete', $holder, 'contact_us_vehicle', $to, $subject, $email_body, $headers, $_POST['email'], $post_id,$contact_location);
 	if (!empty($cc)) {
 		mail($cc, $subject, $email_body, $headers);
@@ -131,7 +134,7 @@ function send_contact_request() {
 	$email = $_POST['email'];
 	$send_to_name = $_POST['send_to_name'];
 	$send_to_email = $_POST['send_to'];
-	if ($_COOKIE["sales_code"]) {
+	if (isset($_COOKIE["sales_code"])) {
 		$user_id = $_COOKIE["sales_code"];
 		$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 		$location_approved = 0;
@@ -172,7 +175,7 @@ function send_contact_request() {
 	$vehicle_photo = str_replace(chr(32), "%20", $vehicle_photo);
 	$car_id = $_POST['car_id'];
 	$vehicle_link = get_permalink($car_id);
-	if ($_COOKIE["sales_code"]) {
+	if (isset($_COOKIE["sales_code"])) {
 		$vehicle_link = $vehicle_link .'?sales_code='.$_COOKIE["sales_code"];
 	}
 	$ip = $_SERVER['REMOTE_ADDR'];

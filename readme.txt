@@ -133,6 +133,10 @@ By default Car Demon will display vehicles titles as Year Make Model Stock #, th
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+= 1.0.9 =
+* Minor code clean up and consolidation.
+* Cleaned up misc js and css, enqueued multiple scripts and style sheets.
+* Resolved jQuery no conflict issue on trade and finance form.
 = 1.0.8 =
 * Changed label on VinQuery.com ID  to VinQuery.com Access Code to match correct terminology.
 * Added option to manually select VinQuery Report Type.

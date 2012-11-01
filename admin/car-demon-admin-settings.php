@@ -468,22 +468,28 @@ function car_demon_settings_options_do_page() {
 		echo '<input type="text" name="vinquery_id" value="'.$car_demon_options['vinquery_id'].'" />';
 		echo '*(optional)<br />';
 		$vinquery_type_num = $car_demon_options['vinquery_type'];
+		if (empty($vinquery_type_num)) {
+			$vinquery_type_num = 1;
+		}
+		$select_basic = '';
+		$select_standard = '';
+		$select_extended = '';
+		$select_lite = '';
 		if ($vinquery_type_num == 0) {
-			$vinquery_type_name = __('Basic', 'car-demon');
+			$select_basic = ' selected';
 		} elseif ($vinquery_type_num == 1) {
-			$vinquery_type_name = __('Standard', 'car-demon');
+			$select_standard = ' selected';
 		} elseif ($vinquery_type_num == 2) {
-			$vinquery_type_name = __('Extended', 'car-demon');
+			$select_extended = ' selected';
 		} elseif ($vinquery_type_num == 3) {
-			$vinquery_type_name = __('Lite', 'car-demon');
+			$select_lite = ' selected';
 		}
 		echo '<br />'.__('VinQuery.com Report Type', 'car-demon').':<br />';
 		echo '<select name="vinquery_type">
-				<option value="'.$vinquery_type_num.'">'.$vinquery_type_name.'</option>
-				<option value="2">'.__('Extended', 'car-demon').'</option>
-				<option value="1">'. __('Standard', 'car-demon') .'</option>
-				<option value="0">'. __('Basic', 'car-demon') .'</option>
-				<option value="3">'. __('Lite', 'car-demon') .'</option>
+				<option value="2"'.$select_extended.'>'.__('Extended', 'car-demon').'</option>
+				<option value="1"'.$select_standard.'>'. __('Standard', 'car-demon') .'</option>
+				<option value="0"'.$select_basic.'>'. __('Basic', 'car-demon') .'</option>
+				<option value="3"'.$select_lite.'>'. __('Lite', 'car-demon') .'</option>
 			</select><br />';
 		echo '<br />'.__('Include ADFxml with Leads?', 'car-demon').':<br />';
 		echo '<select name="adfxml">

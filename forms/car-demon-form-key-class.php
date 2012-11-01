@@ -1,8 +1,5 @@
 <?php
-
-//You can of course choose any name for your class or integrate it in something like a functions or base class
-class cd_formKey
-{
+class cd_formKey {
 	//Here we store the generated form key
 	private $cd_formKey;
 	
@@ -10,18 +7,15 @@ class cd_formKey
 	private $old_cd_formKey;
 	
 	//The constructor stores the form key (if one excists) in our class variable
-	function __construct()
-	{
+	function __construct() {
 		//We need the previous key so we store it
-		if(isset($_SESSION['form_key']))
-		{
+		if(isset($_SESSION['form_key'])) {
 			$this->old_cd_formKey = $_SESSION['form_key'];
 		}
 	}
 
 	//Function to generate the form key
-	private function generateKey()
-	{
+	private function generateKey() {
 		//Get the IP-address of the user
 		$ip = $_SERVER['REMOTE_ADDR'];
 		
@@ -33,11 +27,9 @@ class cd_formKey
 		//Return the hash
 		return md5($ip . $uniqid);
 	}
-
 	
 	//Function to output the form key
-	public function outputKey()
-	{
+	public function outputKey() {
 		//Generate the key and store it inside the class
 		$this->cd_formKey = $this->generateKey();
 		//Store the form key in the session
@@ -46,19 +38,14 @@ class cd_formKey
 		//Output the form key
 		echo "<input type='hidden' name='form_key' id='form_key' value='".$this->cd_formKey."' />";
 	}
-
 	
 	//Function that validated the form key POST data
-	public function validate()
-	{
+	public function validate() {
 		//We use the old cd_formKey and not the new generated version
-		if($_POST['form_key'] == $this->old_cd_formKey)
-		{
+		if($_POST['form_key'] == $this->old_cd_formKey) {
 			//The key is valid, return true.
 			return true;
-		}
-		else
-		{
+		} else {
 			//The key is invalid, return false.
 			return false;
 		}

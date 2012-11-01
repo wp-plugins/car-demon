@@ -3,7 +3,7 @@ jQuery.autocomplete = function(input, options) {
 	var me = this;
 
 	// Create jQuery object for input element
-	var $input = $(input).attr("autocomplete", "off");
+	var $input = jQuery(input).attr("autocomplete", "off");
 
 	// Apply inputClass if necessary
 	if (options.inputClass) $input.addClass(options.inputClass);
@@ -11,12 +11,12 @@ jQuery.autocomplete = function(input, options) {
 	// Create results
 	var results = document.createElement("div");
 	// Create jQuery object for results
-	var $results = $(results);
+	var $results = jQuery(results);
 	$results.hide().addClass(options.resultsClass).css("position", "absolute");
 	if( options.width > 0 ) $results.css("width", options.width);
 
 	// Add to body element
-	$("body").append(results);
+	jQuery("body").append(results);
 
 	input.autocompleter = me;
 
@@ -127,7 +127,7 @@ jQuery.autocomplete = function(input, options) {
 
  	function moveSelect(step) {
 
-		var lis = $("li", results);
+		var lis = jQuery("li", results);
 		if (!lis) return;
 
 		active += step;
@@ -140,7 +140,7 @@ jQuery.autocomplete = function(input, options) {
 
 		lis.removeClass("ac_over");
 
-		$(lis[active]).addClass("ac_over");
+		jQuery(lis[active]).addClass("ac_over");
 
 		// Weird behaviour in IE
 		// if (lis[active] && lis[active].scrollIntoView) {
@@ -150,9 +150,9 @@ jQuery.autocomplete = function(input, options) {
 	};
 
 	function selectCurrent() {
-		var li = $("li.ac_over", results)[0];
+		var li = jQuery("li.ac_over", results)[0];
 		if (!li) {
-			var $li = $("li", results);
+			var $li = jQuery("li", results);
 			if (options.selectOnly) {
 				if ($li.length == 1) li = $li[0];
 			} else if (options.selectFirst) {
@@ -173,7 +173,7 @@ jQuery.autocomplete = function(input, options) {
 			li.extra = [];
 			li.selectValue = "";
 		}
-		var v = $.trim(li.selectValue ? li.selectValue : li.innerHTML);
+		var v = jQuery.trim(li.selectValue ? li.selectValue : li.innerHTML);
 		input.lastSelected = v;
 		prev = v;
 		$results.html("");
@@ -254,7 +254,7 @@ jQuery.autocomplete = function(input, options) {
 			// if the field no longer has focus or if there are no matches, do not display the drop down
 			if( !hasFocus || data.length == 0 ) return hideResultsNow();
 
-			if ($.browser.msie) {
+			if (jQuery.browser.msie) {
 				// we put a styled iframe behind the calendar so HTML SELECT elements don't show through
 				$results.append(document.createElement('iframe'));
 			}
@@ -272,7 +272,7 @@ jQuery.autocomplete = function(input, options) {
 		var parsed = [];
 		var rows = data.split(options.lineSeparator);
 		for (var i=0; i < rows.length; i++) {
-			var row = $.trim(rows[i]);
+			var row = jQuery.trim(rows[i]);
 			if (row) {
 				parsed[parsed.length] = row.split(options.cellSeparator);
 			}
@@ -307,9 +307,9 @@ jQuery.autocomplete = function(input, options) {
 			}
 			li.extra = extra;
 			ul.appendChild(li);
-			$(li).hover(
-				function() { $("li", ul).removeClass("ac_over"); $(this).addClass("ac_over"); active = $("li", ul).indexOf($(this).get(0)); },
-				function() { $(this).removeClass("ac_over"); }
+			jQuery(li).hover(
+				function() { jQuery("li", ul).removeClass("ac_over"); jQuery(this).addClass("ac_over"); active = jQuery("li", ul).indexOf(jQuery(this).get(0)); },
+				function() { jQuery(this).removeClass("ac_over"); }
 			).click(function(e) { e.preventDefault(); e.stopPropagation(); selectItem(this) });
 		}
 		return ul;
@@ -323,7 +323,7 @@ jQuery.autocomplete = function(input, options) {
 			receiveData(q, data);
 		// if an AJAX url has been supplied, try loading the data now
 		} else if( (typeof options.url == "string") && (options.url.length > 0) ){
-			$.get(makeUrl(q), function(data) {
+			jQuery.get(makeUrl(q), function(data) {
 				data = parseData(data);
 				addToCache(q, data);
 				receiveData(q, data);
@@ -388,7 +388,7 @@ jQuery.autocomplete = function(input, options) {
 		if (data) {
 			findValueCallback(q, data);
 		} else if( (typeof options.url == "string") && (options.url.length > 0) ){
-			$.get(makeUrl(q), function(data) {
+			jQuery.get(makeUrl(q), function(data) {
 				data = parseData(data)
 				addToCache(q, data);
 				findValueCallback(q, data);

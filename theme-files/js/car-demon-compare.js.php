@@ -62,14 +62,14 @@ function get_compare_list() {
 	return false;
 }
 function open_car_demon_compare() {
-	$("#car_demon_compare_div").lightbox_me({
+	jQuery("#car_demon_compare_div").lightbox_me({
 		overlayCSS: {background: 'black', opacity: .6}
 	});
 	document.getElementById('car_demon_compare_box').style.display = "block";
 	get_compare_list();
 }
 function close_car_demon_compare() {
-	$("#car_demon_compare_div").trigger('close');
+	jQuery("#car_demon_compare_div").trigger('close');
 }
 function print_compare() {
 	w=window.open();

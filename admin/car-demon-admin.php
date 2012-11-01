@@ -36,11 +36,13 @@ function restrict_listings_by_sold() {
 function filter_by_sold($query) {
 	global $pagenow;
 	$both = 0;
-	if (is_admin() && $pagenow=='edit.php' && $_GET['post_type']=='cars_for_sale')  {
-		if (isset($_GET['sold'])) {
-			if ($_GET['sold'] != '') {
-				set_query_var( 'meta_query', array( array( 'key' => 'sold', 'value' => $_GET['sold'] ) ) );
-				$both = 1;
+	if (isset($_GET['post_type'])) {
+		if (is_admin() && $pagenow=='edit.php' && $_GET['post_type']=='cars_for_sale')  {
+			if (isset($_GET['sold'])) {
+				if ($_GET['sold'] != '') {
+					set_query_var( 'meta_query', array( array( 'key' => 'sold', 'value' => $_GET['sold'] ) ) );
+					$both = 1;
+				}
 			}
 		}
 	}

@@ -110,7 +110,7 @@ function cardemons_automotive_inventory_decode_js() {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$rootpath = str_replace('wp-content/plugins/car-demon/vin-query/','wp-admin/images/',$car_demon_pluginpath);
 	$car_demon_pluginpath = str_replace('vin-query','',$car_demon_pluginpath);
-	wp_enqueue_script('my_script', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
+	wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
 	$js = '
 	<style>
 		ul.tabs {

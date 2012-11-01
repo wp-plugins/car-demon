@@ -3,54 +3,16 @@ function car_demon_calculator_form($price, $apr, $term, $disclaimer1, $disclaime
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
 	if (empty($price)) {
-		if ($_GET['xP']<>'') {
+		if (isset($_GET['xP'])) {
 			$price = $_GET['xP'];
 		}
 		else {
 			$price = "25000";
 		}
 	}
+	wp_enqueue_script('car-demon-payment-calculator-js', WP_CONTENT_URL . '/plugins/car-demon/widgets/js/car-demon-calculator-widget.js');
+	wp_enqueue_style('car-demon-payment-calculator-css', WP_CONTENT_URL . '/plugins/car-demon/widgets/css/car-demon-calculator-widget.css');
 	?>
-	<script LANGUAGE=javascript>
-	<!--
-	function returnPayment() {
-		var Principal = document.calc.pv.value
-		if (document.calc.rate.value==0) {
-			var Rate = 0.000000001
-		}
-		else {
-			var Rate = (document.calc.rate.value/100)/12
-		}
-		var Rate = (document.calc.rate.value/100)/12
-		var Term = document.calc.numPmtYr.value
-		document.calc.pmt.value ="$" + find_payment(Principal, Rate, Term);
-	}
-	
-	function find_payment(PR, IN, PE) {
-		var PAY = ((PR * IN) / (1 - Math.pow(1 + IN, -PE)));
-		return PAY.toFixed(2);
-	}
-	//-->
-	</SCRIPT>
-	<style>
-	.car_demon_calc {
-		min-width: 250px;
-		font-size:11px;
-		background-color: #E9F0F7 !important;
-		border: 1px solid;
-		padding: 10px 0;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
-		margin-bottom: 20px;
-	}
-	.calc_box {
-		width:35px;
-	}
-	.car_demon_calc_title {
-		font-size:20px;
-	}
-	</style>
 		<form name="calc" action="" class="car_demon_calc">
 		  <div align="center"><strong><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/calculator.gif" with="20" />&nbsp;<span class="car_demon_calc_title"><?php _e('Loan Calculator','car-demon'); ?></span></strong></div>
 		  <hr width="100%">

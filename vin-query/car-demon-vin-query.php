@@ -11,27 +11,42 @@ function car_demon_get_vin_query($post_id, $vin) {
 		$xml = simplexml_load_file($url);
 		if ($xml) {
 			$car_details = $xml->VIN->Vehicle->Item;
-			foreach ($car_details as $car_detail) {
-				$key = strtolower($car_detail->attributes()->Key);
-				$key = str_replace(chr(32),'_', $key);
-				$key = str_replace('-','_', $key);
-				$key = str_replace('/','_', $key);
-				$key = str_replace('\\','_', $key);
-				$key = str_replace('.','', $key);
-				$key = "decoded_".$key;
-				$value = $car_detail->attributes()->Value;
-				$value = $value . ' ' . $car_detail->attributes()->Unit;
-				$value = str_replace('\'', '', $value);
-				$decode_string[$key] = $value;
+			if (!empty($car_details)) {
+				$decode_string = array();
+				foreach ($car_details as $car_detail) {
+					$key = strtolower($car_detail->attributes()->Key);
+					$key = str_replace(chr(32),'_', $key);
+					$key = str_replace('-','_', $key);
+					$key = str_replace('/','_', $key);
+					$key = str_replace('\\','_', $key);
+					$key = str_replace('.','', $key);
+					$key = "decoded_".$key;
+					$value = $car_detail->attributes()->Value;
+					$value = $value . ' ' . $car_detail->attributes()->Unit;
+					$value = str_replace('\'', '', $value);
+					$decode_string[$key] = $value;
+				}
 			}
 			update_post_meta($post_id, 'decode_string', $decode_string);
 			update_post_meta($post_id, 'decode_saved', "1");
-			wp_set_post_terms($post_id, $decode_string['decoded_model_year'], 'vehicle_year', false );
-			wp_set_post_terms($post_id, $decode_string['decoded_make'], 'vehicle_make', false );
-			wp_set_post_terms($post_id, $decode_string['decoded_model'], 'vehicle_model', false );
-			update_post_meta($post_id, '_transmission_value', $decode_string['decoded_transmission_long']);	
-			update_post_meta($post_id, '_engine_value', $decode_string['decoded_engine_type']);
-			update_post_meta($post_id, '_trim_value', $decode_string['decoded_trim_level']);
+			if (isset($decode_string['decoded_model_year'])) {
+				wp_set_post_terms($post_id, $decode_string['decoded_model_year'], 'vehicle_year', false );
+			}
+			if (isset($decode_string['decoded_make'])) {
+				wp_set_post_terms($post_id, $decode_string['decoded_make'], 'vehicle_make', false );
+			}
+			if (isset($decode_string['decoded_model'])) {
+				wp_set_post_terms($post_id, $decode_string['decoded_model'], 'vehicle_model', false );
+			}
+			if (isset($decode_string['decoded_transmission_long'])) {
+				update_post_meta($post_id, '_transmission_value', $decode_string['decoded_transmission_long']);	
+			}
+			if (isset($decode_string['decoded_engine_type'])) {
+				update_post_meta($post_id, '_engine_value', $decode_string['decoded_engine_type']);
+			}
+			if (isset($decode_string['decoded_trim_level'])) {
+				update_post_meta($post_id, '_trim_value', $decode_string['decoded_trim_level']);
+			}
 		}
 	}
 }

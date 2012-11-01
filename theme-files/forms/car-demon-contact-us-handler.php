@@ -164,7 +164,7 @@ function adfxml_contact_us() {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
 	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
-	$lead_date .= $today_year .'-'. $today_month .'-'. $today_day .'T'.$hour.':'.$minute.':'.$second;
+	$lead_date = $today_year .'-'. $today_month .'-'. $today_day .'T'.$hour.':'.$minute.':'.$second;
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];

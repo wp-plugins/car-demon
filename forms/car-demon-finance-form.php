@@ -1386,7 +1386,7 @@ function select_finance_for_vehicle($hide=0) {
 	';
 	$x .= '
 	<script>
-	   $("#select_stock_txt").autocomplete(
+	   jQuery("#select_stock_txt").autocomplete(
 		  "'.$car_demon_pluginpath_images.'theme-files/forms/car-demon-trade-form-handler.php",
 		  {
 		  		extraParams: {action:"findStock"},
@@ -1402,7 +1402,7 @@ function select_finance_for_vehicle($hide=0) {
 				width:300
 			}
 		);
-	   $("#select_car_txt").autocomplete(
+	   jQuery("#select_car_txt").autocomplete(
 		  "'.$car_demon_pluginpath_images.'theme-files/forms/car-demon-trade-form-handler.php",
 		  {
 		  		extraParams: {action:"findVehicle"},

@@ -18,24 +18,32 @@ else {
 }
 ?>
 <?php
-if (isset($_GET['show_stock'])==1) {
-	$stock_num = $_POST['stock_num'];
-	echo get_trade_for_vehicle($stock_num);
-}
-if (isset($_GET['show_stock'])==2) {
-	$car_title = $_POST['car_title'];
-	$post_id = get_car_id_from_title($car_title);
-	$stock_num = get_post_meta($post_id, "_stock_value", true);
-	echo get_trade_for_vehicle($stock_num);
+if (isset($_GET['show_stock'])) {
+	if ($_GET['show_stock']==1) {
+		if (isset($_POST['stock_num'])) {
+			$stock_num = $_POST['stock_num'];
+		} else {
+			$stock_num = '';
+		}
+		echo get_trade_for_vehicle($stock_num);
+	}
+	if ($_GET['show_stock']==2) {
+		$car_title = $_POST['car_title'];
+		$post_id = get_car_id_from_title($car_title);
+		$stock_num = get_post_meta($post_id, "_stock_value", true);
+		echo get_trade_for_vehicle($stock_num);
+	}
 }
 if (isset($_GET['send_trade'])) {
 	echo send_trade_email($newPath);
 }
-if (isset($_GET['action'])=='findStock') {
-	echo car_demon_find_stock_info();
-}
-if (isset($_GET['action'])=='findVehicle') {
-	echo car_demon_find_car_info();
+if (isset($_GET['action'])) {
+	if ($_GET['action']=='findStock') {
+		echo car_demon_find_stock_info();
+	}
+	if ($_GET['action']=='findVehicle') {
+		echo car_demon_find_car_info();
+	}
 }
 
 function send_trade_email($newPath) {
@@ -283,7 +291,7 @@ function build_trade_body() {
 function get_car_id_from_title($car_title) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
-	$sql = "Select ID from ".$prefix."posts WHERE post_title='".$car_title."'";
+	$sql = "Select ID from ".$prefix."posts WHERE post_title='".$car_title."' and post_type='cars_for_sale'";
 	$posts = $wpdb->get_results($sql);
 	if ($posts) {
 		foreach ($posts as $post) {
@@ -305,8 +313,9 @@ function car_demon_find_car_info() {
 		FROM ('.$prefix.'posts LEFT JOIN '.$prefix.'postmeta ON '.$prefix.'posts.ID = '.$prefix.'postmeta.post_id) 
 		LEFT JOIN '.$prefix.'postmeta AS '.$prefix.'postmeta_1 ON '.$prefix.'posts.ID = '.$prefix.'postmeta_1.post_id
 		WHERE ((('.$prefix.'postmeta.meta_key)="sold") AND (('.$prefix.'postmeta.meta_value)="no") AND (('.$prefix.'postmeta_1.meta_key)="_stock_value"))
-		and '.$prefix.'posts.post_title like "%'.$q.'%";
+		and '.$prefix.'posts.post_title like "%'.$q.'%" and '.$prefix.'posts.post_status="publish";
 	';
+	$x = '';
 	$posts = $wpdb->get_results($sql);
 	if ($posts) {
 		foreach ($posts as $post) {
@@ -325,6 +334,7 @@ function car_demon_find_stock_info() {
 	$prefix = $wpdb->prefix;
 	$sql = "Select post_id, meta_value from ".$prefix."postmeta WHERE meta_key='_stock_value' and meta_value like '%".$q."%'";
 	$posts = $wpdb->get_results($sql);
+	$x = '';
 	if ($posts) {
 		foreach ($posts as $post) {
 			$post_id = $post->post_id;

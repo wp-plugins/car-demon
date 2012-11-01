@@ -54,10 +54,6 @@ function show_compare_list() {
 				$vehicle_exterior_color = get_post_meta($post_id, "_exterior_color_value", true);
 				$vehicle_transmission = get_post_meta($post_id, "_transmission_value", true);
 				$vehicle_engine = get_post_meta($post_id, "_engine_value", true);
-//				$vehicle_fuel = get_post_meta($post_id, "_fuel_type_value", true);
-//				$vehicle_cylinders = get_post_meta($post_id, "_cylinders_value", true);
-//				$vehicle_doors = get_post_meta($post_id, "_doors_value", true);
-//				$vehicle_trim = get_post_meta($post_id, "_trim_value", true);
 				$vehicle_year = strip_tags(get_the_term_list( $post_id, 'vehicle_year', '','', '', '' ));
 				$vehicle_make = strip_tags(get_the_term_list( $post_id, 'vehicle_make', '','', '', '' ));
 				$vehicle_model = strip_tags(get_the_term_list( $post_id, 'vehicle_model', '','', '', '' ));

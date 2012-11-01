@@ -6,9 +6,7 @@ function car_demon_header() {
 	<script src="<?php echo $car_demon_pluginpath; ?>theme-files/js/jquery.autocomplete.js"></script>
 	<script src="<?php echo $car_demon_pluginpath;?>theme-files/js/car-demon-compare.js.php"></script>
 	<link rel="stylesheet" href="<?php echo $car_demon_pluginpath;?>theme-files/css/jquery.autocomplete.css" type="text/css" />
-	<style>
-		<?php car_demon_css($car_demon_pluginpath); ?>
-	</style>
+	<link rel="stylesheet" href="<?php echo $car_demon_pluginpath;?>theme-files/css/car-demon.css.php" type="text/css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo $car_demon_pluginpath;?>theme-files/css/car-demon-style.css" />
 	<!--[if IE 7]>
 		<link rel="stylesheet" type="text/css" media="all" href="<?php echo $car_demon_pluginpath; ?>theme-files/css/car-demon-ie.css" />
