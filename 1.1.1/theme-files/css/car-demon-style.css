@@ -1,0 +1,589 @@
+/* =CarSearch
+-------------------------------------------------------------- */
+#demon-content {
+	float:left;
+	width:635px;
+	margin-left:5px;
+	overflow:hidden;
+	clear:both;
+}
+
+/* Styles
+-------------------------------------------------------------- */
+.vert{
+	width:150px;
+	height:525px;
+	overflow:auto;
+	background-color:#FFFFCC;
+	float: right;
+}
+.hor{
+	width:600px;
+	height:145px;
+	overflow:auto;
+	white-space: nowrap;
+	margin-left:100px;
+}
+.nohor{
+	width:600px;
+	margin-left: 5px;
+}
+.nohor img {
+	cursor:pointer;
+}
+.car_mpg {
+	width: 230px; 
+	margin: 0px auto;
+}
+.car_mpg_city {
+	float: left;
+	width: 90px;
+	text-align: center;
+	color: #000000;
+}
+.car_mpg_hwy {
+	float: left;
+	width: 90px;
+	color: #000000;
+}
+.car_mpg_icon {
+	float: left;
+	width: 50px;
+}
+.car_price_text{
+	float: left;
+	width: 65px;
+}
+.car_retail_price {
+	color:#000000;
+	font-size:20px;
+	margin: 3px;
+	line-height:1em;
+}
+.car_selling_price {
+	color:#000000;
+	font-size:16px;
+	font-weight:bold;
+	margin: 3px;
+	line-height:1em;
+}
+.car_rebate {
+	color:#FF0000;
+	font-size:16px;
+	margin: 3px;
+	line-height:1em;
+	font-weight:bold;
+}
+.car_dealer_discounts {
+	color:#FF0000;
+	font-size:16px;
+	margin: 3px;
+	line-height:1em;
+	font-weight:bold;
+}
+.car_your_price {
+	text-align:center;
+	color:#000000;
+	font-weight:bold;
+	font-size:20px;
+	margin: 5px;
+	line-height:1em;
+}
+.car_final_price {
+	text-align:center;
+	color:#00CC00;
+	font-size:28px;
+	font-weight:bold;
+	margin: 5px;
+	margin-top:3px;
+}
+.your_price_text {
+	font-size:24px;
+	font-weight:bold;
+	text-align:center;
+}
+.car_price_details {
+	font-size:16px;
+	font-weight:bold;
+}
+.random_img {
+	cursor:pointer;
+	width:143px;
+}
+.random_car {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+    border: solid #000000;
+	border-width:2px;
+	-moz-box-shadow: 3px 3px 4px #333;
+	-webkit-box-shadow: 3px 3px 4px #333;
+	box-shadow: 3px 3px 4px #333333;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000099;
+	padding: 6px;
+	margin-right: 9px;
+	width: 163px;
+	float:left;
+	background-color:#FFFFFF;
+}
+
+table.cars {
+	border-width: 2px;
+	border-spacing: ;
+	border-style: dashed;
+	border-color: black;
+	border-collapse: collapse;
+	background-color: white;
+}
+table.cars th {
+	border-width: 1px;
+	padding: 1px;
+	border-style: dashed;
+	border-color: red;
+	background-color: white;
+	-moz-border-radius: ;
+}
+table.cars td {
+	border-width: 1px;
+	padding: 1px;
+	border-style: dashed;
+	border-color: red;
+	background-color: white;
+	-moz-border-radius: ;
+}
+
+/* =Widgets
+-------------------------------------------------------------- */
+.car-demon-widget {
+	list-style:none;
+}
+
+#widgets {
+	margin-top:44px;
+}
+
+#widgets a {
+	display:inline-block;
+	margin:0;
+	padding:3px;
+	text-decoration:none;
+}
+
+#widgets ul, #widgets p {
+	border:1px solid #f5f5f5;
+	border-top:none;
+	margin:0 0 20px;
+	padding:10px;
+}
+
+#widgets ul li {
+	list-style-type:none;
+	margin:0;
+}
+
+#widgets ul li a {
+	color:#444;
+	text-decoration:none;
+}
+
+#widgets ul li a:hover {
+	color:#000;
+}
+
+#widgets ul ul a {
+	padding:3px 0 3px 18px;
+}
+
+#widgets ul ul ul a {
+	padding:3px 0 3px 18px;
+}
+
+#widgets ul ul ul ul a {
+	border:none;
+	padding:3px 0 3px 18px;
+}
+
+#widgets .widget-title img {
+	float:right;
+	height:11px;
+	position:relative;
+	top:4px;
+	width:11px;
+}
+
+#widgets .rss-date {
+	line-height:18px;
+	padding:6px 12px;
+}
+
+#widgets .rssSummary {
+	padding:10px;
+}
+
+#widgets cite {
+	font-style:normal;
+	line-height:18px;
+	padding:6px 12px;
+}
+
+#widgets .textwidget, #widgets .tagcloud {
+	border:1px solid #f5f5f5;
+	border-top:none;
+	display:block;
+	line-height:1.5em;
+	margin:0 0 20px;
+	padding:10px;
+}
+
+#widgets .textwidget a {
+	display:inline;
+}
+
+#widgets ul .children {
+	border:none;
+	margin:0;
+	padding:0;
+}
+
+#widgets .author {
+	font-weight:700;
+	padding-top:4px;
+}
+.car-demon-widget-footer {
+	color:#CCCCCC;
+	float:left;
+	width:240px;
+}
+.car-demon-widget-footer h3 {
+	margin:0 0 .57em;
+}
+.car-demon-widget-footer a {
+	color: #CCCCCC;
+}
+
+/* =Random Cars
+-------------------------------------------------------------- */
+.random{
+	margin-bottom: 15px;
+}
+
+.random_widget_image {
+	min-width: 180px !important;
+	margin-left:15px;
+	margin-right:0px;
+	margin-bottom:0px;
+	border:solid;
+	border-width:1px;
+	border-color:gray;
+	padding: 3px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-box-shadow: 0 0 5px rgba(0,0,0, .3);
+	-webkit-box-shadow: 0 0 5px 
+	rgba(0, 0, 0, .3);
+	box-shadow: 0 0 5px 
+	rgba(0, 0, 0, .3);
+}
+
+.compare_widget_image_bg {
+	min-width: 120px !important;
+	margin-left:15px;
+	margin-right:0px;
+	margin-bottom:0px;
+	border:solid;
+	border-width:1px;
+	border-color:gray;
+	padding: 3px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-box-shadow: 0 0 5px rgba(0,0,0, .3);
+	-webkit-box-shadow: 0 0 5px 
+	rgba(0, 0, 0, .3);
+	box-shadow: 0 0 5px 
+	rgba(0, 0, 0, .3);
+}
+
+.compare_widget_image {
+	margin-left:2px;
+	margin-right:0px;
+	margin-bottom:0px;
+	border:solid;
+	border-width:1px;
+	border-color:gray;
+	padding: 3px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-box-shadow: 0 0 5px rgba(0,0,0, .3);
+	-webkit-box-shadow: 0 0 5px 
+	rgba(0, 0, 0, .3);
+	box-shadow: 0 0 5px 
+	rgba(0, 0, 0, .3);
+}
+
+.random_title {
+	margin-top:10px;
+	margin-left:20px;
+	font-size:14px;
+	font-weight:bold;
+	color:gray;
+}
+.random_text {
+	margin-top:10px;
+	margin-left:20px;
+	font-size:12px;
+	font-weight:bold;
+	color:gray;
+}
+.random_text_compare {
+	margin-top:10px;
+	margin-left:20px;
+	font-size:12px;
+	font-weight:bold;
+	color:gray;
+}
+
+/* =Media Print
+-------------------------------------------------------------- */
+@media print {
+
+h1 {
+	page-break-before:always;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	page-break-after:avoid;
+}
+
+ul, ol, dl {
+	page-break-before:avoid;
+}
+}
+/*
+	Page style
+*/
+
+#ribbon {
+	position:absolute;
+	z-index:500;
+}
+
+#fade_right {
+	position:absolute;
+	z-index:500;
+	cursor:pointer;
+	margin-left:265px;
+}
+
+#look_close {
+	position:absolute;
+	z-index:499;
+	opacity: 0;
+	transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	-webkit-transition: opacity .25s ease-in-out;
+	cursor:pointer;
+}
+
+#look_close:hover {
+	display:block;
+	opacity: 1;
+}
+
+/*
+	Compare
+*/
+.car_demon_compare_box {
+	display:none;
+	background:#FFFFFF;
+	width:800px;
+	height:600px;		
+	padding: 9px;
+	border: 3px solid gray;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 0 0 5px rgba(0,0,0, .3);
+	-webkit-box-shadow: 0 0 5px 
+	rgba(0, 0, 0, .3);
+	box-shadow: 0 0 5px 
+	rgba(0, 0, 0, .3);
+}
+.close_car_demon_compare {
+	float:right;
+	color:#BBBBBB;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	cursor:pointer;
+}
+.compare_title {
+	margin-top:10px;
+	margin-left:10px;
+	font-size:12px;
+	font-weight:bold;
+	color:gray;
+}
+.compare_text {
+	margin-top:1px;
+	margin-left:10px;
+	font-size:10px;
+	font-weight:bold;
+	color:gray;
+	line-height:1.1em;
+}
+.car_demon_compare_print {
+	float:left;
+	margin-left:10px;
+	color:#BBBBBB;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	cursor:pointer;
+}
+/*
+Staff Cards
+*/
+.given-name {
+	margin-right: 2px;
+	font-weight: bold;
+}
+ .family-name {
+	margin-right: 2px;
+	font-weight: bold;	 
+ }
+ .additional-name{
+	margin-right: 2px;
+	font-weight: bold;
+ }
+ .user_description {
+	margin: 3px;
+ }
+ /*
+ Search
+ */
+ .remove_search {
+ 	color:#FF0000;
+	font-weight:bold;
+	cursor:pointer;
+	margin-left:4px;
+}
+.remove_search_title {
+	font-weight:bold;
+}
+/*
+Contact Us Widget
+*/
+.contact_us_widget {
+	max-width:275px;
+}
+.contact_us_comment {
+	margin-left:3%;
+	width:90% !important;
+	height:70px;
+}
+.reqtxt_comment {
+	margin-left:10px;
+}
+.contact_us_btn {
+	margin-left:100px;
+}
+/*
+Random Car Widget
+*/
+.random_car_widget {
+	margin-left:15px;width:76px;height:76px;
+}
+.random_car_lookup {
+	margin-left:15px;width:188px;height:143px;
+}
+/*
+Compare Widget
+*/
+.car_demon_compare_widget {
+	max-width:265px;
+}
+.car_demon_compare_box_main {
+	margin-left:10px; margin-top:25px;
+}
+.car_demon_compare_box_list_cars {
+	margin-top:10px;height:550px;overflow:scroll;
+}
+.car_demon_compare_box_list_cars_div {
+	float:left;width:180px;margin:3px;height:350px;
+}
+.car_selling_price_compare {
+	font-size:14px;
+}
+.car_rebate_compare {
+	font-size:14px;
+}
+.car_dealer_discounts_compare {
+	font-size:14px;
+}
+.car_retail_price_compare {
+	font-size:14px;
+}
+.car_your_price_compare {
+	font-size:14px;
+}
+.car_final_price_compare {
+	font-size:14px;
+}
+.random_description_compare {
+	width:180px;
+}
+.random_img_compare {
+	position:relative;
+}
+.compare_btn {
+	margin-top:10px;
+}
+/*
+Inventory Lists
+*/
+.inventory_btn {
+	margin-left:20px;
+}
+.inventory_item {
+	float:left;width:210px;height:385px;
+}
+.inventory_ribbon {
+	margin-left:15px;
+}
+.inventory_photo_box {
+	position:absolute;
+	width:180px;
+	height:135px;
+}
+.inventory_img {
+	height:137px;
+}
+.inventory_lookup {
+	margin-left:15px;
+}
+.inventory_description {
+	margin-top:5px;
+}
+.inventory_price_box {
+	height:110px;
+}
+.inventory_nav {
+	float:left;width:100%;
+}
+.inventory_nav_top {
+	float:left;
+	width:100%;
+	margin:7px;
+}
+.inventory_nav_bottom {
+	float:left;
+}
+.results_found {
+	margin:0px;
+}
