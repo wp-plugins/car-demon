@@ -1,0 +1,24 @@
+/* CSS Document */
+.car_demon_calc {
+	min-width: 250px;
+	font-size:11px;
+	background-color: #E9F0F7 !important;
+	border: 1px solid;
+	padding: 10px 0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+.calc_box {
+	width:35px;
+}
+.car_demon_calc_title {
+	font-size:20px;
+}
+.calc_text {
+	width: 250px;
+}
+.calc_table {
+	margin-left:3px;
+}
