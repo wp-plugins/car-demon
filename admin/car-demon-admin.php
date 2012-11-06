@@ -4,7 +4,7 @@ add_action('admin_footer', 'max_quick_edit_javascript');
 add_filter('post_row_actions', 'max_expand_quick_edit_link', 10, 2);
 add_action('restrict_manage_posts','restrict_listings_by_sold');
 add_filter( 'parse_query', 'filter_by_sold' );
-add_action('save_post', 'car_demon_save_postdata');
+
 if (isset($_GET['page']) && $_GET['page'] == 'car_demon_settings_options') {
 	add_action('admin_print_scripts', 'car_demon_admin_scripts');
 	add_action('admin_print_styles', 'car_demon_admin_styles');

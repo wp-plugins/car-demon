@@ -483,7 +483,9 @@ Contact Us Widget
 	max-width:275px;
 }
 .contact_us_comment {
-	margin-left:3%;width:90%;height:70px;
+	margin-left:3%;
+	width:90% !important;
+	height:70px;
 }
 .reqtxt_comment {
 	margin-left:10px;
