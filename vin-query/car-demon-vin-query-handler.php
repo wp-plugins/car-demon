@@ -105,6 +105,17 @@ if ($_GET['decode'] == 'update') {
 if ($_GET['decode'] == 'remove') {
 	delete_post_meta($post_id, "decode_string");
 	delete_post_meta($post_id, "decode_saved");
+	delete_post_meta($post_id, "_transmission_value");
+	delete_post_meta($post_id, "_engine_value");
+	delete_post_meta($post_id, "_trim_value");
+	delete_post_meta($post_id, "_exterior_color_value");
+	delete_post_meta($post_id, "_interior_color_value");
+	$val = '';
+	wp_set_post_terms( $post_id, $val, 'vehicle_body_style', false );
+	wp_set_post_terms( $post_id, $val, 'vehicle_year', false );
+	wp_set_post_terms( $post_id, $val, 'vehicle_make', false );
+	wp_set_post_terms( $post_id, $val, 'vehicle_model', false );
+	wp_set_post_terms( $post_id, $val, 'vehicle_condition', false );
 }
 function car_demon_decode_new_vin($vin) {
 	$does_vin_exist = does_vin_exist($vin);
@@ -123,18 +134,7 @@ function car_demon_decode_new_vin($vin) {
 		echo '<p><a href="'. $rootpath .'wp-admin/post.php?post='.$does_vin_exist.'&action=edit&message=1">Edit This Vehicle</a></p>';
 	}
 	else {
-// Decode vehicle, add to inventory
 		echo add_vehicle_mini_form($vin);
 	}
-}
-
-function car_demon_update_car_with_decode() {
-	// Save post if not already saved
-	// Set Post Title if not set
-	// Set year, make, model, vin, condition, body style, location
-	// Exterior Color, Interior Color
-	//Transmission, Cylinders, Doors, Engine, Fuel Type, Trim Level, Warranty, Date Checked	
-	
-	// stock num, condition, mileage, 	
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 function car_demon_search_years() {
 	$search_years = '';
-	$search_years .= '<select class="" name="search_year" id="search_year" style="width:75px;">';
+	$search_years .= '<select class="search_year" name="search_year" id="search_year">';
 		$search_years .= '<option value="">Any</option>';
 		$search_years .= car_demon_get_my_tax('vehicle_year',0);
 	$search_years .= '</select>&nbsp;&nbsp;&nbsp;';
@@ -10,7 +10,7 @@ function car_demon_search_years() {
 
 function car_demon_search_makes() {
 	$search_makes = '';
-	$search_makes .= '<select class="search_dropdown_bg" name="search_make" id="search_make" style="width:150px;">';
+	$search_makes .= '<select class="search_make" name="search_make" id="search_make">';
 		$search_makes .= '<option value="">ALL MAKES</option>';
 		$search_makes .= car_demon_get_my_tax('vehicle_make',1);
 	$search_makes .= '</select>&nbsp;&nbsp;&nbsp;';
@@ -19,7 +19,7 @@ function car_demon_search_makes() {
 
 function car_demon_search_models() {
 	$search_models = '';
-	$search_models .= '<select class="search_dropdown_bg" name="search_model" id="search_model" onchange="car_demon_fix_model();" style="width:150px;">';
+	$search_models .= '<select class="search_model" name="search_model" id="search_model" onchange="car_demon_fix_model();">';
 		$search_models .= '<option value="">ALL MODELS</option>';
 		$search_models .= car_demon_get_my_tax('vehicle_model',2);
 	$search_models .= '</select>&nbsp;&nbsp;&nbsp;';
@@ -27,11 +27,10 @@ function car_demon_search_models() {
 }
 
 function car_demon_search_condition() {
-	$search_condition = '';
-	$search_condition .= '<select name="search_condition" id="search_condition">';
-		$search_condition .= '<option value="">ALL CONDITIONS</option>';
-		$search_condition .= car_demon_get_my_tax('vehicle_condition');
-	$search_condition .= '</select>&nbsp;&nbsp;&nbsp;';
+	$search_condition = '<select class="" name="search_condition" id="search_condition">';
+		$search_condition .= '<option value="">ALL</option>';
+		$search_condition .= car_demon_get_my_tax('vehicle_condition', 3);
+	$search_condition .= '</select>';
 	return $search_condition;
 }
 
@@ -56,6 +55,15 @@ function car_demon_get_my_tax($taxonomy,$val) {
 			$search_model = '';
 		} 
 		$this_val = $search_model;
+	}
+	if ($val == 3) {
+		if (isset($_GET['search_condition'])) {
+			$search_condition = $_GET['search_condition'];
+		}
+		else {
+			$search_condition = '';
+		} 
+		$this_val = $search_condition;
 	}
 	$post_type = 'cars_for_sale';
 	$args = array(
@@ -104,9 +112,19 @@ function car_demon_get_my_tax($taxonomy,$val) {
 					if ($my_slug == $this_val) {$select = ' selected';} else {$select = '';}
 					$my_tag_list .= '<option value="' . $my_slug . '"'.$select.'>';			
 				}
+				elseif ($val == 3) {
+					$my_term = get_term_by( 'name', $my_tag_name, 'vehicle_condition' );
+					$my_slug = $my_term->slug;
+					if ($my_slug == $this_val) {$select = ' selected';} else {$select = '';}
+					$my_tag_list .= '<option value="' . $my_slug . '"'.$select.'>';			
+				}
 				else {
 					$my_term = get_term_by( 'name', $my_tag_name, 'vehicle_year' );
-					$my_slug = $my_term->slug;
+					if ($my_term) {
+						$my_slug = $my_term->slug;
+					} else {
+						$my_slug = '';
+					}
 					if ($my_slug == $this_val) {$select = ' selected';} else {$select = '';}
 					$my_tag_list .= '<option value="' . $my_slug . '"'.$select.'>';
 				}
@@ -123,6 +141,128 @@ function car_demon_get_my_tax($taxonomy,$val) {
 		}
 	}
 	return $my_tag_list;
+}
+
+function car_demon_search_price($size) {
+	if (isset($_GET['search_dropdown_'.$size.'_price'])) {
+		$price = $_GET['search_dropdown_'.$size.'_price'];
+	}
+	else {
+		$price = '';
+	}
+	$x = '<select id="search_dropdown_'.$size.'_price" name="search_dropdown_'.$size.'_price" class="search_dropdown_sm">';
+		$x .= '<option value="0">No '.$size.'</option>';
+		if ($price == '1000') {$select = ' selected';} else {$select = '';}
+			$x .= '<option value="1000"'.$select.'>$1,000</option>';
+		if ($price == '10000') {$select = ' selected';} else {$select = '';}
+			$x .= '<option value="10000"'.$select.'>$10,000</option>';
+		if ($price == '15000') {$select = ' selected';} else {$select = '';}
+			$x .= '<option value="15000"'.$select.'>$15,000</option>';
+		if ($price == '20000') {$select = ' selected';} else {$select = '';}
+			$x .= '<option value="20000"'.$select.'>$20,000</option>';
+		if ($price == '30000') {$select = ' selected';} else {$select = '';}
+			$x .= '<option value="30000"'.$select.'>$30,000</option>';
+		if ($price == '40000') {$select = ' selected';} else {$select = '';}
+			$x .= '<option value="40000"'.$select.'>$40,000</option>';
+		if ($price == '50000') {$select = ' selected';} else {$select = '';}
+			$x .= '<option value="50000"'.$select.'>$50,000</option>';
+		if ($price == '75000') {$select = ' selected';} else {$select = '';}
+			$x .= '<option value="75000"'.$select.'>$75,000</option>';
+		if ($price == '100000') {$select = ' selected';} else {$select = '';}
+			$x .= '<option value="100000"'.$select.'>$100,000</option>';		
+	$x .= '</select>';
+	return $x;
+}
+
+function car_demon_search_tran() {
+	global $wpdb;
+	if (isset($_GET['search_dropdown_tran'])) {
+		$current_trans = $_GET['search_dropdown_tran'];
+	}
+	else {
+		$current_trans = '';
+	}
+	$prefix = $wpdb->prefix;
+	$sql = 'SELECT DISTINCT meta_value from '.$prefix.'postmeta WHERE meta_key="_transmission_value"';
+	$trans = $wpdb->get_results($sql);
+	if (!empty($trans)) {
+		$x = '<select id="search_dropdown_tran" name="search_dropdown_tran" class="search_dropdown_sm">';
+			$x .= '<option value="">Any</option>';
+			foreach($trans as $tran) {
+				if (!empty($tran->meta_value)) {
+					if ($current_trans == $tran->meta_value) {$select = ' selected';} else {$select = '';}
+					$x .='<option value="'.$tran->meta_value.'"'.$select.'>'.$tran->meta_value.'</option>';
+				}
+			}
+			$x .= '</select>';
+	}
+	return $x;
+}
+
+function car_demon_search_miles() {
+	if (isset($_GET['search_dropdown_miles'])) {
+		$miles = $_GET['search_dropdown_miles'];
+	}
+	else {
+		$miles = '';
+	}
+	$x = '<select id="search_dropdown_miles" name="search_dropdown_miles" class="search_dropdown_sm">';
+	if ($miles == '1000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value=""'.$select.'>Any</option>';
+	if ($miles == '5000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="5000"'.$select.'>< 5,000</option>';
+	if ($miles == '10000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="10000"'.$select.'>< 10,000</option>';
+	if ($miles == '20000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="20000"'.$select.'>< 20,000</option>';
+	if ($miles == '30000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="30000"'.$select.'>< 30,000</option>';
+	if ($miles == '40000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="40000"'.$select.'>< 40,000</option>';
+	if ($miles == '50000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="50000"'.$select.'>< 50,000</option>';
+	if ($miles == '60000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="60000"'.$select.'>< 60,000</option>';
+	if ($miles == '70000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="70000"'.$select.'>< 70,000</option>';
+	if ($miles == '80000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="80000"'.$select.'>< 80,000</option>';
+	if ($miles == '90000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="90000"'.$select.'>< 90,000</option>';
+	if ($miles == '100000') {$select = ' selected';} else {$select = '';}
+		$x .= '<option value="100000"'.$select.'>< 100,000</option>';
+		$x .='</select>';
+	return $x;
+}
+
+function car_demon_search_body() {
+	$taxonomies = array('vehicle_body_style');
+	$args = array('orderby'=>'count','hide_empty'=>true);
+	$x = car_demon_get_terms_dropdown($taxonomies, $args);
+	return $x;
+}
+
+function car_demon_get_terms_dropdown($taxonomies, $args){
+	if (isset($_GET['search_dropdown_body'])) {
+		$body = $_GET['search_dropdown_body'];
+	}
+	else {
+		$body = '';
+	}
+	$myterms = get_terms($taxonomies, $args);
+	$output = '<select id="search_dropdown_body" name="search_dropdown_body" class="search_dropdown_sm">
+			<option value="">Any</option>';
+	foreach($myterms as $term){
+		$root_url = home_url();
+		$term_taxonomy=$term->taxonomy;
+		$term_slug=$term->slug;
+		$term_name =$term->name;
+		$link = $root_url.'/'.$term_taxonomy.'/'.$term_slug;
+		if ($term_slug == $body) {$selected = ' selected';} else {$selected = '';}
+		$output .="<option value='".$term_slug."'".$selected.">".$term_name."</option>";
+	}
+	$output .="</select>";
+return $output;
 }
 
 function car_demon_count_active_tax_items($my_tag_name, $post_type, $taxonomy) {
@@ -151,191 +291,7 @@ function car_demon_count_active_tax_items($my_tag_name, $post_type, $taxonomy) {
 function car_demon_search_cars_scripts() {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
-	?>
-	<script language="JavaScript" type="text/javascript"> 
-	function car_demon_fix_model() {
-		var e = document.getElementById("search_model");
-		var my_val = e.options[e.selectedIndex].value;
-	}
-	function car_demon_disable_form() {
-		if (document.getElementById("search_year")) {
-			document.getElementById("search_year").disabled = true;
-		}
-		if (document.getElementById("search_condition")) {
-			document.getElementById("search_condition").disabled = true;
-		}
-		document.getElementById("search_make").disabled = true;
-		document.getElementById("search_model").disabled = true;
-		document.getElementById("submit_search").disabled = true;
-	}
-	function car_demon_enable_form() {
-		if (document.getElementById("search_year")) {
-			document.getElementById("search_year").disabled = false;
-		}
-		if (document.getElementById("search_condition")) {
-			document.getElementById("search_condition").disabled = false;
-		}
-		document.getElementById("search_make").disabled = false;
-		document.getElementById("search_model").disabled = false;
-		document.getElementById("submit_search").disabled = false;
-	}
-	jQuery(function _() {
-		jQuery('#search_condition').change (function(){
-			car_demon_disable_form();
-			var search_condition = document.getElementById("search_condition").options[document.getElementById("search_condition").selectedIndex].value;
-			if (document.getElementById("search_year")) {
-				var options = {
-					 type: "POST",
-					 url: "<?php echo $car_demon_pluginpath ?>includes/car-demon-search-terms.php?_name=search_condition&_value="+search_condition,
-					 data: "{}",
-					 contentType: "application/json; charset=utf-8",
-					 dataType: "json",
-					 success: function(msg) {
-						 $("#search_year").html("");
-						 var returnedArray = msg;
-						 for (i = 0; i < returnedArray.length; i++) {
-							for ( key in returnedArray[i] ) {	
-								jQuery("#search_year").get(0).add(new Option(returnedArray[i][key],[key]), document.all ? i : null);
-							}
-						 }
-					 }
-				 };
-				 jQuery.ajax(options);
-			}
-			var options = {
-				 type: "POST",
-				 url: "<?php echo $car_demon_pluginpath ?>includes/car-demon-search-terms.php?_name=search_make_condition&_value="+search_condition,
-				 data: "{}",
-				 contentType: "application/json; charset=utf-8",
-				 dataType: "json",
-				 success: function(msg) {
-					 jQuery("#search_make").html("");
-					 var returnedArray = msg;
-					 for (i = 0; i < returnedArray.length; i++) {
-						for ( key in returnedArray[i] ) {	
-							jQuery("#search_make").get(0).add(new Option(returnedArray[i][key],[key]), document.all ? i : null);
-						}
-					 }
-				 }
-			 };
-			 jQuery.ajax(options);
-			var options = {
-				 type: "POST",
-				 url: "<?php echo $car_demon_pluginpath ?>includes/car-demon-search-terms.php?_name=search_model_condition&_value="+search_condition,
-				 data: "{}",
-				 contentType: "application/json; charset=utf-8",
-				 dataType: "json",
-				 success: function(msg) {
-					 jQuery("#search_model").html("");
-					 var returnedArray = msg;
-					 for (i = 0; i < returnedArray.length; i++) {
-						for ( key in returnedArray[i] ) {	
-							jQuery("#search_model").get(0).add(new Option(returnedArray[i][key],[key]), document.all ? i : null);
-						}
-					 }
-		 			car_demon_enable_form();
-				 }
-			 };
-			 jQuery.ajax(options);
-		});
-		jQuery('#search_make').change (function(){
-			car_demon_disable_form();
-			var search_make = document.getElementById("search_make").options[document.getElementById("search_make").selectedIndex].value;
-			var options = {
-				 type: "POST",
-				 url: "<?php echo $car_demon_pluginpath ?>includes/car-demon-search-terms.php?_name=search_make&_value="+search_make,
-				 data: "{}",
-				 contentType: "application/json; charset=utf-8",
-				 dataType: "json",
-				 success: function(msg) {
-					 jQuery("#search_model").html("");
-					 var returnedArray = msg;
-					 for (i = 0; i < returnedArray.length; i++) {
-						for ( key in returnedArray[i] ) {	
-							jQuery("#search_model").get(0).add(new Option(returnedArray[i][key],[key]), document.all ? i : null);
-						}
-					 }
-		 			car_demon_enable_form();
-				 }
-			 };
-			 jQuery.ajax(options);
-		});
-		jQuery('#search_year').change (function(){
-			car_demon_disable_form();
-			if (document.getElementById("search_condition")) {
-				document.getElementById("search_condition").selectedIndex = 0;
-			}
-			var search_year = document.getElementById("search_year").options[document.getElementById("search_year").selectedIndex].value;
-			var options = {
-				 type: "POST",
-				 url: "<?php echo $car_demon_pluginpath ?>includes/car-demon-search-terms.php?_name=search_year&_value="+search_year,
-				 data: "{}",
-				 contentType: "application/json; charset=utf-8",
-				 dataType: "json",
-				 success: function(msg) {
-					 jQuery("#search_make").html("");
-					 var returnedArray = msg;
-					 for (i = 0; i < returnedArray.length; i++) {
-						for ( key in returnedArray[i] ) {	
-							jQuery("#search_make").get(0).add(new Option(returnedArray[i][key],[key]), document.all ? i : null);
-						}
-					 }
-		 			car_demon_enable_form();
-				 }
-			 };
- 			 jQuery.ajax(options);
-			var options = {
-				 type: "POST",
-				 url: "<?php echo $car_demon_pluginpath ?>includes/car-demon-search-terms.php?_name=search_year_model&_value="+search_year,
-				 data: "{}",
-				 contentType: "application/json; charset=utf-8",
-				 dataType: "json",
-				 success: function(msg) {
-					 jQuery("#search_model").html("");
-					 var returnedArray = msg;
-					 for (i = 0; i < returnedArray.length; i++) {
-						for ( key in returnedArray[i] ) {	
-							jQuery("#search_model").get(0).add(new Option(returnedArray[i][key],[key]), document.all ? i : null);
-						}
-					 }
-		 			car_demon_enable_form();
-				 }
-			 };
-			 jQuery.ajax(options);
-		});
-	});
-	</script> 
-	<style> 
-	input.btn {
-		font-family:Arial, Helvetica, sans-serif;
-		font-size:12px;
-		font-weight:bold;
-		padding-left: 15px;
-		padding-right: 15px;
-		padding-bottom: 2px;
-		padding-top: 2px;
-		background-color:#fed;
-		border: 1px solid;
-		border-color: #696 #363 #363 #696;
-		filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#ffffffff',EndColorStr='#ffeeddaa');
-		cursor:pointer;
-	}
-	input.btnhov {
-		  border-color: #c63 #930 #930 #c63;
-		  color:#FF0000;
-	}	
-	#loading {
-		position:absolute;
-		top:0px;
-		right:0px;
-		background:#ff0000;
-		color:#fff;
-		font-size:14px;
-		font-familly:Arial;
-		padding:2px;
-		display:none;
-	}
-	</style> 
-	<?php
+	wp_enqueue_script('car-demon-search-js', WP_CONTENT_URL . '/plugins/car-demon/includes/js/car-demon-search.js.php');
+	wp_enqueue_style('car-demon-search-css', WP_CONTENT_URL . '/plugins/car-demon/includes/css/car-demon-search.css');
 }
 ?>

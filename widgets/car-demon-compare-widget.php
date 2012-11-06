@@ -33,16 +33,18 @@ class car_demon_compare_Widget extends WP_Widget {
 
 		/* Display the widget title if one was input (before and after defined by themes). */
 		if (!empty($title)) {
-			echo $before_title . $title . $after_title;
+			if (!empty($no_vehicles_msg)) {
+				echo $before_title . $title . $after_title;
+			}
 		}
 		if ($_SESSION['car_demon_options']['use_compare'] == 'Yes') {
-			echo '<div style="max-width:265px;">';
+			echo '<div class="car_demon_compare_widget">';
 				echo '
 				<div class="car_demon_compare_div" id="car_demon_compare_div">
 					<div class="car_demon_compare_box" id="car_demon_compare_box"">
 						<div class="car_demon_compare_print" onclick="print_compare();">Print</div>
 						<div class="close_car_demon_compare" onclick="close_car_demon_compare();">(close) X</div>
-						<div id="car_demon_compare_box_main" style="margin-left:10px; margin-top:25px;">
+						<div class="car_demon_compare_box_main" id="car_demon_compare_box_main">
 						</div>
 					</div>
 				</div>

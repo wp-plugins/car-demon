@@ -19,7 +19,7 @@ else {
 }
 global $wpdb;
 $prefix = $wpdb->prefix;
-
+$my_year = '';
 $array = array();
 if ($_GET['_name'] == 'search_condition') {
 	$my_condition = $_GET['_value'];
@@ -312,7 +312,7 @@ function count_these_tax_items($old_val, $new_val, $type) {
 	}
 	else {
 		$total_cars = mysql_fetch_array(mysql_query($str_sql));
-		$my_total = $total_cars[new_name];	
+		$my_total = $total_cars['new_name'];	
 	}
 	return $my_total;
 }

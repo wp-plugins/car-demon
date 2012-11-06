@@ -1,10 +1,10 @@
 <?php
 function car_demon_settings_page() {
-	add_submenu_page('edit.php?post_type=cars_for_sale', 'Contact Settings', 'Contact Settings', 'edit_pages', 'car_demon_plugin_options', 'car_demon_plugin_options_do_page');
-	add_submenu_page('edit.php?post_type=cars_for_sale', 'Car Demon Settings', 'Car Demon Settings', 'edit_pages', 'car_demon_settings_options', 'car_demon_settings_options_do_page');
+	add_submenu_page( 'edit.php?post_type=cars_for_sale', 'Contact Settings', 'Contact Settings', 'edit_pages', 'car_demon_plugin_options', 'car_demon_plugin_options_do_page' );
+	add_submenu_page( 'edit.php?post_type=cars_for_sale', 'Car Demon Settings', 'Car Demon Settings', 'edit_pages', 'car_demon_settings_options', 'car_demon_settings_options_do_page' );
 	add_action( 'admin_enqueue_scripts', 'car_demon_admin_car_scripts' );
 }
-add_action('admin_menu', 'car_demon_settings_page');
+add_action( 'admin_menu', 'car_demon_settings_page' );
 
 function get_my_post_thumbnail_id_detail_eil( $post_id = NULL ) {
 	global $id;
@@ -13,7 +13,7 @@ function get_my_post_thumbnail_id_detail_eil( $post_id = NULL ) {
 	return $my_pic;
 }
 
-function be_hidden_meta_boxes($hidden, $screen) {
+function be_hidden_meta_boxes( $hidden, $screen ) {
 	if ( 'cars-for-sale' == $screen->base )
 		$hidden = array('postcustom', 'slugdiv', 'trackbacksdiv', 'postexcerpt', 'commentstatusdiv', 'commentsdiv', 'authordiv', 'revisionsdiv');
 	return $hidden;
@@ -112,8 +112,10 @@ function car_demon_admin_car_scripts() {
 
 function car_demon_plugin_options_do_page() {
 	screen_icon();
-	echo "<h2>". __('Car Demon Contact Options', 'car-demon') . "</h2>";
-	admin_contact_forms();
+	echo '<div class="wrap">';
+		echo "<h2>". __('Car Demon Contact Options', 'car-demon') . "</h2>";
+		admin_contact_forms();
+	echo '</div>';
 }
 
 function admin_contact_forms() {
@@ -445,7 +447,7 @@ function car_demon_options() {
 }
 
 function car_demon_settings_options_do_page() {
-	echo '<div id="icon-tools" class="icon32"></div><h1>'.__('Car Demon Settings', 'car-demon').'</h1>';
+	echo '<div class="wrap"><div id="icon-tools" class="icon32"></div><h1>'.__('Car Demon Settings', 'car-demon').'</h1>';
 	if (isset($_POST['reset_car_demon'])) {
 		reset_car_demon();
 	}
@@ -606,7 +608,7 @@ function car_demon_settings_options_do_page() {
 		echo '[-trade-]<br />';
 		echo '[-finance_form-]<br />';
 		echo '[-staff_page-]<br />';
-	echo '</div>';
+	echo '</div></div>';
 }
 
 function update_car_demon_settings() {

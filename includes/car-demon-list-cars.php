@@ -42,7 +42,7 @@ function car_demon_display_car_list($post_id) {
 			$detail_output .= '<input'.$in_compare.' id="compare_'.$post_id.'" type="checkbox" onclick="update_car('.$post_id.',this);" />&nbsp;<a href="" />Compare</a>';
 		$detail_output .= '</span>';
 	}
-	$detail_output .= '<div style="height:110px;">';
+	$detail_output .= '<div class="inventory_price_box">';
 		$detail_output .= get_vehicle_price($post_id);
 	$detail_output .= '</div>';	
 	$link = get_permalink($post_id);
@@ -50,9 +50,9 @@ function car_demon_display_car_list($post_id) {
 		$link = $link .'?sales_code='.$_COOKIE["sales_code"];
 	}
 	$detail_output .= '<div class="random_text">';
-		$detail_output .= '<a href="'.$link.'" class="search_btn" style="margin-left:20px;">View Details</a>';
+		$detail_output .= '<a href="'.$link.'" class="search_btn inventory_btn">View Details</a>';
 	$detail_output .= '</div>';
-	$img_output = "<div style='position:absolute;'><img title='Click for price on this ".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image' width='180px' height='135px' src='";
+	$img_output = "<div class='inventory_photo_box'><img title='".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image inventory_photo_box' src='";
 	$img_output .= wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 	$img_output .= "' /></div>";
 	$ribbon = 'ribbon-just-added';
@@ -66,15 +66,15 @@ function car_demon_display_car_list($post_id) {
 		if ($tmp_price < 12000) { $ribbon = 'ribbon-low-price';	}
 	}
 	$car = '
-		<div class="random" style="float:left;width:210px;height:385px;">
-			<div class="random_img" style="height:137px;">
+		<div class="random inventory_item">
+			<div class="random_img inventory_img">
 				<a href="'.$link.'">
-					<img style="margin-left:15px;" src="'. $car_demon_pluginpath .'theme-files/images/'.$ribbon.'.png" width="76" height="76" alt="New Ribbon" id="ribbon">
-					<img style="margin-left:15px;" src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="188" height="143" alt="New Ribbon" id="look_close" class="look_close">
+					<img class="inventory_ribbon" src="'. $car_demon_pluginpath .'theme-files/images/'.$ribbon.'.png" width="76" height="76" alt="New Ribbon" id="ribbon">
+					<img class="inventory_lookup" src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="188" height="143" alt="New Ribbon" id="look_close" class="look_close">
 					'.$img_output.'
 				</a>
 			</div>
-			<div class="random_description" style="margin-top:5px;">
+			<div class="random_description inventory_description">
 				'.$detail_output.'
 			</div>
 		</div>';

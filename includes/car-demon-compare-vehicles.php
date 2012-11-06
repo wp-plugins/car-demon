@@ -23,13 +23,13 @@ function show_compare_vehicles() {
 				$link = get_permalink($car);
 				$x .= '<input checked="checked" type="checkbox" onclick="update_car('.$car.',this);" />&nbsp;';
 				$x .= '<a href="'.$link.'" title="'.$title.', '.__('Stock#:', 'car-demon').' '.$stock_value.'">';
-				$x .= "<img style='margin-left:2px;' onerror='ImgError(this, \"no_photo.gif\");' class='compare_widget_image' width='20px' height='15px' src='";
+				$x .= "<img onerror='ImgError(this, \"no_photo.gif\");' class='compare_widget_image' width='20px' height='15px' src='";
 				$x .= wp_get_attachment_thumb_url( get_post_thumbnail_id( $car ) );
 				$x .= "' />&nbsp;";
 				$x .= $title;
 				$x .= "</a><br />";
 			}
-		$x .= '<input onclick="open_car_demon_compare();" style="margin-top:10px;" type="button" class="search_btn" value="Compare Now" />';
+		$x .= '<input onclick="open_car_demon_compare();" type="button" class="search_btn compare_btn" value="Compare Now" />';
 	}
 	else {
 		$x .= $_SESSION['car_demon_compare_options']['no_vehicles_msg'];
@@ -46,10 +46,10 @@ function show_compare_list() {
 	if ($compare_these_array) {
 		$compare_these = split(',',$compare_these_array);
 		$x .= '<h2 class="offscreen">'.__('Compare Vehicles', 'car-demon').'</h2>';
-		$x .='<div id="car_demon_compare_box_list_cars" style="margin-top:10px;height:550px;overflow:scroll;">';
+		$x .='<div id="car_demon_compare_box_list_cars" class="car_demon_compare_box_list_cars">';
 			foreach ($compare_these as $car) {
 				$post_id = $car;
-				$x .= '<div style="float:left;width:180px;margin:3px;height:350px;">';
+				$x .= '<div class="car_demon_compare_box_list_cars_div">';
 				$vehicle_vin = rwh(get_post_meta($post_id, "_vin_value", true),0);
 				$vehicle_exterior_color = get_post_meta($post_id, "_exterior_color_value", true);
 				$vehicle_transmission = get_post_meta($post_id, "_transmission_value", true);
@@ -85,13 +85,16 @@ function show_compare_list() {
 					$detail_output .= 'Engine: '.$vehicle_engine;
 				$detail_output .= '</div>';
 				$new_price = get_vehicle_price($post_id);
-				$new_price = str_replace('font-size:16px', 'font-size:12px', $new_price);
-				$new_price = str_replace('font-size:20px', 'font-size:14px', $new_price);
-				$new_price = str_replace('font-size:28px', 'font-size:14px', $new_price);
+				$new_price = str_replace('class="car_selling_price"', 'class="car_selling_price car_selling_price_compare"', $new_price);
+				$new_price = str_replace('class="car_rebate', 'class="car_rebate car_rebate_compare"', $new_price);
+				$new_price = str_replace('class="car_dealer_discounts', 'class="car_dealer_discounts car_dealer_discounts_compare"', $new_price);
+				$new_price = str_replace('class="car_retail_price', 'class="car_retail_price car_retail_price_compare"', $new_price);
+				$new_price = str_replace('class="car_your_price', 'class="car_your_price car_your_price_compare"', $new_price);
+				$new_price = str_replace('class="car_final_price', 'class="car_final_price car_final_price_compare"', $new_price);
 				$detail_output .= $new_price;
 				$link = get_permalink($post_id);
 				$img_output = "<img onclick='window.location=\"".$link."\";' title='Click for price on this ".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='compare_widget_image_bg' width='120px' height='95px' src='";
-				$img_output .= wp_get_attachment_thumb_url( get_post_thumbnail_id( $post_id ) );
+				$img_output .= wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 				$img_output .= "' />";
 				$ribbon = 'ribbon-just-added';
 				$ribbon = 'ribbon-great-deal';
@@ -105,10 +108,10 @@ function show_compare_list() {
 				}
 				$x .= '
 					<div class="random">
-						<div class="random_img" style="position:relative;">
+						<div class="random_img random_img_compare">
 							'.$img_output.'
 						</div>
-						<div class="random_description" style="width:180px;">
+						<div class="random_description random_description_compare">
 							'.$detail_output.'
 						</div>
 					</div>';

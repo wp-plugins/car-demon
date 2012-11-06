@@ -28,7 +28,11 @@ if (isset($_GET['qr_printed'])) {
 }
 
 if (isset($_GET['compare_car'])) {
-	$compare_these = $_SESSION['car_demon_compare'];
+	if (isset($_SESSION['car_demon_compare'])) {
+		$compare_these = $_SESSION['car_demon_compare'];
+	} else {
+		$compare_these = '';
+	}
 	if ($_POST['action'] == 1) {
 		$compare_these = str_replace(','.$_POST['post_id'],'',$compare_these);
 		$compare_these = str_replace($_POST['post_id'],'',$compare_these);

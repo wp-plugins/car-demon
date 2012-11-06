@@ -130,10 +130,10 @@ if (isset($_GET['car'])) {
 }
 </style>
 				<h1 class="page-title"><?php printf( __( 'Search Results: %s', 'car-demon' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-				<h4 style="margin:0px;"><?php _e('Results Found','car-demon'); echo ': '.$total_results;?></h4>
+				<h4 class="results_found"><?php _e('Results Found','car-demon'); echo ': '.$total_results;?></h4>
 				<?php echo $searched; ?>
 				<?php if ( $search_query->max_num_pages > 1 ) : ?>
-						<div id="cd-nav-above" class="navigation-top" style="float:left;width:100%;margin:7px;">
+						<div id="cd-nav-above" class="navigation-top inventory_nav_top">
 						<?php if(function_exists('wp_pagenavi')) {  
 									$nav_list_str = wp_pagenavi(array( 'query' => $search_query, 'echo' => false )); 
 									$nav_list_str = str_replace('nextpostslink','nextpostslink-top',$nav_list_str);
@@ -145,7 +145,7 @@ if (isset($_GET['car'])) {
 								<?php } ?>
 						</div><!-- #nav-above -->
 					<?php else: ?>
-						<div id="cd-nav-above" class="navigation-top" style="float:left;width:100%"><span class="wp-pagenavi"><span class="pages"><?php echo $wp_query->post_count; ?> Results Found</span></span>
+						<div id="cd-nav-above" class="navigation-top inventory_nav"><span class="wp-pagenavi"><span class="pages"><?php echo $wp_query->post_count; ?> Results Found</span></span>
 						</div>
 				<?php endif; ?>
 <div id="demon-content" class="listing" role="main">
@@ -162,7 +162,7 @@ if (isset($_GET['car'])) {
 	/* Display navigation to next/previous pages when applicable */ ?>
 </div>
 	<?php if (  $search_query->max_num_pages > 1 ) : ?>
-			<div id="cd-nav-below" class="navigation" style="float:left;">
+			<div id="cd-nav-below" class="navigation inventory_nav_bottom">
 			<?php if(function_exists('wp_pagenavi')) { wp_pagenavi(array( 'query' => $search_query )); } 
 					else { ?>
 						<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'CarDemon' ) ); ?></div>

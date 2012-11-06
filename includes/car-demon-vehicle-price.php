@@ -36,41 +36,41 @@ function get_vehicle_price($post_id) {
 		$your_price = $vehicle_price;
 		$spacer = "";
 		if (!empty($selling_price)) {
-			$price .= '<div id="selling_price" class="car_selling_price" style="font-size:16px; font-weight:bold"><div class="car_price_text" style="float: left;width: 65px;">$'. $selling_price .'</div> :'.__('Selling Price', 'car-demon').'</div>';
+			$price .= '<div id="selling_price" class="car_selling_price"><div class="car_price_text">$'. $selling_price .'</div> :'.__('Selling Price', 'car-demon').'</div>';
 		}
 		if (!empty($rebate)) {
-			$price .= '<div id="rebate" class="car_rebate" style="font-size:16px; font-weight:bold"><div class="car_price_text" style="float: left;width: 65px;">$'. $rebate .'</div> :'.__('Rebate', 'car-demon').'</div>';
+			$price .= '<div id="rebate" class="car_rebate"><div class="car_price_text">$'. $rebate .'</div> :'.__('Rebate', 'car-demon').'</div>';
 		}
 		else {
-			$spacer = '<div class="car_rebate" style="font-size:16px; font-weight:bold"><div class="car_price_text" style="float: left;width: 65px;">&nbsp;</div>&nbsp;</div>';
+			$spacer = '<div class="car_rebate"><div class="car_price_text">&nbsp;</div>&nbsp;</div>';
 		}
 		if (!empty($dealer_discount)){
-			$price .= '<div class="car_dealer_discounts" style="font-size:16px; font-weight:bold; color:#FF0000;"><div class="car_price_text" style="float: left;width: 65px;">$'. $dealer_discount .'</div> :'.__('Xtra Discount', 'car-demon').'</div>';
+			$price .= '<div class="car_dealer_discounts"><div class="car_price_text">$'. $dealer_discount .'</div> :'.__('Xtra Discount', 'car-demon').'</div>';
 		}
 		else {
-			$spacer = '<div class="car_rebate" style="font-size:16px; font-weight:bold"><div class="car_price_text" style="float: left;width: 65px;">&nbsp;</div>&nbsp;</div>';		
+			$spacer = '<div class="car_rebate"><div class="car_price_text">&nbsp;</div>&nbsp;</div>';		
 		}
-		$price .= '<div id="your_price_text" class="car_your_price" style="font-size:20px; font-weight:bold; text-align:center;">'.__('YOUR PRICE', 'car-demon').':</div>';
-		$price .= '<div id="your_price" class="car_final_price" style="font-size:28px; font-weight:bold; text-align:center;margin-top:3px;">$' .$your_price .'</div>';
+		$price .= '<div id="your_price_text" class="car_your_price">'.__('YOUR PRICE', 'car-demon').':</div>';
+		$price .= '<div id="your_price" class="car_final_price">$' .$your_price .'</div>';
 	}
 	else {
 		if ($vehicle_condition == 'New') {
-			$price .= '<p>&nbsp;</p><div class="car_retail_price" style="font-size:16px; font-weight:bold">'.get_option($vehicle_location_slug.'_no_new_price').'</div>';
+			$price .= '<p>&nbsp;</p><div class="car_retail_price">'.get_option($vehicle_location_slug.'_no_new_price').'</div>';
 		}
 		else {
-			$price .= '<p>&nbsp;</p><div class="car_retail_price" style="font-size:16px; font-weight:bold">'.get_option($vehicle_location_slug.'_no_used_price').'</div>';
+			$price .= '<p>&nbsp;</p><div class="car_retail_price">'.get_option($vehicle_location_slug.'_no_used_price').'</div>';
 		}
 	}
 	$sold_status = get_post_meta($post_id, "sold", true);
   	if ($sold_status == 'yes') {
 		$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 		$pluginpath = str_replace('includes','',$pluginpath);
-		$price = '<div id="your_price_text" class="your_price_text" style="font-size:24px; font-weight:bold; text-align:center;">';
+		$price = '<div id="your_price_text" class="your_price_text">';
 			$price .= '<img src="'.$pluginpath.'images\sold.gif" alt="Sold" title="Sold" /><br />';
 		$price .= '</div>';
 	}
 	$price .= '</div>';
-	$price = '<div class="car_price_details" id="car_price_details" style="font-size:16px; font-weight:bold;">'.$spacer.$price;
+	$price = '<div class="car_price_details" id="car_price_details">'.$spacer.$price;
 	return $price;
 }
 ?>

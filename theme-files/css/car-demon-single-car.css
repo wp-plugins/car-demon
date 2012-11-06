@@ -175,3 +175,93 @@ ul.tabs {
 	top:12px; 
 	left:615px;
 }
+.car_demon_light_box_main_email {
+	margin-left:80px; margin-top:25px;
+}
+.car_demon_light_box_main {
+	margin-left:80px; margin-top:25px;
+}
+.hor_lightbox {
+	width:600px;
+	height:75px;
+	overflow:auto;
+	white-space: nowrap;
+	margin-left: 100px;
+}
+/*=====Email a Friend========*/
+.ef_contact_final_msg_tmp {
+	display:none; width:625px; height:550px; padding:5px;
+}
+.main_email_friend_div {
+	background:#DDDDDD; width:625px; height:550px; padding:5px;
+}
+.contact-appointment {
+	margin: 10px auto 0 auto;
+}
+.cd-fs1 {
+	width: 270px;
+}
+.cd-fs4 {
+	width: 270px;
+}
+.ef_comment {
+	margin-left:10px;
+	width:240px !important;
+	height:70px;
+}
+.ef_search_btn {
+	margin-left:120px;
+}
+.ef_reqtxt {
+	margin-left:10px !important;
+	display: block;
+}
+.ef_contact_msg {
+	display:none;
+}
+/*=====Start Car=============*/
+.car_title_div {
+	width:225px;font-size:12px;
+}
+.car_title {
+	margin-top:-10px;
+}
+.car_content {
+	background-color:#FFFFFF;height:100%;
+}
+.start_car {
+	margin-top:2px;height:1px;
+}
+.car_buttons_div {
+	width:700px;height:63px;
+}
+.car_buttons_div img {
+	cursor:pointer;
+}
+.car_side_bar {
+	float:left;
+}
+.clear_car {
+	clear: both;
+}
+.car_detail_div {
+	width:600px;height:300px;margin-left:5px;
+}
+.car_main_photo_box {
+	cursor:pointer;float:left;
+}
+.car_details_box {
+	float:left;margin-left:15px;
+}
+.similar_cars_box {
+	width:650px;height:225px;margin-top:10px;
+}
+.similar_car {
+	float:left;width:210px;height:185px;
+}
+.similar_car_ribbon {
+	margin-left:15px;
+}
+.similar_car_look_close {
+	margin-left:15px;
+}

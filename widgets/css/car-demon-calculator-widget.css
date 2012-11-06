@@ -16,3 +16,9 @@
 .car_demon_calc_title {
 	font-size:20px;
 }
+.calc_text {
+	width: 250px;
+}
+.calc_table {
+	margin-left:3px;
+}

@@ -154,8 +154,8 @@ function car_demon_display_random_cars($stop) {
 			$car .= '
 				<div class="random">
 					<div class="random_img">
-						<img onclick="window.location=\''.$link.'\';" style="margin-left:15px;width:76px;height:76px;" src="'. $car_demon_pluginpath .'theme-files/images/'.$ribbon.'.png" width="76" height="76" alt="New Ribbon" id="ribbon">
-						<img onclick="window.location=\''.$link.'\';" style="margin-left:15px;width:188px;height:143px;" src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="188" height="143" alt="New Ribbon" id="look_close" class="look_close">
+						<img onclick="window.location=\''.$link.'\';" class="random_car_widget" src="'. $car_demon_pluginpath .'theme-files/images/'.$ribbon.'.png" width="76" height="76" alt="New Ribbon" id="ribbon">
+						<img onclick="window.location=\''.$link.'\';" class="random_car_lookup" src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="188" height="143" alt="New Ribbon" id="look_close" class="look_close">
 						'.$img_output.'
 					</div>
 					<div class="random_description">

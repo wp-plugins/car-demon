@@ -40,7 +40,7 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 				if (!empty($title)) {
 					echo $before_title . $title . $after_title;
 				}
-				echo '<div style="max-width:275px;">';
+				echo '<div class="contact_us_widget">';
 					echo car_demon_display_vehicle_contacts_js($post_id, $list_phone, $cc, $send_receipt, $send_receipt_msg);
 					echo car_demon_display_vehicle_contacts($post_id, $list_phone, $cc, $send_receipt, $send_receipt_msg);
 				echo '</div>';
@@ -183,11 +183,11 @@ function car_demon_display_vehicle_contacts($post_id, $list_phone, $cc, $send_re
 			<fieldset class="cd-fs4">
 			<legend>Questions or Comments</legend>
 			<ol class="cd-ol">
-				<li id="li-5" class=""><textarea style="margin-left:3%;width:90%;height:70px;" name="contact_needed" id="contact_needed" class="area fldrequired"></textarea><br /><span class="reqtxt" style="margin-left:10px;"><br />* required</span></li>
+				<li id="li-5" class=""><textarea name="contact_needed" id="contact_needed" class="contact_us_comment fldrequired"></textarea><br /><span class="reqtxt reqtxt_comment"><br />* required</span></li>
 			</ol>
 			</fieldset>';
 	$x = apply_filters('car_demon_mail_hook_form', $x, 'contact_us_vehicle', $vehicle_location_slug);
-	$x .= '<p class="cd-sb"><input type="button" style="margin-left:100px;" name="search_btn" id="sendbutton" class="search_btn" value="Send Now!" onclick="return car_demon_validate()"></p></form>
+	$x .= '<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn contact_us_btn" value="Send Now!" onclick="return car_demon_validate()"></p></form>
 		';
 	return $x;
 }
