@@ -587,3 +587,6 @@ Inventory Lists
 .results_found {
 	margin:0px;
 }
+._car_sold {
+	margin-top:15px;font-size:42px;color:#FF0000;font-weight:bold;text-align:center;
+}

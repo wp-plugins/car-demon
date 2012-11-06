@@ -417,6 +417,7 @@ function car_demon_options() {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('admin/','',$car_demon_pluginpath);
 	$default = array();
+	$default['currency_symbol'] = '$';
 	$default['vinquery_id'] = '';
 	$default['vinquery_type'] = '1';
 	$default['use_about'] = 'Yes';
@@ -431,6 +432,7 @@ function car_demon_options() {
 	$default['mobile_header'] = 'Yes';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
+	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
 	if (empty($car_demon_options['vinquery_id'])) {$car_demon_options['vinquery_id'] = $default['vinquery_id'];}
 	if (empty($car_demon_options['vinquery_type'])) {$car_demon_options['vinquery_type'] = $default['vinquery_type'];}
 	if (empty($car_demon_options['use_about'])) {$car_demon_options['use_about'] = $default['use_about'];}
@@ -466,6 +468,8 @@ function car_demon_settings_options_do_page() {
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
 			</select><br />';
+		echo '<br />*'.__('Currency Symbol', 'car-demon').':<br />';
+		echo '<input type="text" name="currency_symbol" value="'.$car_demon_options['currency_symbol'].'" /><br />';
 		echo '<br />*'.__('VinQuery.com Access Code', 'car-demon').':<br />';
 		echo '<input type="text" name="vinquery_id" value="'.$car_demon_options['vinquery_id'].'" />';
 		echo '*(optional)<br />';
@@ -613,6 +617,7 @@ function car_demon_settings_options_do_page() {
 
 function update_car_demon_settings() {
 	$new = array();
+	if (isset($_POST['currency_symbol'])) $new['currency_symbol'] = $_POST['currency_symbol'];
 	if (isset($_POST['vinquery_id'])) $new['vinquery_id'] = $_POST['vinquery_id'];
 	if (isset($_POST['vinquery_type'])) $new['vinquery_type'] = $_POST['vinquery_type'];
 	if (isset($_POST['use_about'])) $new['use_about'] = $_POST['use_about'];

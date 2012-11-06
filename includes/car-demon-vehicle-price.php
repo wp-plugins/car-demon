@@ -3,8 +3,13 @@ function get_vehicle_price($post_id) {
 	$is_sold = get_post_meta($post_id, 'sold', true);
 	$spacer = '';
 	$vehicle_condition = '';
+	if (isset($_SESSION['car_demon_options']['currency_symbol'])) {
+		$currency_symbol = $_SESSION['car_demon_options']['currency_symbol'];
+	} else {
+		$currency_symbol = "$";
+	}
 	if ($is_sold == "Yes") {
-		$sold = "<div style='margin-top:15px;font-size:42px;color:#FF0000;font-weight:bold;text-align:center;'>SOLD</div>";
+		$sold = "<div class='car_sold'>SOLD</div>";
 		return $sold;
 	}
 	$vehicle_location = strip_tags(get_the_term_list( $post_id, 'vehicle_location', '','', '', '' ));
@@ -28,7 +33,7 @@ function get_vehicle_price($post_id) {
 		$vehicle_price = get_post_meta($post_id, "_price_value", true);
 		$vehicle_price_pack = (int)$vehicle_price;
 		if ($vehicle_price == 0) {
-			$vehicle_price = ' Call $';
+			$vehicle_price = ' Call '.$currency_symbol;
 		}
 		$selling_price = get_post_meta($post_id, "_msrp_value", true);
 		$rebate = get_post_meta($post_id, "_rebates_value", true);
@@ -36,22 +41,22 @@ function get_vehicle_price($post_id) {
 		$your_price = $vehicle_price;
 		$spacer = "";
 		if (!empty($selling_price)) {
-			$price .= '<div id="selling_price" class="car_selling_price"><div class="car_price_text">$'. $selling_price .'</div> :'.__('Selling Price', 'car-demon').'</div>';
+			$price .= '<div id="selling_price" class="car_selling_price"><div class="car_price_text">'. $currency_symbol. $selling_price .'</div> :'.__('Selling Price', 'car-demon').'</div>';
 		}
 		if (!empty($rebate)) {
-			$price .= '<div id="rebate" class="car_rebate"><div class="car_price_text">$'. $rebate .'</div> :'.__('Rebate', 'car-demon').'</div>';
+			$price .= '<div id="rebate" class="car_rebate"><div class="car_price_text">'. $currency_symbol. $rebate .'</div> :'.__('Rebate', 'car-demon').'</div>';
 		}
 		else {
 			$spacer = '<div class="car_rebate"><div class="car_price_text">&nbsp;</div>&nbsp;</div>';
 		}
 		if (!empty($dealer_discount)){
-			$price .= '<div class="car_dealer_discounts"><div class="car_price_text">$'. $dealer_discount .'</div> :'.__('Xtra Discount', 'car-demon').'</div>';
+			$price .= '<div class="car_dealer_discounts"><div class="car_price_text">'. $currency_symbol . $dealer_discount .'</div> :'.__('Xtra Discount', 'car-demon').'</div>';
 		}
 		else {
 			$spacer = '<div class="car_rebate"><div class="car_price_text">&nbsp;</div>&nbsp;</div>';		
 		}
 		$price .= '<div id="your_price_text" class="car_your_price">'.__('YOUR PRICE', 'car-demon').':</div>';
-		$price .= '<div id="your_price" class="car_final_price">$' .$your_price .'</div>';
+		$price .= '<div id="your_price" class="car_final_price">'. $currency_symbol .$your_price .'</div>';
 	}
 	else {
 		if ($vehicle_condition == 'New') {
