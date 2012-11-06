@@ -1,0 +1,66 @@
+/* CSS Document */
+ul.tabs {
+	margin:0px; padding:0px;  
+}  
+ul.tabs li {  
+	list-style:none;  
+	display:inline;  
+}
+ul.tabs li a {  
+	background-color:#464c54;  
+	color:#ffebb5;  
+	padding:4px 7px 8px 7px;  
+	text-decoration:none;  
+	font-size:9px;  
+	font-family:Verdana, Arial, Helvetica, sans-serif;  
+	font-weight:bold;  
+	text-transform:uppercase;  
+	border:1px solid #464c54;  
+}  
+ul.tabs li a:hover {  
+	background-color:#2f343a;  
+	border-color:#2f343a;  
+}  
+ul.tabs li a.active {
+	background-color:#ffffff;  
+	color:#282e32;  
+	border:1px solid #464c54;  
+	border-bottom: 1px solid #ffffff;  
+}
+.car_features_content {  
+	background-color:#ffffff;  
+	padding:10px;  
+	border:1px solid #464c54;  
+}  
+#content_2, #content_3, #content_4, #content_5, #content_6 { display:none; }
+ul.tabs {  
+	margin:0px; padding:0px;  
+	margin-top:5px;  
+	margin-bottom:4px;  
+}
+.car_text {
+	width: 200px;
+}
+.btn {
+	cursor:pointer;
+}
+.decode_table {
+	font-size:12px;
+	width:100%;
+}
+.decode_table_header {
+	color:Black;
+	background-color:#CCCCCC;
+}
+.decode_table_even {
+	color:Black;
+	background-color:white;
+}
+.decode_table_odd {
+	color:Black;
+	background-color:#EEEEEE;
+}
+.decode_table_label {
+	white-space:nowrap;
+	width:320px;
+}
