@@ -44,8 +44,7 @@ function add_part() {
 		document.getElementById("part_name_label_"+number_of_parts).style.display = "block"
 		document.getElementById("part_number_label_"+number_of_parts).style.display = "block"
 		document.getElementById("part_end_"+number_of_parts).style.display = "block"
-	}
-	else {
+	} else {
 		alert("<?php echo __('You may only add 10 parts to your request', 'car-demon'); ?>\n<?php echo __('If you need additional parts please add them in the comment area.', 'car-demon'); ?>");
 	}
 	if (number_of_parts > 9) {
@@ -72,15 +71,13 @@ function car_demon_validate() {
 	if (part_form.cd_name.value == "") {
 		var msg = "You must enter your name.<br />";
 		cd_not_valid("cd_name");
-	}
-	else {
+	} else {
 		var name_valid = 1;
 	}
 	if (part_form.cd_name.value == "Your Name") {
 		var msg = "You must enter your name.<br />";
 		cd_not_valid("cd_name");
-	}
-	else {
+	} else {
 		if (name_valid == 1) {
 			cd_valid("cd_name");
 		}
@@ -88,8 +85,7 @@ function car_demon_validate() {
 	if (part_form.cd_phone.value == "") {
 		var msg = msg + "You must enter a valid Phone Number.<br />";
 		cd_not_valid("cd_phone");
-	}
-	else {
+	} else {
 		if (part_form.cd_phone.value.length != 14) {
 			var msg = msg + "The phone number you entered is not valid.<br />";
 			cd_not_valid("cd_phone");			
@@ -101,8 +97,7 @@ function car_demon_validate() {
 	var e_msg = validateEmail(part_form.cd_email);
 	if (e_msg == "") {
 		cd_valid("cd_email");
-	}
-	else {
+	} else {
 		var msg = msg + e_msg + "<br />";
 	}			
 	var radios = document.getElementsByName("part_location");
@@ -115,23 +110,20 @@ function car_demon_validate() {
 	if (location_value == "") {
 		var msg = msg + "You did not select a part location.<br />";
 		cd_not_valid("select_location");
-	}
-	else {
+	} else {
 		document.getElementById("select_location").style.background = "";
 	}
 	if (part_form.part_name_1.value == "") {
 		var msg = msg + "You need to add at least the name of one part you are looking for.<br />";
 		cd_not_valid("part_name_1");			
-	}
-	else {
+	} else {
 		cd_valid("part_name_1");
 	}
 	if (msg != "") {
 		document.getElementById("part_msg").style.display = "block";
 		document.getElementById("part_msg").innerHTML = msg;
 		javascript:scroll(0,0);
-	}
-	else {
+	} else {
 		var action = "";
 		var your_name = document.getElementById("cd_name").value;
 		var phone = document.getElementById("cd_phone").value;

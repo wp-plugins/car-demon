@@ -146,8 +146,7 @@ function car_demon_get_my_tax($taxonomy,$val) {
 function car_demon_search_price($size) {
 	if (isset($_GET['search_dropdown_'.$size.'_price'])) {
 		$price = $_GET['search_dropdown_'.$size.'_price'];
-	}
-	else {
+	} else {
 		$price = '';
 	}
 	$x = '<select id="search_dropdown_'.$size.'_price" name="search_dropdown_'.$size.'_price" class="search_dropdown_sm">';
@@ -178,8 +177,7 @@ function car_demon_search_tran() {
 	global $wpdb;
 	if (isset($_GET['search_dropdown_tran'])) {
 		$current_trans = $_GET['search_dropdown_tran'];
-	}
-	else {
+	} else {
 		$current_trans = '';
 	}
 	$prefix = $wpdb->prefix;
@@ -202,8 +200,7 @@ function car_demon_search_tran() {
 function car_demon_search_miles() {
 	if (isset($_GET['search_dropdown_miles'])) {
 		$miles = $_GET['search_dropdown_miles'];
-	}
-	else {
+	} else {
 		$miles = '';
 	}
 	$x = '<select id="search_dropdown_miles" name="search_dropdown_miles" class="search_dropdown_sm">';
@@ -245,8 +242,7 @@ function car_demon_search_body() {
 function car_demon_get_terms_dropdown($taxonomies, $args){
 	if (isset($_GET['search_dropdown_body'])) {
 		$body = $_GET['search_dropdown_body'];
-	}
-	else {
+	} else {
 		$body = '';
 	}
 	$myterms = get_terms($taxonomies, $args);

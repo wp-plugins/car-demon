@@ -4,8 +4,7 @@ function get_car_contact($post_id) {
 	$vehicle_condition = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_condition', '','', '', '' )),0);
 	if ($vehicle_condition == 'New') {
 		$sales_type = 'new';
-	}
-	else {
+	} else {
 		$sales_type = 'used';
 	}
 	$current_location_terms = get_the_terms( $post_id, 'vehicle_location');
@@ -13,15 +12,13 @@ function get_car_contact($post_id) {
 		foreach ($current_location_terms as $current_locations) {
 			$current_location = $current_locations->slug;
 		}
-	}
-	else {
+	} else {
 		$current_location = 'default';
 	}
 	$car_contact['sales_code'] = 0;
 	if (isset($_COOKIE["sales_code"])) {
 		$sales_code = $_COOKIE["sales_code"];
-	}
-	else {
+	} else {
 		$sales_code = '';
 	}
 	if ($sales_code) {
@@ -92,8 +89,7 @@ function get_car_contact($post_id) {
 		$car_contact['finance_popup'] = get_option($current_location.'_finance_popup');
 		$car_contact['finance_width'] = get_option($current_location.'_finance_width');
 		$car_contact['finance_height'] = get_option($current_location.'_finance_height');
-	}
-	else {
+	} else {
 		$car_contact['sales_name'] = get_option($current_location.'_'.$sales_type.'_sales_name');
 		$car_contact['sales_email'] = get_option($current_location.'_'.$sales_type.'_sales_email');
 		$car_contact['sales_phone'] = get_option($current_location.'_'.$sales_type.'_sales_number');
@@ -122,8 +118,7 @@ function replace_contact_info_tags($post_id, $body) {
 	$vehicle_condition = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_condition', '','', '', '' )),0);
 	if ($vehicle_condition == 'New') {
 		$sales_type = 'new';
-	}
-	else {
+	} else {
 		$sales_type = 'used';
 	}
 	$current_location_terms = get_the_terms( $post_id, 'vehicle_location');
@@ -201,8 +196,7 @@ function replace_contact_info_tags($post_id, $body) {
 			$car_contact['finance_email'] = get_option($current_location.'_finance_email');
 			$car_contact['finance_phone'] = get_option($current_location.'_finance_phone');
 		}
-	}
-	else {
+	} else {
 		$car_contact['sales_name'] = get_option($current_location.'_'.$sales_type.'_sales_name');
 		$car_contact['sales_email'] = get_option($current_location.'_'.$sales_type.'_sales_email');
 		$car_contact['sales_phone'] = get_option($current_location.'_'.$sales_type.'_sales_number');

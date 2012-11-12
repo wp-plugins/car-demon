@@ -210,8 +210,7 @@ function car_demon_select_user_location($current_user_location) {
 		$location_list = 'default'.$location_list;
 		$location_name_list = 'Default'.$location_name_list;
 		$cnt = 1;
-	}
-	else {
+	} else {
 		$location_list = '@'.$location_list;
 		$location_list = str_replace("@,","", $location_list);
 		$location_list = str_replace("@","", $location_list);

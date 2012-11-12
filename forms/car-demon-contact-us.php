@@ -25,12 +25,12 @@ function car_demon_contact_request() {
 			<fieldset class="cd-fs4">
 			<legend>Questions and Comments</legend>
 			<ol class="cd-ol">
-				<li id="li-5" class=""><textarea style="margin-left:10px;width:425px;height:100px;" cols="60" rows="4" name="contact_needed" id="contact_needed" class="area fldrequired"></textarea><br /><span class="reqtxt" style="margin-left:10px;">(required)</span></li>
+				<li id="li-5" class=""><textarea class="contact_needed" cols="60" rows="4" name="contact_needed" id="contact_needed" class="area fldrequired"></textarea><br /><span class="reqtxt" class="reqtxt_contact_us">(required)</span></li>
 			</ol>
 			</fieldset>';
 	$x = apply_filters('car_demon_mail_hook_form', $x, 'contact_us', 'unk');
 	$x .='
-			<p class="cd-sb"><input type="button" style="float:right;" name="search_btn" id="sendbutton" class="search_btn" value="Contact Us" onclick="return car_demon_validate()"></p></form>
+			<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn contact_us_btn" value="Contact Us" onclick="return car_demon_validate()"></p></form>
 		';
 	return $x;
 }
@@ -57,8 +57,7 @@ function contact_locations_radio() {
 		$location_list = 'default'.$location_list;
 		$location_name_list = 'Default'.$location_name_list;
 		$cnt = 1;
-	}
-	else {
+	} else {
 		$location_list = '@'.$location_list;
 		$location_list = str_replace("@,","", $location_list);
 		$location_list = str_replace("@","", $location_list);
@@ -75,15 +74,14 @@ function contact_locations_radio() {
 		<ol class="cd-ol">
 			<li id="select_location" class="cd-box-title">Select who you would like to send your message to</li>
 			<li id="li-7items" class="cd-box-group">
-			<select style="margin-left:10px;" id="send_to"><option></option>
+			<select class="contact_us_send_to" id="send_to"><option></option>
 	';
 	if ($cnt == 1) {
 		$select_contact = " checked='checked'";
 	}
 	if (isset($_COOKIE["sales_code"])) {
 		$custom_sales_id = $_COOKIE["sales_code"];
-	}
-	else {
+	} else {
 		$custom_sales_id = '';
 	}
 	foreach ($location_list_array as $current_location) {
@@ -176,8 +174,7 @@ function car_demon_get_custom_email($user_id, $lead_type, $current_location) {
 	$location_approved = 0;
 	if ($current_location == $user_location) {
 		$location_approved = 1;
-	}
-	else {
+	} else {
 		$location_approved = esc_attr( get_the_author_meta( 'lead_locations', $user_id ) );
 	}
 	if ($location_approved == 1) {

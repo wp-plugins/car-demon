@@ -54,14 +54,12 @@ function active_img(cnt) {
 	var num = document.getElementById("current_img_num").value;
 	if (image_count == num) {
 		document.getElementById("photo_next").style.display = 'none';
-	}
-	else {
+	} else {
 		document.getElementById("photo_next").style.display = 'inline';
 	}
 	if (num == 0) {
 		document.getElementById("photo_prev").style.display = 'none';
-	}
-	else {
+	} else {
 		document.getElementById("photo_prev").style.display = 'inline';
 	}
 }
@@ -86,8 +84,7 @@ function get_next_img() {
 	var image_count = document.getElementById("image_count").value;
 	if (image_count == num) {
 		document.getElementById("photo_next").style.display = 'none';
-	}
-	else {
+	} else {
 		document.getElementById("photo_next").style.display = 'inline';
 	}
 	active_img(num);
@@ -101,8 +98,7 @@ function get_prev_img() {
 	MM_swapImage("car_demon_light_box_main_img","",img[num],1);
 	if (num == 0) {
 		document.getElementById("photo_prev").style.display = 'none';
-	}
-	else {
+	} else {
 		document.getElementById("photo_prev").style.display = 'inline';
 	}
 	active_img(num);
@@ -124,15 +120,13 @@ function open_car_demon_lightbox(my_img) {
 	document.getElementById('car_demon_light_box_main_email').style.display = "none";
 	if (num == 0) {
 		document.getElementById('photo_prev').style.display = "none";
-	}
-	else {
+	} else {
 		document.getElementById('photo_prev').style.display = "inline";
 	}
 	var image_count = document.getElementById("image_count").value;
 	if (image_count == num) {
 		document.getElementById("photo_next").style.display = 'none';
-	}
-	else {
+	} else {
 		document.getElementById("photo_next").style.display = 'inline';
 	}
 	document.getElementById('car_demon_light_box_main_img').style.display = "block";
@@ -191,15 +185,13 @@ function ef_car_demon_validate() {
 	if (email_friend_form.ef_cd_name.value == "") {
 		var msg = "You must enter your name.<br />";
 		ef_cd_not_valid("ef_cd_name");
-	}
-	else {
+	} else {
 		var name_valid = 1;
 	}
 	if (email_friend_form.ef_cd_name.value == "Your Name") {
 		var msg = "You must enter your name.<br />";
 		ef_cd_not_valid("ef_cd_name");
-	}
-	else {
+	} else {
 		if (name_valid == 1) {
 			ef_cd_valid("ef_cd_name");
 		}
@@ -207,15 +199,13 @@ function ef_car_demon_validate() {
 	if (email_friend_form.ef_cd_friend_name.value == "") {
 		var msg = msg + "You must enter your friend's name.<br />";
 		ef_cd_not_valid("ef_cd_friend_name");
-	}
-	else {
+	} else {
 		var name_valid = 1;
 	}
 	if (email_friend_form.ef_cd_friend_name.value == "Friend Name") {
 		var msg = msg + "You must enter your friend's name.<br />";
 		ef_cd_not_valid("ef_cd_friend_name");
-	}
-	else {
+	} else {
 		if (name_valid == 1) {
 			ef_cd_valid("ef_cd_friend_name");
 		}
@@ -223,23 +213,20 @@ function ef_car_demon_validate() {
 	var e_msg = ef_validateEmail(email_friend_form.ef_cd_email, 0);
 	if (e_msg == "") {
 		ef_cd_valid("ef_cd_email");
-	}
-	else {
+	} else {
 		var msg = msg + e_msg + "<br />";
 	}
 	var e_msg = ef_validateEmail(email_friend_form.ef_cd_friend_email, 1);
 	if (e_msg == "") {
 		ef_cd_valid("ef_cd_friend_email");
-	}
-	else {
+	} else {
 		var msg = msg + e_msg + "<br />";
 	}
 	if (msg != "") {
 		document.getElementById("ef_contact_msg").style.display = "block";
 		document.getElementById("ef_contact_msg").innerHTML = msg;
 		javascript:scroll(0,0);
-	}
-	else {
+	} else {
 		var action = "";
 		var your_name = document.getElementById("ef_cd_name").value;
 		var your_email = document.getElementById("ef_cd_email").value;

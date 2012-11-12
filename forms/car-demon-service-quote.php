@@ -32,7 +32,7 @@ function car_demon_service_quote() {
 			</ol>
 			</fieldset>';
 			$x = apply_filters('car_demon_mail_hook_form', $x, 'service_quote', 'unk');
-			$x .= '<p class="cd-sb"><input type="button" style="float:right;" name="search_btn" id="sendbutton" class="search_btn" value="Send Quote" onclick="return car_demon_validate()"></p></form>
+			$x .= '<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn service_quote_btn" value="Send Quote" onclick="return car_demon_validate()"></p></form>
 		';
 	return $x;
 }

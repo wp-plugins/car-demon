@@ -90,8 +90,7 @@ if ($_GET['send_contact']) {
 		$xml_body .= "Content-Transfer-Encoding: 7bit".$eol.$eol;
 		$xml_body .= adfxml_vehicle_contact($contact_location, $rep_name, $to);
 		$email_body = $email_body.$xml_body.$eol;
-	}
-	else {
+	} else {
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 	}
 	mail($to, $subject, $email_body, $headers);
@@ -188,13 +187,13 @@ function send_contact_request() {
 	$html = '
 		<table align="center" width="600" border="0"'.$style.'>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('CONTACT INFORMATION','car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td width="225">'.__('Customer Name','car-demon').'</td>
@@ -213,20 +212,20 @@ function send_contact_request() {
 			<td>'.$send_to_name.' ('.$send_to_email.')</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('COMMENT OR QUESTION','car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$contact_needed.'</td>
 		  </tr>
 		  
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('Vehicle Information','car-demon').'</td>
@@ -252,13 +251,13 @@ function send_contact_request() {
 			<td colspan="2" align="center"><a href="'.$vehicle_link.'"><img src="'.$vehicle_photo.'" width="400" /></a><br />'.$vehicle_link.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('SENDER INFORMATION','car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>';
 			$html = apply_filters('car_demon_mail_hook_subscribe', $html, 'contact_us_vehicle', $location, $car_id);
 		  $html .='

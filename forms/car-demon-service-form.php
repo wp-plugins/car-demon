@@ -9,8 +9,7 @@ function car_demon_service_form() {
 	wp_enqueue_style('car-demon-service-calendar-css', WP_CONTENT_URL . '/plugins/car-demon/theme-files/css/CalendarControl.css');
 	if (isset($_GET['service_needed'])) {
 		$service_needed = $_GET['service_needed'];
-	}
-	else {
+	} else {
 		$service_needed = '';
 	}
 	$x = '
@@ -67,7 +66,7 @@ function car_demon_service_form() {
 			</ol>
 			</fieldset>';
 			$x = apply_filters('car_demon_mail_hook_form', $x, 'service_appointment', 'unk');
-			$x .= '<p class="cd-sb"><input type="button" style="float:right;" name="search_btn" id="sendbutton" class="search_btn" value="Send Appointment" onclick="return car_demon_validate()"></p></form>
+			$x .= '<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn service_btn" value="Send Appointment" onclick="return car_demon_validate()"></p></form>
 		';
 	return $x;
 }
@@ -94,8 +93,7 @@ function service_locations_radio() {
 		$location_list = 'default'.$location_list;
 		$location_name_list = 'Default'.$location_name_list;
 		$cnt = 1;
-	}
-	else {
+	} else {
 		$location_list = '@'.$location_list;
 		$location_list = str_replace("@,","", $location_list);
 		$location_list = str_replace("@","", $location_list);

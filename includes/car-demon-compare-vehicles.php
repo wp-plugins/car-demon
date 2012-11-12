@@ -3,8 +3,7 @@ function show_compare_vehicles() {
 	$x = '';
 	if (isset($_SESSION['car_demon_compare'])) {
 		$compare_these_array = $_SESSION['car_demon_compare'];
-	}
-	else {
+	} else {
 		$compare_these_array = '';
 	}
 	if ($compare_these_array) {
@@ -30,8 +29,7 @@ function show_compare_vehicles() {
 				$x .= "</a><br />";
 			}
 		$x .= '<input onclick="open_car_demon_compare();" type="button" class="search_btn compare_btn" value="Compare Now" />';
-	}
-	else {
+	} else {
 		$x .= $_SESSION['car_demon_compare_options']['no_vehicles_msg'];
 	}
 	$x = '<p>'.$x.'</p>';

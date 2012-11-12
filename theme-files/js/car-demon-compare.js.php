@@ -26,8 +26,7 @@ $car_demon_pluginpath = str_replace('theme-files/js','',$car_demon_pluginpath);
 function update_car(post_id,fld) {
 	if (fld.checked == true) {
 		var action = '1';
-	}
-	else {
+	} else {
 		var action = '0';
 		var compareElement = document.getElementById("compare_"+post_id);
 		if (compareElement != null) {

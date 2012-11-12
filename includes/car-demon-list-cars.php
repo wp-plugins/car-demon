@@ -22,8 +22,7 @@ function car_demon_display_car_list($post_id) {
 	$detail_output .= '</span>';
 	if (isset($_SESSION['car_demon_options']['use_compare'])) {
 		$use_compare = $_SESSION['car_demon_options']['use_compare'];
-	}
-	else {
+	} else {
 		$use_compare = '';
 	}
 	if ($use_compare == 'Yes') {
@@ -59,8 +58,7 @@ function car_demon_display_car_list($post_id) {
 	$ribbon = 'ribbon-great-deal';
 	if ($vehicle_condition == 'New') {
 		$ribbon = 'ribbon-new';
-	}
-	else {
+	} else {
 		if ($mileage_value < 60000) { $ribbon = 'ribbon-low-miles';	}
 		$tmp_price = get_post_meta($post_id, "_price_value", true);
 		if ($tmp_price < 12000) { $ribbon = 'ribbon-low-price';	}

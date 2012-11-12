@@ -83,25 +83,25 @@ class car_demon_custom_tag_cloud_Widget extends WP_Widget {
 		<!-- Widget Title: Text Input -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="car_demon_wide" />
 		</p>
 
 		<!-- Your post_type: Text Input -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'post_type' ); ?>"><?php _e('Post Type:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'post_type' ); ?>" name="<?php echo $this->get_field_name( 'post_type' ); ?>" value="<?php echo $instance['post_type']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'post_type' ); ?>" name="<?php echo $this->get_field_name( 'post_type' ); ?>" value="<?php echo $instance['post_type']; ?>" class="car_demon_wide" />
 		</p>
 
 		<!-- Your taxonomy: Text Input -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'taxonomy' ); ?>"><?php _e('Taxonomy:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'taxonomy' ); ?>" name="<?php echo $this->get_field_name( 'taxonomy' ); ?>" value="<?php echo $instance['taxonomy']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'taxonomy' ); ?>" name="<?php echo $this->get_field_name( 'taxonomy' ); ?>" value="<?php echo $instance['taxonomy']; ?>" class="car_demon_wide" />
 		</p>
 
 		<!-- Maximum Tags: Text Input -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'max_num' ); ?>"><?php _e('max_num:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'max_num' ); ?>" name="<?php echo $this->get_field_name( 'max_num' ); ?>" value="<?php echo $instance['max_num']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'max_num' ); ?>" name="<?php echo $this->get_field_name( 'max_num' ); ?>" value="<?php echo $instance['max_num']; ?>" class="car_demon_wide" />
 		</p>
 	<?php
 	}

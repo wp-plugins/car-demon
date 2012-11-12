@@ -92,13 +92,13 @@ function send_to_friend_body() {
 	$html = '
 		<table align="center" width="450" border="0"'.$style.'>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('YOUR INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td width="225">'.__('Your Name', 'car-demon').'</td>
@@ -113,7 +113,7 @@ function send_to_friend_body() {
 			<td width="225">'.$your_name.' '.$your_email.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('Message from your Friend ', 'car-demon').$your_name.'</td>
@@ -122,25 +122,25 @@ function send_to_friend_body() {
 			  <td colspan="2" align="center">'.$comment.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('Vehicle of Interest', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$selected_car.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('SENDER INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td>'.__('Time Sent', 'car-demon').'</td>

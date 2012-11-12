@@ -12,35 +12,23 @@ function show_finance_form() {
 	$bad = '';
 	$fin = '';
 	include('js/car-demon-finance-form-js.php');
+	echo '<style>';
+		include('css/car-demon-finance.css');
+	echo '</style>';
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/forms', '', $car_demon_pluginpath);
 	if ($_SESSION['car_demon_options']['secure_finance'] == 'Yes') {
 		if ( empty( $_SERVER['HTTPS'] ) ) {
-			$bad = '<p align="center" style="font-size:18px;font-weight:bold;color:#FF0000;">'.__('SOMETHING WENT WRONG! THIS PAGE IS NOT SECURE!', 'car-demon').'</p>';
-			$bad .= '<p align="center" style="font-size:18px;font-weight:bold;color:#FF0000;">'.__('THIS FORM HAS BEEN DISABLED FOR YOUR PROTECTION.', 'car-demon').'</p>';
-			$bad .= '<p align="center" style="font-size:18px;font-weight:bold;color:#FF0000;">'.__('PLEASE CONTACT THE SITE ADMINISTRATOR FOR MORE INFORMATION.', 'car-demon').'</p>';
+			$bad = '<p align="center" class="finance_alert">'.__('SOMETHING WENT WRONG! THIS PAGE IS NOT SECURE!', 'car-demon').'</p>';
+			$bad .= '<p align="center" class="finance_alert">'.__('THIS FORM HAS BEEN DISABLED FOR YOUR PROTECTION.', 'car-demon').'</p>';
+			$bad .= '<p align="center" class="finance_alert">'.__('PLEASE CONTACT THE SITE ADMINISTRATOR FOR MORE INFORMATION.', 'car-demon').'</p>';
 			echo $bad;
 		}
 	}
 ?>
-<style>
-.main_finance_table {
-	width: 960px;
-	text-align:center;
-}
-.sub_finance_table {
-	width: 805px;
-}
-.finance_column {
-	width: 400px;
-}
-.fin_legend {
-	text-align: left;
-}
-</style>
 	<div id="form_results"></div>
 	<div class="body_content_credit" id="body_content_credit">
-	<form name="frm_app" id="frm_app" action="CreditApp_ex.asp" method="post" class="cdform" style="margin-left:0px;">
+	<form name="frm_app" id="frm_app" action="CreditApp_ex.asp" method="post" class="cdform finance_form">
 	<input type="hidden" name="stock_num" value="<?php echo $stock_num; ?>" />
 	<input type="hidden" name="vin" value="<?php echo $vin; ?>" />
 	<input type="hidden" name="location" value="<?php echo $location; ?>" />
@@ -48,83 +36,83 @@ function show_finance_form() {
 		global $cd_formKey;
 		$cd_formKey->outputKey();
 	?>
-	<table class="main_finance_table" border="0" cellpadding="0" cellspacing="0" style="color:#000000;">
+	<table class="main_finance_table" border="0" cellpadding="0" cellspacing="0">
 	<tbody>
 		<tr>
-			<td valign="top" bgcolor="#e3e3e3" align="center">
+			<td valign="top" class="finance_left" align="center">
 				<table class="sub_finance_table" border="0" align="center">
 					<tr>
 						<td>
-			<div style="background:#EEEEEE;">
-				<div style="float:left;">
-										<table style="color:#000000;" class="finance_column" border="0" align="center" cellpadding="1" cellspacing="2">
+			<div class="finance_applicant_cell">
+				<div class="finance_segment">
+										<table class="finance_column" border="0" align="center" cellpadding="1" cellspacing="2">
 										<tbody>
 											<tr>
-												<td colspan="2" bgcolor="#FFFF00" id="tdAlert"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/menu_single.jpg" alt="Applicant" width="10" height="10" /> STEP ONE - Personal Info</td>
+												<td colspan="2" class="finance_info_cell" id="tdAlert"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/menu_single.jpg" alt="Applicant" width="10" height="10" /> STEP ONE - Personal Info</td>
 											</tr>
 											<tr height="25">
-												<td width="46%" align="right" bgcolor="#EEEEEE">
+												<td width="46%" align="right" class="finance_applicant_cell">
 													<span>* </span>First Name
 												</td>
-												<td width="54%" bgcolor="#EEEEEE">
+												<td width="54%" class="finance_applicant_cell">
 													<input name="fn" id="fn" value="" maxlength="200" tabindex="1" />
 													<br />
-													<div id="msgDivfn" style="display:none"><font color="#FF0000" size="-1"><b>FIRST NAME REQUIRED</b></font></div>
+													<div id="msgDivfn" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>FIRST NAME REQUIRED</b></font></div>
 												</td>
 											</tr>
 											<tr height="25">
-												<td align="right" bgcolor="#EEEEEE"><span>*</span> Middle Initial </td>
-												<td bgcolor="#EEEEEE"><input name="mi" id="mi" tabindex="2" size="2" maxlength="1" /></td>
+												<td align="right" class="finance_applicant_cell"><span>*</span> Middle Initial </td>
+												<td class="finance_applicant_cell"><input name="mi" id="mi" tabindex="2" size="2" maxlength="1" /></td>
 											</tr>
 											<tr height="25">
-												<td width="46%" align="right" bgcolor="#EEEEEE">
+												<td width="46%" align="right" class="finance_applicant_cell">
 													<span>* </span>Last Name
 												</td>
-												<td width="54%" bgcolor="#EEEEEE">
+												<td width="54%" class="finance_applicant_cell">
 													<input name="ln" id="ln" value="" maxlength="200" tabindex="2" />
 													<br />
-													<div id="msgDivln" style="display:none"><font color="#FF0000" size="-1"><b>LAST NAME REQUIRED</b></font></div>
+													<div id="msgDivln" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>LAST NAME REQUIRED</b></font></div>
 												</td>
 											</tr>
 											<tr height="25">
-												<td width="46%" align="right" bgcolor="#EEEEEE"><span>* </span>Phone Number</td>
-												<td width="54%" bgcolor="#EEEEEE">
+												<td width="46%" align="right" class="finance_applicant_cell"><span>* </span>Phone Number</td>
+												<td width="54%" class="finance_applicant_cell">
 												<input name="hpn" id="hpn" onKeyPress="checkNum()" value="" maxlength="200" tabindex="3" />
 												<br />
-												<div id="msgDivhpn" style="display:none"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>	</td>
+												<div id="msgDivhpn" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>	</td>
 											</tr>
 											<tr height="25">
-												<td width="46%" align="right" bgcolor="#EEEEEE"><span>* </span>Email Address</td>
-												<td width="54%" bgcolor="#EEEEEE">
+												<td width="46%" align="right" class="finance_applicant_cell"><span>* </span>Email Address</td>
+												<td width="54%" class="finance_applicant_cell">
 												<input id="ea" maxlength="200" name="ea" tabindex="4" />
 												<br />
-												<div id="msgDivea" style="display:none"><font color="#FF0000" size="-1"><b>EMAIL REQUIRED</b></font></div></td>
+												<div id="msgDivea" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>EMAIL REQUIRED</b></font></div></td>
 											</tr>
 											<tr height="25">
-												<td width="46%" align="right" bgcolor="#EEEEEE"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/secure_sm.gif" alt="Your info is secure" width="10" height="16" /> Social Security Number </td>
-												<td width="54%" bgcolor="#EEEEEE"><input id="ssn" maxlength="11"  onKeyPress="checkNum()" name="ssn" tabindex="5" />
+												<td width="46%" align="right" class="finance_applicant_cell"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/secure_sm.gif" alt="Your info is secure" width="10" height="16" /> Social Security Number </td>
+												<td width="54%" class="finance_applicant_cell"><input id="ssn" maxlength="11"  onKeyPress="checkNum()" name="ssn" tabindex="5" />
 												<br />
-												<div id="msgDivssn" style="display:none"><font color="#FF0000" size="-1"><b>SSN REQUIRED</b></font></div>				</td>
+												<div id="msgDivssn" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>SSN REQUIRED</b></font></div>				</td>
 											</tr>
 											<tr height="25">
-												<td colspan="2" align="right" bgcolor="#EEEEEE"><div align="center">( We secure and protect your confidential information ) </div></td>
+												<td colspan="2" align="right" class="finance_applicant_cell"><div align="center">( We secure and protect your confidential information ) </div></td>
 											</tr>
 				  <tr>
 					<td><div align="right">Apt/Suite</div></td>
 					<td><input name="app_apt_num" type="text" id="app_apt_num" tabindex="6" size="6" maxlength="5" />
 	<br />
-	<div id="msgDivapp_apt_num" style="display:none"><font color="#FF0000" size="-1"><b>APT/SUITE REQUIRED</b></font></div>				</td>
+	<div id="msgDivapp_apt_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>APT/SUITE REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr>
 					<td><div align="right">Street Number</div></td>
 					<td><input name="app_street_num" type="text" id="app_street_num" onKeyPress="checkNum()" tabindex="7" onChange="ValidateAppAddress();" size="6" maxlength="6" />
 					  <br />
-	  <div id="msgDivapp_street_num" style="display:none"><font color="#FF0000" size="-1"><b>STREET NUM REQUIRED</b></font></div>				</td></tr>
+	  <div id="msgDivapp_street_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET NUM REQUIRED</b></font></div>				</td></tr>
 				  <tr>
 					<td><div align="right"> Street Name</div></td>
 					<td><input name="app_street_name" type="text" maxlength="20" id="app_street_name" tabindex="8" />
 	<br />
-	<div id="msgDivapp_street_name" style="display:none"><font color="#FF0000" size="-1"><b>STREET NAME REQUIRED</b></font></div>				</td>
+	<div id="msgDivapp_street_name" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET NAME REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr>
 					<td><div align="right">Street Type</div></td>
@@ -151,29 +139,29 @@ function show_finance_form() {
 						<option value="WAY">WAY</option>
 					</select>
 	<br />
-	<div id="msgDivapp_street_type" style="display:none"><font color="#FF0000" size="-1"><b>STREET TYPE REQUIRED</b></font></div>				</td>
+	<div id="msgDivapp_street_type" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET TYPE REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr>
 					<td><div align="right">PO Box </div></td>
 					<td><input name="app_po_box_num" type="text" id="app_po_box_num" onKeyPress="checkNum()" tabindex="10" size="6" maxlength="6" onChange="ValidateAppAddress();" />
 					<br />
-					<div id="msgDivapp_po_box_num" style="display:none"><font color="#FF0000" size="-1"><b>PO BOX REQUIRED</b></font></div>              </tr>
+					<div id="msgDivapp_po_box_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>PO BOX REQUIRED</b></font></div>              </tr>
 				  <tr>
 					<td><div align="right">Rural Route</div></td>
 					<td><input name="app_rural_route" type="text" id="app_rural_route" tabindex="11" size="6" maxlength="6" onChange="ValidateAppAddress();" />
 					<br />
-					<div id="msgDivapp_rural_route" style="display:none"><font color="#FF0000" size="-1"><b>RURAL ROUTE REQUIRED</b></font></div>              </tr>
+					<div id="msgDivapp_rural_route" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>RURAL ROUTE REQUIRED</b></font></div>              </tr>
 				  
 				  <tr height="25">
-					<td width="46%" align="right" bgcolor="#EEEEEE">City</td>
-					<td width="54%" bgcolor="#EEEEEE"><input name="cty" id="cty" value="" maxlength="200" tabindex="12" />
+					<td width="46%" align="right" class="finance_applicant_cell">City</td>
+					<td width="54%" class="finance_applicant_cell"><input name="cty" id="cty" value="" maxlength="200" tabindex="12" />
 	<br />
-	<div id="msgDivcty" style="display:none"><font color="#FF0000" size="-1"><b>CITY REQUIRED</b></font></div>				</td>
+	<div id="msgDivcty" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>CITY REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="46%" align="right" bgcolor="#EEEEEE">State</td>
-					<td width="54%" bgcolor="#EEEEEE">
-					  <select name="st" id="st" tabindex="13" class="select" style="width:65px;">
+					<td width="46%" align="right" class="finance_applicant_cell">State</td>
+					<td width="54%" class="finance_applicant_cell">
+					  <select name="st" id="st" tabindex="13" class="select finance_select">
 						<option selected="selected"></option>
 						<option value="AK">AK</option>
 						<option value="AL">AL</option>
@@ -233,18 +221,18 @@ function show_finance_form() {
 						<option value="WY">WY</option>
 					  </select>
 	<br />
-	<div id="msgDivst" style="display:none"><font color="#FF0000" size="-1"><b>STATE REQUIRED</b></font></div>				  </td>
+	<div id="msgDivst" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STATE REQUIRED</b></font></div>				  </td>
 				  </tr>
 				  <tr height="25">
-					<td width="46%" align="right" bgcolor="#EEEEEE">Zip</td>
-					<td width="54%" bgcolor="#EEEEEE">
+					<td width="46%" align="right" class="finance_applicant_cell">Zip</td>
+					<td width="54%" class="finance_applicant_cell">
 					<input name="zi" id="zi" value="" onKeyPress="checkNum()" maxlength="200" tabindex="14" />
 	<br />
-	<div id="msgDivzi" style="display:none"><font color="#FF0000" size="-1"><b>ZIP REQUIRED</b></font></div>				</td>
+	<div id="msgDivzi" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>ZIP REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="46%" align="right" bgcolor="#EEEEEE">Birth Date (Month-Date-Year)</td>
-					<td width="54%" bgcolor="#EEEEEE">
+					<td width="46%" align="right" class="finance_applicant_cell">Birth Date (Month-Date-Year)</td>
+					<td width="54%" class="finance_applicant_cell">
 					<select name="bdm" tabindex="15">
 					<option selected="selected"></option>
 					<option value="1">Jan</option>
@@ -276,36 +264,36 @@ function show_finance_form() {
 						</select>
 	<br />
 	<br />
-	<div id="msgDivbdd" style="display:none"><font color="#FF0000" size="-1"><b>DAY REQUIRED</b></font></div>
-	<div id="msgDivbdm" style="display:none"><font color="#FF0000" size="-1"><b>MONTH REQUIRED</b></font></div>
-	<div id="msgDivbdy" style="display:none"><font color="#FF0000" size="-1"><b>YEAR REQUIRED</b></font></div></td>
+	<div id="msgDivbdd" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>DAY REQUIRED</b></font></div>
+	<div id="msgDivbdm" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>MONTH REQUIRED</b></font></div>
+	<div id="msgDivbdy" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>YEAR REQUIRED</b></font></div></td>
 				  </tr>
 				</tbody>
 			</table>
 			
 </div>
-<div style="float:left;">	
+<div class="finance_segment">	
 	<div id="AppEmployer">
-		<table class="finance_column" style="color:#000000;" border="0" align="center" cellpadding="1" cellspacing="2">
+		<table class="finance_column" border="0" align="center" cellpadding="1" cellspacing="2">
 				<tbody>
 				  <tr height="25">
-					<td colspan="2" align="left" bgcolor="#FFFF00"><span>STEP TWO  - Employment Info </span></td>
+					<td colspan="2" align="left" class="finance_info_cell"><span>STEP TWO  - Employment Info </span></td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Employer Name</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><input name="en" id="en" maxlength="200" tabindex="18" />
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Employer Name</span></td>
+					<td width="35%" class="finance_applicant_cell"><input name="en" id="en" maxlength="200" tabindex="18" />
 	<br />
-	<div id="msgDiven" style="display:none"><font color="#FF0000" size="-1"><b>EMPLOYER REQUIRED</b></font></div>				</td>
+	<div id="msgDiven" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>EMPLOYER REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Position</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><input name="p" id="p" maxlength="200" tabindex="19" />
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Position</span></td>
+					<td width="35%" class="finance_applicant_cell"><input name="p" id="p" maxlength="200" tabindex="19" />
 	<br />
-	<div id="msgDivp" style="display:none"><font color="#FF0000" size="-1"><b>POSITION REQUIRED</b></font></div>				</td>
+	<div id="msgDivp" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>POSITION REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Years/Month at Company</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><span>
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Years/Month at Company</span></td>
+					<td width="35%" class="finance_applicant_cell"><span>
 					  <select name="yac" id="yac" tabindex="20" onChange="AddEmployers(this,1);">
 						<?php echo select_years(); ?>
 					  </select>
@@ -326,51 +314,51 @@ function show_finance_form() {
 						<option value="11">11 Months</option>
 					  </select>
 					</span>
-	<br /><div id="msgDivyac" style="display:none"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>
-	<br /><div id="msgDivmac" style="display:none"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>				</td>
+	<br /><div id="msgDivyac" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>
+	<br /><div id="msgDivmac" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Employer Phone Number</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><input name="epn" id="epn" onKeyPress="checkNum()" maxlength="200" tabindex="22" />
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Employer Phone Number</span></td>
+					<td width="35%" class="finance_applicant_cell"><input name="epn" id="epn" onKeyPress="checkNum()" maxlength="200" tabindex="22" />
 	<br />
-	<div id="msgDivepn" style="display:none"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>				</td>
+	<div id="msgDivepn" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Gross Monthly Income</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><input name="gmi" id="gmi" maxlength="200" onKeyPress="checkNum()" tabindex="23" />
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Gross Monthly Income</span></td>
+					<td width="35%" class="finance_applicant_cell"><input name="gmi" id="gmi" maxlength="200" onKeyPress="checkNum()" tabindex="23" />
 	<br />
-	<div id="msgDivgmi" style="display:none"><font color="#FF0000" size="-1"><b>INCOME REQUIRED</b></font></div>				</td>
+	<div id="msgDivgmi" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>INCOME REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Other Income</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><input name="oi" id="oi" tabindex="24" onKeyPress="checkNum()" value="0" maxlength="200" />
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Other Income</span></td>
+					<td width="35%" class="finance_applicant_cell"><input name="oi" id="oi" tabindex="24" onKeyPress="checkNum()" value="0" maxlength="200" />
 	<br />
-	<div id="msgDivoi" style="display:none"><font color="#FF0000" size="-1"><b>OTHER INCOME REQUIRED</b></font></div>				</td>
+	<div id="msgDivoi" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>OTHER INCOME REQUIRED</b></font></div>				</td>
 				  </tr>
 				</tbody>
 			  </table>
 	</div>
-	<div id="AppEmployer1" style="display:none">
-		<table width="100%" style="color:#000000;" border="0" align="center" cellpadding="1" cellspacing="2">
+	<div id="AppEmployer1" class="finance_hide_notice">
+		<table width="100%" class="finance_column" border="0" align="center" cellpadding="1" cellspacing="2">
 				<tbody>
 				  <tr height="25">
-					<td colspan="2" align="left" bgcolor="#FFFF00"><span>PREVIOUS EMPLOYMENT</span></td>
+					<td colspan="2" align="left" class="finance_info_cell"><span>PREVIOUS EMPLOYMENT</span></td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Employer Name</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><input name="p2en" id="p2en" maxlength="200" tabindex="25" />
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Employer Name</span></td>
+					<td width="35%" class="finance_applicant_cell"><input name="p2en" id="p2en" maxlength="200" tabindex="25" />
 	<br />
-	<div id="msgDivp2en" style="display:none"><font color="#FF0000" size="-1"><b>EMPLOYER REQUIRED</b></font></div>				</td>
+	<div id="msgDivp2en" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>EMPLOYER REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Position</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><input name="p2p" id="p2p" maxlength="200" tabindex="26" />
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Position</span></td>
+					<td width="35%" class="finance_applicant_cell"><input name="p2p" id="p2p" maxlength="200" tabindex="26" />
 	<br />
-	<div id="msgDivp2p" style="display:none"><font color="#FF0000" size="-1"><b>POSITION REQUIRED</b></font></div>				</td>
+	<div id="msgDivp2p" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>POSITION REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Years/Month at Company</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><span>
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Years/Month at Company</span></td>
+					<td width="35%" class="finance_applicant_cell"><span>
 					  <select name="p2yac" id="p2yac" tabindex="27" onChange="AddEmployers(this,2);">
 						<?php echo select_years(); ?>
 					  </select>
@@ -390,43 +378,43 @@ function show_finance_form() {
 						<option value="10">10 Months</option>
 						<option value="11">11 Months</option>
 					  </select>
-	<br /><div id="msgDivp2mac" style="display:none"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>
-	<div id="msgDivp2yac" style="display:none"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>
+	<br /><div id="msgDivp2mac" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>
+	<div id="msgDivp2yac" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>
 					</span></td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Employer Phone Number</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><input name="p2epn" onKeyPress="checkNum()" id="p2epn" maxlength="200" tabindex="29" />
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Employer Phone Number</span></td>
+					<td width="35%" class="finance_applicant_cell"><input name="p2epn" onKeyPress="checkNum()" id="p2epn" maxlength="200" tabindex="29" />
 	<br />
-	<div id="msgDivp2epn" style="display:none"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>				</td>
+	<div id="msgDivp2epn" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Gross Monthly Income</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><input name="p2gmi" id="p2gmi" onKeyPress="checkNum()" maxlength="200" tabindex="30" />
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Gross Monthly Income</span></td>
+					<td width="35%" class="finance_applicant_cell"><input name="p2gmi" id="p2gmi" onKeyPress="checkNum()" maxlength="200" tabindex="30" />
 	<br />
-	<div id="msgDivp2gmi" style="display:none"><font color="#FF0000" size="-1"><b>INCOME REQUIRED</b></font></div>				</td>
+	<div id="msgDivp2gmi" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>INCOME REQUIRED</b></font></div>				</td>
 				  </tr>
 				  <tr height="25">
-					<td width="55%" align="right" bgcolor="#EEEEEE"><span>Other Income</span></td>
-					<td width="35%" bgcolor="#EEEEEE"><input name="p2oi" id="p2oi" onKeyPress="checkNum()" tabindex="31" value="0" maxlength="200" />
+					<td width="55%" align="right" class="finance_applicant_cell"><span>Other Income</span></td>
+					<td width="35%" class="finance_applicant_cell"><input name="p2oi" id="p2oi" onKeyPress="checkNum()" tabindex="31" value="0" maxlength="200" />
 	<br />
-	<div id="msgDivp2oi" style="display:none"><font color="#FF0000" size="-1"><b>OTHER INCOME REQUIRED</b></font></div>				</td>
+	<div id="msgDivp2oi" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>OTHER INCOME REQUIRED</b></font></div>				</td>
 				  </tr>
 				</tbody>
 			  </table>
 	</div>
-	<div id="AppEmployer2" style="display:none"></div>
-	<div id="AppEmployer3" style="display:none"></div>
+	<div id="AppEmployer2" class="finance_hide_notice"></div>
+	<div id="AppEmployer3" class="finance_hide_notice"></div>
 	
 	<div id="AppAddress">
-		<table  class="finance_column" style="color:#000000;" border="0" align="center" cellpadding="1" cellspacing="2">
+		<table  class="finance_column" border="0" align="center" cellpadding="1" cellspacing="2">
 		<tbody>
 		  <tr height="25">
-			<td colspan="2" align="left" bgcolor="#FFFF00">STEP THREE  - Living Situation </td>
+			<td colspan="2" align="left" class="finance_info_cell">STEP THREE  - Living Situation </td>
 		  </tr>
 		  <tr height="25">
-			<td width="47%" align="right" bgcolor="#EEEEEE">Years/Month at Current Address</td>
-			<td width="53%" bgcolor="#EEEEEE"><select name="yaca" id="yaca" tabindex="32" onChange="AddAddresses(this,1);">
+			<td width="47%" align="right" class="finance_applicant_cell">Years/Month at Current Address</td>
+			<td width="53%" class="finance_applicant_cell"><select name="yaca" id="yaca" tabindex="32" onChange="AddAddresses(this,1);">
 				<?php echo select_years(); ?>
 			  </select>
 			  /
@@ -445,26 +433,26 @@ function show_finance_form() {
 				<option value="10">10 Months</option>
 				<option value="11">11 Months</option>
 			  </select>
-	<br /><div id="msgDivyaca" style="display:none"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>
-	<br /><div id="msgDivmaca" style="display:none"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>		  </td>
+	<br /><div id="msgDivyaca" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>
+	<br /><div id="msgDivmaca" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>		  </td>
 		  </tr>
 		  <tr height="25">
-			<td width="47%" align="right" bgcolor="#EEEEEE">Do you Own or Rent ?</td>
-			<td width="53%" bgcolor="#EEEEEE"><select id="roo" name="roo" tabindex="34">
+			<td width="47%" align="right" class="finance_applicant_cell">Do you Own or Rent ?</td>
+			<td width="53%" class="finance_applicant_cell"><select id="roo" name="roo" tabindex="34">
 				<option value="Own" selected="selected">Own</option>
 				<option value="Rent">Rent</option>
 				<option value="Relatives">Relatives</option>
 			</select>
-	<br /><div id="msgDivroo" style="display:none"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>		</td>
+	<br /><div id="msgDivroo" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>		</td>
 		  </tr>
 		  <tr height="25">
-			<td width="47%" align="right" bgcolor="#EEEEEE">Rent Amount/Mortgage Payment $</td>
-			<td width="53%" bgcolor="#EEEEEE"><input id="ramp" maxlength="200" name="ramp" onKeyPress="checkNum()" tabindex="35" />
-	<br /><div id="msgDivramp" style="display:none"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>		</td>
+			<td width="47%" align="right" class="finance_applicant_cell">Rent Amount/Mortgage Payment $</td>
+			<td width="53%" class="finance_applicant_cell"><input id="ramp" maxlength="200" name="ramp" onKeyPress="checkNum()" tabindex="35" />
+	<br /><div id="msgDivramp" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>		</td>
 		  </tr>
 		  <tr height="25">
-			<td width="47%" align="right" bgcolor="#EEEEEE">Best Contact Place And Time</td>
-			<td width="53%" bgcolor="#EEEEEE"><select id="bcp" name="bcp" tabindex="36" >
+			<td width="47%" align="right" class="finance_applicant_cell">Best Contact Place And Time</td>
+			<td width="53%" class="finance_applicant_cell"><select id="bcp" name="bcp" tabindex="36" >
 				<option value="Home" selected="selected">Home</option>
 				<option value="Work">Work</option>
 				<option value=" "></option>
@@ -474,48 +462,48 @@ function show_finance_form() {
 				  <option value="Afternoon ">Afternoon</option>
 				  <option value="Evening   ">Evening</option>
 			  </select>
-	<br /><div id="msgDivbcp" style="display:none"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>
-	<br /><div id="msgDivbct" style="display:none"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>		  </td>
+	<br /><div id="msgDivbcp" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>
+	<br /><div id="msgDivbct" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>		  </td>
 		  </tr>
 		  <tr height="25">
-		    <td align="right" bgcolor="#EEEEEE"><div align="left">Comments</div></td>
-		    <td bgcolor="#EEEEEE">&nbsp;</td>
+		    <td align="right" class="finance_applicant_cell"><div align="left">Comments</div></td>
+		    <td class="finance_applicant_cell">&nbsp;</td>
 		    </tr>
 		  <tr height="25">
-		    <td colspan="2" align="right" bgcolor="#EEEEEE"><div align="left">
-		      <textarea name="comment" id="comment" rows="5" style="width:350px;margin-left:25px;" tabindex="38"></textarea>
+		    <td colspan="2" align="right" class="finance_applicant_cell"><div align="left">
+		      <textarea name="comment" id="comment" rows="5" class="finance_comment" tabindex="38"></textarea>
 		      </div></td>
 		    </tr>
 		</tbody>
 	  </table>
 	</div>
-	<div id="AppAddress1" style="display:none">
+	<div id="AppAddress1" class="finance_hide_notice">
 		<table width="100%" border="0" align="center" cellpadding="1" cellspacing="2">
 				  <tbody>
 					<tr height="25">
-					  <td width="100%" colspan="2" align="left" bgcolor="#FFFF00">PREVIOUS ADDRESS</td>
+					  <td width="100%" colspan="2" align="left" class="finance_info_cell">PREVIOUS ADDRESS</td>
 					</tr>
 				  </tbody>
 			  </table>
-	<table width="100%" style="color:#000000;" border="0" align="center" cellpadding="1" cellspacing="2">
+	<table width="100%" class="finance_column" border="0" align="center" cellpadding="1" cellspacing="2">
 	  <tbody>
 		<tr>
 		  <td><div align="right">Apt/Suite</div></td>
 		  <td><input name="p1app_apt_num" type="text" id="p1app_apt_num" tabindex="38" size="6" maxlength="5" />
 	<br />
-	<div id="msgDivp1app_apt_num" style="display:none"><font color="#FF0000" size="-1"><b>APT/SUITE REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1app_apt_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>APT/SUITE REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr>
 		  <td><div align="right">Street Number</div></td>
 		  <td><input name="p1app_street_num" type="text" id="p1app_street_num" onKeyPress="checkNum()" tabindex="39" size="6" maxlength="6" onChange="ValidateAppPrevAddress();" />
 	<br />
-	<div id="msgDivp1app_street_num" style="display:none"><font color="#FF0000" size="-1"><b>STREET NUM  REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1app_street_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET NUM  REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr>
 		  <td><div align="right">App Street Name</div></td>
 		  <td><input name="p1app_street_name" type="text" maxlength="20" id="p1app_street_name" tabindex="40" />
 	<br />
-	<div id="msgDivp1app_street_name" style="display:none"><font color="#FF0000" size="-1"><b>STREET NAME REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1app_street_name" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET NAME REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr>
 		  <td><div align="right">Street Type</div></td>
@@ -542,29 +530,29 @@ function show_finance_form() {
 			<option value="WAY">WAY</option>
 		  </select>
 	<br />
-	<div id="msgDivp1app_street_type" style="display:none"><font color="#FF0000" size="-1"><b>STREET TYPE REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1app_street_type" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET TYPE REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr>
 		  <td><div align="right">PO Box </div></td>
 		  <td><input name="p1app_po_box_num" type="text" id="p1app_po_box_num" tabindex="42" size="6" maxlength="6" onChange="ValidateAppPrevAddress();" />
 	<br />
-	<div id="msgDivp1app_po_box_num" style="display:none"><font color="#FF0000" size="-1"><b>PO BOX REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1app_po_box_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>PO BOX REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr>
 		  <td><div align="right">Rural Route</div></td>
 		  <td><input name="p1app_rural_route" type="text" id="p1app_rural_route" tabindex="43" size="6" maxlength="6" onChange="ValidateAppPrevAddress();" />
 	<br />
-	<div id="msgDivp1app_rural_route" style="display:none"><font color="#FF0000" size="-1"><b>RURAL ROUTE REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1app_rural_route" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>RURAL ROUTE REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr height="25">
-		  <td align="right" bgcolor="#EEEEEE">City</td>
-		  <td bgcolor="#EEEEEE"><input id="p1cty" maxlength="200" name="p1cty" tabindex="44" />
+		  <td align="right" class="finance_applicant_cell">City</td>
+		  <td class="finance_applicant_cell"><input id="p1cty" maxlength="200" name="p1cty" tabindex="44" />
 	<br />
-	<div id="msgDivp1cty" style="display:none"><font color="#FF0000" size="-1"><b>CITY REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1cty" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>CITY REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr height="25">
-		  <td align="right" bgcolor="#EEEEEE">State</td>
-		  <td bgcolor="#EEEEEE"><select name="p1st" id="p1st" tabindex="45" class="select" style="width:65px;">
+		  <td align="right" class="finance_applicant_cell">State</td>
+		  <td class="finance_applicant_cell"><select name="p1st" id="p1st" tabindex="45" class="select finance_select">
 			<option selected="selected"></option>
 			<option value="AK">AK</option>
 			<option value="AL">AL</option>
@@ -624,82 +612,82 @@ function show_finance_form() {
 			<option value="WY">WY</option>
 		  </select>
 	<br />
-	<div id="msgDivp1st" style="display:none"><font color="#FF0000" size="-1"><b>STATE REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1st" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STATE REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr height="25">
-		  <td align="right" bgcolor="#EEEEEE">Zip</td>
-		  <td bgcolor="#EEEEEE"><input id="p1zi" maxlength="200" onKeyPress="checkNum()" name="p1zi" tabindex="46" />
+		  <td align="right" class="finance_applicant_cell">Zip</td>
+		  <td class="finance_applicant_cell"><input id="p1zi" maxlength="200" onKeyPress="checkNum()" name="p1zi" tabindex="46" />
 	<br />
-	<div id="msgDivp1zi" style="display:none"><font color="#FF0000" size="-1"><b>ZIP REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1zi" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>ZIP REQUIRED</b></font></div>	  </td>
 		</tr>
 	  </tbody>
 	</table>
 	</div>
-	<div id="AppAddress3" style="display:none"></div>
+	<div id="AppAddress3" class="finance_hide_notice"></div>
 </div></div>
 		<div>
-			<div style="margin-left:40%;float:left;" class="have_cosigner">Do you have a Co-Signer</div>
-			<div style="margin-left:10px;float:left;">
+			<div class="have_cosigner">Do you have a Co-Signer</div>
+			<div class="cosigner_question">
 			<select name="MakeCoSigner" onChange="MakeTheCoSigner(this);" tabindex="47">
 			  <option value="No">No</option>
 			  <option value="Yes">Yes</option>
 			</select>
 			</div>
 		</div>
-		  <div id="CoSignerDiv" style="display:none">
-			<div style="background-color:#dddddd;">
-			  <div>&nbsp;<div class="style57" style="color:#ffffff;background-color:#999999;"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/expand.gif" alt="Enter Co-Signer" width="9" height="9" /> Co-Signer</div></div></div>
+		  <div id="CoSignerDiv" class="finance_hide_notice">
+			<div class="cosigner_block">
+			  <div>&nbsp;<div class="cosigner_title"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/expand.gif" alt="Enter Co-Signer" width="9" height="9" /> Co-Signer</div></div></div>
 			<div>
-				<div style="float:left;">
-					<table style="color:#000000;" class="finance_column" border="0" align="center" cellpadding="1" cellspacing="2">
+				<div class="finance_segment">
+					<table class="finance_column" border="0" align="center" cellpadding="1" cellspacing="2">
 						<tbody>
 						  <tr>
-							<td colspan="2" bgcolor="#FFFF00" id="tdAlert"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/menu_joint.jpg" alt="Co-Signer" width="20" height="10" /> STEP FOUR - Co-Applicant Information (Optional)</td>
+							<td colspan="2" class="finance_info_cell" id="tdAlert"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/menu_joint.jpg" alt="Co-Signer" width="20" height="10" /> STEP FOUR - Co-Applicant Information (Optional)</td>
 						  </tr>
 						  <tr height="25">
-							<td width="46%" align="right" bgcolor="#FFFFCC">First Name</td>
-							<td width="54%" bgcolor="#FFFFCC"><input id="co_fn2" maxlength="200" name="co_fn2" tabindex="48" /><br />
-							<div id="msgDivco_fn2" style="display:none"><font color="#FF0000" size="-1"><b>FIRST NAME REQUIRED</b></font></div>                      </tr>
+							<td width="46%" align="right" class="finance_coapplicant_cell">First Name</td>
+							<td width="54%" class="finance_coapplicant_cell"><input id="co_fn2" maxlength="200" name="co_fn2" tabindex="48" /><br />
+							<div id="msgDivco_fn2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>FIRST NAME REQUIRED</b></font></div>                      </tr>
 						  <tr height="25">
-							<td align="right" bgcolor="#FFFFCC">Middle Initial </td>
-							<td bgcolor="#FFFFCC"><input id="co_mi" maxlength="1" size="2" name="co_mi" tabindex="48" />                      </tr>
+							<td align="right" class="finance_coapplicant_cell">Middle Initial </td>
+							<td class="finance_coapplicant_cell"><input id="co_mi" maxlength="1" size="2" name="co_mi" tabindex="48" />                      </tr>
 						  <tr height="25">
-							<td align="right" bgcolor="#FFFFCC">Last Name</td>
-							<td bgcolor="#FFFFCC"><input id="co_ln2" maxlength="200" name="co_ln2" tabindex="49" /><br />
-							<div id="msgDivco_ln2" style="display:none"><font color="#FF0000" size="-1"><b>LAST NAME REQUIRED</b></font></div>                      </tr>
+							<td align="right" class="finance_coapplicant_cell">Last Name</td>
+							<td class="finance_coapplicant_cell"><input id="co_ln2" maxlength="200" name="co_ln2" tabindex="49" /><br />
+							<div id="msgDivco_ln2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>LAST NAME REQUIRED</b></font></div>                      </tr>
 						  <tr height="25">
-							<td align="right" bgcolor="#FFFFCC">Home Phone Number</td>
-							<td bgcolor="#FFFFCC"><input id="co_hpn2" maxlength="200" name="co_hpn2" tabindex="50" /><br />
-							<div id="msgDivco_hpn2" style="display:none"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>                      </tr>
+							<td align="right" class="finance_coapplicant_cell">Home Phone Number</td>
+							<td class="finance_coapplicant_cell"><input id="co_hpn2" maxlength="200" name="co_hpn2" tabindex="50" /><br />
+							<div id="msgDivco_hpn2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>                      </tr>
 						  <tr height="25">
-							<td align="right" bgcolor="#FFFFCC">Email Address</td>
-							<td bgcolor="#FFFFCC"><input id="co_ea2" maxlength="200" name="co_ea2" tabindex="51" /><br />
-							<div id="msgDivco_ea2" style="display:none"><font color="#FF0000" size="-1"><b>EMAIL REQUIRED</b></font></div>                      </tr>
+							<td align="right" class="finance_coapplicant_cell">Email Address</td>
+							<td class="finance_coapplicant_cell"><input id="co_ea2" maxlength="200" name="co_ea2" tabindex="51" /><br />
+							<div id="msgDivco_ea2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>EMAIL REQUIRED</b></font></div>                      </tr>
 						  <tr height="25">
-							<td align="right" bgcolor="#FFFFCC"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/secure_sm.gif" alt="Your info is secure" width="10" height="16" /> Social Security Number</td>
-							<td bgcolor="#FFFFCC"><input id="co_ssn2" maxlength="11" name="co_ssn2" tabindex="52" /><br />
-							<div id="msgDivco_ssn2" style="display:none"><font color="#FF0000" size="-1"><b>SSN REQUIRED</b></font></div>                      </tr>
+							<td align="right" class="finance_coapplicant_cell"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/secure_sm.gif" alt="Your info is secure" width="10" height="16" /> Social Security Number</td>
+							<td class="finance_coapplicant_cell"><input id="co_ssn2" maxlength="11" name="co_ssn2" tabindex="52" /><br />
+							<div id="msgDivco_ssn2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>SSN REQUIRED</b></font></div>                      </tr>
 						  <tr height="25">
-							<td colspan="2" align="right" bgcolor="#FFFFCC"><div align="center">( We secure and protect your confidential information ) </div></td>
+							<td colspan="2" align="right" class="finance_coapplicant_cell"><div align="center">( We secure and protect your confidential information ) </div></td>
 						  </tr>
 						  
 						  <tr>
 							<td><div align="right">Apt/Suite</div></td>
 							<td><input name="co_app_apt_num" type="text" id="co_app_apt_num" tabindex="53" size="6" maxlength="5" />
 	<br />
-	<div id="msgDivco_app_apt_num" style="display:none"><font color="#FF0000" size="-1"><b>APT/SUITE REQUIRED</b></font></div>						</td>
+	<div id="msgDivco_app_apt_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>APT/SUITE REQUIRED</b></font></div>						</td>
 						  </tr>
 						  <tr>
 							<td><div align="right">Street Number</div></td>
 							<td><input name="co_app_street_num" type="text" onKeyPress="checkNum()" id="co_app_street_num" tabindex="54" size="6" maxlength="6" onChange="ValidateCoAppAddress();" />
 	<br />
-	<div id="msgDivco_app_street_num" style="display:none"><font color="#FF0000" size="-1"><b>STREET NUM REQUIRED</b></font></div>						</td>
+	<div id="msgDivco_app_street_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET NUM REQUIRED</b></font></div>						</td>
 						  </tr>
 						  <tr>
 							<td><div align="right"> Street Name</div></td>
 							<td><input name="co_app_street_name" type="text" maxlength="20" id="co_app_street_name" tabindex="55" />
 	<br />
-	<div id="msgDivco_app_street_name" style="display:none"><font color="#FF0000" size="-1"><b>STREET NAME REQUIRED</b></font></div>						</td>
+	<div id="msgDivco_app_street_name" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET NAME REQUIRED</b></font></div>						</td>
 						  </tr>
 						  <tr>
 							<td><div align="right">Street Type</div></td>
@@ -726,28 +714,28 @@ function show_finance_form() {
 						<option value="WAY">WAY</option>
 							</select>
 	<br />
-	<div id="msgDivco_app_street_type" style="display:none"><font color="#FF0000" size="-1"><b>STREET TYPE REQUIRED</b></font></div>						</td>
+	<div id="msgDivco_app_street_type" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET TYPE REQUIRED</b></font></div>						</td>
 						  </tr>
 						  <tr>
 							<td><div align="right">PO Box </div></td>
 							<td><input name="co_app_po_box_num" type="text" id="co_app_po_box_num" tabindex="57" size="6" maxlength="6" onChange="ValidateCoAppAddress();" />
 	<br />
-	<div id="msgDivco_app_po_box_num" style="display:none"><font color="#FF0000" size="-1"><b>PO BOX REQUIRED</b></font></div>						</td>
+	<div id="msgDivco_app_po_box_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>PO BOX REQUIRED</b></font></div>						</td>
 						  </tr>
 						  <tr>
 							<td><div align="right">Rural Route</div></td>
 							<td><input name="co_app_rural_route" type="text" id="co_app_rural_route" tabindex="58" size="6" maxlength="6" onChange="ValidateCoAppAddress();" />
 	<br />
-	<div id="msgDivco_app_rural_route" style="display:none"><font color="#FF0000" size="-1"><b>RURAL ROUTE REQUIRED</b></font></div>						</td>
+	<div id="msgDivco_app_rural_route" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>RURAL ROUTE REQUIRED</b></font></div>						</td>
 						  </tr>
 						  
 						  <tr height="25">
-							<td align="right" bgcolor="#FFFFCC">City</td>
-							<td bgcolor="#FFFFCC"><input id="co_cty2" maxlength="200" name="co_cty2" tabindex="59" /><br />
-							<div id="msgDivco_cty2" style="display:none"><font color="#FF0000" size="-1"><b>CITY REQUIRED</b></font></div>                      </tr>
+							<td align="right" class="finance_coapplicant_cell">City</td>
+							<td class="finance_coapplicant_cell"><input id="co_cty2" maxlength="200" name="co_cty2" tabindex="59" /><br />
+							<div id="msgDivco_cty2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>CITY REQUIRED</b></font></div>                      </tr>
 						  <tr height="25">
-							<td align="right" bgcolor="#FFFFCC">State</td>
-							<td bgcolor="#FFFFCC"><select name="co_st2" id="co_st2" tabindex="60" class="select" style="width:65px;">
+							<td align="right" class="finance_coapplicant_cell">State</td>
+							<td class="finance_coapplicant_cell"><select name="co_st2" id="co_st2" tabindex="60" class="select finance_select">
 							  <option></option>
 							  <option value="AK">AK</option>
 							  <option value="AL">AL</option>
@@ -807,17 +795,17 @@ function show_finance_form() {
 							  <option value="WY">WY</option>
 							</select>
 	<br />
-	<div id="msgDivco_st2" style="display:none"><font color="#FF0000" size="-1"><b>STATE REQUIRED</b></font></div>						</td>
+	<div id="msgDivco_st2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STATE REQUIRED</b></font></div>						</td>
 						  </tr>
 						  <tr height="25">
-							<td align="right" bgcolor="#FFFFCC">Zip</td>
-							<td bgcolor="#FFFFCC"><input id="co_zi2" onKeyPress="checkNum()" maxlength="200" name="co_zi2" tabindex="61" />
+							<td align="right" class="finance_coapplicant_cell">Zip</td>
+							<td class="finance_coapplicant_cell"><input id="co_zi2" onKeyPress="checkNum()" maxlength="200" name="co_zi2" tabindex="61" />
 	<br />
-	<div id="msgDivco_zi2" style="display:none"><font color="#FF0000" size="-1"><b>ZIP REQUIRED</b></font></div>						</td>
+	<div id="msgDivco_zi2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>ZIP REQUIRED</b></font></div>						</td>
 						  </tr>
 						  <tr height="25">
-							<td align="right" bgcolor="#FFFFCC">Birth Date (Month-Date-Year)</td>
-							<td bgcolor="#FFFFCC"><select name="co_bdm" tabindex="62">
+							<td align="right" class="finance_coapplicant_cell">Birth Date (Month-Date-Year)</td>
+							<td class="finance_coapplicant_cell"><select name="co_bdm" tabindex="62">
 								<option></option>
 								<option value="1">Jan</option>
 								<option value="2">Feb</option>
@@ -847,33 +835,33 @@ function show_finance_form() {
 	?>
 	</select>
 	<br />
-	<div id="msgDivco_bdd" style="display:none"><font color="#FF0000" size="-1"><b>DAY REQUIRED</b></font></div>
-	<br /><div id="msgDivco_bdm" style="display:none"><font color="#FF0000" size="-1"><b>MONTH REQUIRED</b></font></div>
-	<br /><div id="msgDivco_bdy" style="display:none"><font color="#FF0000" size="-1"><b>YEAR REQUIRED</b></font></div></td>
+	<div id="msgDivco_bdd" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>DAY REQUIRED</b></font></div>
+	<br /><div id="msgDivco_bdm" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>MONTH REQUIRED</b></font></div>
+	<br /><div id="msgDivco_bdy" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>YEAR REQUIRED</b></font></div></td>
 						  </tr>
 						</tbody>
 					</table>
 					</div>
-<div style="float:left;">
+<div class="finance_segment">
 	<div id="CoEmployer">
-	<table  class="finance_column" style="color:#000000;" border="0" cellpadding="1" cellspacing="2">
+	<table  class="finance_column" border="0" cellpadding="1" cellspacing="2">
 						<tr height="25">
-						  <td colspan="2" align="left" bgcolor="#FFFF00">STEP FIVE  - Co-Applicant Employment Info </td>
+						  <td colspan="2" align="left" class="finance_info_cell">STEP FIVE  - Co-Applicant Employment Info </td>
 						</tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Employer Name</td>
-						  <td width="49%" bgcolor="#FFFFCC"><input name="co_en2" id="co_en2" maxlength="200" tabindex="65" />
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Employer Name</td>
+						  <td width="49%" class="finance_coapplicant_cell"><input name="co_en2" id="co_en2" maxlength="200" tabindex="65" />
 						  <br />
-						  <div id="msgDivco_en2" style="display:none"><font color="#FF0000" size="-1"><b>EMPLOYER REQUIRED</b></font></div>                    </tr>
+						  <div id="msgDivco_en2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>EMPLOYER REQUIRED</b></font></div>                    </tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Position</td>
-						  <td width="49%" bgcolor="#FFFFCC"><input name="co_p2" id="co_p2" maxlength="200" tabindex="66" />
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Position</td>
+						  <td width="49%" class="finance_coapplicant_cell"><input name="co_p2" id="co_p2" maxlength="200" tabindex="66" />
 						  <br />
-						  <div id="msgDivco_p2" style="display:none"><font color="#FF0000" size="-1"><b>POSITION REQUIRED</b></font></div>					  </td>
+						  <div id="msgDivco_p2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>POSITION REQUIRED</b></font></div>					  </td>
 						</tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Years/Month at Company</td>
-						  <td width="49%" bgcolor="#FFFFCC"><select name="co_yac2" id="co_yac2" tabindex="67" onChange="AddCoEmployer(this,1);">
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Years/Month at Company</td>
+						  <td width="49%" class="finance_coapplicant_cell"><select name="co_yac2" id="co_yac2" tabindex="67" onChange="AddCoEmployer(this,1);">
 							<?php echo select_years(); ?>
 						  </select>
 							/
@@ -892,48 +880,48 @@ function show_finance_form() {
 						  <option value="10">10 Months</option>
 						  <option value="11">11 Months</option>
 						</select>
-	<br /><div id="msgDivco_yac2" style="display:none"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>
-	<br /><div id="msgDivco_mac2" style="display:none"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>                      </td>
+	<br /><div id="msgDivco_yac2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>
+	<br /><div id="msgDivco_mac2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>                      </td>
 						</tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Employer Phone Number</td>
-						  <td width="49%" bgcolor="#FFFFCC"><input name="co_epn2" onKeyPress="checkNum()" id="co_epn2" maxlength="200" tabindex="69" />
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Employer Phone Number</td>
+						  <td width="49%" class="finance_coapplicant_cell"><input name="co_epn2" onKeyPress="checkNum()" id="co_epn2" maxlength="200" tabindex="69" />
 	<br />
-	<div id="msgDivco_epn2" style="display:none"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>                    </tr>
+	<div id="msgDivco_epn2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>                    </tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Gross Monthly Income</td>
-						  <td width="49%" bgcolor="#FFFFCC"><input name="co_gmi2" onKeyPress="checkNum()" id="co_gmi2" maxlength="200" tabindex="70" />
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Gross Monthly Income</td>
+						  <td width="49%" class="finance_coapplicant_cell"><input name="co_gmi2" onKeyPress="checkNum()" id="co_gmi2" maxlength="200" tabindex="70" />
 	<br />
-	<div id="msgDivco_gmi2" style="display:none"><font color="#FF0000" size="-1"><b>INCOME REQUIRED</b></font></div>					  </td>
+	<div id="msgDivco_gmi2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>INCOME REQUIRED</b></font></div>					  </td>
 						</tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Other Income</td>
-						  <td width="49%" bgcolor="#FFFFCC"><input name="co_oi2" id="co_oi2" onKeyPress="checkNum()" tabindex="71" value="0" maxlength="200" />
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Other Income</td>
+						  <td width="49%" class="finance_coapplicant_cell"><input name="co_oi2" id="co_oi2" onKeyPress="checkNum()" tabindex="71" value="0" maxlength="200" />
 	<br />
-	<div id="msgDivco_oi2" style="display:none"><font color="#FF0000" size="-1"><b>OTHER INCOME REQUIRED</b></font></div>					  </td>
+	<div id="msgDivco_oi2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>OTHER INCOME REQUIRED</b></font></div>					  </td>
 						</tr>
 					  </table>
 	</div>
-	<div id="CoEmployer1" style="display:none">
-	<table width="100%" style="color:#000000;" border="0" cellpadding="1" cellspacing="2">
+	<div id="CoEmployer1" class="finance_hide_notice">
+	<table width="100%" border="0" cellpadding="1" cellspacing="2">
 						<tr height="25">
-						  <td colspan="2" align="left" bgcolor="#FFFF00">Co-Applicant Previous Employment </td>
+						  <td colspan="2" align="left" class="finance_info_cell">Co-Applicant Previous Employment </td>
 						</tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Employer Name</td>
-						  <td width="49%" bgcolor="#FFFFCC"><input name="p1co_en2" id="p1co_en2" maxlength="200" tabindex="72" />
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Employer Name</td>
+						  <td width="49%" class="finance_coapplicant_cell"><input name="p1co_en2" id="p1co_en2" maxlength="200" tabindex="72" />
 	<br />
-	<div id="msgDivp1co_en2" style="display:none"><font color="#FF0000" size="-1"><b>EMPLOYER REQUIRED</b></font></div>					  </td>
+	<div id="msgDivp1co_en2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>EMPLOYER REQUIRED</b></font></div>					  </td>
 						</tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Position</td>
-						  <td width="49%" bgcolor="#FFFFCC"><input name="p1co_p2" id="p1co_p2" maxlength="200" tabindex="73" />
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Position</td>
+						  <td width="49%" class="finance_coapplicant_cell"><input name="p1co_p2" id="p1co_p2" maxlength="200" tabindex="73" />
 	<br />
-	<div id="msgDivp1co_p2" style="display:none"><font color="#FF0000" size="-1"><b>POSITION REQUIRED</b></font></div>					  </td>
+	<div id="msgDivp1co_p2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>POSITION REQUIRED</b></font></div>					  </td>
 						</tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Years/Month at Company</td>
-						  <td width="49%" bgcolor="#FFFFCC"><select name="p1co_yac2" id="p1co_yac2" tabindex="74" onChange="AddCoEmployer(this,2);">
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Years/Month at Company</td>
+						  <td width="49%" class="finance_coapplicant_cell"><select name="p1co_yac2" id="p1co_yac2" tabindex="74" onChange="AddCoEmployer(this,2);">
 							<?php echo select_years(); ?>
 						  </select>
 							/
@@ -952,41 +940,41 @@ function show_finance_form() {
 						  <option value="10">10 Months</option>
 						  <option value="11">11 Months</option>
 						</select>
-	<br /><div id="msgDivp1co_mac2" style="display:none"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>
-	<br /><div id="msgDivp1co_yac2" style="display:none"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>                      </td>
+	<br /><div id="msgDivp1co_mac2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>
+	<br /><div id="msgDivp1co_yac2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>                      </td>
 						</tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Employer Phone Number</td>
-						  <td width="49%" bgcolor="#FFFFCC"><input name="p1co_epn2" onKeyPress="checkNum()" id="p1co_epn2" maxlength="200" tabindex="76" />
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Employer Phone Number</td>
+						  <td width="49%" class="finance_coapplicant_cell"><input name="p1co_epn2" onKeyPress="checkNum()" id="p1co_epn2" maxlength="200" tabindex="76" />
 	<br />
-	<div id="msgDivp1co_epn2" style="display:none"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>					  </td>
+	<div id="msgDivp1co_epn2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>PHONE REQUIRED</b></font></div>					  </td>
 						</tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Gross Monthly Income</td>
-						  <td width="49%" bgcolor="#FFFFCC"><input name="p1co_gmi2" onKeyPress="checkNum()" id="p1co_gmi2" maxlength="200" tabindex="77" />
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Gross Monthly Income</td>
+						  <td width="49%" class="finance_coapplicant_cell"><input name="p1co_gmi2" onKeyPress="checkNum()" id="p1co_gmi2" maxlength="200" tabindex="77" />
 	<br />
-	<div id="msgDivp1co_gmi2" style="display:none"><font color="#FF0000" size="-1"><b>INCOME REQUIRED</b></font></div>					  </td>
+	<div id="msgDivp1co_gmi2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>INCOME REQUIRED</b></font></div>					  </td>
 						</tr>
 						<tr height="25">
-						  <td width="51%" align="right" bgcolor="#FFFFCC">Other Income</td>
-						  <td width="49%" bgcolor="#FFFFCC"><input name="p1co_oi2" onKeyPress="checkNum()" id="p1co_oi2" tabindex="78" value="0" maxlength="200" />
+						  <td width="51%" align="right" class="finance_coapplicant_cell">Other Income</td>
+						  <td width="49%" class="finance_coapplicant_cell"><input name="p1co_oi2" onKeyPress="checkNum()" id="p1co_oi2" tabindex="78" value="0" maxlength="200" />
 	<br />
-	<div id="msgDivp1co_oi2" style="display:none"><font color="#FF0000" size="-1"><b>OTHER INCOME REQUIRED</b></font></div>					  </td>
+	<div id="msgDivp1co_oi2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>OTHER INCOME REQUIRED</b></font></div>					  </td>
 						</tr>
 					  </table>
 	</div>
-	<div id="CoEmployer2" style="display:none"></div>
-	<div id="CoEmployer3" style="display:none"></div>
+	<div id="CoEmployer2" class="finance_hide_notice"></div>
+	<div id="CoEmployer3" class="finance_hide_notice"></div>
 	
 	<div id="CoAppAddress">
-		<table class="finance_column" style="color:#000000;" border="0" align="center" cellpadding="1" cellspacing="2">
+		<table class="finance_column" border="0" align="center" cellpadding="1" cellspacing="2">
 						  <tbody>
 							<tr height="25">
-							  <td colspan="2" align="left" bgcolor="#FFFF00">STEP SIX  - Co-Applicant Living Situation </td>
+							  <td colspan="2" align="left" class="finance_info_cell">STEP SIX  - Co-Applicant Living Situation </td>
 							</tr>
 							<tr height="25">
-							  <td width="47%" align="right" bgcolor="#FFFFCC">Years/Month at Current Address</td>
-							  <td width="51%" bgcolor="#FFFFCC"><select name="co_yaca2" id="co_yaca2" tabindex="79" onChange="AddCoAddresss(this,1);">
+							  <td width="47%" align="right" class="finance_coapplicant_cell">Years/Month at Current Address</td>
+							  <td width="51%" class="finance_coapplicant_cell"><select name="co_yaca2" id="co_yaca2" tabindex="79" onChange="AddCoAddresss(this,1);">
 								<?php echo select_years(); ?>
 							  </select>
 								/
@@ -1005,26 +993,26 @@ function show_finance_form() {
 							<option value="10">10 Months</option>
 							<option value="11">11 Months</option>
 						</select>
-	<br /><div id="msgDivco_yaca2" style="display:none"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>
-	<br /><div id="msgDivco_maca2" style="display:none"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>					</td>
+	<br /><div id="msgDivco_yaca2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>YEARS REQUIRED</b></font></div>
+	<br /><div id="msgDivco_maca2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>MONTHS REQUIRED</b></font></div>					</td>
 							</tr>
 							<tr height="25">
-							  <td width="47%" align="right" bgcolor="#FFFFCC">Do you Own or Rent ?</td>
-							  <td width="51%" bgcolor="#FFFFCC"><select id="select3" name="co_roo2" tabindex="81" >
+							  <td width="47%" align="right" class="finance_coapplicant_cell">Do you Own or Rent ?</td>
+							  <td width="51%" class="finance_coapplicant_cell"><select id="select3" name="co_roo2" tabindex="81" >
 								  <option value="Own" selected="selected">Own</option>
 								  <option value="Rent">Rent</option>
 								  <option value="Relatives">Relatives</option>
 							  </select>
-	<br /><div id="msgDivco_roo2" style="display:none"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>						  </td>
+	<br /><div id="msgDivco_roo2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>						  </td>
 							</tr>
 							<tr height="25">
-							  <td width="47%" align="right" bgcolor="#FFFFCC">Rent Amount/Mortgage Payment $</td>
-							  <td width="51%" bgcolor="#FFFFCC"><input id="co_ramp2" maxlength="200" onKeyPress="checkNum()" name="co_ramp2" tabindex="82" />
-	<br /><div id="msgDivco_ramp2" style="display:none"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>						  </td>
+							  <td width="47%" align="right" class="finance_coapplicant_cell">Rent Amount/Mortgage Payment $</td>
+							  <td width="51%" class="finance_coapplicant_cell"><input id="co_ramp2" maxlength="200" onKeyPress="checkNum()" name="co_ramp2" tabindex="82" />
+	<br /><div id="msgDivco_ramp2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>						  </td>
 							</tr>
 							<tr height="25">
-							  <td width="47%" align="right" bgcolor="#FFFFCC">Best Contact Place And Time</td>
-							  <td width="51%" bgcolor="#FFFFCC"><select id="select4" name="co_bcp2" tabindex="83" >
+							  <td width="47%" align="right" class="finance_coapplicant_cell">Best Contact Place And Time</td>
+							  <td width="51%" class="finance_coapplicant_cell"><select id="select4" name="co_bcp2" tabindex="83" >
 								  <option value="Home" selected="selected">Home</option>
 								  <option value="Work">Work</option>
 								  <option value=" "></option>
@@ -1034,39 +1022,39 @@ function show_finance_form() {
 									<option value="Afternoon ">Afternoon</option>
 									<option value="Evening   ">Evening</option>
 								</select>
-								<br /><div id="msgDivco_bcp2" style="display:none"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>
-								<br /><div id="msgDivco_bct2 " style="display:none"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>							</td>
+								<br /><div id="msgDivco_bcp2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>
+								<br /><div id="msgDivco_bct2 " class="finance_hide_notice"><font color="#FF0000" size="-1"><b>REQUIRED</b></font></div>							</td>
 							</tr>
 						  </tbody>
 					  </table>
 	</div>
-	<div id="CoAppAddress1" style="display:none">
+	<div id="CoAppAddress1" class="finance_hide_notice">
 		<table width="100%" border="0" align="center" cellpadding="1" cellspacing="2">
 						  <tbody>
 							<tr height="25">
-							  <td align="left" bgcolor="#FFFF00">Previous Co-Applicant Address </td>
+							  <td align="left" class="finance_info_cell">Previous Co-Applicant Address </td>
 							</tr>
 							<tr height="25">
-							  <td align="right" bgcolor="#FFFFCC">
-	<table width="100%" style="color:#000000;" border="0" align="center" cellpadding="1" cellspacing="2">
+							  <td align="right" class="finance_coapplicant_cell">
+	<table width="100%" class="finance_column" border="0" align="center" cellpadding="1" cellspacing="2">
 	  <tbody>
 		<tr>
 		  <td><div align="right">Apt/Suite</div></td>
 		  <td><input name="p1co_app_apt_num" type="text" id="p1co_app_apt_num" tabindex="85" size="6" maxlength="5" />
 	<br />
-	<div id="msgDivp1co_app_apt_num" style="display:none"><font color="#FF0000" size="-1"><b>APT/SUITE REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1co_app_apt_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>APT/SUITE REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr>
 		  <td><div align="right">Street Number</div></td>
 		  <td><input name="p1co_app_street_num" type="text" id="p1co_app_street_num" onKeyPress="checkNum()" tabindex="86" size="6" maxlength="6" onChange="ValidateCoAppPrevAddress();" />
 	<br />
-	<div id="msgDivp1co_app_street_num" style="display:none"><font color="#FF0000" size="-1"><b>STREET NUM REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1co_app_street_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET NUM REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr>
 		  <td><div align="right"> Street Name</div></td>
 		  <td><input name="p1co_app_street_name" type="text" maxlength="20" id="p1co_app_street_name" tabindex="87" />
 	<br />
-	<div id="msgDivp1co_app_street_name" style="display:none"><font color="#FF0000" size="-1"><b>STREET NAME REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1co_app_street_name" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET NAME REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr>
 		  <td><div align="right">Street Type</div></td>
@@ -1093,29 +1081,29 @@ function show_finance_form() {
 			<option value="WAY">WAY</option>
 		  </select>
 	<br />
-	<div id="msgDivp1co_app_street_type" style="display:none"><font color="#FF0000" size="-1"><b>STREET TYPE REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1co_app_street_type" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STREET TYPE REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr>
 		  <td><div align="right">PO Box </div></td>
 		  <td><input name="p1co_app_po_box_num" type="text" id="p1co_app_po_box_num" tabindex="89" size="6" maxlength="6" onChange="ValidateCoAppPrevAddress();" />
 	<br />
-	<div id="msgDivp1co_app_po_box_num" style="display:none"><font color="#FF0000" size="-1"><b>PO BOX REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1co_app_po_box_num" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>PO BOX REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr>
 		  <td><div align="right">Rural Route</div></td>
 		  <td><input name="p1co_app_rural_route" type="text" id="p1co_app_rural_route" tabindex="90" size="6" maxlength="6" onChange="ValidateCoAppPrevAddress();" />
 	<br />
-	<div id="msgDivp1co_app_rural_route" style="display:none"><font color="#FF0000" size="-1"><b>RURAL ROUTE REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1co_app_rural_route" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>RURAL ROUTE REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr height="25">
-		  <td align="right" bgcolor="#FFFFCC">City</td>
-		  <td bgcolor="#FFFFCC"><input id="p1co_cty2" maxlength="200" name="p1co_cty2" tabindex="91" />
+		  <td align="right" class="finance_coapplicant_cell">City</td>
+		  <td class="finance_coapplicant_cell"><input id="p1co_cty2" maxlength="200" name="p1co_cty2" tabindex="91" />
 	<br />
-	<div id="msgDivp1co_cty2" style="display:none"><font color="#FF0000" size="-1"><b>CITY REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1co_cty2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>CITY REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr height="25">
-		  <td align="right" bgcolor="#FFFFCC">State</td>
-		  <td bgcolor="#FFFFCC"><select name="p1co_st2" id="p1co_st2" tabindex="92" class="select" style="width:65px;">
+		  <td align="right" class="finance_coapplicant_cell">State</td>
+		  <td class="finance_coapplicant_cell"><select name="p1co_st2" id="p1co_st2" tabindex="92" class="select finance_select">
 			<option selected="selected"></option>
 			<option value="AK">AK</option>
 			<option value="AL">AL</option>
@@ -1175,13 +1163,13 @@ function show_finance_form() {
 			<option value="WY">WY</option>
 		  </select>
 	<br />
-	<div id="msgDivp1co_st2" style="display:none"><font color="#FF0000" size="-1"><b>STATE REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1co_st2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>STATE REQUIRED</b></font></div>	  </td>
 		</tr>
 		<tr height="25">
-		  <td align="right" bgcolor="#FFFFCC">Zip</td>
-		  <td bgcolor="#FFFFCC"><input id="p1co_zi2" onKeyPress="checkNum()" maxlength="200" name="p1co_zi2" tabindex="93" />
+		  <td align="right" class="finance_coapplicant_cell">Zip</td>
+		  <td class="finance_coapplicant_cell"><input id="p1co_zi2" onKeyPress="checkNum()" maxlength="200" name="p1co_zi2" tabindex="93" />
 	<br />
-	<div id="msgDivp1co_zi2" style="display:none"><font color="#FF0000" size="-1"><b>ZIP REQUIRED</b></font></div>	  </td>
+	<div id="msgDivp1co_zi2" class="finance_hide_notice"><font color="#FF0000" size="-1"><b>ZIP REQUIRED</b></font></div>	  </td>
 		</tr>
 	  </tbody>
 	</table>						  </td>
@@ -1189,8 +1177,8 @@ function show_finance_form() {
 						  </tbody>
 					  </table>
 	</div>
-	<div id="CoAppAddress2" style="display:none"></div>
-	<div id="CoAppAddress3" style="display:none"></div>				  </td>
+	<div id="CoAppAddress2" class="finance_hide_notice"></div>
+	<div id="CoAppAddress3" class="finance_hide_notice"></div>				  </td>
 				  </tr>
 				</table>
 		  </td>
@@ -1201,7 +1189,7 @@ function show_finance_form() {
 		<tr>
 		  <td colspan="3"><div>
 <fieldset class="cd-fs2">
-			<textarea id="txtDisclosure" name="txtDisclosure" rows="4" style="float:right;width:430px;margin-right:30px;height:365px;font-size:9px;" tabindex="96">
+			<textarea id="txtDisclosure" name="txtDisclosure" rows="4" class="finance_disclosure" tabindex="96">
 <?php 
 		if (isset($_GET['stock_num'])) {
 			$this_stock_num = $_GET['stock_num'];
@@ -1225,8 +1213,7 @@ function show_finance_form() {
 <?php
 	if (isset($_GET['stock_num'])) {
 		$finance_description = get_finance_description($_GET['stock_num']);
-	}
-	else {
+	} else {
 		$finance_description = '';
 	}
 ?>
@@ -1239,7 +1226,7 @@ function show_finance_form() {
 				<?php $fin = apply_filters('car_demon_mail_hook_form', $fin, 'finance', 'unk');
 				echo $fin;
 				?>
-			  <input type="button" onClick="mainValidation();" name="sbtValidate" id="sbtValidate" tabindex="97" value="Submit This Credit Application" class="search_btn" style="height:75px;width:260px;" /><br />
+			  <input type="button" onClick="mainValidation();" name="sbtValidate" id="sbtValidate" tabindex="97" value="Submit This Credit Application" class="search_btn finance_btn" /><br />
 				<img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/secure.gif" alt="Secure Encryption" width="30" height="49" /></p>
 		  </div></td>
 		</tr>
@@ -1348,13 +1335,13 @@ function get_finance_for_vehicle($stock_num) {
 		<input type="hidden" name="purchase_stock" id="purchase_stock" value="'.$stock_num.'" />
 		<ol class="cd-ol" id="show_voi">
 			<li id="" class="cd-box-title">Vehicle of Interest</li>
-			<li id="not_voi" class="cd-box-title"><input type="checkbox" onclick="show_voi()" style="width:15px;margin-left:15px;" />&nbsp;This is <b>NOT</b> the vehicle I\'m interested in.</li>
+			<li id="not_voi" class="cd-box-title"><input type="checkbox" onclick="show_voi()" class="finance_checkbox" />&nbsp;This is <b>NOT</b> the vehicle I\'m interested in.</li>
 			';
-			$x .= '<li id="" class=""><label for="cd_field_2"><span>Stock #</span></label><label style="width:250px;"><span style="width:250px;">'.$stock_num.'</span></label></li>';
-			$x .= '<li id="" class=""><label for="cd_field_2"><span>VIN</span></label><label style="width:250px;"><span style="width:250px;">'.$vehicle_vin.'</span></label></li>';
+			$x .= '<li id="" class=""><label for="cd_field_2"><span>Stock #</span></label><label class="finance_label"><span class="finance_label">'.$stock_num.'</span></label></li>';
+			$x .= '<li id="" class=""><label for="cd_field_2"><span>VIN</span></label><label class="finance_label"><span class="finance_label">'.$vehicle_vin.'</span></label></li>';
 			$vehicle = $vehicle_condition .' '. $vehicle_year .' '. $vehicle_make .' '. $vehicle_model .' '. $vehicle_body_style;
-			$x .= '<li id="" class=""><label for="cd_field_2"><span>Vehicle</span></label><label style="width:250px;"><span style="width:250px;">'.$vehicle.'</span></label></li>';
-			$x .= '<li id="" class=""><img src="'.$vehicle_photo.'" width="300" class="random_widget_image" style="margin-left:75px;" title="'.$vehicle.'" alt="'.$vehicle.'" /></li>';
+			$x .= '<li id="" class=""><label for="cd_field_2"><span>Vehicle</span></label><label class="finance_label"><span class="finance_label">'.$vehicle.'</span></label></li>';
+			$x .= '<li id="" class=""><img src="'.$vehicle_photo.'" width="300" class="random_widget_image finance_img" title="'.$vehicle.'" alt="'.$vehicle.'" /></li>';
 			$x .= '
 			</li>
 		</ol>
@@ -1366,21 +1353,20 @@ function select_finance_for_vehicle($hide=0) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath_images = str_replace('forms','',$car_demon_pluginpath);	
 	if ($hide == 1) {
-		$hidden = " style='display:none;'";
-	}
-	else {
+		$hidden = " finance_hidden";
+	} else {
 		$hidden = '';
 	}
 	$x = '
-		<ol class="cd-ol" id="find_voi"'.$hidden.' style="margin-left:20px;">
-			<li id="voi_title" class="cd-box-title" style="width:375px;">What Vehicle are you Interested In Purchasing?</li>
+		<ol class="cd-ol'.$hidden.'" id="find_voi">
+			<li id="voi_title" class="cd-box-title finance_box_title">What Vehicle are you Interested In Purchasing?</li>
 			<li id="" class="cd-box-title"><input onclick="select_voi(\'stock\');" name="pick_voi" id="pick_voi_1" type="radio" value="1" /> I know the stock#</li>
-			<li id="select_stock" style="display:none;margin-left:20px;"><span>Stock #</span>&nbsp;<input class="ac_input" type="text" id="select_stock_txt" /></li>
+			<li id="select_stock" class="finance_select_stock"><span>Stock #</span>&nbsp;<input class="ac_input" type="text" id="select_stock_txt" /></li>
 			<li id="" class="cd-box-title"><input name="pick_voi" id="pick_voi_2" onclick="select_voi(\'search\');" type="radio" value="2" /> I would like to search for it</li>
-			<li id="select_description" style="display:none;margin-left:20px;"><span>Description</span>&nbsp;<input type="text"  id="select_car_txt" />&nbsp;(enter year, make or model)</li>
+			<li id="select_description" class="finance_select_stock"><span>Description</span>&nbsp;<input type="text"  id="select_car_txt" />&nbsp;(enter year, make or model)</li>
 			<li id="" class="cd-box-title"><input name="pick_voi" id="pick_voi_3" onclick="select_voi(\'na\');" type="radio" checked="checked" value="3" /> I haven\'t made up my mind.</li>
 			<li id="" class="cd-box-title">
-				<img src="'.$car_demon_pluginpath_images.'theme-files/images/no_vehicle.gif" width="175" style="margin-left:150px;" />
+				<img src="'.$car_demon_pluginpath_images.'theme-files/images/no_vehicle.gif" width="175" class="finance_no_img" />
 			</li>
 			<li id="li-7items" class="cd-box-group">
 	';
@@ -1448,8 +1434,7 @@ function finance_locations_radio() {
 		$location_list = 'default'.$location_list;
 		$location_name_list = 'Default'.$location_name_list;
 		$cnt = 1;
-	}
-	else {
+	} else {
 		$location_list = '@'.$location_list;
 		$location_list = str_replace("@,","", $location_list);
 		$location_list = str_replace("@","", $location_list);
@@ -1462,12 +1447,11 @@ function finance_locations_radio() {
 	$x = 0;
 	if (empty($_GET['stock_num'])) {
 		$hidden = "";	
-	}
-	else {
-		$hidden = " style='display:none;'";
+	} else {
+		$hidden = " finance_hidden";
 	}
 	$html = '
-		<fieldset class="cd-fs2" id="finance_locations"'.$hidden.' style="width:425px;margin-left:20px;">
+		<fieldset class="cd-fs2 finance_locations'.$hidden.'" id="finance_locations">
 		<legend class="fin_legend">Finance Location</legend>
 		<ol class="cd-ol">
 			<li id="select_location" class="cd-box-title">Select your preferred Finance Location</li>
@@ -1516,8 +1500,7 @@ function get_finance_location_name($selected_car) {
 function get_this_dislaimer($stock_num) {
 	if (empty($stock_num)) {
 		$finance_disclaimer = get_option('default_finance_disclaimer');
-	}
-	else {
+	} else {
 		$location_disclaimer = get_finance_location_name($stock_num);
 		$finance_disclaimer = get_option($location_disclaimer.'_finance_disclaimer');
 	}
@@ -1530,8 +1513,7 @@ function get_this_dislaimer($stock_num) {
 function get_finance_description($stock_num) {
 	if (empty($stock_num)) {
 		$finance_description = get_option('default_finance_description');
-	}
-	else {
+	} else {
 		$location_description = get_finance_location_name($stock_num);
 		$finance_description = get_option($location_description.'_finance_description');
 	}

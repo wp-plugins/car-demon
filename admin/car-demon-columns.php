@@ -127,8 +127,7 @@ function max_save_quick_edit_data($post_id) {
 	// Check permissions
 	if (isset($_POST['post_type'])) {
 		$post_type = $_POST['post_type'];
-	}
-	else {
+	} else {
 		$post_type = '';
 	}
 	if ( 'page' == $post_type ) {

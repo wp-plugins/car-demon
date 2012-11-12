@@ -21,8 +21,7 @@ if (isset($_GET['qr_printed'])) {
 	$post_id = $_POST['post_id'];
 	if ($_POST['val']=='checked') {
 		update_post_meta( $post_id, '_qr_printed', 'checked');
-	}
-	else {
+	} else {
 		delete_post_meta( $post_id, '_qr_printed');
 	}
 }
@@ -37,8 +36,7 @@ if (isset($_GET['compare_car'])) {
 		$compare_these = str_replace(','.$_POST['post_id'],'',$compare_these);
 		$compare_these = str_replace($_POST['post_id'],'',$compare_these);
 		$compare_these = $compare_these.','.$_POST['post_id'];	
-	}
-	else {
+	} else {
 		$compare_these = str_replace(','.$_POST['post_id'],'',$compare_these);
 		$compare_these = str_replace($_POST['post_id'],'',$compare_these);
 	}

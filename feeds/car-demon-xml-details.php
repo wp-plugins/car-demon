@@ -63,9 +63,9 @@ function build_xml() {
 		}
 		$car_pic = str_replace('-150x150', '', $car_pic);
 		if (empty($car_pic)) {
-			$car_demon_themepath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-			$car_demon_themepath = str_replace('feeds','',$car_demon_themepath);
-			$car_pic = $car_demon_themepath.'no_photo.gif';
+			$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+			$car_demon_pluginpath = str_replace('feeds','',$car_demon_pluginpath);
+			$car_pic = $car_demon_pluginpath.'no_photo.gif';
 		}
 
 		$car_xml .= '<photo>'.$car_pic.'</photo>';
@@ -77,8 +77,7 @@ function rwh_xml($x,$y) {
 	$x = trim($x);
 	if (!empty($x)) {
 		$new_string = '<'.$y.'>'.$x.'</'.$y.'>'.chr(13);
-	}
-	else {
+	} else {
 		$new_string = '<'.$y.'> </'.$y.'>'.chr(13);
 	}
 	return $new_string;

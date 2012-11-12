@@ -79,7 +79,7 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 		<!-- Widget Title: Text Input -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'car-demon'); ?></label>
-			<br /><input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />		
+			<br /><input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="car_demon_wide" />		
 			<br /><label for="<?php echo $this->get_field_id( 'list_phone' ); ?>"><?php _e('List Phone:', 'car-demon'); ?></label>
 			<br /><select id="<?php echo $this->get_field_id( 'list_phone' ); ?>" name="<?php echo $this->get_field_name( 'list_phone' ); ?>">
 				<option value="<?php echo $instance['list_phone']; ?>"><?php echo $instance['list_phone']; ?></option>
@@ -87,7 +87,7 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 				<option value="No">No</option>
 			</select>
 			<br /><label for="<?php echo $this->get_field_id( 'cc' ); ?>"><?php _e('CC:', 'car-demon'); ?></label>
-			<br /><input id="<?php echo $this->get_field_id( 'cc' ); ?>" name="<?php echo $this->get_field_name( 'cc' ); ?>" value="<?php echo $instance['cc']; ?>" style="width:100%;" />
+			<br /><input id="<?php echo $this->get_field_id( 'cc' ); ?>" name="<?php echo $this->get_field_name( 'cc' ); ?>" value="<?php echo $instance['cc']; ?>" class="car_demon_wide" />
 			<br /><label for="<?php echo $this->get_field_id( 'send_receipt' ); ?>"><?php _e('Send Confirmation Receipt:', 'car-demon'); ?></label>
 			<br /><select id="<?php echo $this->get_field_id( 'send_receipt' ); ?>" name="<?php echo $this->get_field_name( 'send_receipt' ); ?>">
 				<option value="<?php echo $instance['send_receipt']; ?>"><?php echo $instance['send_receipt']; ?></option>
@@ -95,7 +95,7 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 				<option value="No">No</option>
 			</select>
 			<br /><label for="<?php echo $this->get_field_id( 'send_receipt_msg' ); ?>"><?php _e('Additional Confirmation Message:', 'car-demon'); ?></label>
-			<br /><textarea rows="4" id="<?php echo $this->get_field_id( 'send_receipt_msg' ); ?>" name="<?php echo $this->get_field_name( 'send_receipt_msg' ); ?>" style="width:100%;"><?php echo $instance['send_receipt_msg']; ?></textarea>
+			<br /><textarea rows="4" id="<?php echo $this->get_field_id( 'send_receipt_msg' ); ?>" name="<?php echo $this->get_field_name( 'send_receipt_msg' ); ?>" class="car_demon_wide"><?php echo $instance['send_receipt_msg']; ?></textarea>
 		</p>
 	<?php
 	}

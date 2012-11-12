@@ -4,7 +4,7 @@ Plugin Name: Car Demon
 Plugin URI: http://www.CarDemons.com/
 Description:  Car Demon is a PlugIn designed for car dealers.
 Author: CarDemons
-Version: 1.1.2
+Version: 1.1.3
 Author URI: http://www.CarDemons.com/
 */
 
@@ -63,8 +63,7 @@ function start_car_demon() {
 	}
 	if (isset($_GET['sales_code'])) {
 		$sales_code = $_GET['sales_code'];
-	}
-	else {
+	} else {
 		$sales_code = '';
 	}
 	if ($sales_code=="0") {
@@ -244,11 +243,11 @@ function CarDemon_posted_in() {
 	// Retrieves tag list of current post, separated by commas.
 	$tag_list = get_the_tag_list( '', ', ' );
 	if ( $tag_list ) {
-		$posted_in = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'CarDemon' );
+		$posted_in = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'car-demon' );
 	} elseif ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
-		$posted_in = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'CarDemon' );
+		$posted_in = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'car-demon' );
 	} else {
-		$posted_in = __( 'Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'CarDemon' );
+		$posted_in = __( 'Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'car-demon' );
 	}
 	// Prints the string, replacing the placeholders.
 	printf(
@@ -266,7 +265,7 @@ if ( ! function_exists( 'CarDemon_posted_on' ) ) :
  * Prints HTML with meta information for the current post—date/time and author.
  */
 function CarDemon_posted_on() {
-	printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'CarDemon' ),
+	printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'car-demon' ),
 		'meta-prep meta-prep-author',
 		sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><span class="entry-date">%3$s</span></a>',
 			get_permalink(),
@@ -275,7 +274,7 @@ function CarDemon_posted_on() {
 		),
 		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s">%3$s</a></span>',
 			get_author_posts_url( get_the_author_meta( 'ID' ) ),
-			sprintf( esc_attr__( 'View all posts by %s', 'CarDemon' ), get_the_author() ),
+			sprintf( esc_attr__( 'View all posts by %s', 'car-demon' ), get_the_author() ),
 			get_the_author()
 		)
 	);
@@ -290,11 +289,11 @@ if (function_exists('add_theme_support')) {
 }
 
 function car_demon_theme_js($content) {
-	$themepath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$content .= '
 	<script>
 		function ImgError(source, pic){
-			source.src = "'.$themepath.'images/"+pic;
+			source.src = "'.$pluginpath.'images/"+pic;
 			source.onerror = "";
 			return true;
 		}
@@ -307,8 +306,7 @@ add_action('wp_head', 'car_demon_theme_js');
 function rwh($x,$y) {
 	if ($y == 0) {
 		$new_string = $x;	
-	}
-	else {
+	} else {
 		$new_string = '<h'.$y.'>'.$x.'</h'.$y.'>';
 	}
 	return $new_string;
@@ -363,8 +361,7 @@ function build_location_hcard($location, $condition) {
 		$user_email = get_option($location.'_new_sales_email');
 		$user_phone = get_option($location.'_new_sales_number');
 		$custom_photo = get_option($location.'_new_small_photo_url');
-	}
-	else {
+	} else {
 		$user_full_name = get_option($location.'_used_sales_name');
 		$user_email = get_option($location.'_used_sales_email');
 		$user_phone = get_option($location.'_used_sales_number');
@@ -376,9 +373,8 @@ function build_location_hcard($location, $condition) {
 		$custom_photo = $car_demon_pluginpath.'images/person.gif';
 	}
 	$facebook = $location.'_facebook_page';
-	$x = '<div id="staff-card-'.$user_id.'" class="staff_card" style="min-height:205px;">';
-	$width = "200";
-	$x .= '<img style="float:left; margin-right:4px;width:'.$width.'px;" src="'.$custom_photo.'" alt="photo of '.$user_full_name.'" class="photo" />';
+	$x = '<div id="staff-card-'.$user_id.'" class="staff_card">';
+	$x .= '<img src="'.$custom_photo.'" alt="photo of '.$user_full_name.'" class="photo" />';
 		$x .='<span class="fn n">';
 			$x .='<span class="given-name">'.$user_full_name.'</span>';
 		$x .='</span>';

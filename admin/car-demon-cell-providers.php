@@ -25,7 +25,7 @@ function select_cell_provider($type, $current_val) {
 		'Verizon' => 'vtext.com',
 		'Virgin Mobile' => 'vmobl.com'
 	);
-	$x = '<select id="'.$type.'" name="'.$type.'" style="width:250px;">';
+	$x = '<select id="'.$type.'" name="'.$type.'" class="admin_cell_providers">';
 		foreach ($us_providers as $us_provider) {
 			if ($us_provider == $current_val) {
 				$select = ' selected';

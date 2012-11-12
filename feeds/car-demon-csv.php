@@ -70,9 +70,9 @@ function build_csv() {
 		$car_pic_list = str_replace(chr(11), '', $car_pic_list);
 		$car_pic_list = str_replace(chr(13), '', $car_pic_list);
 		if (empty($car_pic)) {
-			$car_demon_themepath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-			$car_demon_themepath = str_replace('feeds','',$car_demon_themepath);
-			$car_pic = $car_demon_themepath.'no_photo.gif';
+			$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+			$car_demon_pluginpath = str_replace('feeds','',$car_demon_pluginpath);
+			$car_pic = $car_demon_pluginpath.'no_photo.gif';
 		}
 		$car_csv .= '"'.$car_pic.', '.$car_pic_list.'"';
 		$car_csv .= chr(13).chr(10);

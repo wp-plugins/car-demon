@@ -34,8 +34,7 @@ function send_finance_email() {
 	$selected_car = $_POST['purchase_stock'];
 	if (empty($selected_car)) {
 		$finance_email = get_finance_email($finance_location);
-	}
-	else {
+	} else {
 		$finance_location = get_finance_location($selected_car);
 		$selected_car = get_car_from_stock($selected_car);
 		$finance_email = get_finance_email($finance_location);
@@ -99,8 +98,7 @@ function send_finance_email() {
 		$xml_body .= "Content-Transfer-Encoding: 7bit".$eol.$eol;
 		$xml_body .= adfxml_finance($finance_location, $rep_name, $to);
 		$email_body = $email_body.$xml_body.$eol;
-	}
-	else {
+	} else {
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 	}
 	mail($to, $subject, $email_body, $headers);
@@ -122,8 +120,7 @@ function build_finance_body() {
 		$selected_car = 'Not Decided';
 		$finance_email = get_finance_email($finance_location);
 		$finance_location .= ' ('.$finance_email.')';
-	}
-	else {
+	} else {
 		$finance_location = get_finance_location($selected_car);
 		$selected_car = get_car_from_stock($selected_car);
 		$finance_email = get_finance_email($finance_location);
@@ -187,13 +184,13 @@ function build_finance_body() {
 	$x = '
 		<table align="center" width="450" border="0"'.$style.'>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('CUSTOMER INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td width="225">'.__('Customer Name', 'car-demon').'</td>
@@ -216,13 +213,13 @@ function build_finance_body() {
 			<td>'.$finance_location.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('Living Situation', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td>'.__('Phone Number', 'car-demon').'</td>
@@ -249,7 +246,7 @@ function build_finance_body() {
 			<td>'.$monthly_payment.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  ';
 		  if (!empty($p_address)) {
@@ -258,14 +255,14 @@ function build_finance_body() {
 				<td colspan="2" align="center">'.__('Previous Living Situation', 'car-demon').'</td>
 			  </tr>
 			  <tr>
-				<td colspan="2"><hr style="margin:3px;" /></td>
+				<td colspan="2"><hr class="hr_margin" /></td>
 			  </tr>
 			  <tr>
 				<td>'.__('Previous Address', 'car-demon').'</td>
 				<td>'.$p_address.'</td>
 			  </tr>
 			  <tr>
-				<td colspan="2"><hr style="margin:3px;" /></td>
+				<td colspan="2"><hr class="hr_margin" /></td>
 			  </tr>
 			';
 		  }
@@ -274,7 +271,7 @@ function build_finance_body() {
 			<td colspan="2" align="center">'.__('Employment History', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td>'.__('Employer', 'car-demon').'</td>
@@ -301,7 +298,7 @@ function build_finance_body() {
 			<td>'.$other_income.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  ';
 		if (!empty($p_employer)) {
@@ -310,7 +307,7 @@ function build_finance_body() {
 			<td colspan="2" align="center">'.__('Previous Employer', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td>'.__('Employer', 'car-demon').'</td>
@@ -337,7 +334,7 @@ function build_finance_body() {
 			<td>'.$p_other_income.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 			';
 		}
@@ -346,25 +343,25 @@ function build_finance_body() {
 			<td colspan="2" align="center">'.__('Comment', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$comment.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('Vehicle of Interest', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$selected_car.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  ';
 		  if (!empty($co_buyer)) {
@@ -375,7 +372,7 @@ function build_finance_body() {
 			<td colspan="2" align="center">'.__('SENDER INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>';
 		$location = $_POST['finance_location'];
 		$selected_car = $_POST['purchase_stock'];
@@ -453,7 +450,7 @@ function get_co_buyer() {
 			<td colspan="2" align="center">'.__('CO-BUYER INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td width="225">'.__('Name', 'car-demon').'</td>
@@ -472,13 +469,13 @@ function get_co_buyer() {
 			<td>'.$ssn.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('Co-Buyer Living Situation', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td>'.__('Phone Number', 'car-demon').'</td>
@@ -505,7 +502,7 @@ function get_co_buyer() {
 			<td>'.$monthly_payment.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  ';
 		  if (!empty($p_address)) {
@@ -514,14 +511,14 @@ function get_co_buyer() {
 				<td colspan="2" align="center">'.__('Co-Buyer Previous Living Situation', 'car-demon').'</td>
 			  </tr>
 			  <tr>
-				<td colspan="2"><hr style="margin:3px;" /></td>
+				<td colspan="2"><hr class="hr_margin" /></td>
 			  </tr>
 			  <tr>
 				<td>'.__('Previous Address', 'car-demon').'</td>
 				<td>'.$p_address.'</td>
 			  </tr>
 			  <tr>
-				<td colspan="2"><hr style="margin:3px;" /></td>
+				<td colspan="2"><hr class="hr_margin" /></td>
 			  </tr>
 			';
 		  }
@@ -530,7 +527,7 @@ function get_co_buyer() {
 			<td colspan="2" align="center">'.__('Co-Buyer Employment History', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td>'.__('Employer', 'car-demon').'</td>
@@ -557,7 +554,7 @@ function get_co_buyer() {
 			<td>'.$other_income.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  ';
 		if (!empty($p_employer)) {
@@ -566,7 +563,7 @@ function get_co_buyer() {
 			<td colspan="2" align="center">'.__('Co-Buyer Previous Employer', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td>'.__('Employer', 'car-demon').'</td>
@@ -593,7 +590,7 @@ function get_co_buyer() {
 			<td>'.$p_other_income.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 			';
 		}
@@ -638,8 +635,7 @@ function get_finance_email($finance_location) {
 	if (empty($locations)) {
 		$location_list = 'default'.$location_list;
 		$location_name_list = 'Default'.$location_name_list;
-	}
-	else {
+	} else {
 		$location_list = '#'.$location_list;
 		$location_list = str_replace("#,","", $location_list);
 		$location_list = str_replace("#","", $location_list);

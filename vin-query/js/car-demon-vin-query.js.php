@@ -144,8 +144,7 @@ function activate_vehicle() {
 		document.getElementById("status_yes").checked = false;
 		document.getElementById("status_no").checked = true;
 		alert("You must fill out the "+ msg +" field before you can mark this vehicle as ready for Sale.");
-	}
-	else {
+	} else {
 		alert("All Good");
 	}
 }
@@ -159,7 +158,7 @@ function dashboard_decode_vin(post_id) {
 	if (title == "") { nogo = 1; }
 	if (nogo == 0) {
 		if (vin_status == 1) {
-			var loading = "<span style='font-size:10px; font-weight:bold;'><img src='<?php echo $rootpath; ?>wpspin_light.gif'>&nbsp;Loading...</span>";
+			var loading = "<span class='decode_loading'><img src='<?php echo $rootpath; ?>wpspin_light.gif'>&nbsp;Loading...</span>";
 			document.getElementById("decode_results").style.display = 'block';
 			document.getElementById("decode_results").innerHTML = loading;
 			jQuery.ajax({
@@ -175,8 +174,7 @@ function dashboard_decode_vin(post_id) {
 				}
 			})
 		}
-	}
-	else {
+	} else {
 		dashboard_send_alert();
 	}
 	return false;
@@ -194,7 +192,7 @@ function dashboard_send_alert() {
 	setTimeout(delay, 2500);
 }
 function decode_vin(post_id) {
-	var loading = "<span style='font-size:10px; font-weight:bold;'><img src='<?php echo $rootpath; ?>wpspin_light.gif'>&nbsp;Loading...</span>";
+	var loading = "<span class='decode_loading'><img src='<?php echo $rootpath; ?>wpspin_light.gif'>&nbsp;Loading...</span>";
 	document.getElementById("decode_results").style.display = 'block';
 	document.getElementById("decode_results").innerHTML = loading;
 	var vin = document.getElementById("vin").value

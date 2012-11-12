@@ -82,17 +82,17 @@ class car_demon_calculator_Widget extends WP_Widget {
 		<!-- Widget Title: Text Input -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="car_demon_wide" />
 			<label for="<?php echo $this->get_field_id( 'price' ); ?>"><?php _e('Price:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'price' ); ?>" name="<?php echo $this->get_field_name( 'price' ); ?>" value="<?php echo $instance['price']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'price' ); ?>" name="<?php echo $this->get_field_name( 'price' ); ?>" value="<?php echo $instance['price']; ?>" class="car_demon_wide" />
 			<label for="<?php echo $this->get_field_id( 'apr' ); ?>"><?php _e('APR:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'apr' ); ?>" name="<?php echo $this->get_field_name( 'apr' ); ?>" value="<?php echo $instance['apr']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'apr' ); ?>" name="<?php echo $this->get_field_name( 'apr' ); ?>" value="<?php echo $instance['apr']; ?>" class="car_demon_wide" />
 			<label for="<?php echo $this->get_field_id( 'term' ); ?>"><?php _e('Term:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'term' ); ?>" name="<?php echo $this->get_field_name( 'term' ); ?>" value="<?php echo $instance['term']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'term' ); ?>" name="<?php echo $this->get_field_name( 'term' ); ?>" value="<?php echo $instance['term']; ?>" class="car_demon_wide" />
 			<label for="<?php echo $this->get_field_id( 'disclaimer1' ); ?>"><?php _e('Disclaimer #1:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'disclaimer1' ); ?>" name="<?php echo $this->get_field_name( 'disclaimer1' ); ?>" value="<?php echo $instance['disclaimer1']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'disclaimer1' ); ?>" name="<?php echo $this->get_field_name( 'disclaimer1' ); ?>" value="<?php echo $instance['disclaimer1']; ?>" class="car_demon_wide" />
 			<label for="<?php echo $this->get_field_id( 'disclaimer2' ); ?>"><?php _e('Disclaimer #2:', 'car-demon'); ?></label>
-			<br /><textarea style="width:100%; height:100px;" id="<?php echo $this->get_field_id( 'disclaimer2' ); ?>" name="<?php echo $this->get_field_name( 'disclaimer2' ); ?>"><?php echo $instance['disclaimer2']; ?></textarea>
+			<br /><textarea class="calc_disclaimer" id="<?php echo $this->get_field_id( 'disclaimer2' ); ?>" name="<?php echo $this->get_field_name( 'disclaimer2' ); ?>"><?php echo $instance['disclaimer2']; ?></textarea>
 		</p>
 	<?php
 	}

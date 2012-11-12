@@ -80,10 +80,10 @@ class car_demon_compare_Widget extends WP_Widget {
 		<!-- Widget Title: Text Input -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="car_demon_wide" />
 			<br />
 			<label for="<?php echo $this->get_field_id( 'no_vehicles_msg' ); ?>"><?php _e('No Vehicles Msg:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'no_vehicles_msg' ); ?>" name="<?php echo $this->get_field_name( 'no_vehicles_msg' ); ?>" value="<?php echo $instance['no_vehicles_msg']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'no_vehicles_msg' ); ?>" name="<?php echo $this->get_field_name( 'no_vehicles_msg' ); ?>" value="<?php echo $instance['no_vehicles_msg']; ?>" class="car_demon_wide" />
 		</p>
 	<?php
 	}

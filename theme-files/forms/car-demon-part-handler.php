@@ -120,13 +120,13 @@ function send_part_request() {
 	$html = '
 		<table align="center" width="450" border="0"'.$style.'>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('CUSTOMER INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td width="225">'.__('Customer Name', 'car-demon').'</td>
@@ -145,13 +145,13 @@ function send_part_request() {
 			<td>'.$part_location.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('VEHICLE INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td>'.__('Vehicle Year', 'car-demon').'</td>
@@ -166,36 +166,36 @@ function send_part_request() {
 			<td>'.$model.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('PARTS REQUESTED', 'car-demon').'</td>
 		  </tr>
 
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 			'.get_part_list().'
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('COMMENTS', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$part_needed.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('SENDER INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>';
 		$location = $_POST['part_location'];
   		$html = apply_filters('car_demon_mail_hook_subscribe', $html, 'parts', $location, '0');
@@ -235,8 +235,7 @@ function get_part_email($part_location) {
 	if (empty($locations)) {
 		$location_list = 'default'.$location_list;
 		$location_name_list = 'Default'.$location_name_list;
-	}
-	else {
+	} else {
 		$location_list = '#'.$location_list;
 		$location_list = str_replace("#,","", $location_list);
 		$location_list = str_replace("#","", $location_list);

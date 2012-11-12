@@ -126,13 +126,13 @@ function send_service_request() {
 	$html = '
 		<table align="center" width="450" border="0"'.$style.'>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('CUSTOMER INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td width="225">'.__('Customer Name', 'car-demon').'</td>
@@ -151,13 +151,13 @@ function send_service_request() {
 			<td>'.$service_location.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('APPOINTMENT INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td>'.__('Preferred Service Date', 'car-demon').'</td>
@@ -176,13 +176,13 @@ function send_service_request() {
 			<td>'.$transportation.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('VEHICLE INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td>'.__('Vehicle Year', 'car-demon').'</td>
@@ -205,25 +205,25 @@ function send_service_request() {
 			<td>'.$vin.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('SERVICE REQUESTED', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$service_needed.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('SENDER INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>';
 		$location = $_POST['service_location'];
 		$html = apply_filters('car_demon_mail_hook_subscribe', $html, 'service_appointment', $location, '0');
@@ -263,8 +263,7 @@ function get_service_email($service_location) {
 	if (empty($locations)) {
 		$location_list = 'default'.$location_list;
 		$location_name_list = 'Default'.$location_name_list;
-	}
-	else {
+	} else {
 		$location_list = '#'.$location_list;
 		$location_list = str_replace("#,","", $location_list);
 		$location_list = str_replace("#","", $location_list);

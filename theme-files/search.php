@@ -53,8 +53,7 @@ if ($_GET['car']) {
 	if ($max_price > 0) {
 		if ($min_price == 0) { $min_price = 1; }
 		$meta_query = array_merge($meta_query, array(array('key' => '_price_value','value' => array( $min_price, $max_price ), 'compare' => 'BETWEEN', 'type' => 'numeric')));
-	}
-	else {
+	} else {
 		if ($min_price > 0) {
 			$meta_query = array_merge($meta_query, array(array('key' => '_price_value','value' => $min_price, 'compare' => '>', 'type' => 'numeric')));
 		}
@@ -140,8 +139,8 @@ if (isset($_GET['car'])) {
 									echo $nav_list_str;
 								}
 								else { ?>
-								<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'CarDemon' ) ); ?></div>
-								<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'CarDemon' ) ); ?></div>
+								<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'car-demon' ) ); ?></div>
+								<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'car-demon' ) ); ?></div>
 								<?php } ?>
 						</div><!-- #nav-above -->
 					<?php else: ?>
@@ -165,8 +164,8 @@ if (isset($_GET['car'])) {
 			<div id="cd-nav-below" class="navigation inventory_nav_bottom">
 			<?php if(function_exists('wp_pagenavi')) { wp_pagenavi(array( 'query' => $search_query )); } 
 					else { ?>
-						<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'CarDemon' ) ); ?></div>
-						<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'CarDemon' ) ); ?></div>
+						<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'car-demon' ) ); ?></div>
+						<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'car-demon' ) ); ?></div>
 					<?php } ?>
 			</div><!-- #nav-below -->
 	<?php endif;
@@ -176,9 +175,9 @@ else {
 }
 else : ?>
 				<div id="post-0" class="post no-results not-found">
-					<h2 class="entry-title"><?php _e( 'Nothing Found', 'CarDemon' ); ?></h2>
+					<h2 class="entry-title"><?php _e( 'Nothing Found', 'car-demon' ); ?></h2>
 					<div class="entry-content">
-						<p style="color:#FF0000;font-size:16px;font-weight:bold;"><?php _e( 'Sorry, but nothing matched your search criteria. Please try using a broader search selection.', 'CarDemon' ); ?></p>
+						<p class="sorry"><?php _e( 'Sorry, but nothing matched your search criteria. Please try using a broader search selection.', 'car-demon' ); ?></p>
 						<?php echo $searched; ?>
 						<table>
 							<tr>

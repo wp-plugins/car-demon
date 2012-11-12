@@ -73,7 +73,7 @@ $sort_desc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=desc"
 						the_post();
 				?>
 					<h1 class="page-title">
-						<?php _e( 'Search Results:', 'CarDemon' ); ?>
+						<?php _e( 'Search Results:', 'car-demon' ); ?>
 					</h1>
 					<h4 class="results_found"><?php _e('Results Found','car-demon'); echo ': '.$total_results;?></h4>
 				<?php
@@ -88,8 +88,8 @@ $sort_desc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=desc"
 									echo $nav_list_str;
 								}
 								else { ?>
-								<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'CarDemon' ) ); ?></div>
-								<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'CarDemon' ) ); ?></div>
+								<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'car-demon' ) ); ?></div>
+								<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'car-demon' ) ); ?></div>
 								<?php } ?>
 						</div><!-- #nav-above -->
 					<?php else: ?>
@@ -105,8 +105,8 @@ endwhile; // End the loop. Whew. ?>
 						<div id="cd-nav-below" class="navigation inventory_nav_bottom">
 						<?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } 
 								else { ?>
-									<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'CarDemon' ) ); ?></div>
-									<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'CarDemon' ) ); ?></div>
+									<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'car-demon' ) ); ?></div>
+									<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'car-demon' ) ); ?></div>
 								<?php } ?>
 						</div><!-- #nav-below -->
 				<?php endif; ?>

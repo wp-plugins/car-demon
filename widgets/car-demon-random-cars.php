@@ -63,9 +63,9 @@ class car_demon_random_car_Widget extends WP_Widget {
 		<!-- Widget Title: Text Input -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="car_demon_wide" />
 			<label for="<?php echo $this->get_field_id( 'cars' ); ?>"><?php _e('# of Cars:', 'car-demon'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'cars' ); ?>" name="<?php echo $this->get_field_name( 'cars' ); ?>" value="<?php echo $instance['cars']; ?>" style="width:100%;" />
+			<input id="<?php echo $this->get_field_id( 'cars' ); ?>" name="<?php echo $this->get_field_name( 'cars' ); ?>" value="<?php echo $instance['cars']; ?>" class="car_demon_wide" />
 		</p>
 	<?php
 	}

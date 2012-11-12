@@ -64,3 +64,9 @@ ul.tabs {
 	white-space:nowrap;
 	width:320px;
 }
+.decode_disclaimer {
+	max-width:580px;font-size:8px;
+}
+.decode_loading {
+	font-size:10px; font-weight:bold;
+}

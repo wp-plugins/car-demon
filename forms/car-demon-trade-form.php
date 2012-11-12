@@ -46,7 +46,7 @@ function car_demon_trade_form($post_id=0) {
 	$x .= trade_locations_radio();
 	$x = apply_filters('car_demon_mail_hook_form', $x, 'trade_form', 'unk');
 	$x .= '
-		<p class="cd-sb"><input type="button" style="float:right;" name="search_btn" id="sendbutton" class="search_btn" value="'.__("Get Quote!").'" onclick="return car_demon_validate()"></p></form>
+		<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn trade_btn" value="'.__("Get Quote!").'" onclick="return car_demon_validate()"></p></form>
 	';	
 	return $x;
 }
@@ -79,12 +79,12 @@ function get_trade_for_vehicle($stock_num) {
 		<input type="hidden" id="purchase_stock" value="'.$stock_num.'" />
 		<ol class="cd-ol" id="show_voi">
 			<li id="" class="cd-box-title">Vehicle of Interest</li>
-			<li id="not_voi" class="cd-box-title"><input type="checkbox" onclick="show_voi()" style="width:15px;margin-left:15px;" />&nbsp;This is <b>NOT</b> the vehicle I\'m interested in.</li>';
-			$x .= '<li id="" class=""><label for="cd_field_2"><span>Stock #</span></label><label style="width:250px;"><span style="width:250px;">'.$stock_num.'</span></label></li>';
-			$x .= '<li id="" class=""><label for="cd_field_2"><span>VIN</span></label><label style="width:250px;"><span style="width:250px;">'.$vehicle_vin.'</span></label></li>';
+			<li id="not_voi" class="cd-box-title"><input type="checkbox" onclick="show_voi()" />&nbsp;This is <b>NOT</b> the vehicle I\'m interested in.</li>';
+			$x .= '<li id="" class=""><label for="cd_field_2"><span>Stock #</span></label><label class="trade_label"><span class="trade_label">'.$stock_num.'</span></label></li>';
+			$x .= '<li id="" class=""><label for="cd_field_2"><span>VIN</span></label><label class="trade_label"><span class="trade_label">'.$vehicle_vin.'</span></label></li>';
 			$vehicle = $vehicle_condition .' '. $vehicle_year .' '. $vehicle_make .' '. $vehicle_model .' '. $vehicle_body_style;
-			$x .= '<li id="" class=""><label for="cd_field_2"><span>Vehicle</span></label><label style="width:250px;"><span style="width:250px;">'.$vehicle.'</span></label></li>';
-			$x .= '<li id="" class=""><img src="'.$vehicle_photo.'" width="300" class="random_widget_image" style="margin-left:75px;" title="'.$vehicle.'" alt="'.$vehicle.'" /></li>';
+			$x .= '<li id="" class=""><label for="cd_field_2"><span>Vehicle</span></label><label class="trade_label"><span class="trade_label">'.$vehicle.'</span></label></li>';
+			$x .= '<li id="" class=""><img src="'.$vehicle_photo.'" width="300" class="random_widget_image trade_img" title="'.$vehicle.'" alt="'.$vehicle.'" /></li>';
 			$x .= '
 			</li>
 		</ol>
@@ -96,18 +96,17 @@ function select_trade_for_vehicle($hide=0) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('forms/','',$car_demon_pluginpath);
 	if ($hide == 1) {
-		$hidden = " style='display:none;'";
-	}
-	else {
+		$hidden = " trade_hide";
+	} else {
 		$hidden = '';
 	}
 	$x = '
-		<ol class="cd-ol" id="find_voi"'.$hidden.'>
+		<ol class="cd-ol'.$hidden.'" id="find_voi">
 			<li id="voi_title" class="cd-box-title">What Vehicle are you Interested In Purchasing?</li>
 			<li id="" class="cd-box-title"><input onclick="select_voi(\'stock\');" name="pick_voi" id="pick_voi_1" type="radio" value="1" />I know the stock#</li>
-			<li id="select_stock" style="display:none;margin-left:20px;"><span>Stock #</span>&nbsp;<input class="ac_input" type="text" id="select_stock_txt" /></li>
+			<li id="select_stock" class="trade_select_stock"><span>Stock #</span>&nbsp;<input class="ac_input" type="text" id="select_stock_txt" /></li>
 			<li id="" class="cd-box-title"><input name="pick_voi" id="pick_voi_2" onclick="select_voi(\'search\');" type="radio" value="2" />I would like to search for it</li>
-			<li id="select_description" style="display:none;margin-left:20px;"><span>Description</span>&nbsp;<input type="text"  id="select_car_txt" />&nbsp;(enter year, make or model)</li>
+			<li id="select_description" class="trade_select_description"><span>Description</span>&nbsp;<input type="text"  id="select_car_txt" />&nbsp;(enter year, make or model)</li>
 			<li id="" class="cd-box-title"><input name="pick_voi" id="pick_voi_3" onclick="select_voi(\'na\');" type="radio" checked="checked" value="3" />I haven\'t made up my mind.</li>
 			<li id="li-7items" class="cd-box-group">';
 	$x .= '
@@ -139,8 +138,7 @@ function trade_locations_radio() {
 		$location_list = 'default'.$location_list;
 		$location_name_list = 'Default'.$location_name_list;
 		$cnt = 1;
-	}
-	else {
+	} else {
 		$location_list = '@'.$location_list;
 		$location_list = str_replace("@,","", $location_list);
 		$location_list = str_replace("@","", $location_list);
@@ -153,12 +151,11 @@ function trade_locations_radio() {
 	$x = 0;
 	if (empty($_GET['stock_num'])) {
 		$hidden = "";	
-	}
-	else {
-		$hidden = " style='display:none;'";
+	} else {
+		$hidden = " trade_hide";
 	}
 	$html = '
-		<fieldset class="cd-fs2" id="trade_locations"'.$hidden.'>
+		<fieldset class="cd-fs2'.$hidden.'" id="trade_locations">
 		<legend>Trade Location</legend>
 		<ol class="cd-ol">
 			<li id="select_location" class="cd-box-title">Select your preferred Trade Location</li>
@@ -238,7 +235,7 @@ function car_demon_trade_options() {
 				<br>
 				<input type="checkbox" id="Options-37" name="Options[]" value="Wheel Covers" class="cd-box"><label for="Options-37" class="cd-group-after"><span>Wheel Covers</span></label>
 			</li>
-		</ol><span class="reqtxt" style="margin-left:10px;">(options not required, but help provide an accurate quote)</span>
+		</ol><span class="reqtxt trade_reqtxt">(options not required, but help provide an accurate quote)</span>
 		</fieldset>';
 	return $x;
 }

@@ -89,4 +89,17 @@ ol.cd-ol li {
 	text-align: left;
 	line-height: 1.3em;
 }
-
+.contact_needed {
+	margin-left:10px;
+	width:425px;
+	height:100px;
+}
+.reqtxt_contact_us {
+	margin-left:10px;
+}
+.contact_us_btn {
+	float:right;
+}
+.contact_us_send_to {
+	margin-left:10px;
+}

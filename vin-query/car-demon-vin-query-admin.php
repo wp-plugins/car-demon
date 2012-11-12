@@ -74,8 +74,7 @@ function decode_sales_metabox($post) {
 	if ($status == 'yes') {
 		$yes = ' selected';
 		$no = '';
-	}
-	else {
+	} else {
 		$no = ' selected';
 		$yes = '';
 	}
@@ -103,8 +102,7 @@ function does_vin_exist($vin) {
 		foreach ($cars as $car) {
 			$car_id = $car->post_id;
 		}
-	}
-	else {
+	} else {
 		$car_id = 0;
 	}
 	return $car_id;
@@ -150,8 +148,7 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 				$decode_btn = '<input onclick="decode_vin('. $post_id .')" type="button" name="decode_vin_'.$post_id.'" id="decode_vin_'.$post_id.'" value="Decode Vin" class="btn" />';
 			}
 		}
-	}
-	else {
+	} else {
 		if (isset($car_demon_options['vinquery_id'])) {
 			if (!empty($car_demon_options['vinquery_id'])) {
 				$decode_results = '<div id="decode_results">VIN HAS BEEN DECODED.</div>';

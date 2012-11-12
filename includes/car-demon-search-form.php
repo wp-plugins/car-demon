@@ -85,16 +85,15 @@ function car_demon_search_form() {
 }
 
 function car_demon_simple_search($size='l') {
-	$car_demon_auto_credit_themepath = str_replace(str_replace('\\', '/', ABSPATH), $url = get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	$car_demon_auto_credit_themepath = str_replace('includes','',$car_demon_auto_credit_themepath);
-	$car_demon_themepath = str_replace('car-demon-auto-credit','car-demon', $car_demon_auto_credit_themepath);
+	$car_demon_auto_credit_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), $url = get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_auto_credit_pluginpath = str_replace('includes','',$car_demon_auto_credit_pluginpath);
+	$car_demon_pluginpath = str_replace('car-demon-auto-credit','car-demon', $car_demon_auto_credit_pluginpath);
 	car_demon_search_cars_scripts();
 	$url = get_option('siteurl');
 	if ($size == 's') {
 		$form_size = "search_car_box_frame_narrow";
 		$logo = "search_header_logo_simple";
-	}
-	else {
+	} else {
 		$form_size = "search_car_box_frame_wide";
 		$logo = "search_header_logo_simple_wide";
 	}
@@ -104,7 +103,7 @@ function car_demon_simple_search($size='l') {
 <form action="<?php echo $url ?>" method="get" />
 <input type="hidden" name="s" value="cars" />
 <input type="hidden" name="car" value="1" />
-		<div id="car-demon-searchr2c1" class="<?php echo $logo; ?>"><img src="<?php echo $car_demon_themepath; ?>theme-files/images/search_cars.png" alt="Search Cars" title="Search Cars" />&nbsp;<?php _e('QUICK SEARCH','car-demon'); ?></div>
+		<div id="car-demon-searchr2c1" class="<?php echo $logo; ?>"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/search_cars.png" alt="Search Cars" title="Search Cars" />&nbsp;<?php _e('QUICK SEARCH','car-demon'); ?></div>
 		<div class="search_left">
 			<div id="car-demon-searchr3c1" class="search_manufacturer_title2"><?php _e('Year','car-demon'); ?>:</div>
 			<div><?php echo car_demon_search_years(); ?></div>

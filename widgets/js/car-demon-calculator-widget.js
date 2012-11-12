@@ -3,8 +3,7 @@ function returnPayment() {
 	var Principal = document.calc.pv.value
 	if (document.calc.rate.value==0) {
 		var Rate = 0.000000001
-	}
-	else {
+	} else {
 		var Rate = (document.calc.rate.value/100)/12
 	}
 	var Rate = (document.calc.rate.value/100)/12

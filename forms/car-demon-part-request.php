@@ -41,7 +41,7 @@ function car_demon_part_request() {
 			</ol>
 			</fieldset>';
 			$x = apply_filters('car_demon_mail_hook_form', $x, 'parts', 'unk');
-			$x .= '<p class="cd-sb"><input type="button" style="float:right;" name="search_btn" id="sendbutton" class="search_btn" value="Request Quote" onclick="return car_demon_validate()"></p></form>
+			$x .= '<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn parts_btn" value="Request Quote" onclick="return car_demon_validate()"></p></form>
 		';
 	return $x;
 }
@@ -87,8 +87,7 @@ function part_locations_radio() {
 		$location_list = 'default'.$location_list;
 		$location_name_list = 'Default'.$location_name_list;
 		$cnt = 1;
-	}
-	else {
+	} else {
 		$location_list = '@'.$location_list;
 		$location_list = str_replace("@,","", $location_list);
 		$location_list = str_replace("@","", $location_list);

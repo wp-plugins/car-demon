@@ -38,15 +38,13 @@ function car_demon_validate() {
 	if (contact_form.cd_name.value == "") {
 		var msg = "You must enter your name.<br />";
 		cd_not_valid("cd_name");
-	}
-	else {
+	} else {
 		var name_valid = 1;
 	}
 	if (contact_form.cd_name.value == "Your Name") {
 		var msg = "You must enter your name.<br />";
 		cd_not_valid("cd_name");
-	}
-	else {
+	} else {
 		if (name_valid == 1) {
 			cd_valid("cd_name");
 		}
@@ -54,8 +52,7 @@ function car_demon_validate() {
 	if (contact_form.cd_phone.value == "") {
 		var msg = msg + "You must enter a valid Phone Number.<br />";
 		cd_not_valid("cd_phone");
-	}
-	else {
+	} else {
 		if (contact_form.cd_phone.value.length != 14) {
 			var msg = msg + "The phone number you entered is not valid.<br />";
 			cd_not_valid("cd_phone");			
@@ -67,23 +64,20 @@ function car_demon_validate() {
 	var e_msg = validateEmail(contact_form.cd_email);
 	if (e_msg == "") {
 		cd_valid("cd_email");
-	}
-	else {
+	} else {
 		var msg = msg + e_msg + "<br />";
 	}
 	if (contact_form.contact_needed.value == "") {
 		var msg = msg + "You did not enter a message to send.<br />";
 		cd_not_valid("contact_needed");	
-	}
-	else {
+	} else {
 		document.getElementById("contact_needed").style.background = "";
 	}
 	if (msg != "") {
 		document.getElementById("contact_msg").style.display = "block";
 		document.getElementById("contact_msg").innerHTML = msg;
 		javascript:scroll(0,0);
-	}
-	else {
+	} else {
 		var action = "";
 		var your_name = document.getElementById("cd_name").value;
 		var phone = document.getElementById("cd_phone").value;

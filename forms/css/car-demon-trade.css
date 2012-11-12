@@ -90,3 +90,30 @@ label.cd-group-after span {
 	width: 92px;
 	display: block;
 }
+.trade_btn {
+	float:right;
+}
+.trade_checkbox {
+	width:15px;
+	margin-left:15px;
+}
+.trade_label {
+	width:250px;
+}
+.trade_img {
+	margin-left:75px;
+}
+.trade_hide {
+	display: none;
+}
+.trade_select_stock {
+	display:none;
+	margin-left:20px;
+}
+.trade_select_description {
+	display:none;
+	margin-left:20px;
+}
+.trade_reqtxt {
+	margin-left:10px;
+}

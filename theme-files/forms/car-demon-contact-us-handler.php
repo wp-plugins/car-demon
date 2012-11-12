@@ -22,8 +22,7 @@ if (isset($_GET['send_contact'])) {
 	if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
 		//Form key is invalid, show an error  
 		echo 'Form key error! Submission could not be validated.';  
-	}
-	else {
+	} else {
 		$request_body = send_contact_request();
 		$contact_email = $_POST['send_to'];
 		$admin_email = get_bloginfo('admin_email');
@@ -96,13 +95,13 @@ function send_contact_request() {
 	$html = '
 		<table align="center" width="450" border="0"'.$style.'>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('CONTACT INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td width="225">'.__('Customer Name', 'car-demon').'</td>
@@ -121,25 +120,25 @@ function send_contact_request() {
 			<td>'.$send_to_name.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('COMMENT OR QUESTION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$contact_needed.'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
 		  <tr>
 			<td colspan="2" align="center">'.__('SENDER INFORMATION', 'car-demon').'</td>
 		  </tr>
 		  <tr>
-			<td colspan="2"><hr style="margin:3px;" /></td>
+			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>';
 		$html = apply_filters('car_demon_mail_hook_subscribe', $html, 'contact_us', 'unk', '0');
 		  $html .= '

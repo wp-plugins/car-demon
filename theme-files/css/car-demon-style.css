@@ -10,6 +10,14 @@
 
 /* Styles
 -------------------------------------------------------------- */
+.sorry {
+	color:#FF0000;
+	font-size:16px;
+	font-weight:bold;
+}
+.hr_margin {
+	margin: 3px;
+}
 .vert{
 	width:150px;
 	height:525px;
@@ -587,6 +595,63 @@ Inventory Lists
 .results_found {
 	margin:0px;
 }
-._car_sold {
+.car_sold {
 	margin-top:15px;font-size:42px;color:#FF0000;font-weight:bold;text-align:center;
+}
+.data_disclaimer {
+	max-width:580px;
+	font-size:8px;
+}
+/*
+Staff Pages
+*/
+.photo {
+	width: 100px;
+	margin: 2px;
+}
+.staff_card {
+	border: solid;
+	border-width: 3px;
+	border-left-width: 1px;
+	border-top-width: 1px;
+	width: 285px;
+	padding: 2px;
+	margin: 3px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	min-height: 110px;
+	font-size: 12px;
+	float:left;
+	min-height:205px;
+}
+.staff_card img {
+	float:left;
+	margin-right:4px;
+	width: 200px;
+}
+.staff_mobile_description {
+	display:none;
+}
+.staff_box {
+	width:100%;
+}
+.staff_details {
+	float:left;
+	min-width:300px;
+}
+.staff_desktop_img {
+	float:left;
+	margin-right:4px;
+	width:200px;
+}
+.staff_mobile_img {
+	float:left;
+	margin-right:4px;
+	width:100px;
+}
+.staff_more {
+	cursor:pointer;
+}
+.car_demon_wide {
+	width:100%;
 }

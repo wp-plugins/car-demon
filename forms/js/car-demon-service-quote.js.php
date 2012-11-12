@@ -39,15 +39,13 @@ function car_demon_validate() {
 	if (service_form.cd_name.value == "") {
 		var msg = "You must enter your name.<br />";
 		cd_not_valid("cd_name");
-	}
-	else {
+	} else {
 		var name_valid = 1;
 	}
 	if (service_form.cd_name.value == "Your Name") {
 		var msg = "You must enter your name.<br />";
 		cd_not_valid("cd_name");
-	}
-	else {
+	} else {
 		if (name_valid == 1) {
 			cd_valid("cd_name");
 		}
@@ -55,8 +53,7 @@ function car_demon_validate() {
 	if (service_form.cd_phone.value == "") {
 		var msg = msg + "You must enter a valid Phone Number.<br />";
 		cd_not_valid("cd_phone");
-	}
-	else {
+	} else {
 		if (service_form.cd_phone.value.length != 14) {
 			var msg = msg + "The phone number you entered is not valid.<br />";
 			cd_not_valid("cd_phone");			
@@ -68,8 +65,7 @@ function car_demon_validate() {
 	var e_msg = validateEmail(service_form.cd_email);
 	if (e_msg == "") {
 		cd_valid("cd_email");
-	}
-	else {
+	} else {
 		var msg = msg + e_msg + "<br />";
 	}			
 	var radios = document.getElementsByName("service_location");
@@ -82,23 +78,20 @@ function car_demon_validate() {
 	if (location_value == "") {
 		var msg = msg + "You did not select a service location.<br />";
 		cd_not_valid("select_location");
-	}
-	else {
+	} else {
 		document.getElementById("select_location").style.background = "";
 	}
 	if (service_form.service_needed.value == "") {
 		var msg = msg + "You did not tell us what kind of service you need.<br />";
 		cd_not_valid("service_needed");			
-	}
-	else {
+	} else {
 		cd_valid("service_needed");
 	}
 	if (msg != "") {
 		document.getElementById("service_msg").style.display = "block";
 		document.getElementById("service_msg").innerHTML = msg;
 		javascript:scroll(0,0);
-	}
-	else {
+	} else {
 		var action = "";
 		var your_name = document.getElementById("cd_name").value;
 		var phone = document.getElementById("cd_phone").value;

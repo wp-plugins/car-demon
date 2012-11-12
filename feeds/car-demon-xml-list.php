@@ -48,9 +48,9 @@ function build_xml() {
 		$car_xml .= rwh_xml(get_post_meta($post_id, "_warranty_value", true), 'warranty');
 		$car_pic = wp_get_attachment_thumb_url( get_my_post_thumbnail_id( $post_id ) );
 		if (empty($car_pic)) {
-			$car_demon_themepath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-			$car_demon_themepath = str_replace('feeds','',$car_demon_themepath);
-			$car_pic = $car_demon_themepath.'no_photo.gif';
+			$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+			$car_demon_pluginpath = str_replace('feeds','',$car_demon_pluginpath);
+			$car_pic = $car_demon_pluginpath.'no_photo.gif';
 		}
 		$car_xml .= '<photo>'.$car_pic.'</photo>';
 		$car_xml .= '</vehicle>';

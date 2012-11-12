@@ -20,94 +20,8 @@ function be_hidden_meta_boxes( $hidden, $screen ) {
 }
 
 function car_demon_admin_car_scripts() {
-	$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	$pluginpath = str_replace('admin', '', $pluginpath);
-	$pluginpath .= 'includes';
-	$js = '<script>
-	function update_car(post_id, this_fld, fld) {
-		var new_value = this_fld.value;
-		jQuery.ajax({
-			type: \'POST\',
-			data: {\'post_id\': post_id, \'val\': new_value, \'fld\': fld},
-			url: "'. $pluginpath .'/car-demon-handler.php?update_car=1",
-			timeout: 2000,
-			error: function() {},
-			dataType: "html",
-			success: function(html){
-			var new_body = html;
-				this_fld.style.background = "#99CC99";
-				var delay = function() { this_fld.style.background = "#FFFFFF" };
-				setTimeout(delay, 1000);
-				var msrp = document.getElementById("msrp_"+post_id).value;
-				var rebate = document.getElementById("rebate_"+post_id).value;
-				var discount = document.getElementById("discount_"+post_id).value;				
-				var price = document.getElementById("price_"+post_id).value;
-				if (msrp == "") { msrp = 0; }
-				if (rebate == "") { rebate = 0; }
-				if (discount == "") { discount = 0; }
-				if (price == "") { price = 0; }
-				msrp = parseInt(msrp);
-				rebate = parseInt(rebate);
-				discount = parseInt(discount);
-				price = parseInt(price);
-				var calc_price = msrp - rebate - discount;
-				document.getElementById("calc_price_"+post_id).innerHTML = calc_price
-				document.getElementById("calc_discounts_"+post_id).innerHTML = rebate + discount;
-				if (price != calc_price) {
-					if (msrp != 0) {
-						document.getElementById("price_"+post_id).style.background = "#FFB3B3";
-						document.getElementById("calc_error_"+post_id).innerHTML = "Calc Error: " + (calc_price - price) + "<br />";
-					}
-					else {
-						document.getElementById("price_"+post_id).style.background = "#FFFFFF";
-						document.getElementById("calc_error_"+post_id).innerHTML = "";
-					}
-				}
-				else {
-					document.getElementById("calc_error_"+post_id).innerHTML = "";
-					document.getElementById("price_"+post_id).style.background = "#FFFFFF";
-				}
-			}
-		})
-		return false;
-	}
-	function update_car_sold(post_id, this_fld, fld) {
-		var new_value = this_fld.options[this_fld.selectedIndex].value;
-		jQuery.ajax({
-			type: \'POST\',
-			data: {\'post_id\': post_id, \'val\': new_value, \'fld\': fld},
-			url: "'. $pluginpath .'/car-demon-handler.php?update_car=1",
-			timeout: 2000,
-			error: function() {},
-			dataType: "html",
-			success: function(html){
-			var new_body = html;
-				this_fld.style.background = "#99CC99";
-				var delay = function() { this_fld.style.background = "#FFFFFF" };
-				setTimeout(delay, 1000);
-			}
-		})
-		return false;
-	}
-	function show_custom_slide(slide_num) {
-		document.getElementById("custom_slide_"+slide_num).style.display = "inline";
-		document.getElementById("show_slide_"+slide_num).style.display = "none";
-		document.getElementById("hide_slide_"+slide_num).style.display = "inline";
-	}
-	function hide_custom_slide(slide_num) {
-		document.getElementById("custom_slide_"+slide_num).style.display = "none";
-		document.getElementById("show_slide_"+slide_num).style.display = "inline";
-		document.getElementById("hide_slide_"+slide_num).style.display = "none";
-	}
-	function clear_custom_slide(slide_num) {
-		document.getElementById("custom_slide"+slide_num+"_title").value = "";
-		document.getElementById("custom_slide"+slide_num+"_img").value = "";
-		document.getElementById("custom_slide"+slide_num+"_link").value = "";
-		document.getElementById("custom_slide"+slide_num+"_text").value = "";
-	}
-	</script>
-	';
-	echo $js;
+	wp_enqueue_script('car-demon-admin-js', WP_CONTENT_URL . '/plugins/car-demon/admin/js/car-demon-admin.js.php');
+	wp_enqueue_style('car-demon-admin-css', WP_CONTENT_URL . '/plugins/car-demon/admin/css/car-demon-admin.css');
 }
 
 function car_demon_plugin_options_do_page() {
@@ -122,44 +36,6 @@ function admin_contact_forms() {
 	if (isset($_POST['update_location_options'])) {
 		update_car_location_options();
 	}
-	?>
-	<style>
-	.cd_admin_form_label {
-		font-size:14px;
-		padding-right:20px;
-		width:160px;
-		display: inline;
-		float:left;
-		font-weight: bold;
-	}
-	.cd_admin_form input {
-		width: 400px;
-	}
-	.cd_admin_form {
-		width: 600px;
-		background-color: #FFFFFF;
-		-webkit-border-radius: 15px;
-		-moz-border-radius: 15px;
-		border-radius: 15px;
-		padding-top: 5px;
-		padding-bottom: 15px;
-		padding-right: 5px;
-		padding-left: 5px;
-		border: solid;
-		border-width: 2px;
-		border-color: #999999;
-		margin-bottom: 10px;
-		margin-top: 20px;
-		-moz-box-shadow: 2px 2px 3px #333;
-		-webkit-box-shadow: 2px 2px 3px #333;
-		box-shadow: 2px 2px 3px #333333;
-		/* For IE 8 */
-		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
-		/* For IE 5.5 - 7 */
-		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
-	}
-	</style>
-	<?php
 	$args = array(
 		'style'              => 'none',
 		'show_count'         => 0,
@@ -201,7 +77,7 @@ function admin_contact_forms() {
 		<?php
 			$current_val = get_option($current_location.'_new_mobile_provider');
 			echo select_cell_provider($current_location.'_new_mobile_provider', $current_val);
-		?> <span style="font-size:10px;">- blank disables SMS for new.</span>
+		?> <span class="small_text">- blank disables SMS for new.</span>
 		<br />
 		<span class="cd_admin_form_label">New Sales Email</span>
 		<input type="text" value="<?php echo get_option($current_location.'_new_sales_email') ?>" name="<?php echo $current_location; ?>_new_sales_email" id="<?php echo $current_location; ?>_new_sales_email" />
@@ -219,7 +95,7 @@ function admin_contact_forms() {
 		<?php
 			$current_val = get_option($current_location.'_used_mobile_provider');
 			echo select_cell_provider($current_location.'_used_mobile_provider', $current_val);
-		?> <span style="font-size:10px;">- blank disables SMS for used.</span>
+		?> <span class="small_text">- blank disables SMS for used.</span>
 		<br />
 		<span class="cd_admin_form_label">Used Sales Email</span>
 		<input type="text" value="<?php echo get_option($current_location.'_used_sales_email') ?>" name="<?php echo $current_location; ?>_used_sales_email" id="<?php echo $current_location; ?>_used_sales_email" />
@@ -231,7 +107,7 @@ function admin_contact_forms() {
 			}
 		?>
 		<span class="cd_admin_form_label">Default Description</span>
-		<textarea name="<?php echo $current_location; ?>_default_description" id="<?php echo $current_location; ?>_default_description" style="width:580px;height:100px;"><?php echo $default_description; ?></textarea>
+		<textarea name="<?php echo $current_location; ?>_default_description" id="<?php echo $current_location; ?>_default_description" class="admin_default_description"><?php echo $default_description; ?></textarea>
 		<br />
 		<span class="cd_admin_form_label">Service Name</span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_service_name')) ?>" name="<?php echo $current_location; ?>_service_name" id="<?php echo $current_location; ?>_service_name" />
@@ -269,7 +145,7 @@ function admin_contact_forms() {
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
 		</select>
-		&nbsp;Width: <input name="<?php echo $current_location; ?>_finance_width" id="<?php echo $current_location; ?>_finance_width" type="text" style="width:50px;" value="<?php echo get_option($current_location.'_finance_width') ?>" />&nbsp;Height: <input name="<?php echo $current_location; ?>_finance_height" id="<?php echo $current_location; ?>_finance_height" type="text" style="width:50px;" value="<?php echo get_option($current_location.'_finance_height') ?>" /> (800px X 600px optimal)
+		&nbsp;Width: <input name="<?php echo $current_location; ?>_finance_width" id="<?php echo $current_location; ?>_finance_width" type="text" class="admin_finance_size" value="<?php echo get_option($current_location.'_finance_width') ?>" />&nbsp;Height: <input name="<?php echo $current_location; ?>_finance_height" id="<?php echo $current_location; ?>_finance_height" type="text" class="admin_finance_size" value="<?php echo get_option($current_location.'_finance_height') ?>" /> (800px X 600px optimal)
 		<br />
 		<?php
 			$finance_disclaimer =  wp_kses_post(get_option($current_location.'_finance_disclaimer'));
@@ -282,10 +158,10 @@ function admin_contact_forms() {
 			}
 		?>
 		<span class="cd_admin_form_label">*Finance Disclaimer</span>
-		<textarea name="<?php echo $current_location; ?>_finance_disclaimer" id="<?php echo $current_location; ?>_finance_disclaimer" style="width:580px;height:100px;"><?php echo $finance_disclaimer; ?></textarea>
+		<textarea name="<?php echo $current_location; ?>_finance_disclaimer" id="<?php echo $current_location; ?>_finance_disclaimer" class="admin_default_description"><?php echo $finance_disclaimer; ?></textarea>
 		<br />
 		<span class="cd_admin_form_label">*Finance Description</span>
-		<textarea name="<?php echo $current_location; ?>_finance_description" id="<?php echo $current_location; ?>_finance_description" style="width:580px;height:100px;"><?php echo $finance_description; ?></textarea>
+		<textarea name="<?php echo $current_location; ?>_finance_description" id="<?php echo $current_location; ?>_finance_description" class="admin_default_description"><?php echo $finance_description; ?></textarea>
 		<br />
 		<span class="cd_admin_form_label">Trade Name</span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_trade_name')) ?>" name="<?php echo $current_location; ?>_trade_name" id="<?php echo $current_location; ?>_trade_name" />
@@ -305,7 +181,7 @@ function admin_contact_forms() {
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
 		</select>&nbsp;If No use: 
-			<input type="text" value="<?php echo strip_tags(get_option($current_location.'_no_new_price')) ?>" name="<?php echo $current_location; ?>_no_new_price" id="<?php echo $current_location; ?>_no_new_price" style="width:282px;" />
+			<input type="text" value="<?php echo strip_tags(get_option($current_location.'_no_new_price')) ?>" name="<?php echo $current_location; ?>_no_new_price" id="<?php echo $current_location; ?>_no_new_price" class="admin_no_price" />
 		<br />
 		<span class="cd_admin_form_label">Show Prices on Used</span>
 		<select name="<?php echo $current_location; ?>_show_used_prices" id="<?php echo $current_location; ?>_show_used_prices">
@@ -313,7 +189,7 @@ function admin_contact_forms() {
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
 		</select>&nbsp;If No use: 
-			<input type="text" value="<?php echo strip_tags(get_option($current_location.'_no_used_price')) ?>" name="<?php echo $current_location; ?>_no_used_price" id="<?php echo $current_location; ?>_no_used_price" style="width:282px;" />
+			<input type="text" value="<?php echo strip_tags(get_option($current_location.'_no_used_price')) ?>" name="<?php echo $current_location; ?>_no_used_price" id="<?php echo $current_location; ?>_no_used_price" class="admin_no_price" />
 		<br />
 		<span class="cd_admin_form_label">New Large Photo Url</span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_new_large_photo_url')) ?>" name="<?php echo $current_location; ?>_new_large_photo_url" id="<?php echo $current_location; ?>_new_large_photo_url" />
@@ -329,9 +205,9 @@ function admin_contact_forms() {
 		<?php
 			$car_demon_settings_hook = apply_filters('car_demon_admin_hook', $holder, $current_location);
 		?>
-		<br /><span style="font-weight:bold;color:#FF0000;">* The Default disclaimer and description are provided as examples ONLY and may or may not be legally suitable for your state. Please have a lawyer review your disclaimer and description before using.</span>
+		<br /><span class="admin_disclaimer_notice">* The Default disclaimer and description are provided as examples ONLY and may or may not be legally suitable for your state. Please have a lawyer review your disclaimer and description before using.</span>
 		<br />
-		<input type="submit" name="sbtSendIt" value="Update Options" style="margin-left: 300px; margin-top: 15px; width: 100px;" />
+		<input type="submit" name="sbtSendIt" value="Update Options" class="admin_update_options_btn" />
 		</form>
 		<?php
 		$x = $x + 1;
@@ -418,6 +294,7 @@ function car_demon_options() {
 	$car_demon_pluginpath = str_replace('admin/','',$car_demon_pluginpath);
 	$default = array();
 	$default['currency_symbol'] = '$';
+	$default['currency_symbol_after'] = '';
 	$default['vinquery_id'] = '';
 	$default['vinquery_type'] = '1';
 	$default['use_about'] = 'Yes';
@@ -433,6 +310,7 @@ function car_demon_options() {
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
+	if (empty($car_demon_options['currency_symbol_after'])) {$car_demon_options['currency_symbol_after'] = $default['currency_symbol_after'];} else { $car_demon_options['currency_symbol'] = ""; }
 	if (empty($car_demon_options['vinquery_id'])) {$car_demon_options['vinquery_id'] = $default['vinquery_id'];}
 	if (empty($car_demon_options['vinquery_type'])) {$car_demon_options['vinquery_type'] = $default['vinquery_type'];}
 	if (empty($car_demon_options['use_about'])) {$car_demon_options['use_about'] = $default['use_about'];}
@@ -452,8 +330,7 @@ function car_demon_settings_options_do_page() {
 	echo '<div class="wrap"><div id="icon-tools" class="icon32"></div><h1>'.__('Car Demon Settings', 'car-demon').'</h1>';
 	if (isset($_POST['reset_car_demon'])) {
 		reset_car_demon();
-	}
-	else {
+	} else {
 		if(isset($_POST['update_car_demon']) == 1) {
 			update_car_demon_settings();
 		}
@@ -470,6 +347,8 @@ function car_demon_settings_options_do_page() {
 			</select><br />';
 		echo '<br />*'.__('Currency Symbol', 'car-demon').':<br />';
 		echo '<input type="text" name="currency_symbol" value="'.$car_demon_options['currency_symbol'].'" /><br />';
+		echo '<br />*'.__('Currency Symbol After Price', 'car-demon').':<br />';
+		echo '<input type="text" name="currency_symbol_after" value="'.$car_demon_options['currency_symbol_after'].'" /><br />';
 		echo '<br />*'.__('VinQuery.com Access Code', 'car-demon').':<br />';
 		echo '<input type="text" name="vinquery_id" value="'.$car_demon_options['vinquery_id'].'" />';
 		echo '*(optional)<br />';
@@ -556,7 +435,7 @@ function car_demon_settings_options_do_page() {
 	echo '</form>';
 	echo '<hr />';
 	echo '<h2>Car Demon Pages</h2>';
-	echo '<div style="width:500px;">';
+	echo '<div class="admin_pages_div">';
 		echo '<p>Car Demon comes with support for adding several custom forms and pages. You can quickly and easily add these pages by clicking the buttons below or you can create your own pages and simply paste the shortcode you want to use into the content of the page.</p>';
 	echo '</div>';
 	if (isset($_POST['add_page'])) {
@@ -566,45 +445,45 @@ function car_demon_settings_options_do_page() {
 		$link = get_permalink($new_page_id);
 		echo '<a href="'.$link.'" target="_blank">New '.$title.' Page</a>';
 	}
-	echo '<div style="float:left;width:300px;">';
+	echo '<div class="admin_add_pages_div">';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="contact" />';
 			echo '<input type="hidden" name="title" value="Contact Us" />';
-			echo '<input type="submit" style="width:200px;cursor:pointer;" name="add_page" value="Add Contact Us Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Contact Us Page" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="service_appointment" />';
 			echo '<input type="hidden" name="title" value="Service Appointment" />';
-			echo '<input type="submit" style="width:200px;cursor:pointer;" name="add_page" value="Add Service Appointment Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Service Appointment Page" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="service_quote" />';
 			echo '<input type="hidden" name="title" value="Service Quote" />';
-			echo '<input type="submit" style="width:200px;cursor:pointer;" name="add_page" value="Add Service Quote Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Service Quote Page" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="parts" />';
 			echo '<input type="hidden" name="title" value="Parts Quote" />';
-			echo '<input type="submit" style="width:200px;cursor:pointer;" name="add_page" value="Add Parts Quote Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Parts Quote Page" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="trade" />';
 			echo '<input type="hidden" name="title" value="Trade In" />';
-			echo '<input type="submit" style="width:200px;cursor:pointer;" name="add_page" value="Add Trade In Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Trade In Page" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="finance" />';
 			echo '<input type="hidden" name="title" value="Finance Application" />';
-			echo '<input type="submit" style="width:200px;cursor:pointer;" name="add_page" value="Add Finanace Application Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Finanace Application Page" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="staff" />';
 			echo '<input type="hidden" name="title" value="Staff Page" />';
-			echo '<input type="submit" style="width:200px;cursor:pointer;" name="add_page" value="Add Staff Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Staff Page" />';
 		echo '</form>';
 	echo '</div>';
-	echo '<div style="float:left;width:300px;margin-left:10px;">';
-		echo '<h3 style="margin-top:0px;">Shortcodes</h3>';
+	echo '<div class="admin_add_pages_shortcodes">';
+		echo '<h3 class="admin_add_pages_shortcodes">Shortcodes</h3>';
 		echo '[-contact_us-]<br />';
 		echo '[-service_form-]<br />';
 		echo '[-service_quote-]<br />';
@@ -618,6 +497,7 @@ function car_demon_settings_options_do_page() {
 function update_car_demon_settings() {
 	$new = array();
 	if (isset($_POST['currency_symbol'])) $new['currency_symbol'] = $_POST['currency_symbol'];
+	if (isset($_POST['currency_symbol_after'])) $new['currency_symbol_after'] = $_POST['currency_symbol_after'];
 	if (isset($_POST['vinquery_id'])) $new['vinquery_id'] = $_POST['vinquery_id'];
 	if (isset($_POST['vinquery_type'])) $new['vinquery_type'] = $_POST['vinquery_type'];
 	if (isset($_POST['use_about'])) $new['use_about'] = $_POST['use_about'];
@@ -637,12 +517,12 @@ function update_car_demon_settings() {
 	if (isset($_POST['mobile_logo'])) $new['mobile_logo'] = $_POST['mobile_logo'];
 	if (isset($_POST['mobile_header'])) $new['mobile_header'] = $_POST['mobile_header'];
 	update_option( 'car_demon_options', $new );
-	echo '<h3 style="color:#FF0000;">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
+	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }
 
 function reset_car_demon() {
 	delete_option('car_demon_options');
-	echo '<h3 style="color:#FF0000;">'.__('SETTINGS HAVE BEEN RESET', 'car-demon').'</h3>';
+	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN RESET', 'car-demon').'</h3>';
 }
 
 function get_default_finance_description() {

@@ -11,9 +11,9 @@ get_header(); ?>
 	<div id="demon-container">
 		<div id="demon-content" role="main">
 			<div id="post-0" class="post error404 not-found">
-				<h1 class="entry-title"><?php _e( 'Not Found', 'CarDemon' ); ?></h1>
+				<h1 class="entry-title"><?php _e( 'Not Found', 'car-demon' ); ?></h1>
 				<div class="entry-content">
-				<p style="color:#FF0000;font-size:16px;font-weight:bold;"><?php _e( 'Sorry, but nothing matched your search criteria. Please try using a broader search selection.', 'CarDemon' ); ?></p>
+				<p class="sorry"><?php _e( 'Sorry, but nothing matched your search criteria. Please try using a broader search selection.', 'car-demon' ); ?></p>
 						<?php echo $searched; ?>
 						<table>
 							<tr>

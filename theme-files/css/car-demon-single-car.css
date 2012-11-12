@@ -93,7 +93,10 @@ ul.tabs li a.active {
     background-color:#ffffff;  
     padding:10px;  
     border:1px solid #464c54;  
-}  
+}
+.car_features_content_about {
+	display:none;
+}
 #content_2, #content_3, #content_4, #content_5, #content_6 { display:none; }
 ul.tabs {  
     margin:0px; padding:0px;  
@@ -194,6 +197,9 @@ ul.tabs {
 }
 .main_email_friend_div {
 	background:#DDDDDD; width:625px; height:550px; padding:5px;
+}
+.email_friend_div {
+	display: none;
 }
 .contact-appointment {
 	margin: 10px auto 0 auto;

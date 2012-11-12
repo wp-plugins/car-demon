@@ -132,8 +132,7 @@ function car_demon_decode_new_vin($vin) {
 		echo '<p><strong>'.$title.'</strong></p>';
 		echo '<p><a href="'. get_permalink( $does_vin_exist ) .'" target="new_win">View Vehicle on site</a></p>';
 		echo '<p><a href="'. $rootpath .'wp-admin/post.php?post='.$does_vin_exist.'&action=edit&message=1">Edit This Vehicle</a></p>';
-	}
-	else {
+	} else {
 		echo add_vehicle_mini_form($vin);
 	}
 }

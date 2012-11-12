@@ -1,33 +1,10 @@
 <?php
 function car_demon_staff_page() {
-	$x = '<style>
-		.photo {
-			width: 100px;
-			margin: 2px;
-		}
-		.staff_card {
-			border: solid;
-			border-width: 3px;
-			border-left-width: 1px;
-			border-top-width: 1px;
-			width: 285px;
-			padding: 2px;
-			margin: 3px;
-			margin-bottom: 5px;
-			margin-left: 10px;
-			min-height: 110px;
-			font-size: 12px;
-			float:left;
-		}
-		.staff_mobile_description {
-			display:none;
-		}
-		</style>';
-	$x .= car_demon_corporate_users();
+	$x = car_demon_corporate_users();
 	$locations = get_location_array();
-	$x .= '<div style="width:100%;">';
+	$x .= '<div class="staff_box">';
 	foreach ($locations as $location) {
-		$x .= '<div style="float:left; min-width:300px;">';
+		$x .= '<div class="staff_details">';
 			$x .= car_demon_get_user_cards($location, "general_manager");
 			$x .= car_demon_get_user_cards($location, 'sales_manager');
 			$x .= car_demon_get_user_cards($location, 'sales_staff');
@@ -113,8 +90,7 @@ function get_location_array() {
 	if (empty($locations)) {
 		$location_list = 'default'.$location_list;
 		$cnt = 1;
-	}
-	else {
+	} else {
 		$location_list = '@'.$location_list;
 		$location_list = str_replace("@,","", $location_list);
 		$location_list = str_replace("@","", $location_list);
@@ -155,12 +131,11 @@ function build_user_hcard($user_id, $about = 0) {
 	$facebook = esc_attr( get_the_author_meta( 'facebook_page', $user_id ) );
 	$x = '<div id="staff-card-'.$user_id.'" class="staff_card">';
 	if ($about == 1) {
-		$width = "200";
+		$photo_class = "staff_desktop_img";
+	} else {
+		$photo_class = "staff_mobile_img";
 	}
-	else {
-		$width = "100";
-	}
-	$x .= '<img style="float:left; margin-right:4px;width:'.$width.'px;" src="'.$custom_photo.'" alt="photo of '.$user_full_name.'" class="photo" />';
+	$x .= '<img src="'.$custom_photo.'" alt="photo of '.$user_full_name.'" class="photo'.$photo_class.'" />';
 		$x .='<span class="fn n">';
 			$x .='<span class="given-name">'.$user_f_name.'</span>';
 			$x .='<span class="family-name">'.$user_l_name.'</span>';
@@ -178,7 +153,7 @@ function build_user_hcard($user_id, $about = 0) {
 			else {
 				$x .='<div class="user_description">';
 					if ($about == 0) {
-						$x .= substr($user_description, 0, 100) . '<span style="cursor:pointer;" class="staff_more" title="'.$user_description.'"> ...more</span>';
+						$x .= substr($user_description, 0, 100) . '<span class="staff_more" title="'.$user_description.'"> ...more</span>';
 						$x .= '<span class="staff_mobile_description">'.$user_description.'</span>';
 					}
 					else {

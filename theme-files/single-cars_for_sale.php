@@ -115,8 +115,7 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 	if ($_SESSION['car_demon_options']['use_about'] == 'Yes') {
 		$about = 1;
 		$tab_cnt = $tab_cnt + 1;
-	}
-	else {
+	} else {
 		$about = '';
 	}
 	if (!empty($_SESSION['car_demon_options']['vinquery_id'])) {
@@ -127,20 +126,18 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 	$vin_query_decode_array = get_post_meta($post_id, 'decode_string');
 	if ($vin_query_decode_array) {
 		$vin_query_decode = $vin_query_decode_array[0];
-	}
-	else {
+	} else {
 		$vin_query_decode = '';
 	}
 	if (!empty($vin_query_decode['decoded_fuel_economy_city'])) {
 		$tab_cnt = $tab_cnt + 5;
 		$vin_query = 1;
 		$about_cnt = 7;
-	}
-	else {
+	} else {
 		$vin_query = 0;
 	}
 ?>				
-				<div id="email_friend_div" style="display:none;">
+				<div id="email_friend_div" class="email_friend_div">
 				<div id="ef_contact_final_msg_tmp" class="ef_contact_final_msg_tmp"></div>
 					<div id="main_email_friend_div_tmp" class="main_email_friend_div_tmp">
 					<h2>Send this car to a friend</h2><hr />
@@ -211,7 +208,7 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 					<div class="car-demon-entry-content">
 					<?php echo car_photos($post_id, $detail_output, $vehicle_condition); ?>
 <?php echo car_demon_display_similar_cars($vehicle_body_style, $post_id); ?>
-						<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'CarDemon' ), 'after' => '</div>' ) ); ?>
+						<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'car-demon' ), 'after' => '</div>' ) ); ?>
 					</div><!-- .car-demon-entry-content -->
 <div id="car_features_box" class="car_features_box">
 	<div class="car_features">  
@@ -243,7 +240,7 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 			<div id="content_6" class="car_features_content"><?php echo $entertainment; ?></div>
 		<?php } ?>
 		<?php if ($about == 1) { ?>
-				<div id="content_<?php echo $about_cnt;?>" class="car_features_content" style="display:none;">
+				<div id="content_<?php echo $about_cnt;?>" class="car_features_content car_features_content_about">
 					<?php if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
 						<div id="entry-author-info">
 							<?php
@@ -301,8 +298,7 @@ function car_photos($post_id, $details, $vehicle_condition) {
 	$ribbon = 'ribbon-great-deal';
 	if ($vehicle_condition == 'New') {
 		$ribbon = 'ribbon-new';
-	}
-	else {
+	} else {
 		if ($mileage_value < 60000) { $ribbon = 'ribbon-low-miles';	}
 		$tmp_price = get_post_meta($post_id, "_price_value", true);
 		if ($tmp_price < 12000) { $ribbon = 'ribbon-low-price';	}

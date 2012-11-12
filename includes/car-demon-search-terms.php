@@ -25,8 +25,7 @@ if ($_GET['_name'] == 'search_condition') {
 	$my_condition = $_GET['_value'];
 	if (!empty($my_condition)) {
 		$condition_srch = '(('.$prefix.'terms.name)="'. $my_condition .'") AND (('.$prefix.'term_taxonomy.taxonomy)="vehicle_condition") AND';
-	}
-	else {
+	} else {
 		$condition_srch = '';
 	}
 	$str_tax_sql = 'SELECT DISTINCT '.$prefix.'terms_1.name AS new_name
@@ -55,8 +54,7 @@ if ($_GET['_name'] == 'search_condition') {
 				}
 			}
 		}
-	}
-	else {
+	} else {
 		$array[] = array('0' => 'No Match');
 	}
 }
@@ -65,8 +63,7 @@ if ($_GET['_name'] == 'search_year') {
 	$my_year = $_GET['_value'];
 	if (!empty($my_year)) {
 		$year_srch = '(('.$prefix.'terms.name)="'. $my_year .'") AND (('.$prefix.'term_taxonomy.taxonomy)="vehicle_year") AND';
-	}
-	else {
+	} else {
 		$year_srch = '';
 	}
 	$str_tax_sql = 'SELECT DISTINCT '.$prefix.'terms_1.name AS new_name
@@ -93,8 +90,7 @@ if ($_GET['_name'] == 'search_year') {
 				}
 			}
 		}
-	}
-	else {
+	} else {
 		$array[] = array('0' => 'No Match');
 	}
 }
@@ -102,8 +98,7 @@ elseif ($_GET['_name'] == 'search_year_model') {
 	$my_year = $_GET['_value'];
 	if (!empty($my_year)) {
 		$year_srch = '(('.$prefix.'terms.name)="'. $my_year .'") AND (('.$prefix.'term_taxonomy.taxonomy)="vehicle_year") AND';
-	}
-	else {
+	} else {
 		$year_srch = '';
 	}
 	$str_tax_sql = 'SELECT DISTINCT '.$prefix.'terms_1.name AS new_name
@@ -129,8 +124,7 @@ elseif ($_GET['_name'] == 'search_year_model') {
 				}
 			}
 		}
-	}
-	else {
+	} else {
 		$array[] = array('0' => 'No Match');
 	}
 }
@@ -161,8 +155,7 @@ elseif ($_GET['_name'] == 'search_make') {
 				$array[] = array($my_slug => $my_result->new_name . ' (' . $cnt_results . ')');
 			}
 		}
-	}
-	else {
+	} else {
 		$array[] = array('1' => 'ALL MODELS');
 		$array[] = array('2' => 'ALL MODELS');
 	}
@@ -171,8 +164,7 @@ elseif ($_GET['_name'] == 'search_make_condition') {
 	$my_condition = $_GET['_value'];
 	if (!empty($my_condition)) {
 		$condition_srch = '(('.$prefix.'terms.name)="'. $my_condition .'") AND (('.$prefix.'term_taxonomy.taxonomy)="vehicle_condition") AND';
-	}
-	else {
+	} else {
 		$condition_srch = '';
 	}
 	$str_tax_sql = 'SELECT DISTINCT '.$prefix.'terms_1.name AS new_name
@@ -198,8 +190,7 @@ elseif ($_GET['_name'] == 'search_make_condition') {
 				}
 			}
 		}
-	}
-	else {
+	} else {
 		$array[] = array('0' => 'No Match');
 	}
 }
@@ -207,8 +198,7 @@ elseif ($_GET['_name'] == 'search_model_condition') {
 	$my_condition = $_GET['_value'];
 	if (!empty($my_condition)) {
 		$condition_srch = '(('.$prefix.'terms.name)="'. $my_condition .'") AND (('.$prefix.'term_taxonomy.taxonomy)="vehicle_condition") AND';
-	}
-	else {
+	} else {
 		$condition_srch = '';
 	}
 	$str_tax_sql = 'SELECT DISTINCT '.$prefix.'terms_1.name AS new_name
@@ -234,8 +224,7 @@ elseif ($_GET['_name'] == 'search_model_condition') {
 				}
 			}
 		}
-	}
-	else {
+	} else {
 		$array[] = array('0' => 'No Match');
 	}
 }
@@ -309,8 +298,7 @@ function count_these_tax_items($old_val, $new_val, $type) {
 		$my_term = get_term_by( 'name', $new_val, 'vehicle_year' );
 		$my_slug = $my_term->slug;
 		$my_total = count_my_active_tax_items($my_slug, 'cars_for_sale', 'vehicle_year');	
-	}
-	else {
+	} else {
 		$total_cars = mysql_fetch_array(mysql_query($str_sql));
 		$my_total = $total_cars['new_name'];	
 	}
