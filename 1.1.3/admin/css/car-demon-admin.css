@@ -1,0 +1,74 @@
+/* CSS Document */
+.cd_admin_form_label {
+	font-size:14px;
+	padding-right:20px;
+	width:160px;
+	display: inline;
+	float:left;
+	font-weight: bold;
+}
+.cd_admin_form input {
+	width: 400px;
+}
+.cd_admin_form {
+	width: 600px;
+	background-color: #FFFFFF;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	padding-top: 5px;
+	padding-bottom: 15px;
+	padding-right: 5px;
+	padding-left: 5px;
+	border: solid;
+	border-width: 2px;
+	border-color: #999999;
+	margin-bottom: 10px;
+	margin-top: 20px;
+	-moz-box-shadow: 2px 2px 3px #333;
+	-webkit-box-shadow: 2px 2px 3px #333;
+	box-shadow: 2px 2px 3px #333333;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+.small_text {
+	font-size:10px;
+}
+.admin_default_description {
+	width:580px;height:100px;
+}
+.admin_finance_size {
+	width:50px !important;
+}
+.admin_no_price {
+	width:282px !important;
+}
+.admin_disclaimer_notice {
+	font-weight:bold;color:#FF0000;
+}
+.admin_update_options_btn {
+	margin-left: 300px; margin-top: 15px; width: 100px !important;
+}
+.admin_pages_div {
+	width: 500px;
+}
+.admin_add_pages_div {
+	float:left;width:300px;
+}
+.admin_add_pages_btn {
+	cursor:pointer;
+}
+.admin_add_pages_shortcodes {
+	float:left;width:300px;margin-left:10px;
+}
+.admin_add_pages_shortcodes {
+	margin-top:0px;
+}
+.admin_settings_updated_title {
+	color:#FF0000;
+}
+.admin_cell_providers {
+	width:250px;
+}
