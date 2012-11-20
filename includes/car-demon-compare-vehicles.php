@@ -94,16 +94,6 @@ function show_compare_list() {
 				$img_output = "<img onclick='window.location=\"".$link."\";' title='Click for price on this ".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='compare_widget_image_bg' width='120px' height='95px' src='";
 				$img_output .= wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 				$img_output .= "' />";
-				$ribbon = 'ribbon-just-added';
-				$ribbon = 'ribbon-great-deal';
-				if ($vehicle_condition == 'New') {
-					$ribbon = 'ribbon-new';
-				}
-				else {
-					if ($mileage_value < 60000) { $ribbon = 'ribbon-low-miles';	}
-					$tmp_price = get_post_meta($post_id, "_price_value", true);
-					if ($tmp_price < 12000) { $ribbon = 'ribbon-low-price';	}
-				}
 				$x .= '
 					<div class="random">
 						<div class="random_img random_img_compare">

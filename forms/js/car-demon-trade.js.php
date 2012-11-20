@@ -128,31 +128,39 @@ function car_demon_validate() {
 	var msg = "";
 	var name_valid = 0;
 	if (trade_form.cd_name.value == "") {
-		var msg = "You must enter your name.<br />";
+		var msg = "<?php _e('You must enter your name.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_name");
 	} else {
 		var name_valid = 1;
 	}
 	if (trade_form.cd_name.value == "Your Name") {
-		var msg = "You must enter your name.<br />";
+		var msg = "<?php _e('You must enter your name.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_name");
 	} else {
 		if (name_valid == 1) {
 			cd_valid("cd_name");
 		}
 	}
+	<?php
+	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
+		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
+	?>
 	if (trade_form.cd_phone.value == "") {
-		var msg = msg + "You must enter a valid Phone Number.<br />";
+		var msg = msg + "<?php _e('You must enter a valid Phone Number.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_phone");
 	} else {
 		if (trade_form.cd_phone.value.length != 14) {
-			var msg = msg + "The phone number you entered is not valid.<br />";
+			var msg = msg + "<?php _e('The phone number you entered is not valid.', 'car-demon'); ?><br />";
 			cd_not_valid("cd_phone");			
 		}
 		else {
 			cd_valid("cd_phone");
 		}
 	}
+	<?php
+		}
+	}
+	?>
 	var e_msg = validateEmail(trade_form.cd_email);
 	if (e_msg == "") {
 		cd_valid("cd_email");
@@ -160,25 +168,25 @@ function car_demon_validate() {
 		var msg = msg + e_msg + "<br />";
 	}
 	if (trade_form.year.value == "") {
-		var msg = msg + "You must enter the year of the vehicle you wish to trade.<br />";
+		var msg = msg + "<?php _e('You must enter the year of the vehicle you wish to trade.', 'car-demon'); ?><br />";
 		cd_not_valid("year");
 	} else {
 		cd_valid("year");
 	}
 	if (trade_form.make.value == "") {
-		var msg = msg + "You must enter the manufacturer of the vehicle you wish to trade.<br />";
+		var msg = msg + "<?php _e('You must enter the manufacturer of the vehicle you wish to trade.', 'car-demon'); ?><br />";
 		cd_not_valid("make");
 	} else {
 		cd_valid("make");
 	}
 	if (trade_form.model.value == "") {
-		var msg = msg + "You must enter the model of the vehicle you wish to trade.<br />";
+		var msg = msg + "<?php _e('You must enter the model of the vehicle you wish to trade.', 'car-demon'); ?><br />";
 		cd_not_valid("model");
 	} else {
 		cd_valid("year");
 		}
 	if (trade_form.miles.value == "") {
-		var msg = msg + "You must enter the miles of the vehicle you wish to trade.<br />";
+		var msg = msg + "<?php _e('You must enter the miles of the vehicle you wish to trade.', 'car-demon'); ?><br />";
 		cd_not_valid("miles");
 	} else {
 		cd_valid("miles");
@@ -207,7 +215,7 @@ function car_demon_validate() {
 			}
 		}
 		if (selected_car == "") {
-			var msg = msg + "You indicated you were interested in purchasing a vehicle but did not select one.<br />";
+			var msg = msg + "<?php _e('You indicated you were interested in purchasing a vehicle but did not select one.', 'car-demon'); ?><br />";
 			cd_not_valid("voi_title");
 		}
 		else {
@@ -232,7 +240,7 @@ function car_demon_validate() {
 			}
 		}
 		if (location_value == "") {
-			var msg = msg + "You did not select a trade location.<br />";
+			var msg = msg + "<?php _e('You did not select a trade location.', 'car-demon'); ?><br />";
 			cd_not_valid("select_location");
 		}
 		else {
@@ -319,13 +327,13 @@ function validateEmail(fld) {
 	
 	if (fld.value == "") {
 		fld.style.background = 'Yellow';
-		error = "You didn't enter an email address.\n";
+		error = "<?php _e('You didn\'t enter an email address.', 'car-demon'); ?>\n";
 	} else if (!emailFilter.test(tfld)) {              //test email for illegal characters
 		fld.style.background = 'Yellow';
-		error = "Please enter a valid email address.\n";
+		error = "<?php _e('Please enter a valid email address.', 'car-demon'); ?>\n";
 	} else if (fld.value.match(illegalChars)) {
 		fld.style.background = 'Yellow';
-		error = "The email address contains illegal characters.\n";
+		error = "<?php _e('The email address contains illegal characters.', 'car-demon'); ?>\n";
 	} else {
 		fld.style.background = 'White';
 	}

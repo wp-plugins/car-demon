@@ -70,3 +70,9 @@ ul.tabs {
 .decode_loading {
 	font-size:10px; font-weight:bold;
 }
+.custom_ribbon_div {
+	display:block;
+}
+.custom_ribbon_div_hide {
+	display:none;
+}

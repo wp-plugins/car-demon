@@ -37,31 +37,39 @@ function car_demon_validate() {
 	var msg = "";
 	var name_valid = 0;
 	if (service_form.cd_name.value == "") {
-		var msg = "You must enter your name.<br />";
+		var msg = "<?php _e('You must enter your name.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_name");
 	} else {
 		var name_valid = 1;
 	}
 	if (service_form.cd_name.value == "Your Name") {
-		var msg = "You must enter your name.<br />";
+		var msg = "<?php _e('You must enter your name.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_name");
 	} else {
 		if (name_valid == 1) {
 			cd_valid("cd_name");
 		}
 	}
+	<?php
+	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
+		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
+	?>
 	if (service_form.cd_phone.value == "") {
-		var msg = msg + "You must enter a valid Phone Number.<br />";
+		var msg = msg + "<?php _e('You must enter a valid Phone Number.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_phone");
 	} else {
 		if (service_form.cd_phone.value.length != 14) {
-			var msg = msg + "The phone number you entered is not valid.<br />";
+			var msg = msg + "<?php _e('The phone number you entered is not valid.', 'car-demon'); ?><br />";
 			cd_not_valid("cd_phone");			
 		}
 		else {
 			cd_valid("cd_phone");
 		}
 	}
+	<?php
+		}
+	}
+	?>
 	var e_msg = validateEmail(service_form.cd_email);
 	if (e_msg == "") {
 		cd_valid("cd_email");
@@ -76,13 +84,13 @@ function car_demon_validate() {
 		}
 	}
 	if (location_value == "") {
-		var msg = msg + "You did not select a service location.<br />";
+		var msg = msg + "<?php _e('You did not select a service location.', 'car-demon'); ?><br />";
 		cd_not_valid("select_location");
 	} else {
 		document.getElementById("select_location").style.background = "";
 	}
 	if (service_form.service_needed.value == "") {
-		var msg = msg + "You did not tell us what kind of service you need.<br />";
+		var msg = msg + "<?php _e('You did not tell us what kind of service you need.', 'car-demon'); ?><br />";
 		cd_not_valid("service_needed");			
 	} else {
 		cd_valid("service_needed");
@@ -153,13 +161,13 @@ function validateEmail(fld) {
 	
 	if (fld.value == "") {
 		fld.style.background = 'Yellow';
-		error = "You didn't enter an email address.\n";
+		error = "<?php _e('You didn\'t enter an email address.', 'car-demon'); ?>\n";
 	} else if (!emailFilter.test(tfld)) {              //test email for illegal characters
 		fld.style.background = 'Yellow';
-		error = "Please enter a valid email address.\n";
+		error = "<?php _e('Please enter a valid email address.', 'car-demon'); ?>\n";
 	} else if (fld.value.match(illegalChars)) {
 		fld.style.background = 'Yellow';
-		error = "The email address contains illegal characters.\n";
+		error = "<?php _e('The email address contains illegal characters.', 'car-demon'); ?>\n";
 	} else {
 		fld.style.background = 'White';
 	}

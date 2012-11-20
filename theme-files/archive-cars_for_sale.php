@@ -63,13 +63,13 @@ $query_string = str_replace('&order_by=_price_value', '', $query_string);
 $query_string = str_replace('&order_by=_mileage_value', '', $query_string);
 $wpurl_img = $wpurl.'/wp-content/plugins/car-demon/theme-files/images/';
 $wpurl = '?'. $query_string;
-echo 'Sort By:';
-$sort_asc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="Sort Low to High" /></a>&nbsp;';
-$sort_desc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="Sort High to Low" /></a>';
-	echo '&nbsp;&nbsp;&nbsp;Price '.$sort_asc_img.$sort_desc_img;
-$sort_asc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="Sort Low to High" /></a>&nbsp;';
-$sort_desc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="Sort High to Low" /></a>';
-	echo '&nbsp;&nbsp;&nbsp;Mileage '.$sort_asc_img.$sort_desc_img;
+echo __('Sort By:', 'car-demon');
+$sort_asc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="'_('Sort Low to High', 'car-demon'.')" /></a>&nbsp;';
+$sort_desc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="'.__('Sort High to Low', 'car-demon').'" /></a>';
+	echo '&nbsp;&nbsp;&nbsp;'.__('Price', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
+$sort_asc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="'.__('Sort Low to High', 'car-demon').'" /></a>&nbsp;';
+$sort_desc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="'.__('Sort High to Low', 'car-demon').'" /></a>';
+	echo '&nbsp;&nbsp;&nbsp;'.__('Mileage', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
 						the_post();
 				?>
 					<h1 class="page-title">

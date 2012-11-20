@@ -39,7 +39,8 @@
 	width:65px;
 }
 .finance_comment {
-	width:350px;margin-left:25px;
+	width:350px !important;
+	margin-left:25px;
 }
 .finance_applicant_cell {
 	background:#EEEEEE;
@@ -64,7 +65,7 @@
 }
 .finance_disclosure {
 	float:right;
-	width:430px;
+	width:430px !important;
 	margin-right:30px;
 	height:365px;
 	font-size:9px;
@@ -74,7 +75,8 @@
 	background-color:#999999;
 }
 .finance_btn {
-	height:75px;width:260px;
+	height:75px;
+	width:260px !important;
 }
 .finance_checkbox {
 	width:15px;

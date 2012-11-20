@@ -18,13 +18,13 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 		<div class="car_demon_light_box_main" id="car_demon_light_box_main">
 			<img id="car_demon_light_box_main_img" src="" />
 			<div class="run_slideshow_div" onclick="car_slide_show();" id="run_slideshow_div">
-					<input type="checkbox" id="run_slideshow" /> Run Slideshow
+					<input type="checkbox" id="run_slideshow" /> <?php _e('Run Slideshow', 'car-demon'); ?>
 			</div>
 			<div class="photo_next" id="photo_next">
-				<img src="<?php echo $car_demon_pluginpath; ?>images/btn_next.png" onclick="get_next_img();" title="Next" />
+				<img src="<?php echo $car_demon_pluginpath; ?>images/btn_next.png" onclick="get_next_img();" title="<?php _e('Next', 'car-demon'); ?>" />
 			</div>
 			<div class="photo_prev" id="photo_prev">
-				<img src="<?php echo $car_demon_pluginpath; ?>images/btn_prev.png" onclick="get_prev_img();" title="Previous" />
+				<img src="<?php echo $car_demon_pluginpath; ?>images/btn_prev.png" onclick="get_prev_img();" title="<?php _e('Previous', 'car-demon'); ?>" />
 			</div>
 		</div>
 		<div class="hor_lightbox" id="car_demon_thumb_box">
@@ -140,7 +140,7 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 				<div id="email_friend_div" class="email_friend_div">
 				<div id="ef_contact_final_msg_tmp" class="ef_contact_final_msg_tmp"></div>
 					<div id="main_email_friend_div_tmp" class="main_email_friend_div_tmp">
-					<h2>Send this car to a friend</h2><hr />
+					<h2><?php _e('Send this car to a friend', 'car-demon'); ?></h2><hr />
 						<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment" id="email_friend_form_tmp" name="email_friend_form_tmp">
 						<?php 
 							global $cd_formKey;
@@ -148,22 +148,22 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 						?>
 						<input type="hidden" name="ef_stock_num_tmp" id="ef_stock_num_tmp" value="<?php echo $vehicle_stock_number; ?>" />
 								<fieldset class="cd-fs1">
-								<legend>Your Information</legend>
+								<legend><?php _e('Your Information', 'car-demon'); ?></legend>
 								<ol class="cd-ol">
-									<li class=""><label for="cd_field_2"><span>Your Name</span></label><input type="text" name="ef_cd_name_tmp" id="ef_cd_name_tmp" class="single fldrequired" value="Your Name" onfocus="ef_clearField(this)" onblur="ef_setField(this)"><span class="reqtxt">*</span></li>
-									<li class=""><label for="cd_field_4"><span>Your Email</span></label><input type="text" name="ef_cd_email_tmp" id="ef_cd_email_tmp" class="single fldemail fldrequired" value=""><span class="emailreqtxt">*</span></li>
-									<li class=""><label for="cd_field_2"><span>Friend's Name</span></label><input type="text" name="ef_cd_friend_name_tmp" id="ef_cd_friend_name_tmp" class="single fldrequired" value="Friend Name" onfocus="ef_clearField(this)" onblur="ef_setField(this)"><span class="reqtxt">*</span></li>
-									<li class=""><label for="cd_field_4"><span>Friend's Email</span></label><input type="text" name="ef_cd_friend_email_tmp" id="ef_cd_friend_email_tmp" class="single fldemail fldrequired" value=""><span class="emailreqtxt">*</span></li>
+									<li class=""><label for="cd_field_2"><span><?php _e('Your Name', 'car-demon'); ?></span></label><input type="text" name="ef_cd_name_tmp" id="ef_cd_name_tmp" class="single fldrequired" value="<?php _e('Your Name', 'car-demon'); ?>" onfocus="ef_clearField(this)" onblur="ef_setField(this)"><span class="reqtxt">*</span></li>
+									<li class=""><label for="cd_field_4"><span><?php _e('Your Email', 'car-demon'); ?></span></label><input type="text" name="ef_cd_email_tmp" id="ef_cd_email_tmp" class="single fldemail fldrequired" value=""><span class="emailreqtxt">*</span></li>
+									<li class=""><label for="cd_field_2"><span><?php _e('Friend\'s Name', 'car-demon'); ?></span></label><input type="text" name="ef_cd_friend_name_tmp" id="ef_cd_friend_name_tmp" class="single fldrequired" value="<?php _e('Friend Name', 'car-demon'); ?>" onfocus="ef_clearField(this)" onblur="ef_setField(this)"><span class="reqtxt">*</span></li>
+									<li class=""><label for="cd_field_4"><span><?php _e('Friend\'s Email', 'car-demon'); ?></span></label><input type="text" name="ef_cd_friend_email_tmp" id="ef_cd_friend_email_tmp" class="single fldemail fldrequired" value=""><span class="emailreqtxt">*</span></li>
 								</ol>
 								</fieldset>
 								<fieldset class="cd-fs4">
-								<legend>Your Message</legend>
+								<legend><?php _e('Your Message', 'car-demon'); ?></legend>
 								<ol class="cd-ol">
-									<li id="li-5" class=""><textarea name="ef_comment_tmp" id="ef_comment_tmp" class="ef_comment_tmp">Check out this <?php echo $car_head_title; ?>, stock number <?php echo $vehicle_stock_number; ?>!</textarea><br><span class="reqtxt ef_reqtxt"><br>* required</span></li>
+									<li id="li-5" class=""><textarea name="ef_comment_tmp" id="ef_comment_tmp" class="ef_comment_tmp"><?php _e('Check out this', 'car-demon'); ?> <?php echo $car_head_title; ?>, <?php _e('stock number', 'car-demon'); ?> <?php echo $vehicle_stock_number; ?>!</textarea><br><span class="reqtxt ef_reqtxt"><br>* <?php _e('required', 'car-demon'); ?></span></li>
 								</ol>
 								</fieldset>
 								<div id="ef_contact_msg_tmp"></div>
-								<p class="cd-sb"><input type="button" name="ef_search_btn_tmp" id="ef_sendbutton_tmp" class="search_btn ef_search_btn" value="Send Now!" onclick="return ef_car_demon_validate()"></p>
+								<p class="cd-sb"><input type="button" name="ef_search_btn_tmp" id="ef_sendbutton_tmp" class="search_btn ef_search_btn" value="<?php _e('Send Now!', 'car-demon'); ?>" onclick="return ef_car_demon_validate()"></p>
 						</form>
 					</div>
 				</div>
@@ -174,14 +174,14 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 		if ($car_contact['finance_popup'] == 'Yes') {
 		?>
 						<div class="featured-button">
-							<p><a onclick="window.open('<?php echo $contact_finance_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>','finwin','width=<?php echo $car_contact['finance_width']; ?>, height=<?php echo $car_contact['finance_height']; ?>, menubar=0, resizable=0')">GET FINANCED</a></p>
+							<p><a onclick="window.open('<?php echo $contact_finance_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>','finwin','width=<?php echo $car_contact['finance_width']; ?>, height=<?php echo $car_contact['finance_height']; ?>, menubar=0, resizable=0')"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
 						</div>
 <?php 
 		}
 		else {
 		?>
 						<div class="featured-button">
-							<p><a href="<?php echo $contact_finance_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>">GET FINANCED</a></p>
+							<p><a href="<?php echo $contact_finance_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
 						</div>
 <?php 
 		}
@@ -190,19 +190,19 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 	if (!empty($contact_trade_url)) {
 ?>
 						<div class="featured-button">
-							<p><a href="<?php echo $contact_trade_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>">TRADE-IN QUOTE</a></p>
+							<p><a href="<?php echo $contact_trade_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
 						</div>
 <?php
 	}
 ?>
 						<div class="email_a_friend">
 							<a href="http://www.facebook.com/share.php?u=<?php echo $car_url; ?>&amp;t=<?php echo $car_head_title; ?>" target="fb_win">
-								<img title="Share on Facebook" src="<?php echo $car_demon_pluginpath; ?>images/social_fb.png" />
+								<img title="<?php _e('Share on Facebook', 'car-demon'); ?>" src="<?php echo $car_demon_pluginpath; ?>images/social_fb.png" />
 							</a>
-							<a target="tweet_win" href="http://twitter.com/share?text=Check out this <?php echo $car_head_title; ?>" title="Click to share this on Twitter">
-								<img title="Share on Twitter" src="<?php echo $car_demon_pluginpath; ?>images/social_twitter.png" />
+							<a target="tweet_win" href="http://twitter.com/share?text=Check out this <?php echo $car_head_title; ?>" title="<?php _e('Click to share this on Twitter', 'car-demon'); ?>">
+								<img title="<?php _e('Share on Twitter', 'car-demon'); ?>" src="<?php echo $car_demon_pluginpath; ?>images/social_twitter.png" />
 							</a>
-							<img onclick="email_friend();" title="Email to a Friend" src="<?php echo $car_demon_pluginpath; ?>images/social_email.png" />
+							<img onclick="email_friend();" title="<?php _e('Email to a Friend', 'car-demon'); ?>" src="<?php echo $car_demon_pluginpath; ?>images/social_email.png" />
 						</div>
 					</div>
 					<div class="car-demon-entry-content">
@@ -213,16 +213,16 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 <div id="car_features_box" class="car_features_box">
 	<div class="car_features">  
 		<ul class="tabs"> 
-			<li><a href="javascript:car_demon_switch_tabs(1, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_1" class="active">Description</a></li>  
+			<li><a href="javascript:car_demon_switch_tabs(1, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_1" class="active"><?php _e('Description', 'car-demon'); ?></a></li>  
 			<?php if ($vin_query == 1) { ?>
-				<li><a href="javascript:car_demon_switch_tabs(2, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_2">Specs</a></li>  
-				<li><a href="javascript:car_demon_switch_tabs(3, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_3">Safety</a></li>
-				<li><a href="javascript:car_demon_switch_tabs(4, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_4">Convenience</a></li>
-				<li><a href="javascript:car_demon_switch_tabs(5, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_5">Comfort</a></li>
-				<li><a href="javascript:car_demon_switch_tabs(6, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_6">Entertainment</a></li>
+				<li><a href="javascript:car_demon_switch_tabs(2, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_2"><?php _e('Specs', 'car-demon'); ?></a></li>  
+				<li><a href="javascript:car_demon_switch_tabs(3, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_3"><?php _e('Safety', 'car-demon'); ?></a></li>
+				<li><a href="javascript:car_demon_switch_tabs(4, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_4"><?php _e('Convenience', 'car-demon'); ?></a></li>
+				<li><a href="javascript:car_demon_switch_tabs(5, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_5"><?php _e('Comfort', 'car-demon'); ?></a></li>
+				<li><a href="javascript:car_demon_switch_tabs(6, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_6"><?php _e('Entertainment', 'car-demon'); ?></a></li>
 			<?php } ?>
 			<?php if ($about == 1) { ?>
-				<li><a href="javascript:car_demon_switch_tabs(<?php echo $about_cnt;?>, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_<?php echo $about_cnt;?>">About</a></li>
+				<li><a href="javascript:car_demon_switch_tabs(<?php echo $about_cnt;?>, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_<?php echo $about_cnt;?>"><?php _e('About', 'car-demon'); ?></a></li>
 			<?php } ?>
 		</ul>  
 		<div id="content_1" class="car_features_content"><?php echo $content; ?></div> 
@@ -294,19 +294,21 @@ function car_photos($post_id, $details, $vehicle_condition) {
 	$mileage_value = '';
 	$car_title = '';
 	$car_js = '';
-	$ribbon = 'ribbon-just-added';
-	$ribbon = 'ribbon-great-deal';
-	if ($vehicle_condition == 'New') {
-		$ribbon = 'ribbon-new';
+	$ribbon = get_post_meta($post_id, '_vehicle_ribbon', true);
+	if (empty($ribbon)) {
+		$ribbon = 'no-ribbon';		
+	}
+	if ($ribbon != 'custom_ribbon') {
+		$ribbon = str_replace('_', '-', $ribbon);
+		$current_ribbon = '<img src="'. $car_demon_pluginpath .'images/ribbon-'.$ribbon.'.png" width="112" height="112" alt="New Ribbon" id="ribbon">';
 	} else {
-		if ($mileage_value < 60000) { $ribbon = 'ribbon-low-miles';	}
-		$tmp_price = get_post_meta($post_id, "_price_value", true);
-		if ($tmp_price < 12000) { $ribbon = 'ribbon-low-price';	}
+		$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
+		$current_ribbon = '<img src="'.$custom_ribbon_file.'" width="112" height="112" alt="New Ribbon" id="ribbon">';
 	}
 	$this_car = '<div>';
 		$this_car .= '<div class="car_detail_div">';
 			$this_car .= '<div class="car_main_photo_box">';
-				$this_car .= '<img src="'. $car_demon_pluginpath .'images/'.$ribbon.'.png" width="112" height="112" alt="New Ribbon" id="ribbon">';
+				$this_car .= $current_ribbon;
 				$this_car .= '<img onclick="open_car_demon_lightbox(\''.$car_title.'_pic\');" src="'. $car_demon_pluginpath .'images/look_close.png" width="358" height="271" alt="New Ribbon" id="look_close">';
 				$this_car .= '<div id="main_thumb"><img onclick="open_car_demon_lightbox(\''.$car_title.'_pic\');" onerror="ImgError(this, \'no_photo.gif\');" id="'.$car_title.'_pic" name="'.$car_title.'_pic" class="car_demon_main_photo" width="350px" src="';
 				$main_guid = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
@@ -398,33 +400,34 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 					$mileage_value = get_post_meta($post_id, "_mileage_value", true);
 					$detail_output = '<span class="random_title">'.$title.'</span><br />';
 					$detail_output .= '<span class="random_text">';
-						$detail_output .= 'Condition: '.$vehicle_condition.'<br />';			
+						$detail_output .= __('Condition:', 'car-demon').' '.$vehicle_condition.'<br />';			
 					$detail_output .= '</span>';
 					$detail_output .= '<span class="random_text">';
-						$detail_output .= 'Mileage: '.$mileage_value.'<br />';
+						$detail_output .= __('Mileage:', 'car-demon').' '.$mileage_value.'<br />';
 					$detail_output .= '</span>';
 					$detail_output .= '<span class="random_text">';
-						$detail_output .= 'Stock#: '.$stock_value;
+						$detail_output .= __('Stock#:', 'car-demon').' '.$stock_value;
 					$detail_output .= '</span>';
 					$link = get_permalink($post_id);
-					$img_output = "<img onclick='window.location=\"".$link."\";' title='Click for price on this ".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image' width='180px' height='135px' src='";
+					$img_output = "<img onclick='window.location=\"".$link."\";' title='".__("Click for price on this", "car-demon")." ".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image' width='180px' height='135px' src='";
 					$img_output .= wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 					$img_output .= "' />";
-					$ribbon = 'ribbon-just-added';
-					$ribbon = 'ribbon-great-deal';
-					if ($vehicle_condition == 'New') {
-						$ribbon = 'ribbon-new';
-					}
-					else {
-						if ($mileage_value < 60000) { $ribbon = 'ribbon-low-miles';	}
-						$tmp_price = get_post_meta($post_id, "_price_value", true);
-						if ($tmp_price < 12000) { $ribbon = 'ribbon-low-price';	}
+					$ribbon = get_post_meta($post_id, '_vehicle_ribbon', true);
+					if (empty($ribbon)) {
+						$ribbon = 'no-ribbon';		
+					}					
+					if ($ribbon != 'custom_ribbon') {
+						$ribbon = str_replace('_', '-', $ribbon);
+						$current_ribbon = '<img class="similar_car_ribbon" src="'. $car_demon_pluginpath .'images/ribbon-'.$ribbon.'.png" width="76" height="76" id="ribbon">';
+					} else {
+						$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
+						$current_ribbon = '<img class="similar_car_ribbon" src="'.$custom_ribbon_file.'" width="76" height="76" id="ribbon">';
 					}
 					$car .= '
 						<div class="random similar_car">
 							<div class="random_img">
-								<img class="similar_car_ribbon" onclick="window.location=\''.$link.'\';" src="'. $car_demon_pluginpath .'images/'.$ribbon.'.png" width="76" height="76" alt="New Ribbon" id="ribbon">
-								<img class="look_close similar_car_look_close" onclick="window.location=\''.$link.'\';" src="'. $car_demon_pluginpath .'images/look_close.png" width="188" height="143" alt="New Ribbon" id="look_close">
+								'.$current_ribbon.'
+								<img class="look_close similar_car_look_close" onclick="window.location=\''.$link.'\';" src="'. $car_demon_pluginpath .'images/look_close.png" width="188" height="143" id="look_close">
 								'.$img_output.'
 							</div>
 							<div class="random_description">

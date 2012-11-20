@@ -5,16 +5,25 @@ function car_demon_contact_request() {
 	global $cd_formKey;
 	wp_enqueue_script('car-demon-contact-us-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-contact-us.js.php');
 	wp_enqueue_style('car-demon-contact-us-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-contact-us.css');
+	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
+		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
+			$validate_phone = ' onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);"';
+		} else {
+			$validate_phone = '';
+		}
+	} else {
+		$validate_phone = '';
+	}
 	$x = '
 	<div id="contact_msg" class="contact_msg"></div>
 	<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment " id="contact_form">
 			'.$cd_formKey->outputKey().'
 			<fieldset class="cd-fs1">
-			<legend>Your Information</legend>
+			<legend>'.__('YOUR INFORMATION','car-demon').'</legend>
 			<ol class="cd-ol">
-				<li id="li-name" class=""><label for="cd_field_2"><span>Your Name</span></label><input type="text" name="cd_name" id="cd_name" class="single fldrequired" value="Your Name" onfocus="clearField(this)" onblur="setField(this)"><span class="reqtxt">(required)</span></li>
-				<li id="li" class=""><label for="cd_field_"><span>Phone #</span></label><input type="text" name="cd_phone" id="cd_phone" class="single fldrequired" value="" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);"><span class="reqtxt">(required)</span></li>
-				<li id="li-4" class=""><label for="cd_field_4"><span>Email</span></label><input type="text" name="cd_email" id="cd_email" class="single fldemail fldrequired" value=""><span class="emailreqtxt">(valid email required)</span></li>
+				<li id="li-name" class=""><label for="cd_field_2"><span>'.__('Your Name','car-demon').'</span></label><input type="text" name="cd_name" id="cd_name" class="single fldrequired" value="'.__('Your Name', 'car-demon').'" onfocus="clearField(this)" onblur="setField(this)"><span class="reqtxt">('.__('required','car-demon').')</span></li>
+				<li id="li" class=""><label for="cd_field_"><span>'.__('Phone #','car-demon').'</span></label><input type="text" name="cd_phone" id="cd_phone" class="single fldrequired" value="" '.$validate_phone.'><span class="reqtxt">('.__('required','car-demon').')</span></li>
+				<li id="li-4" class=""><label for="cd_field_4"><span>'.__('Email') .'</span></label><input type="text" name="cd_email" id="cd_email" class="single fldemail fldrequired" value=""><span class="emailreqtxt">('.__('valid email required','car-demon').')</span></li>
 			</ol>
 			</fieldset>
 	';
@@ -23,14 +32,14 @@ function car_demon_contact_request() {
 	$remove = '<img src="'.$car_demon_pluginpath.'images/btn_remove_contact.png" id="remove_contact_btn" class="remove_contact_btn" onclick="remove_contact();" class="remove_contact" title="'.__('Remove Contact', 'car-demon').'" />';
 	$x .='
 			<fieldset class="cd-fs4">
-			<legend>Questions and Comments</legend>
+			<legend>'.__('Questions and Comments','car-demon').'</legend>
 			<ol class="cd-ol">
-				<li id="li-5" class=""><textarea class="contact_needed" cols="60" rows="4" name="contact_needed" id="contact_needed" class="area fldrequired"></textarea><br /><span class="reqtxt" class="reqtxt_contact_us">(required)</span></li>
+				<li id="li-5" class=""><textarea class="contact_needed" cols="60" rows="4" name="contact_needed" id="contact_needed" class="area fldrequired"></textarea><br /><span class="reqtxt" class="reqtxt_contact_us">('.__('required','car-demon').')</span></li>
 			</ol>
 			</fieldset>';
 	$x = apply_filters('car_demon_mail_hook_form', $x, 'contact_us', 'unk');
 	$x .='
-			<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn contact_us_btn" value="Contact Us" onclick="return car_demon_validate()"></p></form>
+			<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn contact_us_btn" value="'.__('Contact Us','car-demon').'" onclick="return car_demon_validate()"></p></form>
 		';
 	return $x;
 }
@@ -42,6 +51,7 @@ function contact_locations_radio() {
 		'use_desc_for_title' => 0,
 		'hierarchical'       => true,
 		'echo'               => 0,
+		'hide_empty'		 => 0,
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );
@@ -90,8 +100,7 @@ function contact_locations_radio() {
 			if (empty($used_email)) {
 				$used_email = get_option($current_location.'_used_sales_email');
 			}
-		}
-		else {
+		} else {
 			$used_email = get_option($current_location.'_used_sales_email');
 		}
 		if ($used_email) {
@@ -102,8 +111,7 @@ function contact_locations_radio() {
 			if (empty($new_email)) {
 				$new_email = get_option($current_location.'_new_sales_email');
 			}
-		}
-		else {
+		} else {
 			$new_email = get_option($current_location.'_new_sales_email');
 		}
 		if ($new_email) {
@@ -114,8 +122,7 @@ function contact_locations_radio() {
 			if (empty($trade_email)) {
 				$trade_email = get_option($current_location.'_trade_email');
 			}
-		}
-		else {
+		} else {
 			$trade_email = get_option($current_location.'_trade_email');
 		}
 		if ($trade_email) {
@@ -126,8 +133,7 @@ function contact_locations_radio() {
 			if (empty($finance_email)) {
 				$finance_email = get_option($current_location.'_finance_email');
 			}
-		}
-		else {
+		} else {
 			$finance_email = get_option($current_location.'_finance_email');
 		}
 		if ($finance_email) {
@@ -138,8 +144,7 @@ function contact_locations_radio() {
 			if (empty($service_email)) {
 				$service_email = get_option($current_location.'_service_email');
 			}
-		}
-		else {
+		} else {
 			$service_email = get_option($current_location.'_service_email');
 		}
 		if ($service_email) {
@@ -150,8 +155,7 @@ function contact_locations_radio() {
 			if (empty($parts_email)) {
 				$parts_email = get_option($current_location.'_parts_email');
 			}
-		}
-		else {
+		} else {
 			$parts_email = get_option($current_location.'_parts_email');
 		}
 		if ($parts_email) {
@@ -172,6 +176,7 @@ function contact_locations_radio() {
 function car_demon_get_custom_email($user_id, $lead_type, $current_location) {
 	$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 	$location_approved = 0;
+	$to = '';
 	if ($current_location == $user_location) {
 		$location_approved = 1;
 	} else {

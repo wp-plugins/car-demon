@@ -6,13 +6,13 @@ add_action('quick_edit_custom_box',  'max_add_quick_edit', 10, 2);
 function my_cars_for_sale_columns($columns) {
 	$columns = array_merge(array(
 		"cb" => "<input type=\"checkbox\" />",
-		"title" => "Vehicle Title",
-		"photo" => "Photo",
-		"msrp" => "Retail Price",
-		"rebate" => "Rebate",
-		"discount" => "Discount",
-		"price" => 'Price',
-		"sold" => 'Sold'
+		"title" => __('Vehicle Title', 'car-demon'),
+		"photo" => __('Photo', 'car-demon'),
+		"msrp" => __('Retail Price', 'car-demon'),
+		"rebate" => __('Rebate', 'car-demon'),
+		"discount" => __('Discount', 'car-demon'),
+		"price" => __('Price', 'car-demon'),
+		"sold" => __('Sold', 'car-demon')
 	),$columns);
 	return $columns;
 }
@@ -59,8 +59,8 @@ function manage_cars_for_sale_columns($column) {
 		$calculated_price = $msrp - $rebates - $discounts;
 		$final_price = get_post_meta($post_id, '_price_value', true);
 		$calculated_discount = $final_price - $msrp;
-		echo 'Calculated Price: <span id="calc_price_'.$post_id.'">'.$calculated_price.'</span><br />';
-		echo 'Calculated Discount: <span id="calc_discounts_'.$post_id.'">'.$calculated_discount.'</span><br />';
+		echo __('Calculated Price:', 'car-demon').' <span id="calc_price_'.$post_id.'">'.$calculated_price.'</span><br />';
+		echo __('Calculated Discount:', 'car-demon').' <span id="calc_discounts_'.$post_id.'">'.$calculated_discount.'</span><br />';
 		echo '<span id="calc_error_'.$post_id.'"></span>';
 		if ($calculated_price != $final_price) {
 			if (!empty($msrp)) {
@@ -74,8 +74,8 @@ function manage_cars_for_sale_columns($column) {
 		echo '<div id="show_sold_'.$post_id.'">
 				<select id="is_sold_'.$post_id.'" onchange="update_car_sold('.$post_id.', this, \'sold\')">
 					<option value="'.$sold.'">'.$sold.'</option>
-					<option value="Yes">Yes</option>
-					<option value="No">No</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
 				</select>
 			</div>';
 	}
@@ -86,7 +86,7 @@ function max_add_quick_edit($column_name, $post_type) {
 		echo '<table><tr><td>';
 		echo '<fieldset class="inline-edit-col-left">';
 		echo '<div class="inline-edit-col">';
-		echo '<span class="title">MSRP</span>';
+		echo '<span class="title">'.__('MSRP', 'car-demon').'</span>';
 		echo '<input type="text" name="msrp_val" id="msrp_val" />';
 		echo '</div>';
 		echo '</fieldset><br />';
@@ -94,7 +94,7 @@ function max_add_quick_edit($column_name, $post_type) {
 	if ($column_name == 'rebate') {
 		echo '<fieldset class="inline-edit-col-left">';
 		echo '<div class="inline-edit-col">';
-		echo '<span class="title">Rebates</span>';
+		echo '<span class="title">'.__('Rebates', 'car-demon').'</span>';
 		echo '<input type="text" name="rebates_val" id="rebates_val" />';
 		echo '</div>';
 		echo '</fieldset><br />';
@@ -102,7 +102,7 @@ function max_add_quick_edit($column_name, $post_type) {
 	if ($column_name == 'discount') {
 		echo '<fieldset class="inline-edit-col-left">';
 		echo '<div class="inline-edit-col">';
-		echo '<span class="title">Discount</span>';
+		echo '<span class="title">'.__('Discount', 'car-demon').'</span>';
 		echo '<input type="text" name="discount_val" id="discount_val" />';
 		echo '</div>';
 		echo '</fieldset><br />';
@@ -110,7 +110,7 @@ function max_add_quick_edit($column_name, $post_type) {
 	if ($column_name == 'price') {
 		echo '<fieldset class="inline-edit-col-left">';
 		echo '<div class="inline-edit-col">';
-		echo '<span class="title">Price</span>';
+		echo '<span class="title">'.__('Price', 'car-demon').'</span>';
 		echo '<input type="text" name="price_val" id="price_val" />';
 		echo '</div>';
 		echo '</fieldset><br />';

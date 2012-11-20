@@ -1,14 +1,19 @@
 <?php
 header("Content-Type: text/html");
 $newPath = dirname(__FILE__);
-$is_it_iis = $_SESSION['server_platform'];
+if (!stristr(PHP_OS, 'WIN')) {
+	$is_it_iis = 'Apache';
+}
+else {
+	$is_it_iis = 'Win';
+}
 if ($is_it_iis == 'Apache') {
-	$newPath = str_replace('wp-content/plugins/car-demon', '', $newPath);
+	$newPath = str_replace('wp-content/plugins/car-demon/feeds', '', $newPath);
 	include_once($newPath."/wp-load.php");
 	include_once($newPath."/wp-includes/wp-db.php");
 }
 else {
-	$newPath = str_replace('wp-content\plugins\car-demon', '', $newPath);
+	$newPath = str_replace('wp-content\plugins\car-demon\feeds', '', $newPath);
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }

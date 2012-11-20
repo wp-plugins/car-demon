@@ -130,7 +130,15 @@ function car_demon_display_vehicle_contacts($post_id, $list_phone, $cc, $send_re
 	if ($list_phone == 'Yes') {
 		$phone_contact = '<h4>'. __('For more information','car-demon').'<br />'.__('Call') .' '.$contact_sales_name.' '.__('at:','car-demon').'<br />'.$contact_sales_phone.'</h4>';
 	}
-	
+	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
+		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
+			$validate_phone = ' onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);"';
+		} else {
+			$validate_phone = '';
+		}
+	} else {
+		$validate_phone = '';
+	}
 	$x = $phone_contact.'
 	<div id="contact_msg" class="contact_msg"></div>
 	<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment " id="contact_form">
@@ -152,7 +160,7 @@ function car_demon_display_vehicle_contacts($post_id, $list_phone, $cc, $send_re
 			<legend>Your Information</legend>
 			<ol class="cd-ol">
 				<li id="li-name" class=""><label for="cd_field_2"><span>Your Name</span></label><input type="text" name="cd_name" id="cd_name" class="single fldrequired" value="Your Name" onfocus="clearField(this)" onblur="setField(this)"><span class="reqtxt">*</span></li>
-				<li id="li" class=""><label for="cd_field_"><span>Phone #</span></label><input type="text" name="cd_phone" id="cd_phone" class="single fldrequired" value="" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);"><span class="reqtxt">*</span></li>
+				<li id="li" class=""><label for="cd_field_"><span>Phone #</span></label><input type="text" name="cd_phone" id="cd_phone" class="single fldrequired" value="" '.$validate_phone.'><span class="reqtxt">*</span></li>
 				<li id="li-4" class=""><label for="cd_field_4"><span>Email</span></label><input type="text" name="cd_email" id="cd_email" class="single fldemail fldrequired" value=""><span class="emailreqtxt">*</span></li>
 			</ol>
 			</fieldset>

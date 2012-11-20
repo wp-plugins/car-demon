@@ -3,6 +3,30 @@ if (is_admin()) {
 	add_action( 'admin_enqueue_scripts', 'cardemons_automotive_inventory_decode_header' );
 	add_action( 'add_meta_boxes', 'start_decode_box' );
 	add_action( 'wp_dashboard_setup', 'eg_add_dashboard_widgets' );
+	add_action('save_post','cd_save_car');
+}
+
+function cd_save_car($post_id) {
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+	  return;
+	if ( 'cars_for_sale' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+	} else {
+		return;
+	}
+	$sold_status = get_post_meta($post_id, 'sold');
+	if (empty($sold_status)) {
+		update_post_meta($post_id, 'sold', 'no');
+	}
+	if (isset($_POST['_vehicle_ribbon'])) {
+		update_post_meta($post_id, '_vehicle_ribbon', $_POST['_vehicle_ribbon']);
+	}
+	if (isset($_POST['_custom_ribbon'])) {
+		update_post_meta($post_id, '_custom_ribbon', $_POST['_custom_ribbon']);
+	}
+	return;
 }
 
 function cardemons_automotive_inventory_decode_header() {
@@ -66,6 +90,64 @@ function start_decode_box() {
 	global $theme_name;
 	add_meta_box('decode-div', 'Vehicle Options', 'decode_metabox', 'cars_for_sale', 'normal', 'high');
 	add_meta_box('decode-status', 'Sales Status', 'decode_sales_metabox', 'cars_for_sale', 'side', 'high');
+	add_meta_box('decode-ribbon', 'Photo Ribbon', 'decode_photo_ribbon', 'cars_for_sale', 'side', 'default');
+}
+
+function decode_photo_ribbon($post) {
+	$post_id = $post->ID;
+	$ribbon = get_post_meta($post_id, '_vehicle_ribbon', true);
+	$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
+	$no_ribbon = '';
+	$custom_ribbon = '';
+	$low_price = '';
+	$great_deal = '';
+	$just_added = '';
+	$low_miles = '';
+	$brand_new = '';
+	if ($ribbon == 'no_ribbon') {
+		$no_ribbon = ' selected';
+	} elseif ($ribbon == 'custom_ribbon') {
+		$custom_ribbon = ' selected';
+	} elseif ($ribbon == 'low_price') {
+		$low_price = ' selected';
+	} elseif ($ribbon == 'great_deal') {
+		$great_deal = ' selected';
+	} elseif ($ribbon == 'just_added') {
+		$just_added = ' selected';
+	} elseif ($ribbon == 'low_miles') {
+		$low_miles = ' selected';
+	} elseif ($ribbon == 'brand_new') {
+		$brand_new = ' selected';
+	} else {
+		update_post_meta($post_id, '_vehicle_ribbon', 'no_ribbon');
+		$ribbon = 'no_ribbon';
+		$no_ribbon = ' selected';
+	}
+	echo '<input type="hidden" id="this_car_id" name="this_car_id" value="'.$post_id.'" />';
+	echo __('Select Ribbon Banner', 'car-demon').' <select name="_vehicle_ribbon" id="_vehicle_ribbon" onchange="update_vehicle_data(this, '.$post_id.');update_ribbon(this.value);">
+			<option value="no_ribbon"'.$no_ribbon.'>'.__('No Ribbon', 'car-demon').'</option>
+			<option value="custom_ribbon"'.$custom_ribbon.'>'.__('Custom Ribbon', 'car-demon').'</option>
+			<option value="low_price"'.$low_price.'>'.__('Low Price', 'car-demon').'</option>
+			<option value="great_deal"'.$great_deal.'>'.__('Great Deal', 'car-demon').'</option>
+			<option value="just_added"'.$just_added.'>'.__('Just Added', 'car-demon').'</option>
+			<option value="low_miles"'.$low_miles.'>'.__('Low Miles', 'car-demon').'</option>
+			<option value="brand_new"'.$brand_new.'>'.__('Brand New', 'car-demon').'</option>
+		</select><br />';
+	if ($ribbon != 'custom_ribbon') {
+		$ribbon = str_replace('_', '-', $ribbon);
+		$ribbon_url = WP_CONTENT_URL . '/plugins/car-demon/theme-files/images/ribbon-'.$ribbon.'.png';
+		echo '<img src="'.$ribbon_url.'" id="vehicle_ribbon" name="vehicle_ribbon" /><br />';
+		$custom_ribbon_div_class = 'custom_ribbon_div_hide';
+	} else {
+		echo '<img src="'.$custom_ribbon_file.'" id="vehicle_ribbon" name="vehicle_ribbon" /><br />';	
+		$custom_ribbon_div_class = 'custom_ribbon_div';
+	}
+	echo '<div id="custom_ribbon_div" class="'.$custom_ribbon_div_class.'">';
+		echo __('Custom Ribbon', 'car-demon').'<br />';
+		echo '<input type="text" id="_custom_ribbon" name="_custom_ribbon" value="'.$custom_ribbon_file.'" onchange="update_vehicle_data(this, '.$post_id.');" />';
+		echo '&nbsp;&nbsp;&nbsp;<input type="button" value="'.__('Upload', 'car-demon').'" id="custom_ribbon_btn" name="custom_ribbon_btn" class="button" />';
+	echo '</div>';
+	return;
 }
 
 function decode_sales_metabox($post) {

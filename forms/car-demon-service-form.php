@@ -5,68 +5,77 @@ function car_demon_service_form() {
 	global $cd_formKey;
 	wp_enqueue_script('car-demon-service-form-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-service-form.js.php');
 	wp_enqueue_style('car-demon-service-form-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-service-form.css');
-	wp_enqueue_script('car-demon-service-calendar-js', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/CalendarPopup.js');
+	wp_enqueue_script('car-demon-service-calendar-js', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/CalendarPopup.js.php');
 	wp_enqueue_style('car-demon-service-calendar-css', WP_CONTENT_URL . '/plugins/car-demon/theme-files/css/CalendarControl.css');
 	if (isset($_GET['service_needed'])) {
 		$service_needed = $_GET['service_needed'];
 	} else {
 		$service_needed = '';
 	}
+	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
+		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
+			$validate_phone = ' onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);"';
+		} else {
+			$validate_phone = '';
+		}
+	} else {
+		$validate_phone = '';
+	}
 	$x = '
 	<div id="service_msg" class="service_msg"></div>
 	<form enctype="multipart/form-data" action="?send_service=1" method="post" class="cdform service-appointment " id="service_form">
 			'.$cd_formKey->outputKey().'
 			<fieldset class="cd-fs1">
-			<legend>Schedule Service Appointment</legend>
+			<legend>'.__('Schedule Service Appointment', 'car-demon').'</legend>
 			<ol class="cd-ol">
-				<li id="li-name" class=""><label for="cd_field_2"><span>Your Name</span></label><input type="text" name="cd_name" id="cd_name" class="single fldrequired" value="Your Name" onfocus="clearField(this)" onblur="setField(this)"><span class="reqtxt">(required)</span></li>
-				<li id="li" class=""><label for="cd_field_"><span>Phone #</span></label><input type="text" name="cd_phone" id="cd_phone" class="single fldrequired" value="" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);"><span class="reqtxt">(required)</span></li>
-				<li id="li-4" class=""><label for="cd_field_4"><span>Email</span></label><input type="text" name="cd_email" id="cd_email" class="single fldemail fldrequired" value=""><span class="emailreqtxt">(valid email required)</span></li>
+				<li id="li-name" class=""><label for="cd_field_2"><span>'.__('Your Name', 'car-demon').'</span></label><input type="text" name="cd_name" id="cd_name" class="single fldrequired" value="Your Name" onfocus="clearField(this)" onblur="setField(this)"><span class="reqtxt">('.__('required', 'car-demon').')</span></li>
+				<li id="li" class=""><label for="cd_field_"><span>'.__('Phone #', 'car-demon').'</span></label><input type="text" name="cd_phone" id="cd_phone" class="single fldrequired" value="" '.$validate_phone.'><span class="reqtxt">('.__('required', 'car-demon').')</span></li>
+				<li id="li-4" class=""><label for="cd_field_4"><span>'.__('Email', 'car-demon').'</span></label><input type="text" name="cd_email" id="cd_email" class="single fldemail fldrequired" value=""><span class="emailreqtxt">('.__('valid email required', 'car-demon').')</span></li>
 			</ol>
 			</fieldset>
 	';
 	$x .= service_locations_radio();
 	$x .='
 			<fieldset class="cd-fs">
-			<legend>Appointment Information</legend>
+			<legend>'.__('Appointment Information', 'car-demon').'</legend>
 			<ol class="cd-ol">
-				<li id="li-9" class=""><label for="cd_field_9"><span>Preferred Appointment Date</span></label>
+				<li id="li-9" class=""><label for="cd_field_9"><span>'.__('Preferred Appointment Date', 'car-demon').'</span></label>
 					<input type="text" name="preferred_date" id="preferred_date" class="cd_date" value="" onfocus="showCalendarControl(this);" />
 					<a href="#" name="anchor1xx" id="anchor1xx"></a>
-				<span class="reqtxt">(required)</span></li>
-				<li id="li-10" class=""><label for="cd_field_10"><span>Alternate Appointment Date</span></label>
+				<span class="reqtxt">('.__('required', 'car-demon').')</span></li>
+				<li id="li-10" class=""><label for="cd_field_10"><span>'.__('Alternate Appointment Date', 'car-demon').'</span></label>
 					<input type="text" name="alt_date" id="alt_date" class="cd_date" value="" onfocus="showCalendarControl(this);" />
 					<a href="#" name="anchor2xx" id="anchor2xx"></a>				
-				<span class="reqtxt">(required)</span></li>
-				<li id="li-11" class="cd-box-title">Will you be...</li>
+				<span class="reqtxt">('.__('required', 'car-demon').')</span></li>
+				<li id="li-11" class="cd-box-title">'.__('Will you be...', 'car-demon').'</li>
 				<li id="li-11items" class="cd-box-group">
-					<input type="radio" id="waiting1" name="waiting" value="Waiting" checked="checked" class="cd-box-b fldrequired"><span for="cd_field_11-2" class="cdlabel_right"><span>Waiting</span></span>
+					<input type="radio" id="waiting1" name="waiting" value="'.__('Waiting', 'car-demon').'" checked="checked" class="cd-box-b fldrequired"><span for="cd_field_11-2" class="cdlabel_right"><span>'.__('Waiting', 'car-demon').'</span></span>
 					<br>
-					<input type="radio" id="waiting2" name="waiting" value="Leaving Car" class="cd-box-b fldrequired"><span for="cd_field_11-1" class="cdlabel_right"><span>Leaving Car</span></span>
+					<input type="radio" id="waiting2" name="waiting" value="'.__('Leaving Car', 'car-demon').'" class="cd-box-b fldrequired"><span for="cd_field_11-1" class="cdlabel_right"><span>'.__('Leaving Car', 'car-demon').'</span></span>
 					<br>
 				</li>
-				<li id="li-12" class="cd-box-title">Do you need alternate transportation?</li>
+				<li id="li-12" class="cd-box-title">'.__('Do you need alternate transportation?', 'car-demon').'</li>
 				<li id="li-12items" class="cd-box-group">
-					<input type="radio" id="transportation1" name="transportation" value="Yes" class="cd-box-b fldrequired"><span for="cd_field_12-1" class="cdlabel_right"><span>Yes</span></span>
+					<input type="radio" id="transportation1" name="transportation" value="Yes" class="cd-box-b fldrequired"><span for="cd_field_12-1" class="cdlabel_right"><span>'.__('Yes', 'car-demon').'</span></span>
 					<br>
-					<input type="radio" id="transportation2" name="transportation" value="No" checked="checked" class="cd-box-b fldrequired"><span for="cd_field_12-2" class="cdlabel_right"><span>No</span></span>
+					<input type="radio" id="transportation2" name="transportation" value="No" checked="checked" class="cd-box-b fldrequired"><span for="cd_field_12-2" class="cdlabel_right"><span>'.__('No', 'car-demon').'</span></span>
 					<br>
 				</li>
 			</ol>
 			</fieldset>
 			<fieldset class="cd-fs4">
-			<legend>Vehicle Information</legend>
+			<legend>'.__('Vehicle Information', 'car-demon').'</legend>
 			<ol class="cd-ol">
-				<li id="li-15" class=""><label for="cd_field_15"><span>Year</span></label><input type="text" name="year" id="year" class="single" value=""></li>
-				<li id="li-14" class=""><label for="cd_field_14"><span>Manufacturer</span></label><input type="text" name="make" id="make" class="single" value=""></li>
-				<li id="li-16" class=""><label for="cd_field_16"><span>Model</span></label><input type="text" name="model" id="model" class="single" value=""></li>
-				<li id="li-17" class=""><label for="cd_field_17"><span>Miles</span></label><input type="text" name="miles" id="miles" class="single" value=""></li>
-				<li id="li-18" class=""><label for="cd_field_18"><span>Vin</span></label><input type="text" name="vin" id="vin" class="single" value=""></li>
-				<li id="li-5" class=""><label for="cd_field_5"><span>Service Required</span></label><textarea cols="30" rows="4" name="service_needed" id="service_needed" class="area fldrequired">'.$service_needed.'</textarea><span class="reqtxt">(required)</span></li>
+				<li id="li-15" class=""><label for="cd_field_15"><span>'.__('Year', 'car-demon').'</span></label><input type="text" name="year" id="year" class="single" value=""></li>
+				<li id="li-14" class=""><label for="cd_field_14"><span>'.__('Manufacturer', 'car-demon').'</span></label><input type="text" name="make" id="make" class="single" value=""></li>
+				<li id="li-16" class=""><label for="cd_field_16"><span>'.__('Model', 'car-demon').'</span></label><input type="text" name="model" id="model" class="single" value=""></li>
+				<li id="li-17" class=""><label for="cd_field_17"><span>'.__('Miles', 'car-demon').'</span></label><input type="text" name="miles" id="miles" class="single" value=""></li>
+				<li id="li-18" class=""><label for="cd_field_18"><span>'.__('Vin', 'car-demon').'</span></label><input type="text" name="vin" id="vin" class="single" value=""></li>
+				<li id="li-5" class=""><label for="cd_field_5"><span>'.__('Service Required', 'car-demon').'</span></label><textarea cols="30" rows="4" name="service_needed" id="service_needed" class="area fldrequired">'.$service_needed.'</textarea><span class="reqtxt">('.__('required', 'car-demon').')</span></li>
 			</ol>
 			</fieldset>';
 			$x = apply_filters('car_demon_mail_hook_form', $x, 'service_appointment', 'unk');
-			$x .= '<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn service_btn" value="Send Appointment" onclick="return car_demon_validate()"></p></form>
+			$x .= '<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn service_btn" value="'.__('Send Appointment', 'car-demon').'" onclick="return car_demon_validate()"></p></form>
 		';
 	return $x;
 }
@@ -78,6 +87,7 @@ function service_locations_radio() {
 		'use_desc_for_title' => 0,
 		'hierarchical'       => true,
 		'echo'               => 0,
+		'hide_empty'		 => 0,
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );
@@ -108,7 +118,7 @@ function service_locations_radio() {
 		<fieldset class="cd-fs2">
 		<legend>Service Location</legend>
 		<ol class="cd-ol">
-			<li id="select_location" class="cd-box-title">Select your preferred Service Location</li>
+			<li id="select_location" class="cd-box-title">'.__('Select your preferred Service Location', 'car-demon').'</li>
 			<li id="li-7items" class="cd-box-group">
 	';
 	if ($cnt == 1) {

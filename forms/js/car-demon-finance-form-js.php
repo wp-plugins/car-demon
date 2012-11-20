@@ -274,7 +274,7 @@
 					}
 				}
 				if (selected_car == "") {
-					var msg = msg + "You indicated you were interested in purchasing a vehicle but did not select one.";
+					var msg = msg + "<?php _e('You indicated you were interested in purchasing a vehicle but did not select one.', 'car-demon'); ?>";
 					cd_not_valid("voi_title");
 				}
 				else {
@@ -317,7 +317,7 @@
 		//=====END VOI Validation
 		//HANDLE FAILURE WITH MESSAGES
 		if (xFail == 1) {
-			alert('Issues were detected with your Application. \n Please review the application and submit again.');
+			alert('<?php _e('Issues were detected with your Application.', 'car-demon'); ?> \n <?php _e('Please review the application and submit again.', 'car-demon'); ?>');
 		}
 		else {
 			send_entire_form();
@@ -485,7 +485,7 @@
 	
 	function YesOrNo() {
 		if (document.frm_app.co_fn2.disabled==True) {
-			var r=confirm("Do you have a Co-Signer?");
+			var r=confirm("<?php _e('Do you have a Co-Signer?', 'car-demon'); ?>");
 			if (r==true) {
 				enableCoSigner();
 				document.frm_app.co_fn2.focus;

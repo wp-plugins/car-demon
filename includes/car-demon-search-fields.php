@@ -2,7 +2,7 @@
 function car_demon_search_years() {
 	$search_years = '';
 	$search_years .= '<select class="search_year" name="search_year" id="search_year">';
-		$search_years .= '<option value="">Any</option>';
+		$search_years .= '<option value="">'.__('Any', 'car-demon').'</option>';
 		$search_years .= car_demon_get_my_tax('vehicle_year',0);
 	$search_years .= '</select>&nbsp;&nbsp;&nbsp;';
 	return $search_years;
@@ -11,7 +11,7 @@ function car_demon_search_years() {
 function car_demon_search_makes() {
 	$search_makes = '';
 	$search_makes .= '<select class="search_make" name="search_make" id="search_make">';
-		$search_makes .= '<option value="">ALL MAKES</option>';
+		$search_makes .= '<option value="">'.__('ALL MAKES', 'car-demon').'</option>';
 		$search_makes .= car_demon_get_my_tax('vehicle_make',1);
 	$search_makes .= '</select>&nbsp;&nbsp;&nbsp;';
 	return $search_makes;
@@ -20,15 +20,15 @@ function car_demon_search_makes() {
 function car_demon_search_models() {
 	$search_models = '';
 	$search_models .= '<select class="search_model" name="search_model" id="search_model" onchange="car_demon_fix_model();">';
-		$search_models .= '<option value="">ALL MODELS</option>';
+		$search_models .= '<option value="">'.__('ALL MODELS', 'car-demon').'</option>';
 		$search_models .= car_demon_get_my_tax('vehicle_model',2);
 	$search_models .= '</select>&nbsp;&nbsp;&nbsp;';
 	return $search_models;
 }
 
 function car_demon_search_condition() {
-	$search_condition = '<select class="" name="search_condition" id="search_condition">';
-		$search_condition .= '<option value="">ALL</option>';
+	$search_condition = '<select class="search_condition" name="search_condition" id="search_condition">';
+		$search_condition .= '<option value="">'.__('ALL', 'car-demon').'</option>';
 		$search_condition .= car_demon_get_my_tax('vehicle_condition', 3);
 	$search_condition .= '</select>';
 	return $search_condition;
@@ -149,26 +149,39 @@ function car_demon_search_price($size) {
 	} else {
 		$price = '';
 	}
+	if (isset($_SESSION['car_demon_options']['currency_symbol'])) {
+		$currency_symbol = $_SESSION['car_demon_options']['currency_symbol'];
+	} else {
+		$currency_symbol = "$";
+	}
+	if (isset($_SESSION['car_demon_options']['currency_symbol_after'])) {
+		$currency_symbol_after = $_SESSION['car_demon_options']['currency_symbol_after'];
+		if (!empty($currency_symbol_after)) {
+			$currency_symbol = "";
+		}
+	} else {
+		$currency_symbol_after = "";
+	}
 	$x = '<select id="search_dropdown_'.$size.'_price" name="search_dropdown_'.$size.'_price" class="search_dropdown_sm">';
 		$x .= '<option value="0">No '.$size.'</option>';
 		if ($price == '1000') {$select = ' selected';} else {$select = '';}
-			$x .= '<option value="1000"'.$select.'>$1,000</option>';
+			$x .= '<option value="1000"'.$select.'>'.$currency_symbol.'1,000'.$currency_symbol_after.'</option>';
 		if ($price == '10000') {$select = ' selected';} else {$select = '';}
-			$x .= '<option value="10000"'.$select.'>$10,000</option>';
+			$x .= '<option value="10000"'.$select.'>'.$currency_symbol.'10,000'.$currency_symbol_after.'</option>';
 		if ($price == '15000') {$select = ' selected';} else {$select = '';}
-			$x .= '<option value="15000"'.$select.'>$15,000</option>';
+			$x .= '<option value="15000"'.$select.'>'.$currency_symbol.'15,000'.$currency_symbol_after.'</option>';
 		if ($price == '20000') {$select = ' selected';} else {$select = '';}
-			$x .= '<option value="20000"'.$select.'>$20,000</option>';
+			$x .= '<option value="20000"'.$select.'>'.$currency_symbol.'20,000'.$currency_symbol_after.'</option>';
 		if ($price == '30000') {$select = ' selected';} else {$select = '';}
-			$x .= '<option value="30000"'.$select.'>$30,000</option>';
+			$x .= '<option value="30000"'.$select.'>'.$currency_symbol.'30,000'.$currency_symbol_after.'</option>';
 		if ($price == '40000') {$select = ' selected';} else {$select = '';}
-			$x .= '<option value="40000"'.$select.'>$40,000</option>';
+			$x .= '<option value="40000"'.$select.'>'.$currency_symbol.'40,000'.$currency_symbol_after.'</option>';
 		if ($price == '50000') {$select = ' selected';} else {$select = '';}
-			$x .= '<option value="50000"'.$select.'>$50,000</option>';
+			$x .= '<option value="50000"'.$select.'>'.$currency_symbol.'50,000'.$currency_symbol_after.'</option>';
 		if ($price == '75000') {$select = ' selected';} else {$select = '';}
-			$x .= '<option value="75000"'.$select.'>$75,000</option>';
+			$x .= '<option value="75000"'.$select.'>'.$currency_symbol.'75,000'.$currency_symbol_after.'</option>';
 		if ($price == '100000') {$select = ' selected';} else {$select = '';}
-			$x .= '<option value="100000"'.$select.'>$100,000</option>';		
+			$x .= '<option value="100000"'.$select.'>'.$currency_symbol.'100,000'.$currency_symbol_after.'</option>';		
 	$x .= '</select>';
 	return $x;
 }
@@ -185,7 +198,7 @@ function car_demon_search_tran() {
 	$trans = $wpdb->get_results($sql);
 	if (!empty($trans)) {
 		$x = '<select id="search_dropdown_tran" name="search_dropdown_tran" class="search_dropdown_sm">';
-			$x .= '<option value="">Any</option>';
+			$x .= '<option value="">'.__('Any', 'car-demon').'</option>';
 			foreach($trans as $tran) {
 				if (!empty($tran->meta_value)) {
 					if ($current_trans == $tran->meta_value) {$select = ' selected';} else {$select = '';}
@@ -205,7 +218,7 @@ function car_demon_search_miles() {
 	}
 	$x = '<select id="search_dropdown_miles" name="search_dropdown_miles" class="search_dropdown_sm">';
 	if ($miles == '1000') {$select = ' selected';} else {$select = '';}
-		$x .= '<option value=""'.$select.'>Any</option>';
+		$x .= '<option value=""'.$select.'>'.__('Any', 'car-demon').'</option>';
 	if ($miles == '5000') {$select = ' selected';} else {$select = '';}
 		$x .= '<option value="5000"'.$select.'>< 5,000</option>';
 	if ($miles == '10000') {$select = ' selected';} else {$select = '';}
@@ -247,7 +260,7 @@ function car_demon_get_terms_dropdown($taxonomies, $args){
 	}
 	$myterms = get_terms($taxonomies, $args);
 	$output = '<select id="search_dropdown_body" name="search_dropdown_body" class="search_dropdown_sm">
-			<option value="">Any</option>';
+			<option value="">'.__('Any', 'car-demon').'</option>';
 	foreach($myterms as $term){
 		$root_url = home_url();
 		$term_taxonomy=$term->taxonomy;

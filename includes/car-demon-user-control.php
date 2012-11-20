@@ -8,7 +8,7 @@ if ($pagenow == 'profile.php' || $pagenow == 'user-edit.php') {
 function car_demon_profile_scripts() {
 	wp_enqueue_script('media-upload');
 	wp_enqueue_script('thickbox');
-	wp_register_script('cd-upload', '/wp-content/plugins/car-demon/js/profile_uploader.js', array('jquery','media-upload','thickbox'));
+	wp_register_script('cd-upload', '/wp-content/plugins/car-demon/theme-files/js/profile_uploader.js', array('jquery','media-upload','thickbox'));
 	wp_enqueue_script('cd-upload');
 }
  
@@ -195,6 +195,7 @@ function car_demon_select_user_location($current_user_location) {
 		'use_desc_for_title' => 0,
 		'hierarchical'       => true,
 		'echo'               => 0,
+		'hide_empty'		 => 0,
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );

@@ -74,7 +74,7 @@ function car_demon_search_form() {
 				</div>
 			</div>
 			<div id="car-demon-searchr8c2" class="search_button_box">
-			  <input type="submit" name="submit_search" id="submit_search" value="<?php _e('Search','car-demon'); ?>" class="search_btn">
+			  <input type="submit" name="submit_search" id="submit_search" value="<?php _e('Search','car-demon'); ?>" class="search_btn advanced_btn">
 			</div>
 		</div>
 		<div id="car-demon-searchr9c1" class="search_footer"></div>
@@ -106,7 +106,7 @@ function car_demon_simple_search($size='l') {
 		<div id="car-demon-searchr2c1" class="<?php echo $logo; ?>"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/search_cars.png" alt="Search Cars" title="Search Cars" />&nbsp;<?php _e('QUICK SEARCH','car-demon'); ?></div>
 		<div class="search_left">
 			<div id="car-demon-searchr3c1" class="search_manufacturer_title2"><?php _e('Year','car-demon'); ?>:</div>
-			<div><?php echo car_demon_search_years(); ?></div>
+			<div class="search_year_dropdown"><?php echo car_demon_search_years(); ?></div>
 		</div>
 		<div class="search_right">
 			<div id="car-demon-searchr3c1" class=""><?php _e('Manufacturer','car-demon'); ?>:</div>
@@ -118,7 +118,7 @@ function car_demon_simple_search($size='l') {
 		</div>
 		<div id="car-demon-searchr8c1" class="search_body"><?php _e('Body Type','car-demon'); ?>:<br /><?php echo car_demon_search_body(); ?></div>
 		<div id="car-demon-searchr8c2" class="search_button_box">
-		  <input type="submit" name="submit_search" id="submit_search" value="<?php _e('Search','car-demon'); ?>" class="search_btn">
+		  <input type="submit" name="submit_search" id="submit_search" value="<?php _e('Search','car-demon'); ?>" class="search_btn simple_btn">
 		</div>
 </form>
 	</div>

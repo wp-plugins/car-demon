@@ -49,6 +49,10 @@ function car_demon_validate() {
 			cd_valid("cd_name");
 		}
 	}
+	<?php
+	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
+		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
+	?>
 	if (contact_form.cd_phone.value == "") {
 		var msg = msg + "You must enter a valid Phone Number.<br />";
 		cd_not_valid("cd_phone");
@@ -61,6 +65,10 @@ function car_demon_validate() {
 			cd_valid("cd_phone");
 		}
 	}
+	<?php
+		}
+	}
+	?>
 	var e_msg = validateEmail(contact_form.cd_email);
 	if (e_msg == "") {
 		cd_valid("cd_email");

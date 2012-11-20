@@ -12,13 +12,13 @@ function car_demon_display_car_list($post_id) {
 	$mileage_value = get_post_meta($post_id, "_mileage_value", true);
 	$detail_output = '<span class="random_title">'.$title.'</span><br />';
 	$detail_output .= '<span class="random_text">';
-		$detail_output .= 'Condition: '.$vehicle_condition.'<br />';			
+		$detail_output .= __('Condition:', 'car-demon').' '.$vehicle_condition.'<br />';			
 	$detail_output .= '</span>';
 	$detail_output .= '<span class="random_text">';
-		$detail_output .= 'Mileage: '.$mileage_value.'<br />';
+		$detail_output .= __('Mileage:', 'car-demon').' '.$mileage_value.'<br />';
 	$detail_output .= '</span>';
 	$detail_output .= '<span class="random_text">';
-		$detail_output .= 'Stock#: '.$stock_value;
+		$detail_output .= __('Stock#:', 'car-demon').' '.$stock_value;
 	$detail_output .= '</span>';
 	if (isset($_SESSION['car_demon_options']['use_compare'])) {
 		$use_compare = $_SESSION['car_demon_options']['use_compare'];
@@ -54,21 +54,23 @@ function car_demon_display_car_list($post_id) {
 	$img_output = "<div class='inventory_photo_box'><img title='".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image inventory_photo_box' src='";
 	$img_output .= wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 	$img_output .= "' /></div>";
-	$ribbon = 'ribbon-just-added';
-	$ribbon = 'ribbon-great-deal';
-	if ($vehicle_condition == 'New') {
-		$ribbon = 'ribbon-new';
+	$ribbon = get_post_meta($post_id, '_vehicle_ribbon', true);
+	if (empty($ribbon)) {
+		$ribbon = 'no-ribbon';
+	}
+	if ($ribbon != 'custom_ribbon') {
+		$ribbon = str_replace('_', '-', $ribbon);
+		$current_ribbon = '<img class="inventory_ribbon" src="'. $car_demon_pluginpath .'theme-files/images/ribbon-'.$ribbon.'.png" width="76" height="76" id="ribbon">';
 	} else {
-		if ($mileage_value < 60000) { $ribbon = 'ribbon-low-miles';	}
-		$tmp_price = get_post_meta($post_id, "_price_value", true);
-		if ($tmp_price < 12000) { $ribbon = 'ribbon-low-price';	}
+		$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
+		$current_ribbon = '<img class="inventory_ribbon" src="'.$custom_ribbon_file.'" width="76" height="76" id="ribbon">';
 	}
 	$car = '
 		<div class="random inventory_item">
 			<div class="random_img inventory_img">
 				<a href="'.$link.'">
-					<img class="inventory_ribbon" src="'. $car_demon_pluginpath .'theme-files/images/'.$ribbon.'.png" width="76" height="76" alt="New Ribbon" id="ribbon">
-					<img class="inventory_lookup" src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="188" height="143" alt="New Ribbon" id="look_close" class="look_close">
+					'.$current_ribbon.'
+					<img class="inventory_lookup" src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="188" height="143" id="look_close" class="look_close">
 					'.$img_output.'
 				</a>
 			</div>

@@ -251,6 +251,7 @@ function get_service_email($service_location) {
 		'use_desc_for_title' => 0,
 		'hierarchical'       => true,
 		'echo'               => 0,
+		'hide_empty'		 => 0,
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );

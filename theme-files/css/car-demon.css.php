@@ -56,7 +56,7 @@ if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme
 	border-radius:6px;
 	border:1px solid #84bbf3;
 	display:inline-block;
-	color:#ffffff;
+	color:#ffffff !important;
 	font-family:arial;
 	font-size:15px;
 	font-weight:bold;

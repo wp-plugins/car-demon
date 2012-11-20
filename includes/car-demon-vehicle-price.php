@@ -17,7 +17,7 @@ function get_vehicle_price($post_id) {
 		$currency_symbol_after = "";
 	}	
 	if ($is_sold == "Yes") {
-		$sold = "<div class='car_sold'>SOLD</div>";
+		$sold = "<div class='car_sold'>".__("SOLD", "car-demon")."</div>";
 		return $sold;
 	}
 	$vehicle_location = strip_tags(get_the_term_list( $post_id, 'vehicle_location', '','', '', '' ));

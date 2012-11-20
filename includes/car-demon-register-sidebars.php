@@ -1,7 +1,7 @@
 <?php
 function car_demon_register_sidebars() {
 	register_sidebar(array(
-		'name'=> 'Vehicle Detail Sidebar',
+		'name'=> __('Vehicle Detail Sidebar', 'car-demon'),
 		'id' => 'car_page',
 		'before_widget' => '<li id="%1$s" class="car-demon-widget %2$s">',
 		'after_widget' => '</li>',
@@ -12,7 +12,7 @@ function car_demon_register_sidebars() {
 
 function car_demon_register_mobile_sidebars() {
 	register_sidebar(array(
-		'name'=> 'Mobile Header',
+		'name'=> __('Mobile Header', 'car-demon'),
 		'id' => 'mobile_header',
 		'before_widget' => '<li id="%1$s" class="car-demon-widget %2$s">',
 		'after_widget' => '</li>',
@@ -20,7 +20,7 @@ function car_demon_register_mobile_sidebars() {
 		'after_title' => '</h2>',
 	));
 	register_sidebar(array(
-		'name'=> 'Mobile Front Page',
+		'name'=> __('Mobile Front Page', 'car-demon'),
 		'id' => 'mobile_front_page',
 		'before_widget' => '<li id="%1$s" class="car-demon-widget %2$s">',
 		'after_widget' => '</li>',
@@ -28,7 +28,7 @@ function car_demon_register_mobile_sidebars() {
 		'after_title' => '</h2>',
 	));	
 	register_sidebar(array(
-		'name'=> 'Mobile Footer',
+		'name'=> __('Mobile Footer', 'car-demon'),
 		'id' => 'mobile_footer',
 		'before_widget' => '<li id="%1$s" class="car-demon-widget %2$s">',
 		'after_widget' => '</li>',
@@ -36,7 +36,7 @@ function car_demon_register_mobile_sidebars() {
 		'after_title' => '</h2>',
 	));	
 	register_sidebar(array(
-		'name'=> 'Mobile Car Page',
+		'name'=> __('Mobile Car Page', 'car-demon'),
 		'id' => 'mobile_car_page',
 		'before_widget' => '<li id="%1$s" class="car-demon-widget %2$s">',
 		'after_widget' => '</li>',

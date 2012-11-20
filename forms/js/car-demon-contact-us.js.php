@@ -26,7 +26,7 @@ $hook_form_js_data = apply_filters('car_demon_mail_hook_js_data', $x, 'contact_u
 ?>
 // JavaScript Document
 function clearField(fld) {
-	if (fld.value == "Your Name") {
+	if (fld.value == "<?php _e('Your Name', 'car-demon'); ?>") {
 		fld.value = "";
 	}
 }
@@ -37,31 +37,39 @@ function car_demon_validate() {
 	var msg = "";
 	var name_valid = 0;
 	if (contact_form.cd_name.value == "") {
-		var msg = "You must enter your name.<br />";
+		var msg = "<?php _e('You must enter your name.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_name");
 	} else {
 		var name_valid = 1;
 	}
 	if (contact_form.cd_name.value == "Your Name") {
-		var msg = "You must enter your name.<br />";
+		var msg = "<?php _e('You must enter your name.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_name");
 	} else {
 		if (name_valid == 1) {
 			cd_valid("cd_name");
 		}
 	}
+	<?php
+	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
+		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
+	?>
 	if (contact_form.cd_phone.value == "") {
-		var msg = msg + "You must enter a valid Phone Number.<br />";
+		var msg = msg + "<?php _e('You must enter a valid Phone Number.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_phone");
 	} else {
 		if (contact_form.cd_phone.value.length != 14) {
-			var msg = msg + "The phone number you entered is not valid.<br />";
+			var msg = msg + "<?php _e('The phone number you entered is not valid.', 'car-demon'); ?><br />";
 			cd_not_valid("cd_phone");			
 		}
 		else {
 			cd_valid("cd_phone");
 		}
 	}
+	<?php
+		}
+	}
+	?>
 	var e_msg = validateEmail(contact_form.cd_email);
 	if (e_msg == "") {
 		cd_valid("cd_email");
@@ -72,14 +80,14 @@ function car_demon_validate() {
 	var send_to = send_to_fld.options[send_to_fld.selectedIndex].value;
 	var send_to_name = send_to_fld.options[send_to_fld.selectedIndex].text;
 	if (send_to == "") {
-		var msg = msg + "You did not select who you want to send this message to.<br />";
+		var msg = msg + "<?php _e('You did not select who you want to send this message to.', 'car-demon'); ?><br />";
 		cd_not_valid("select_location");
 	} else {
 		document.getElementById("select_location").style.background = "";
 	}
 
 	if (contact_form.contact_needed.value == "") {
-		var msg = msg + "You did not enter a message to send.<br />";
+		var msg = msg + "<?php _e('You did not enter a message to send.', 'car-demon'); ?><br />";
 		cd_not_valid("contact_needed");	
 	} else {
 		document.getElementById("contact_needed").style.background = "";
@@ -142,13 +150,13 @@ function validateEmail(fld) {
 	var illegalChars= /[\(\)\<\>\,\;\:\\\"\[\]]/ ;
 	if (fld.value == "") {
 		fld.style.background = "Yellow";
-		error = "You didnt enter an email address.\n";
+		error = "<?php _e('You didnt enter an email address.', 'car-demon'); ?>\n";
 	} else if (!emailFilter.test(tfld)) {              //test email for illegal characters
 		fld.style.background = "Yellow";
-		error = "Please enter a valid email address.\n";
+		error = "<?php _e('Please enter a valid email address', 'car-demon'); ?>.\n";
 	} else if (fld.value.match(illegalChars)) {
 		fld.style.background = "Yellow";
-		error = "The email address contains illegal characters.\n";
+		error = "<?php _e('The email address contains illegal characters', 'car-demon'); ?>.\n";
 	} else {
 		fld.style.background = "White";
 	}
@@ -211,7 +219,7 @@ function GetCursorPosition(){
 	  }
 	}
   }
-}		
+}
 function ValidatePhone(object){
   var p = phonevalue1
   p = p.replace(/[^\d]*/gi,"")

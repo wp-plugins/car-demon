@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>Finance Calculator</title>
+<title><?php _e('Finance Calculator', 'car-demon'); ?></title>
 </head>
 <body>
 <?php

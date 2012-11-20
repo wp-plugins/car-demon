@@ -141,20 +141,21 @@ function car_demon_display_random_cars($stop) {
 			$img_output = "<img onclick='window.location=\"".$link."\";' title='Click for price on this ".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image' width='180px' height='135px' src='";
 			$img_output .= wp_get_attachment_thumb_url( get_post_thumbnail_id( $post_id ) );
 			$img_output .= "' />";
-			$ribbon = 'ribbon-just-added';
-			$ribbon = 'ribbon-great-deal';
-			if ($vehicle_condition == 'New') {
-				$ribbon = 'ribbon-new';
+			$ribbon = get_post_meta($post_id, '_vehicle_ribbon', true);
+			if (empty($ribbon)) {
+				$ribbon = 'no-ribbon';		
 			}
-			else {
-				if ($mileage_value < 60000) { $ribbon = 'ribbon-low-miles';	}
-				$tmp_price = get_post_meta($post_id, "_price_value", true);
-				if ($tmp_price < 12000) { $ribbon = 'ribbon-low-price';	}
+			if ($ribbon != 'custom_ribbon') {
+				$ribbon = str_replace('_', '-', $ribbon);
+				$current_ribbon = '<img class="similar_car_ribbon" src="'. $car_demon_pluginpath .'theme-files/images/ribbon-'.$ribbon.'.png" width="76" height="76" alt="New Ribbon" id="ribbon">';
+			} else {
+				$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
+				$current_ribbon = '<img class="similar_car_ribbon" src="'.$custom_ribbon_file.'" width="76" height="76" alt="New Ribbon" id="ribbon">';
 			}
 			$car .= '
 				<div class="random">
 					<div class="random_img">
-						<img onclick="window.location=\''.$link.'\';" class="random_car_widget" src="'. $car_demon_pluginpath .'theme-files/images/'.$ribbon.'.png" width="76" height="76" alt="New Ribbon" id="ribbon">
+						'.$current_ribbon.'
 						<img onclick="window.location=\''.$link.'\';" class="random_car_lookup" src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="188" height="143" alt="New Ribbon" id="look_close" class="look_close">
 						'.$img_output.'
 					</div>

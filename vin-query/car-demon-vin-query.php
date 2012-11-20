@@ -27,8 +27,10 @@ function car_demon_get_vin_query($post_id, $vin) {
 					$decode_string[$key] = $value;
 				}
 			}
-			update_post_meta($post_id, 'decode_string', $decode_string);
-			update_post_meta($post_id, 'decode_saved', "1");
+			if (!empty($decode_string)) {
+				update_post_meta($post_id, 'decode_string', $decode_string);
+				update_post_meta($post_id, 'decode_saved', "1");
+			}
 			if (isset($decode_string['decoded_model_year'])) {
 				wp_set_post_terms($post_id, $decode_string['decoded_model_year'], 'vehicle_year', false );
 			}

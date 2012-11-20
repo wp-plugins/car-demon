@@ -69,31 +69,39 @@ function car_demon_validate() {
 	var msg = "";
 	var name_valid = 0;
 	if (part_form.cd_name.value == "") {
-		var msg = "You must enter your name.<br />";
+		var msg = "<?php _e('You must enter your name.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_name");
 	} else {
 		var name_valid = 1;
 	}
 	if (part_form.cd_name.value == "Your Name") {
-		var msg = "You must enter your name.<br />";
+		var msg = "<?php _e('You must enter your name.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_name");
 	} else {
 		if (name_valid == 1) {
 			cd_valid("cd_name");
 		}
 	}
+	<?php
+	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
+		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
+	?>
 	if (part_form.cd_phone.value == "") {
-		var msg = msg + "You must enter a valid Phone Number.<br />";
+		var msg = msg + "<?php _e('You must enter a valid Phone Number.', 'car-demon'); ?><br />";
 		cd_not_valid("cd_phone");
 	} else {
 		if (part_form.cd_phone.value.length != 14) {
-			var msg = msg + "The phone number you entered is not valid.<br />";
+			var msg = msg + "<?php _e('The phone number you entered is not valid.', 'car-demon'); ?><br />";
 			cd_not_valid("cd_phone");			
 		}
 		else {
 			cd_valid("cd_phone");
 		}
 	}
+	<?php
+		}
+	}
+	?>
 	var e_msg = validateEmail(part_form.cd_email);
 	if (e_msg == "") {
 		cd_valid("cd_email");
@@ -108,13 +116,13 @@ function car_demon_validate() {
 		}
 	}
 	if (location_value == "") {
-		var msg = msg + "You did not select a part location.<br />";
+		var msg = msg + "<?php _e('You did not select a part location.', 'car-demon'); ?><br />";
 		cd_not_valid("select_location");
 	} else {
 		document.getElementById("select_location").style.background = "";
 	}
 	if (part_form.part_name_1.value == "") {
-		var msg = msg + "You need to add at least the name of one part you are looking for.<br />";
+		var msg = msg + "<?php _e('You need to add at least the name of one part you are looking for.', 'car-demon'); ?><br />";
 		cd_not_valid("part_name_1");			
 	} else {
 		cd_valid("part_name_1");
@@ -201,13 +209,13 @@ function validateEmail(fld) {
 	
 	if (fld.value == "") {
 		fld.style.background = 'Yellow';
-		error = "You didn't enter an email address.\n";
+		error = "<?php _e('You didn\'t enter an email address.', 'car-demon'); ?>\n";
 	} else if (!emailFilter.test(tfld)) {              //test email for illegal characters
 		fld.style.background = 'Yellow';
-		error = "Please enter a valid email address.\n";
+		error = "<?php _e('Please enter a valid email address.', 'car-demon'); ?>\n";
 	} else if (fld.value.match(illegalChars)) {
 		fld.style.background = 'Yellow';
-		error = "The email address contains illegal characters.\n";
+		error = "<?php _e('The email address contains illegal characters.', 'car-demon'); ?>\n";
 	} else {
 		fld.style.background = 'White';
 	}

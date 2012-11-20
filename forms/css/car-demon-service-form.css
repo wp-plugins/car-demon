@@ -49,9 +49,6 @@
 .cdform textarea, .cdform input {
 	width: 150px;
 }
-.search_btn {
-	width: 175px !important;
-}
 .cd_date {
 	font-size:11px;
 }
@@ -75,5 +72,6 @@ ol.cd-ol li {
 	line-height: 1.3em;
 }
 .service_btn {
+	width: 175px !important;
 	float:right;
 }

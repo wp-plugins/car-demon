@@ -21,6 +21,7 @@ else {
 $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 $rootpath = str_replace('wp-content/plugins/car-demon/vin-query/js','wp-admin/images/',$car_demon_pluginpath);
 $car_demon_pluginpath = str_replace('vin-query/js','',$car_demon_pluginpath);
+$post_id = $_GET['post'];
 ?>
 // JavaScript Document
 function remove_decode(post_id) {
@@ -248,3 +249,45 @@ function validate_vin(vin) {
 	}
 	return go;
 }
+function update_ribbon(ribbon) {
+	if (ribbon == 'custom_ribbon') {
+		document.getElementById('custom_ribbon_div').style.display = 'block';
+		var custom_ribbon = document.getElementById('_custom_ribbon').value;
+		if (custom_ribbon != '') {
+			var ribbon_url = custom_ribbon;
+		} else {
+			ribbon = ribbon.replace('_','-');
+			var ribbon_url = '<?php echo $car_demon_pluginpath; ?>theme-files/images/ribbon-'+ribbon+'.png';		
+		}
+	} else {
+		ribbon = ribbon.replace('_','-');
+		document.getElementById('custom_ribbon_div').style.display = 'none';
+		var ribbon_url = '<?php echo $car_demon_pluginpath; ?>theme-files/images/ribbon-'+ribbon+'.png';
+	}
+	document.getElementById('vehicle_ribbon').src = ribbon_url;
+}
+
+jQuery(document).ready(function() {
+	var sendto = '';
+	jQuery('#custom_ribbon_btn').click(function() {
+		formfield = jQuery('#_custom_ribbon').attr('name');
+		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+		sendto = '_custom_ribbon';
+		return false;
+	});
+	jQuery('#_custom_ribbon').click(function() {
+		formfield = jQuery('#_custom_ribbon').attr('name');
+		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+		sendto = '_custom_ribbon';
+		return false;
+	});
+	window.send_to_editor = function(html) {
+	 imgurl = jQuery('img',html).attr('src');
+	 jQuery('#'+sendto).val(imgurl);
+	 document.getElementById('vehicle_ribbon').src = imgurl;
+	 var post_id = document.getElementById('this_car_id').value;
+	 fld = document.getElementById('_custom_ribbon');
+	 update_vehicle_data(fld, post_id)
+	 tb_remove();
+	}	 
+});

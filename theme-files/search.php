@@ -113,14 +113,13 @@ $query_string = str_replace('&order_by=_price_value', '', $query_string);
 $query_string = str_replace('&order_by=_mileage_value', '', $query_string);
 $wpurl_img = $wpurl.'/wp-content/plugins/car-demon/theme-files/images/';
 $wpurl = $wpurl .'?'. $query_string;
-echo 'Sort By:';
-$sort_asc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="Sort Low to High" /></a>&nbsp;';
-$sort_desc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="Sort High to Low" /></a>';
-	echo '&nbsp;&nbsp;&nbsp;Price '.$sort_asc_img.$sort_desc_img;
-$sort_asc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="Sort Low to High" /></a>&nbsp;';
-$sort_desc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="Sort High to Low" /></a>';
-	echo '&nbsp;&nbsp;&nbsp;Mileage '.$sort_asc_img.$sort_desc_img;
-
+echo __('Sort By:', 'car-demon');
+$sort_asc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="'.__('Sort Low to High', 'car-demon').'" /></a>&nbsp;';
+$sort_desc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="'.__('Sort High to Low', 'car-demon').'" /></a>';
+	echo '&nbsp;&nbsp;&nbsp;'.__('Price', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
+$sort_asc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="'.__('Sort Low to High', 'car-demon').'" /></a>&nbsp;';
+$sort_desc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="'.__('Sort High to Low', 'car-demon').'" /></a>';
+	echo '&nbsp;&nbsp;&nbsp;'.__('Mileage', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
 if (isset($_GET['car'])) {
 ?>
 <style>
@@ -144,7 +143,7 @@ if (isset($_GET['car'])) {
 								<?php } ?>
 						</div><!-- #nav-above -->
 					<?php else: ?>
-						<div id="cd-nav-above" class="navigation-top inventory_nav"><span class="wp-pagenavi"><span class="pages"><?php echo $wp_query->post_count; ?> Results Found</span></span>
+						<div id="cd-nav-above" class="navigation-top inventory_nav"><span class="wp-pagenavi"><span class="pages"><?php echo $wp_query->post_count; ?> <?php _e('Results Found', 'car-demon'); ?></span></span>
 						</div>
 				<?php endif; ?>
 <div id="demon-content" class="listing" role="main">

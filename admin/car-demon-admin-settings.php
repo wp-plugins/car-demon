@@ -42,6 +42,7 @@ function admin_contact_forms() {
 		'use_desc_for_title' => 0,
 		'hierarchical'       => true,
 		'echo'               => 0,
+		'hide_empty'		 => 0,
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );
@@ -61,43 +62,43 @@ function admin_contact_forms() {
 		?>
 		<form action="" name="frm_admin" method="post" class="cd_admin_form">
 		<input type="hidden" name="update_location_options" id="update_location_options" value="1" />
-		<h1><?php echo $location_name_list_array[$x]; ?> Contact Information</h1>
-		<span class="cd_admin_form_label">Facebook Fan Page</span>
+		<h1><?php echo $location_name_list_array[$x]; ?> <?php _e('Contact Information', 'car-demon'); ?></h1>
+		<span class="cd_admin_form_label"><?php _e('Facebook Fan Page', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo get_option($current_location.'_facebook_page') ?>" name="<?php echo $current_location; ?>_facebook_page" id="<?php echo $current_location; ?>_facebook_page" />
 		<br />
-		<span class="cd_admin_form_label">New Sales Name</span>
+		<span class="cd_admin_form_label"><?php _e('New Sales Name', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo get_option($current_location.'_new_sales_name') ?>" name="<?php echo $current_location; ?>_new_sales_name" id="<?php echo $current_location; ?>_new_sales_name" />
 		<br />
-		<span class="cd_admin_form_label">New Sales Number</span>
+		<span class="cd_admin_form_label"><?php _e('New Sales Number', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo get_option($current_location.'_new_sales_number') ?>" name="<?php echo $current_location; ?>_new_sales_number" id="<?php echo $current_location; ?>_new_sales_number" />
-		<span class="cd_admin_form_label">New Mobile Number</span>
+		<span class="cd_admin_form_label"><?php _e('New Mobile Number', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo get_option($current_location.'_new_mobile_number') ?>" name="<?php echo $current_location; ?>_new_mobile_number" id="<?php echo $current_location; ?>_new_mobile_number" />
 		<br />
-		<span class="cd_admin_form_label">New Mobile Provider</span>
+		<span class="cd_admin_form_label"><?php _e('New Mobile Provider', 'car-demon'); ?></span>
 		<?php
 			$current_val = get_option($current_location.'_new_mobile_provider');
 			echo select_cell_provider($current_location.'_new_mobile_provider', $current_val);
-		?> <span class="small_text">- blank disables SMS for new.</span>
+		?> <span class="small_text"><?php _e('- blank disables SMS for new.', 'car-demon'); ?></span>
 		<br />
-		<span class="cd_admin_form_label">New Sales Email</span>
+		<span class="cd_admin_form_label"><?php _e('New Sales Email', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo get_option($current_location.'_new_sales_email') ?>" name="<?php echo $current_location; ?>_new_sales_email" id="<?php echo $current_location; ?>_new_sales_email" />
 		<br />
-		<span class="cd_admin_form_label">Used Sales Name</span>
+		<span class="cd_admin_form_label"><?php _e('Used Sales Name', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo get_option($current_location.'_used_sales_name') ?>" name="<?php echo $current_location; ?>_used_sales_name" id="<?php echo $current_location; ?>_used_sales_name" />
 		<br />
-		<span class="cd_admin_form_label">Used Sales Number</span>
+		<span class="cd_admin_form_label"><?php _e('Used Sales Number', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo get_option($current_location.'_used_sales_number') ?>" name="<?php echo $current_location; ?>_used_sales_number" id="<?php echo $current_location; ?>_used_sales_number" />
 		<br />		
-		<span class="cd_admin_form_label">Used Mobile Number</span>
+		<span class="cd_admin_form_label"><?php _e('Used Mobile Number', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo get_option($current_location.'_used_mobile_number') ?>" name="<?php echo $current_location; ?>_used_mobile_number" id="<?php echo $current_location; ?>_used_mobile_number" />
 		<br />
-		<span class="cd_admin_form_label">Used Mobile Provider</span>
+		<span class="cd_admin_form_label"><?php _e('Used Mobile Provider', 'car-demon'); ?></span>
 		<?php
 			$current_val = get_option($current_location.'_used_mobile_provider');
 			echo select_cell_provider($current_location.'_used_mobile_provider', $current_val);
-		?> <span class="small_text">- blank disables SMS for used.</span>
+		?> <span class="small_text"><?php _e('- blank disables SMS for used.', 'car-demon'); ?></span>
 		<br />
-		<span class="cd_admin_form_label">Used Sales Email</span>
+		<span class="cd_admin_form_label"><?php _e('Used Sales Email', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo get_option($current_location.'_used_sales_email') ?>" name="<?php echo $current_location; ?>_used_sales_email" id="<?php echo $current_location; ?>_used_sales_email" />
 		<br />
 		<?php
@@ -106,40 +107,40 @@ function admin_contact_forms() {
 				$default_description = get_default_description();
 			}
 		?>
-		<span class="cd_admin_form_label">Default Description</span>
+		<span class="cd_admin_form_label"><?php _e('Default Description', 'car-demon'); ?></span>
 		<textarea name="<?php echo $current_location; ?>_default_description" id="<?php echo $current_location; ?>_default_description" class="admin_default_description"><?php echo $default_description; ?></textarea>
 		<br />
-		<span class="cd_admin_form_label">Service Name</span>
+		<span class="cd_admin_form_label"><?php _e('Service Name', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_service_name')) ?>" name="<?php echo $current_location; ?>_service_name" id="<?php echo $current_location; ?>_service_name" />
 		<br />
-		<span class="cd_admin_form_label">Service Number</span>
+		<span class="cd_admin_form_label"><?php _e('Service Number', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_service_number')) ?>" name="<?php echo $current_location; ?>_service_number" id="<?php echo $current_location; ?>_service_number" />
 		<br />
-		<span class="cd_admin_form_label">Service Email</span>
+		<span class="cd_admin_form_label"><?php _e('Service Email', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_service_email')) ?>" name="<?php echo $current_location; ?>_service_email" id="<?php echo $current_location; ?>_service_email" />
 		<br />
-		<span class="cd_admin_form_label">Parts Name</span>
+		<span class="cd_admin_form_label"><?php _e('Parts Name', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_parts_name')) ?>" name="<?php echo $current_location; ?>_parts_name" id="<?php echo $current_location; ?>_parts_name" />
 		<br />
-		<span class="cd_admin_form_label">Parts Number</span>
+		<span class="cd_admin_form_label"><?php _e('Parts Number', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_parts_number')) ?>" name="<?php echo $current_location; ?>_parts_number" id="<?php echo $current_location; ?>_parts_number" />
 		<br />
-		<span class="cd_admin_form_label">Parts Email</span>
+		<span class="cd_admin_form_label"><?php _e('Parts Email', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_parts_email')) ?>" name="<?php echo $current_location; ?>_parts_email" id="<?php echo $current_location; ?>_parts_email" />
 		<br />
-		<span class="cd_admin_form_label">Finance Name</span>
+		<span class="cd_admin_form_label"><?php _e('Finance Name', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_finance_name')) ?>" name="<?php echo $current_location; ?>_finance_name" id="<?php echo $current_location; ?>_finance_name" />
 		<br />
-		<span class="cd_admin_form_label">Finance Number</span>
+		<span class="cd_admin_form_label"><?php _e('Finance Number', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_finance_number')) ?>" name="<?php echo $current_location; ?>_finance_number" id="<?php echo $current_location; ?>_finance_number" />
 		<br />
-		<span class="cd_admin_form_label">Finance Email</span>
+		<span class="cd_admin_form_label"><?php _e('Finance Email', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_finance_email')) ?>" name="<?php echo $current_location; ?>_finance_email" id="<?php echo $current_location; ?>_finance_email" />
 		<br />
-		<span class="cd_admin_form_label">Link to Finance Form</span>
+		<span class="cd_admin_form_label"><?php _e('Link to Finance Form', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_finance_url')) ?>" name="<?php echo $current_location; ?>_finance_url" id="<?php echo $current_location; ?>_finance_url" />
 		<br />
-		<span class="cd_admin_form_label">Pop Up Finance Form</span>
+		<span class="cd_admin_form_label"><?php _e('Pop Up Finance Form', 'car-demon'); ?></span>
 		<select name="<?php echo $current_location; ?>_finance_popup" id="<?php echo $current_location; ?>_finance_popup">
 			<option value="<?php echo strip_tags(get_option($current_location.'_finance_popup')) ?>"><?php echo get_option($current_location.'_finance_popup') ?></option>
 			<option value="Yes">Yes</option>
@@ -157,25 +158,25 @@ function admin_contact_forms() {
 				$finance_description = get_default_finance_description();
 			}
 		?>
-		<span class="cd_admin_form_label">*Finance Disclaimer</span>
+		<span class="cd_admin_form_label"><?php _e('*Finance Disclaimer', 'car-demon'); ?></span>
 		<textarea name="<?php echo $current_location; ?>_finance_disclaimer" id="<?php echo $current_location; ?>_finance_disclaimer" class="admin_default_description"><?php echo $finance_disclaimer; ?></textarea>
 		<br />
-		<span class="cd_admin_form_label">*Finance Description</span>
+		<span class="cd_admin_form_label"><?php _e('*Finance Description', 'car-demon'); ?></span>
 		<textarea name="<?php echo $current_location; ?>_finance_description" id="<?php echo $current_location; ?>_finance_description" class="admin_default_description"><?php echo $finance_description; ?></textarea>
 		<br />
-		<span class="cd_admin_form_label">Trade Name</span>
+		<span class="cd_admin_form_label"><?php _e('Trade Name', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_trade_name')) ?>" name="<?php echo $current_location; ?>_trade_name" id="<?php echo $current_location; ?>_trade_name" />
 		<br />
-		<span class="cd_admin_form_label">Trade Number</span>
+		<span class="cd_admin_form_label"><?php _e('Trade Number', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_trade_number')) ?>" name="<?php echo $current_location; ?>_trade_number" id="<?php echo $current_location; ?>_trade_number" />
 		<br />
-		<span class="cd_admin_form_label">Trade Email</span>
+		<span class="cd_admin_form_label"><?php _e('Trade Email', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_trade_email')) ?>" name="<?php echo $current_location; ?>_trade_email" id="<?php echo $current_location; ?>_trade_email" />
 		<br />
-		<span class="cd_admin_form_label">Link to Trade Form</span>
+		<span class="cd_admin_form_label"><?php _e('Link to Trade Form', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_trade_url')) ?>" name="<?php echo $current_location; ?>_trade_url" id="<?php echo $current_location; ?>_trade_url" />
 		<br />
-		<span class="cd_admin_form_label">Show Prices on New</span>
+		<span class="cd_admin_form_label"><?php _e('Show Prices on New', 'car-demon'); ?></span>
 		<select name="<?php echo $current_location; ?>_show_new_prices" id="<?php echo $current_location; ?>_show_new_prices">
 			<option value="<?php echo strip_tags(get_option($current_location.'_show_new_prices')) ?>"><?php echo strip_tags(get_option($current_location.'_show_new_prices')) ?></option>
 			<option value="Yes">Yes</option>
@@ -183,7 +184,7 @@ function admin_contact_forms() {
 		</select>&nbsp;If No use: 
 			<input type="text" value="<?php echo strip_tags(get_option($current_location.'_no_new_price')) ?>" name="<?php echo $current_location; ?>_no_new_price" id="<?php echo $current_location; ?>_no_new_price" class="admin_no_price" />
 		<br />
-		<span class="cd_admin_form_label">Show Prices on Used</span>
+		<span class="cd_admin_form_label"><?php _e('Show Prices on Used', 'car-demon'); ?></span>
 		<select name="<?php echo $current_location; ?>_show_used_prices" id="<?php echo $current_location; ?>_show_used_prices">
 			<option value="<?php echo strip_tags(get_option($current_location.'_show_used_prices')) ?>"><?php echo strip_tags(get_option($current_location.'_show_used_prices')) ?></option>
 			<option value="Yes">Yes</option>
@@ -191,23 +192,23 @@ function admin_contact_forms() {
 		</select>&nbsp;If No use: 
 			<input type="text" value="<?php echo strip_tags(get_option($current_location.'_no_used_price')) ?>" name="<?php echo $current_location; ?>_no_used_price" id="<?php echo $current_location; ?>_no_used_price" class="admin_no_price" />
 		<br />
-		<span class="cd_admin_form_label">New Large Photo Url</span>
+		<span class="cd_admin_form_label"><?php _e('New Large Photo Url', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_new_large_photo_url')) ?>" name="<?php echo $current_location; ?>_new_large_photo_url" id="<?php echo $current_location; ?>_new_large_photo_url" />
 		<br />
-		<span class="cd_admin_form_label">New Small Photo Url</span>
+		<span class="cd_admin_form_label"><?php _e('New Small Photo Url', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_new_small_photo_url')) ?>" name="<?php echo $current_location; ?>_new_small_photo_url" id="<?php echo $current_location; ?>_new_small_photo_url" />
 		<br />
-		<span class="cd_admin_form_label">Used Large Photo Url</span>
+		<span class="cd_admin_form_label"><?php _e('Used Large Photo Url', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_used_large_photo_url')) ?>" name="<?php echo $current_location; ?>_used_large_photo_url" id="<?php echo $current_location; ?>_used_large_photo_url" />
 		<br />
-		<span class="cd_admin_form_label">Used Small Photo Url</span>
+		<span class="cd_admin_form_label"><?php _e('Used Small Photo Url', 'car-demon'); ?></span>
 		<input type="text" value="<?php echo strip_tags(get_option($current_location.'_used_small_photo_url')) ?>" name="<?php echo $current_location; ?>_used_small_photo_url" id="<?php echo $current_location; ?>_used_small_photo_url" />
 		<?php
 			$car_demon_settings_hook = apply_filters('car_demon_admin_hook', $holder, $current_location);
 		?>
-		<br /><span class="admin_disclaimer_notice">* The Default disclaimer and description are provided as examples ONLY and may or may not be legally suitable for your state. Please have a lawyer review your disclaimer and description before using.</span>
+		<br /><span class="admin_disclaimer_notice"><?php _e('* The Default disclaimer and description are provided as examples ONLY and may or may not be legally suitable for your state. Please have a lawyer review your disclaimer and description before using.', 'car-demon'); ?></span>
 		<br />
-		<input type="submit" name="sbtSendIt" value="Update Options" class="admin_update_options_btn" />
+		<input type="submit" name="sbtSendIt" value="<?php _e('Update Options', 'car-demon'); ?>" class="admin_update_options_btn" />
 		</form>
 		<?php
 		$x = $x + 1;
@@ -221,6 +222,7 @@ function update_car_location_options() {
 		'use_desc_for_title' => 0,
 		'hierarchical'       => true,
 		'echo'               => 0,
+		'hide_empty'		 => 0,
 		'taxonomy'           => 'vehicle_location'
 		);
 	$location_list = '';
@@ -307,6 +309,7 @@ function car_demon_options() {
 	$default['mobile_theme'] = 'No';
 	$default['mobile_logo'] = '';
 	$default['mobile_header'] = 'Yes';
+	$default['validate_phone'] = 'Yes';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -323,6 +326,7 @@ function car_demon_options() {
 	if (empty($car_demon_options['mobile_theme'])) {$car_demon_options['mobile_theme'] = $default['mobile_theme'];}
 	if (empty($car_demon_options['mobile_logo'])) {$car_demon_options['mobile_logo'] = $default['mobile_logo'];}
 	if (empty($car_demon_options['mobile_header'])) {$car_demon_options['mobile_header'] = $default['mobile_header'];}
+	if (empty($car_demon_options['validate_phone'])) {$car_demon_options['validate_phone'] = $default['validate_phone'];}
 	return $car_demon_options;
 }
 
@@ -379,64 +383,70 @@ function car_demon_settings_options_do_page() {
 		echo '<br />'.__('Include ADFxml with Leads?', 'car-demon').':<br />';
 		echo '<select name="adfxml">
 				<option value="'.$car_demon_options['adfxml'].'">'.$car_demon_options['adfxml'].'</option>
-				<option value="Yes">Yes</option>
-				<option value="No">No</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
 		echo '<br />'.__('Use About Tab on Vehicle Pages', 'car-demon').':<br />';
 		echo '<select name="use_about">
 				<option value="'.$car_demon_options['use_about'].'">'.$car_demon_options['use_about'].'</option>
-				<option value="Yes">Yes</option>
-				<option value="No">No</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
 		echo '<br />'.__('Use Compare Vehicle Option', 'car-demon').':<br />';
 		echo '<select name="use_compare">
 				<option value="'.$car_demon_options['use_compare'].'">'.$car_demon_options['use_compare'].'</option>
-				<option value="Yes">Yes</option>
-				<option value="No">No</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
 		echo '<br />'.__('Load Next Inventory Page on Scroll', 'car-demon').':<br />';
 		echo '<select name="dynamic_load">
 				<option value="'.$car_demon_options['dynamic_load'].'">'.$car_demon_options['dynamic_load'].'</option>
-				<option value="Yes">Yes</option>
-				<option value="No">No</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
-		echo '<br />'.__('Use included theme files?', 'car-demon-theme').':<br />';
+		echo '<br />'.__('Use included theme files?', 'car-demon').':<br />';
 		echo '<select name="use_theme_files">
-			<option value="'.$car_demon_options['use_theme_files'].'">'.$car_demon_options['use_theme_files'].'</option>
-			<option value="Yes">Yes</option>
-			<option value="No">No</option>
+				<option value="'.$car_demon_options['use_theme_files'].'">'.$car_demon_options['use_theme_files'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
-		echo '<br />'.__('Is Mobile Theme Installed?', 'car-demon-theme').':<br />';
+		echo '<br />'.__('Validate Phone Numbers?', 'car-demon').':<br />';
+		echo '<select name="validate_phone">
+				<option value="'.$car_demon_options['validate_phone'].'">'.$car_demon_options['validate_phone'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />';
+		echo '<br />'.__('Is Mobile Theme Installed?', 'car-demon').':<br />';
 		echo '<select name="mobile_theme">
-			<option value="'.$car_demon_options['mobile_theme'].'">'.$car_demon_options['mobile_theme'].'</option>
-			<option value="Yes">Yes</option>
-			<option value="No">No</option>
+				<option value="'.$car_demon_options['mobile_theme'].'">'.$car_demon_options['mobile_theme'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
 		if ($car_demon_options['mobile_theme'] == 'Yes') {
-			echo '<br />'.__('Use Default Mobile Header with Mobile Logo?', 'car-demon-theme').':<br />';
+			echo '<br />'.__('Use Default Mobile Header with Mobile Logo?', 'car-demon').':<br />';
 			echo '<select name="mobile_header">
 				<option value="'.$car_demon_options['mobile_header'].'">'.$car_demon_options['mobile_header'].'</option>
-				<option value="Yes">Yes</option>
-				<option value="No">No</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
 				</select><br />';
-			echo '<br />'.__('Mobile Header Logo', 'car-demon-theme').'<br />';
+			echo '<br />'.__('Mobile Header Logo', 'car-demon').'<br />';
 			echo '<table><tr valign="top">
 				<td><label for="upload_mobile_logo">
 				<input name="mobile_logo" id="mobile_logo" type="text" size="36" value="'.$car_demon_options['mobile_logo'].'" />
-				<input id="upload_mobile_logo_button" type="button" value="'.__('Upload Logo', 'car-demon-theme').'" />
-				<br />'.__('Enter a URL or upload an image for the Mobile Logo. 169x58 px', 'car-demon-theme').'
+				<input id="upload_mobile_logo_button" type="button" value="'.__('Upload Logo', 'car-demon').'" />
+				<br />'.__('Enter a URL or upload an image for the Mobile Logo. 169x58 px', 'car-demon').'
 				</label></td>
 				</tr></table>';
-			echo '<br />'.__('Mobile Chat Code', 'car-demon-theme').'<br />';
+			echo '<br />'.__('Mobile Chat Code', 'car-demon').'<br />';
 			echo '<textarea name="mobile_chat_code" rows="5" cols="60">'.$car_demon_options['mobile_chat_code'].'</textarea><br />';
 		}
-		echo '<p><input type="submit" value="Update Car Demon" />';
-		echo '<input type="submit" name="reset_car_demon" value="Reset to Default" /></p>';
+		echo '<p><input type="submit" value="'.__('Update Car Demon', 'car-demon').'" />';
+		echo '<input type="submit" name="reset_car_demon" value="'.__('Reset to Default', 'car-demon').'" /></p>';
 	echo '</form>';
 	echo '<hr />';
-	echo '<h2>Car Demon Pages</h2>';
+	echo '<h2>'.__('Car Demon Pages', 'car-demon').'</h2>';
 	echo '<div class="admin_pages_div">';
-		echo '<p>Car Demon comes with support for adding several custom forms and pages. You can quickly and easily add these pages by clicking the buttons below or you can create your own pages and simply paste the shortcode you want to use into the content of the page.</p>';
+		echo '<p>'.__('Car Demon comes with support for adding several custom forms and pages. You can quickly and easily add these pages by clicking the buttons below or you can create your own pages and simply paste the shortcode you want to use into the content of the page.', 'car-demon').'</p>';
 	echo '</div>';
 	if (isset($_POST['add_page'])) {
 		$title = $_POST['title'];
@@ -449,41 +459,41 @@ function car_demon_settings_options_do_page() {
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="contact" />';
 			echo '<input type="hidden" name="title" value="Contact Us" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Contact Us Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Contact Us Page', 'car-demon').'" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="service_appointment" />';
 			echo '<input type="hidden" name="title" value="Service Appointment" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Service Appointment Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Service Appointment Page', 'car-demon').'" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="service_quote" />';
 			echo '<input type="hidden" name="title" value="Service Quote" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Service Quote Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Service Quote Page', 'car-demon').'" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="parts" />';
 			echo '<input type="hidden" name="title" value="Parts Quote" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Parts Quote Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Parts Quote Page', 'car-demon').'" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="trade" />';
 			echo '<input type="hidden" name="title" value="Trade In" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Trade In Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Trade In Page', 'car-demon').'" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="finance" />';
 			echo '<input type="hidden" name="title" value="Finance Application" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Finanace Application Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Finanace Application Page', 'car-demon').'" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="staff" />';
 			echo '<input type="hidden" name="title" value="Staff Page" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="Add Staff Page" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Staff Page', 'car-demon').'" />';
 		echo '</form>';
 	echo '</div>';
 	echo '<div class="admin_add_pages_shortcodes">';
-		echo '<h3 class="admin_add_pages_shortcodes">Shortcodes</h3>';
+		echo '<h3 class="admin_add_pages_shortcodes">'.__('Shortcodes', 'car-demon').'</h3>';
 		echo '[-contact_us-]<br />';
 		echo '[-service_form-]<br />';
 		echo '[-service_quote-]<br />';
@@ -496,6 +506,7 @@ function car_demon_settings_options_do_page() {
 
 function update_car_demon_settings() {
 	$new = array();
+	$new = get_option( 'car_demon_options', $default );
 	if (isset($_POST['currency_symbol'])) $new['currency_symbol'] = $_POST['currency_symbol'];
 	if (isset($_POST['currency_symbol_after'])) $new['currency_symbol_after'] = $_POST['currency_symbol_after'];
 	if (isset($_POST['vinquery_id'])) $new['vinquery_id'] = $_POST['vinquery_id'];
@@ -516,6 +527,7 @@ function update_car_demon_settings() {
 	if (isset($_POST['mobile_theme'])) $new['mobile_theme'] = $_POST['mobile_theme'];
 	if (isset($_POST['mobile_logo'])) $new['mobile_logo'] = $_POST['mobile_logo'];
 	if (isset($_POST['mobile_header'])) $new['mobile_header'] = $_POST['mobile_header'];
+	if (isset($_POST['validate_phone'])) $new['validate_phone'] = $_POST['validate_phone'];
 	update_option( 'car_demon_options', $new );
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }
@@ -526,11 +538,11 @@ function reset_car_demon() {
 }
 
 function get_default_finance_description() {
-	$x = '<span>This is not a contract to purchase. It is an application for financing a possible automotive purchase. <br />
-		  <strong> You are not obligated to purchase</strong> a vehicle if you submit this form. </span>
+	$x = '<span>'.__('This is not a contract to purchase. It is an application for financing a possible automotive purchase.', 'car-demon').' <br />
+		  <strong> '.__('You are not obligated to purchase', 'car-demon').'</strong> '.__('a vehicle if you submit this form.', 'car-demon').' </span>
 		  <br />
-		  <span>Your information is kept confidential and is used only to assist in obtaining financing for a potential vehicle purchase.<br />
-		  *By clicking this button you agree to the terms  posted above.
+		  <span>'.__('Your information is kept confidential and is used only to assist in obtaining financing for a potential vehicle purchase.', 'car-demon').'<br />
+		  '.__('*By clicking this button you agree to the terms  posted above.', 'car-demon').'
 		  </span>
 	';
 	return $x;
