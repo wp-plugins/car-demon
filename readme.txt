@@ -4,7 +4,7 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
@@ -119,7 +119,7 @@ If you add ?sales_code=0 to the url for your site it will remove the cookie that
 * Why don't my vehicles appear in the search even though I've published them?
 
 
-Please make sure you add a price to your vehicles. If you don't wish the price to be seen you can select "Do Not Show Prices" on the contact settings page.
+Please make sure you add an "Asking Price" to your vehicles. If you don't wish the price to be seen you can select "Do Not Show Prices" on the contact settings page.
 
 
 * Why don't my vehicles have titles even though I've entered a title for them?
@@ -127,12 +127,44 @@ Please make sure you add a price to your vehicles. If you don't wish the price t
 
 By default Car Demon will display vehicles titles as Year Make Model Stock #, the title field is currently only used for descriptive purposes on the back end.
 
+
+* How do I get the inventory to load new vehicles when I scroll to the bottom of the page?
+
+
+Depending on your theme you may need to install the wp-page-navi PlugIn. The Car Demon PlugIn looks for the existing page navigation with specific id tags and uses those as an indicator for when the page has ended and which set of vehicles to load next.
+
+
+* Does Car Demon have any hooks, filters or shortcodes for developers to use?
+
+
+Yes it does. We are currently working on documentation for developers that will detail these features. If you would like to know more then please visit our website www.CarDemons.com and fill out a contact form and let us know.
+
+
+* I have created a language translation and would like to share it, where do I send it?
+
+
+We would love to include your translation! Please visit our website www.CarDemons.com and fill out a contact request form and let us know, we will be more than happy to test your file and include it in our next release.
+
+
 == Screenshots ==
 1. This is a quick look at the inventory management screen. You can quickly change prices and mark vehicles sold without opening each vehicle.
 
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+= 1.1.4 =
+* Removed unused js files.
+* Continued cleaning code to meet WordPress coding standards.
+* Continued tweaking CSS.
+* Fixed profile photo upload issue, path to js file had been changed and code was not updated.
+* Added location support even if no vehicles have been added to a location.
+* Fixed issue with newly added vehicles not updating sold status causing vehicles to not show.
+* Added translations for Dutch and Romanian thanks to the efforts of Ciprian Dracea (Drake).
+* Fixed issue with localization not working, again this was thanks to the efforts of Ciprian Dracea (Drake).
+* Built new .po file.
+* Removed banners on main photos by default and added ability to select an included banner or add a custom banner to each vehicle.
+* For best results custom banners should be 112x112 transparent png or gif.
+* Included currency symbol code into vehicle search form.
 = 1.1.3 =
 * Built first .po file for translation.
 * Cleaned up more css.

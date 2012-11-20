@@ -4,8 +4,11 @@ Plugin Name: Car Demon
 Plugin URI: http://www.CarDemons.com/
 Description:  Car Demon is a PlugIn designed for car dealers.
 Author: CarDemons
-Version: 1.1.3
+Version: 1.1.4
 Author URI: http://www.CarDemons.com/
+Text Domain: car-demon
+Domain Path: /theme-files/languages/
+
 */
 
 $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
@@ -46,6 +49,7 @@ add_filter('the_content', 'car_demon_shortcodes');
 add_filter('wp_head', 'car_demon_header');
 
 function car_demon_init() {
+	load_plugin_textdomain( 'car-demon', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	if (!is_admin()) {
 		wp_enqueue_script('jquery');
 	}
