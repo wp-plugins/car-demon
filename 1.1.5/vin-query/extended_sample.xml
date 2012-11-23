@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<VINquery Version="1.0.0" Report_Type="EXTENDED" Date="5/22/2006">
+  <VIN Number="1FTRF02W24Kxxxxxx" Status="SUCCESS">
+    <Vehicle VINquery_Vehicle_ID="28041" Model_Year="2004" Make="Ford" Model="F-150" Trim_Level="STX Flareside 2WD">
+      <Item Key="VINquery Vehicle ID" Value="28041" Unit="" />
+      <Item Key="Model Year" Value="2004" Unit="" />
+      <Item Key="Make" Value="Ford" Unit="" />
+      <Item Key="Model" Value="F-150" Unit="" />
+      <Item Key="Trim Level" Value="STX Flareside 2WD" Unit="" />
+      <Item Key="Manufactured in" Value="UNITED STATES" Unit="" />
+      <Item Key="Production Seq. Number" Value="xxxxxx" Unit="" />
+      <Item Key="Body Style" Value="REGULAR CAB PICKUP 2-DR" Unit="" />
+      <Item Key="Engine Type" Value="4.6L V8 16V SOHC" Unit="" />
+      <Item Key="Transmission-short" Value="4A OD" Unit="" />
+      <Item Key="Transmission-long" Value="4-Speed Automatic Overdrive" Unit="" />
+      <Item Key="Driveline" Value="RWD" Unit="" />
+      <Item Key="Tank" Value="26.00" Unit="gallon" />
+      <Item Key="Fuel Economy-city" Value="15" Unit="miles/gallon" />
+      <Item Key="Fuel Economy-highway" Value="19" Unit="miles/gallon" />
+      <Item Key="Anti-Brake System" Value="4-Wheel ABS" Unit="" />
+      <Item Key="Steering Type" Value="R&amp;P" Unit="" />
+      <Item Key="Front Brake Type" Value="Disc" Unit="" />
+      <Item Key="Rear Brake Type" Value="Disc" Unit="" />
+      <Item Key="Turning Diameter" Value="41.80" Unit="in." />
+      <Item Key="Front Suspension" Value="Ind" Unit="" />
+      <Item Key="Rear Suspension" Value="Live" Unit="" />
+      <Item Key="Front Spring Type" Value="Coil" Unit="" />
+      <Item Key="Rear Spring Type" Value="Leaf" Unit="" />
+      <Item Key="Tires" Value="255/65R17" Unit="" />
+      <Item Key="Front Headroom" Value="40.90" Unit="in." />
+      <Item Key="Rear Headroom" Value="No data" Unit="in." />
+      <Item Key="Front Legroom" Value="41.30" Unit="in." />
+      <Item Key="Rear Legroom" Value="No data" Unit="in." />
+      <Item Key="Front Shoulder Room" Value="66.50" Unit="in." />
+      <Item Key="Rear Shoulder Room" Value="No data" Unit="in." />
+      <Item Key="Front Hip Room" Value="65.40" Unit="in." />
+      <Item Key="Rear Hip Room" Value="No data" Unit="in." />
+      <Item Key="Interior Trim" Value="Medium Flint Cloth Interior" Unit="" />
+      <Item Key="Exterior Color" Value="Black | Blazing Yellow | Bright Red | Dark Shadow Gray Metallic | Oxford White | Silver Metallic" Unit="" />
+      <Item Key="Curb Weight-automatic" Value="4820" Unit="lbs" />
+      <Item Key="Curb Weight-manual" Value="No data" Unit="lbs" />
+      <Item Key="Overall Length" Value="211.50" Unit="in." />
+      <Item Key="Overall Width" Value="78.90" Unit="in." />
+      <Item Key="Overall Height" Value="72.80" Unit="in." />
+      <Item Key="Wheelbase" Value="125.80" Unit="in." />
+      <Item Key="Ground Clearance" Value="No data" Unit="in." />
+      <Item Key="Track Front" Value="67.00" Unit="in." />
+      <Item Key="Track Rear" Value="67.00" Unit="in." />
+      <Item Key="Cargo Length" Value="78.80" Unit="in." />
+      <Item Key="Width at Wheelwell" Value="50.00" Unit="in." />
+      <Item Key="Width at Wall" Value="No data" Unit="in." />
+      <Item Key="Depth" Value="22.30" Unit="in." />
+      <Item Key="Standard Seating" Value="3" Unit="" />
+      <Item Key="Optional Seating" Value="No data" Unit="" />
+      <Item Key="Passenger Volume" Value="No data" Unit="cu.ft." />
+      <Item Key="Cargo Volume" Value="No data" Unit="cu.ft." />
+      <Item Key="Standard Towing" Value="2000" Unit="lbs" />
+      <Item Key="Maximum Towing" Value="7200" Unit="lbs" />
+      <Item Key="Standard Payload" Value="1830" Unit="lbs" />
+      <Item Key="Maximum Payload" Value="1830" Unit="lbs" />
+      <Item Key="Standard GVWR" Value="6650" Unit="lbs" />
+      <Item Key="Maximum GVWR" Value="6650" Unit="lbs" />
+      <Item Key="Basic-duration" Value="36" Unit="month" />
+      <Item Key="Basic-distance" Value="36,000" Unit="mile" />
+      <Item Key="Powertrain-duration" Value="36" Unit="month" />
+      <Item Key="Powertrain-distance" Value="36,000" Unit="mile" />
+      <Item Key="Rust-duration" Value="60" Unit="month" />
+      <Item Key="Rust-distance" Value="Unlimited" Unit="mile" />
+      <Item Key="MSRP" Value="$23,130" Unit="USD" />
+      <Item Key="Dealer Invoice" Value="$20,342" Unit="USD" />
+      <Item Key="Destination Charge" Value="$795" Unit="USD" />
+      <Item Key="Child Safety Door Locks" Value="N/A" Unit="" />
+      <Item Key="Locking Pickup Truck Tailgate" Value="Std." Unit="" />
+      <Item Key="Power Door Locks" Value="N/A" Unit="" />
+      <Item Key="Vehicle Anti-Theft" Value="Std." Unit="" />
+      <Item Key="4WD/AWD" Value="N/A" Unit="" />
+      <Item Key="ABS Brakes" Value="Std." Unit="" />
+      <Item Key="Automatic Load-Leveling" Value="N/A" Unit="" />
+      <Item Key="Electronic Brake Assistance" Value="N/A" Unit="" />
+      <Item Key="Limited Slip Differential" Value="Opt." Unit="" />
+      <Item Key="Locking Differential" Value="N/A" Unit="" />
+      <Item Key="Traction Control" Value="N/A" Unit="" />
+      <Item Key="Vehicle Stability Control System" Value="N/A" Unit="" />
+      <Item Key="Driver Airbag" Value="Std." Unit="" />
+      <Item Key="Front Side Airbag" Value="N/A" Unit="" />
+      <Item Key="Front Side Airbag with Head Protection" Value="N/A" Unit="" />
+      <Item Key="Passenger Airbag" Value="Std." Unit="" />
+      <Item Key="Side Head Curtain Airbag" Value="N/A" Unit="" />
+      <Item Key="Second Row Side Airbag" Value="N/A" Unit="" />
+      <Item Key="Second Row Side Airbag with Head Protection" Value="N/A" Unit="" />
+      <Item Key="Electronic Parking Aid" Value="N/A" Unit="" />
+      <Item Key="First Aid Kit" Value="N/A" Unit="" />
+      <Item Key="Trunk Anti-Trap Device" Value="N/A" Unit="" />
+      <Item Key="Keyless Entry" Value="N/A" Unit="" />
+      <Item Key="Remote Ignition" Value="N/A" Unit="" />
+      <Item Key="Air Conditioning" Value="Std." Unit="" />
+      <Item Key="Separate Driver/Front Passenger Climate Controls" Value="N/A" Unit="" />
+      <Item Key="Cruise Control" Value="Opt." Unit="" />
+      <Item Key="Tachometer" Value="N/A" Unit="" />
+      <Item Key="Tilt Steering" Value="Std." Unit="" />
+      <Item Key="Tilt Steering Column" Value="Std." Unit="" />
+      <Item Key="Heated Steering Wheel" Value="N/A" Unit="" />
+      <Item Key="Leather Steering Wheel" Value="N/A" Unit="" />
+      <Item Key="Steering Wheel Mounted Controls" Value="N/A" Unit="" />
+      <Item Key="Telescopic Steering Column" Value="N/A" Unit="" />
+      <Item Key="Adjustable Foot Pedals" Value="Opt." Unit="" />
+      <Item Key="Genuine Wood Trim" Value="N/A" Unit="" />
+      <Item Key="Tire Pressure Monitor" Value="N/A" Unit="" />
+      <Item Key="Trip Computer" Value="N/A" Unit="" />
+      <Item Key="AM/FM Radio" Value="Std." Unit="" />
+      <Item Key="Cassette Player" Value="Opt." Unit="" />
+      <Item Key="CD Player" Value="Std." Unit="" />
+      <Item Key="CD Changer" Value="Opt." Unit="" />
+      <Item Key="DVD Player" Value="N/A" Unit="" />
+      <Item Key="Voice Activated Telephone" Value="N/A" Unit="" />
+      <Item Key="Navigation Aid" Value="N/A" Unit="" />
+      <Item Key="Second Row Sound Controls" Value="N/A" Unit="" />
+      <Item Key="Subwoofer" Value="N/A" Unit="" />
+      <Item Key="Telematics System" Value="N/A" Unit="" />
+      <Item Key="Driver Multi-Adjustable Power Seat" Value="N/A" Unit="" />
+      <Item Key="Front Cooled Seat" Value="N/A" Unit="" />
+      <Item Key="Front Heated Seat" Value="N/A" Unit="" />
+      <Item Key="Front Power Lumbar Support" Value="N/A" Unit="" />
+      <Item Key="Front Power Memory Seat" Value="N/A" Unit="" />
+      <Item Key="Front Split Bench Seat" Value="Std." Unit="" />
+      <Item Key="Leather Seat" Value="N/A" Unit="" />
+      <Item Key="Passenger Multi-Adjustable Power Seat" Value="N/A" Unit="" />
+      <Item Key="Second Row Folding Seat" Value="N/A" Unit="" />
+      <Item Key="Second Row Heated Seat" Value="N/A" Unit="" />
+      <Item Key="Second Row Multi-Adjustable Power Seat" Value="N/A" Unit="" />
+      <Item Key="Second Row Removable Seat" Value="N/A" Unit="" />
+      <Item Key="Third Row Removable Seat" Value="N/A" Unit="" />
+      <Item Key="Cargo Area Cover" Value="N/A" Unit="" />
+      <Item Key="Cargo Area Tiedowns" Value="Std." Unit="" />
+      <Item Key="Cargo Net" Value="N/A" Unit="" />
+      <Item Key="Load Bearing Exterior Rack" Value="N/A" Unit="" />
+      <Item Key="Pickup Truck Bed Liner" Value="N/A" Unit="" />
+      <Item Key="Power Sunroof" Value="N/A" Unit="" />
+      <Item Key="Removable Top" Value="N/A" Unit="" />
+      <Item Key="Manual Sunroof" Value="N/A" Unit="" />
+      <Item Key="Automatic Headlights" Value="N/A" Unit="" />
+      <Item Key="Daytime Running Lights" Value="N/A" Unit="" />
+      <Item Key="Fog Lights" Value="Opt." Unit="" />
+      <Item Key="High Intensity Discharge Headlights" Value="N/A" Unit="" />
+      <Item Key="Pickup Truck Cargo Box Light" Value="Std." Unit="" />
+      <Item Key="Running Boards" Value="Opt." Unit="" />
+      <Item Key="Front Air Dam" Value="Std." Unit="" />
+      <Item Key="Rear Spoiler" Value="N/A" Unit="" />
+      <Item Key="Skid Plate" Value="N/A" Unit="" />
+      <Item Key="Splash Guards" Value="N/A" Unit="" />
+      <Item Key="Wind Deflector for Convertibles" Value="N/A" Unit="" />
+      <Item Key="Power Sliding Side Van Door" Value="N/A" Unit="" />
+      <Item Key="Power Trunk Lid" Value="N/A" Unit="" />
+      <Item Key="Alloy Wheels" Value="Std." Unit="" />
+      <Item Key="Chrome Wheels" Value="N/A" Unit="" />
+      <Item Key="Full Size Spare Tire" Value="Std." Unit="" />
+      <Item Key="Run Flat Tires" Value="N/A" Unit="" />
+      <Item Key="Steel Wheels" Value="Opt." Unit="" />
+      <Item Key="Power Windows" Value="N/A" Unit="" />
+      <Item Key="Electrochromic Exterior Rearview Mirror" Value="N/A" Unit="" />
+      <Item Key="Glass Rear Window on Convertible" Value="N/A" Unit="" />
+      <Item Key="Heated Exterior Mirror" Value="N/A" Unit="" />
+      <Item Key="Electrochromic Interior Rearview Mirror" Value="N/A" Unit="" />
+      <Item Key="Power Adjustable Exterior Mirror" Value="N/A" Unit="" />
+      <Item Key="Deep Tinted Glass" Value="N/A" Unit="" />
+      <Item Key="Interval Wipers" Value="Std." Unit="" />
+      <Item Key="Rain Sensing Wipers" Value="N/A" Unit="" />
+      <Item Key="Rear Window Defogger" Value="Opt." Unit="" />
+      <Item Key="Rear Wiper" Value="N/A" Unit="" />
+      <Item Key="Sliding Rear Pickup Truck Window" Value="Opt." Unit="" />
+      <Item Key="Tow Hitch Receiver" Value="N/A" Unit="" />
+      <Item Key="Towing Preparation Package" Value="Opt." Unit="" />
+    </Vehicle>
+    <Vehicle VINquery_Vehicle_ID="28071" Model_Year="2004" Make="Ford" Model="F-150" Trim_Level="XLT Flareside 2WD">
+      <Item Key="VINquery Vehicle ID" Value="28071" Unit="" />
+      <Item Key="Model Year" Value="2004" Unit="" />
+      <Item Key="Make" Value="Ford" Unit="" />
+      <Item Key="Model" Value="F-150" Unit="" />
+      <Item Key="Trim Level" Value="XLT Flareside 2WD" Unit="" />
+      <Item Key="Manufactured in" Value="UNITED STATES" Unit="" />
+      <Item Key="Production Seq. Number" Value="xxxxxx" Unit="" />
+      <Item Key="Body Style" Value="REGULAR CAB PICKUP 2-DR" Unit="" />
+      <Item Key="Engine Type" Value="4.6L V8 16V SOHC" Unit="" />
+      <Item Key="Transmission-short" Value="4A OD" Unit="" />
+      <Item Key="Transmission-long" Value="4-Speed Automatic Overdrive" Unit="" />
+      <Item Key="Driveline" Value="RWD" Unit="" />
+      <Item Key="Tank" Value="26.00" Unit="gallon" />
+      <Item Key="Fuel Economy-city" Value="15" Unit="miles/gallon" />
+      <Item Key="Fuel Economy-highway" Value="19" Unit="miles/gallon" />
+      <Item Key="Anti-Brake System" Value="4-Wheel ABS" Unit="" />
+      <Item Key="Steering Type" Value="R&amp;P" Unit="" />
+      <Item Key="Front Brake Type" Value="Disc" Unit="" />
+      <Item Key="Rear Brake Type" Value="Disc" Unit="" />
+      <Item Key="Turning Diameter" Value="41.80" Unit="in." />
+      <Item Key="Front Suspension" Value="Ind" Unit="" />
+      <Item Key="Rear Suspension" Value="Live" Unit="" />
+      <Item Key="Front Spring Type" Value="Coil" Unit="" />
+      <Item Key="Rear Spring Type" Value="Leaf" Unit="" />
+      <Item Key="Tires" Value="235/70R17" Unit="" />
+      <Item Key="Front Headroom" Value="40.90" Unit="in." />
+      <Item Key="Rear Headroom" Value="No data" Unit="in." />
+      <Item Key="Front Legroom" Value="41.30" Unit="in." />
+      <Item Key="Rear Legroom" Value="No data" Unit="in." />
+      <Item Key="Front Shoulder Room" Value="66.50" Unit="in." />
+      <Item Key="Rear Shoulder Room" Value="No data" Unit="in." />
+      <Item Key="Front Hip Room" Value="65.40" Unit="in." />
+      <Item Key="Rear Hip Room" Value="No data" Unit="in." />
+      <Item Key="Interior Trim" Value="Dark Flint Cloth Interior | Med/Dark Flint Cloth Interior | Tan Cloth Interior" Unit="" />
+      <Item Key="Exterior Color" Value="Arizona Beige Metallic | Aspen Green Metallic | Aspen Green Metallic/Arizona Beige Metallic | Aspen Green Metallic/Silver Metallic | Black | Black/Arizona Beige Metallic | Black/Silver Metallic | Bright Red | Bright Red/Arizona Beige Metallic | Bright Red/Silver Metallic | Dark Shadow Gray Metallic | Dark Shadow Gray Metallic/Silver Metallic | Dark Toreador Red Metallic | Dark Toreador Red Metallic/Arizona Beige Metallic | Dark Toreador Red Metallic/Silver Metallic | Medium Wedgewood Blue Metallic | Medium Wedgewood Blue Metallic/Arizona Beige Metallic | Medium Wedgewood Blue Metallic/Silver Metallic | Oxford White | Oxford White/Arizona Beige Metallic | Silver Metallic | True Blue Metallic | True Blue Metallic/Silver Metallic" Unit="" />
+      <Item Key="Curb Weight-automatic" Value="4820" Unit="lbs" />
+      <Item Key="Curb Weight-manual" Value="No data" Unit="lbs" />
+      <Item Key="Overall Length" Value="211.50" Unit="in." />
+      <Item Key="Overall Width" Value="78.90" Unit="in." />
+      <Item Key="Overall Height" Value="72.80" Unit="in." />
+      <Item Key="Wheelbase" Value="125.80" Unit="in." />
+      <Item Key="Ground Clearance" Value="No data" Unit="in." />
+      <Item Key="Track Front" Value="67.00" Unit="in." />
+      <Item Key="Track Rear" Value="67.00" Unit="in." />
+      <Item Key="Cargo Length" Value="78.80" Unit="in." />
+      <Item Key="Width at Wheelwell" Value="50.00" Unit="in." />
+      <Item Key="Width at Wall" Value="No data" Unit="in." />
+      <Item Key="Depth" Value="22.30" Unit="in." />
+      <Item Key="Standard Seating" Value="3" Unit="" />
+      <Item Key="Optional Seating" Value="No data" Unit="" />
+      <Item Key="Passenger Volume" Value="No data" Unit="cu.ft." />
+      <Item Key="Cargo Volume" Value="No data" Unit="cu.ft." />
+      <Item Key="Standard Towing" Value="2000" Unit="lbs" />
+      <Item Key="Maximum Towing" Value="7200" Unit="lbs" />
+      <Item Key="Standard Payload" Value="1830" Unit="lbs" />
+      <Item Key="Maximum Payload" Value="1830" Unit="lbs" />
+      <Item Key="Standard GVWR" Value="6650" Unit="lbs" />
+      <Item Key="Maximum GVWR" Value="6650" Unit="lbs" />
+      <Item Key="Basic-duration" Value="36" Unit="month" />
+      <Item Key="Basic-distance" Value="36,000" Unit="mile" />
+      <Item Key="Powertrain-duration" Value="36" Unit="month" />
+      <Item Key="Powertrain-distance" Value="36,000" Unit="mile" />
+      <Item Key="Rust-duration" Value="60" Unit="month" />
+      <Item Key="Rust-distance" Value="Unlimited" Unit="mile" />
+      <Item Key="MSRP" Value="$25,440" Unit="USD" />
+      <Item Key="Dealer Invoice" Value="$22,328" Unit="USD" />
+      <Item Key="Destination Charge" Value="$795" Unit="USD" />
+      <Item Key="Child Safety Door Locks" Value="N/A" Unit="" />
+      <Item Key="Locking Pickup Truck Tailgate" Value="Std." Unit="" />
+      <Item Key="Power Door Locks" Value="Std." Unit="" />
+      <Item Key="Vehicle Anti-Theft" Value="Std." Unit="" />
+      <Item Key="4WD/AWD" Value="N/A" Unit="" />
+      <Item Key="ABS Brakes" Value="Std." Unit="" />
+      <Item Key="Automatic Load-Leveling" Value="N/A" Unit="" />
+      <Item Key="Electronic Brake Assistance" Value="N/A" Unit="" />
+      <Item Key="Limited Slip Differential" Value="Opt." Unit="" />
+      <Item Key="Locking Differential" Value="N/A" Unit="" />
+      <Item Key="Traction Control" Value="N/A" Unit="" />
+      <Item Key="Vehicle Stability Control System" Value="N/A" Unit="" />
+      <Item Key="Driver Airbag" Value="Std." Unit="" />
+      <Item Key="Front Side Airbag" Value="N/A" Unit="" />
+      <Item Key="Front Side Airbag with Head Protection" Value="N/A" Unit="" />
+      <Item Key="Passenger Airbag" Value="Std." Unit="" />
+      <Item Key="Side Head Curtain Airbag" Value="N/A" Unit="" />
+      <Item Key="Second Row Side Airbag" Value="N/A" Unit="" />
+      <Item Key="Second Row Side Airbag with Head Protection" Value="N/A" Unit="" />
+      <Item Key="Electronic Parking Aid" Value="Opt." Unit="" />
+      <Item Key="First Aid Kit" Value="N/A" Unit="" />
+      <Item Key="Trunk Anti-Trap Device" Value="N/A" Unit="" />
+      <Item Key="Keyless Entry" Value="Std." Unit="" />
+      <Item Key="Remote Ignition" Value="N/A" Unit="" />
+      <Item Key="Air Conditioning" Value="Std." Unit="" />
+      <Item Key="Separate Driver/Front Passenger Climate Controls" Value="N/A" Unit="" />
+      <Item Key="Cruise Control" Value="Std." Unit="" />
+      <Item Key="Tachometer" Value="Std." Unit="" />
+      <Item Key="Tilt Steering" Value="Std." Unit="" />
+      <Item Key="Tilt Steering Column" Value="Std." Unit="" />
+      <Item Key="Heated Steering Wheel" Value="N/A" Unit="" />
+      <Item Key="Leather Steering Wheel" Value="N/A" Unit="" />
+      <Item Key="Steering Wheel Mounted Controls" Value="N/A" Unit="" />
+      <Item Key="Telescopic Steering Column" Value="N/A" Unit="" />
+      <Item Key="Adjustable Foot Pedals" Value="Opt." Unit="" />
+      <Item Key="Genuine Wood Trim" Value="N/A" Unit="" />
+      <Item Key="Tire Pressure Monitor" Value="N/A" Unit="" />
+      <Item Key="Trip Computer" Value="N/A" Unit="" />
+      <Item Key="AM/FM Radio" Value="Std." Unit="" />
+      <Item Key="Cassette Player" Value="Opt." Unit="" />
+      <Item Key="CD Player" Value="Std." Unit="" />
+      <Item Key="CD Changer" Value="Opt." Unit="" />
+      <Item Key="DVD Player" Value="N/A" Unit="" />
+      <Item Key="Voice Activated Telephone" Value="N/A" Unit="" />
+      <Item Key="Navigation Aid" Value="N/A" Unit="" />
+      <Item Key="Second Row Sound Controls" Value="N/A" Unit="" />
+      <Item Key="Subwoofer" Value="N/A" Unit="" />
+      <Item Key="Telematics System" Value="N/A" Unit="" />
+      <Item Key="Driver Multi-Adjustable Power Seat" Value="N/A" Unit="" />
+      <Item Key="Front Cooled Seat" Value="N/A" Unit="" />
+      <Item Key="Front Heated Seat" Value="N/A" Unit="" />
+      <Item Key="Front Power Lumbar Support" Value="N/A" Unit="" />
+      <Item Key="Front Power Memory Seat" Value="N/A" Unit="" />
+      <Item Key="Front Split Bench Seat" Value="Std." Unit="" />
+      <Item Key="Leather Seat" Value="N/A" Unit="" />
+      <Item Key="Passenger Multi-Adjustable Power Seat" Value="N/A" Unit="" />
+      <Item Key="Second Row Folding Seat" Value="N/A" Unit="" />
+      <Item Key="Second Row Heated Seat" Value="N/A" Unit="" />
+      <Item Key="Second Row Multi-Adjustable Power Seat" Value="N/A" Unit="" />
+      <Item Key="Second Row Removable Seat" Value="N/A" Unit="" />
+      <Item Key="Third Row Removable Seat" Value="N/A" Unit="" />
+      <Item Key="Cargo Area Cover" Value="N/A" Unit="" />
+      <Item Key="Cargo Area Tiedowns" Value="Std." Unit="" />
+      <Item Key="Cargo Net" Value="N/A" Unit="" />
+      <Item Key="Load Bearing Exterior Rack" Value="N/A" Unit="" />
+      <Item Key="Pickup Truck Bed Liner" Value="N/A" Unit="" />
+      <Item Key="Power Sunroof" Value="N/A" Unit="" />
+      <Item Key="Removable Top" Value="N/A" Unit="" />
+      <Item Key="Manual Sunroof" Value="N/A" Unit="" />
+      <Item Key="Automatic Headlights" Value="Std." Unit="" />
+      <Item Key="Daytime Running Lights" Value="N/A" Unit="" />
+      <Item Key="Fog Lights" Value="Opt." Unit="" />
+      <Item Key="High Intensity Discharge Headlights" Value="N/A" Unit="" />
+      <Item Key="Pickup Truck Cargo Box Light" Value="Std." Unit="" />
+      <Item Key="Running Boards" Value="Opt." Unit="" />
+      <Item Key="Front Air Dam" Value="Std." Unit="" />
+      <Item Key="Rear Spoiler" Value="N/A" Unit="" />
+      <Item Key="Skid Plate" Value="N/A" Unit="" />
+      <Item Key="Splash Guards" Value="N/A" Unit="" />
+      <Item Key="Wind Deflector for Convertibles" Value="N/A" Unit="" />
+      <Item Key="Power Sliding Side Van Door" Value="N/A" Unit="" />
+      <Item Key="Power Trunk Lid" Value="N/A" Unit="" />
+      <Item Key="Alloy Wheels" Value="Std." Unit="" />
+      <Item Key="Chrome Wheels" Value="N/A" Unit="" />
+      <Item Key="Full Size Spare Tire" Value="Std." Unit="" />
+      <Item Key="Run Flat Tires" Value="N/A" Unit="" />
+      <Item Key="Steel Wheels" Value="Opt." Unit="" />
+      <Item Key="Power Windows" Value="Std." Unit="" />
+      <Item Key="Electrochromic Exterior Rearview Mirror" Value="N/A" Unit="" />
+      <Item Key="Glass Rear Window on Convertible" Value="N/A" Unit="" />
+      <Item Key="Heated Exterior Mirror" Value="Opt." Unit="" />
+      <Item Key="Electrochromic Interior Rearview Mirror" Value="Opt." Unit="" />
+      <Item Key="Power Adjustable Exterior Mirror" Value="Std." Unit="" />
+      <Item Key="Deep Tinted Glass" Value="Std." Unit="" />
+      <Item Key="Interval Wipers" Value="Std." Unit="" />
+      <Item Key="Rain Sensing Wipers" Value="N/A" Unit="" />
+      <Item Key="Rear Window Defogger" Value="Opt." Unit="" />
+      <Item Key="Rear Wiper" Value="N/A" Unit="" />
+      <Item Key="Sliding Rear Pickup Truck Window" Value="Opt." Unit="" />
+      <Item Key="Tow Hitch Receiver" Value="N/A" Unit="" />
+      <Item Key="Towing Preparation Package" Value="Opt." Unit="" />
+    </Vehicle>
+  </VIN>
+</VINquery>
