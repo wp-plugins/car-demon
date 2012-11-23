@@ -1,10 +1,10 @@
-=== Car Demons ===
+=== Car Demon ===
 Contributors: Belphegor 
 Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
@@ -146,12 +146,34 @@ Yes it does. We are currently working on documentation for developers that will 
 We would love to include your translation! Please visit our website www.CarDemons.com and fill out a contact request form and let us know, we will be more than happy to test your file and include it in our next release.
 
 
+* Does Car Demon use taxonomies for categorizing vehicles and how can I leverage that?
+
+
+Yes, Car Demon uses several custom taxonomies; condition, body_style, vehicle_year, make, model and location. These can be used to create pages containing vehicle categories, for example; Let's say you want to provide links to all the different body styles, to link to all of the coupes in inventory you would create a link to http:/yoursite.com/body_style/coupe to link to all trucks it would be http:/yoursite.com/body_style/truck. You can use the same logic to leverage the other custom taxonomies as well.
+
+
+* I'm having trouble using custom taxonomies, I keep getting a 404 or page not found error.
+
+
+Make sure you update your permalinks to /%postname%/%post_id% this should resolve most issues with using custom taxonomies.
+
+* How do I override the vehicle inventory and display pages?
+
+Evan Parsons has done a great tutorial on how to override the default templates. It's a great place to get started if you want to modify the look and feel;
+http://www.evanparsons.net/blog/post/2012/11/08/Overriding-Car-Demons-theme-template-and-putting-newest-cars-on-the-front-page.aspx
+
+In the near future we'll be releasing several different styles and support for some of the most popular themes.
+
 == Screenshots ==
 1. This is a quick look at the inventory management screen. You can quickly change prices and mark vehicles sold without opening each vehicle.
 
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+= 1.1.5 =
+* Fixed issue with vehicle archive page that caused archive pages to load with error.
+* Minor css tweaks.
+* Added option to add dynamic ribbons to all vehicles based on condition, mileage or price.
 = 1.1.4 =
 * Removed unused js files.
 * Continued cleaning code to meet WordPress coding standards.
