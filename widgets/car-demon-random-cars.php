@@ -152,6 +152,11 @@ function car_demon_display_random_cars($stop) {
 				$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
 				$current_ribbon = '<img class="similar_car_ribbon" src="'.$custom_ribbon_file.'" width="76" height="76" alt="New Ribbon" id="ribbon">';
 			}
+			if (isset($_SESSION['car_demon_options']['dynamic_ribbons'])) {
+				if ($_SESSION['car_demon_options']['dynamic_ribbons'] == 'Yes') {
+					$current_ribbon = car_demon_dynamic_ribbon_filter($current_ribbon, $post_id, '76');
+				}
+			}
 			$car .= '
 				<div class="random">
 					<div class="random_img">

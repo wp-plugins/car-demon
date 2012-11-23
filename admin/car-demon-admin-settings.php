@@ -310,6 +310,7 @@ function car_demon_options() {
 	$default['mobile_logo'] = '';
 	$default['mobile_header'] = 'Yes';
 	$default['validate_phone'] = 'Yes';
+	$default['dynamic_ribbons'] = 'No';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -327,6 +328,7 @@ function car_demon_options() {
 	if (empty($car_demon_options['mobile_logo'])) {$car_demon_options['mobile_logo'] = $default['mobile_logo'];}
 	if (empty($car_demon_options['mobile_header'])) {$car_demon_options['mobile_header'] = $default['mobile_header'];}
 	if (empty($car_demon_options['validate_phone'])) {$car_demon_options['validate_phone'] = $default['validate_phone'];}
+	if (empty($car_demon_options['dynamic_ribbons'])) {$car_demon_options['dynamic_ribbons'] = $default['dynamic_ribbons'];}
 	return $car_demon_options;
 }
 
@@ -407,6 +409,12 @@ function car_demon_settings_options_do_page() {
 		echo '<br />'.__('Use included theme files?', 'car-demon').':<br />';
 		echo '<select name="use_theme_files">
 				<option value="'.$car_demon_options['use_theme_files'].'">'.$car_demon_options['use_theme_files'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />';
+		echo '<br />'.__('Use Dynamic Ribbons?', 'car-demon').':<br />';
+		echo '<select name="dynamic_ribbons">
+				<option value="'.$car_demon_options['dynamic_ribbons'].'">'.$car_demon_options['dynamic_ribbons'].'</option>
 				<option value="Yes">'.__('Yes', 'car-demon').'</option>
 				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
@@ -517,6 +525,7 @@ function update_car_demon_settings() {
 	if (isset($_POST['secure_finance'])) $new['secure_finance'] = $_POST['secure_finance'];
 	if (isset($_POST['use_theme_files'])) $new['use_theme_files'] = $_POST['use_theme_files'];
 	if (isset($_POST['dynamic_load'])) $new['dynamic_load'] = $_POST['dynamic_load'];
+	if (isset($_POST['dynamic_ribbons'])) $new['dynamic_ribbons'] = $_POST['dynamic_ribbons'];
 	if (isset($_POST['mobile_chat_code'])) $mobile_chat_code = $_POST['mobile_chat_code'];
 	$mobile_chat_code = '';
 	$mobile_chat_code = str_replace("\'", "'", $mobile_chat_code);

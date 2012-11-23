@@ -36,7 +36,7 @@ function car_demon_calculator_form($price, $apr, $term, $disclaimer1, $disclaime
 	  <div align="center"></div>
 	  <p align="center">
 		<input type="button" class="calc_btn" value="<?php _e('Calculate','car-demon'); ?>" onClick="returnPayment()" />
-		<input type="reset" class="calc_btn" value="<?php _e('Reset Form','car-demon'); ?>" />
+		<input type="button" class="calc_btn" value="<?php _e('Reset Form','car-demon'); ?>" onClick="this.form.reset()" />
 		<br />
 		<?php echo $disclaimer1; ?></p>
 	  <div align="center"> 

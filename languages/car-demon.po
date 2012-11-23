@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Car Demon 1.1.2\n"
-"POT-Creation-Date: 2012-11-20 11:50-0600\n"
-"PO-Revision-Date: 2012-11-20 11:50-0600\n"
+"POT-Creation-Date: 2012-11-20 15:25-0600\n"
+"PO-Revision-Date: 2012-11-20 15:25-0600\n"
 "Last-Translator: Belphagor <support@cardemons.com>\n"
 "Language-Team: Car Demons <support@cardemons.com>\n"
 "MIME-Version: 1.0\n"
@@ -385,39 +385,39 @@ msgstr ""
 msgid "Shortcodes"
 msgstr ""
 
-#: ../admin/car-demon-admin-settings.php:531
+#: ../admin/car-demon-admin-settings.php:532
 msgid "SETTINGS HAVE BEEN UPDATED"
 msgstr ""
 
-#: ../admin/car-demon-admin-settings.php:536
+#: ../admin/car-demon-admin-settings.php:537
 msgid "SETTINGS HAVE BEEN RESET"
 msgstr ""
 
-#: ../admin/car-demon-admin-settings.php:540
+#: ../admin/car-demon-admin-settings.php:541
 msgid ""
 "This is not a contract to purchase. It is an application for financing a "
 "possible automotive purchase."
 msgstr ""
 
-#: ../admin/car-demon-admin-settings.php:541
+#: ../admin/car-demon-admin-settings.php:542
 msgid "You are not obligated to purchase"
 msgstr ""
 
-#: ../admin/car-demon-admin-settings.php:541
+#: ../admin/car-demon-admin-settings.php:542
 msgid "a vehicle if you submit this form."
 msgstr ""
 
-#: ../admin/car-demon-admin-settings.php:543
+#: ../admin/car-demon-admin-settings.php:544
 msgid ""
 "Your information is kept confidential and is used only to assist in "
 "obtaining financing for a potential vehicle purchase."
 msgstr ""
 
-#: ../admin/car-demon-admin-settings.php:544
+#: ../admin/car-demon-admin-settings.php:545
 msgid "*By clicking this button you agree to the terms  posted above."
 msgstr ""
 
-#: ../admin/car-demon-admin-settings.php:551
+#: ../admin/car-demon-admin-settings.php:552
 msgid ""
 "\n"
 "\t*TERMS AND DISCLOSURE \n"
@@ -611,7 +611,7 @@ msgid ""
 "\t"
 msgstr ""
 
-#: ../admin/car-demon-admin-settings.php:693
+#: ../admin/car-demon-admin-settings.php:694
 msgid "This vehicle is ready to go right now."
 msgstr ""
 
@@ -2334,16 +2334,16 @@ msgstr ""
 msgid "Sort By:"
 msgstr ""
 
+#: ../theme-files/archive-cars_for_sale.php:67
+#: ../theme-files/archive-cars_for_sale.php:70 ../theme-files/search.php:117
+#: ../theme-files/search.php:120
+msgid "Sort Low to High"
+msgstr ""
+
 #: ../theme-files/archive-cars_for_sale.php:68
 #: ../theme-files/archive-cars_for_sale.php:71 ../theme-files/search.php:118
 #: ../theme-files/search.php:121
 msgid "Sort High to Low"
-msgstr ""
-
-#: ../theme-files/archive-cars_for_sale.php:70
-#: ../theme-files/archive-cars_for_sale.php:67 ../theme-files/search.php:120
-#: ../theme-files/search.php:117
-msgid "Sort Low to High"
 msgstr ""
 
 #: ../theme-files/archive-cars_for_sale.php:76

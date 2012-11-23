@@ -49,7 +49,7 @@ function car_demon_display_car_list($post_id) {
 		$link = $link .'?sales_code='.$_COOKIE["sales_code"];
 	}
 	$detail_output .= '<div class="random_text">';
-		$detail_output .= '<a href="'.$link.'" class="search_btn inventory_btn">View Details</a>';
+		$detail_output .= '<a href="'.$link.'" class="search_btn inventory_btn">'.__('View Details', 'car-demon').'</a>';
 	$detail_output .= '</div>';
 	$img_output = "<div class='inventory_photo_box'><img title='".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image inventory_photo_box' src='";
 	$img_output .= wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
@@ -65,6 +65,12 @@ function car_demon_display_car_list($post_id) {
 		$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
 		$current_ribbon = '<img class="inventory_ribbon" src="'.$custom_ribbon_file.'" width="76" height="76" id="ribbon">';
 	}
+	$x = '';
+	if (isset($_SESSION['car_demon_options']['dynamic_ribbons'])) {
+		if ($_SESSION['car_demon_options']['dynamic_ribbons'] == 'Yes') {
+			$current_ribbon = car_demon_dynamic_ribbon_filter($current_ribbon, $post_id, '76');
+		}
+	}
 	$car = '
 		<div class="random inventory_item">
 			<div class="random_img inventory_img">
@@ -79,5 +85,32 @@ function car_demon_display_car_list($post_id) {
 			</div>
 		</div>';
 	return $car;
+}
+
+function car_demon_dynamic_ribbon_filter($current_ribbon, $post_id, $size) {
+	if (strpos($current_ribbon, 'no-ribbon')) {
+		$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+		$car_demon_pluginpath = str_replace('includes', '', $car_demon_pluginpath);
+		$vehicle_condition = strip_tags(get_the_term_list( $post_id, 'vehicle_condition', '','', '', '' ));
+		$ribbon = 'ribbon-just-added';
+		$ribbon = 'ribbon-great-deal';
+		if ($vehicle_condition == 'New') {
+			$ribbon = 'ribbon-new';
+		}
+		else {
+			$mileage_value = get_post_meta($post_id, "_mileage_value", true);
+			if ($mileage_value < 60000) { $ribbon = 'ribbon-low-miles';	}
+			$tmp_price = get_post_meta($post_id, "_price_value", true);
+			if ($tmp_price < 12000) { $ribbon = 'ribbon-low-price';	}
+		}
+		$custom_ribbon_file = $car_demon_pluginpath .'theme-files/images/'.$ribbon.'.png';
+		if ($size == '76') {
+			$current_ribbon = '<img class="inventory_ribbon" src="'.$custom_ribbon_file.'" width="'.$size.'" height="'.$size.'" id="ribbon">';
+		} else {
+			$current_ribbon = '<img src="'.$custom_ribbon_file.'" width="'.$size.'" height="'.$size.'" id="ribbon">';
+		}
+	}
+	$current_ribbon = apply_filters('car_demon_dynamic_ribbon_hook', $current_ribbon, $post_id, $size);
+	return $current_ribbon;
 }
 ?>

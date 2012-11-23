@@ -300,10 +300,15 @@ function car_photos($post_id, $details, $vehicle_condition) {
 	}
 	if ($ribbon != 'custom_ribbon') {
 		$ribbon = str_replace('_', '-', $ribbon);
-		$current_ribbon = '<img src="'. $car_demon_pluginpath .'images/ribbon-'.$ribbon.'.png" width="112" height="112" alt="New Ribbon" id="ribbon">';
+		$current_ribbon = '<img src="'. $car_demon_pluginpath .'images/ribbon-'.$ribbon.'.png" width="112" height="112" id="ribbon">';
 	} else {
 		$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
-		$current_ribbon = '<img src="'.$custom_ribbon_file.'" width="112" height="112" alt="New Ribbon" id="ribbon">';
+		$current_ribbon = '<img src="'.$custom_ribbon_file.'" width="112" height="112" id="ribbon">';
+	}
+	if (isset($_SESSION['car_demon_options']['dynamic_ribbons'])) {
+		if ($_SESSION['car_demon_options']['dynamic_ribbons'] == 'Yes') {
+			$current_ribbon = car_demon_dynamic_ribbon_filter($current_ribbon, $post_id, '112');
+		}
 	}
 	$this_car = '<div>';
 		$this_car .= '<div class="car_detail_div">';
@@ -422,6 +427,11 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 					} else {
 						$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
 						$current_ribbon = '<img class="similar_car_ribbon" src="'.$custom_ribbon_file.'" width="76" height="76" id="ribbon">';
+					}
+					if (isset($_SESSION['car_demon_options']['dynamic_ribbons'])) {
+						if ($_SESSION['car_demon_options']['dynamic_ribbons'] == 'Yes') {
+							$current_ribbon = car_demon_dynamic_ribbon_filter($current_ribbon, $post_id, '76');
+						}
 					}
 					$car .= '
 						<div class="random similar_car">

@@ -622,12 +622,11 @@ Staff Pages
 	min-height: 110px;
 	font-size: 12px;
 	float:left;
-	min-height:205px;
 }
 .staff_card img {
 	float:left;
 	margin-right:4px;
-	width: 200px;
+	width: 100px;
 }
 .staff_mobile_description {
 	display:none;

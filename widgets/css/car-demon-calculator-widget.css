@@ -1,6 +1,6 @@
 /* CSS Document */
 .car_demon_calc {
-	min-width: 250px;
+	min-width: 240px;
 	font-size:11px;
 	background-color: #E9F0F7 !important;
 	border: 1px solid;
@@ -17,7 +17,7 @@
 	font-size:20px;
 }
 .calc_text {
-	width: 250px;
+	min-width: 240px;
 }
 .calc_table {
 	margin-left:3px;

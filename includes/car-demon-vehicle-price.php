@@ -76,7 +76,7 @@ function get_vehicle_price($post_id) {
 		$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 		$pluginpath = str_replace('includes','',$pluginpath);
 		$price = '<div id="your_price_text" class="your_price_text">';
-			$price .= '<img src="'.$pluginpath.'images\sold.gif" alt="Sold" title="Sold" /><br />';
+			$price .= '<img src="'.$pluginpath.'theme-files\images\sold.gif" alt="Sold" title="Sold" /><br />';
 		$price .= '</div>';
 	}
 	$price .= '</div>';
