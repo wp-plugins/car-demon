@@ -169,10 +169,10 @@ In the near future we'll be releasing several different styles and support for s
 * How do I use the shortcodes to include forms in my pages?
 
 
-Shortcodes can be used without arguements and will display a radio selection to determine the location to send the form.
+Shortcodes can be used without arguments and will display a radio selection to determine the location to send the form.
 
-Shortcodes for [part_request], [service_request], [service_quote], [trade] & [finance_form] now have the optional arguement "location" added to them. 
-The location arguement accepts the name assigned to that form for the location you wish to send the form to and hides the radio selection.
+Shortcodes for [part_request], [service_request], [service_quote], [trade] & [finance_form] now have the optional argument "location" added to them. 
+The location argument accepts the name assigned to that form for the location you wish to send the form to and hides the radio selection.
 For example, let's say you have a location called "Our Used Car Lot" and you have two different part departments, one that handle domestic vehicle parts and one that handles imported vehicle parts.
 You will need to create 2 locations "Our Used Car Lot Domestic" and "Our Used Car Lot Imports", under contact settings you would enter a different name for Parts under both locations, ie "Domestic Parts" & "Import Parts".
 You can now use the part_request shortcode on two different pages and route each one to the correct department.
@@ -182,15 +182,15 @@ Exp. [part_request location="Domestic Parts"] and [part_request location="Import
 * I only have one location, how do I hide the location radio buttons on my forms?
 
 
-You will need to set the location arguement for your form shortcodes to the form's contact name entered under the default location.
+You will need to set the location argument for your form shortcodes to the form's contact name entered under the default location.
 Exp. [part_request location="Default Part Name"], this will hide the location radio buttons.
 
 
 * How do I get rid of the drop down on the Contact Us Form? I want it to always go to the same person.
 
 
-The contact form shortcode, [contact_us], has an arguement of "send_to" that accepts a single email address.
-If you set this arguement in your shortcode it will hide the drop down and send the contact form to the address you supplied.
+The contact form shortcode, [contact_us], has an argument of "send_to" that accepts a single email address.
+If you set this argument in your shortcode it will hide the drop down and send the contact form to the address you supplied.
 Exp. [contact_us send_to="me@my_site.com"]
 
 == Screenshots ==
@@ -204,8 +204,8 @@ Exp. [contact_us send_to="me@my_site.com"]
 * Corrected issue causing images to not insert in posts.
 * Cleaned up search and archive template. Moved custom queries to their own functions to make adding additional theme styles easier.
 * Enhanced shotcodes for Forms to give users more power in reusing forms on different pages and controlling where each form goes.
-* Shortcodes for part_request, service_request, service_quote, trade & finance_form now have the arguement "location" added to them.
-* Shortcode for contact_us now has the arguement "send_to" added to it.
+* Shortcodes for part_request, service_request, service_quote, trade & finance_form now have the argument "location" added to them.
+* Shortcode for contact_us now has the argument "send_to" added to it.
 * See the FAQ on how to use the shortcodes.
 = 1.1.6 =
 * Adding updated translations for Dutch and Romanian, thanks again to the efforts of Ciprian Dracea (Drake).
