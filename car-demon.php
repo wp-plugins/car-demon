@@ -4,7 +4,7 @@ Plugin Name: Car Demon
 Plugin URI: http://www.CarDemons.com/
 Description:  Car Demon is a PlugIn designed for car dealers.
 Author: CarDemons
-Version: 1.1.6
+Version: 1.1.7
 Author URI: http://www.CarDemons.com/
 Text Domain: car-demon
 Domain Path: /theme-files/languages/
@@ -12,6 +12,7 @@ Domain Path: /theme-files/languages/
 */
 
 $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+include( 'includes/car-demon-query.php' );
 include( 'includes/car-demon-search-form.php' );
 include( 'includes/car-demon-create-post-types-tax.php' );
 include( 'includes/car-demon-register-sidebars.php');
@@ -163,27 +164,27 @@ function car_demon_str_left($s1, $s2) {
 
 function car_demon_shortcodes($content) {
 	if (strpos($content, '[-service_form-]')) {
-		$service_form = car_demon_service_form();
+		$service_form = car_demon_service_form('normal');
 		$content = str_replace('[-service_form-]', $service_form, $content);
 	}
 	if (strpos($content, '[-service_quote-]')) {
-		$service_quote = car_demon_service_quote();
+		$service_quote = car_demon_service_quote('normal');
 		$content = str_replace('[-service_quote-]', $service_quote, $content);
 	}
 	if (strpos($content, '[-part_request-]')) {
-		$part_quote = car_demon_part_request();
+		$part_quote = car_demon_part_request('normal');
 		$content = str_replace('[-part_request-]', $part_quote, $content);
 	}	
 	if (strpos($content, '[-contact_us-]')) {
-		$contact_us = car_demon_contact_request();
+		$contact_us = car_demon_contact_request('normal');
 		$content = str_replace('[-contact_us-]', $contact_us, $content);
 	}	
 	if (strpos($content, '[-trade-]')) {
-		$trade = car_demon_trade_form();
+		$trade = car_demon_trade_form(0,'normal');
 		$content = str_replace('[-trade-]', $trade, $content);
 	}
 	if (strpos($content, '[-finance_form-]')) {
-		$finance_form = car_demon_finance_form();
+		$finance_form = car_demon_finance_form('normal');
 		$content = str_replace('[-finance_form-]', $finance_form, $content);
 	}
 	if (strpos($content, '[-staff_page-]')) {
@@ -192,7 +193,62 @@ function car_demon_shortcodes($content) {
 	}
 	return $content;
 }
+// Register Shortcodes
+function contact_us_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+		'send_to' => 'normal'
+	), $atts ) );
+	$contact_us = car_demon_contact_request($send_to);
+	return $contact_us;
+}
+add_shortcode( 'contact_us', 'contact_us_shortcode_func' );
 
+function parts_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+		'location' => 'normal'
+	), $atts ) );
+	$part_quote = car_demon_part_request($location);
+	return $part_quote;
+}
+add_shortcode( 'part_request', 'parts_shortcode_func' );
+
+function service_form_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+		'location' => 'normal'
+	), $atts ) );
+	$service_form = car_demon_service_form($location);
+	return $service_form;
+}
+add_shortcode( 'service_request', 'service_form_shortcode_func' );
+
+function service_quote_form_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+		'location' => 'normal'
+	), $atts ) );
+	$service_quote = car_demon_service_quote($location);
+	return $service_quote;
+}
+add_shortcode( 'service_quote', 'service_quote_form_shortcode_func' );
+
+function trade_form_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+		'location' => 'normal'
+	), $atts ) );
+	$trade_form = car_demon_trade_form(0,$location);
+	return $trade_form;
+}
+add_shortcode( 'trade', 'trade_form_shortcode_func' );
+
+function finance_form_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+		'location' => 'normal'
+	), $atts ) );
+	$finance_form = car_demon_finance_form(0,$location);
+	return $finance_form;
+}
+add_shortcode( 'finance_form', 'finance_form_shortcode_func' );
+
+// End Shortcodes
 function car_demon_session() {
 	$car_demon_options = car_demon_options();
 	if (!session_id()) {
@@ -376,7 +432,7 @@ function build_location_hcard($location, $condition) {
 	if (empty($custom_photo)) {
 		$custom_photo = $car_demon_pluginpath.'images/person.gif';
 	}
-	$facebook = $location.'_facebook_page';
+	$facebook = get_option($location.'_facebook_page');
 	$x = '<div id="staff-card-'.$user_id.'" class="staff_card">';
 	$x .= '<img src="'.$custom_photo.'" alt="photo of '.$user_full_name.'" class="photo" />';
 		$x .='<span class="fn n">';

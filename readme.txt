@@ -1,10 +1,10 @@
 === Car Demon ===
 Contributors: Belphegor 
 Donate link: http://www.cardemons.com/donate/
-Tags: car dealer, automotive, car sales, car lots
+Tags: car dealer, automotive, car sales, car lots, auto dealer
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
@@ -157,6 +157,7 @@ Yes, Car Demon uses several custom taxonomies; condition, body_style, vehicle_ye
 
 Make sure you update your permalinks to /%postname%/%post_id% this should resolve most issues with using custom taxonomies.
 
+
 * How do I override the vehicle inventory and display pages?
 
 Evan Parsons has done a great tutorial on how to override the default templates. It's a great place to get started if you want to modify the look and feel;
@@ -164,12 +165,48 @@ http://www.evanparsons.net/blog/post/2012/11/08/Overriding-Car-Demons-theme-temp
 
 In the near future we'll be releasing several different styles and support for some of the most popular themes.
 
+
+* How do I use the shortcodes to include forms in my pages?
+
+
+Shortcodes can be used without arguements and will display a radio selection to determine the location to send the form.
+
+Shortcodes for [part_request], [service_request], [service_quote], [trade] & [finance_form] now have the optional arguement "location" added to them. 
+The location arguement accepts the name assigned to that form for the location you wish to send the form to and hides the radio selection.
+For example, let's say you have a location called "Our Used Car Lot" and you have two different part departments, one that handle domestic vehicle parts and one that handles imported vehicle parts.
+You will need to create 2 locations "Our Used Car Lot Domestic" and "Our Used Car Lot Imports", under contact settings you would enter a different name for Parts under both locations, ie "Domestic Parts" & "Import Parts".
+You can now use the part_request shortcode on two different pages and route each one to the correct department.
+Exp. [part_request location="Domestic Parts"] and [part_request location="Import Parts"]
+
+
+* I only have one location, how do I hide the location radio buttons on my forms?
+
+
+You will need to set the location arguement for your form shortcodes to the form's contact name entered under the default location.
+Exp. [part_request location="Default Part Name"], this will hide the location radio buttons.
+
+
+* How do I get rid of the drop down on the Contact Us Form? I want it to always go to the same person.
+
+
+The contact form shortcode, [contact_us], has an arguement of "send_to" that accepts a single email address.
+If you set this arguement in your shortcode it will hide the drop down and send the contact form to the address you supplied.
+Exp. [contact_us send_to="me@my_site.com"]
+
 == Screenshots ==
 1. This is a quick look at the inventory management screen. You can quickly change prices and mark vehicles sold without opening each vehicle.
 
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+= 1.1.7 =
+* Corrected issue preventing prices on vehicle edit list page from updating.
+* Corrected issue causing images to not insert in posts.
+* Cleaned up search and archive template. Moved custom queries to their own functions to make adding additional theme styles easier.
+* Enhanced shotcodes for Forms to give users more power in reusing forms on different pages and controlling where each form goes.
+* Shortcodes for part_request, service_request, service_quote, trade & finance_form now have the arguement "location" added to them.
+* Shortcode for contact_us now has the arguement "send_to" added to it.
+* See the FAQ on how to use the shortcodes.
 = 1.1.6 =
 * Adding updated translations for Dutch and Romanian, thanks again to the efforts of Ciprian Dracea (Drake).
 = 1.1.5 =
