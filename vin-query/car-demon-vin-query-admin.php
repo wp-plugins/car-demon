@@ -1,9 +1,12 @@
 <?php
 if (is_admin()) {
-	add_action( 'admin_enqueue_scripts', 'cardemons_automotive_inventory_decode_header' );
-	add_action( 'add_meta_boxes', 'start_decode_box' );
-	add_action( 'wp_dashboard_setup', 'eg_add_dashboard_widgets' );
-	add_action('save_post','cd_save_car');
+	$post_type = car_demon_get_current_post_type();
+	if ($post_type == 'cars_for_sale') {
+		add_action( 'admin_enqueue_scripts', 'cardemons_automotive_inventory_decode_header' );
+		add_action( 'add_meta_boxes', 'start_decode_box' );
+		add_action( 'wp_dashboard_setup', 'eg_add_dashboard_widgets' );
+		add_action('save_post','cd_save_car');
+	}
 }
 
 function cd_save_car($post_id) {
@@ -27,6 +30,21 @@ function cd_save_car($post_id) {
 		update_post_meta($post_id, '_custom_ribbon', $_POST['_custom_ribbon']);
 	}
 	return;
+}
+
+function car_demon_get_current_post_type() {
+	global $post, $typenow, $current_screen;
+	if( $post && $post->post_type )
+		$post_type = $post->post_type;
+	elseif( $typenow )
+		$post_type = $typenow;
+	elseif( $current_screen && $current_screen->post_type )
+		$post_type = $current_screen->post_type;
+	elseif( isset( $_REQUEST['post_type'] ) )
+		$post_type = sanitize_key( $_REQUEST['post_type'] );
+	else
+		$post_type = null;
+	return $post_type;
 }
 
 function cardemons_automotive_inventory_decode_header() {

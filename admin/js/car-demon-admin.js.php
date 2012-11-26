@@ -27,7 +27,7 @@ function update_car(post_id, this_fld, fld) {
 	jQuery.ajax({
 		type: 'POST',
 		data: {'post_id': post_id, 'val': new_value, 'fld': fld},
-		url: "<?php  $pluginpath ; ?>/car-demon-handler.php?update_car=1",
+		url: "<?php  echo $car_demon_pluginpath ; ?>includes/car-demon-handler.php?update_car=1",
 		timeout: 2000,
 		error: function() {},
 		dataType: "html",
@@ -74,7 +74,7 @@ function update_car_sold(post_id, this_fld, fld) {
 	jQuery.ajax({
 		type: 'POST',
 		data: {'post_id': post_id, 'val': new_value, 'fld': fld},
-		url: "<?php  $pluginpath ; ?>/car-demon-handler.php?update_car=1",
+		url: "<?php  echo $car_demon_pluginpath ; ?>includes/car-demon-handler.php?update_car=1",
 		timeout: 2000,
 		error: function() {},
 		dataType: "html",

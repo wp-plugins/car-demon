@@ -91,7 +91,7 @@ ol.cd-ol li {
 }
 .contact_needed {
 	margin-left:10px;
-	width:425px;
+	width:425px !important;
 	height:100px;
 }
 .reqtxt_contact_us {

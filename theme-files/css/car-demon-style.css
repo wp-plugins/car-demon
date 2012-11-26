@@ -654,3 +654,6 @@ Staff Pages
 .car_demon_wide {
 	width:100%;
 }
+.wp-pagenavi .pages {
+	display:none;
+}

@@ -1,5 +1,5 @@
 <?php
-function car_demon_part_request() {
+function car_demon_part_request($location) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/forms', '', $car_demon_pluginpath);
 	global $cd_formKey;
@@ -27,7 +27,11 @@ function car_demon_part_request() {
 			</ol>
 			</fieldset>
 	';
-	$x .= part_locations_radio();
+	if ($location == 'normal') {
+		$x .= part_locations_radio();
+	} else {
+		$x .= '<span id="select_location"><input type="radio" style="display:none;" name="part_location" id="part_location_1" value="'.$location.'" checked /></span>';
+	}
 	$add = '<span id="add_part_btn" class="add_part_btn" onclick="add_part();" class="add_part" title="'.__('Add Part', 'car-demon').'">+ '.__('Add Part', 'car-demon').'</span>';
 	$remove = '<span id="remove_part_btn" class="remove_part_btn" onclick="remove_part();" class="remove_part" title="'.__('Remove Part', 'car-demon').'">- '.__('Remove Part', 'car-demon').'</span>';
 	$x .='

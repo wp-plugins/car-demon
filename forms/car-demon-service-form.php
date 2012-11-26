@@ -1,5 +1,5 @@
 <?php
-function car_demon_service_form() {
+function car_demon_service_form($location) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/forms', '', $car_demon_pluginpath);
 	global $cd_formKey;
@@ -34,7 +34,11 @@ function car_demon_service_form() {
 			</ol>
 			</fieldset>
 	';
-	$x .= service_locations_radio();
+	if ($location == 'normal') {
+		$x .= service_locations_radio();
+	} else {
+		$x .= '<span id="select_location"><input type="radio" style="display:none;" name="service_location" id="service_location_1" value="'.$location.'" checked /></span>';
+	}
 	$x .='
 			<fieldset class="cd-fs">
 			<legend>'.__('Appointment Information', 'car-demon').'</legend>

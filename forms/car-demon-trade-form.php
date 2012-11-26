@@ -1,5 +1,5 @@
 <?php
-function car_demon_trade_form($post_id=0) {
+function car_demon_trade_form($post_id=0, $location) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/forms', '', $car_demon_pluginpath);
 	global $cd_formKey;
@@ -52,7 +52,11 @@ function car_demon_trade_form($post_id=0) {
 			$x .= '<ol class="cd-ol" id="show_voi"></o>';
 		}
 	$x .= '</fieldset>';
-	$x .= trade_locations_radio();
+	if ($location == 'normal') {
+		$x .= trade_locations_radio();
+	} else {
+		$x .= '<span id="select_location"><input type="radio" style="display:none;" name="trade_location" id="trade_location_1" value="'.$location.'" checked /></span>';
+	}
 	$x = apply_filters('car_demon_mail_hook_form', $x, 'trade_form', 'unk');
 	$x .= '
 		<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn trade_btn" value="'.__("Get Quote!").'" onclick="return car_demon_validate()"></p></form>

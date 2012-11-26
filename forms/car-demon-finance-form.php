@@ -1,11 +1,11 @@
 <?php
-function car_demon_finance_form() {
+function car_demon_finance_form($location) {
 	$x = '';
-	show_finance_form();
+	show_finance_form($location);
 	return $x;
 }
 
-function show_finance_form() {
+function show_finance_form($location) {
 	$stock_num = '';
 	$vin = '';
 	$location = '';
@@ -1207,7 +1207,11 @@ function show_finance_form() {
 			echo select_finance_for_vehicle(1);
 			echo get_finance_for_vehicle($_GET['stock_num']);
 		}
-		echo finance_locations_radio();
+		if ($location == 'normal') {
+			echo finance_locations_radio();
+		} else {
+			echo '<span id="select_location"><input type="radio" style="display:none;" name="finance_location" id="finance_location_1" value="'.$location.'" checked /></span>';
+		}
 ?>
 		  </fieldset>
 <?php

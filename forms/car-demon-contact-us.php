@@ -1,5 +1,5 @@
 <?php
-function car_demon_contact_request() {
+function car_demon_contact_request($send_to) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/forms', '', $car_demon_pluginpath);
 	global $cd_formKey;
@@ -27,7 +27,11 @@ function car_demon_contact_request() {
 			</ol>
 			</fieldset>
 	';
-	$x .= contact_locations_radio();
+	if ($send_to == 'normal') {
+		$x .= contact_locations_radio();
+	} else {
+		$x .= '<span id="select_location"><select class="contact_us_send_to" id="send_to" style="display:none;"><option value="'.$send_to.'"></option></select></span>';
+	}
 	$add = '<img src="'.$car_demon_pluginpath.'images/btn_add_contact.png" id="add_contact_btn" class="add_contact_btn" onclick="add_contact();" class="add_contact" title="'.__('Add Contact', 'car-demon').'" />';
 	$remove = '<img src="'.$car_demon_pluginpath.'images/btn_remove_contact.png" id="remove_contact_btn" class="remove_contact_btn" onclick="remove_contact();" class="remove_contact" title="'.__('Remove Contact', 'car-demon').'" />';
 	$x .='
