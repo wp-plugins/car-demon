@@ -4,7 +4,7 @@ Plugin Name: Car Demon
 Plugin URI: http://www.CarDemons.com/
 Description:  Car Demon is a PlugIn designed for car dealers.
 Author: CarDemons
-Version: 1.1.8
+Version: 1.1.9
 Author URI: http://www.CarDemons.com/
 Text Domain: car-demon
 Domain Path: /languages/
@@ -24,6 +24,7 @@ include( 'includes/car-demon-get-contact-info.php' );
 include( 'includes/car-demon-user-control.php' );
 include( 'includes/car-demon-staff-pages.php' );
 include( 'includes/car-demon-dynamic-load.php' );
+include( 'includes/car-demon-template.php' );
 include( 'admin/car-demon-admin.php' );
 include( 'admin/car-demon-cell-providers.php' );
 include( 'admin/car-demon-columns.php' );
@@ -567,61 +568,5 @@ function get_car_demon_posts( $query ) {
 		}
 	}
 	return $query;
-}
-
-function get_car_title($post_id) {
-	If ($_SESSION['car_demon_options']['use_post_title'] == 'Yes') {
-		$car_title = get_the_title($post_id);
-	} else {
-		$car_title = '';
-	}
-	if (empty($car_title)) {
-		$vehicle_year = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_year', '','', '', '' )),0);
-		$vehicle_make = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_make', '','', '', '' )),0);
-		$vehicle_model = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_model', '','', '', '' )),0);
-		$car_title = $vehicle_year . ' ' . $vehicle_make . ' '. $vehicle_model;
-	}
-	$car_title = trim($car_title);
-	$car_title = substr($car_title, 0, 19);
-	return $car_title;
-}
-
-function get_car_title_slug($post_id) {
-	$car_title = get_car_title($post_id);
-	$car_title = strtolower($car_title);
-	$car_title = trim($car_title);
-	$car_title = str_replace(chr(32), '_', $car_title);
-	return $car_title;
-}
-
-function car_demon_nav($position,$search_query) {
-	$x = '';
-	if ($position == 'top') {
-		$second_position = 'above';
-		$third_position = '-top';
-	}
-	if ($position == 'bottom') {
-		$second_position = 'below';
-		$third_position = '';
-	}
-	if ( $search_query->max_num_pages > 1 ) {
-		$x .= '<div id="cd-nav-'.$second_position.'" class="navigation'.$third_position.' inventory_nav_'.$position.'">';
-		if(function_exists('wp_pagenavi')) {  
-			$nav_list_str = wp_pagenavi(array( 'query' => $search_query, 'echo' => false )); 
-			if ($position == 'top') {
-				$nav_list_str = str_replace('nextpostslink','nextpostslink-'.$second_position,$nav_list_str);
-			}
-			$x .= $nav_list_str;
-		} else { 
-			$x .= '<div class="nav-previous"> '.next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'car-demon' ) ) .'</div>';
-			$x .= '<div class="nav-next"> '.previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'car-demon' ) ) .'</div>';
-		} 
-		$x .= '</div><!-- #nav-'.$second_position.' -->';
-	} else {
-		$x .= '<div id="cd-nav-'.$second_position.'" class="navigation-'.$position.' inventory_nav"><span class="wp-pagenavi"><span class="pages">'. $wp_query->post_count; _e('Results Found', 'car-demon') .'</span></span>';
-		$x .= '</div>';
-	}
-	$x = str_replace('none', '', $x);
-	return $x;
 }
 ?>
