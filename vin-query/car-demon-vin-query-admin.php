@@ -43,7 +43,7 @@ function car_demon_get_current_post_type() {
 	elseif( isset( $_REQUEST['post_type'] ) )
 		$post_type = sanitize_key( $_REQUEST['post_type'] );
 	else
-		$post_type = null;
+		$post_type = get_post_type($_GET['post']);
 	return $post_type;
 }
 

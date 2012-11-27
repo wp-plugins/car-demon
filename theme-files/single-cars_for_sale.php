@@ -10,27 +10,8 @@ $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option(
 get_header();
 wp_enqueue_script('car-demon-single-car-js', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/car-demon-single-cars.js.php');
 wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demon/theme-files/css/car-demon-single-car.css');
+echo car_demon_photo_lightbox();
 ?>
-<div class="car_demon_light_box" id="car_demon_light_box">
-	<div class="car_demon_photo_box" id="car_demon_photo_box"">
-		<div class="close_light_box" onclick="close_car_demon_lightbox();">(close) X</div>
-		<div class="car_demon_light_box_main_email" id="car_demon_light_box_main_email"></div>
-		<div class="car_demon_light_box_main" id="car_demon_light_box_main">
-			<img id="car_demon_light_box_main_img" src="" />
-			<div class="run_slideshow_div" onclick="car_slide_show();" id="run_slideshow_div">
-					<input type="checkbox" id="run_slideshow" /> <?php _e('Run Slideshow', 'car-demon'); ?>
-			</div>
-			<div class="photo_next" id="photo_next">
-				<img src="<?php echo $car_demon_pluginpath; ?>images/btn_next.png" onclick="get_next_img();" title="<?php _e('Next', 'car-demon'); ?>" />
-			</div>
-			<div class="photo_prev" id="photo_prev">
-				<img src="<?php echo $car_demon_pluginpath; ?>images/btn_prev.png" onclick="get_prev_img();" title="<?php _e('Previous', 'car-demon'); ?>" />
-			</div>
-		</div>
-		<div class="hor_lightbox" id="car_demon_thumb_box">
-		</div>
-	</div>
-</div>
 		<div id="demon-container">
 			<div id="demon-content" role="main">
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); 
@@ -90,109 +71,35 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 		$detail_output .= '<li><strong>Engine:</strong> '.$vehicle_engine.'</li>';
 		$detail_output .= get_vehicle_price($post_id);
 	$detail_output .= '</ul></div>';
-	$tab_cnt = 1;
-	$vin_query = '';
-	$about_cnt = 2;
-	$content = get_the_content();
-	$content = trim($content);
-	if (empty($content)) {
-		$location_lists = get_the_terms($post_id, "vehicle_location");
-		if ($location_lists) {
-			foreach ($location_lists as $location_list) {
-				$location_slug = $location_list->slug;
-			}
-		}
-		else {
-			$location_slug = "default";
-		}
-		$content = get_option($location_slug.'_default_description');
-		if (empty($content)) {
-			$content = get_default_description();
-		}
-	}
-	if ($_SESSION['car_demon_options']['use_about'] == 'Yes') {
-		$about = 1;
-		$tab_cnt = $tab_cnt + 1;
-	} else {
-		$about = '';
-	}
-	if (!empty($_SESSION['car_demon_options']['vinquery_id'])) {
-		if ($vehicle_year > 1984) {
-			car_demon_get_vin_query($post_id, $vehicle_vin);
-		}
-	}
-	$vin_query_decode_array = get_post_meta($post_id, 'decode_string');
-	if ($vin_query_decode_array) {
-		$vin_query_decode = $vin_query_decode_array[0];
-	} else {
-		$vin_query_decode = '';
-	}
-	if (!empty($vin_query_decode['decoded_fuel_economy_city'])) {
-		$tab_cnt = $tab_cnt + 5;
-		$vin_query = 1;
-		$about_cnt = 7;
-	} else {
-		$vin_query = 0;
-	}
-?>				
-				<div id="email_friend_div" class="email_friend_div">
-				<div id="ef_contact_final_msg_tmp" class="ef_contact_final_msg_tmp"></div>
-					<div id="main_email_friend_div_tmp" class="main_email_friend_div_tmp">
-					<h2><?php _e('Send this car to a friend', 'car-demon'); ?></h2><hr />
-						<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment" id="email_friend_form_tmp" name="email_friend_form_tmp">
-						<?php 
-							global $cd_formKey;
-							$cd_formKey->outputKey();
-						?>
-						<input type="hidden" name="ef_stock_num_tmp" id="ef_stock_num_tmp" value="<?php echo $vehicle_stock_number; ?>" />
-								<fieldset class="cd-fs1">
-								<legend><?php _e('Your Information', 'car-demon'); ?></legend>
-								<ol class="cd-ol">
-									<li class=""><label for="cd_field_2"><span><?php _e('Your Name', 'car-demon'); ?></span></label><input type="text" name="ef_cd_name_tmp" id="ef_cd_name_tmp" class="single fldrequired" value="<?php _e('Your Name', 'car-demon'); ?>" onfocus="ef_clearField(this)" onblur="ef_setField(this)"><span class="reqtxt">*</span></li>
-									<li class=""><label for="cd_field_4"><span><?php _e('Your Email', 'car-demon'); ?></span></label><input type="text" name="ef_cd_email_tmp" id="ef_cd_email_tmp" class="single fldemail fldrequired" value=""><span class="emailreqtxt">*</span></li>
-									<li class=""><label for="cd_field_2"><span><?php _e('Friend\'s Name', 'car-demon'); ?></span></label><input type="text" name="ef_cd_friend_name_tmp" id="ef_cd_friend_name_tmp" class="single fldrequired" value="<?php _e('Friend Name', 'car-demon'); ?>" onfocus="ef_clearField(this)" onblur="ef_setField(this)"><span class="reqtxt">*</span></li>
-									<li class=""><label for="cd_field_4"><span><?php _e('Friend\'s Email', 'car-demon'); ?></span></label><input type="text" name="ef_cd_friend_email_tmp" id="ef_cd_friend_email_tmp" class="single fldemail fldrequired" value=""><span class="emailreqtxt">*</span></li>
-								</ol>
-								</fieldset>
-								<fieldset class="cd-fs4">
-								<legend><?php _e('Your Message', 'car-demon'); ?></legend>
-								<ol class="cd-ol">
-									<li id="li-5" class=""><textarea name="ef_comment_tmp" id="ef_comment_tmp" class="ef_comment_tmp"><?php _e('Check out this', 'car-demon'); ?> <?php echo $car_head_title; ?>, <?php _e('stock number', 'car-demon'); ?> <?php echo $vehicle_stock_number; ?>!</textarea><br><span class="reqtxt ef_reqtxt"><br>* <?php _e('required', 'car-demon'); ?></span></li>
-								</ol>
-								</fieldset>
-								<div id="ef_contact_msg_tmp"></div>
-								<p class="cd-sb"><input type="button" name="ef_search_btn_tmp" id="ef_sendbutton_tmp" class="search_btn ef_search_btn" value="<?php _e('Send Now!', 'car-demon'); ?>" onclick="return ef_car_demon_validate()"></p>
-						</form>
-					</div>
-				</div>
+	echo car_demon_email_a_friend($post_id, $vehicle_stock_number);
+?>
 				<div id="demon-post-<?php the_ID(); ?>" class="car_content">
 					<div class="start_car">&nbsp;</div>
 					<div class="car_buttons_div">
-<?php if (!empty($contact_finance_url)) { 
-		if ($car_contact['finance_popup'] == 'Yes') {
-		?>
-						<div class="featured-button">
-							<p><a onclick="window.open('<?php echo $contact_finance_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>','finwin','width=<?php echo $car_contact['finance_width']; ?>, height=<?php echo $car_contact['finance_height']; ?>, menubar=0, resizable=0')"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
-						</div>
-<?php 
-		}
-		else {
-		?>
-						<div class="featured-button">
-							<p><a href="<?php echo $contact_finance_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
-						</div>
-<?php 
-		}
-	} 
-
-	if (!empty($contact_trade_url)) {
-?>
-						<div class="featured-button">
-							<p><a href="<?php echo $contact_trade_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
-						</div>
-<?php
-	}
-?>
+					<?php if (!empty($contact_finance_url)) { 
+							if ($car_contact['finance_popup'] == 'Yes') {
+							?>
+							<div class="featured-button">
+								<p><a onclick="window.open('<?php echo $contact_finance_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>','finwin','width=<?php echo $car_contact['finance_width']; ?>, height=<?php echo $car_contact['finance_height']; ?>, menubar=0, resizable=0')"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
+							</div>
+							<?php 
+							}
+							else {
+							?>
+							<div class="featured-button">
+								<p><a href="<?php echo $contact_finance_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
+							</div>
+					<?php 
+							}
+						} 
+						if (!empty($contact_trade_url)) {
+						?>
+							<div class="featured-button">
+								<p><a href="<?php echo $contact_trade_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
+							</div>
+					<?php
+						}
+					?>
 						<div class="email_a_friend">
 							<a href="http://www.facebook.com/share.php?u=<?php echo $car_url; ?>&amp;t=<?php echo $car_head_title; ?>" target="fb_win">
 								<img title="<?php _e('Share on Facebook', 'car-demon'); ?>" src="<?php echo $car_demon_pluginpath; ?>images/social_fb.png" />
@@ -205,75 +112,10 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 					</div>
 					<div class="car-demon-entry-content">
 					<?php echo car_photos($post_id, $detail_output, $vehicle_condition); ?>
-<?php echo car_demon_display_similar_cars($vehicle_body_style, $post_id); ?>
+						<?php echo car_demon_display_similar_cars($vehicle_body_style, $post_id); ?>
 						<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'car-demon' ), 'after' => '</div>' ) ); ?>
 					</div><!-- .car-demon-entry-content -->
-<div id="car_features_box" class="car_features_box">
-	<div class="car_features">  
-		<ul class="tabs"> 
-			<li><a href="javascript:car_demon_switch_tabs(1, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_1" class="active"><?php _e('Description', 'car-demon'); ?></a></li>  
-			<?php if ($vin_query == 1) { ?>
-				<li><a href="javascript:car_demon_switch_tabs(2, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_2"><?php _e('Specs', 'car-demon'); ?></a></li>  
-				<li><a href="javascript:car_demon_switch_tabs(3, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_3"><?php _e('Safety', 'car-demon'); ?></a></li>
-				<li><a href="javascript:car_demon_switch_tabs(4, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_4"><?php _e('Convenience', 'car-demon'); ?></a></li>
-				<li><a href="javascript:car_demon_switch_tabs(5, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_5"><?php _e('Comfort', 'car-demon'); ?></a></li>
-				<li><a href="javascript:car_demon_switch_tabs(6, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_6"><?php _e('Entertainment', 'car-demon'); ?></a></li>
-			<?php } ?>
-			<?php if ($about == 1) { ?>
-				<li><a href="javascript:car_demon_switch_tabs(<?php echo $about_cnt;?>, <?php echo $tab_cnt;?>, 'tab_', 'content_');" id="tab_<?php echo $about_cnt;?>"><?php _e('About', 'car-demon'); ?></a></li>
-			<?php } ?>
-		</ul>  
-		<div id="content_1" class="car_features_content"><?php echo $content; ?></div> 
-		<?php if ($vin_query == 1) {
-			$specs = get_vin_query_specs($vin_query_decode, $vehicle_vin);
-			$safety = get_vin_query_safety($vin_query_decode);
-			$convienience = get_vin_query_convienience($vin_query_decode);
-			$comfort = get_vin_query_comfort($vin_query_decode);
-			$entertainment = get_vin_query_entertainment($vin_query_decode);
-			?>
-			<div id="content_2" class="car_features_content"><?php echo $specs; ?></div> 
-			<div id="content_3" class="car_features_content"><?php echo $safety; ?></div>  
-			<div id="content_4" class="car_features_content"><?php echo $convienience; ?></div>
-			<div id="content_5" class="car_features_content"><?php echo $comfort; ?></div>
-			<div id="content_6" class="car_features_content"><?php echo $entertainment; ?></div>
-		<?php } ?>
-		<?php if ($about == 1) { ?>
-				<div id="content_<?php echo $about_cnt;?>" class="car_features_content car_features_content_about">
-					<?php if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
-						<div id="entry-author-info">
-							<?php
-							if ($_COOKIE['sales_code']) {
-								$user_id = $_COOKIE['sales_code'];
-								$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
-								$location_approved = 0;
-								if ($vehicle_location == $user_location) {
-									$location_approved = 1;
-								}
-								else {
-									$location_approved = esc_attr( get_the_author_meta( 'lead_locations', $user_id ) );
-								}
-							}
-							if ($location_approved == 1) {
-								$user_sales_type = 0;
-								if ($vehicle_condition == 'New') {
-									$user_sales_type = get_the_author_meta('lead_new_cars', $user_id);	
-								}
-								else {
-									$user_sales_type = get_the_author_meta('lead_used_cars', $user_id);		
-								}
-							}
-							if ($user_sales_type == 1) {
-								echo build_user_hcard($_COOKIE['sales_code'], 1);
-							}
-							else {
-								echo build_location_hcard($vehicle_location, $vehicle_condition);
-							} ?>
-						</div><!-- #entry-author-info -->
-					<?php endif; ?>
-				</div>
-		<?php } ?>
-	</div>
-</div>
+					<?php echo car_demon_vehicle_detail_tabs($post_id); ?>
 				</div><!-- #post-## -->
 <?php endwhile; // end of the loop. ?>
 			</div><!-- #content -->

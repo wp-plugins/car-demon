@@ -1,6 +1,7 @@
 /* CSS Document */
 .car_demon_calc {
 	min-width: 240px;
+	max-width: 280px;
 	font-size:11px;
 	background-color: #E9F0F7 !important;
 	border: 1px solid;

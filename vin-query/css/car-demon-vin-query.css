@@ -15,7 +15,8 @@ ul.tabs li a {
 	font-family:Verdana, Arial, Helvetica, sans-serif;  
 	font-weight:bold;  
 	text-transform:uppercase;  
-	border:1px solid #464c54;  
+	border:1px solid #464c54;
+	margin-left: 3px;
 }  
 ul.tabs li a:hover {  
 	background-color:#2f343a;  
@@ -30,7 +31,8 @@ ul.tabs li a.active {
 .car_features_content {  
 	background-color:#ffffff;  
 	padding:10px;  
-	border:1px solid #464c54;  
+	border:1px solid #464c54;
+	min-height: 150px;
 }  
 #content_2, #content_3, #content_4, #content_5, #content_6 { display:none; }
 ul.tabs {  
