@@ -311,6 +311,8 @@ function car_demon_options() {
 	$default['mobile_header'] = 'Yes';
 	$default['validate_phone'] = 'Yes';
 	$default['dynamic_ribbons'] = 'No';
+	$default['before_listings'] = '';
+	$default['use_post_title'] = 'No';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -329,6 +331,8 @@ function car_demon_options() {
 	if (empty($car_demon_options['mobile_header'])) {$car_demon_options['mobile_header'] = $default['mobile_header'];}
 	if (empty($car_demon_options['validate_phone'])) {$car_demon_options['validate_phone'] = $default['validate_phone'];}
 	if (empty($car_demon_options['dynamic_ribbons'])) {$car_demon_options['dynamic_ribbons'] = $default['dynamic_ribbons'];}
+	if (empty($car_demon_options['before_listings'])) {$car_demon_options['before_listings'] = $default['before_listings'];}
+	if (empty($car_demon_options['use_post_title'])) {$car_demon_options['use_post_title'] = $default['use_post_title'];}
 	return $car_demon_options;
 }
 
@@ -412,6 +416,12 @@ function car_demon_settings_options_do_page() {
 				<option value="Yes">'.__('Yes', 'car-demon').'</option>
 				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
+		echo '<br />'.__('Use Title field for Vehicle Titles? - If No then title will be "Year Make Model"', 'car-demon').':<br />';
+		echo '<select name="use_post_title">
+				<option value="'.$car_demon_options['use_post_title'].'">'.$car_demon_options['use_post_title'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />';
 		echo '<br />'.__('Use Dynamic Ribbons?', 'car-demon').':<br />';
 		echo '<select name="dynamic_ribbons">
 				<option value="'.$car_demon_options['dynamic_ribbons'].'">'.$car_demon_options['dynamic_ribbons'].'</option>
@@ -424,6 +434,8 @@ function car_demon_settings_options_do_page() {
 				<option value="Yes">'.__('Yes', 'car-demon').'</option>
 				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
+		echo '<br />'.__('Display before listings:', 'car-demon').'<br />';
+		echo '<textarea name="before_listings" rows="5" cols="60">'.$car_demon_options['before_listings'].'</textarea><br />';
 		echo '<br />'.__('Is Mobile Theme Installed?', 'car-demon').':<br />';
 		echo '<select name="mobile_theme">
 				<option value="'.$car_demon_options['mobile_theme'].'">'.$car_demon_options['mobile_theme'].'</option>
@@ -502,13 +514,13 @@ function car_demon_settings_options_do_page() {
 	echo '</div>';
 	echo '<div class="admin_add_pages_shortcodes">';
 		echo '<h3 class="admin_add_pages_shortcodes">'.__('Shortcodes', 'car-demon').'</h3>';
-		echo '[-contact_us-]<br />';
-		echo '[-service_form-]<br />';
-		echo '[-service_quote-]<br />';
-		echo '[-part_request-]<br />';
-		echo '[-trade-]<br />';
-		echo '[-finance_form-]<br />';
-		echo '[-staff_page-]<br />';
+		echo '[contact_us]<br />';
+		echo '[service_form]<br />';
+		echo '[service_quote]<br />';
+		echo '[part_request]<br />';
+		echo '[trade]<br />';
+		echo '[finance_form]<br />';
+		echo '[staff_page]<br />';
 	echo '</div></div>';
 }
 
@@ -537,6 +549,8 @@ function update_car_demon_settings() {
 	if (isset($_POST['mobile_logo'])) $new['mobile_logo'] = $_POST['mobile_logo'];
 	if (isset($_POST['mobile_header'])) $new['mobile_header'] = $_POST['mobile_header'];
 	if (isset($_POST['validate_phone'])) $new['validate_phone'] = $_POST['validate_phone'];
+	if (isset($_POST['before_listings'])) $new['before_listings'] = $_POST['before_listings'];
+	if (isset($_POST['use_post_title'])) $new['use_post_title'] = $_POST['use_post_title'];
 	update_option( 'car_demon_options', $new );
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }

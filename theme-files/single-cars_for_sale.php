@@ -60,10 +60,8 @@ wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demo
 	$vehicle_details .= rwh($vehicle_condition,3);
 	$vehicle_details .= rwh($vehicle_body_style,3);
 	$vehicle_details .= rwh($vehicle_location,3);
-	$car_title = $vehicle_year .'_' . $vehicle_make .'_' . $vehicle_model;
-	$car_title = trim($car_title);
-	$car_head_title = $vehicle_year .' ' . $vehicle_make .' ' . $vehicle_model;
-	$car_title = str_replace(chr(32), '_', $car_title);
+	$car_title = get_car_title_slug($post_id);
+	$car_head_title = get_car_title($post_id);
 	$car_url = get_permalink($post_id);
 	//=========================Contact Info==========================
 	$car_contact = get_car_contact($post_id);
@@ -400,8 +398,7 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 					$vehicle_make = strip_tags(get_the_term_list( $post_id, 'vehicle_make', '','', '', '' ));
 					$vehicle_model = strip_tags(get_the_term_list( $post_id, 'vehicle_model', '','', '', '' ));
 					$vehicle_condition = strip_tags(get_the_term_list( $post_id, 'vehicle_condition', '','', '', '' ));
-					$title = $vehicle_year . ' ' . $vehicle_make . ' '. $vehicle_model;
-					$title = substr($title, 0, 24);
+					$title = get_car_title($post_id);
 					$mileage_value = get_post_meta($post_id, "_mileage_value", true);
 					$detail_output = '<span class="random_title">'.$title.'</span><br />';
 					$detail_output .= '<span class="random_text">';

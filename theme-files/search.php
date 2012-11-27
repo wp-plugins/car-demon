@@ -20,28 +20,14 @@ echo car_demon_dynamic_load();
 		<div id="demon-container">
 			<div id="demon-content" role="main">
 <?php if ( $search_query->have_posts() ) :
+		echo $_SESSION['car_demon_options']['before_listings'];
 		echo car_demon_sorting('search');
 		if (isset($_GET['car'])) {
 		?>
 				<h1 class="page-title"><?php echo __( 'Search Results:', 'car-demon' ); ?></h1>
 				<h4 class="results_found"><?php _e('Results Found','car-demon'); echo ': '.$total_results;?></h4>
 				<?php echo $searched; ?>
-				<?php if ( $search_query->max_num_pages > 1 ) : ?>
-						<div id="cd-nav-above" class="navigation-top inventory_nav_top">
-						<?php if(function_exists('wp_pagenavi')) {  
-									$nav_list_str = wp_pagenavi(array( 'query' => $search_query, 'echo' => false )); 
-									$nav_list_str = str_replace('nextpostslink','nextpostslink-top',$nav_list_str);
-									echo $nav_list_str;
-								}
-								else { ?>
-								<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'car-demon' ) ); ?></div>
-								<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'car-demon' ) ); ?></div>
-								<?php } ?>
-						</div><!-- #nav-above -->
-					<?php else: ?>
-						<div id="cd-nav-above" class="navigation-top inventory_nav"><span class="wp-pagenavi"><span class="pages"><?php echo $wp_query->post_count; ?> <?php _e('Results Found', 'car-demon'); ?></span></span>
-						</div>
-				<?php endif; ?>
+				<?php echo car_demon_nav('top', $search_query); ?>
 				<div id="demon-content" class="listing" role="main">
 					<?php
 					/*======= Car Demon Loop ======================================================= */								 
@@ -51,15 +37,7 @@ echo car_demon_dynamic_load();
 					endwhile;
 					/* Display navigation to next/previous pages when applicable */ ?>
 				</div>
-				<?php if (  $search_query->max_num_pages > 1 ) : ?>
-						<div id="cd-nav-below" class="navigation inventory_nav_bottom">
-						<?php if(function_exists('wp_pagenavi')) { wp_pagenavi(array( 'query' => $search_query )); } 
-								else { ?>
-									<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'car-demon' ) ); ?></div>
-									<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'car-demon' ) ); ?></div>
-								<?php } ?>
-						</div><!-- #nav-below -->
-				<?php endif;
+				<?php echo car_demon_nav('bottom', $search_query);
 			}
 			else {
 				 get_template_part( 'loop', 'search' );

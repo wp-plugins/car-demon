@@ -6,8 +6,7 @@ function car_demon_display_car_list($post_id) {
 	$vehicle_make = strip_tags(get_the_term_list( $post_id, 'vehicle_make', '','', '', '' ));
 	$vehicle_model = strip_tags(get_the_term_list( $post_id, 'vehicle_model', '','', '', '' ));
 	$vehicle_condition = strip_tags(get_the_term_list( $post_id, 'vehicle_condition', '','', '', '' ));
-	$title = $vehicle_year . ' ' . $vehicle_make . ' '. $vehicle_model;
-	$title = substr($title, 0, 19);
+	$title = get_car_title($post_id);
 	$stock_value = get_post_meta($post_id, "_stock_value", true);
 	$mileage_value = get_post_meta($post_id, "_mileage_value", true);
 	$detail_output = '<span class="random_title">'.$title.'</span><br />';
