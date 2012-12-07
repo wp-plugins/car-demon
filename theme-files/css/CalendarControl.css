@@ -5,7 +5,7 @@
   top: 0px;
   height: 250px;
   width: 250px;
-  z-index: 99;
+  z-index: 90002;
 }
 
 #CalendarControl {
@@ -14,7 +14,7 @@
   margin:0;
   padding:0;
   display:none;
-  z-index: 100;
+  z-index: 90003;
 }
 
 #CalendarControl table {

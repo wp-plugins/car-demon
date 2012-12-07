@@ -1,9 +1,10 @@
 <?php
-function car_demon_service_form($location) {
+function car_demon_service_form($location, $popup_id = '', $popup_button='') {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/forms', '', $car_demon_pluginpath);
 	global $cd_formKey;
 	wp_enqueue_script('car-demon-service-form-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-service-form.js.php');
+	wp_enqueue_script('car-demon-common-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-common.js.php');
 	wp_enqueue_style('car-demon-service-form-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-service-form.css');
 	wp_enqueue_script('car-demon-service-calendar-js', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/CalendarPopup.js.php');
 	wp_enqueue_style('car-demon-service-calendar-css', WP_CONTENT_URL . '/plugins/car-demon/theme-files/css/CalendarControl.css');
@@ -21,9 +22,17 @@ function car_demon_service_form($location) {
 	} else {
 		$validate_phone = '';
 	}
-	$x = '
-	<div id="service_msg" class="service_msg"></div>
-	<form enctype="multipart/form-data" action="?send_service=1" method="post" class="cdform service-appointment " id="service_form">
+	$x = '';
+	if (!empty($popup_id)) {
+		wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
+		wp_enqueue_script('car-demon-service-request-popup-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-service-request-popup.js.php');
+		wp_enqueue_style('car-demon-service-popup-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-service-request-popup.css');
+		$x .= '<div class="service_form_container" id="service_form_container_'.$popup_id.'">';
+			$x .= '<div class="close_form" onclick="close_service_popup(\''.$popup_id.'\');"><img src="'.$car_demon_pluginpath.'theme-files/images/close.png" /></div>';
+	}
+	$x .= '
+	<div id="service_msg'.$popup_id.'" class="service_msg"></div>
+	<form enctype="multipart/form-data" action="?send_service=1" method="post" class="cdform service-appointment " id="service_form'.$popup_id.'">
 			'.$cd_formKey->outputKey().'
 			<fieldset class="cd-fs1">
 			<legend>'.__('Schedule Service Appointment', 'car-demon').'</legend>
@@ -79,8 +88,12 @@ function car_demon_service_form($location) {
 			</ol>
 			</fieldset>';
 			$x = apply_filters('car_demon_mail_hook_form', $x, 'service_appointment', 'unk');
-			$x .= '<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn service_btn" value="'.__('Send Appointment', 'car-demon').'" onclick="return car_demon_validate()"></p></form>
+			$x .= '<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn service_btn" value="'.__('Send Appointment', 'car-demon').'" onclick="return car_demon_validate_service_form(\''.$popup_id.'\')"></p></form>
 		';
+	if (!empty($popup_id)) {
+		$x .= '</div>';
+		$x .= '<input type="button" class="search_btn service_btn" id="show_service_form_container_btn_'.$popup_id.'" value="'.$popup_button.'" onclick="show_service_popup(\''.$popup_id.'\')" />';
+	}
 	return $x;
 }
 

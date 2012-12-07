@@ -236,31 +236,31 @@ function update_car_location_options() {
 	$location_list_array = explode(',',$location_list);
 	$x = 0;
 	foreach ($location_list_array as $current_location) {
-		if ($_POST[$current_location.'_new_mobile_number']) { update_option($current_location.'_new_mobile_number', $_POST[$current_location.'_new_mobile_number']); }
-		if ($_POST[$current_location.'_new_mobile_provider']) { update_option($current_location.'_new_mobile_provider', $_POST[$current_location.'_new_mobile_provider']); }
-		if ($_POST[$current_location.'_used_mobile_number']) { update_option($current_location.'_used_mobile_number', $_POST[$current_location.'_used_mobile_number']); }
-		if ($_POST[$current_location.'_used_mobile_provider']) { update_option($current_location.'_used_mobile_provider', $_POST[$current_location.'_used_mobile_provider']); }
-		if ($_POST[$current_location.'_facebook_page']) { update_option($current_location.'_facebook_page', $_POST[$current_location.'_facebook_page']); }
-		if ($_POST[$current_location.'_new_sales_name']) { update_option($current_location.'_new_sales_name', $_POST[$current_location.'_new_sales_name']); }
-		if ($_POST[$current_location.'_new_sales_number']) { update_option($current_location.'_new_sales_number', $_POST[$current_location.'_new_sales_number']); }
-		if ($_POST[$current_location.'_new_sales_email']) { update_option($current_location.'_new_sales_email', $_POST[$current_location.'_new_sales_email']); }
-		if ($_POST[$current_location.'_used_sales_name']) { update_option($current_location.'_used_sales_name', $_POST[$current_location.'_used_sales_name']); }
-		if ($_POST[$current_location.'_used_sales_number']) { update_option($current_location.'_used_sales_number', $_POST[$current_location.'_used_sales_number']); }
-		if ($_POST[$current_location.'_used_sales_email']) { update_option($current_location.'_used_sales_email', $_POST[$current_location.'_used_sales_email']); }
-		if ($_POST[$current_location.'_default_description']) { update_option($current_location.'_default_description', $_POST[$current_location.'_default_description']); }
-		if ($_POST[$current_location.'_service_name']) { update_option($current_location.'_service_name', $_POST[$current_location.'_service_name']); }
-		if ($_POST[$current_location.'_service_number']) { update_option($current_location.'_service_number', $_POST[$current_location.'_service_number']); }
-		if ($_POST[$current_location.'_service_email']) { update_option($current_location.'_service_email', $_POST[$current_location.'_service_email']); }
-		if ($_POST[$current_location.'_parts_name']) { update_option($current_location.'_parts_name', $_POST[$current_location.'_parts_name']); }
-		if ($_POST[$current_location.'_parts_number']) { update_option($current_location.'_parts_number', $_POST[$current_location.'_parts_number']); }
-		if ($_POST[$current_location.'_parts_email']) { update_option($current_location.'_parts_email', $_POST[$current_location.'_parts_email']); }
-		if ($_POST[$current_location.'_finance_name']) { update_option($current_location.'_finance_name', $_POST[$current_location.'_finance_name']); }
-		if ($_POST[$current_location.'_finance_number']) { update_option($current_location.'_finance_number', $_POST[$current_location.'_finance_number']); }
-		if ($_POST[$current_location.'_finance_email']) { update_option($current_location.'_finance_email', $_POST[$current_location.'_finance_email']); }
-		if ($_POST[$current_location.'_finance_url']) { update_option($current_location.'_finance_url', $_POST[$current_location.'_finance_url']); }
-		if ($_POST[$current_location.'_finance_popup']) { update_option($current_location.'_finance_popup', $_POST[$current_location.'_finance_popup']); }
-		if ($_POST[$current_location.'_finance_width']) { update_option($current_location.'_finance_width', $_POST[$current_location.'_finance_width']); }
-		if ($_POST[$current_location.'_finance_height']) { update_option($current_location.'_finance_height', $_POST[$current_location.'_finance_height']); }
+		if ($_POST[$current_location.'_new_mobile_number']) { update_option($current_location.'_new_mobile_number', wp_filter_nohtml_kses($_POST[$current_location.'_new_mobile_number'])); }
+		if ($_POST[$current_location.'_new_mobile_provider']) { update_option($current_location.'_new_mobile_provider', wp_filter_nohtml_kses($_POST[$current_location.'_new_mobile_provider'])); }
+		if ($_POST[$current_location.'_used_mobile_number']) { update_option($current_location.'_used_mobile_number', wp_filter_nohtml_kses($_POST[$current_location.'_used_mobile_number'])); }
+		if ($_POST[$current_location.'_used_mobile_provider']) { update_option($current_location.'_used_mobile_provider', wp_filter_nohtml_kses($_POST[$current_location.'_used_mobile_provider'])); }
+		if ($_POST[$current_location.'_facebook_page']) { update_option($current_location.'_facebook_page', wp_filter_nohtml_kses($_POST[$current_location.'_facebook_page'])); }
+		if ($_POST[$current_location.'_new_sales_name']) { update_option($current_location.'_new_sales_name', wp_filter_nohtml_kses($_POST[$current_location.'_new_sales_name'])); }
+		if ($_POST[$current_location.'_new_sales_number']) { update_option($current_location.'_new_sales_number', wp_filter_nohtml_kses($_POST[$current_location.'_new_sales_number'])); }
+		if ($_POST[$current_location.'_new_sales_email']) { update_option($current_location.'_new_sales_email', wp_filter_nohtml_kses($_POST[$current_location.'_new_sales_email'])); }
+		if ($_POST[$current_location.'_used_sales_name']) { update_option($current_location.'_used_sales_name', wp_filter_nohtml_kses($_POST[$current_location.'_used_sales_name'])); }
+		if ($_POST[$current_location.'_used_sales_number']) { update_option($current_location.'_used_sales_number', wp_filter_nohtml_kses($_POST[$current_location.'_used_sales_number'])); }
+		if ($_POST[$current_location.'_used_sales_email']) { update_option($current_location.'_used_sales_email', wp_filter_nohtml_kses($_POST[$current_location.'_used_sales_email'])); }
+		if ($_POST[$current_location.'_default_description']) { update_option($current_location.'_default_description', wp_filter_nohtml_kses($_POST[$current_location.'_default_description'])); }
+		if ($_POST[$current_location.'_service_name']) { update_option($current_location.'_service_name', wp_filter_nohtml_kses($_POST[$current_location.'_service_name'])); }
+		if ($_POST[$current_location.'_service_number']) { update_option($current_location.'_service_number', wp_filter_nohtml_kses($_POST[$current_location.'_service_number'])); }
+		if ($_POST[$current_location.'_service_email']) { update_option($current_location.'_service_email', wp_filter_nohtml_kses($_POST[$current_location.'_service_email'])); }
+		if ($_POST[$current_location.'_parts_name']) { update_option($current_location.'_parts_name', wp_filter_nohtml_kses($_POST[$current_location.'_parts_name'])); }
+		if ($_POST[$current_location.'_parts_number']) { update_option($current_location.'_parts_number', wp_filter_nohtml_kses($_POST[$current_location.'_parts_number'])); }
+		if ($_POST[$current_location.'_parts_email']) { update_option($current_location.'_parts_email', wp_filter_nohtml_kses($_POST[$current_location.'_parts_email'])); }
+		if ($_POST[$current_location.'_finance_name']) { update_option($current_location.'_finance_name', wp_filter_nohtml_kses($_POST[$current_location.'_finance_name'])); }
+		if ($_POST[$current_location.'_finance_number']) { update_option($current_location.'_finance_number', wp_filter_nohtml_kses($_POST[$current_location.'_finance_number'])); }
+		if ($_POST[$current_location.'_finance_email']) { update_option($current_location.'_finance_email', wp_filter_nohtml_kses($_POST[$current_location.'_finance_email'])); }
+		if ($_POST[$current_location.'_finance_url']) { update_option($current_location.'_finance_url', wp_filter_nohtml_kses($_POST[$current_location.'_finance_url'])); }
+		if ($_POST[$current_location.'_finance_popup']) { update_option($current_location.'_finance_popup', wp_filter_nohtml_kses($_POST[$current_location.'_finance_popup'])); }
+		if ($_POST[$current_location.'_finance_width']) { update_option($current_location.'_finance_width', wp_filter_nohtml_kses($_POST[$current_location.'_finance_width'])); }
+		if ($_POST[$current_location.'_finance_height']) { update_option($current_location.'_finance_height', wp_filter_nohtml_kses($_POST[$current_location.'_finance_height'])); }
 		if ($_POST[$current_location.'_finance_disclaimer']) { 
 			$finance_disclaimer = $_POST[$current_location.'_finance_disclaimer'];
 			$finance_disclaimer = str_replace("\'", "'", $finance_disclaimer);
@@ -275,18 +275,18 @@ function update_car_location_options() {
 			$finance_description = str_replace('\\', '', $finance_description);			
 			update_option($current_location.'_finance_description', $finance_description);
 		}
-		if ($_POST[$current_location.'_trade_name']) { update_option($current_location.'_trade_name', $_POST[$current_location.'_trade_name']); }
-		if ($_POST[$current_location.'_trade_number']) { update_option($current_location.'_trade_number', $_POST[$current_location.'_trade_number']); }
-		if ($_POST[$current_location.'_trade_email']) { update_option($current_location.'_trade_email', $_POST[$current_location.'_trade_email']); }
-		if ($_POST[$current_location.'_trade_url']) { update_option($current_location.'_trade_url', $_POST[$current_location.'_trade_url']); }
-		if ($_POST[$current_location.'_show_new_prices']) { update_option($current_location.'_show_new_prices', $_POST[$current_location.'_show_new_prices']); }
-		if ($_POST[$current_location.'_show_used_prices']) { update_option($current_location.'_show_used_prices', $_POST[$current_location.'_show_used_prices']); }
-		if ($_POST[$current_location.'_new_large_photo_url']) { update_option($current_location.'_new_large_photo_url', $_POST[$current_location.'_new_large_photo_url']); }
-		if ($_POST[$current_location.'_new_small_photo_url']) { update_option($current_location.'_new_small_photo_url', $_POST[$current_location.'_new_small_photo_url']); }
-		if ($_POST[$current_location.'_used_large_photo_url']) { update_option($current_location.'_used_large_photo_url', $_POST[$current_location.'_used_large_photo_url']); }
-		if ($_POST[$current_location.'_used_small_photo_url']) { update_option($current_location.'_used_small_photo_url', $_POST[$current_location.'_used_small_photo_url']); }
-		if ($_POST[$current_location.'_no_new_price']) { update_option($current_location.'_no_new_price', $_POST[$current_location.'_no_new_price']); }
-		if ($_POST[$current_location.'_no_used_price']) { update_option($current_location.'_no_used_price', $_POST[$current_location.'_no_used_price']); }
+		if ($_POST[$current_location.'_trade_name']) { update_option($current_location.'_trade_name', wp_filter_nohtml_kses($_POST[$current_location.'_trade_name'])); }
+		if ($_POST[$current_location.'_trade_number']) { update_option($current_location.'_trade_number', wp_filter_nohtml_kses($_POST[$current_location.'_trade_number'])); }
+		if ($_POST[$current_location.'_trade_email']) { update_option($current_location.'_trade_email', wp_filter_nohtml_kses($_POST[$current_location.'_trade_email'])); }
+		if ($_POST[$current_location.'_trade_url']) { update_option($current_location.'_trade_url', wp_filter_nohtml_kses($_POST[$current_location.'_trade_url'])); }
+		if ($_POST[$current_location.'_show_new_prices']) { update_option($current_location.'_show_new_prices', wp_filter_nohtml_kses($_POST[$current_location.'_show_new_prices'])); }
+		if ($_POST[$current_location.'_show_used_prices']) { update_option($current_location.'_show_used_prices', wp_filter_nohtml_kses($_POST[$current_location.'_show_used_prices'])); }
+		if ($_POST[$current_location.'_new_large_photo_url']) { update_option($current_location.'_new_large_photo_url', wp_filter_nohtml_kses($_POST[$current_location.'_new_large_photo_url'])); }
+		if ($_POST[$current_location.'_new_small_photo_url']) { update_option($current_location.'_new_small_photo_url', wp_filter_nohtml_kses($_POST[$current_location.'_new_small_photo_url'])); }
+		if ($_POST[$current_location.'_used_large_photo_url']) { update_option($current_location.'_used_large_photo_url', wp_filter_nohtml_kses($_POST[$current_location.'_used_large_photo_url'])); }
+		if ($_POST[$current_location.'_used_small_photo_url']) { update_option($current_location.'_used_small_photo_url', wp_filter_nohtml_kses($_POST[$current_location.'_used_small_photo_url'])); }
+		if ($_POST[$current_location.'_no_new_price']) { update_option($current_location.'_no_new_price', wp_filter_nohtml_kses($_POST[$current_location.'_no_new_price'])); }
+		if ($_POST[$current_location.'_no_used_price']) { update_option($current_location.'_no_used_price', wp_filter_nohtml_kses($_POST[$current_location.'_no_used_price'])); }
 		$car_demon_settings_hook = apply_filters('car_demon_admin_update_hook', $holder, $current_location);
 	}
 }
@@ -313,6 +313,8 @@ function car_demon_options() {
 	$default['dynamic_ribbons'] = 'No';
 	$default['before_listings'] = '';
 	$default['use_post_title'] = 'No';
+	$default['show_sold'] = 'No';
+	$default['cc_admin'] = 'Yes';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -333,6 +335,8 @@ function car_demon_options() {
 	if (empty($car_demon_options['dynamic_ribbons'])) {$car_demon_options['dynamic_ribbons'] = $default['dynamic_ribbons'];}
 	if (empty($car_demon_options['before_listings'])) {$car_demon_options['before_listings'] = $default['before_listings'];}
 	if (empty($car_demon_options['use_post_title'])) {$car_demon_options['use_post_title'] = $default['use_post_title'];}
+	if (empty($car_demon_options['show_sold'])) {$car_demon_options['show_sold'] = $default['show_sold'];}
+	if (empty($car_demon_options['cc_admin'])) {$car_demon_options['cc_admin'] = $default['cc_admin'];}
 	return $car_demon_options;
 }
 
@@ -385,6 +389,18 @@ function car_demon_settings_options_do_page() {
 				<option value="1"'.$select_standard.'>'. __('Standard', 'car-demon') .'</option>
 				<option value="0"'.$select_basic.'>'. __('Basic', 'car-demon') .'</option>
 				<option value="3"'.$select_lite.'>'. __('Lite', 'car-demon') .'</option>
+			</select><br />';
+		echo '<br />'.__('Blind Carbon Copy Forms to Admin?', 'car-demon').':<br />';
+		echo '<select name="cc_admin">
+				<option value="'.$car_demon_options['cc_admin'].'">'.$car_demon_options['cc_admin'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />';
+		echo '<br />'.__('Show sold vehicles in search results?', 'car-demon').':<br />';
+		echo '<select name="show_sold">
+				<option value="'.$car_demon_options['show_sold'].'">'.$car_demon_options['show_sold'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
 		echo '<br />'.__('Include ADFxml with Leads?', 'car-demon').':<br />';
 		echo '<select name="adfxml">
@@ -551,6 +567,8 @@ function update_car_demon_settings() {
 	if (isset($_POST['validate_phone'])) $new['validate_phone'] = $_POST['validate_phone'];
 	if (isset($_POST['before_listings'])) $new['before_listings'] = $_POST['before_listings'];
 	if (isset($_POST['use_post_title'])) $new['use_post_title'] = $_POST['use_post_title'];
+	if (isset($_POST['show_sold'])) $new['show_sold'] = $_POST['show_sold'];
+	if (isset($_POST['cc_admin'])) $new['cc_admin'] = $_POST['cc_admin'];
 	update_option( 'car_demon_options', $new );
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }

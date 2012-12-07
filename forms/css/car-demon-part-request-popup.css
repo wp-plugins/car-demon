@@ -1,0 +1,28 @@
+/* CSS Document */
+.parts_form_container {
+	background: #FFFFFF;
+	position: absolute;
+	margin: 0 auto;
+	top: 10%;
+	left: 10%;
+	z-index: 60000;	
+	vertical-align:middle;
+	padding:7px;
+	border: solid;
+	border-top-width:1px;
+	border-left-width:1px;
+	border-right-width:2px;
+	border-bottom-width:3px;
+	border-color:#CCCCCC;
+	display:none;
+	-moz-border-radius: 15px;
+	overflow:auto;
+	border-radius: 15px;
+}
+.close_form {
+	float: right;
+	cursor: pointer;
+	color: #ff0000;
+	font-weight: bold;
+	height: 10px;
+}

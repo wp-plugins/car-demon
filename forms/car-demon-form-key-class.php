@@ -31,12 +31,15 @@ class cd_formKey {
 	//Function to output the form key
 	public function outputKey() {
 		//Generate the key and store it inside the class
-		$this->cd_formKey = $this->generateKey();
-		//Store the form key in the session
-		$_SESSION['form_key'] = $this->cd_formKey;
-		
+		if (isset($this->cd_formKey)) {
+			$_SESSION['form_key'] = $this->cd_formKey;		
+		} else {
+			$this->cd_formKey = $this->generateKey();
+			//Store the form key in the session
+			$_SESSION['form_key'] = $this->cd_formKey;
+		}		
 		//Output the form key
-		echo "<input type='hidden' name='form_key' id='form_key' value='".$this->cd_formKey."' />";
+		return "<input type='hidden' name='form_key' id='form_key' value='".$this->cd_formKey."' />";
 	}
 	
 	//Function that validated the form key POST data

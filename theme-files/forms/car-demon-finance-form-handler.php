@@ -81,6 +81,11 @@ function send_finance_email() {
 	$subject = __('Finance Request from ', 'car-demon').$site_name;
 	$headers = "From: " . strip_tags($_POST['ea']) . "\r\n";
 	$headers .= "Reply-To: " . strip_tags($_POST['ea']) . "\r\n";
+	if (isset($_SESSION['car_demon_options']['cc_admin'])) {
+		if ($_SESSION['car_demon_options']['cc_admin'] == 'No') {
+			$no_cc == 1;
+		}
+	}
 	if ($no_cc == 0) {
 		$headers .= "BCC: ".$admin_email."\r\n";
 	}

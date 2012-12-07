@@ -1,5 +1,34 @@
 <?php
 
+add_action('car_demon_sidebar', 'car_demon_get_sidebar', 10);
+function car_demon_get_sidebar() {
+	get_sidebar();
+}
+
+add_action('car_demon_vehicle_sidebar', 'car_demon_get_vehicle_sidebar', 10);
+function car_demon_get_vehicle_sidebar() {
+	echo '<div id="sideBar1" class="car_side_bar">';
+		echo '<ul>';
+			if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Vehicle Detail Sidebar')) :
+			endif;
+		echo '</ul>';
+		echo '<br class="clear_car">';
+	echo '</div>';
+}
+
+
+add_action('car_demon_before_main_content', 'car_demon_output_content_wrapper', 10);
+function car_demon_output_content_wrapper() {
+	echo '<div id="demon-container">';
+		echo '<div id="demon-content" class="listing" role="main">';
+}
+
+add_action('car_demon_after_main_content', 'car_demon_output_content_wrapper_end', 10);
+function car_demon_output_content_wrapper_end() {
+		echo '</div><!-- #content -->';
+	echo '</div><!-- #container -->';
+}
+
 function get_car_title($post_id) {
 	If ($_SESSION['car_demon_options']['use_post_title'] == 'Yes') {
 		$car_title = get_the_title($post_id);
@@ -224,6 +253,190 @@ function car_demon_vehicle_detail_tabs($post_id) {
 			 } 
 		$x .= '</div>';
 	$x .= '</div>';
+	return $x;
+}
+
+function car_demon_display_similar_cars($body_style, $current_id) {
+	global $wpdb;
+	$show_it = '';
+	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = str_replace('includes','theme-files',$car_demon_pluginpath);
+	$my_tag_id = get_term_by('slug', $body_style, 'vehicle_body_style');
+	if (!empty($body_style)) {
+		$my_search = " AND $wpdb->term_taxonomy.taxonomy = 'vehicle_body_style' AND $wpdb->term_taxonomy.term_id IN(".$my_tag_id->term_id.")";
+		$str_sql = "SELECT wposts.ID
+			FROM $wpdb->posts wposts
+				LEFT JOIN $wpdb->postmeta wpostmeta ON wposts.ID = wpostmeta.post_id 
+				LEFT JOIN $wpdb->term_relationships ON (wposts.ID = $wpdb->term_relationships.object_id)
+				LEFT JOIN $wpdb->term_taxonomy ON ($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
+			WHERE wposts.post_type='cars_for_sale'
+				AND wpostmeta.meta_key = 'sold'
+				AND wpostmeta.meta_value = 'no'".$my_search.'
+				ORDER BY ID LIMIT 4';
+		$the_lists = $wpdb->get_results($str_sql);
+	} else {
+		$the_lists = '';
+	}
+	$car = '';
+	$cnt = 0;
+	if (!empty($the_lists)) {
+		$car .= '<h3>'.__('Other Great Deals', 'car-demon').'</h3>';
+		$car .= '<div class="similar_cars_box">';
+		foreach ($the_lists as $the_list) {
+			$post_id = $the_list->ID;
+			if ($post_id != $current_id) {
+				$cnt = $cnt + 1;
+				if ($cnt < 4) {
+					$show_it = 1;
+					$stock_value = get_post_meta($post_id, "_stock_value", true);
+					$vehicle_year = strip_tags(get_the_term_list( $post_id, 'vehicle_year', '','', '', '' ));
+					$vehicle_make = strip_tags(get_the_term_list( $post_id, 'vehicle_make', '','', '', '' ));
+					$vehicle_model = strip_tags(get_the_term_list( $post_id, 'vehicle_model', '','', '', '' ));
+					$vehicle_condition = strip_tags(get_the_term_list( $post_id, 'vehicle_condition', '','', '', '' ));
+					$title = get_car_title($post_id);
+					$mileage_value = get_post_meta($post_id, "_mileage_value", true);
+					$detail_output = '<span class="random_title">'.$title.'</span><br />';
+					$detail_output .= '<span class="random_text">';
+						$detail_output .= __('Condition:', 'car-demon').' '.$vehicle_condition.'<br />';			
+					$detail_output .= '</span>';
+					$detail_output .= '<span class="random_text">';
+						$detail_output .= __('Mileage:', 'car-demon').' '.$mileage_value.'<br />';
+					$detail_output .= '</span>';
+					$detail_output .= '<span class="random_text">';
+						$detail_output .= __('Stock#:', 'car-demon').' '.$stock_value;
+					$detail_output .= '</span>';
+					$link = get_permalink($post_id);
+					$img_output = "<img onclick='window.location=\"".$link."\";' title='".__("Click for price on this", "car-demon")." ".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image' width='180px' height='135px' src='";
+					$img_output .= wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
+					$img_output .= "' />";
+					$ribbon = get_post_meta($post_id, '_vehicle_ribbon', true);
+					if (empty($ribbon)) {
+						$ribbon = 'no-ribbon';		
+					}					
+					if ($ribbon != 'custom_ribbon') {
+						$ribbon = str_replace('_', '-', $ribbon);
+						$current_ribbon = '<img class="similar_car_ribbon" src="'. $car_demon_pluginpath .'images/ribbon-'.$ribbon.'.png" width="76" height="76" id="ribbon">';
+					} else {
+						$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
+						$current_ribbon = '<img class="similar_car_ribbon" src="'.$custom_ribbon_file.'" width="76" height="76" id="ribbon">';
+					}
+					if (isset($_SESSION['car_demon_options']['dynamic_ribbons'])) {
+						if ($_SESSION['car_demon_options']['dynamic_ribbons'] == 'Yes') {
+							$current_ribbon = car_demon_dynamic_ribbon_filter($current_ribbon, $post_id, '76');
+						}
+					}
+					$car .= '
+						<div class="random similar_car">
+							<div class="random_img">
+								'.$current_ribbon.'
+								<img class="look_close similar_car_look_close" onclick="window.location=\''.$link.'\';" src="'. $car_demon_pluginpath .'images/look_close.png" width="188" height="143" id="look_close">
+								'.$img_output.'
+							</div>
+							<div class="random_description">
+								'.$detail_output.'
+							</div>
+						</div>';
+				}
+			}
+		}
+		$car .= '</div>';
+	}
+	if ($show_it != 1) {
+		$car = '';
+	}
+	return $car;
+}
+
+function car_photos($post_id, $details, $vehicle_condition) {
+	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
+	$mileage_value = '';
+	$car_title = '';
+	$car_js = '';
+	$ribbon = get_post_meta($post_id, '_vehicle_ribbon', true);
+	if (empty($ribbon)) {
+		$ribbon = 'no-ribbon';		
+	}
+	if ($ribbon != 'custom_ribbon') {
+		$ribbon = str_replace('_', '-', $ribbon);
+		$current_ribbon = '<img src="'. $car_demon_pluginpath .'theme-files/images/ribbon-'.$ribbon.'.png" width="112" height="112" id="ribbon">';
+	} else {
+		$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
+		$current_ribbon = '<img src="'.$custom_ribbon_file.'" width="112" height="112" id="ribbon">';
+	}
+	if (isset($_SESSION['car_demon_options']['dynamic_ribbons'])) {
+		if ($_SESSION['car_demon_options']['dynamic_ribbons'] == 'Yes') {
+			$current_ribbon = car_demon_dynamic_ribbon_filter($current_ribbon, $post_id, '112');
+		}
+	}
+	$this_car = '<div>';
+		$this_car .= '<div class="car_detail_div">';
+			$this_car .= '<div class="car_main_photo_box">';
+				$this_car .= $current_ribbon;
+				$this_car .= '<img onclick="open_car_demon_lightbox(\''.$car_title.'_pic\');" src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="358" height="271" alt="New Ribbon" id="look_close">';
+				$this_car .= '<div id="main_thumb"><img onerror="ImgError(this, \'no_photo.gif\');" id="'.$car_title.'_pic" name="'.$car_title.'_pic" class="car_demon_main_photo" width="350px" src="';
+				$main_guid = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
+				$this_car .= $main_guid;
+				$this_car .= '" /></div>';
+			$this_car .= '</div>';
+			$this_car .= '<div class="car_details_box">';
+				$this_car .= $details;
+			$this_car .= '</div>';
+		$this_car .= '</div>';
+		// Thumbnails
+		$thumbnails = get_children( array('post_parent' => $post_id, 'post_type' => 'attachment', 'post_mime_type' =>'image') );
+		$this_car .= '<div class="nohor" id="car_demon_thumbs">';
+		$cnt = 0;
+		$car_js .= 'carImg['.$cnt.']="'.trim($main_guid).'";'.chr(13);
+		$photo_array = '<img class="car_demon_thumbs" onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($main_guid).'",1);active_img('.$cnt.')\' src="'.trim($main_guid).'" width="53" />';
+		$this_car .= $photo_array;
+		foreach($thumbnails as $thumbnail) {
+			$guid = $thumbnail->guid;
+			if (!empty($guid)) {
+				if ($main_guid != $guid) {
+					$cnt = $cnt + 1;
+					$car_js .= 'carImg['.$cnt.']="'.trim($guid).'";'.chr(13);
+					$photo_array = '<img class="car_demon_thumbs" onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($guid).'",1);active_img('.$cnt.')\' src="'.trim($guid).'" width="53" />';
+					$this_car .= $photo_array;
+				}
+			}
+		}
+		$this_car .= '</div>';
+		// End Thumbnails
+	$this_car .= '</div>';
+	$total_pics = $cnt;
+	$car_js = '
+		<input type="hidden" id="current_img_num" value="0" />
+		<input type="hidden" id="current_img_name" />
+		<input type="hidden" id="image_count" value="'.$total_pics.'" />
+		<script>
+			function photo_img_array() {
+				var carImg = new Array;
+				'.$car_js.'
+				return carImg;
+			}
+			setInterval(function(){car_slide_show()},3000);
+		</script>';
+	$html = $this_car.$car_js;
+	$html = apply_filters( 'car_demon_photo_hook', $html, $post_id, $details, $vehicle_condition, 'desktop' );
+	return $html;
+}
+
+function car_demon_no_search_results($searched) {
+	$x = '<div id="post-0" class="post no-results not-found">';
+		$x .= '<h2 class="entry-title">'. __( 'Nothing Found', 'car-demon' ) .'</h2>';
+		$x .= '<div class="entry-content">';
+			$x .= '<p class="sorry">'. __( 'Sorry, but nothing matched your search criteria. Please try using a broader search selection.', 'car-demon' ) .'</p>';
+			$x .= $searched;
+			$i = 0;
+			do {
+				$x .= '<div class="no_result">';
+					$x .= car_demon_display_random_cars(1);
+				$x .= '</div>';
+				++$i;
+			} while ($i < 9);
+		$x .= '</div><!-- .entry-content -->';
+	$x .= '</div><!-- #post-0 -->';
 	return $x;
 }
 ?>

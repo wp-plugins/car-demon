@@ -1,9 +1,11 @@
 <?php
-function car_demon_contact_request($send_to) {
+function car_demon_contact_request($send_to, $popup_id = '', $popup_button='') {
+	$x = '';
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/forms', '', $car_demon_pluginpath);
 	global $cd_formKey;
 	wp_enqueue_script('car-demon-contact-us-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-contact-us.js.php');
+	wp_enqueue_script('car-demon-common-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-common.js.php');
 	wp_enqueue_style('car-demon-contact-us-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-contact-us.css');
 	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
@@ -14,9 +16,16 @@ function car_demon_contact_request($send_to) {
 	} else {
 		$validate_phone = '';
 	}
-	$x = '
-	<div id="contact_msg" class="contact_msg"></div>
-	<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment " id="contact_form">
+	if (!empty($popup_id)) {
+		wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
+		wp_enqueue_script('car-demon-contact-us-popup-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-contact-us-popup.js.php');
+		wp_enqueue_style('car-demon-contact-us-popup-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-contact-us-popup.css');
+		$x .= '<div class="contact_form_container" id="contact_form_container_'.$popup_id.'">';
+			$x .= '<div class="close_form" onclick="close_contact_form(\''.$popup_id.'\');"><img src="'.$car_demon_pluginpath.'theme-files/images/close.png" /></div>';
+	}
+	$x .= '
+	<div id="contact_msg'.$popup_id.'" class="contact_msg"></div>
+	<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment " id="contact_form'.$popup_id.'">
 			'.$cd_formKey->outputKey().'
 			<fieldset class="cd-fs1">
 			<legend>'.__('YOUR INFORMATION','car-demon').'</legend>
@@ -43,8 +52,12 @@ function car_demon_contact_request($send_to) {
 			</fieldset>';
 	$x = apply_filters('car_demon_mail_hook_form', $x, 'contact_us', 'unk');
 	$x .='
-			<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn contact_us_btn" value="'.__('Contact Us','car-demon').'" onclick="return car_demon_validate()"></p></form>
+			<p class="cd-sb"><input type="button" name="search_btn" id="sendbutton" class="search_btn contact_us_btn" value="'.__('Contact Us','car-demon').'" onclick="return car_demon_validate(\''.$popup_id.'\')"></p></form>
 		';
+	if (!empty($popup_id)) {
+		$x .= '</div>';
+		$x .= '<input type="button" class="search_btn contact_us_btn" id="show_contact_form_container_btn_'.$popup_id.'" value="'.$popup_button.'" onclick="show_contact_popup(\''.$popup_id.'\')" />';
+	}
 	return $x;
 }
 

@@ -34,9 +34,9 @@
                 //check if there's an existing overlay, if so, make subequent ones clear
                var $currentOverlays = $(".js_lb_overlay:visible");
                 if ($currentOverlays.length > 0){
-                    $overlay = $('<div class="lb_overlay_clear js_lb_overlay"/>');
+                    $overlay = $('<div class="lb_overlay_clear js_lb_overlay" id="lb_overlay"/>');
                 } else {
-                    $overlay = $('<div class="' + opts.classPrefix + '_overlay js_lb_overlay"/>');
+                    $overlay = $('<div class="' + opts.classPrefix + '_overlay js_lb_overlay" id="lb_overlay"/>');
                 }
             }
 

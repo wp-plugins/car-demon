@@ -21,13 +21,15 @@ function car_demon_query_search() {
 		} else {
 			$max_price = '';
 		}
-		$meta_query = array(
-				array(
-					'key' => 'sold',
-					'value' => 'no',
-					'compare' => '='
-				)
-			);
+		if ($_SESSION['car_demon_options']['show_sold'] != 'Yes') {
+			$meta_query = array(
+					array(
+						'key' => 'sold',
+						'value' => 'no',
+						'compare' => '='
+					)
+				);
+		}
 		if (isset($_GET['stock'])) {
 			if ($_GET['stock']) {
 				$meta_query = array_merge($meta_query, array(array('key' => '_stock_value','value' => $_GET['stock'], 'compare' => '=', 'type' => 'text')));
@@ -119,13 +121,15 @@ function car_demon_query_archive() {
 	else {
 		$max_price = '';
 	}
-	$meta_query = array(
-			array(
-				'key' => 'sold',
-				'value' => 'no',
-				'compare' => '='
-			)
-		);
+	if ($_SESSION['car_demon_options']['show_sold'] != 'Yes') {
+		$meta_query = array(
+				array(
+					'key' => 'sold',
+					'value' => 'no',
+					'compare' => '='
+				)
+			);
+	}
 	$my_query = array(
 			'post_type' => 'cars_for_sale',
 			'is_paged' => true,

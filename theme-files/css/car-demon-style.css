@@ -657,3 +657,8 @@ Staff Pages
 .wp-pagenavi .pages {
 	display:none;
 }
+.no_result {
+	float:left;
+	width:200px;
+	height:300px;
+}

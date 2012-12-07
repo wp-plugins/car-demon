@@ -1,10 +1,11 @@
 <?php
 if (is_admin()) {
 	$post_type = car_demon_get_current_post_type();
+	// Put admin dashboard js in it's own js file and enqueue
+	//add_action( 'wp_dashboard_setup', 'eg_add_dashboard_widgets' );
 	if ($post_type == 'cars_for_sale') {
 		add_action( 'admin_enqueue_scripts', 'cardemons_automotive_inventory_decode_header' );
 		add_action( 'add_meta_boxes', 'start_decode_box' );
-		add_action( 'wp_dashboard_setup', 'eg_add_dashboard_widgets' );
 		add_action('save_post','cd_save_car');
 	}
 }

@@ -22,8 +22,7 @@ if ($_GET['send_part']) {
 	if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
 		//Form key is invalid, show an error  
 		echo 'Form key error! Submission could not be validated.';  
-	}  
-	else {
+	} else {
 		$request_body = send_part_request();
 		$part_location = $_POST['part_location'];
 		$part_email = get_part_email($part_location);
@@ -67,6 +66,11 @@ if ($_GET['send_part']) {
 		$subject = __('Part Request from ', 'car-demon').$site_name;
 		$headers = "From: " . strip_tags($_POST['email']) . "\r\n";
 		$headers .= "Reply-To: " . strip_tags($_POST['email']) . "\r\n";
+		if (isset($_SESSION['car_demon_options']['cc_admin'])) {
+			if ($_SESSION['car_demon_options']['cc_admin'] == 'No') {
+				$no_cc == 1;
+			}
+		}
 		if ($no_cc == 0) {
 			$headers .= "BCC: ".$admin_email."\r\n";
 		}
@@ -84,8 +88,7 @@ if ($_GET['send_part']) {
 			$xml_body .= "Content-Transfer-Encoding: 7bit".$eol.$eol;
 			$xml_body .= adfxml_parts();
 			$email_body = $email_body.$xml_body.$eol;
-		}
-		else {
+		} else {
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 		}
 		$holder = '';
@@ -108,6 +111,7 @@ function send_part_request() {
 	$year = $_POST['year'];
 	$make = $_POST['make'];
 	$model = $_POST['model'];
+	$vin = $_POST['vin'];
 	$part_needed = $_POST['part_needed'];
 	$ip = $_SERVER['REMOTE_ADDR'];
 	$agent = $_SERVER['HTTP_USER_AGENT'];
@@ -152,6 +156,10 @@ function send_part_request() {
 		  </tr>
 		  <tr>
 			<td colspan="2"><hr class="hr_margin" /></td>
+		  </tr>
+		  <tr>
+			<td>'.__('VIN', 'car-demon').'</td>
+			<td>'.$vin.'</td>
 		  </tr>
 		  <tr>
 			<td>'.__('Vehicle Year', 'car-demon').'</td>

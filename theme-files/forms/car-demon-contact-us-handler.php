@@ -45,6 +45,11 @@ if (isset($_GET['send_contact'])) {
 		$subject = __('Contact Form from ', 'car-demon').$site_name;
 		$headers = "From: " . strip_tags($_POST['email']) . $eol;
 		$headers .= "Reply-To: " . strip_tags($_POST['email']) . $eol;
+		if (isset($_SESSION['car_demon_options']['cc_admin'])) {
+			if ($_SESSION['car_demon_options']['cc_admin'] == 'No') {
+				$no_cc == 1;
+			}
+		}
 		if ($no_cc == 0) {
 			$headers .= "BCC: ".$admin_email.$eol;
 		}
