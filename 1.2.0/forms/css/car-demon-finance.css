@@ -1,0 +1,97 @@
+/* CSS Document */
+.main_finance_table {
+	width: 960px;
+	text-align:center;
+	color:#000000;
+}
+.sub_finance_table {
+	width: 805px;
+}
+.finance_column {
+	width: 400px;
+	color:#000000;
+}
+.fin_legend {
+	text-align: left;
+}
+.finance_hide_notice {
+	display:none;
+}
+.finance_alert {
+	font-size:18px;font-weight:bold;color:#FF0000;
+}
+.finance_segment {
+	float:left;
+}
+.finance_form {
+	margin-left:0px;
+}
+.finance_label {
+	width:250px;
+}
+.finance_locations {
+	width:425px;margin-left:20px;
+}
+.finance_hidden {
+	display:none;
+}
+.finance_select {
+	width:65px;
+}
+.finance_comment {
+	width:350px !important;
+	margin-left:25px;
+}
+.finance_applicant_cell {
+	background:#EEEEEE;
+}
+.finance_coapplicant_cell {
+	background:#FFFFCC;
+}
+.finance_info_cell {
+	background:#FFFF00;
+}
+.finance_left {
+	background:#e3e3e3;
+}
+.have_cosigner {
+	margin-left:40%;float:left;
+}
+.cosigner_question {
+	margin-left:10px;float:left;
+}
+.cosigner_block {
+	background;#DDDDDD;
+}
+.finance_disclosure {
+	float:right;
+	width:430px !important;
+	margin-right:30px;
+	height:365px;
+	font-size:9px;
+}
+.cosigner_title {
+	color:#ffffff;
+	background-color:#999999;
+}
+.finance_btn {
+	height:75px;
+	width:260px !important;
+}
+.finance_checkbox {
+	width:15px;
+	margin-left:15px;
+}
+.finance_img {
+	margin-left:75px;
+}
+.finance_box_title {
+	width:375px;
+}
+.finance_select_stock {
+	display: none;
+	margin-left:20px;
+}
+.finance_no_img {
+	margin-left:150px;
+}

@@ -1,0 +1,3446 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Car Demon 1.1.2\n"
+"POT-Creation-Date: 2012-11-20 11:50-0600\n"
+"PO-Revision-Date: 2012-11-22 05:25+0200\n"
+"Last-Translator: Ciprian Dracea <dracea@gmail.com>\n"
+"Language-Team: Car Demons <support@cardemons.com>\n"
+"Language: Romanian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ../car-demon.php:213
+msgid "Mobile Menu"
+msgstr "Menu Mobile"
+
+#: ../car-demon.php:250
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" "
+"title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+"Articol postat in %1$s si etichetat cu %2$s. Bookmark (salvati) <a href="
+"\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">link</a>."
+
+#: ../car-demon.php:252
+#, php-format
+msgid ""
+"This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title="
+"\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+"Articol postat in %1$s. Bookmark (salvati) <a href=\"%3$s\" title="
+"\"Permalink to %4$s\" rel=\"bookmark\">link</a>."
+
+#: ../car-demon.php:254
+#, php-format
+msgid ""
+"Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark"
+"\">permalink</a>."
+msgstr ""
+"Bookmark (salvati) <a href=\"%3$s\" title=\"Permalink to %4$s\" rel="
+"\"bookmark\">link</a>."
+
+#: ../car-demon.php:272
+#, php-format
+msgid ""
+"<span class=\"%1$s\">Posted on</span> %2$s <span class=\"meta-sep\">by</"
+"span> %3$s"
+msgstr ""
+"<span class=\"%1$s\">Postat in</span> %2$s <span class=\"meta-sep\">de</"
+"span> %3$s"
+
+#: ../car-demon.php:375
+msgid "sales"
+msgstr "vanzari"
+
+#: ../admin/car-demon-admin-settings.php:30
+msgid "Car Demon Contact Options"
+msgstr "Optiuni Contact Car Demon"
+
+#: ../admin/car-demon-admin-settings.php:65
+msgid "Contact Information"
+msgstr "Informatii Contact"
+
+#: ../admin/car-demon-admin-settings.php:66
+msgid "Facebook Fan Page"
+msgstr "Pagina Fani Facebook"
+
+#: ../admin/car-demon-admin-settings.php:69
+msgid "New Sales Name"
+msgstr "Responsabil Vanzari Auto Noi"
+
+#: ../admin/car-demon-admin-settings.php:72
+msgid "New Sales Number"
+msgstr "Tel. Dep. Vanzari Auto Noi"
+
+#: ../admin/car-demon-admin-settings.php:74
+msgid "New Mobile Number"
+msgstr "Numar mobil Dep. Vanzari Noi"
+
+#: ../admin/car-demon-admin-settings.php:77
+msgid "New Mobile Provider"
+msgstr "Mobil Dep. Vanzari Auto Noi"
+
+#: ../admin/car-demon-admin-settings.php:81
+msgid "- blank disables SMS for new."
+msgstr ""
+"- daca lasati gol - SMS-urile vor fi dezactivate pt Dep. Vanzari Auto Noi"
+
+#: ../admin/car-demon-admin-settings.php:83
+msgid "New Sales Email"
+msgstr "E-mail Dep. Vanzari Auto Noi"
+
+#: ../admin/car-demon-admin-settings.php:86
+msgid "Used Sales Name"
+msgstr "Responsabil Vanzari Auto SH"
+
+#: ../admin/car-demon-admin-settings.php:89
+msgid "Used Sales Number"
+msgstr "Numar Dep. Vanzari Auto SH"
+
+#: ../admin/car-demon-admin-settings.php:92
+msgid "Used Mobile Number"
+msgstr "Numar mobil Dep. Vanzari SH"
+
+#: ../admin/car-demon-admin-settings.php:95
+msgid "Used Mobile Provider"
+msgstr "Serviciu Mobil"
+
+#: ../admin/car-demon-admin-settings.php:99
+msgid "- blank disables SMS for used."
+msgstr "- daca lasati campul gol SMS nu va fi activat"
+
+#: ../admin/car-demon-admin-settings.php:101
+msgid "Used Sales Email"
+msgstr "E-mail Dep. Vanzari Auto SH"
+
+#: ../admin/car-demon-admin-settings.php:110
+msgid "Default Description"
+msgstr "Descriere Implicita"
+
+#: ../admin/car-demon-admin-settings.php:113
+msgid "Service Name"
+msgstr "Nume Service"
+
+#: ../admin/car-demon-admin-settings.php:116
+msgid "Service Number"
+msgstr "Telefon Service"
+
+#: ../admin/car-demon-admin-settings.php:119
+msgid "Service Email"
+msgstr "Email Service"
+
+#: ../admin/car-demon-admin-settings.php:122
+msgid "Parts Name"
+msgstr "Nume Responsabil Piese Schimb"
+
+#: ../admin/car-demon-admin-settings.php:125
+msgid "Parts Number"
+msgstr "Telefon Dep. Piese Schimb"
+
+#: ../admin/car-demon-admin-settings.php:128
+msgid "Parts Email"
+msgstr "E-mail Dep. Piese Schimb"
+
+#: ../admin/car-demon-admin-settings.php:131
+msgid "Finance Name"
+msgstr "Responsabil Financiar"
+
+#: ../admin/car-demon-admin-settings.php:134
+msgid "Finance Number"
+msgstr "Telefon Departament Financiar"
+
+#: ../admin/car-demon-admin-settings.php:137
+msgid "Finance Email"
+msgstr "Email Departament Financiar"
+
+#: ../admin/car-demon-admin-settings.php:140
+msgid "Link to Finance Form"
+msgstr "Link Formular Financiar"
+
+#: ../admin/car-demon-admin-settings.php:143
+msgid "Pop Up Finance Form"
+msgstr "Formular Financiar"
+
+#: ../admin/car-demon-admin-settings.php:161
+msgid "*Finance Disclaimer"
+msgstr "*Conditii de Finantare"
+
+#: ../admin/car-demon-admin-settings.php:164
+msgid "*Finance Description"
+msgstr "*Descriere Finantare"
+
+#: ../admin/car-demon-admin-settings.php:167
+msgid "Trade Name"
+msgstr "Responsabil Vanzari"
+
+#: ../admin/car-demon-admin-settings.php:170
+msgid "Trade Number"
+msgstr "Telefon Vanzari"
+
+#: ../admin/car-demon-admin-settings.php:173
+msgid "Trade Email"
+msgstr "E-mail Vanzari"
+
+#: ../admin/car-demon-admin-settings.php:176
+msgid "Link to Trade Form"
+msgstr "Formular de Vanzare"
+
+#: ../admin/car-demon-admin-settings.php:179
+msgid "Show Prices on New"
+msgstr "Arata Preturi la Auto Noi"
+
+#: ../admin/car-demon-admin-settings.php:187
+msgid "Show Prices on Used"
+msgstr "Arata Preturi la Auto S.H."
+
+#: ../admin/car-demon-admin-settings.php:195
+msgid "New Large Photo Url"
+msgstr "URL Imagine Mare - Auto Noi"
+
+#: ../admin/car-demon-admin-settings.php:198
+msgid "New Small Photo Url"
+msgstr "URL Imagine Redusa - Auto Noi"
+
+#: ../admin/car-demon-admin-settings.php:201
+msgid "Used Large Photo Url"
+msgstr "URL Imagine Mare - Auto SH"
+
+#: ../admin/car-demon-admin-settings.php:204
+msgid "Used Small Photo Url"
+msgstr "URL Imagine Redusa - Auto SH"
+
+#: ../admin/car-demon-admin-settings.php:209
+msgid ""
+"* The Default disclaimer and description are provided as examples ONLY and "
+"may or may not be legally suitable for your state. Please have a lawyer "
+"review your disclaimer and description before using."
+msgstr ""
+"* Termeni si conditii sunt doar ca EXEMPLU si pot sau nu sa fie legale in "
+"tara dumneavoastra. Discutati cu un avocat pentru a vedea regulile "
+"aplicabile in tara dumneavoastra."
+
+#: ../admin/car-demon-admin-settings.php:211
+msgid "Update Options"
+msgstr "Actualizeaza Optiuni"
+
+#: ../admin/car-demon-admin-settings.php:334
+msgid "Car Demon Settings"
+msgstr "Setari Car Demon"
+
+#: ../admin/car-demon-admin-settings.php:346
+msgid "Disable Finance Form if it isn't loaded with SSL"
+msgstr "Dezactivati Formularul Financiar daca nu e incarcat prin SSL"
+
+#: ../admin/car-demon-admin-settings.php:352
+msgid "Currency Symbol"
+msgstr "Simbol Moneda"
+
+#: ../admin/car-demon-admin-settings.php:354
+msgid "Currency Symbol After Price"
+msgstr "Simbol Moneda dupa Pret"
+
+#: ../admin/car-demon-admin-settings.php:356
+msgid "VinQuery.com Access Code"
+msgstr "Cod Acces VinQuery.com"
+
+#: ../admin/car-demon-admin-settings.php:376
+msgid "VinQuery.com Report Type"
+msgstr "Tip Raport VinQuery.com"
+
+#: ../admin/car-demon-admin-settings.php:378
+msgid "Extended"
+msgstr "Extins"
+
+#: ../admin/car-demon-admin-settings.php:379
+msgid "Standard"
+msgstr "Standard"
+
+#: ../admin/car-demon-admin-settings.php:380
+msgid "Basic"
+msgstr "De Baza"
+
+#: ../admin/car-demon-admin-settings.php:381
+msgid "Lite"
+msgstr "Redus"
+
+#: ../admin/car-demon-admin-settings.php:383
+msgid "Include ADFxml with Leads?"
+msgstr "Includeti feedurile ADFxml cu solicitarile?"
+
+#: ../admin/car-demon-admin-settings.php:386
+#: ../admin/car-demon-admin-settings.php:392
+#: ../admin/car-demon-admin-settings.php:398
+#: ../admin/car-demon-admin-settings.php:404
+#: ../admin/car-demon-admin-settings.php:410
+#: ../admin/car-demon-admin-settings.php:416
+#: ../admin/car-demon-admin-settings.php:422
+#: ../admin/car-demon-admin-settings.php:429 ../admin/car-demon-columns.php:77
+#: ../forms/car-demon-finance-form.php:633
+#: ../forms/car-demon-service-form.php:59
+msgid "Yes"
+msgstr "Da"
+
+#: ../admin/car-demon-admin-settings.php:387
+#: ../admin/car-demon-admin-settings.php:393
+#: ../admin/car-demon-admin-settings.php:399
+#: ../admin/car-demon-admin-settings.php:405
+#: ../admin/car-demon-admin-settings.php:411
+#: ../admin/car-demon-admin-settings.php:417
+#: ../admin/car-demon-admin-settings.php:423
+#: ../admin/car-demon-admin-settings.php:430 ../admin/car-demon-columns.php:78
+#: ../forms/car-demon-finance-form.php:632
+#: ../forms/car-demon-service-form.php:61
+#: ../widgets/car-demon-vehicle-contact-widget.php:73
+#: ../widgets/car-demon-vehicle-contact-widget.php:75
+msgid "No"
+msgstr "Nu"
+
+#: ../admin/car-demon-admin-settings.php:389
+msgid "Use About Tab on Vehicle Pages"
+msgstr "Utilizati fila Despre pe Pagina Vehicolului"
+
+#: ../admin/car-demon-admin-settings.php:395
+msgid "Use Compare Vehicle Option"
+msgstr "Utilizati Optiunea de Comparatie a vehiculelor"
+
+#: ../admin/car-demon-admin-settings.php:401
+msgid "Load Next Inventory Page on Scroll"
+msgstr "Incarcati Pagina urmatoare in timp ce derulati"
+
+#: ../admin/car-demon-admin-settings.php:407
+msgid "Use included theme files?"
+msgstr "Utilizati fisierele temei incluse?"
+
+#: ../admin/car-demon-admin-settings.php:413
+msgid "Validate Phone Numbers?"
+msgstr "Se valideaza numerele de telefon (NU daca nu locuiti in S.U.A.)"
+
+#: ../admin/car-demon-admin-settings.php:419
+msgid "Is Mobile Theme Installed?"
+msgstr "Este instalata Tema pentru Mobil?"
+
+#: ../admin/car-demon-admin-settings.php:426
+msgid "Use Default Mobile Header with Mobile Logo?"
+msgstr "Utilizati Antetul Implicit pentru Mobil cu Logo-ul pentru Mobil?"
+
+#: ../admin/car-demon-admin-settings.php:432
+msgid "Mobile Header Logo"
+msgstr "Logo Antet Mobil"
+
+#: ../admin/car-demon-admin-settings.php:436
+msgid "Upload Logo"
+msgstr "Incarcati Logo"
+
+#: ../admin/car-demon-admin-settings.php:437
+msgid "Enter a URL or upload an image for the Mobile Logo. 169x58 px"
+msgstr "Introduceti adresa URL ori incarcati o imagine pentru logo-ul pe Mobil"
+
+#: ../admin/car-demon-admin-settings.php:440
+msgid "Mobile Chat Code"
+msgstr "Cod Chat pe Mobil"
+
+#: ../admin/car-demon-admin-settings.php:443
+msgid "Update Car Demon"
+msgstr "Actualizeaza Car Demon"
+
+#: ../admin/car-demon-admin-settings.php:444
+msgid "Reset to Default"
+msgstr "Resetare"
+
+#: ../admin/car-demon-admin-settings.php:447
+msgid "Car Demon Pages"
+msgstr "Pagini Car Demon"
+
+#: ../admin/car-demon-admin-settings.php:449
+msgid ""
+"Car Demon comes with support for adding several custom forms and pages. You "
+"can quickly and easily add these pages by clicking the buttons below or you "
+"can create your own pages and simply paste the shortcode you want to use "
+"into the content of the page."
+msgstr ""
+"Car Demon va poate ajuta sa adaugati cateva formulare si pagini "
+"personalizate. Puteti adauga usor si rapid aceste pagini apasand butoanele "
+"respective sau puteti crea paginile si adauga shortcode-uri dorite in "
+"continutul paginilor."
+
+#: ../admin/car-demon-admin-settings.php:462
+msgid "Add Contact Us Page"
+msgstr "Adauga Pagina Contact"
+
+#: ../admin/car-demon-admin-settings.php:467
+msgid "Add Service Appointment Page"
+msgstr "Adauga Pagina Programare Service"
+
+#: ../admin/car-demon-admin-settings.php:472
+msgid "Add Service Quote Page"
+msgstr "Adauga Pagina Cotatie Service"
+
+#: ../admin/car-demon-admin-settings.php:477
+msgid "Add Parts Quote Page"
+msgstr "Adauga Pagina Cotatie Piese"
+
+#: ../admin/car-demon-admin-settings.php:482
+msgid "Add Trade In Page"
+msgstr "Adauga Pagina Tranzactii"
+
+#: ../admin/car-demon-admin-settings.php:487
+msgid "Add Finanace Application Page"
+msgstr "Adauga Pagina Aplicare Financiara"
+
+#: ../admin/car-demon-admin-settings.php:492
+msgid "Add Staff Page"
+msgstr "Adauga Pagina Specialisti"
+
+#: ../admin/car-demon-admin-settings.php:496
+msgid "Shortcodes"
+msgstr "Shortcode-uri (Scurtaturi)"
+
+#: ../admin/car-demon-admin-settings.php:531
+msgid "SETTINGS HAVE BEEN UPDATED"
+msgstr "SETARILE AU FOST SALVATE"
+
+#: ../admin/car-demon-admin-settings.php:536
+msgid "SETTINGS HAVE BEEN RESET"
+msgstr "SETARILE AU FOST RESETATE"
+
+#: ../admin/car-demon-admin-settings.php:540
+msgid ""
+"This is not a contract to purchase. It is an application for financing a "
+"possible automotive purchase."
+msgstr ""
+"Acesta nu este un Contract de Vanzare/Cumparare. Este o aplicatie pentru "
+"finantarea unei posibile cumparari a unui vehicul"
+
+#: ../admin/car-demon-admin-settings.php:541
+msgid "You are not obligated to purchase"
+msgstr "Nu sunteti obligat sa cumparati"
+
+#: ../admin/car-demon-admin-settings.php:541
+msgid "a vehicle if you submit this form."
+msgstr "un autovehicul daca trimiteti acest formular."
+
+#: ../admin/car-demon-admin-settings.php:543
+msgid ""
+"Your information is kept confidential and is used only to assist in "
+"obtaining financing for a potential vehicle purchase."
+msgstr ""
+"Informatiile vor fi confidentiale si vor fi utilizate doar pentru a va ajuta "
+"sa obtineti finantare pentru o posibila cumparare a unui autovehicul."
+
+#: ../admin/car-demon-admin-settings.php:544
+msgid "*By clicking this button you agree to the terms  posted above."
+msgstr "*Apasand acest buton sunteti de acord cu termenii de mai sus."
+
+#: ../admin/car-demon-admin-settings.php:551
+msgid ""
+"\n"
+"\t*TERMS AND DISCLOSURE \n"
+"\t\n"
+"\tThe following terms of agreement apply to all of our online applications;\n"
+"\t\n"
+"\twe, us, our and ours as used below refer to the dealer and to the "
+"Financial \n"
+"\t\n"
+"\tInstitutions selected to receive your application.\n"
+"\t\n"
+"\tYou authorize the dealer, as part of the credit underwriting process, to "
+"submit this \n"
+"\t\n"
+"\tapplication and any other application submitted in connection with the "
+"proposed transaction\n"
+"\t\n"
+"\tto the Financial Institutions disclosed to you by the dealer, for review. "
+"In addition, in \n"
+"\t\n"
+"\taccordance with the Fair Credit Reporting Act, you authorize that such "
+"Financial Institutions \n"
+"\t\n"
+"\tmay submit your applications for review to other Financial Institutions "
+"that may want to \n"
+"\t\n"
+"\tpurchase your contract.\n"
+"\t\n"
+"\t\n"
+"\tYou agree that we and any Financial Institutions to which your application "
+"is submitted may \n"
+"\t\n"
+"\tobtain a consumer credit report periodically from one or more consumer "
+"reporting agencies \n"
+"\t\n"
+"\t(credit bureaus) in connection with the proposed transaction and any "
+"update, renewal, \n"
+"\t\n"
+"\trefinancing, modification or extension of that transaction.\n"
+"\t\n"
+"\tYou agree that we may verify your employment, pay, assets and debts, and "
+"that anyone \n"
+"\t\n"
+"\treceiving a copy of this is authorized to provide us with such "
+"information.\n"
+"\t\n"
+"\tYou further authorize us to gather whatever credit and employment history "
+"we consider\n"
+"\t\n"
+"\tnecessary and appropriate in reviewing this application and any other "
+"applications \n"
+"\t\n"
+"\tsubmitted in connection with the proposed transaction.\n"
+"\t\n"
+"\tWe may keep this application and any other application submitted to us, "
+"and information \n"
+"\t\n"
+"\tabout you whether or not the application is approved. You certify that the "
+"information on \n"
+"\t\n"
+"\tthis application and in any other application submitted to us, is true and "
+"complete. You \n"
+"\t\n"
+"\tunderstand that false statements may subject you to criminal penalties.\n"
+"\t\n"
+"\tFEDERAL NOTICES\n"
+"\t\n"
+"\tIMPORTANT INFORMATION ABOUT PROCEDURES FOR OPENING A NEW ACCOUNT\n"
+"\t\n"
+"\tTo help the government fight the funding of terrorism and money laundering "
+"activities, \n"
+"\t\n"
+"\tFederal law requires all financial institutions to obtain, verify, and "
+"record information that \n"
+"\t\n"
+"\tidentifies each person who opens an account. What this means for you: When "
+"you open an \n"
+"\t\n"
+"\taccount, we will ask for your name,address, date of birth, and other "
+"information that will  \n"
+"\t\n"
+"\tallow us to identify you. We may also ask to see your driver's license or "
+"other identifying \n"
+"\t\n"
+"\tdocuments.\n"
+"\t\n"
+"\tSTATE NOTICES\n"
+"\t\n"
+"\tArizona, California, Idaho, Louisiana, Nevada, New Mexico, Texas, "
+"Washington or  \n"
+"\t\n"
+"\tWisconsin Residents: If you, the applicant, are married and live in a "
+"community property \n"
+"\t\n"
+"\tstate, you should also provide the personal credit information on your "
+"spouse in the \n"
+"\t\n"
+"\tco-applicant section. Your spouse is not required to be a co-applicant for "
+"the credit \n"
+"\t\n"
+"\trequested unless he/she wishes to be a co-applicant.\n"
+"\t\n"
+"\tCalifornia Residents: An applicant, if married, may apply for a separate "
+"account.\n"
+"\t\n"
+"\tOhio Residents: Ohio laws against discrimination require that all "
+"creditors make credit \n"
+"\t\n"
+"\tequally available to all creditworthy customers and that credit reporting "
+"agencies maintain  \n"
+"\t\n"
+"\tseparate credit histories on each individual upon request. The Ohio Civil "
+"Rights  \n"
+"\t\n"
+"\tCommission administers compliance with this law.\n"
+"\t\n"
+"\tNew Hampshire Residents:If this is an application for balloon financing, "
+"you are entitled to \n"
+"\t\n"
+"\treceive, upon request, a written estimate of the monthly payment amount "
+"that would be  \n"
+"\t\n"
+"\trequired to refinance the balloon payment at the time such payment is due "
+"based on the\n"
+"\t\n"
+"\tcreditor's current refinancing programs.\n"
+"\t\n"
+"\tNew Hampshire Residents: In connection with your application for credit, "
+"we may request a \n"
+"\t\n"
+"\tconsumer report that contains information on your credit worthiness, "
+"credit standing,  \n"
+"\t\n"
+"\tpersonal characteristics and general reputation. If we grant you credit, "
+"we or our  \n"
+"\t\n"
+"\tservicer may order additional consumer reports in connection with any "
+"update, renewal  \n"
+"\t\n"
+"\tor extension of the credit. If you ask us, we will tell you whether we "
+"obtained a consumer  \n"
+"\t\n"
+"\treport and if we did, we will tell you the name and address of the "
+"consumer reporting \n"
+"\t\n"
+"\tagency that gave us the report.\n"
+"\t\n"
+"\tVermont Residents: By clicking on Submit, you authorize us and our "
+"employees or agents  \n"
+"\t\n"
+"\tto obtain and verify information about you (including one or more credit "
+"reports, information \n"
+"\t\n"
+"\tabout your employment and banking and credit relationships) that we may "
+"deem necessary  \n"
+"\t\n"
+"\tor appropriate in reviewing your application. If your application is "
+"approved and credit is \n"
+"\t\n"
+"\textended, you also authorize us, and our employees and agents, to obtain "
+"additional credit \n"
+"\t\n"
+"\treports and other information about you in connection with reviewing the "
+"account,  \n"
+"\t\n"
+"\tincreasing the available credit on the account (if applicable), taking "
+"collection on  \n"
+"\t\n"
+"\tthe account, or for any other legitimate purpose.\n"
+"\t\n"
+"\tMarried Wisconsin Residents: Wisconsin law provides that no provision of "
+"any marital  \n"
+"\t\n"
+"\tproperty agreement, or unilateral statement, or court order applied to "
+"marital property  \n"
+"\t\n"
+"\twill adversely affect a creditor's interests unless, prior to the time "
+"that the credit \n"
+"\t\n"
+"\tis granted, the creditor is furnished with a copy of the agreement, "
+"statement or decree,\n"
+"\t\n"
+"\tor has actual  knowledge of the adverse provision. If you are making this "
+"application  \n"
+"\t\n"
+"\tindividually, and not jointly with your spouse, the full name and current "
+"address of \n"
+"\t\n"
+"\tyour spouse must be properly disclosed in the co-applicant section of this "
+"application.\n"
+"\t"
+msgstr ""
+"\n"
+"\t*TERMENI SI CONDITII \n"
+"\t\n"
+"\tUrmatorii termeni se aplica tuturor solicitarilor on-line:\n"
+"\t\n"
+"\tnoi,noua, nostru, noastre asa cum sunt utilizate mai jos se refera la "
+"dealer si la Institutiile \n"
+"\t\n"
+"\tFinanciare selectate sa va solutioneze solicitarile.\n"
+"\t"
+
+#: ../admin/car-demon-admin-settings.php:693
+msgid "This vehicle is ready to go right now."
+msgstr "Acest vehicol este in stare de functionare, gata de plecare."
+
+#: ../admin/car-demon-columns.php:9
+msgid "Vehicle Title"
+msgstr "Titlu Vehicul"
+
+#: ../admin/car-demon-columns.php:10 ../includes/car-demon-user-control.php:36
+msgid "Photo"
+msgstr "Fotografie"
+
+#: ../admin/car-demon-columns.php:11
+#: ../vin-query/car-demon-vin-query-admin.php:259
+msgid "Retail Price"
+msgstr "Pret Vanzare cu Amanuntul"
+
+#: ../admin/car-demon-columns.php:12
+#: ../includes/car-demon-vehicle-price.php:53
+msgid "Rebate"
+msgstr "Rabat"
+
+#: ../admin/car-demon-columns.php:13 ../admin/car-demon-columns.php:105
+#: ../vin-query/car-demon-vin-query-admin.php:267
+msgid "Discount"
+msgstr "Reducere"
+
+#: ../admin/car-demon-columns.php:14 ../admin/car-demon-columns.php:113
+#: ../theme-files/archive-cars_for_sale.php:69 ../theme-files/search.php:119
+msgid "Price"
+msgstr "Pret"
+
+#: ../admin/car-demon-columns.php:15
+msgid "Sold"
+msgstr "Vandut"
+
+#: ../admin/car-demon-columns.php:62
+msgid "Calculated Price:"
+msgstr "Calculeaza Pret:"
+
+#: ../admin/car-demon-columns.php:63
+msgid "Calculated Discount:"
+msgstr "Calculeaza Discount:"
+
+#: ../admin/car-demon-columns.php:89
+msgid "MSRP"
+msgstr "Pret Recomandat de Producator"
+
+#: ../admin/car-demon-columns.php:97
+#: ../vin-query/car-demon-vin-query-admin.php:263
+msgid "Rebates"
+msgstr "Rabaturi"
+
+#: ../admin/car-demon-columns.php:199
+msgid "Edit this item inline"
+msgstr "Editeaza pe loc"
+
+#: ../admin/car-demon-columns.php:201
+msgid "Quick&nbsp;Edits"
+msgstr "Editari&nbsp;Rapide"
+
+#: ../forms/car-demon-contact-us.php:22
+#: ../theme-files/forms/car-demon-email-friend-handler.php:98
+msgid "YOUR INFORMATION"
+msgstr "INFORMATII DESPRE DUMNEAVOASTRA"
+
+#: ../forms/car-demon-contact-us.php:24 ../forms/car-demon-part-request.php:24
+#: ../forms/car-demon-service-form.php:31
+#: ../forms/car-demon-service-quote.php:24
+#: ../forms/car-demon-trade-form.php:24
+#: ../forms/js/car-demon-contact-us.js.php:29
+#: ../theme-files/single-cars_for_sale.php:153
+#: ../theme-files/forms/car-demon-email-friend-handler.php:104
+msgid "Your Name"
+msgstr "Numele Dumneavoastra"
+
+#: ../forms/car-demon-contact-us.php:24 ../forms/car-demon-contact-us.php:25
+#: ../forms/car-demon-contact-us.php:37 ../forms/car-demon-part-request.php:24
+#: ../forms/car-demon-part-request.php:25
+#: ../forms/car-demon-part-request.php:68
+#: ../forms/car-demon-service-form.php:31
+#: ../forms/car-demon-service-form.php:32
+#: ../forms/car-demon-service-form.php:45
+#: ../forms/car-demon-service-form.php:49
+#: ../forms/car-demon-service-form.php:74
+#: ../forms/car-demon-service-quote.php:24
+#: ../forms/car-demon-service-quote.php:25
+#: ../forms/car-demon-service-quote.php:40
+#: ../forms/car-demon-trade-form.php:24 ../forms/car-demon-trade-form.php:25
+#: ../forms/car-demon-trade-form.php:33 ../forms/car-demon-trade-form.php:34
+#: ../forms/car-demon-trade-form.php:35 ../forms/car-demon-trade-form.php:36
+#: ../theme-files/single-cars_for_sale.php:162
+msgid "required"
+msgstr "obligatoriu"
+
+#: ../forms/car-demon-contact-us.php:25 ../forms/car-demon-part-request.php:25
+#: ../forms/car-demon-service-form.php:32
+#: ../forms/car-demon-service-quote.php:25
+#: ../forms/car-demon-trade-form.php:25
+msgid "Phone #"
+msgstr "Telefon #"
+
+#: ../forms/car-demon-contact-us.php:26 ../forms/car-demon-part-request.php:26
+#: ../forms/car-demon-service-form.php:33
+#: ../forms/car-demon-service-quote.php:26
+#: ../forms/car-demon-trade-form.php:26
+msgid "Email"
+msgstr "E-mail"
+
+#: ../forms/car-demon-contact-us.php:26 ../forms/car-demon-part-request.php:26
+#: ../forms/car-demon-service-form.php:33
+#: ../forms/car-demon-service-quote.php:26
+#: ../forms/car-demon-trade-form.php:26
+msgid "valid email required"
+msgstr "este obligatorie o adresa de email valida"
+
+#: ../forms/car-demon-contact-us.php:31
+#: ../widgets/car-demon-vehicle-contact-widget.php:188
+msgid "Add Contact"
+msgstr "Adauga Contact"
+
+#: ../forms/car-demon-contact-us.php:32
+#: ../widgets/car-demon-vehicle-contact-widget.php:189
+msgid "Remove Contact"
+msgstr "Sterge Contact"
+
+#: ../forms/car-demon-contact-us.php:35
+msgid "Questions and Comments"
+msgstr "Intrebari si Comentarii"
+
+#: ../forms/car-demon-contact-us.php:42
+#: ../widgets/car-demon-vehicle-contact-widget.php:72
+msgid "Contact Us"
+msgstr "Contact"
+
+#: ../forms/car-demon-finance-form.php:22
+msgid "SOMETHING WENT WRONG! THIS PAGE IS NOT SECURE!"
+msgstr "A APARUT O EROARE! ACEASTA PAGINA NU ESTE SECURIZATA!"
+
+#: ../forms/car-demon-finance-form.php:23
+msgid "THIS FORM HAS BEEN DISABLED FOR YOUR PROTECTION."
+msgstr "ACEST FORMULAR A FOST DEZACTIVAT PENTRU PROTECTIA DUMNEAVOASTRA"
+
+#: ../forms/car-demon-finance-form.php:24
+msgid "PLEASE CONTACT THE SITE ADMINISTRATOR FOR MORE INFORMATION."
+msgstr ""
+"VA RUGAM SA CONTACTATI ADMINISTRATORUL SITE-ULUI PENTRU MAI MULTE INFORMATII."
+
+#: ../forms/car-demon-finance-form.php:51
+msgid "STEP ONE - Personal Info"
+msgstr "Pasul 1 - Informatii Personale"
+
+#: ../forms/car-demon-finance-form.php:55
+#: ../forms/car-demon-finance-form.php:648
+msgid "First Name"
+msgstr "Prenume"
+
+#: ../forms/car-demon-finance-form.php:60
+#: ../forms/car-demon-finance-form.php:650
+msgid "FIRST NAME REQUIRED"
+msgstr "PRENUME (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:64
+#: ../forms/car-demon-finance-form.php:652
+msgid "Middle Initial"
+msgstr "INITIALA"
+
+#: ../forms/car-demon-finance-form.php:69
+#: ../forms/car-demon-finance-form.php:655
+msgid "Last Name"
+msgstr "Nume"
+
+#: ../forms/car-demon-finance-form.php:74
+#: ../forms/car-demon-finance-form.php:657
+msgid "LAST NAME REQUIRED"
+msgstr "NUME (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:78
+#: ../includes/car-demon-user-control.php:119
+#: ../theme-files/forms/car-demon-contact-us-handler.php:111
+#: ../theme-files/forms/car-demon-finance-form-handler.php:225
+#: ../theme-files/forms/car-demon-finance-form-handler.php:481
+#: ../theme-files/forms/car-demon-part-handler.php:136
+#: ../theme-files/forms/car-demon-service-handler.php:142
+#: ../theme-files/forms/car-demon-service-quote-handler.php:138
+#: ../theme-files/forms/car-demon-trade-form-handler.php:189
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:203
+msgid "Phone Number"
+msgstr "Telefon"
+
+#: ../forms/car-demon-finance-form.php:82
+#: ../forms/car-demon-finance-form.php:324
+#: ../forms/car-demon-finance-form.php:389
+#: ../forms/car-demon-finance-form.php:661
+#: ../forms/car-demon-finance-form.php:890
+#: ../forms/car-demon-finance-form.php:950
+msgid "PHONE REQUIRED"
+msgstr "TELEFON (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:85
+#: ../forms/car-demon-finance-form.php:663
+#: ../theme-files/forms/car-demon-contact-us-handler.php:115
+#: ../theme-files/forms/car-demon-finance-form-handler.php:229
+#: ../theme-files/forms/car-demon-finance-form-handler.php:485
+#: ../theme-files/forms/car-demon-part-handler.php:140
+#: ../theme-files/forms/car-demon-service-handler.php:146
+#: ../theme-files/forms/car-demon-service-quote-handler.php:142
+#: ../theme-files/forms/car-demon-trade-form-handler.php:193
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:207
+msgid "Email Address"
+msgstr "Adresa Email"
+
+#: ../forms/car-demon-finance-form.php:89
+#: ../forms/car-demon-finance-form.php:665
+msgid "EMAIL REQUIRED"
+msgstr "EMAIL (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:92
+msgid "Your info is secure"
+msgstr "Informatiile sunt securizate"
+
+#: ../forms/car-demon-finance-form.php:92
+#: ../theme-files/forms/car-demon-finance-form-handler.php:208
+#: ../theme-files/forms/car-demon-finance-form-handler.php:468
+msgid "Social Security Number"
+msgstr "Nr. Asigurari Sociale"
+
+#: ../forms/car-demon-finance-form.php:95
+#: ../forms/car-demon-finance-form.php:669
+msgid "SSN REQUIRED"
+msgstr "CNP (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:98
+msgid "We secure and protect your confidential information"
+msgstr "Asiguram si protejam informatiile dumneavoastra confidentiale"
+
+#: ../forms/car-demon-finance-form.php:101
+#: ../forms/car-demon-finance-form.php:491
+#: ../forms/car-demon-finance-form.php:675
+#: ../forms/car-demon-finance-form.php:1042
+msgid "Apt/Suite"
+msgstr "Apartament"
+
+#: ../forms/car-demon-finance-form.php:104
+#: ../forms/car-demon-finance-form.php:494
+#: ../forms/car-demon-finance-form.php:678
+#: ../forms/car-demon-finance-form.php:1045
+msgid "APT/SUITE REQUIRED"
+msgstr "APARTAMENT (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:107
+#: ../forms/car-demon-finance-form.php:497
+#: ../forms/car-demon-finance-form.php:681
+#: ../forms/car-demon-finance-form.php:1048
+msgid "Street Number"
+msgstr "Numar Strada"
+
+#: ../forms/car-demon-finance-form.php:110
+#: ../forms/car-demon-finance-form.php:684
+#: ../forms/car-demon-finance-form.php:1051
+msgid "STREET NUM REQUIRED"
+msgstr "NUMAR STRADA (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:112
+#: ../forms/car-demon-finance-form.php:687
+#: ../forms/car-demon-finance-form.php:1054
+msgid "Street Name"
+msgstr "Strada"
+
+#: ../forms/car-demon-finance-form.php:115
+#: ../forms/car-demon-finance-form.php:506
+#: ../forms/car-demon-finance-form.php:690
+#: ../forms/car-demon-finance-form.php:1057
+msgid "STREET NAME REQUIRED"
+msgstr "STRADA (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:118
+#: ../forms/car-demon-finance-form.php:509
+#: ../forms/car-demon-finance-form.php:693
+#: ../forms/car-demon-finance-form.php:1060
+msgid "Street Type"
+msgstr "Tip Drum"
+
+#: ../forms/car-demon-finance-form.php:121
+#: ../forms/car-demon-finance-form.php:512
+#: ../forms/car-demon-finance-form.php:696
+#: ../forms/car-demon-finance-form.php:1063
+msgid "AVENUE"
+msgstr "CALEA"
+
+#: ../forms/car-demon-finance-form.php:122
+#: ../forms/car-demon-finance-form.php:513
+#: ../forms/car-demon-finance-form.php:697
+#: ../forms/car-demon-finance-form.php:1064
+msgid "BOULEVARD"
+msgstr "Bulevard"
+
+#: ../forms/car-demon-finance-form.php:123
+#: ../forms/car-demon-finance-form.php:514
+#: ../forms/car-demon-finance-form.php:698
+#: ../forms/car-demon-finance-form.php:1065
+msgid "CIRCLE"
+msgstr "CERC"
+
+#: ../forms/car-demon-finance-form.php:124
+#: ../forms/car-demon-finance-form.php:515
+#: ../forms/car-demon-finance-form.php:699
+#: ../forms/car-demon-finance-form.php:1066
+msgid "COURT"
+msgstr "CURTE"
+
+#: ../forms/car-demon-finance-form.php:125
+#: ../forms/car-demon-finance-form.php:516
+#: ../forms/car-demon-finance-form.php:700
+#: ../forms/car-demon-finance-form.php:1067
+msgid "CRESCENT"
+msgstr "SEMILUNA"
+
+#: ../forms/car-demon-finance-form.php:126
+#: ../forms/car-demon-finance-form.php:517
+#: ../forms/car-demon-finance-form.php:701
+#: ../forms/car-demon-finance-form.php:1068
+msgid "DRIVE"
+msgstr "DRUM"
+
+#: ../forms/car-demon-finance-form.php:127
+#: ../forms/car-demon-finance-form.php:518
+#: ../forms/car-demon-finance-form.php:702
+#: ../forms/car-demon-finance-form.php:1069
+msgid "FREEWAY"
+msgstr "AUTOSTRADA"
+
+#: ../forms/car-demon-finance-form.php:128
+#: ../forms/car-demon-finance-form.php:519
+#: ../forms/car-demon-finance-form.php:703
+#: ../forms/car-demon-finance-form.php:1070
+msgid "HIGHWAY"
+msgstr "SOSEA"
+
+#: ../forms/car-demon-finance-form.php:129
+#: ../forms/car-demon-finance-form.php:520
+#: ../forms/car-demon-finance-form.php:704
+#: ../forms/car-demon-finance-form.php:1071
+msgid "LANE"
+msgstr "STRADUTA"
+
+#: ../forms/car-demon-finance-form.php:130
+#: ../forms/car-demon-finance-form.php:521
+#: ../forms/car-demon-finance-form.php:705
+#: ../forms/car-demon-finance-form.php:1072
+msgid "PARKWAY"
+msgstr "PARCARE"
+
+#: ../forms/car-demon-finance-form.php:131
+#: ../forms/car-demon-finance-form.php:522
+#: ../forms/car-demon-finance-form.php:706
+#: ../forms/car-demon-finance-form.php:1073
+msgid "PLACE"
+msgstr "LOC"
+
+#: ../forms/car-demon-finance-form.php:132
+#: ../forms/car-demon-finance-form.php:523
+#: ../forms/car-demon-finance-form.php:707
+#: ../forms/car-demon-finance-form.php:1074
+msgid "PLAZA"
+msgstr "PIATA"
+
+#: ../forms/car-demon-finance-form.php:133
+#: ../forms/car-demon-finance-form.php:524
+#: ../forms/car-demon-finance-form.php:708
+#: ../forms/car-demon-finance-form.php:1075
+msgid "ROAD"
+msgstr "DRUM JUDETEAN"
+
+#: ../forms/car-demon-finance-form.php:134
+#: ../forms/car-demon-finance-form.php:525
+#: ../forms/car-demon-finance-form.php:709
+#: ../forms/car-demon-finance-form.php:1076
+msgid "SQUARE"
+msgstr "PATRAT"
+
+#: ../forms/car-demon-finance-form.php:135
+#: ../forms/car-demon-finance-form.php:526
+#: ../forms/car-demon-finance-form.php:710
+#: ../forms/car-demon-finance-form.php:1077
+msgid "STREET"
+msgstr "STRADA"
+
+#: ../forms/car-demon-finance-form.php:136
+#: ../forms/car-demon-finance-form.php:527
+#: ../forms/car-demon-finance-form.php:711
+#: ../forms/car-demon-finance-form.php:1078
+msgid "TERRACE"
+msgstr "TERASA"
+
+#: ../forms/car-demon-finance-form.php:137
+#: ../forms/car-demon-finance-form.php:528
+#: ../forms/car-demon-finance-form.php:712
+#: ../forms/car-demon-finance-form.php:1079
+msgid "TRAIL"
+msgstr "TRASEU"
+
+#: ../forms/car-demon-finance-form.php:138
+#: ../forms/car-demon-finance-form.php:529
+#: ../forms/car-demon-finance-form.php:713
+#: ../forms/car-demon-finance-form.php:1080
+msgid "TURNPIKE"
+msgstr "BARIERA"
+
+#: ../forms/car-demon-finance-form.php:139
+#: ../forms/car-demon-finance-form.php:530
+#: ../forms/car-demon-finance-form.php:714
+#: ../forms/car-demon-finance-form.php:1081
+msgid "WAY"
+msgstr "DRUM"
+
+#: ../forms/car-demon-finance-form.php:142
+#: ../forms/car-demon-finance-form.php:533
+#: ../forms/car-demon-finance-form.php:717
+#: ../forms/car-demon-finance-form.php:1084
+msgid "STREET TYPE REQUIRED"
+msgstr "TIP DRUM OBLIGATORIU"
+
+#: ../forms/car-demon-finance-form.php:145
+#: ../forms/car-demon-finance-form.php:536
+#: ../forms/car-demon-finance-form.php:720
+#: ../forms/car-demon-finance-form.php:1087
+msgid "PO Box"
+msgstr "Casuta Postala"
+
+#: ../forms/car-demon-finance-form.php:148
+#: ../forms/car-demon-finance-form.php:539
+#: ../forms/car-demon-finance-form.php:723
+#: ../forms/car-demon-finance-form.php:1090
+msgid "PO BOX REQUIRED"
+msgstr "CASUTA POSTALA (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:150
+#: ../forms/car-demon-finance-form.php:542
+#: ../forms/car-demon-finance-form.php:726
+#: ../forms/car-demon-finance-form.php:1093
+msgid "Rural Route"
+msgstr "Drum de Tara"
+
+#: ../forms/car-demon-finance-form.php:153
+#: ../forms/car-demon-finance-form.php:545
+#: ../forms/car-demon-finance-form.php:729
+#: ../forms/car-demon-finance-form.php:1096
+msgid "RURAL ROUTE REQUIRED"
+msgstr "DRUM (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:156
+#: ../forms/car-demon-finance-form.php:548
+#: ../forms/car-demon-finance-form.php:733
+#: ../forms/car-demon-finance-form.php:1099
+msgid "City"
+msgstr "Oras"
+
+#: ../forms/car-demon-finance-form.php:159
+#: ../forms/car-demon-finance-form.php:551
+#: ../forms/car-demon-finance-form.php:735
+#: ../forms/car-demon-finance-form.php:1102
+msgid "CITY REQUIRED"
+msgstr "ORAS (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:162
+#: ../forms/car-demon-finance-form.php:554
+#: ../forms/car-demon-finance-form.php:737
+#: ../forms/car-demon-finance-form.php:1105
+msgid "State"
+msgstr "Judet"
+
+#: ../forms/car-demon-finance-form.php:224
+#: ../forms/car-demon-finance-form.php:615
+#: ../forms/car-demon-finance-form.php:798
+#: ../forms/car-demon-finance-form.php:1166
+msgid "STATE REQUIRED"
+msgstr "JUDET (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:227
+#: ../forms/car-demon-finance-form.php:618
+#: ../forms/car-demon-finance-form.php:1169
+msgid "Zip"
+msgstr "Cod Postal"
+
+#: ../forms/car-demon-finance-form.php:231
+#: ../forms/car-demon-finance-form.php:621
+#: ../forms/car-demon-finance-form.php:804
+#: ../forms/car-demon-finance-form.php:1172
+msgid "ZIP REQUIRED"
+msgstr "COD POSTAL (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:234
+#: ../forms/car-demon-finance-form.php:807
+msgid "Birth Date"
+msgstr "Data Nasterii"
+
+#: ../forms/car-demon-finance-form.php:234
+msgid "Month-Date-Year"
+msgstr "Luna-Zi-An"
+
+#: ../forms/car-demon-finance-form.php:238
+#: ../forms/car-demon-finance-form.php:810
+msgid "Jan"
+msgstr "Ian"
+
+#: ../forms/car-demon-finance-form.php:239
+#: ../forms/car-demon-finance-form.php:811
+msgid "Feb"
+msgstr "Feb"
+
+#: ../forms/car-demon-finance-form.php:240
+#: ../forms/car-demon-finance-form.php:812
+msgid "Mar"
+msgstr "Mar"
+
+#: ../forms/car-demon-finance-form.php:241
+#: ../forms/car-demon-finance-form.php:813
+msgid "Apr"
+msgstr "Apr"
+
+#: ../forms/car-demon-finance-form.php:242
+#: ../forms/car-demon-finance-form.php:814
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "May"
+msgstr "Mai"
+
+#: ../forms/car-demon-finance-form.php:243
+#: ../forms/car-demon-finance-form.php:815
+msgid "Jun"
+msgstr "Iun"
+
+#: ../forms/car-demon-finance-form.php:244
+#: ../forms/car-demon-finance-form.php:816
+msgid "Jul"
+msgstr "Iul"
+
+#: ../forms/car-demon-finance-form.php:245
+#: ../forms/car-demon-finance-form.php:817
+msgid "Aug"
+msgstr "Aug"
+
+#: ../forms/car-demon-finance-form.php:246
+#: ../forms/car-demon-finance-form.php:818
+msgid "Sep"
+msgstr "Sep"
+
+#: ../forms/car-demon-finance-form.php:247
+#: ../forms/car-demon-finance-form.php:819
+msgid "Oct"
+msgstr "Oct"
+
+#: ../forms/car-demon-finance-form.php:248
+#: ../forms/car-demon-finance-form.php:820
+msgid "Nov"
+msgstr "Noi"
+
+#: ../forms/car-demon-finance-form.php:249
+#: ../forms/car-demon-finance-form.php:821
+msgid "Dec"
+msgstr "Dec"
+
+#: ../forms/car-demon-finance-form.php:267
+#: ../forms/car-demon-finance-form.php:838
+msgid "DAY REQUIRED"
+msgstr "ZIUA (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:268
+#: ../forms/car-demon-finance-form.php:839
+msgid "MONTH REQUIRED"
+msgstr "LUNA (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:269
+#: ../forms/car-demon-finance-form.php:840
+msgid "YEAR REQUIRED"
+msgstr "ANUL (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:280
+msgid "STEP TWO  - Employment Info"
+msgstr "Pasul 2 - Informatii Loc de Munca"
+
+#: ../forms/car-demon-finance-form.php:283
+#: ../forms/car-demon-finance-form.php:348
+#: ../forms/car-demon-finance-form.php:852
+#: ../forms/car-demon-finance-form.php:911
+msgid "Employer Name"
+msgstr "Angajator"
+
+#: ../forms/car-demon-finance-form.php:286
+#: ../forms/car-demon-finance-form.php:351
+#: ../forms/car-demon-finance-form.php:855
+#: ../forms/car-demon-finance-form.php:914
+msgid "EMPLOYER REQUIRED"
+msgstr "LOC DE MUNCA (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:289
+#: ../forms/car-demon-finance-form.php:354
+#: ../forms/car-demon-finance-form.php:857
+#: ../forms/car-demon-finance-form.php:917
+msgid "Position"
+msgstr "Pozitie"
+
+#: ../forms/car-demon-finance-form.php:292
+#: ../forms/car-demon-finance-form.php:357
+#: ../forms/car-demon-finance-form.php:860
+#: ../forms/car-demon-finance-form.php:920
+msgid "POSITION REQUIRED"
+msgstr "FUNCTIE (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:295
+#: ../forms/car-demon-finance-form.php:360
+#: ../forms/car-demon-finance-form.php:863
+#: ../forms/car-demon-finance-form.php:923
+msgid "Years/Month at Company"
+msgstr "Vechime la Locul de Munca"
+
+#: ../forms/car-demon-finance-form.php:303
+#: ../forms/car-demon-finance-form.php:304
+#: ../forms/car-demon-finance-form.php:305
+#: ../forms/car-demon-finance-form.php:306
+#: ../forms/car-demon-finance-form.php:307
+#: ../forms/car-demon-finance-form.php:308
+#: ../forms/car-demon-finance-form.php:309
+#: ../forms/car-demon-finance-form.php:310
+#: ../forms/car-demon-finance-form.php:311
+#: ../forms/car-demon-finance-form.php:312
+#: ../forms/car-demon-finance-form.php:313
+#: ../forms/car-demon-finance-form.php:314
+#: ../forms/car-demon-finance-form.php:368
+#: ../forms/car-demon-finance-form.php:369
+#: ../forms/car-demon-finance-form.php:370
+#: ../forms/car-demon-finance-form.php:371
+#: ../forms/car-demon-finance-form.php:372
+#: ../forms/car-demon-finance-form.php:373
+#: ../forms/car-demon-finance-form.php:374
+#: ../forms/car-demon-finance-form.php:375
+#: ../forms/car-demon-finance-form.php:376
+#: ../forms/car-demon-finance-form.php:377
+#: ../forms/car-demon-finance-form.php:378
+#: ../forms/car-demon-finance-form.php:379
+#: ../forms/car-demon-finance-form.php:423
+#: ../forms/car-demon-finance-form.php:424
+#: ../forms/car-demon-finance-form.php:425
+#: ../forms/car-demon-finance-form.php:426
+#: ../forms/car-demon-finance-form.php:427
+#: ../forms/car-demon-finance-form.php:428
+#: ../forms/car-demon-finance-form.php:429
+#: ../forms/car-demon-finance-form.php:430
+#: ../forms/car-demon-finance-form.php:431
+#: ../forms/car-demon-finance-form.php:432
+#: ../forms/car-demon-finance-form.php:433
+#: ../forms/car-demon-finance-form.php:434
+#: ../forms/car-demon-finance-form.php:870
+#: ../forms/car-demon-finance-form.php:871
+#: ../forms/car-demon-finance-form.php:872
+#: ../forms/car-demon-finance-form.php:873
+#: ../forms/car-demon-finance-form.php:874
+#: ../forms/car-demon-finance-form.php:875
+#: ../forms/car-demon-finance-form.php:876
+#: ../forms/car-demon-finance-form.php:877
+#: ../forms/car-demon-finance-form.php:878
+#: ../forms/car-demon-finance-form.php:879
+#: ../forms/car-demon-finance-form.php:880
+#: ../forms/car-demon-finance-form.php:881
+#: ../forms/car-demon-finance-form.php:930
+#: ../forms/car-demon-finance-form.php:931
+#: ../forms/car-demon-finance-form.php:932
+#: ../forms/car-demon-finance-form.php:933
+#: ../forms/car-demon-finance-form.php:934
+#: ../forms/car-demon-finance-form.php:935
+#: ../forms/car-demon-finance-form.php:936
+#: ../forms/car-demon-finance-form.php:937
+#: ../forms/car-demon-finance-form.php:938
+#: ../forms/car-demon-finance-form.php:939
+#: ../forms/car-demon-finance-form.php:940
+#: ../forms/car-demon-finance-form.php:941
+#: ../forms/car-demon-finance-form.php:983
+#: ../forms/car-demon-finance-form.php:984
+#: ../forms/car-demon-finance-form.php:985
+#: ../forms/car-demon-finance-form.php:986
+#: ../forms/car-demon-finance-form.php:987
+#: ../forms/car-demon-finance-form.php:988
+#: ../forms/car-demon-finance-form.php:989
+#: ../forms/car-demon-finance-form.php:990
+#: ../forms/car-demon-finance-form.php:991
+#: ../forms/car-demon-finance-form.php:992
+#: ../forms/car-demon-finance-form.php:993
+#: ../forms/car-demon-finance-form.php:994
+msgid "Months"
+msgstr "Luni"
+
+#: ../forms/car-demon-finance-form.php:317
+#: ../forms/car-demon-finance-form.php:382
+#: ../forms/car-demon-finance-form.php:436
+#: ../forms/car-demon-finance-form.php:883
+#: ../forms/car-demon-finance-form.php:944
+#: ../forms/car-demon-finance-form.php:996
+msgid "YEARS REQUIRED"
+msgstr "ANI (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:318
+#: ../forms/car-demon-finance-form.php:381
+#: ../forms/car-demon-finance-form.php:437
+#: ../forms/car-demon-finance-form.php:884
+#: ../forms/car-demon-finance-form.php:943
+#: ../forms/car-demon-finance-form.php:997
+msgid "MONTHS REQUIRED"
+msgstr "LUNI (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:321
+#: ../forms/car-demon-finance-form.php:386
+#: ../forms/car-demon-finance-form.php:887
+#: ../forms/car-demon-finance-form.php:947
+msgid "Employer Phone Number"
+msgstr "Telefon Angajator"
+
+#: ../forms/car-demon-finance-form.php:327
+#: ../forms/car-demon-finance-form.php:392
+#: ../forms/car-demon-finance-form.php:892
+#: ../forms/car-demon-finance-form.php:953
+msgid "Gross Monthly Income"
+msgstr "Venit Brut"
+
+#: ../forms/car-demon-finance-form.php:330
+#: ../forms/car-demon-finance-form.php:395
+#: ../forms/car-demon-finance-form.php:895
+#: ../forms/car-demon-finance-form.php:956
+msgid "INCOME REQUIRED"
+msgstr "VENITUL ESTE OBLIGATORIU"
+
+#: ../forms/car-demon-finance-form.php:333
+#: ../forms/car-demon-finance-form.php:398
+#: ../forms/car-demon-finance-form.php:898
+#: ../forms/car-demon-finance-form.php:959
+#: ../theme-files/forms/car-demon-finance-form-handler.php:297
+#: ../theme-files/forms/car-demon-finance-form-handler.php:333
+#: ../theme-files/forms/car-demon-finance-form-handler.php:553
+#: ../theme-files/forms/car-demon-finance-form-handler.php:589
+msgid "Other Income"
+msgstr "Alte Venituri"
+
+#: ../forms/car-demon-finance-form.php:336
+#: ../forms/car-demon-finance-form.php:401
+#: ../forms/car-demon-finance-form.php:901
+#: ../forms/car-demon-finance-form.php:962
+msgid "OTHER INCOME REQUIRED"
+msgstr "ALT VENIT"
+
+#: ../forms/car-demon-finance-form.php:345
+msgid "PREVIOUS EMPLOYMENT"
+msgstr "LOC DE MUNCA ANTERIOR"
+
+#: ../forms/car-demon-finance-form.php:413
+msgid "STEP THREE - Living Situation"
+msgstr "Pasul 3 - Situatia Locativa"
+
+#: ../forms/car-demon-finance-form.php:416
+#: ../forms/car-demon-finance-form.php:976
+msgid "Years/Month at Current Address"
+msgstr "Vechime la Adresa Curenta"
+
+#: ../forms/car-demon-finance-form.php:440
+#: ../forms/car-demon-finance-form.php:1000
+msgid "Do you Own or Rent ?"
+msgstr "Proprietate sau Chirie?"
+
+#: ../forms/car-demon-finance-form.php:442
+#: ../forms/car-demon-finance-form.php:1002
+msgid "Own"
+msgstr "Proprietate Personala"
+
+#: ../forms/car-demon-finance-form.php:443
+#: ../forms/car-demon-finance-form.php:1003
+msgid "Rent"
+msgstr "Inchiriat"
+
+#: ../forms/car-demon-finance-form.php:444
+#: ../forms/car-demon-finance-form.php:1004
+msgid "Relatives"
+msgstr "Rude"
+
+#: ../forms/car-demon-finance-form.php:446
+#: ../forms/car-demon-finance-form.php:451
+#: ../forms/car-demon-finance-form.php:465
+#: ../forms/car-demon-finance-form.php:466
+#: ../forms/car-demon-finance-form.php:1006
+#: ../forms/car-demon-finance-form.php:1011
+#: ../forms/car-demon-finance-form.php:1025
+#: ../forms/car-demon-finance-form.php:1026
+msgid "REQUIRED"
+msgstr "OBLIGATORIU"
+
+#: ../forms/car-demon-finance-form.php:449
+#: ../forms/car-demon-finance-form.php:1009
+msgid "Rent Amount/Mortgage Payment $"
+msgstr "Chirie/Rata (lei)"
+
+#: ../forms/car-demon-finance-form.php:454
+#: ../forms/car-demon-finance-form.php:1014
+msgid "Best Contact Place And Time"
+msgstr "Date de contact preferate (loc si timp)"
+
+#: ../forms/car-demon-finance-form.php:456
+#: ../forms/car-demon-finance-form.php:1016
+msgid "Home"
+msgstr "Acasa"
+
+#: ../forms/car-demon-finance-form.php:457
+#: ../forms/car-demon-finance-form.php:1017
+msgid "Work"
+msgstr "Serviciu"
+
+#: ../forms/car-demon-finance-form.php:461
+#: ../forms/car-demon-finance-form.php:1021
+msgid "Morning"
+msgstr "Dimineata"
+
+#: ../forms/car-demon-finance-form.php:462
+#: ../forms/car-demon-finance-form.php:1022
+msgid "Afternoon"
+msgstr "Dupaamiaza"
+
+#: ../forms/car-demon-finance-form.php:463
+#: ../forms/car-demon-finance-form.php:1023
+msgid "Evening"
+msgstr "Seara"
+
+#: ../forms/car-demon-finance-form.php:469
+#: ../forms/car-demon-trade-form.php:38
+msgid "Comments"
+msgstr "Comentarii"
+
+#: ../forms/car-demon-finance-form.php:484
+msgid "PREVIOUS ADDRESS"
+msgstr "ADRESA PRECEDENTA"
+
+#: ../forms/car-demon-finance-form.php:500
+msgid "STREET NUM  REQUIRED"
+msgstr "NUMAR STRADA (OBLIGATORIU)"
+
+#: ../forms/car-demon-finance-form.php:503
+msgid "App Street Name"
+msgstr "Strada"
+
+#: ../forms/car-demon-finance-form.php:629
+msgid "Do you have a Co-Signer"
+msgstr "Aveti un Co-Platitor?"
+
+#: ../forms/car-demon-finance-form.php:639
+msgid "Enter Co-Signer"
+msgstr "Introduceti Co-Platitor"
+
+#: ../forms/car-demon-finance-form.php:639
+msgid "Co-Signer"
+msgstr "Co-Platitor"
+
+#: ../forms/car-demon-finance-form.php:645
+msgid "STEP FOUR - Co-Applicant Information"
+msgstr "Pasul 4 - Informatii Co-Platitor"
+
+#: ../forms/car-demon-finance-form.php:645
+msgid "(Optional)"
+msgstr "(Optional)"
+
+#: ../forms/car-demon-finance-form.php:659
+msgid "Home Phone Number"
+msgstr "Telefon (Acasa)"
+
+#: ../forms/car-demon-finance-form.php:671
+msgid "( We secure and protect your confidential information )"
+msgstr "(Asiguram si protejam informatiile dumneavoastra confidentiale)"
+
+#: ../forms/car-demon-finance-form.php:807
+msgid "(Month-Date-Year)"
+msgstr "(Luna-Zi-An)"
+
+#: ../forms/car-demon-finance-form.php:849
+msgid "STEP FIVE  - Co-Applicant Employment Info"
+msgstr "Pasul 5 - Informatii despre Locul de Munca al Co-Platitorului"
+
+#: ../forms/car-demon-finance-form.php:908
+msgid "Co-Applicant Previous Employment"
+msgstr "Angajatorul Anterior al Co-Platitorului"
+
+#: ../forms/car-demon-finance-form.php:973
+msgid "STEP SIX  - Co-Applicant Living Situation"
+msgstr "Pasul 6 - Situatia Locativa a Co-Platitorului"
+
+#: ../forms/car-demon-finance-form.php:1021
+msgid "Morning   "
+msgstr "Dimineata"
+
+#: ../forms/car-demon-finance-form.php:1022
+msgid "Afternoon "
+msgstr "Dupaamiaza"
+
+#: ../forms/car-demon-finance-form.php:1023
+msgid "Evening   "
+msgstr "Seara"
+
+#: ../forms/car-demon-finance-form.php:1035
+msgid "Previous Co-Applicant Address"
+msgstr "Adresa Anterioara a Co-Platitorului"
+
+#: ../forms/car-demon-finance-form.php:1337
+#: ../forms/car-demon-trade-form.php:90
+#: ../theme-files/forms/car-demon-email-friend-handler.php:128
+#: ../theme-files/forms/car-demon-finance-form-handler.php:355
+#: ../theme-files/forms/car-demon-trade-form-handler.php:249
+msgid "Vehicle of Interest"
+msgstr "Vehicul de Interes"
+
+#: ../forms/car-demon-finance-form.php:1338
+#: ../forms/car-demon-trade-form.php:91
+msgid "This is"
+msgstr "Aceasta este"
+
+#: ../forms/car-demon-finance-form.php:1338
+#: ../forms/car-demon-trade-form.php:91
+msgid "NOT"
+msgstr "NU"
+
+#: ../forms/car-demon-finance-form.php:1338
+#: ../forms/car-demon-trade-form.php:91
+msgid "the vehicle I'm interested in."
+msgstr "sunt interesat de acest vehicul."
+
+#: ../forms/car-demon-finance-form.php:1340
+#: ../forms/car-demon-trade-form.php:92 ../forms/car-demon-trade-form.php:116
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:243
+msgid "Stock #"
+msgstr "Stoc #"
+
+#: ../forms/car-demon-finance-form.php:1341
+#: ../forms/car-demon-trade-form.php:93
+msgid "VIN"
+msgstr "VIN #"
+
+#: ../forms/car-demon-finance-form.php:1343
+#: ../forms/car-demon-trade-form.php:95
+msgid "Vehicle"
+msgstr "Vehicul"
+
+#: ../forms/car-demon-finance-form.php:1362
+#: ../forms/car-demon-trade-form.php:114
+msgid "What Vehicle are you Interested In Purchasing?"
+msgstr "Ce tip de autovehicul doriti?"
+
+#: ../forms/car-demon-finance-form.php:1363
+#: ../forms/car-demon-trade-form.php:115
+msgid "I know the stock#"
+msgstr "Cunosc oferta"
+
+#: ../forms/car-demon-finance-form.php:1365
+#: ../forms/car-demon-trade-form.php:117
+msgid "I would like to search for it"
+msgstr "Doresc sa caut"
+
+#: ../forms/car-demon-finance-form.php:1366
+msgid "(enter year, make or model)"
+msgstr "(introduceti anul de fabricatie, marca sau modelul)"
+
+#: ../forms/car-demon-finance-form.php:1367
+#: ../forms/car-demon-trade-form.php:119
+msgid "I haven't made up my mind."
+msgstr "Nu m-am hotarat"
+
+#: ../forms/car-demon-finance-form.php:1456
+#: ../theme-files/forms/car-demon-finance-form-handler.php:212
+msgid "Finance Location"
+msgstr "Localizare Financiara"
+
+#: ../forms/car-demon-finance-form.php:1458
+msgid "Select your preferred Finance Location"
+msgstr "Selectati locatia preferata pentru finantare"
+
+#: ../forms/car-demon-part-request.php:22 ../forms/car-demon-trade-form.php:22
+#: ../theme-files/single-cars_for_sale.php:151
+msgid "Your Information"
+msgstr "Informatii despre Dumneavoastra"
+
+#: ../forms/car-demon-part-request.php:31
+msgid "Add Part"
+msgstr "Adauga Piesa"
+
+#: ../forms/car-demon-part-request.php:32
+msgid "Remove Part"
+msgstr "Sterge Piesa"
+
+#: ../forms/car-demon-part-request.php:35
+#: ../forms/car-demon-service-form.php:67
+#: ../forms/car-demon-service-quote.php:33
+#: ../forms/car-demon-trade-form.php:31
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:231
+msgid "Vehicle Information"
+msgstr "Informatii Autovehicule"
+
+#: ../forms/car-demon-part-request.php:37
+#: ../forms/car-demon-service-form.php:69
+#: ../forms/car-demon-service-quote.php:35
+#: ../forms/car-demon-trade-form.php:33
+#: ../includes/car-demon-create-post-types-tax.php:25
+#: ../includes/car-demon-search-form.php:33
+#: ../includes/car-demon-search-form.php:108
+msgid "Year"
+msgstr "An"
+
+#: ../forms/car-demon-part-request.php:38
+#: ../forms/car-demon-service-form.php:70
+#: ../forms/car-demon-service-quote.php:36
+#: ../forms/car-demon-trade-form.php:34
+#: ../includes/car-demon-search-form.php:27
+#: ../includes/car-demon-search-form.php:112
+msgid "Manufacturer"
+msgstr "Producator"
+
+#: ../forms/car-demon-part-request.php:39
+#: ../forms/car-demon-service-form.php:71
+#: ../forms/car-demon-service-quote.php:37
+#: ../forms/car-demon-trade-form.php:35
+#: ../includes/car-demon-create-post-types-tax.php:47
+#: ../includes/car-demon-search-form.php:37
+#: ../includes/car-demon-search-form.php:116
+#: ../vin-query/car-demon-vin-query-admin.php:297
+msgid "Model"
+msgstr "Model"
+
+#: ../forms/car-demon-part-request.php:43
+msgid "Parts Needed"
+msgstr "Piese Necesare"
+
+#: ../forms/car-demon-part-request.php:49
+msgid "Comments & Questions"
+msgstr "Comentarii & Intrebari"
+
+#: ../forms/car-demon-part-request.php:53
+msgid "Request Quote"
+msgstr "Solicit Cotatie!"
+
+#: ../forms/car-demon-part-request.php:70
+msgid "Part Name #"
+msgstr "Numele Piesa #"
+
+#: ../forms/car-demon-part-request.php:71
+msgid "Part Number #"
+msgstr "Numar Piesa #"
+
+#: ../forms/car-demon-part-request.php:113
+msgid "Parts Department"
+msgstr "Departament Piese Schimb"
+
+#: ../forms/car-demon-part-request.php:115
+msgid "Select your preferred Parts Department"
+msgstr "Selectati Departamentul Piese Schimb dorit"
+
+#: ../forms/car-demon-service-form.php:29
+msgid "Schedule Service Appointment"
+msgstr "Programare Inspectie Service"
+
+#: ../forms/car-demon-service-form.php:40
+msgid "Appointment Information"
+msgstr "Informatii Intrevedere"
+
+#: ../forms/car-demon-service-form.php:42
+msgid "Preferred Appointment Date"
+msgstr "Data Preferata pentru Intrevedere"
+
+#: ../forms/car-demon-service-form.php:46
+msgid "Alternate Appointment Date"
+msgstr "Data Alternativa pentru Intrevedere"
+
+#: ../forms/car-demon-service-form.php:50
+msgid "Will you be..."
+msgstr "Veti..."
+
+#: ../forms/car-demon-service-form.php:52
+msgid "Waiting"
+msgstr "Astepta"
+
+#: ../forms/car-demon-service-form.php:54
+msgid "Leaving Car"
+msgstr "Lasati masina"
+
+#: ../forms/car-demon-service-form.php:57
+msgid "Do you need alternate transportation?"
+msgstr "Aveti nevoie de masina de schimb?"
+
+#: ../forms/car-demon-service-form.php:72
+#: ../forms/car-demon-service-quote.php:38
+#: ../forms/car-demon-trade-form.php:36
+msgid "Miles"
+msgstr "KM parcursi"
+
+#: ../forms/car-demon-service-form.php:73
+#: ../forms/car-demon-service-quote.php:39
+#: ../forms/car-demon-trade-form.php:37
+msgid "Vin"
+msgstr "VIN"
+
+#: ../forms/car-demon-service-form.php:74
+#: ../forms/car-demon-service-quote.php:40
+msgid "Service Required"
+msgstr "Cerere Service de la"
+
+#: ../forms/car-demon-service-form.php:78
+msgid "Send Appointment"
+msgstr "Solicita Programare"
+
+#: ../forms/car-demon-service-form.php:121
+msgid "Select your preferred Service Location"
+msgstr "Locatie Service Preferata"
+
+#: ../forms/car-demon-service-quote.php:22
+msgid "Service Quote"
+msgstr "Cotatie Service"
+
+#: ../forms/car-demon-service-quote.php:44
+msgid "Send Quote"
+msgstr "Solicit Cotatie"
+
+#: ../forms/car-demon-trade-form.php:44
+msgid "Purchase Information"
+msgstr "Informatii Autovehicule"
+
+#: ../forms/car-demon-trade-form.php:58
+msgid "Get Quote!"
+msgstr "Solicit Cotatie!"
+
+#: ../forms/car-demon-trade-form.php:118
+#: ../theme-files/single-cars_for_sale.php:216
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:247
+msgid "Description"
+msgstr "Descriere"
+
+#: ../forms/car-demon-trade-form.php:118
+msgid "enter year, make or model"
+msgstr "Introduceti Anul, Marca sau Modelul"
+
+#: ../forms/car-demon-trade-form.php:169
+#: ../theme-files/forms/car-demon-trade-form-handler.php:197
+msgid "Trade Location"
+msgstr "Locatie Vanzare"
+
+#: ../forms/car-demon-trade-form.php:171
+msgid "Select your preferred Trade Location"
+msgstr "Selectati locatia pentru tranzactie preferata"
+
+#: ../forms/car-demon-trade-form.php:195
+msgid "Your Trade-In Vehicle Options"
+msgstr "Optiuni pentru Masina Dorita"
+
+#: ../forms/car-demon-trade-form.php:198
+msgid "4 Wheel Drive"
+msgstr "4x4"
+
+#: ../forms/car-demon-trade-form.php:199
+msgid "ABS Brakes"
+msgstr "ABS"
+
+#: ../forms/car-demon-trade-form.php:200
+msgid "Air Bag"
+msgstr "AirBag"
+
+#: ../forms/car-demon-trade-form.php:202
+msgid "Air Conditioning"
+msgstr "Clima"
+
+#: ../forms/car-demon-trade-form.php:203
+msgid "Alloy Wheels"
+msgstr "Jenti Aluminiu"
+
+#: ../forms/car-demon-trade-form.php:204
+msgid "AM/FM Stereo"
+msgstr "Radio"
+
+#: ../forms/car-demon-trade-form.php:206
+msgid "Anti-Theft"
+msgstr "Anti Furt"
+
+#: ../forms/car-demon-trade-form.php:207
+msgid "Bed Liner"
+msgstr "Autocolant"
+
+#: ../forms/car-demon-trade-form.php:208
+msgid "Bra"
+msgstr "Protectie Masca Fata"
+
+#: ../forms/car-demon-trade-form.php:210
+msgid "Cassette"
+msgstr "Casetofon"
+
+#: ../forms/car-demon-trade-form.php:211
+msgid "Cruise Control"
+msgstr "Pilot Automat"
+
+#: ../forms/car-demon-trade-form.php:212
+msgid "Dual Air Bags"
+msgstr "AirBag dublu"
+
+#: ../forms/car-demon-trade-form.php:214
+msgid "Dual Rear Wheels"
+msgstr "Roti Duble Spate"
+
+#: ../forms/car-demon-trade-form.php:215
+msgid "DVD System"
+msgstr "Sistem DVD"
+
+#: ../forms/car-demon-trade-form.php:216
+msgid "Integrated Cellular"
+msgstr "Celular Integrat"
+
+#: ../forms/car-demon-trade-form.php:218
+msgid "Leather"
+msgstr "Piele"
+
+#: ../forms/car-demon-trade-form.php:219
+msgid "Long Bed"
+msgstr "Papuc Lung"
+
+#: ../forms/car-demon-trade-form.php:220
+msgid "Luggage Rack"
+msgstr "Portbagaj capota"
+
+#: ../forms/car-demon-trade-form.php:222
+msgid "Moon Roof"
+msgstr "Trapa Sticla"
+
+#: ../forms/car-demon-trade-form.php:223
+msgid "Multi CD"
+msgstr "Multi CD"
+
+#: ../forms/car-demon-trade-form.php:224
+msgid "Nav System"
+msgstr "Sistem Navigare"
+
+#: ../forms/car-demon-trade-form.php:226
+msgid "Power Locks"
+msgstr "Inchidere Centralizata"
+
+#: ../forms/car-demon-trade-form.php:227
+msgid "Power Seats"
+msgstr "Scaune Electrice"
+
+#: ../forms/car-demon-trade-form.php:228
+msgid "Power Windows"
+msgstr "Geamuri Electrice"
+
+#: ../forms/car-demon-trade-form.php:230
+msgid "Premium Wheels"
+msgstr "Jenti Cromate"
+
+#: ../forms/car-demon-trade-form.php:231
+msgid "Privacy Glass"
+msgstr "Geamuri Opace"
+
+#: ../forms/car-demon-trade-form.php:232
+msgid "Rear Air/Heat"
+msgstr "Aerisire/Incalzire Spate"
+
+#: ../forms/car-demon-trade-form.php:234
+msgid "Running Boards"
+msgstr "Placute Detasabile"
+
+#: ../forms/car-demon-trade-form.php:235
+msgid "Short Bed"
+msgstr "Papuc Scurt"
+
+#: ../forms/car-demon-trade-form.php:236
+msgid "Single CD"
+msgstr "CD"
+
+#: ../forms/car-demon-trade-form.php:238
+msgid "Sliding Rear Window"
+msgstr "Luneta Glisanta"
+
+#: ../forms/car-demon-trade-form.php:239
+msgid "Sun Roof"
+msgstr "Trapa Acoperis"
+
+#: ../forms/car-demon-trade-form.php:240
+msgid "Third Seat"
+msgstr "Scaune Suplimentare"
+
+#: ../forms/car-demon-trade-form.php:242
+msgid "Tilt Wheel"
+msgstr "Volan Reglabil"
+
+#: ../forms/car-demon-trade-form.php:243
+msgid "Towing Package"
+msgstr "Kit Remorcare"
+
+#: ../forms/car-demon-trade-form.php:244
+msgid "Video System"
+msgstr "Sistem Video"
+
+#: ../forms/car-demon-trade-form.php:246
+msgid "Wheel Covers"
+msgstr "Capace Roti"
+
+#: ../forms/car-demon-trade-form.php:248
+msgid "options not required, but help provide an accurate quote"
+msgstr "optiuni neobligatorii, dar ne pot ajuta sa va oferim un pret corect"
+
+#: ../forms/js/car-demon-contact-us.js.php:40
+#: ../forms/js/car-demon-contact-us.js.php:46
+#: ../forms/js/car-demon-part-request.js.php:72
+#: ../forms/js/car-demon-part-request.js.php:78
+#: ../forms/js/car-demon-service-form.js.php:40
+#: ../forms/js/car-demon-service-form.js.php:46
+#: ../forms/js/car-demon-service-quote.js.php:40
+#: ../forms/js/car-demon-service-quote.js.php:46
+#: ../forms/js/car-demon-trade.js.php:131
+#: ../forms/js/car-demon-trade.js.php:137
+msgid "You must enter your name."
+msgstr "Trebuie sa va introduceti numele."
+
+#: ../forms/js/car-demon-contact-us.js.php:58
+#: ../forms/js/car-demon-part-request.js.php:90
+#: ../forms/js/car-demon-service-form.js.php:58
+#: ../forms/js/car-demon-service-quote.js.php:58
+#: ../forms/js/car-demon-trade.js.php:149
+msgid "You must enter a valid Phone Number."
+msgstr "Trebuie sa introduceti un numar de telefon valid."
+
+#: ../forms/js/car-demon-contact-us.js.php:62
+#: ../forms/js/car-demon-part-request.js.php:94
+#: ../forms/js/car-demon-service-form.js.php:62
+#: ../forms/js/car-demon-service-quote.js.php:62
+#: ../forms/js/car-demon-trade.js.php:153
+msgid "The phone number you entered is not valid."
+msgstr "Numarul introdus nu este corect."
+
+#: ../forms/js/car-demon-contact-us.js.php:83
+msgid "You did not select who you want to send this message to."
+msgstr "Nu ati selectat cui trimiteti mesajul."
+
+#: ../forms/js/car-demon-contact-us.js.php:90
+msgid "You did not enter a message to send."
+msgstr "Nu ati introdus niciun mesaj."
+
+#: ../forms/js/car-demon-contact-us.js.php:153
+msgid "You didnt enter an email address."
+msgstr "Nu ati introdus nicio adresa de email."
+
+#: ../forms/js/car-demon-contact-us.js.php:156
+msgid "Please enter a valid email address"
+msgstr "Introduceti o adresa de mail valida"
+
+#: ../forms/js/car-demon-contact-us.js.php:159
+msgid "The email address contains illegal characters"
+msgstr "Adresa de email contine caractere inacceptabile"
+
+#: ../forms/js/car-demon-finance-form-js.php:277
+#: ../forms/js/car-demon-trade.js.php:218
+msgid ""
+"You indicated you were interested in purchasing a vehicle but did not select "
+"one."
+msgstr ""
+"Ati indicat ca doriti achizitionarea unui vehicul, dar nu ati selectat "
+"niciunul."
+
+#: ../forms/js/car-demon-finance-form-js.php:320
+msgid "Issues were detected with your Application."
+msgstr "Am detectat probleme cu Aplicatia dvs."
+
+#: ../forms/js/car-demon-finance-form-js.php:320
+msgid "Please review the application and submit again."
+msgstr "Va rugam verificati informatiile si transmiteti-le din nou."
+
+#: ../forms/js/car-demon-finance-form-js.php:488
+msgid "Do you have a Co-Signer?"
+msgstr "Aveti un Girant?"
+
+#: ../forms/js/car-demon-part-request.js.php:48
+msgid "You may only add 10 parts to your request"
+msgstr "Puteti adauga doar 10 Piese de Schimb per solicitare."
+
+#: ../forms/js/car-demon-part-request.js.php:48
+msgid "If you need additional parts please add them in the comment area."
+msgstr ""
+"Daca doriti informatii despre mai multe piese,le puteti adauga in sectiunea "
+"de comentarii."
+
+#: ../forms/js/car-demon-part-request.js.php:119
+msgid "You did not select a part location."
+msgstr "Nu ati selectat locatia pentru piese de schimb"
+
+#: ../forms/js/car-demon-part-request.js.php:125
+msgid "You need to add at least the name of one part you are looking for."
+msgstr "E nevoie de numele piesei pe care o doriti."
+
+#: ../forms/js/car-demon-part-request.js.php:212
+#: ../forms/js/car-demon-service-form.js.php:182
+#: ../forms/js/car-demon-service-quote.js.php:164
+#: ../forms/js/car-demon-trade.js.php:330
+msgid "You didn't enter an email address."
+msgstr "Nu ati introdus nicio adresa de email."
+
+#: ../forms/js/car-demon-part-request.js.php:215
+#: ../forms/js/car-demon-service-form.js.php:185
+#: ../forms/js/car-demon-service-quote.js.php:167
+#: ../forms/js/car-demon-trade.js.php:333
+msgid "Please enter a valid email address."
+msgstr "Va rugam sa introduceti o adresa de mail valabila"
+
+#: ../forms/js/car-demon-part-request.js.php:218
+#: ../forms/js/car-demon-service-form.js.php:188
+#: ../forms/js/car-demon-service-quote.js.php:170
+#: ../forms/js/car-demon-trade.js.php:336
+msgid "The email address contains illegal characters."
+msgstr "Adresa de email contine caractere inacceptabile."
+
+#: ../forms/js/car-demon-service-form.js.php:87
+#: ../forms/js/car-demon-service-quote.js.php:87
+msgid "You did not select a service location."
+msgstr "Nu ati selectat o locatie pentru service"
+
+#: ../forms/js/car-demon-service-form.js.php:93
+msgid "You did not select a preferred appointment date."
+msgstr "Nu ati selectat o data preferata pentru programare."
+
+#: ../forms/js/car-demon-service-form.js.php:99
+msgid "You did not select an alternate appointment date."
+msgstr "Nu ati selectat o data alternativa pentru programare."
+
+#: ../forms/js/car-demon-service-form.js.php:105
+#: ../forms/js/car-demon-service-quote.js.php:93
+msgid "You did not tell us what kind of service you need."
+msgstr "Nu ne-ati spus ce tip de serviciu doriti."
+
+#: ../forms/js/car-demon-trade.js.php:171
+msgid "You must enter the year of the vehicle you wish to trade."
+msgstr "Trebuie sa introduceti anul de fabricatie al masinii."
+
+#: ../forms/js/car-demon-trade.js.php:177
+msgid "You must enter the manufacturer of the vehicle you wish to trade."
+msgstr "Trebuie sa introduceti marca vehiculului."
+
+#: ../forms/js/car-demon-trade.js.php:183
+msgid "You must enter the model of the vehicle you wish to trade."
+msgstr "Trebuie sa introduceti modelul vehiculului."
+
+#: ../forms/js/car-demon-trade.js.php:189
+msgid "You must enter the miles of the vehicle you wish to trade."
+msgstr "Trebuie sa introduceti rulajul masinii (km)."
+
+#: ../forms/js/car-demon-trade.js.php:243
+msgid "You did not select a trade location."
+msgstr "Nu ati selectat o locatie pentru tranzactie."
+
+#: ../includes/car-demon-compare-vehicles.php:24
+#: ../includes/car-demon-list-cars.php:21
+#: ../theme-files/single-cars_for_sale.php:409
+msgid "Stock#:"
+msgstr "Stoc#:"
+
+#: ../includes/car-demon-compare-vehicles.php:46
+#: ../theme-files/js/car-demon-compare.js.php:76
+#: ../widgets/car-demon-compare-widget.php:14
+#: ../widgets/car-demon-compare-widget.php:76
+msgid "Compare Vehicles"
+msgstr "Comparatie Vehicule"
+
+#: ../includes/car-demon-create-post-types-tax.php:9
+msgid "Cars For Sale"
+msgstr "Masini de Vanzare"
+
+#: ../includes/car-demon-create-post-types-tax.php:10
+msgid "Car New Car"
+msgstr "Autovehicul Nou"
+
+#: ../includes/car-demon-create-post-types-tax.php:36
+#: ../vin-query/car-demon-vin-query-admin.php:293
+msgid "Make"
+msgstr "Fabricat"
+
+#: ../includes/car-demon-create-post-types-tax.php:58
+#: ../includes/car-demon-search-form.php:23
+#: ../vin-query/car-demon-vin-query-admin.php:278
+msgid "Condition"
+msgstr "Conditie"
+
+#: ../includes/car-demon-create-post-types-tax.php:69
+#: ../vin-query/car-demon-vin-query-admin.php:324
+msgid "Body Style"
+msgstr "Stil Caroserie"
+
+#: ../includes/car-demon-create-post-types-tax.php:80
+#: ../includes/car-demon-user-control.php:64
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:235
+msgid "Location"
+msgstr "Locatie"
+
+#: ../includes/car-demon-list-cars.php:15
+#: ../theme-files/single-cars_for_sale.php:403
+msgid "Condition:"
+msgstr "Stare tehnica:"
+
+#: ../includes/car-demon-list-cars.php:18
+#: ../theme-files/single-cars_for_sale.php:406
+msgid "Mileage:"
+msgstr "KM parcursi"
+
+#: ../includes/car-demon-payment-calculator-popup.php:6
+msgid "Finance Calculator"
+msgstr "Calculator Rate"
+
+#: ../includes/car-demon-payment-calculator.php:17
+#: ../widgets/car-demon-calculator-widget.php:74
+msgid "Loan Calculator"
+msgstr "Calculator Rate"
+
+#: ../includes/car-demon-payment-calculator.php:19
+msgid ""
+"Please fill out the form and click calculate to estimate your monthly "
+"payment."
+msgstr ""
+"Completati formularul si apasati Calculeaza pentru a estima rata lunara."
+
+#: ../includes/car-demon-payment-calculator.php:22
+msgid "Estimated Price"
+msgstr "Pret Estimativ"
+
+#: ../includes/car-demon-payment-calculator.php:27
+msgid "Annual Percentage Rate"
+msgstr "Rata Procentuala Anuala"
+
+#: ../includes/car-demon-payment-calculator.php:31
+msgid "Total Number of Payments"
+msgstr "Numar Total Rate"
+
+#: ../includes/car-demon-payment-calculator.php:38
+msgid "Calculate"
+msgstr "Calculeaza"
+
+#: ../includes/car-demon-payment-calculator.php:39
+msgid "Reset Form"
+msgstr "Reseteaza Formularul"
+
+#: ../includes/car-demon-payment-calculator.php:43
+msgid "*Estimated Monthly Payment"
+msgstr "*Rata Lunara Estimativa"
+
+#: ../includes/car-demon-register-sidebars.php:4
+msgid "Vehicle Detail Sidebar"
+msgstr "Bara Laterala Pagina Detalii Vehicul"
+
+#: ../includes/car-demon-register-sidebars.php:15
+msgid "Mobile Header"
+msgstr "Antet Mobil"
+
+#: ../includes/car-demon-register-sidebars.php:23
+msgid "Mobile Front Page"
+msgstr "Pagina Principala pe  Mobil"
+
+#: ../includes/car-demon-register-sidebars.php:31
+msgid "Mobile Footer"
+msgstr "Subsol Pagina Mobil"
+
+#: ../includes/car-demon-register-sidebars.php:39
+msgid "Mobile Car Page"
+msgstr "Pagina Masinii pentru Mobil"
+
+#: ../includes/car-demon-search-fields.php:5
+#: ../includes/car-demon-search-fields.php:201
+#: ../includes/car-demon-search-fields.php:221
+#: ../includes/car-demon-search-fields.php:263
+msgid "Any"
+msgstr "Oricare"
+
+#: ../includes/car-demon-search-fields.php:14
+msgid "ALL MAKES"
+msgstr "ORICE MARCA"
+
+#: ../includes/car-demon-search-fields.php:23
+msgid "ALL MODELS"
+msgstr "ORICE MODEL"
+
+#: ../includes/car-demon-search-fields.php:31
+msgid "ALL"
+msgstr "TOATE"
+
+#: ../includes/car-demon-search-form.php:43
+msgid "Min Price"
+msgstr "Pret Minim"
+
+#: ../includes/car-demon-search-form.php:49
+msgid "Max Price"
+msgstr "Pret Maxim"
+
+# For what stands "Trans"?
+#: ../includes/car-demon-search-form.php:57
+#, fuzzy
+msgid "Trans"
+msgstr "Trans"
+
+#: ../includes/car-demon-search-form.php:63
+#: ../theme-files/archive-cars_for_sale.php:72 ../theme-files/search.php:122
+#: ../vin-query/car-demon-vin-query-admin.php:252
+msgid "Mileage"
+msgstr "KM parcursi"
+
+#: ../includes/car-demon-search-form.php:71
+#: ../includes/car-demon-search-form.php:119
+msgid "Body Type"
+msgstr "Tip Caroserie"
+
+#: ../includes/car-demon-search-form.php:77
+#: ../includes/car-demon-search-form.php:121
+msgid "Search"
+msgstr "Cautare"
+
+#: ../includes/car-demon-search-form.php:106
+msgid "QUICK SEARCH"
+msgstr "CAUTARE RAPIDA"
+
+#: ../includes/car-demon-user-control.php:32
+msgid "Extra Profile Information"
+msgstr "Informatii Suplimentare Profil"
+
+#: ../includes/car-demon-user-control.php:40
+msgid "Upload Profile Photo"
+msgstr "Incarcati Fotografia de Profil"
+
+#: ../includes/car-demon-user-control.php:42
+msgid "Please select a custom photo."
+msgstr "Selectati o fotografie"
+
+#: ../includes/car-demon-user-control.php:55
+#: ../theme-files/forms/car-demon-finance-form-handler.php:281
+#: ../theme-files/forms/car-demon-finance-form-handler.php:317
+#: ../theme-files/forms/car-demon-finance-form-handler.php:537
+#: ../theme-files/forms/car-demon-finance-form-handler.php:573
+msgid "Job Title"
+msgstr "Specializare"
+
+#: ../includes/car-demon-user-control.php:59
+msgid "Please enter a job title for the user."
+msgstr "Introduceti titulatura specializarii pentru utilizator"
+
+#: ../includes/car-demon-user-control.php:68
+msgid "Please select user location."
+msgstr "Selectati locatia specialistului"
+
+#: ../includes/car-demon-user-control.php:73
+msgid "Staff Pages"
+msgstr "Pagini Specialisti"
+
+#: ../includes/car-demon-user-control.php:91
+msgid ""
+"Select the staff type of the user to determine where they show up on the "
+"staff pages."
+msgstr ""
+"Selectati specializarea utilizatorului pentru a stabili unde va fi afisat in "
+"paginile personalului."
+
+#: ../includes/car-demon-user-control.php:97
+msgid "Advanced Sales Information"
+msgstr "Informatii Avansate Vanzari"
+
+#: ../includes/car-demon-user-control.php:101
+msgid "Custom URL"
+msgstr "Adresa URL utilizator."
+
+#: ../includes/car-demon-user-control.php:105
+msgid ""
+"Please enter user's custom URL. ie. www.custom_url.com, please make sure "
+"this URL is mapped to this site."
+msgstr ""
+"Introduceti adresa URL a site-ului utilizatorului (www.site-utilizator.com). "
+"Asigurati-va ca URL-ul este directionat catre acest site."
+
+#: ../includes/car-demon-user-control.php:110
+msgid "Facebook Page"
+msgstr "Pagina Facebook"
+
+#: ../includes/car-demon-user-control.php:114
+msgid "Please enter the URL to user's Facebook Profile."
+msgstr "Introduceti adresa URL a profilului Facebook al utilizatorului."
+
+#: ../includes/car-demon-user-control.php:123
+msgid "Please enter user's phone number."
+msgstr "Introduceti numarul de telefon al utilizatorului"
+
+#: ../includes/car-demon-user-control.php:127
+msgid "Custom Site Leads"
+msgstr "Venituri pentru Site-ul Utilizatorului."
+
+#: ../includes/car-demon-user-control.php:131
+msgid "Receive Lead Types"
+msgstr "Tipuri de Venituri Receptionate"
+
+#: ../includes/car-demon-user-control.php:141
+msgid "Select the lead types user may receive on their custom site."
+msgstr ""
+"Selectati Tipurile de Venituri pe care utilizatorul le poate primi pe site-"
+"ul sau."
+
+#: ../includes/car-demon-user-control.php:147
+msgid "Lead Locations"
+msgstr "Locatii Venituri"
+
+#: ../includes/car-demon-user-control.php:155
+msgid ""
+"Can user receive leads from ALL locations or just their assigned location?"
+msgstr ""
+"Utilizatorul poate incasa venituri din TOATE locatiile sau doar de la "
+"locatia alocata lui?"
+
+#: ../includes/car-demon-vehicle-price.php:20
+msgid "SOLD"
+msgstr "VANDUT"
+
+#: ../includes/car-demon-vehicle-price.php:50
+msgid "Selling Price"
+msgstr "Pret Vanzare"
+
+#: ../includes/car-demon-vehicle-price.php:59
+msgid "Xtra Discount"
+msgstr "Reducere Suplimentara"
+
+#: ../includes/car-demon-vehicle-price.php:64
+msgid "YOUR PRICE"
+msgstr "PRETUL DUMNEAVOASTRA"
+
+#: ../theme-files/404.php:14
+msgid "Not Found"
+msgstr "Negasit"
+
+#: ../theme-files/404.php:16 ../theme-files/search.php:179
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try using a broader "
+"search selection."
+msgstr ""
+"Ne pare rau dar nu nimic nu se potriveste cu cautarea dumneavoastra. Va "
+"rugam sa incercati o selectie mai larga de cautare."
+
+#: ../theme-files/archive-cars_for_sale.php:66 ../theme-files/search.php:116
+msgid "Sort By:"
+msgstr "Sorteaza dupa:"
+
+#: ../theme-files/archive-cars_for_sale.php:68
+#: ../theme-files/archive-cars_for_sale.php:71 ../theme-files/search.php:118
+#: ../theme-files/search.php:121
+msgid "Sort High to Low"
+msgstr "Sorteaza de la Mare la Mic"
+
+#: ../theme-files/archive-cars_for_sale.php:70
+#: ../theme-files/archive-cars_for_sale.php:67 ../theme-files/search.php:120
+#: ../theme-files/search.php:117
+msgid "Sort Low to High"
+msgstr "Sorteaza de la Mic la Mare"
+
+#: ../theme-files/archive-cars_for_sale.php:76
+msgid "Search Results:"
+msgstr "Rezultate Cautare:"
+
+#: ../theme-files/archive-cars_for_sale.php:78 ../theme-files/search.php:131
+#: ../theme-files/search.php:146
+msgid "Results Found"
+msgstr "Rezultate Gasite"
+
+#: ../theme-files/archive-cars_for_sale.php:91
+#: ../theme-files/archive-cars_for_sale.php:108 ../theme-files/search.php:141
+#: ../theme-files/search.php:166
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Postari mai vechi"
+
+#: ../theme-files/archive-cars_for_sale.php:92
+#: ../theme-files/archive-cars_for_sale.php:109 ../theme-files/search.php:142
+#: ../theme-files/search.php:167
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Postari mai noi <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../theme-files/search.php:130
+#, php-format
+msgid "Search Results: %s"
+msgstr "Rezultate Cautare: %s"
+
+#: ../theme-files/search.php:177
+msgid "Nothing Found"
+msgstr "Nu s-a gasit"
+
+#: ../theme-files/single-cars_for_sale.php:21
+msgid "Run Slideshow"
+msgstr "Ruleaza SlideShow"
+
+#: ../theme-files/single-cars_for_sale.php:24
+msgid "Next"
+msgstr "Urmatorul"
+
+#: ../theme-files/single-cars_for_sale.php:27
+msgid "Previous"
+msgstr "Anterior"
+
+#: ../theme-files/single-cars_for_sale.php:143
+msgid "Send this car to a friend"
+msgstr "Trimite masina unui prieten"
+
+#: ../theme-files/single-cars_for_sale.php:154
+#: ../theme-files/forms/car-demon-email-friend-handler.php:108
+msgid "Your Email"
+msgstr "Adresa dvs. de e-mail"
+
+#: ../theme-files/single-cars_for_sale.php:155
+msgid "Friend's Name"
+msgstr "Nume Prieten"
+
+#: ../theme-files/single-cars_for_sale.php:155
+msgid "Friend Name"
+msgstr "Nume Prieten"
+
+#: ../theme-files/single-cars_for_sale.php:156
+msgid "Friend's Email"
+msgstr "Email Prieten"
+
+#: ../theme-files/single-cars_for_sale.php:160
+msgid "Your Message"
+msgstr "Mesajul Dumneavoastra"
+
+#: ../theme-files/single-cars_for_sale.php:162
+msgid "Check out this"
+msgstr "Vezi acsta"
+
+#: ../theme-files/single-cars_for_sale.php:162
+msgid "stock number"
+msgstr "stoc"
+
+#: ../theme-files/single-cars_for_sale.php:166
+msgid "Send Now!"
+msgstr "TRIMITE!"
+
+#: ../theme-files/single-cars_for_sale.php:177
+#: ../theme-files/single-cars_for_sale.php:184
+msgid "GET FINANCED"
+msgstr "CERE FINANTARE"
+
+#: ../theme-files/single-cars_for_sale.php:193
+msgid "TRADE-IN QUOTE"
+msgstr "COTATIE"
+
+#: ../theme-files/single-cars_for_sale.php:200
+msgid "Share on Facebook"
+msgstr "Trimite pe Facebook"
+
+#: ../theme-files/single-cars_for_sale.php:202
+msgid "Click to share this on Twitter"
+msgstr "Click pt a trimite pe Twitter"
+
+#: ../theme-files/single-cars_for_sale.php:203
+msgid "Share on Twitter"
+msgstr "Trimite pe Twitter"
+
+#: ../theme-files/single-cars_for_sale.php:205
+msgid "Email to a Friend"
+msgstr "Trimite Email unui Prieten"
+
+#: ../theme-files/single-cars_for_sale.php:211
+msgid "Pages:"
+msgstr "Pagini:"
+
+#: ../theme-files/single-cars_for_sale.php:218
+msgid "Specs"
+msgstr "Specificatii"
+
+#: ../theme-files/single-cars_for_sale.php:219
+msgid "Safety"
+msgstr "Siguranta"
+
+#: ../theme-files/single-cars_for_sale.php:220
+msgid "Convenience"
+msgstr "Convenabil"
+
+#: ../theme-files/single-cars_for_sale.php:221
+msgid "Comfort"
+msgstr "Confort"
+
+#: ../theme-files/single-cars_for_sale.php:222
+msgid "Entertainment"
+msgstr "Divertisment"
+
+#: ../theme-files/single-cars_for_sale.php:225
+msgid "About"
+msgstr "despre"
+
+#: ../theme-files/single-cars_for_sale.php:385
+msgid "Other Great Deals"
+msgstr "Alte Oferte Speciale"
+
+#: ../theme-files/single-cars_for_sale.php:412
+msgid "Click for price on this"
+msgstr "Click pentru pret"
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:35
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:61
+msgid "You have not setup a contact email in the admin area of your site."
+msgstr ""
+"Nu ati setat o adresa de contact in sectiunea de administrare a site-ului."
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:45
+msgid "Contact Form from "
+msgstr "Formular de Contact de la"
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:73
+#: ../theme-files/forms/car-demon-email-friend-handler.php:68
+#: ../theme-files/forms/car-demon-finance-form-handler.php:108
+#: ../theme-files/forms/car-demon-part-handler.php:95
+#: ../theme-files/forms/car-demon-service-handler.php:95
+#: ../theme-files/forms/car-demon-service-quote-handler.php:95
+#: ../theme-files/forms/car-demon-trade-form-handler.php:134
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:123
+msgid "Thank You"
+msgstr "Va Multumim"
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:74
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:124
+msgid "Your Message has been sent."
+msgstr "Mesajul Dumneavoastra a fost transmis."
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:75
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:125
+msgid "You should receive a confirmation from us shortly."
+msgstr "In scurt timp trebuie sa primiti un mesaj de confirmare."
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:76
+#: ../theme-files/forms/car-demon-part-handler.php:98
+#: ../theme-files/forms/car-demon-service-handler.php:98
+#: ../theme-files/forms/car-demon-service-quote-handler.php:98
+msgid "The information you sent is below."
+msgstr "Mai jos sunt informatiile transmise."
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:77
+#: ../theme-files/forms/car-demon-email-friend-handler.php:71
+#: ../theme-files/forms/car-demon-finance-form-handler.php:111
+#: ../theme-files/forms/car-demon-part-handler.php:99
+#: ../theme-files/forms/car-demon-service-handler.php:99
+#: ../theme-files/forms/car-demon-service-quote-handler.php:99
+#: ../theme-files/forms/car-demon-trade-form-handler.php:137
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:126
+msgid "If you have questions or concerns please call and let us know."
+msgstr ""
+"Daca aveti intrebari sau nelamuriri va rugam sa sunati pentru a rezolva "
+"problema."
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:101
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:193
+msgid "CONTACT INFORMATION"
+msgstr "INFORMATII DE CONTACT"
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:107
+#: ../theme-files/forms/car-demon-finance-form-handler.php:196
+#: ../theme-files/forms/car-demon-part-handler.php:132
+#: ../theme-files/forms/car-demon-service-handler.php:138
+#: ../theme-files/forms/car-demon-service-quote-handler.php:134
+#: ../theme-files/forms/car-demon-trade-form-handler.php:185
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:199
+msgid "Customer Name"
+msgstr "Nume Client"
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:119
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:211
+msgid "Message Sent to"
+msgstr "Mesaj Trimis la"
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:126
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:218
+msgid "COMMENT OR QUESTION"
+msgstr "COMENTARIU SAU NELAMURIRE"
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:138
+#: ../theme-files/forms/car-demon-email-friend-handler.php:140
+#: ../theme-files/forms/car-demon-finance-form-handler.php:372
+#: ../theme-files/forms/car-demon-part-handler.php:195
+#: ../theme-files/forms/car-demon-service-handler.php:223
+#: ../theme-files/forms/car-demon-service-quote-handler.php:194
+#: ../theme-files/forms/car-demon-trade-form-handler.php:261
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:257
+msgid "SENDER INFORMATION"
+msgstr "INFORMATII EXPEDITOR"
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:146
+#: ../theme-files/forms/car-demon-email-friend-handler.php:146
+#: ../theme-files/forms/car-demon-finance-form-handler.php:385
+#: ../theme-files/forms/car-demon-part-handler.php:203
+#: ../theme-files/forms/car-demon-service-handler.php:231
+#: ../theme-files/forms/car-demon-service-quote-handler.php:202
+#: ../theme-files/forms/car-demon-trade-form-handler.php:274
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:265
+msgid "Time Sent"
+msgstr "Momentul transmiterii"
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:150
+#: ../theme-files/forms/car-demon-email-friend-handler.php:150
+#: ../theme-files/forms/car-demon-finance-form-handler.php:389
+#: ../theme-files/forms/car-demon-part-handler.php:207
+#: ../theme-files/forms/car-demon-service-handler.php:235
+#: ../theme-files/forms/car-demon-service-quote-handler.php:206
+#: ../theme-files/forms/car-demon-trade-form-handler.php:278
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:269
+msgid "IP"
+msgstr "Adresa IP"
+
+#: ../theme-files/forms/car-demon-contact-us-handler.php:154
+#: ../theme-files/forms/car-demon-email-friend-handler.php:154
+#: ../theme-files/forms/car-demon-finance-form-handler.php:393
+#: ../theme-files/forms/car-demon-part-handler.php:211
+#: ../theme-files/forms/car-demon-service-handler.php:239
+#: ../theme-files/forms/car-demon-service-quote-handler.php:210
+#: ../theme-files/forms/car-demon-trade-form-handler.php:282
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:273
+msgid "User Agent"
+msgstr "Browser User Agent"
+
+#: ../theme-files/forms/car-demon-email-friend-handler.php:44
+msgid "Check out this car from"
+msgstr "Vezi aceasta masina de la"
+
+#: ../theme-files/forms/car-demon-email-friend-handler.php:69
+msgid "Your Message has been sent to your friend."
+msgstr "Mesajul a fost transmis prietenului dumneavoastra"
+
+#: ../theme-files/forms/car-demon-email-friend-handler.php:70
+msgid "Your friend should receive their email shortly."
+msgstr "In scurt timp Prietenul Dumneavoastra ar trebui sa primeasca mesajul."
+
+#: ../theme-files/forms/car-demon-email-friend-handler.php:112
+msgid "Your Friend"
+msgstr "Prietenul Dumneavoastra"
+
+#: ../theme-files/forms/car-demon-email-friend-handler.php:119
+msgid "Message from your Friend "
+msgstr "Mesaj de la Prietenul Dumneavoastra"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:49
+msgid "You have not setup a finance email in the admin area of your site."
+msgstr ""
+"Nu ati setat o adresa de email pentru departamentul financiar in sectiunea "
+"administrativa a site-ului"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:81
+msgid "Finance Request from "
+msgstr "solicitare Financiara de la"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:109
+msgid "Your Finance Request has been sent."
+msgstr "Cererea Dumneavoastra Finnanciara a fost transmisa"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:110
+#: ../theme-files/forms/car-demon-trade-form-handler.php:136
+msgid "You should receive a confirmation shortly."
+msgstr "In scurt timp trebuie sa primiti confirmare"
+
+# I don't know for what is stay RR
+#: ../theme-files/forms/car-demon-finance-form-handler.php:135
+#: ../theme-files/forms/car-demon-finance-form-handler.php:165
+#: ../theme-files/forms/car-demon-finance-form-handler.php:407
+#: ../theme-files/forms/car-demon-finance-form-handler.php:437
+#, fuzzy
+msgid "RR"
+msgstr "RR"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:136
+#: ../theme-files/forms/car-demon-finance-form-handler.php:166
+#: ../theme-files/forms/car-demon-finance-form-handler.php:408
+#: ../theme-files/forms/car-demon-finance-form-handler.php:438
+msgid "PO BOX"
+msgstr "Casuta Postala"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:137
+#: ../theme-files/forms/car-demon-finance-form-handler.php:167
+#: ../theme-files/forms/car-demon-finance-form-handler.php:409
+#: ../theme-files/forms/car-demon-finance-form-handler.php:439
+msgid "Apt"
+msgstr "Ap."
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:148
+#: ../theme-files/forms/car-demon-finance-form-handler.php:157
+#: ../theme-files/forms/car-demon-finance-form-handler.php:161
+#: ../theme-files/forms/car-demon-finance-form-handler.php:420
+#: ../theme-files/forms/car-demon-finance-form-handler.php:429
+#: ../theme-files/forms/car-demon-finance-form-handler.php:433
+msgid "year(s)"
+msgstr "an(i)"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:148
+#: ../theme-files/forms/car-demon-finance-form-handler.php:157
+#: ../theme-files/forms/car-demon-finance-form-handler.php:161
+#: ../theme-files/forms/car-demon-finance-form-handler.php:420
+#: ../theme-files/forms/car-demon-finance-form-handler.php:429
+#: ../theme-files/forms/car-demon-finance-form-handler.php:433
+msgid "month(s)"
+msgstr "luna(i)"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:190
+#: ../theme-files/forms/car-demon-part-handler.php:126
+#: ../theme-files/forms/car-demon-service-handler.php:132
+#: ../theme-files/forms/car-demon-service-quote-handler.php:128
+#: ../theme-files/forms/car-demon-trade-form-handler.php:179
+msgid "CUSTOMER INFORMATION"
+msgstr "INFORMATII CLIENT"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:200
+#: ../theme-files/forms/car-demon-finance-form-handler.php:460
+msgid "Best Time to Contact"
+msgstr "Cand Puteti fi Contactat"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:204
+#: ../theme-files/forms/car-demon-finance-form-handler.php:464
+msgid "DOB"
+msgstr "Data Nasterii"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:219
+msgid "Living Situation"
+msgstr "Situatia Locativa"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:233
+#: ../theme-files/forms/car-demon-finance-form-handler.php:489
+msgid "Current Address"
+msgstr "Adresa Curenta"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:237
+#: ../theme-files/forms/car-demon-finance-form-handler.php:493
+msgid "Time at Current Address"
+msgstr "Vechime la Adresa Curenta"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:241
+#: ../theme-files/forms/car-demon-finance-form-handler.php:497
+msgid "Rent or Own"
+msgstr "Chirie sau Proprietate Personala"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:245
+#: ../theme-files/forms/car-demon-finance-form-handler.php:501
+msgid "Monthly Payment"
+msgstr "Plata Lunara"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:255
+msgid "Previous Living Situation"
+msgstr "Situatia Locativa Anterioara"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:261
+#: ../theme-files/forms/car-demon-finance-form-handler.php:517
+msgid "Previous Address"
+msgstr "Adresa Anterioara"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:271
+msgid "Employment History"
+msgstr "Istoric Angajari"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:277
+#: ../theme-files/forms/car-demon-finance-form-handler.php:313
+#: ../theme-files/forms/car-demon-finance-form-handler.php:533
+#: ../theme-files/forms/car-demon-finance-form-handler.php:569
+msgid "Employer"
+msgstr "Angajator"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:285
+#: ../theme-files/forms/car-demon-finance-form-handler.php:321
+#: ../theme-files/forms/car-demon-finance-form-handler.php:541
+#: ../theme-files/forms/car-demon-finance-form-handler.php:577
+msgid "Years at Job"
+msgstr "Vechime in munca"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:289
+#: ../theme-files/forms/car-demon-finance-form-handler.php:325
+#: ../theme-files/forms/car-demon-finance-form-handler.php:545
+#: ../theme-files/forms/car-demon-finance-form-handler.php:581
+msgid "Employer Phone"
+msgstr "Telefon Angajator"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:293
+#: ../theme-files/forms/car-demon-finance-form-handler.php:329
+#: ../theme-files/forms/car-demon-finance-form-handler.php:549
+#: ../theme-files/forms/car-demon-finance-form-handler.php:585
+msgid "Gross Income"
+msgstr "Venit Brut"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:307
+msgid "Previous Employer"
+msgstr "Angajator Anterior"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:343
+#: ../theme-files/forms/car-demon-trade-form-handler.php:237
+msgid "Comment"
+msgstr "Comentariu"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:450
+msgid "CO-BUYER INFORMATION"
+msgstr "INFORMATII CO-PLATITOR"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:456
+msgid "Name"
+msgstr "Nume"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:475
+msgid "Co-Buyer Living Situation"
+msgstr "Situatia Locativa a Co-Platitorului"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:511
+msgid "Co-Buyer Previous Living Situation"
+msgstr "Situatia Locativa anterioara a Co-Platitorului"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:527
+msgid "Co-Buyer Employment History"
+msgstr "Istoricul Serviciilor Co-Platitorului"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:563
+msgid "Co-Buyer Previous Employer"
+msgstr "Angajatorul Anterior al Co-Platitorului"
+
+#: ../theme-files/forms/car-demon-finance-form-handler.php:755
+msgid "Finance Form"
+msgstr "Formular Financiar"
+
+#: ../theme-files/forms/car-demon-part-handler.php:37
+msgid "You have not setup a part email in the admin area of your site."
+msgstr ""
+"Nu ati setat o adresa de mail pentru Piese Schimb in sectiunea de "
+"administrare a site-ului"
+
+#: ../theme-files/forms/car-demon-part-handler.php:67
+msgid "Part Request from "
+msgstr "Solicitare Piese Schimb de la"
+
+#: ../theme-files/forms/car-demon-part-handler.php:96
+msgid "Your Part Request has been sent."
+msgstr "Solicitarea pentru piese schimb a fost trimisa"
+
+#: ../theme-files/forms/car-demon-part-handler.php:97
+msgid "You should receive a confirmation from our Parts Department Shortly."
+msgstr ""
+"In scurt timp trebuie sa primiti  confirmarea de la Departamentul Piese "
+"Schimb"
+
+#: ../theme-files/forms/car-demon-part-handler.php:144
+msgid "Part Location"
+msgstr "Locatie piese schimb"
+
+#: ../theme-files/forms/car-demon-part-handler.php:151
+#: ../theme-files/forms/car-demon-service-handler.php:182
+#: ../theme-files/forms/car-demon-service-quote-handler.php:153
+#: ../theme-files/forms/car-demon-trade-form-handler.php:204
+msgid "VEHICLE INFORMATION"
+msgstr "INFORMATII VEHICUL"
+
+#: ../theme-files/forms/car-demon-part-handler.php:157
+#: ../theme-files/forms/car-demon-service-handler.php:188
+#: ../theme-files/forms/car-demon-service-quote-handler.php:159
+#: ../theme-files/forms/car-demon-trade-form-handler.php:210
+msgid "Vehicle Year"
+msgstr "An fabricatie vehicul"
+
+#: ../theme-files/forms/car-demon-part-handler.php:161
+#: ../theme-files/forms/car-demon-service-handler.php:192
+#: ../theme-files/forms/car-demon-service-quote-handler.php:163
+#: ../theme-files/forms/car-demon-trade-form-handler.php:214
+msgid "Vehicle Make"
+msgstr "Vehicul fabricat de"
+
+#: ../theme-files/forms/car-demon-part-handler.php:165
+#: ../theme-files/forms/car-demon-service-handler.php:196
+#: ../theme-files/forms/car-demon-service-quote-handler.php:167
+#: ../theme-files/forms/car-demon-trade-form-handler.php:218
+msgid "Vehicle Model"
+msgstr "Model Vehicul"
+
+#: ../theme-files/forms/car-demon-part-handler.php:172
+msgid "PARTS REQUESTED"
+msgstr "PIESE DE SCHIMB SOLICITATE"
+
+#: ../theme-files/forms/car-demon-part-handler.php:183
+msgid "COMMENTS"
+msgstr "COMENTARII"
+
+#: ../theme-files/forms/car-demon-service-handler.php:37
+#: ../theme-files/forms/car-demon-service-quote-handler.php:37
+msgid "You have not setup a service email in the admin area of your site."
+msgstr ""
+"Nu ati setat e-mail pentru service in sectiunea de administrare a site-ului"
+
+#: ../theme-files/forms/car-demon-service-handler.php:67
+msgid "Service Request from "
+msgstr "Cerere Service de la"
+
+#: ../theme-files/forms/car-demon-service-handler.php:96
+msgid "Your Service Request has been sent."
+msgstr "Cererea Dumneavoastra pentru Service a fost transmisa."
+
+#: ../theme-files/forms/car-demon-service-handler.php:97
+#: ../theme-files/forms/car-demon-service-quote-handler.php:97
+msgid "You should receive a confirmation from our Service Department Shortly."
+msgstr ""
+"In scurt timp trebuie sa primiti confirmarea Departamentului de Service"
+
+#: ../theme-files/forms/car-demon-service-handler.php:150
+#: ../theme-files/forms/car-demon-service-quote-handler.php:146
+msgid "Service Location"
+msgstr "Locatie Service"
+
+#: ../theme-files/forms/car-demon-service-handler.php:157
+msgid "APPOINTMENT INFORMATION"
+msgstr "INFORMATII INTALNIRE"
+
+#: ../theme-files/forms/car-demon-service-handler.php:163
+msgid "Preferred Service Date"
+msgstr "Data Service Preferata"
+
+#: ../theme-files/forms/car-demon-service-handler.php:167
+msgid "Alternate Service Date"
+msgstr "Data Service Alternativa"
+
+#: ../theme-files/forms/car-demon-service-handler.php:171
+msgid "Customer will be"
+msgstr "Clientul va fi"
+
+#: ../theme-files/forms/car-demon-service-handler.php:175
+msgid "Needs Transportation"
+msgstr "Doresc Transport"
+
+#: ../theme-files/forms/car-demon-service-handler.php:200
+#: ../theme-files/forms/car-demon-service-quote-handler.php:171
+#: ../theme-files/forms/car-demon-trade-form-handler.php:222
+msgid "Vehicle Miles"
+msgstr "KM parcursi"
+
+#: ../theme-files/forms/car-demon-service-handler.php:204
+#: ../theme-files/forms/car-demon-service-quote-handler.php:175
+#: ../theme-files/forms/car-demon-trade-form-handler.php:226
+msgid "Vehicle VIN"
+msgstr "VIN vehicul"
+
+#: ../theme-files/forms/car-demon-service-handler.php:211
+msgid "SERVICE REQUESTED"
+msgstr "CERERE SERVICE"
+
+#: ../theme-files/forms/car-demon-service-quote-handler.php:67
+msgid "Service Quote from "
+msgstr "Cotatie Service de la"
+
+#: ../theme-files/forms/car-demon-service-quote-handler.php:96
+msgid "Your Service Quote has been sent."
+msgstr "Cererea Dumneavoastra a fost transmisa"
+
+#: ../theme-files/forms/car-demon-service-quote-handler.php:182
+msgid "SERVICE QUOTE REQUESTED"
+msgstr "CERERE COTATIE SERVICE"
+
+#: ../theme-files/forms/car-demon-trade-form-handler.php:75
+msgid "You have not setup a trade email in the admin area of your site."
+msgstr ""
+"Nu ati setat un e-mail pentru tranzactii in sectiunea de administrare a site-"
+"ului."
+
+#: ../theme-files/forms/car-demon-trade-form-handler.php:105
+msgid "Trade Request from "
+msgstr "Solicitare de la"
+
+#: ../theme-files/forms/car-demon-trade-form-handler.php:135
+msgid "Your Trade Request has been sent."
+msgstr "Solicitarea Dumneavoastra a fost transmisa."
+
+#: ../theme-files/forms/car-demon-trade-form-handler.php:230
+msgid "Options"
+msgstr "Optiuni"
+
+#: ../theme-files/forms/car-demon-trade-form-handler.php:502
+msgid "Trade Form"
+msgstr "Formular de Vanzare"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "January"
+msgstr "Ianuarie"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "February"
+msgstr "Februarie"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "March"
+msgstr "Martie"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "April"
+msgstr "Aprilie"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "June"
+msgstr "Iunie"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "July"
+msgstr "Iulie"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "August"
+msgstr "August"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "September"
+msgstr "Septembrie"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "October"
+msgstr "Octombrie"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "November"
+msgstr "Noiembrie"
+
+#: ../theme-files/js/CalendarPopup.js.php:116
+msgid "December"
+msgstr "Decembrie"
+
+#: ../theme-files/js/CalendarPopup.js.php:245
+msgid "Pick Time"
+msgstr "Perioada Preluarii"
+
+#: ../theme-files/js/CalendarPopup.js.php:248
+msgid "Early Morning"
+msgstr "Dimineata Devreme"
+
+#: ../theme-files/js/CalendarPopup.js.php:248
+msgid "Mid Morning"
+msgstr "Mijlocul Diminetii"
+
+#: ../theme-files/js/CalendarPopup.js.php:248
+msgid "Late Morning"
+msgstr "Dimineata Tarziu"
+
+#: ../theme-files/js/CalendarPopup.js.php:248
+msgid "Early Afternoon"
+msgstr "Dupaamiaza Devreme"
+
+#: ../theme-files/js/CalendarPopup.js.php:248
+msgid "Mid Afternoon"
+msgstr "Mijlocul Dupaamiezii"
+
+#: ../theme-files/js/CalendarPopup.js.php:248
+msgid "Late Afternoon"
+msgstr "Dupaamiaza Tarziu"
+
+#: ../theme-files/js/CalendarPopup.js.php:280
+msgid "Clear"
+msgstr "Sterge"
+
+#: ../theme-files/js/CalendarPopup.js.php:280
+msgid "Close"
+msgstr "Inchide"
+
+#: ../vin-query/car-demon-vin-query-admin.php:127
+msgid "Select Ribbon Banner"
+msgstr "Selecteaza Banner"
+
+#: ../vin-query/car-demon-vin-query-admin.php:128
+msgid "No Ribbon"
+msgstr "Fara Banner"
+
+#: ../vin-query/car-demon-vin-query-admin.php:129
+#: ../vin-query/car-demon-vin-query-admin.php:146
+msgid "Custom Ribbon"
+msgstr "Banner Personalizat"
+
+#: ../vin-query/car-demon-vin-query-admin.php:130
+msgid "Low Price"
+msgstr "Pret Minim"
+
+#: ../vin-query/car-demon-vin-query-admin.php:131
+msgid "Great Deal"
+msgstr "Oferta Speciala"
+
+#: ../vin-query/car-demon-vin-query-admin.php:132
+msgid "Just Added"
+msgstr "Nou Adaugat"
+
+#: ../vin-query/car-demon-vin-query-admin.php:133
+msgid "Low Miles"
+msgstr "Putin Rulat"
+
+#: ../vin-query/car-demon-vin-query-admin.php:134
+msgid "Brand New"
+msgstr "Nou"
+
+#: ../vin-query/car-demon-vin-query-admin.php:148
+msgid "Upload"
+msgstr "Incarcati"
+
+#: ../vin-query/car-demon-vin-query-admin.php:244
+msgid "VIN #"
+msgstr "VIN #"
+
+#: ../vin-query/car-demon-vin-query-admin.php:248
+msgid "Stock Number"
+msgstr "Numar Stoc"
+
+#: ../vin-query/car-demon-vin-query-admin.php:256
+msgid "Pricing"
+msgstr "Preturi"
+
+#: ../vin-query/car-demon-vin-query-admin.php:271
+msgid "Asking Price"
+msgstr "Pret Solicitat"
+
+#: ../vin-query/car-demon-vin-query-admin.php:275
+msgid "Details"
+msgstr "Detalii"
+
+#: ../vin-query/car-demon-vin-query-admin.php:282
+msgid "Used"
+msgstr "Utilizat"
+
+#: ../vin-query/car-demon-vin-query-admin.php:283
+msgid "Certified Used"
+msgstr "Utilizare Certificata"
+
+#: ../vin-query/car-demon-vin-query-admin.php:284
+msgid "New"
+msgstr "Nou"
+
+#: ../vin-query/car-demon-vin-query-admin.php:289
+msgid "Model Year"
+msgstr "Model An"
+
+#: ../vin-query/car-demon-vin-query-admin.php:301
+msgid "Trim"
+msgstr "Ajustat"
+
+#: ../vin-query/car-demon-vin-query-admin.php:305
+msgid "Exterior Color"
+msgstr "Culoare Exterioara"
+
+#: ../vin-query/car-demon-vin-query-admin.php:309
+msgid "Interior Color"
+msgstr "Culoare Interior"
+
+#: ../vin-query/car-demon-vin-query-admin.php:313
+msgid "Manufactured in"
+msgstr "Fabricat in"
+
+#: ../vin-query/car-demon-vin-query-admin.php:317
+msgid "Production Seq. Number"
+msgstr "Numar Identificare"
+
+#: ../vin-query/car-demon-vin-query-admin.php:321
+msgid "Specifications"
+msgstr "Specificatii"
+
+#: ../vin-query/car-demon-vin-query-admin.php:328
+msgid "Engine Type"
+msgstr "Tip Motor"
+
+#: ../vin-query/car-demon-vin-query-admin.php:332
+msgid "Transmission"
+msgstr "Transmisie"
+
+#: ../vin-query/car-demon-vin-query-admin.php:336
+msgid "Driveline"
+msgstr "Roti Motrice"
+
+#: ../vin-query/car-demon-vin-query-admin.php:340
+msgid "Tank(gallon)"
+msgstr "Capacitate Rezervor (L)"
+
+#: ../vin-query/car-demon-vin-query-admin.php:344
+msgid "Fuel Economy(City, miles/gallon)"
+msgstr "Consum Combustibil (Oras, L/100km)"
+
+#: ../vin-query/car-demon-vin-query-admin.php:348
+msgid "Fuel Economy(Highway, miles/gallon)"
+msgstr "Consum Combustibil (Autostrada, L/100km)"
+
+#: ../vin-query/car-demon-vin-query-admin.php:352
+msgid "Anti-Brake System"
+msgstr "sistem ABS"
+
+#: ../vin-query/car-demon-vin-query-admin.php:356
+msgid "Steering Type"
+msgstr "Tip Directie"
+
+#: ../vin-query/car-demon-vin-query-admin.php:360
+msgid "Length(in.)"
+msgstr "Lungime (cm)"
+
+#: ../vin-query/car-demon-vin-query-admin.php:364
+msgid "Width(in.)"
+msgstr "Latime (cm)"
+
+#: ../vin-query/car-demon-vin-query-admin.php:368
+msgid "Height(in.)"
+msgstr "Inaltime (cm)"
+
+#: ../widgets/car-demon-calculator-widget.php:14
+msgid "Loan Calculator."
+msgstr "Calculator Rate."
+
+#: ../widgets/car-demon-calculator-widget.php:20
+msgid "Car Demon Loan Calculator"
+msgstr "Car Demon - Calculator Rate"
+
+#: ../widgets/car-demon-calculator-widget.php:75
+msgid "25000"
+msgstr "25000"
+
+#: ../widgets/car-demon-calculator-widget.php:76
+msgid "10"
+msgstr "10"
+
+#: ../widgets/car-demon-calculator-widget.php:77
+msgid "60"
+msgstr "60"
+
+#: ../widgets/car-demon-calculator-widget.php:78
+msgid "It is not an offer for credit nor a quote."
+msgstr ""
+"Aceasta nu poate fi considerata ca oferta pentru credit, nici ca cotatie de "
+"credit"
+
+#: ../widgets/car-demon-calculator-widget.php:79
+msgid ""
+"This calculator provides an estimated monthly payment. Your actual payment "
+"may vary based upon your specific loan and final purchase price."
+msgstr ""
+"Calculatorul permite sa estimati o rata lunara. Rata reala poate varia in "
+"functie de pretul final de achizitie si de specificul contractului cu banca."
+
+#: ../widgets/car-demon-calculator-widget.php:84
+#: ../widgets/car-demon-car-search-widget.php:77
+#: ../widgets/car-demon-compare-widget.php:82
+#: ../widgets/car-demon-random-cars.php:65
+#: ../widgets/car-demon-tag-cloud.php:85
+#: ../widgets/car-demon-vehicle-contact-widget.php:81
+msgid "Title:"
+msgstr "Titlu"
+
+#: ../widgets/car-demon-calculator-widget.php:86
+msgid "Price:"
+msgstr "Pret"
+
+#: ../widgets/car-demon-calculator-widget.php:88
+msgid "APR:"
+msgstr "APR:"
+
+#: ../widgets/car-demon-calculator-widget.php:90
+msgid "Term:"
+msgstr "Termeni:"
+
+#: ../widgets/car-demon-calculator-widget.php:92
+msgid "Disclaimer #1:"
+msgstr "Termeni si Conditii #1:"
+
+#: ../widgets/car-demon-calculator-widget.php:94
+msgid "Disclaimer #2:"
+msgstr "Termeni si Conditii #2:"
+
+#: ../widgets/car-demon-car-search-widget.php:14
+msgid "Display Search Cars."
+msgstr "Afisaza Formularul de Cautare Autovehicule"
+
+#: ../widgets/car-demon-car-search-widget.php:20
+msgid "Car Demon search Cars"
+msgstr "Car Demon - Cautare Vehicule"
+
+#: ../widgets/car-demon-car-search-widget.php:71
+msgid "Search Inventory"
+msgstr "Cauta Autovehicul"
+
+#: ../widgets/car-demon-car-search-widget.php:72
+msgid "Full"
+msgstr "Tot"
+
+#: ../widgets/car-demon-car-search-widget.php:80
+msgid "Form Type:"
+msgstr "Tip Formular:"
+
+#: ../widgets/car-demon-compare-widget.php:20
+msgid "Car Demon Compare Vehicles"
+msgstr "Car Demon - Comparatie Vehicule"
+
+#: ../widgets/car-demon-compare-widget.php:77
+msgid "Select the compare checkbox next to the vehicles you'd like to compare."
+msgstr "Selectati vehiculele pe care doriti sa le comparati"
+
+#: ../widgets/car-demon-compare-widget.php:85
+msgid "No Vehicles Msg:"
+msgstr "Mesaj daca Nu exista Vehicule:"
+
+#: ../widgets/car-demon-random-cars.php:14
+msgid "Display random cars."
+msgstr "Afisaza aleator autovehiculele din Car Demon"
+
+#: ../widgets/car-demon-random-cars.php:20
+msgid "Car Demon Random Cars"
+msgstr "Car Demon - Autovehicule Aleatorii"
+
+#: ../widgets/car-demon-random-cars.php:59
+msgid "Great Deals"
+msgstr "Oferte Speciale"
+
+#: ../widgets/car-demon-random-cars.php:60
+msgid "3"
+msgstr "3"
+
+#: ../widgets/car-demon-random-cars.php:67
+msgid "# of Cars:"
+msgstr "Numar Masini"
+
+#: ../widgets/car-demon-tag-cloud.php:28
+msgid "A Custom Tag Cloud."
+msgstr "Nor Etichete Personalizat"
+
+#: ../widgets/car-demon-tag-cloud.php:34
+msgid "Car Demon Cloud Widget"
+msgstr "Car Demon - Nor Etichete"
+
+#: ../widgets/car-demon-tag-cloud.php:80
+msgid "Popular Models"
+msgstr "Modele Populare"
+
+#: ../widgets/car-demon-tag-cloud.php:80
+msgid "cars_for_sale"
+msgstr "autovehicule_de_vanzare"
+
+#: ../widgets/car-demon-tag-cloud.php:80
+msgid "vehicle_model"
+msgstr "model_vehicul"
+
+#: ../widgets/car-demon-tag-cloud.php:80
+msgid "45"
+msgstr "45"
+
+#: ../widgets/car-demon-tag-cloud.php:91
+msgid "Post Type:"
+msgstr "Tip Articol:"
+
+#: ../widgets/car-demon-tag-cloud.php:97
+msgid "Taxonomy:"
+msgstr "Tipologie:"
+
+#: ../widgets/car-demon-tag-cloud.php:103
+msgid "max_num:"
+msgstr "Numar maxim"
+
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:71
+msgid "Vehicle Contact Form from "
+msgstr "Formular de Contact al Autovehiculului de la"
+
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:113
+msgid "Your message has been received."
+msgstr "Am primit mesajul Dumneavoastra."
+
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:113
+msgid "A Representative will contact you as soon as possible."
+msgstr "Un Reprezentant va va contacta cat mai curand posibil."
+
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:113
+msgid "A copy of your message is below."
+msgstr "Mai jos vedeti o copie a mesajului dumneavoastra."
+
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:116
+msgid "Email Confirmation from "
+msgstr "Email Confirmare de la"
+
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:239
+msgid "Vin Number"
+msgstr "Numar VIN"
+
+#: ../widgets/car-demon-vehicle-contact-widget-handler.php:357
+msgid "Vehicle Contact Form"
+msgstr "Formular de Contact Autovehicul"
+
+#: ../widgets/car-demon-vehicle-contact-widget.php:14
+msgid "Display contact form on Vehicle Pages."
+msgstr "Afisaza formular de contact pe Paginile Autovehiculelor."
+
+#: ../widgets/car-demon-vehicle-contact-widget.php:20
+msgid "Car Demon Vehicle Contact"
+msgstr "Date de Contact Autovehicul Car Demon"
+
+#: ../widgets/car-demon-vehicle-contact-widget.php:83
+msgid "List Phone:"
+msgstr "Telefon:"
+
+#: ../widgets/car-demon-vehicle-contact-widget.php:89
+msgid "CC:"
+msgstr "CC (copie):"
+
+#: ../widgets/car-demon-vehicle-contact-widget.php:91
+msgid "Send Confirmation Receipt:"
+msgstr "Trimite Confirmare de Primire"
+
+#: ../widgets/car-demon-vehicle-contact-widget.php:97
+msgid "Additional Confirmation Message:"
+msgstr "Mesaj Confirmare Suplimentar"
+
+#: ../widgets/car-demon-vehicle-contact-widget.php:131
+msgid "For more information"
+msgstr "Pentru mai multe informatii"
+
+#: ../widgets/car-demon-vehicle-contact-widget.php:131
+msgid "Call"
+msgstr "Sunati"
+
+#: ../widgets/car-demon-vehicle-contact-widget.php:131
+msgid "at:"
+msgstr "la:"
