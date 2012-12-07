@@ -4,7 +4,7 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots, auto dealer
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.1.9
+Stable tag: 1.2.0
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
@@ -193,12 +193,34 @@ The contact form shortcode, [contact_us], has an argument of "send_to" that acce
 If you set this argument in your shortcode it will hide the drop down and send the contact form to the address you supplied.
 Exp. [contact_us send_to="me@my_site.com"]
 
+
+* How do I add a form as a Popup?
+
+
+Two new optional arguments have been added to several of the form shortcodes; popup_id and popup_button.
+
+These may be used with the following shortcodes; contact_us, part_request, service_form & service_quote
+At this time they are NOT available for; trade or finance_form
+
+By setting the popup_id argument to a unique value you tell Car Demon to simply add a button to the page that opens your form in a popup lightbox.
+The popup_button argument allows you to customize what the button says.
+For Example [part_request popup_id="1" popup_button="Request Parts"] this would create a button that says "Request Parts" which opens the parts request form in a popup lightbox.
+
+
 == Screenshots ==
 1. This is a quick look at the inventory management screen. You can quickly change prices and mark vehicles sold without opening each vehicle.
 
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+= 1.2.0 =
+* Continued refining Template pages to reduce code needed to add new styles.
+* Add several action hooks to templates; car_demon_sidebar, car_demon_vehicle_sidebar, car_demon_before_main_content, car_demon_after_main_content
+* Added new arguments to several form shortcodes; popup_id and popup_button, these optional arguments allow you to add a button to a page that opens the form in a popup lightbox. See the FAQ for usage.
+* Added admin option to display sold vehicles in search results if desired.
+* Added admin option to BCC site admin when form is filled out.
+* Added extra layer of data sanitization for Admin area inputs.
+* A big thank you goes out to Ciprian Dracea for giving assistance in adding the shortcodes to all of the forms and helping to refine the PlugIn.
 = 1.1.9 =
 * Fixed issue with Vehicle Edit page that was causing options to not appear.
 * Minor CSS tweaks.
@@ -206,7 +228,7 @@ Exp. [contact_us send_to="me@my_site.com"]
 * Continued refining Template pages to reduce code needed to add new styles.
 * Move person.gif file to root images folder.
 = 1.1.8 =
-* Added admin setting to allow you to add text or HTML direclty before the listings begin.
+* Added admin setting to allow you to add text or HTML directly before the listings begin.
 * Continued to refine template pages and style options.
 * Added admin setting to use Post Title for Vehicle Title instead of 'Year Make Model'.
 * Continued refining Template pages to reduce code needed to add new styles.

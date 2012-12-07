@@ -4,7 +4,7 @@ Plugin Name: Car Demon
 Plugin URI: http://www.CarDemons.com/
 Description:  Car Demon is a PlugIn designed for car dealers.
 Author: CarDemons
-Version: 1.1.9
+Version: 1.2.0
 Author URI: http://www.CarDemons.com/
 Text Domain: car-demon
 Domain Path: /languages/
@@ -159,11 +159,11 @@ function car_demon_get_site_url() {
 	return $site_url;
 }
 
-function car_demon_str_left($s1, $s2) {
+function car_demon_str_left( $s1, $s2 ) {
 	return substr($s1, 0, strpos($s1, $s2));
 }
 
-function car_demon_shortcodes($content) {
+function car_demon_shortcodes( $content ) {
 	if (strpos($content, '[-service_form-]')) {
 		$service_form = car_demon_service_form('normal');
 		$content = str_replace('[-service_form-]', $service_form, $content);
@@ -173,13 +173,13 @@ function car_demon_shortcodes($content) {
 		$content = str_replace('[-service_quote-]', $service_quote, $content);
 	}
 	if (strpos($content, '[-part_request-]')) {
-		$part_quote = car_demon_part_request('normal');
+		$part_quote = car_demon_part_request('normal', '', '');
 		$content = str_replace('[-part_request-]', $part_quote, $content);
-	}	
+	}
 	if (strpos($content, '[-contact_us-]')) {
-		$contact_us = car_demon_contact_request('normal');
+		$contact_us = car_demon_contact_request('normal','','');
 		$content = str_replace('[-contact_us-]', $contact_us, $content);
-	}	
+	}
 	if (strpos($content, '[-trade-]')) {
 		$trade = car_demon_trade_form(0,'normal');
 		$content = str_replace('[-trade-]', $trade, $content);
@@ -197,36 +197,44 @@ function car_demon_shortcodes($content) {
 // Register Shortcodes
 function contact_us_shortcode_func( $atts ) {
 	extract( shortcode_atts( array(
-		'send_to' => 'normal'
+		'send_to' => 'normal',
+		'popup_id' => '',
+		'popup_button' => __('Contact Us', 'car-demon')
 	), $atts ) );
-	$contact_us = car_demon_contact_request($send_to);
+	$contact_us = car_demon_contact_request($send_to, $popup_id, $popup_button);
 	return $contact_us;
 }
 add_shortcode( 'contact_us', 'contact_us_shortcode_func' );
 
 function parts_shortcode_func( $atts ) {
 	extract( shortcode_atts( array(
-		'location' => 'normal'
+		'location' => 'normal',
+		'popup_id' => '',
+		'popup_button' => __('Request Parts Quote', 'car-demon')
 	), $atts ) );
-	$part_quote = car_demon_part_request($location);
+	$part_quote = car_demon_part_request($location, $popup_id, $popup_button);
 	return $part_quote;
 }
 add_shortcode( 'part_request', 'parts_shortcode_func' );
 
 function service_form_shortcode_func( $atts ) {
 	extract( shortcode_atts( array(
-		'location' => 'normal'
+		'location' => 'normal',
+		'popup_id' => '',
+		'popup_button' => __('Service Appointment', 'car-demon')
 	), $atts ) );
-	$service_form = car_demon_service_form($location);
+	$service_form = car_demon_service_form($location, $popup_id, $popup_button);
 	return $service_form;
 }
-add_shortcode( 'service_request', 'service_form_shortcode_func' );
+add_shortcode( 'service_form', 'service_form_shortcode_func' );
 
 function service_quote_form_shortcode_func( $atts ) {
 	extract( shortcode_atts( array(
-		'location' => 'normal'
+		'location' => 'normal',
+		'popup_id' => '',
+		'popup_button' => __('Service Appointment', 'car-demon')
 	), $atts ) );
-	$service_quote = car_demon_service_quote($location);
+	$service_quote = car_demon_service_quote($location, $popup_id, $popup_button);
 	return $service_quote;
 }
 add_shortcode( 'service_quote', 'service_quote_form_shortcode_func' );
@@ -349,7 +357,7 @@ if (function_exists('add_theme_support')) {
     add_image_size('page-single', 350, 350, true);
 }
 
-function car_demon_theme_js($content) {
+function car_demon_theme_js( $content ) {
 	$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$content .= '
 	<script>
@@ -364,7 +372,7 @@ function car_demon_theme_js($content) {
 }
 add_action('wp_head', 'car_demon_theme_js');
 
-function rwh($x,$y) {
+function rwh( $x,$y ) {
 	if ($y == 0) {
 		$new_string = $x;	
 	} else {
@@ -373,7 +381,7 @@ function rwh($x,$y) {
 	return $new_string;
 }
 
-function get_car_from_stock($selected_car) {
+function get_car_from_stock( $selected_car ) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
 	$sql = "Select post_id, meta_value from ".$prefix."postmeta WHERE meta_key='_stock_value' and meta_value = '".$selected_car."'";
@@ -399,7 +407,7 @@ function get_car_from_stock($selected_car) {
 	return $x;
 }
 
-function get_car_id_from_stock($selected_car) {
+function get_car_id_from_stock( $selected_car ) {
 	global $wpdb;
 	$post_id = '';
 	$prefix = $wpdb->prefix;
@@ -413,7 +421,7 @@ function get_car_id_from_stock($selected_car) {
 	return $post_id;
 }
 
-function build_location_hcard($location, $condition) {
+function build_location_hcard( $location, $condition ) {
 	$location = str_replace(chr(32), '-', $location);
 	$location = strtolower($location);
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
@@ -548,7 +556,7 @@ function car_demon_theme_redirect() {
 	}
 }
 
-function do_car_demon_theme_redirect($url) {
+function do_car_demon_theme_redirect( $url ) {
     global $post, $wp_query;
     if (have_posts()) {
         include($url);
