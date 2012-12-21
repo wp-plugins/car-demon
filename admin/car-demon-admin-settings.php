@@ -314,7 +314,11 @@ function car_demon_options() {
 	$default['before_listings'] = '';
 	$default['use_post_title'] = 'No';
 	$default['show_sold'] = 'No';
-	$default['cc_admin'] = 'Yes';
+	$default['cc_admin'] = 'Yes';	
+	$default['do_sort'] = 'Yes';
+	$default['sort_price'] = 'Yes';
+	$default['sort_miles'] = 'Yes';
+	$default['hide_tabs'] = 'No';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -337,6 +341,10 @@ function car_demon_options() {
 	if (empty($car_demon_options['use_post_title'])) {$car_demon_options['use_post_title'] = $default['use_post_title'];}
 	if (empty($car_demon_options['show_sold'])) {$car_demon_options['show_sold'] = $default['show_sold'];}
 	if (empty($car_demon_options['cc_admin'])) {$car_demon_options['cc_admin'] = $default['cc_admin'];}
+	if (empty($car_demon_options['do_sort'])) {$car_demon_options['do_sort'] = $default['do_sort'];}
+	if (empty($car_demon_options['sort_price'])) {$car_demon_options['sort_price'] = $default['sort_price'];}
+	if (empty($car_demon_options['sort_miles'])) {$car_demon_options['sort_miles'] = $default['sort_miles'];}
+	if (empty($car_demon_options['hide_tabs'])) {$car_demon_options['hide_tabs'] = $default['hide_tabs'];}
 	return $car_demon_options;
 }
 
@@ -408,6 +416,12 @@ function car_demon_settings_options_do_page() {
 				<option value="Yes">'.__('Yes', 'car-demon').'</option>
 				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
+		echo '<br />'.__('Hide all Vehicle Option Tabs?', 'car-demon').':<br />';
+		echo '<select name="hide_tabs">
+				<option value="'.$car_demon_options['hide_tabs'].'">'.$car_demon_options['hide_tabs'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />';
 		echo '<br />'.__('Use About Tab on Vehicle Pages', 'car-demon').':<br />';
 		echo '<select name="use_about">
 				<option value="'.$car_demon_options['use_about'].'">'.$car_demon_options['use_about'].'</option>
@@ -426,6 +440,24 @@ function car_demon_settings_options_do_page() {
 				<option value="Yes">'.__('Yes', 'car-demon').'</option>
 				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
+		echo '<hr />'.__('Show sorting options on vehicle listing pages?', 'car-demon').':<br />';
+		echo '<select name="do_sort">
+				<option value="'.$car_demon_options['do_sort'].'">'.$car_demon_options['do_sort'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />';
+		echo '<br />'.__('Sort By Price? - Sorting options must be set to yes to use this feature.', 'car-demon').':<br />';
+		echo '<select name="sort_price">
+				<option value="'.$car_demon_options['sort_price'].'">'.$car_demon_options['sort_price'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />';
+		echo '<br />'.__('Sort By Mileage? - Sorting options must be set to yes to use this feature.', 'car-demon').':<br />';
+		echo '<select name="sort_miles">
+				<option value="'.$car_demon_options['sort_miles'].'">'.$car_demon_options['sort_miles'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><hr />';		
 		echo '<br />'.__('Use included theme files?', 'car-demon').':<br />';
 		echo '<select name="use_theme_files">
 				<option value="'.$car_demon_options['use_theme_files'].'">'.$car_demon_options['use_theme_files'].'</option>
@@ -569,6 +601,10 @@ function update_car_demon_settings() {
 	if (isset($_POST['use_post_title'])) $new['use_post_title'] = $_POST['use_post_title'];
 	if (isset($_POST['show_sold'])) $new['show_sold'] = $_POST['show_sold'];
 	if (isset($_POST['cc_admin'])) $new['cc_admin'] = $_POST['cc_admin'];
+	if (isset($_POST['do_sort'])) $new['do_sort'] = $_POST['do_sort'];
+	if (isset($_POST['sort_price'])) $new['sort_price'] = $_POST['sort_price'];
+	if (isset($_POST['sort_miles'])) $new['sort_miles'] = $_POST['sort_miles'];
+	if (isset($_POST['hide_tabs'])) $new['hide_tabs'] = $_POST['hide_tabs'];
 	update_option( 'car_demon_options', $new );
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }

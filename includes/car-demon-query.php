@@ -157,13 +157,39 @@ function car_demon_sorting($page_type = 'search') {
 	} else {
 		$wpurl = '?'. $query_string;
 	}
-	$car_demon_sorting = __('Sort By:', 'car-demon');
-	$sort_asc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="'.__('Sort Low to High', 'car-demon').'" /></a>&nbsp;';
-	$sort_desc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="'.__('Sort High to Low', 'car-demon').'" /></a>';
-		$car_demon_sorting .= '&nbsp;&nbsp;&nbsp;'.__('Price', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
-	$sort_asc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="'.__('Sort Low to High', 'car-demon').'" /></a>&nbsp;';
-	$sort_desc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="'.__('Sort High to Low', 'car-demon').'" /></a>';
-		$car_demon_sorting .= '&nbsp;&nbsp;&nbsp;'.__('Mileage', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
+	$car_demon_sorting = '';
+	$do_sort = 1;
+	$sort_price = 1;
+	$sort_miles = 1;
+	if (isset($_SESSION['car_demon_options']['do_sort'])) {
+		if ($_SESSION['car_demon_options']['do_sort'] == 'No') {
+			$do_sort = 0;
+		}
+	}
+	if ($do_sort == 1) {
+		$car_demon_sorting = __('Sort By:', 'car-demon');
+		if (isset($_SESSION['car_demon_options']['sort_price'])) {
+			if ($_SESSION['car_demon_options']['sort_price'] == 'No') {
+				$sort_price = 0;
+			}
+		}
+		if ($sort_price == 1) {
+			$sort_asc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="'.__('Sort Low to High', 'car-demon').'" /></a>&nbsp;';
+			$sort_desc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="'.__('Sort High to Low', 'car-demon').'" /></a>';
+				$car_demon_sorting .= '&nbsp;&nbsp;&nbsp;'.__('Price', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
+		}
+		
+		if (isset($_SESSION['car_demon_options']['sort_miles'])) {
+			if ($_SESSION['car_demon_options']['sort_miles'] == 'No') {
+				$sort_miles = 0;
+			}
+		}
+		if ($sort_miles == 1) {
+			$sort_asc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="'.__('Sort Low to High', 'car-demon').'" /></a>&nbsp;';
+			$sort_desc_img = '<a href="'.$wpurl.'&order_by=_mileage_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="'.__('Sort High to Low', 'car-demon').'" /></a>';
+				$car_demon_sorting .= '&nbsp;&nbsp;&nbsp;'.__('Mileage', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
+		}
+	}
 	return $car_demon_sorting;
 }
 

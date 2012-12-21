@@ -117,3 +117,76 @@ label.cd-group-after span {
 .trade_reqtxt {
 	margin-left:10px;
 }
+@media only screen and (max-width : 767px) {
+	.cdform fieldset {
+		margin-left:-14px !important;
+		width: 100% !important;
+	}
+	.trade_img {
+		margin-left:5px !important;
+		width:230px !important;
+	}
+	#trade_form {
+		font-size:12px;
+		width:100% !important;
+		margin-left: 15px;
+	}
+	
+	#trade_form fieldset legend {
+		font-size:15px;
+	}
+	
+	#trade_form textarea {
+		width:240px;
+		margin-left:10px;
+	}
+	
+	#trade_form .search_btn {
+		width:125px;
+		height: 38px !important;
+		font-size:12px !important;
+	}
+	.cd-box-group input {
+		width: 50px !important;
+	}
+	#trade_form input {
+		height:25px;
+		font-size:12px !important;
+		width: 250px;
+		margin-left:10px;
+	}
+	
+	label.cd-group-after {
+		width: 202px !important;
+	}
+	
+	.cdform .cd-fs2 label {
+		width: 100px !important;
+	}
+	.cd-box-title input {
+		width: 20px !important;
+	}
+	#pick_voi_1 {
+		width: 20px;
+	}
+	
+	#pick_voi_2 {
+		width: 20px;
+	}
+	
+	#pick_voi_3 {
+		width: 20px;
+	}
+	
+	.cd-radio {
+		width: 20px !important;
+	}
+	
+	#trade_form select {
+		height:27px;
+		font-size:11px !important;
+	}
+	.not_my_car {
+		width:20px;
+	}
+}

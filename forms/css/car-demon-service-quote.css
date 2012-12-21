@@ -74,3 +74,39 @@ ol.cd-ol li {
 .service_quote_btn {
 	float:right;
 }
+@media only screen and (max-width : 767px) {
+	#service_quote {
+		font-size:12px;
+		width: 230px;
+	}
+	
+	#service_quote fieldset legend {
+		font-size:15px;
+	}
+	
+	#service_quote textarea {
+		width:220px;
+		margin-left:10px;
+	}
+	
+	#service_quote input {
+		height:25px;
+		font-size:11px !important;
+	}
+	
+	#service_quote select {
+		height:27px;
+		font-size:11px !important;
+	}
+	
+	#service_quote .search_btn {
+		width:125px;
+		height: 38px !important;
+		font-size:12px !important;
+	}
+	
+	input.cd-box {
+		width: 25px !important;
+		height:25px !important;
+	}
+}

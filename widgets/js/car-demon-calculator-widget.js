@@ -1,6 +1,7 @@
 // JavaScript Document
 function returnPayment() {
 	var Principal = document.calc.pv.value
+	Principal = Principal.replace(',','');
 	if (document.calc.rate.value==0) {
 		var Rate = 0.000000001
 	} else {

@@ -148,7 +148,7 @@ function car_demon_vehicle_detail_tabs($post_id) {
 	$tab_cnt = 1;
 	$vin_query = '';
 	$about_cnt = 2;
-	$content = get_the_content();
+	$content = car_demon_get_the_content_with_formatting();
 	$content = trim($content);
 	if (empty($content)) {
 		$location_lists = get_the_terms($post_id, "vehicle_location");
@@ -156,8 +156,7 @@ function car_demon_vehicle_detail_tabs($post_id) {
 			foreach ($location_lists as $location_list) {
 				$location_slug = $location_list->slug;
 			}
-		}
-		else {
+		} else {
 			$location_slug = "default";
 		}
 		$content = get_option($location_slug.'_default_description');
@@ -182,12 +181,23 @@ function car_demon_vehicle_detail_tabs($post_id) {
 	} else {
 		$vin_query_decode = '';
 	}
-	if (!empty($vin_query_decode['decoded_fuel_economy_city'])) {
+	if (isset($vin_query_decode['hide_tabs'])) {
+		if ($vin_query_decode['hide_tabs'] == 'Yes') {
+			$vin_query = 0;		
+		} else {
+			$tab_cnt = $tab_cnt + 5;
+			$vin_query = 1;
+			$about_cnt = 7;
+		}
+	} else {
 		$tab_cnt = $tab_cnt + 5;
 		$vin_query = 1;
 		$about_cnt = 7;
-	} else {
-		$vin_query = 0;
+	}
+	if (isset($_SESSION['car_demon_options']['hide_tabs'])) {
+		if ($_SESSION['car_demon_options']['hide_tabs'] == 'Yes') {
+			$vin_query = 0;
+		}
 	}
 	$x = '<div id="car_features_box" class="car_features_box">';
 		$x .= '<div class="car_features">';
@@ -401,6 +411,20 @@ function car_photos($post_id, $details, $vehicle_condition) {
 				}
 			}
 		}
+		// Check if vehicle has a list of photo urls that arent part of the normal gallery
+		$image_list = get_post_meta($post_id, '_images_value', true);
+		if (!empty($image_list)) {
+			$thumbnails = split(",",$image_list);
+			foreach($thumbnails as $thumbnail) {
+				$pos = strpos($thumbnail,'.jpg');
+				if($pos == true) {
+					$car_js .= 'carImg['.$cnt.']="'.trim($thumbnail).'";'.chr(13);
+					$photo_array = '<a href="#mainpic"><img class="car_demon_thumbs" style="cursor:pointer" onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($thumbnail).'",1);\' src="'.trim($thumbnail).'" width="62" /></a>';
+					$this_car .= $photo_array;
+					$cnt = $cnt + 1;
+				}
+			}
+		}
 		$this_car .= '</div>';
 		// End Thumbnails
 	$this_car .= '</div>';
@@ -438,5 +462,25 @@ function car_demon_no_search_results($searched) {
 		$x .= '</div><!-- .entry-content -->';
 	$x .= '</div><!-- #post-0 -->';
 	return $x;
+}
+
+function car_demon_get_the_content_with_formatting ($more_link_text = '(more...)', $stripteaser = 0, $more_file = '') {
+	$content = get_the_content($more_link_text, $stripteaser, $more_file);
+	$content = apply_filters('the_content', $content);
+	$content = str_replace(']]>', ']]&gt;', $content);
+	return $content;
+}
+
+//function car_demon_facebook_meta($title, $url, $image) {
+function car_demon_facebook_meta() {
+	$post_id = get_the_ID();
+	$title = get_car_title($post_id);
+	$url = get_permalink($post_id);
+	$image = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
+	$x = '
+		<meta property="og:title" content="'.$title.'"/>
+		<meta property="og:url" content="'.$url.'"/>
+		<meta property="og:image" content="'.$image.'"/>';
+	echo $x;
 }
 ?>

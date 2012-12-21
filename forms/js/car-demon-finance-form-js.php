@@ -203,7 +203,7 @@
 		}
 		//if copapp yes
 		if (document.frm_app.MakeCoSigner.value == 'Yes') {
-			document.getElementById('CoSignerDiv').style.display = 'block';
+			document.getElementById('CoSignerDiv').style.display = 'inline-block';
 			if (document.frm_app.co_app_street_num.value == '') {document.getElementById('msgDivco_app_street_num').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_app_street_num').style.display = 'none'}
 			if (document.frm_app.co_app_street_name.value == '') {document.getElementById('msgDivco_app_street_name').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_app_street_name').style.display = 'none'}
 			if (document.frm_app.co_app_street_type.value == '') {document.getElementById('msgDivco_app_street_type').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_app_street_type').style.display = 'none'}
@@ -424,7 +424,7 @@
 	
 	function MakeTheCoSigner(x) {
 		if (x.value == 'Yes') {
-			document.getElementById('CoSignerDiv').style.display = 'block';
+			document.getElementById('CoSignerDiv').style.display = 'inline-block';
 		}
 		else {
 			document.getElementById('CoSignerDiv').style.display = 'none';

@@ -92,7 +92,7 @@ function get_trade_for_vehicle($stock_num) {
 		<input type="hidden" id="purchase_stock" value="'.$stock_num.'" />
 		<ol class="cd-ol" id="show_voi">
 			<li id="" class="cd-box-title">'.__('Vehicle of Interest', 'car-demon').'</li>
-			<li id="not_voi" class="cd-box-title"><input type="checkbox" onclick="show_voi()" />&nbsp;'.__('This is', 'car-demon').' <b>'.__('NOT', 'car-demon').'</b> '.__('the vehicle I\'m interested in.', 'car-demon').'</li>';
+			<li id="not_voi" class="cd-box-title"><input type="checkbox" class="not_my_car" onclick="show_voi()" />&nbsp;'.__('This is', 'car-demon').' <b>'.__('NOT', 'car-demon').'</b> '.__('the vehicle I\'m interested in.', 'car-demon').'</li>';
 			$x .= '<li id="" class=""><label for="cd_field_2"><span>'.__('Stock #', 'car-demon').'</span></label><label class="trade_label"><span class="trade_label">'.$stock_num.'</span></label></li>';
 			$x .= '<li id="" class=""><label for="cd_field_2"><span>'.__('VIN', 'car-demon').'</span></label><label class="trade_label"><span class="trade_label">'.$vehicle_vin.'</span></label></li>';
 			$vehicle = $vehicle_condition .' '. $vehicle_year .' '. $vehicle_make .' '. $vehicle_model .' '. $vehicle_body_style;

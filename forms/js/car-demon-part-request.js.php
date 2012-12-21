@@ -26,9 +26,11 @@ $hook_form_js_data = apply_filters('car_demon_mail_hook_js_data', $x, 'parts', '
 ?>
 // JavaScript Document
 function add_part(form_id) {
-	var b_height = getDocHeight();
-	b_height = b_height + 150;
-	document.getElementById('lb_overlay').style.height = b_height + 'px';
+	if (document.getElementById('lb_overlay')) {
+		var b_height = getDocHeight();
+		b_height = b_height + 150;
+		document.getElementById('lb_overlay').style.height = b_height + 'px';
+	}
 	var number_of_parts = document.forms["part_form"+form_id].number_of_parts.value;
 	var number_of_parts = parseInt(number_of_parts) + 1;
 	if (number_of_parts > 1) {

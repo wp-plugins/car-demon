@@ -33,6 +33,7 @@ function build_csv() {
 	$car_csv .= chr(13).chr(10);
 	$total_cars = $wpdb->get_results(sprintf($query));
 	foreach ($total_cars as $total_car) {
+		$post_id =  $total_car->ID;
 		$car_options = $total_car->post_content;
 		$car_csv .= '"'.get_post_meta($post_id, "_stock_value", true).'",';
 		$car_csv .= '"'.get_post_meta($post_id, "_vin_value", true).'",';

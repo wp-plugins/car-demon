@@ -18,7 +18,7 @@ function car_demon_search_form() {
 	&nbsp;<span class="advanced_search_btn_hide" onclick="document.getElementById(\'advanced_search\').style.display=\'none\';" title="Hide Advanced Search">-</span>
 	</div>';
 ?>
-		<div>
+
 			<div class="search_left">
 				<div id="car-demon-searchr3c1" class=""><?php _e('Condition','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_condition(); ?></div>
@@ -27,8 +27,7 @@ function car_demon_search_form() {
 				<div id="car-demon-searchr3c1" class=""><?php _e('Manufacturer','car-demon'); ?>:</div>
 				<div id="car-demon-searchr4c1" class=""><?php echo car_demon_search_makes();?></div>
 			</div>
-		</div>
-		<div>
+
 			<div class="search_left">
 				<div class="search_labels"><?php _e('Year','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_years(); ?></div>
@@ -37,36 +36,26 @@ function car_demon_search_form() {
 				<div class=""><?php _e('Model','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_models();?></div>
 			</div>
-		</div>
-		<div>
+
 			<div id="car-demon-searchr6c1" class="search_min_price">
 				<div class="search_labels"><?php _e('Min Price','car-demon'); ?>:</div>
-				<div>
-					<?php echo car_demon_search_price('Min'); ?>
-				</div>
+				<div><?php echo car_demon_search_price('Min'); ?></div>
 			</div>
 			<div id="car-demon-searchr6c2" class="search_max_price">
 				<div class="search_labels"><?php _e('Max Price','car-demon'); ?>:</div>
-				<div>
-					<?php echo car_demon_search_price('Max'); ?>
-				</div>
+				<div><?php echo car_demon_search_price('Max'); ?></div>
 			</div>
-		</div>
-		<div>
+
 			<div id="car-demon-searchr7c1" class="search_trans">
 				<div class="search_labels"><?php _e('Trans','car-demon'); ?>:</div>
-				<div>
-					<?php echo car_demon_search_tran(); ?>
-				</div>
+				<div><?php echo car_demon_search_tran(); ?></div>
 			</div>
+			
 			<div id="car-demon-searchr7c2" class="search_mileage">
 				<div class="search_labels"><?php _e('Mileage','car-demon'); ?>:</div>
-				<div>
-					<?php echo car_demon_search_miles(); ?>
-				</div>
+				<div><?php echo car_demon_search_miles(); ?></div>
 			</div>
-		</div>
-		<div>
+
 			<div id="car-demon-searchr8c1" class="search_body">
 				<div class="search_labels"><?php _e('Body Type','car-demon'); ?>:</div>
 				<div>

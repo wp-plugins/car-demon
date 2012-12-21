@@ -81,7 +81,26 @@ function eg_add_vehicle_dashboard_widget_function() {
 function cardemons_automotive_inventory_decode($post_id) {
 	$vin_query_decode = get_post_meta($post_id, "decode_string", true);
 	$vin = get_post_meta($post_id, "_vin_value", true);
-	$html = '
+	$html = '';
+	$show_tabs = 1;
+	if (isset($_SESSION['car_demon_options']['hide_tabs'])) {
+		if ($_SESSION['car_demon_options']['hide_tabs'] == 'Yes') {
+			$show_tabs = 0;
+		}
+	}
+	if ($show_tabs == 1) {
+		$html .= __('Hide Tabs on vehicle display page?', 'car-demon').'
+			<select name="hide_tabs" id="hide_tabs" onchange="update_admin_decode(this, '.$post_id.')">
+				<option value="'.$vin_query_decode['hide_tabs'].'">'.$vin_query_decode['hide_tabs'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />
+		'.__('This option does not hide the description tab or the about us tab.','car-demon').'
+		<hr />';
+	} else {
+		$html .= __('Vehicle Option Tabs have been set to hidden under Car Demon settings and will not appear on the front end.', 'car_demon_options');		
+	}
+	$html .= '
 	<div id="vin_decode_options_'.$post_id.'">';
 		$specs = get_vin_query_specs_admin($vin_query_decode, $vin, $post_id);
 		$safety = get_vin_query_safety_admin($vin_query_decode, $post_id);
