@@ -4,14 +4,14 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots, auto dealer
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
 
 == Description ==
 
-
+this is another screen capture blah blah blah
 The Car Demon PlugIn is full of features. It has a general contact form, service appointment form, service quote form, trade-in form, a fiance application and a vehicle information form all with AdfXml support.
 
 It also contains a powerful inventory management tool with optional VinQuery Integration. It has a custom front page slider, custom header and custom theme colors. You also have an optional compare vehicles tool, multiple location support and a whole lot more.
@@ -213,6 +213,17 @@ For Example [part_request popup_id="1" popup_button="Request Parts"] this would 
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+= 1.2.1 =
+* Added options to Car Demon Settings to manage vehicle sorting options.
+* Added British Translation file thanks to the efforts of Steven Coutts.
+* Added Italian Translation file thanks to the efforts of WordPress.org User: Qax.
+* Added option on vehicle edit page to show or hide vehicle option tabs if desired.
+* Added option in Car Demon Settings to hide vehicle option tabs on All vehicles if desired.
+* Continuing to clean up CSS.
+* Split finance form into multiple pages so segments can be reused.
+* Fixed error with calculator widget that caused prices with , to error.
+* Fixed issue with vehicle descriptions not formatting correctly.
+* Added Facebook meta fields to control Title, URL and Image sent using Facebook share button.
 = 1.2.0 =
 * Continued refining Template pages to reduce code needed to add new styles.
 * Add several action hooks to templates; car_demon_sidebar, car_demon_vehicle_sidebar, car_demon_before_main_content, car_demon_after_main_content
