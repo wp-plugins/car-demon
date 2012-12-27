@@ -11,7 +11,7 @@ Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead 
 
 == Description ==
 
-this is another screen capture blah blah blah
+
 The Car Demon PlugIn is full of features. It has a general contact form, service appointment form, service quote form, trade-in form, a fiance application and a vehicle information form all with AdfXml support.
 
 It also contains a powerful inventory management tool with optional VinQuery Integration. It has a custom front page slider, custom header and custom theme colors. You also have an optional compare vehicles tool, multiple location support and a whole lot more.
