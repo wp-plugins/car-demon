@@ -273,3 +273,19 @@ ul.tabs {
 .similar_car_look_close {
 	margin-left:15px;
 }
+#imgbox {
+    vertical-align : middle;
+    position : absolute;
+    border: 1px solid #333;
+    background : #FFFFFF; 
+    filter: Alpha(Opacity=100);
+    visibility : hidden;
+    width : auto;
+	height: 400px;
+    z-index : 50;
+    overflow : hidden;
+    text-align : center;
+	-moz-box-shadow:    1px 1px 2px 2px #555;
+	-webkit-box-shadow: 1px 1px 2px 2px #555;
+	box-shadow:         1px 1px 2px 2px #555;
+}

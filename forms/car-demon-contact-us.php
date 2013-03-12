@@ -4,7 +4,7 @@ function car_demon_contact_request($send_to, $popup_id = '', $popup_button='') {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/forms', '', $car_demon_pluginpath);
 	global $cd_formKey;
-	wp_enqueue_script('car-demon-contact-us-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-contact-us.js.php');
+	wp_enqueue_script('car-demon-contact-us-form-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-contact-us.js.php');
 	wp_enqueue_script('car-demon-common-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-common.js.php');
 	wp_enqueue_style('car-demon-contact-us-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-contact-us.css');
 	if (isset($_SESSION['car_demon_options']['validate_phone'])) {

@@ -42,6 +42,11 @@ function update_car(post_id,fld) {
 		dataType: "html",
 		success: function(html){
 			document.getElementById("car_demon_compare").innerHTML = html;
+			if (html == '<p></p>') {
+				jQuery('#car_demon_compare_widget').fadeOut('slow', function() { });
+			} else {
+				jQuery('#car_demon_compare_widget').fadeIn('slow', function() { });
+			}
 		}
 	})
 	return false;

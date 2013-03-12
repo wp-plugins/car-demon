@@ -72,3 +72,14 @@
 .admin_cell_providers {
 	width:250px;
 }
+
+.cd_admin_filter {
+	float:left;
+}
+.cd_admin_filter_label {
+	float:left;
+	padding:3px;
+}
+.cd_admin_filter_field {
+	float: left;
+}

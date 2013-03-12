@@ -27,17 +27,18 @@ do_action( 'car_demon_before_main_content' );
 		//===============================================================
 		$detail_output = '<div class="car_title_div"><h3 class="car_title">'.$car_head_title.'</h3>';
 		$detail_output .= '<ul>';
-			$detail_output .= '<li><strong>Condition:</strong> '.$vehicle_details['condition'].'</li>';
-			$detail_output .= '<li><strong>Mileage:</strong> '.$vehicle_details['mileage'].'</li>';
-			$detail_output .= '<li><strong>Stock#:</strong> '.$vehicle_details['stock_num'].'</li>';
-			$detail_output .= '<li><strong>VIN#:</strong> '.$vehicle_vin.'</li>';
-			$detail_output .= '<li><strong>Color:</strong> '.$vehicle_details['exterior_color'].'/'.$vehicle_details['interior_color'].'</li>';
-			$detail_output .= '<li><strong>Transmission:</strong> '.$vehicle_details['decoded_transmission_long'].'</li>';
-			$detail_output .= '<li><strong>Engine:</strong> '.$vehicle_details['decoded_engine_type'].'</li>';
+			$detail_output .= '<li><strong>'.__('Condition:', 'car-demon').'</strong> '.$vehicle_details['condition'].'</li>';
+			$detail_output .= '<li><strong>'.__('Mileage:', 'car-demon').'</strong> '.$vehicle_details['mileage'].'</li>';
+			$detail_output .= '<li><strong>'.__('Stock#:', 'car-demon').'</strong> '.$vehicle_details['stock_num'].'</li>';
+			$detail_output .= '<li><strong>'.__('VIN#:', 'car-demon').'</strong> '.$vehicle_vin.'</li>';
+			$detail_output .= '<li><strong>'.__('Color:', 'car-demon').'</strong> '.$vehicle_details['exterior_color'].'/'.$vehicle_details['interior_color'].'</li>';
+			$detail_output .= '<li><strong>'.__('Transmission:', 'car-demon').'</strong> '.$vehicle_details['decoded_transmission_long'].'</li>';
+			$detail_output .= '<li><strong>'.__('Engine:', 'car-demon').'</strong> '.$vehicle_details['decoded_engine_type'].'</li>';
 			$detail_output .= get_vehicle_price($post_id);
 		$detail_output .= '</ul></div>';
-		echo car_demon_email_a_friend($post_id, $vehicle_stock_number);
+		echo car_demon_email_a_friend($post_id, $vehicle_details['stock_num']);
 		?>
+		<div id="imgbox"></div>
 		<div id="demon-post-<?php the_ID(); ?>" class="car_content">
 			<div class="start_car">&nbsp;</div>
 			<div class="car_buttons_div">
@@ -45,14 +46,14 @@ do_action( 'car_demon_before_main_content' );
 					if ($car_contact['finance_popup'] == 'Yes') {
 					?>
 					<div class="featured-button">
-						<p><a onclick="window.open('<?php echo $contact_finance_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>','finwin','width=<?php echo $car_contact['finance_width']; ?>, height=<?php echo $car_contact['finance_height']; ?>, menubar=0, resizable=0')"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
+						<p><a onclick="window.open('<?php echo $contact_finance_url .'?stock_num='.$vehicle_details['stock_num']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>','finwin','width=<?php echo $car_contact['finance_width']; ?>, height=<?php echo $car_contact['finance_height']; ?>, menubar=0, resizable=0')"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
 					</div>
 					<?php 
 					}
 					else {
 					?>
 					<div class="featured-button">
-						<p><a href="<?php echo $contact_finance_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
+						<p><a href="<?php echo $contact_finance_url .'?stock_num='.$vehicle_details['stock_num']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
 					</div>
 			<?php 
 					}
@@ -60,7 +61,7 @@ do_action( 'car_demon_before_main_content' );
 				if (!empty($contact_trade_url)) {
 				?>
 					<div class="featured-button">
-						<p><a href="<?php echo $contact_trade_url .'?stock_num='.$vehicle_stock_number; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
+						<p><a <?php echo 'href="'.$contact_trade_url .'?stock_num='.$vehicle_details['stock_num']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
 					</div>
 			<?php
 				}

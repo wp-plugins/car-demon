@@ -15,7 +15,8 @@ do_action( 'car_demon_before_main_content' );
 	/*======= Car Demon Loop ======================================================= */
 	while ( have_posts() ) : the_post();
 		$post_id = $post->ID;
-		echo car_demon_display_car_list($post_id);
+		$html = apply_filters('car_demon_display_car_list_filter', car_demon_display_car_list($post_id), $post_id );
+		echo $html;
 	endwhile; // End the loop. Whew. ?>
 	<?php
 	echo car_demon_nav('bottom', $wp_query);				

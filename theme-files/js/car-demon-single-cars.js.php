@@ -240,7 +240,7 @@ function ef_car_demon_validate() {
 		jQuery.ajax({
 			type: 'POST',
 			data: {'your_name': your_name, 'your_email':your_email, 'friend_name': friend_name, 'friend_email': friend_email, 'stock_num': stock_num, 'comment':comment, 'form_key': form_key},
-			url: "<?php echo $car_demon_pluginpath; ?>forms/car-demon-email-friend-handler.php?send_email=1",
+			url: "<?php echo $car_demon_pluginpath; ?>theme-files/forms/car-demon-email-friend-handler.php?send_email=1",
 			timeout: 2000,
 			error: function ef_() {},
 			dataType: "html",
@@ -299,4 +299,44 @@ function ef_validateEmail(fld, msg) {
 		fld.style.background = 'White';
 	}
 	return error;
+}
+function cd_getElementLeft(elm) {
+	var x = 0;
+	x = elm.offsetLeft;
+	elm = elm.offsetParent;	
+	while(elm != null) {
+		x = parseInt(x) + parseInt(elm.offsetLeft);
+		elm = elm.offsetParent;
+	}
+	return x;
+}
+function cd_getElementTop(elm) {
+	var y = 0;
+	y = elm.offsetTop;	
+	elm = elm.offsetParent;
+	while(elm != null) {
+		y = parseInt(y) + parseInt(elm.offsetTop);
+		elm = elm.offsetParent;
+	}	
+	return y;
+}
+function cd_make_large(obj) {
+	var imgbox=document.getElementById("imgbox");
+	imgbox.style.visibility='visible';
+	var img = document.createElement("img");
+	img.src=obj.src;
+	img.style.width='auto';
+	img.style.height='400px';
+	if(img.addEventListener){
+		img.addEventListener('mouseout',cd_go_out,false);
+	} else {
+		img.attachEvent('onmouseout',cd_go_out);
+	}
+	imgbox.innerHTML='';
+	imgbox.appendChild(img);
+	imgbox.style.left=(cd_getElementLeft(obj)+10) +'px';
+	imgbox.style.top=(cd_getElementTop(obj)-390) + 'px';
+}
+function cd_go_out() {
+	document.getElementById("imgbox").style.visibility='hidden';
 }

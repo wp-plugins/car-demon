@@ -75,7 +75,7 @@ function send_trade_email($newPath) {
 			$email_body = '<b>'.__('You have not setup a trade email in the admin area of your site.', 'car-demon').'</b><br />'.$request_body;
 		}
 		if (strtoupper(substr(PHP_OS,0,3)=='WIN')) {
-			$eol="\n";
+			$eol="\r\n";
 		} elseif (strtoupper(substr(PHP_OS,0,3)=='MAC')) {
 			$eol="\r";
 		} else {
@@ -364,11 +364,13 @@ function get_trade_location($selected_car) {
 			$post_id = $post->post_id;
 			$location_name = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_location', '','', '', '' )),0);
 			$terms = get_the_terms($post_id, 'vehicle_location');
-			foreach ($terms as $term) {
-				if ($term->name == $location_name) {
-					$current_location = $term->slug;
-					$x = get_option($current_location.'_trade_name');
-				}		
+			if ($terms) {
+				foreach ($terms as $term) {
+					if ($term->name == $location_name) {
+						$current_location = $term->slug;
+						$x = get_option($current_location.'_trade_name');
+					}		
+				}
 			}
 		}
 	}

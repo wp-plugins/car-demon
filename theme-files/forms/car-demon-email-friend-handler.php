@@ -34,7 +34,7 @@ if ($_GET['send_email']) {
 		$site_name = get_bloginfo('name');
 		$email_body = $request_body;
 		if (strtoupper(substr(PHP_OS,0,3)=='WIN')) {
-			$eol="\n";
+			$eol="\r\n";
 		} elseif (strtoupper(substr(PHP_OS,0,3)=='MAC')) {
 			$eol="\r";
 		} else {

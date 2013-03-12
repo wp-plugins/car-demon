@@ -11,7 +11,7 @@ function car_demon_search_form() {
 <input type="hidden" name="s" value="cars" />
 <input type="hidden" name="car" value="1" />
 		<div id="car-demon-searchr1c1" class="search_header"></div>
-		<div id="car-demon-searchr2c1" class="search_header_logo"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/search_cars.png" alt="Search Cars" title="Search Cars" />&nbsp;QUICK SEARCH
+		<div id="car-demon-searchr2c1" class="search_header_logo"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/search_cars.png" alt="Search Cars" title="Search Cars" />&nbsp;<?php _e('QUICK SEARCH', 'car-demon'); ?>
 <?php
 	echo '&nbsp;<span class="advanced_search_btn" onclick="document.getElementById(\'advanced_search\').style.display=\'inline\';" title="Advanced Search">+</span></div>';
 	echo '<div class="advanced_search" id="advanced_search">Stock #: <input class="search_dropdown_sm" type="text" name="stock" id="stock" size="6" />
@@ -92,6 +92,7 @@ function car_demon_simple_search($size='l') {
 <form action="<?php echo $url ?>" method="get" />
 <input type="hidden" name="s" value="cars" />
 <input type="hidden" name="car" value="1" />
+<input type="hidden" name="search_condition" value="<?php echo $_GET['search_condition'];?>" />
 		<div id="car-demon-searchr2c1" class="<?php echo $logo; ?>"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/search_cars.png" alt="Search Cars" title="Search Cars" />&nbsp;<?php _e('QUICK SEARCH','car-demon'); ?></div>
 		<div class="search_left">
 			<div id="car-demon-searchr3c1" class="search_manufacturer_title2"><?php _e('Year','car-demon'); ?>:</div>

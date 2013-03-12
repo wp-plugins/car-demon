@@ -114,13 +114,14 @@ function car_demon_photo_lightbox() {
 
 function car_demon_email_a_friend($post_id, $vehicle_stock_number) {
 	global $cd_formKey;
+	$car_head_title = get_car_title($post_id);
 	$x = '<div id="email_friend_div" class="email_friend_div">
 		<div id="ef_contact_final_msg_tmp" class="ef_contact_final_msg_tmp"></div>
 		<div id="main_email_friend_div_tmp" class="main_email_friend_div_tmp">
 		<h2>'. __('Send this car to a friend', 'car-demon') .'</h2><hr />
 			<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment" id="email_friend_form_tmp" name="email_friend_form_tmp">
 			'. $cd_formKey->outputKey() .'
-			<input type="hidden" name="ef_stock_num_tmp" id="ef_stock_num_tmp" value="<?php echo $vehicle_stock_number; ?>" />
+			<input type="hidden" name="ef_stock_num_tmp" id="ef_stock_num_tmp" value="'. $vehicle_stock_number .'" />
 					<fieldset class="cd-fs1">
 					<legend>'. __('Your Information', 'car-demon') .'</legend>
 					<ol class="cd-ol">
@@ -379,11 +380,23 @@ function car_photos($post_id, $details, $vehicle_condition) {
 			$current_ribbon = car_demon_dynamic_ribbon_filter($current_ribbon, $post_id, '112');
 		}
 	}
+	if (isset($_SESSION['car_demon_options']['popup_images'])) {
+		if ($_SESSION['car_demon_options']['popup_images'] == 'Yes') {
+			$popup_imgs = ' onmouseover="cd_make_large(this)" onmouseout="cd_go_out();"';
+			$lightbox_js = '';
+		} else {
+			$popup_imgs = '';
+			$lightbox_js = ' onclick="open_car_demon_lightbox(\''.$car_title.'_pic\');"';
+		}
+	} else {
+		$popup_imgs = '';
+		$lightbox_js = ' onclick="open_car_demon_lightbox(\''.$car_title.'_pic\');"';
+	}
 	$this_car = '<div>';
 		$this_car .= '<div class="car_detail_div">';
 			$this_car .= '<div class="car_main_photo_box">';
 				$this_car .= $current_ribbon;
-				$this_car .= '<img onclick="open_car_demon_lightbox(\''.$car_title.'_pic\');" src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="358" height="271" alt="New Ribbon" id="look_close">';
+				$this_car .= '<img'.$lightbox_js.' src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="358" height="271" alt="New Ribbon" id="look_close">';
 				$this_car .= '<div id="main_thumb"><img onerror="ImgError(this, \'no_photo.gif\');" id="'.$car_title.'_pic" name="'.$car_title.'_pic" class="car_demon_main_photo" width="350px" src="';
 				$main_guid = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 				$this_car .= $main_guid;
@@ -398,15 +411,16 @@ function car_photos($post_id, $details, $vehicle_condition) {
 		$this_car .= '<div class="nohor" id="car_demon_thumbs">';
 		$cnt = 0;
 		$car_js .= 'carImg['.$cnt.']="'.trim($main_guid).'";'.chr(13);
-		$photo_array = '<img class="car_demon_thumbs" onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($main_guid).'",1);active_img('.$cnt.')\' src="'.trim($main_guid).'" width="53" />';
+		$photo_array = '<img class="car_demon_thumbs"'.$popup_imgs.' onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($main_guid).'",1);active_img('.$cnt.')\' src="'.trim($main_guid).'" width="62" />';
 		$this_car .= $photo_array;
+
 		foreach($thumbnails as $thumbnail) {
 			$guid = $thumbnail->guid;
 			if (!empty($guid)) {
 				if ($main_guid != $guid) {
 					$cnt = $cnt + 1;
 					$car_js .= 'carImg['.$cnt.']="'.trim($guid).'";'.chr(13);
-					$photo_array = '<img class="car_demon_thumbs" onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($guid).'",1);active_img('.$cnt.')\' src="'.trim($guid).'" width="53" />';
+					$photo_array = '<img class="car_demon_thumbs"'.$popup_imgs.' onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($guid).'",1);active_img('.$cnt.')\' src="'.trim($guid).'" width="62" />';
 					$this_car .= $photo_array;
 				}
 			}
@@ -418,9 +432,11 @@ function car_photos($post_id, $details, $vehicle_condition) {
 			foreach($thumbnails as $thumbnail) {
 				$pos = strpos($thumbnail,'.jpg');
 				if($pos == true) {
-					$car_js .= 'carImg['.$cnt.']="'.trim($thumbnail).'";'.chr(13);
-					$photo_array = '<a href="#mainpic"><img class="car_demon_thumbs" style="cursor:pointer" onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($thumbnail).'",1);\' src="'.trim($thumbnail).'" width="62" /></a>';
-					$this_car .= $photo_array;
+					if ($cnt > 1) {
+						$car_js .= 'carImg['.$cnt.']="'.trim($thumbnail).'";'.chr(13);
+						$photo_array = '<a href="#mainpic"><img class="car_demon_thumbs" style="cursor:pointer"'.$popup_imgs.' onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($thumbnail).'",1);\' src="'.trim($thumbnail).'" width="62" /></a>';
+						$this_car .= $photo_array;
+					}
 					$cnt = $cnt + 1;
 				}
 			}

@@ -319,6 +319,7 @@ function car_demon_options() {
 	$default['sort_price'] = 'Yes';
 	$default['sort_miles'] = 'Yes';
 	$default['hide_tabs'] = 'No';
+	$default['popup_images'] = 'No';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -345,6 +346,7 @@ function car_demon_options() {
 	if (empty($car_demon_options['sort_price'])) {$car_demon_options['sort_price'] = $default['sort_price'];}
 	if (empty($car_demon_options['sort_miles'])) {$car_demon_options['sort_miles'] = $default['sort_miles'];}
 	if (empty($car_demon_options['hide_tabs'])) {$car_demon_options['hide_tabs'] = $default['hide_tabs'];}
+	if (empty($car_demon_options['popup_images'])) {$car_demon_options['popup_images'] = $default['popup_images'];}
 	return $car_demon_options;
 }
 
@@ -437,6 +439,12 @@ function car_demon_settings_options_do_page() {
 		echo '<br />'.__('Load Next Inventory Page on Scroll', 'car-demon').':<br />';
 		echo '<select name="dynamic_load">
 				<option value="'.$car_demon_options['dynamic_load'].'">'.$car_demon_options['dynamic_load'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />';
+		echo '<br />'.__('Use Popup Images', 'car-demon').':<br />';
+		echo '<select name="popup_images">
+				<option value="'.$car_demon_options['popup_images'].'">'.$car_demon_options['popup_images'].'</option>
 				<option value="Yes">'.__('Yes', 'car-demon').'</option>
 				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
@@ -555,6 +563,11 @@ function car_demon_settings_options_do_page() {
 			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Finanace Application Page', 'car-demon').'" />';
 		echo '</form>';
 		echo '<form method="POST" action="">';
+			echo '<input type="hidden" name="type" value="qualify" />';
+			echo '<input type="hidden" name="title" value="Pre-Qualify" />';
+			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Pre-Qualify Page', 'car-demon').'" />';
+		echo '</form>';
+		echo '<form method="POST" action="">';
 			echo '<input type="hidden" name="type" value="staff" />';
 			echo '<input type="hidden" name="title" value="Staff Page" />';
 			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Staff Page', 'car-demon').'" />';
@@ -568,6 +581,7 @@ function car_demon_settings_options_do_page() {
 		echo '[part_request]<br />';
 		echo '[trade]<br />';
 		echo '[finance_form]<br />';
+		echo '[qualify]<br />';
 		echo '[staff_page]<br />';
 	echo '</div></div>';
 }
@@ -605,6 +619,7 @@ function update_car_demon_settings() {
 	if (isset($_POST['sort_price'])) $new['sort_price'] = $_POST['sort_price'];
 	if (isset($_POST['sort_miles'])) $new['sort_miles'] = $_POST['sort_miles'];
 	if (isset($_POST['hide_tabs'])) $new['hide_tabs'] = $_POST['hide_tabs'];
+	if (isset($_POST['popup_images'])) $new['popup_images'] = $_POST['popup_images'];
 	update_option( 'car_demon_options', $new );
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }

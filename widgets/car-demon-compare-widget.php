@@ -38,7 +38,7 @@ class car_demon_compare_Widget extends WP_Widget {
 			}
 		}
 		if ($_SESSION['car_demon_options']['use_compare'] == 'Yes') {
-			echo '<div class="car_demon_compare_widget">';
+			echo '<div class="car_demon_compare_widget" id="car_demon_compare_widget">';
 				echo '
 				<div class="car_demon_compare_div" id="car_demon_compare_div">
 					<div class="car_demon_compare_box" id="car_demon_compare_box"">

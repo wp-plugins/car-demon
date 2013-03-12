@@ -28,11 +28,11 @@ function restrict_listings_by_sold() {
     global $typenow;
     global $wp_query;
     if ($typenow=='cars_for_sale') {
-		echo 'Sold <select name="sold" id="sold"><option value="">All</option><option value="no">No</option><option value="yes">Yes</option></select>';
-		echo '&nbsp;Location <select name="vehicle_location" id="vehicle_location"><option value="">All</option>
+		echo '<div class="cd_admin_filter"><div class="cd_admin_filter_label">Sold</div><div class="cd_admin_filter_field"><select name="sold" id="sold"><option value="">All</option><option value="no">No</option><option value="yes">Yes</option></select></div></div>';
+		echo '<div class="cd_admin_filter"><div class="cd_admin_filter_label">Location</div><div class="cd_admin_filter_field"><select name="vehicle_location" id="vehicle_location"><option value="">All</option>
 			'.select_admin_locations().'
-		</select>';
-		echo '&nbsp;Condition <select name="vehicle_condition" id="vehicle_condition"><option value="">All</option><option value="new">New</option><option value="preowned">Used</option></select>';
+		</select></div></div>';
+		echo '<div class="cd_admin_filter"><div class="cd_admin_filter_label">Condition</div><div class="cd_admin_filter_field"><select name="vehicle_condition" id="vehicle_condition"><option value="">All</option><option value="new">New</option><option value="preowned">Used</option></select></div></div>';
 	}
 }
 

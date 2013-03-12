@@ -49,7 +49,7 @@ function send_finance_email() {
 		$email_body = '<b>'.__('You have not setup a finance email in the admin area of your site.', 'car-demon').'</b><br />'.$request_body;
 	}
 	if (strtoupper(substr(PHP_OS,0,3)=='WIN')) {
-		$eol="\n";
+		$eol="\r\n";
 	} elseif (strtoupper(substr(PHP_OS,0,3)=='MAC')) {
 		$eol="\r";
 	} else {

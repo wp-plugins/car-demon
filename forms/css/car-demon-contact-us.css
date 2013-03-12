@@ -126,12 +126,20 @@ ol.cd-ol li {
 	}
 	
 	#contact_needed {
-		width:260px !important;
+		width:240px !important;
 		margin-left:10px !important;
 	}
 	
 	#contact_form select {
 		height:27px;
 		font-size:12px !important;
+	}
+	.contact-appointment fieldset {
+		width:260px !important;
+		margin-left: -35px;
+	}
+	.cd-sb {
+		width:240px !important;
+		margin-left: -35px !important;
 	}
 }

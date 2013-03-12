@@ -234,7 +234,9 @@ ol.cd-ol li {
 	text-align: left;
 	line-height: 1.3em;
 }
-
+.cd-sb {
+	width:240px !important;
+}
 /* Navigation Style
 -------------------------------------------------------------- */
 .navigation {

@@ -163,7 +163,7 @@ function car_demon_search_price($size) {
 		$currency_symbol_after = "";
 	}
 	$x = '<select id="search_dropdown_'.$size.'_price" name="search_dropdown_'.$size.'_price" class="search_dropdown_sm">';
-		$x .= '<option value="0">No '.$size.'</option>';
+		$x .= '<option value="0">'.__('No', 'car-demon').'&nbsp; '.$size.'</option>';
 		if ($price == '1000') {$select = ' selected';} else {$select = '';}
 			$x .= '<option value="1000"'.$select.'>'.$currency_symbol.'1,000'.$currency_symbol_after.'</option>';
 		if ($price == '10000') {$select = ' selected';} else {$select = '';}
