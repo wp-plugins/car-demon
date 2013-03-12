@@ -4,7 +4,7 @@ Plugin Name: Car Demon
 Plugin URI: http://www.CarDemons.com/
 Description:  Car Demon is a PlugIn designed for car dealers.
 Author: CarDemons
-Version: 1.2.2
+Version: 1.2.3
 Author URI: http://www.CarDemons.com/
 Text Domain: car-demon
 Domain Path: /languages/
@@ -42,6 +42,7 @@ include( 'forms/car-demon-part-request.php' );
 include( 'forms/car-demon-contact-us.php' );
 include( 'forms/car-demon-trade-form.php' );
 include( 'forms/car-demon-finance-form.php' );
+include( 'forms/car-demon-qualify-form.php' );
 include( 'vin-query/car-demon-vin-query.php' );
 include( 'vin-query/car-demon-vin-query-admin.php' );
 include( 'car-demon-header.php' );
@@ -205,6 +206,44 @@ function contact_us_shortcode_func( $atts ) {
 }
 add_shortcode( 'contact_us', 'contact_us_shortcode_func' );
 
+function car_demon_inventory_shortcode( $atts ) {
+	$x = '';
+	$car_demon_query = car_demon_query_archive();
+	query_posts($car_demon_query);
+	$total_results = $wp_query->found_posts;
+	echo car_demon_dynamic_load();
+	do_action( 'car_demon_before_main_content' );
+		echo $_SESSION['car_demon_options']['before_listings'];
+		echo car_demon_sorting('achive');
+		?>
+			<h4 class="results_found"><?php _e('Results Found','car-demon'); echo ': '.$total_results;?></h4>
+		<?php 
+		echo car_demon_nav('top', $car_demon_query);
+		/*======= Car Demon Loop ======================================================= */
+		global $wpdb;
+		$prefix = $wpdb->prefix;
+		// Filter out SOLD, map the correct template file, handle paging, etc.
+		$sql = 'SELECT ID from '.$prefix.'posts WHERE post_type="cars_for_sale" LIMIT 0,9';
+		$posts = $wpdb->get_results($sql);
+		if ($posts) {
+			foreach ($posts as $post) {
+				$post_id = $post->ID;
+				$html = apply_filters('car_demon_display_car_list_filter', car_demon_display_car_list($post_id), $post_id );
+				echo $html;
+			}
+		}
+		echo car_demon_nav('bottom', $car_demon_query);				
+	do_action( 'car_demon_after_main_content' );
+	return $x;
+}
+//add_shortcode( 'show_inventory', 'car_demon_inventory_shortcode' );
+
+function car_demon_display_car_list_filter_results($content, $post_id) {
+	$x = $content;
+	return $x;
+}
+add_filter( 'car_demon_display_car_list_filter', 'car_demon_display_car_list_filter_results', 1, 2);
+
 function parts_shortcode_func( $atts ) {
 	extract( shortcode_atts( array(
 		'location' => 'normal',
@@ -255,6 +294,18 @@ function finance_form_shortcode_func( $atts ) {
 	return $finance_form;
 }
 add_shortcode( 'finance_form', 'finance_form_shortcode_func' );
+
+function qualify_form_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+		'location' => 'normal',
+		'popup_id' => '',
+		'popup_button' => __('Qualify Me', 'car-demon')
+	), $atts ) );
+	$qualify_form = car_demon_qualify_form($location, $popup_id, $popup_button);
+	return $qualify_form;
+}
+add_shortcode( 'qualify', 'qualify_form_shortcode_func' );
+
 
 // End Shortcodes
 function car_demon_session() {
@@ -397,7 +448,7 @@ function get_car_from_stock( $selected_car ) {
 			if ($_COOKIE["sales_code"]) {
 				$car_link = $car_link .'?sales_code='.$_COOKIE["sales_code"];
 			}
-			$car_img = wp_get_attachment_thumb_url( get_post_thumbnail_id( $post_id ) );
+			$car_img = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 			$car_img = str_replace(chr(32), "%20", $car_img);
 			$car_pic = '<p align="center"><a href="'.$car_link.'" /><img width="400" src="'.$car_img.'" title="'.$car.'" /></a></p>';
 			$x = $post->meta_value .' '. $car .'<br />'.$car_pic;

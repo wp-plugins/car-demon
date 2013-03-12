@@ -4,13 +4,12 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots, auto dealer
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
 
 == Description ==
-
 
 The Car Demon PlugIn is full of features. It has a general contact form, service appointment form, service quote form, trade-in form, a fiance application and a vehicle information form all with AdfXml support.
 
@@ -213,8 +212,20 @@ For Example [part_request popup_id="1" popup_button="Request Parts"] this would 
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+= 1.2.3 =
+* Making sure all changes from 1.2.1 made it into the updates
+* Resolved issue with ADFxml not sending for all forms on IIS systems
+* Minor CSS tweaks
+* Updated Dutch Translation files from Ciprian Dracea.
+* Fixed issue with Email a Friend form causing it to fail on submission.
+* Added new shortcode [qualify] that creates a basic pre-qualification finance form. Has 3 optional arguements; location, popup_id, popup_button.
+* Fixed spelling error in British Translation file.
+* Added popup image option for single vehicle pages. If yes is selected then hovering over vehicle thumbnails will popup full size image.
+* Added Portuguese Translation files thanks to the efforts of Danilo Favero (danilofavero).
+* Restyled admin filter options for Cars for Sale, labels now line up properly.
+* Updated .po file with all the new fields to be translated.
 = 1.2.2 =
-* SVN ate version 1.2.1 - it did not digest well.
+* SVN ate version 1.2.1, it did not digest well.
 = 1.2.1 =
 * Added options to Car Demon Settings to manage vehicle sorting options.
 * Added British Translation file thanks to the efforts of Steven Coutts.
