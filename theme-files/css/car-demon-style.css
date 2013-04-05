@@ -633,6 +633,7 @@ Staff Pages
 }
 .staff_box {
 	width:100%;
+	float:left;
 }
 .staff_details {
 	float:left;

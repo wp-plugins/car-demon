@@ -5,6 +5,31 @@ if ($pagenow == 'profile.php' || $pagenow == 'user-edit.php') {
 	add_action('admin_print_styles', 'car_demon_profile_styles');
 }
 
+if ($pagenow == 'users.php') {
+//	add_action('manage_users_custom_column', 'cardemon_custom_user_column', 15, 3);
+//	add_filter('manage_users_columns', 'cardemon_user_column', 15, 1);
+}
+
+function cardemon_user_column( $defaults ) {
+    $defaults['mysite-usercolumn-company'] = __('Company', 'user-column');
+    $defaults['mysite-usercolumn-otherfield1'] = __('Other field 1', 'user-column');
+    $defaults['mysite-usercolumn-otherfield2'] = __('Other field 2', 'user-column');
+    return $defaults;
+}
+
+function cardemon_custom_user_column($value, $column_name, $id) {
+    if( $column_name == 'mysite-usercolumn-company' ) {
+        return get_the_author_meta( 'company', $id );
+    }
+    elseif( $column_name == 'mysite-usercolumn-otherfield1' ) {
+        return get_the_author_meta( 'otherfield1', $id );
+    }
+    elseif( $column_name == 'mysite-usercolumn-otherfield2' ) {
+        return get_the_author_meta( 'otherfield2', $id );
+    }
+}
+
+//=================
 function car_demon_profile_scripts() {
 	wp_enqueue_script('media-upload');
 	wp_enqueue_script('thickbox');

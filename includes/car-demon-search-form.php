@@ -1,4 +1,16 @@
 <?php
+function vehicle_search_box($button, $message) {
+	$url = get_option('siteurl');
+	$box = '<form action="'.$url.'" method="get" class="vehicle_search_box" id="vehicle_search_box" name="vehicle_search_box" />';
+		$box .= '<input type="hidden" name="s" value="cars" />';
+		$box .= '<input type="hidden" name="car" value="1" />';
+		$box .= '<span id="criteria_message">'.$message.'</span>';
+		$box .= '<input type="text" name="criteria" class="search_criteria" value="" />';
+		$box .= '<input type="submit" name="submit_search" id="submit_search" value="'.$button.'" class="search_btn advanced_btn criteria_btn">';
+	$box .= '</form>';
+	return $box;
+}
+
 function car_demon_search_form() {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
@@ -86,13 +98,18 @@ function car_demon_simple_search($size='l') {
 		$form_size = "search_car_box_frame_wide";
 		$logo = "search_header_logo_simple_wide";
 	}
+	if (isset($_GET['search_condition'])) {
+		$search_condition = $_GET['search_condition'];
+	} else {
+		$search_condition = '';
+	}
 ?>
 <div class="<?php echo $form_size; ?>">
 	<div id="car-demon-search-cars_sm" class="search_car_box_sm">
 <form action="<?php echo $url ?>" method="get" />
 <input type="hidden" name="s" value="cars" />
 <input type="hidden" name="car" value="1" />
-<input type="hidden" name="search_condition" value="<?php echo $_GET['search_condition'];?>" />
+<input type="hidden" name="search_condition" value="<?php echo $search_condition;?>" />
 		<div id="car-demon-searchr2c1" class="<?php echo $logo; ?>"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/search_cars.png" alt="Search Cars" title="Search Cars" />&nbsp;<?php _e('QUICK SEARCH','car-demon'); ?></div>
 		<div class="search_left">
 			<div id="car-demon-searchr3c1" class="search_manufacturer_title2"><?php _e('Year','car-demon'); ?>:</div>
@@ -108,6 +125,12 @@ function car_demon_simple_search($size='l') {
 		</div>
 		<div id="car-demon-searchr8c1" class="search_body"><?php _e('Body Type','car-demon'); ?>:<br /><?php echo car_demon_search_body(); ?></div>
 		<div id="car-demon-searchr8c2" class="search_button_box">
+<?php
+	echo '&nbsp;<span class="advanced_search_btn" onclick="document.getElementById(\'advanced_search\').style.display=\'inline\';" title="Advanced Search">+</span>';
+	echo '<div class="advanced_search" id="advanced_search">Stock #: <input class="search_dropdown_sm" type="text" name="stock" id="stock" size="6" />
+	&nbsp;<span class="advanced_search_btn_hide" onclick="document.getElementById(\'advanced_search\').style.display=\'none\';" title="Hide Advanced Search">-</span>
+	</div>';
+?>
 		  <input type="submit" name="submit_search" id="submit_search" value="<?php _e('Search','car-demon'); ?>" class="search_btn simple_btn">
 		</div>
 </form>

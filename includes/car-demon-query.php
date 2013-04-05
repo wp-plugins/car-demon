@@ -53,6 +53,13 @@ function car_demon_query_search() {
 				$meta_query = array_merge($meta_query, array(array('key' => '_price_value','value' => $min_price, 'compare' => '>', 'type' => 'numeric')));
 			}
 		}
+		// Search decode field
+		if (isset($_GET['criteria'])) {
+			if ($_GET['criteria']) {
+				$meta_query = array_merge($meta_query, array(array('key' => 'decode_string','value' => $_GET['criteria'], 'compare' => 'LIKE', 'type' => 'text')));
+			}
+		}
+		
 		$my_query = array(
 				'post_type' => 'cars_for_sale',
 				'is_paged' => true,
@@ -87,7 +94,7 @@ function car_demon_query_search() {
 				if ($_GET['search_dropdown_body']) {
 					$my_query = array_merge ($my_query, array('vehicle_body_style' => $_GET['search_dropdown_body']));
 				}
-			}
+			}			
 		return $my_query;
 	}
 }

@@ -163,6 +163,57 @@ function get_my_cloud($post_type, $taxonomy, $max_num) {
 	echo $my_tag_list;
 }
 
+function vehicle_cloud($taxonomy, $max_num, $max_font, $min_font) {
+	$post_type = 'cars_for_sale';
+	$my_tag_list = '';
+	$args = array(
+		'smallest'  => $min_font,
+		'largest'   => $max_font,
+		'unit'      => 'pt', 
+		'number'    => $max_num,  
+		'format'    => 'array',
+		'separator' => ' - ',
+		'orderby'   => 'name', 
+		'order'     => 'ASC',
+		'exclude'   => '', 
+		'include'   => '', 
+		'link'      => 'view', 
+		'taxonomy'  => $taxonomy,
+		'echo'      => true );
+	$my_tags = wp_tag_cloud( $args );
+	if ($my_tags) {
+		foreach($my_tags as $my_tag) {
+			$my_tag2 = $my_tag;
+			$my_tag = str_replace('title=','<title>',$my_tag);
+			$my_tag = str_replace('style=','<style>',$my_tag);
+			preg_match_all("~<title>([^<]*)<style>~",$my_tag,$bad_things);
+			$bad_thing = $bad_things[1][0];
+	
+			$my_tag2 = str_replace('</a>','[2]',$my_tag2);
+			$my_tag2 = str_replace('>','[1]',$my_tag2);
+			$my_tag2 = str_replace('<','',$my_tag2);
+			$my_tag2 = str_replace('[1]','<1>',$my_tag2);
+			$my_tag2 = str_replace('[2]','<2>',$my_tag2);
+			preg_match_all("~<1>([^<]*)<2>~",$my_tag2,$my_tag_names);
+			$my_tag_name = $my_tag_names[1][0];
+			$count_cars = car_demon_count_active_items($my_tag_name, $post_type, $taxonomy);
+			if (empty($count_cars)) {
+				$count_cars = car_demon_count_active_items($my_tag_name.'-2', $post_type, $taxonomy);
+			}
+			$my_tag = str_replace($bad_thing,'',$my_tag);
+			$my_tag = str_replace('<title>','',$my_tag);
+			$my_tag = str_replace('<style>','style=',$my_tag);
+			$my_tag = str_replace('<a ','<a title="We have '.$count_cars.' in stock now" ',$my_tag);
+			if (!empty($count_cars)) {
+				$my_tag_list .= $my_tag . ' - ';
+			}
+			$total_count = ' - '.$count_cars;
+		}
+	}
+	$my_tag_list = str_replace(' - ','<br />',$my_tag_list);
+	return $my_tag_list;
+}
+
 function car_demon_count_active_items($my_tag_name, $post_type, $taxonomy) {
 	global $wpdb;
 	$total_cars = 0;

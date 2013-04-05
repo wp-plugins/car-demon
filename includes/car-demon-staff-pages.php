@@ -65,7 +65,7 @@ function car_demon_get_user_cards($location, $type) {
 	if ($users) {
 		foreach ($users as $user) {
 			$user_id = $user->ID;
-			$x .= build_user_hcard($user_id);
+			$x .= build_user_hcard($user_id, 0, 1);
 		}
 	}
 	return $x;
@@ -100,7 +100,7 @@ function get_location_array() {
 	return $location_list_array;
 }
 
-function build_user_hcard($user_id, $about = 0) {
+function build_user_hcard($user_id, $about = 0, $contact_form = 1) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/includes', '', $car_demon_pluginpath);
 	$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
@@ -136,24 +136,30 @@ function build_user_hcard($user_id, $about = 0) {
 	} else {
 		$photo_class = "staff_mobile_img";
 	}
-	$x .= '<img src="'.$custom_photo.'" alt="photo of '.$user_full_name.'" class="photo'.$photo_class.'" />';
+	$x .= '<a href="'.$custom_url.'"><img src="'.$custom_photo.'" alt="photo of '.$user_full_name.'" class="photo'.$photo_class.'" /></a>';
 		$x .='<span class="fn n">';
 			$x .='<span class="given-name">'.$user_f_name.'</span>';
 			$x .='<span class="family-name">'.$user_l_name.'</span>';
 		$x .='</span>';
 		$x .='<div class="job_title">'.$job_title.'</div>';
 		$x .='<div class="org">'.$user_location.'</div>';
-		$x .='<a class="email" href="mailto:'.$user_email.'">'.$user_email.'</a>';
+		if ($contact_form == 0) {
+			$x .='<a class="email" href="mailto:'.$user_email.'">'.$user_email.'</a>';		
+		} else {
+			$popup_id = 'sales_form_'.$user_id;
+			$popup_button = 'Email '. $user_f_name .' now!';
+			$x .= car_demon_contact_request($user_email, $popup_id, $popup_button);
 
+		}
 		$x .='<div class="tel">'.$user_phone.'</div>';
-		if (!empty($facebook)) { $x .='<a class="url" href="'.$facebook.'">Facebook</a>'; }
+		if (!empty($facebook)) { $x .='<a class="url" target="fb_win" href="'.$facebook.'">Find on Facebook</a>'; }
 		if (!empty($user_description)) {
 			if (strlen($user_description) < 100) {
 				$x .='<div class="user_description">'.$user_description.'</div>';
-			}
-			else {
+			} else {
 				$x .='<div class="user_description">';
 					if ($about == 0) {
+						$user_description = strip_tags($user_description);
 						$x .= substr($user_description, 0, 100) . '<span class="staff_more" title="'.$user_description.'"> ...more</span>';
 						$x .= '<span class="staff_mobile_description">'.$user_description.'</span>';
 					}

@@ -20,16 +20,16 @@ function car_demon_calculator_form($price, $apr, $term, $disclaimer1, $disclaime
 		  <table align="center" class="calc_table">
 		<tr> 
 		  <td><?php _e('Estimated Price','car-demon'); ?>:</td>
-		  <td>$ <input class="calc_box" name="pv" type="text" size="5" maxlength="5" value="<?php echo $price;?>" />
+		  <td>$ <input class="calc_box" name="pv" type="text" size="5" maxlength="10" value="<?php echo $price;?>" />
 		  </font></td>
 		</tr>
 		<tr> 
 		  <td><?php _e('Annual Percentage Rate','car-demon'); ?>:</td>
-		  <td><input class="calc_box" name="rate" type="text" size="2" maxlength="2" value="<?php echo $apr; ?>" />%
+		  <td><input class="calc_box" name="rate" type="text" size="2" maxlength="6" value="<?php echo $apr; ?>" />%
 				</td></tr>
 		<tr> 
 		  <td><?php _e('Total Number of Payments','car-demon'); ?>:</td>
-		  <td><input class="calc_box" type="text" size="2" maxlength="2" name="numPmtYr" value="<?php echo $term; ?>" />
+		  <td><input class="calc_box" type="text" size="2" maxlength="4" name="numPmtYr" value="<?php echo $term; ?>" />
 			<input type="hidden" size="2" maxlength="2" name="numYr" value="5" />
 			</td></tr>
 	  </table>

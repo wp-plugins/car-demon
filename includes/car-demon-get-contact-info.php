@@ -34,8 +34,19 @@ function get_car_contact($post_id) {
 			$user_sales_type = get_the_author_meta('lead_used_cars', $user_id);
 		}
 		if ($user_sales_type == 1) {
+			$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
+		} else {
+			$user_location = '';
+		}
+		if ($user_location == $current_location) {
 			$car_contact['sales_name'] = $user_info->display_name;
 			$car_contact['sales_email'] = $user_info->user_email;
+			$car_contact['custom_photo'] = esc_attr( get_the_author_meta( 'profile_photo', $user_id ) );
+			if (empty($custom_photo)) {
+				$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+				$car_demon_pluginpath = str_replace('/includes', '', $car_demon_pluginpath);
+				$custom_photo = $car_demon_pluginpath.'images/person.gif';
+			}
 			if (!empty($user_phone)) {
 				$car_contact['sales_phone'] = $user_phone;
 			}
