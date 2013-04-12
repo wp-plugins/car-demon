@@ -4,7 +4,7 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots, auto dealer
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
@@ -212,6 +212,15 @@ For Example [part_request popup_id="1" popup_button="Request Parts"] this would 
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+= 1.2.4 =
+* Added link to user's custom landing page when using staff page shortcode.
+* Tweaked the simple wide search from to include an option to search by stock number.
+* Added custom photo to car contact array.
+* Added shortcode 'highlight_staff', can be dropped into a page to display profile for specific sales person
+* Added shortcode 'vehicle_cloud' to allow in page listing of inventory links, defaults to a list of body styles.
+* Added shortcode 'vehicle_search_box', creates a small vehicle keyword search box. Uses arguements 'button' for the button text and 'message' to display a custom message above the search box.
+* Increased maximum field length in calculator.
+* Minor style updates.
 = 1.2.3 =
 * Making sure all changes from 1.2.1 made it into the updates
 * Resolved issue with ADFxml not sending for all forms on IIS systems

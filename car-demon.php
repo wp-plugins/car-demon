@@ -4,7 +4,7 @@ Plugin Name: Car Demon
 Plugin URI: http://www.CarDemons.com/
 Description:  Car Demon is a PlugIn designed for car dealers.
 Author: CarDemons
-Version: 1.2.3
+Version: 1.2.4
 Author URI: http://www.CarDemons.com/
 Text Domain: car-demon
 Domain Path: /languages/
@@ -306,6 +306,48 @@ function qualify_form_shortcode_func( $atts ) {
 }
 add_shortcode( 'qualify', 'qualify_form_shortcode_func' );
 
+function highlight_staff_shortcode_func( $atts ) {
+	if (isset($_COOKIE["sales_code"])) {
+		$staff_id = $_COOKIE["sales_code"];
+	} else {
+		$staff_id = '';
+	}
+	extract( shortcode_atts( array(
+		'staff_id' => $staff_id,
+		'contact_id' => '',
+		'contact_button' => __('Contact Me', 'car-demon')
+	), $atts ) );
+	if (!empty($staff_id)) {
+		$highlight_staff = build_user_hcard($staff_id, 1, 1);
+		$highlight_staff = '<div class="highlight_staff">'.$highlight_staff.'</div>';
+	} else {
+		$highlight_staff = '';
+	}
+	return $highlight_staff;
+}
+add_shortcode( 'highlight_staff', 'highlight_staff_shortcode_func' );
+
+function vehicle_cloud_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+		'taxonomy' => 'vehicle_body_style',
+		'max_num' => '',
+		'max_font' => '14',
+		'min_font' => '14'
+	), $atts ) );
+	$vehicle_cloud = vehicle_cloud($taxonomy, $max_num, $max_font, $min_font);
+	return $vehicle_cloud;
+}
+add_shortcode( 'vehicle_cloud', 'vehicle_cloud_shortcode_func' );
+
+function vehicle_search_box_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+		'button' => 'Search Inventory',
+		'message' => ''
+	), $atts ) );
+	$vehicle_cloud = vehicle_search_box($button, $message);
+	return $vehicle_cloud;
+}
+add_shortcode( 'vehicle_search_box', 'vehicle_search_box_shortcode_func' );
 
 // End Shortcodes
 function car_demon_session() {
