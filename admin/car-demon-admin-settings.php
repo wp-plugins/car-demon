@@ -320,6 +320,7 @@ function car_demon_options() {
 	$default['sort_miles'] = 'Yes';
 	$default['hide_tabs'] = 'No';
 	$default['popup_images'] = 'No';
+	$default['custom_options'] = '';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -347,6 +348,7 @@ function car_demon_options() {
 	if (empty($car_demon_options['sort_miles'])) {$car_demon_options['sort_miles'] = $default['sort_miles'];}
 	if (empty($car_demon_options['hide_tabs'])) {$car_demon_options['hide_tabs'] = $default['hide_tabs'];}
 	if (empty($car_demon_options['popup_images'])) {$car_demon_options['popup_images'] = $default['popup_images'];}
+	if (empty($car_demon_options['custom_options'])) {$car_demon_options['custom_options'] = $default['custom_options'];}
 	return $car_demon_options;
 }
 
@@ -465,7 +467,11 @@ function car_demon_settings_options_do_page() {
 				<option value="'.$car_demon_options['sort_miles'].'">'.$car_demon_options['sort_miles'].'</option>
 				<option value="Yes">'.__('Yes', 'car-demon').'</option>
 				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><hr />';		
+			</select><hr />';
+		echo '<br />'.__('Custom Vehicle Options', 'car-demon').':<br />';
+		echo '<textarea name="custom_options" cols="60" rows="6">'.$car_demon_options['custom_options'].' </textarea><br />';
+		echo __('Separate options with a comma. The option you enter here will appear on the vehicle edit page under "Custom Options"','car-demon');
+		echo '<hr />';
 		echo '<br />'.__('Use included theme files?', 'car-demon').':<br />';
 		echo '<select name="use_theme_files">
 				<option value="'.$car_demon_options['use_theme_files'].'">'.$car_demon_options['use_theme_files'].'</option>
@@ -588,7 +594,7 @@ function car_demon_settings_options_do_page() {
 
 function update_car_demon_settings() {
 	$new = array();
-	$new = get_option( 'car_demon_options', $default );
+	$new = get_option( 'car_demon_options' );
 	if (isset($_POST['currency_symbol'])) $new['currency_symbol'] = $_POST['currency_symbol'];
 	if (isset($_POST['currency_symbol_after'])) $new['currency_symbol_after'] = $_POST['currency_symbol_after'];
 	if (isset($_POST['vinquery_id'])) $new['vinquery_id'] = $_POST['vinquery_id'];
@@ -620,6 +626,7 @@ function update_car_demon_settings() {
 	if (isset($_POST['sort_miles'])) $new['sort_miles'] = $_POST['sort_miles'];
 	if (isset($_POST['hide_tabs'])) $new['hide_tabs'] = $_POST['hide_tabs'];
 	if (isset($_POST['popup_images'])) $new['popup_images'] = $_POST['popup_images'];
+	if (isset($_POST['custom_options'])) $new['custom_options'] = $_POST['custom_options'];
 	update_option( 'car_demon_options', $new );
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }

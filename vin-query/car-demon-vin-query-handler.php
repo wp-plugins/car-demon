@@ -101,6 +101,8 @@ if (isset($_GET['decode'])) {
 			update_post_meta($post_id, '_interior_color_value', $_POST['val']);
 		} elseif ($fld == 'mileage') {
 			update_post_meta($post_id, '_mileage_value', $_POST['val']);
+		} elseif ($fld == 'vehicle_options') {
+			update_post_meta($post_id, '_vehicle_options', $_POST['val']);
 		}
 	}
 	if ($_GET['decode'] == 'remove') {

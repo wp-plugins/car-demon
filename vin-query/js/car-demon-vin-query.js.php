@@ -21,7 +21,9 @@ else {
 $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 $rootpath = str_replace('wp-content/plugins/car-demon/vin-query/js','wp-admin/images/',$car_demon_pluginpath);
 $car_demon_pluginpath = str_replace('vin-query/js','',$car_demon_pluginpath);
-$post_id = $_GET['post'];
+if (isset($_GET['post'])) {
+	$post_id = $_GET['post'];
+}
 ?>
 // JavaScript Document
 function remove_decode(post_id) {

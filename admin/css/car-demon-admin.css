@@ -83,3 +83,29 @@
 .cd_admin_filter_field {
 	float: left;
 }
+.custom_option_container {
+	width: 662px;
+}
+.custom_option_directions {
+	width: 562px;
+}
+.cd_select_custom_options {
+	width: 150px;
+	height: 130px !important;
+}
+.btn_move_right {
+	width: 150px;
+	height: 26px;
+}
+.cd_custom_options_box {
+	width: 400px;
+	height: 150px;
+}
+.cd_select_custom_options_container {
+	float: left;
+	padding: 3px;
+}
+.cd_custom_options_box_container {
+	float: left;
+	padding: 3px;
+}

@@ -35,7 +35,7 @@ function cd_save_car($post_id) {
 
 function car_demon_get_current_post_type() {
 	global $post, $typenow, $current_screen;
-	if( $post && $post->post_type )
+	if ( $post && $post->post_type )
 		$post_type = $post->post_type;
 	elseif( $typenow )
 		$post_type = $typenow;
@@ -43,8 +43,10 @@ function car_demon_get_current_post_type() {
 		$post_type = $current_screen->post_type;
 	elseif( isset( $_REQUEST['post_type'] ) )
 		$post_type = sanitize_key( $_REQUEST['post_type'] );
-	else
+	elseif ( isset($_GET['post']) )
 		$post_type = get_post_type($_GET['post']);
+	else
+		$post_type = 'post';
 	return $post_type;
 }
 
@@ -127,8 +129,56 @@ function cardemons_automotive_inventory_decode($post_id) {
 function start_decode_box() {
 	global $theme_name;
 	add_meta_box('decode-div', 'Vehicle Options', 'decode_metabox', 'cars_for_sale', 'normal', 'high');
+	add_meta_box('decode-custom', 'Custom Options', 'decode_custom_metabox', 'cars_for_sale', 'normal', 'high');
 	add_meta_box('decode-status', 'Sales Status', 'decode_sales_metabox', 'cars_for_sale', 'side', 'high');
 	add_meta_box('decode-ribbon', 'Photo Ribbon', 'decode_photo_ribbon', 'cars_for_sale', 'side', 'default');
+}
+
+function decode_custom_metabox($post) {
+	$content = '';
+	$vehicle_options = '<div style="overflow:hidden;">';
+	$post_id = $post->ID;
+	$vehicle_options_list = get_post_meta($post_id, '_vehicle_options', true);
+	$custom_option_list = $_SESSION['car_demon_options']['custom_options'];
+	$custom_option_list_array = split(',', $custom_option_list);
+	$select_custom_options = '';
+	foreach ($custom_option_list_array as $custom_item) {
+		$select_custom_options .= '<option value="'.$custom_item.'">'.$custom_item.'</option>';
+	}
+	$vehicle_options .= '<div class="custom_option_container">
+			<h3>
+			Add custom vehicle options here
+			</h3>
+			<div class="cd_select_custom_options_container" id="cd_select_custom_options_container">
+				'.__('Available', 'car-demon').'<br />
+				<select size="5" id="ListBox1" class="cd_select_custom_options" id="cd_select_custom_options">'.$select_custom_options.'</select>
+				<br /><input type = "button" id = "btnMoveRight" class="btn_move_right" value="'.__('Add To Vehicle', 'car-demon').' ->" onclick = "fnMoveItems(\'ListBox1\',\'vehicle_options\');update_admin_decode(document.getElementById(\'vehicle_options\'), '.$post_id.')">
+			</div>
+			<div class="cd_custom_options_box_container" id="cd_custom_options_box_container">
+				'.__('Current Options', 'car-demon').'<br />
+				<textarea cols="60" class="cd_custom_options_box" id="vehicle_options" name="vehicle_options" onchange="update_admin_decode(this, '.$post_id.')">'.$vehicle_options_list.'</textarea>
+			</div>
+			<div class="custom_option_directions" id="custom_option_directions">
+			'.__('You can select from the list or you can manually add and remove options in the box on the left. Make sure you seperate each option with a comma.', 'car-demon').'
+			</div>
+		</div>';
+	$vehicle_options_array = split(',',$vehicle_options_list);
+	$options_image = '<img src="'.WP_CONTENT_URL . '/plugins/car-demon/theme-files/images/opt_standard.gif" />';
+	$include_options = 0;
+	foreach ($vehicle_options_array as $vehicle_option) {
+		if (!empty($vehicle_option)) {
+			$include_options = 1;
+			$vehicle_options .= '<div style="float:left;width:260px;">';
+				$vehicle_options .= $options_image .'&nbsp;'. $vehicle_option.'<br />';
+			$vehicle_options .= '</div>';
+		}
+	}
+	$vehicle_options .= '</div>';
+	if ($include_options == 1) {
+		$content .= $vehicle_options;
+	}
+	echo $content;
+	return;
 }
 
 function decode_photo_ribbon($post) {

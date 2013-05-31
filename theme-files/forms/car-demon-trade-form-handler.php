@@ -429,21 +429,39 @@ function adfxml_trade($location, $rep_name, $rep_email) {
 	//== Vehicle
 	$interest = 'buy';
 	$selected_car = $_POST['selected_car'];
-	$car_id = get_car_id_from_stock($selected_car);
-	$condition = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_condition', '','', '', '' )),0);
-	$year = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_year', '','', '', '' )),0);
-	$make = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_make', '','', '', '' )),0);
-	$model = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_model', '','', '', '' )),0);
-	$vin = rwh(get_post_meta($car_id, "_vin_value", true),0);
-	$stock_num = $selected_car;
-	$trim = get_post_meta($car_id, "_trim_value", true);
-	$doors = get_post_meta($car_id, "_doors_value", true);
-	$body_style = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_body_style', '','', '', '' )),0);
-	$transmission = get_post_meta($car_id, "_transmission_value", true);
-	$mileage = get_post_meta($car_id, "_mileage_value", true);
-	$interior_color = get_post_meta($car_id, "_interior_color_value", true);
-	$exterior_color = get_post_meta($car_id, "_exterior_color_value", true);
-	$vehicle_price = get_post_meta($car_id, "_price_value", true);
+	if (!empty($selected_car)) {
+		$car_id = get_car_id_from_stock($selected_car);
+		$condition = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_condition', '','', '', '' )),0);
+		$year = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_year', '','', '', '' )),0);
+		$make = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_make', '','', '', '' )),0);
+		$model = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_model', '','', '', '' )),0);
+		$vin = rwh(get_post_meta($car_id, "_vin_value", true),0);
+		$stock_num = $selected_car;
+		$trim = get_post_meta($car_id, "_trim_value", true);
+		$doors = get_post_meta($car_id, "_doors_value", true);
+		$body_style = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_body_style', '','', '', '' )),0);
+		$transmission = get_post_meta($car_id, "_transmission_value", true);
+		$mileage = get_post_meta($car_id, "_mileage_value", true);
+		$interior_color = get_post_meta($car_id, "_interior_color_value", true);
+		$exterior_color = get_post_meta($car_id, "_exterior_color_value", true);
+		$vehicle_price = get_post_meta($car_id, "_price_value", true);
+	} else {
+		$car_id = '';
+		$condition = '';
+		$year = '';
+		$make = '';
+		$model = '';
+		$vin = '';
+		$stock_num = '';
+		$trim = '';
+		$doors = '';
+		$body_style = '';
+		$transmission = '';
+		$mileage = '';
+		$interior_color = '';
+		$exterior_color = '';
+		$vehicle_price = '';
+	}
 	//== Contact
 	$full_name = $_POST['your_name'];
 	$contact_email = $_POST['email'];

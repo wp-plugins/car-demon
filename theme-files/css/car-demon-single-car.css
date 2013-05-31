@@ -95,6 +95,7 @@ ul.tabs li a.active {
     padding:10px;  
     border:1px solid #464c54;
 	min-height: 150px;
+	overflow: hidden;
 }
 .car_features_content_about {
 	display:none;

@@ -10,8 +10,7 @@ if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/forms', '', $newPath);
 	include_once($newPath."/wp-load.php");
 	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
+} else {
 	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\forms', '', $newPath);
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
@@ -67,8 +66,7 @@ if (isset($_GET['send_contact'])) {
 			$xml_body .= "Content-Transfer-Encoding: 7bit".$eol.$eol;
 			$xml_body .= adfxml_contact_us();
 			$email_body = $email_body.$xml_body.$eol;
-		}
-		else {
+		} else {
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 		}
 		mail($to, $subject, $email_body, $headers);
