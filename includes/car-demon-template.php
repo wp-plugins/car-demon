@@ -42,7 +42,7 @@ function get_car_title($post_id) {
 		$car_title = $vehicle_year . ' ' . $vehicle_make . ' '. $vehicle_model;
 	}
 	$car_title = trim($car_title);
-	$car_title = substr($car_title, 0, 19);
+//	$car_title = substr($car_title, 0, 19);
 	return $car_title;
 }
 
@@ -165,6 +165,21 @@ function car_demon_vehicle_detail_tabs($post_id) {
 			$content = get_default_description();
 		}
 	}
+	$vehicle_options_list = get_post_meta($post_id, '_vehicle_options', true);
+	$vehicle_options_array = split(',',$vehicle_options_list);
+	$options_image = '<img class="custom_option_img" src="'.WP_CONTENT_URL . '/plugins/car-demon/theme-files/images/opt_standard.gif" />';
+	$include_options = 0;
+	foreach ($vehicle_options_array as $vehicle_option) {
+		if (!empty($vehicle_option)) {
+			$include_options = 1;
+			$vehicle_options .= '<div style="float:left;width:260px;">';
+				$vehicle_options .= $options_image .'&nbsp;'. $vehicle_option.'<br />';
+			$vehicle_options .= '</div>';
+		}
+	}
+	if ($include_options == 1) {
+		$content .= $vehicle_options;
+	}
 	if ($_SESSION['car_demon_options']['use_about'] == 'Yes') {
 		$about = 1;
 		$tab_cnt = $tab_cnt + 1;
@@ -274,17 +289,21 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 	$car_demon_pluginpath = str_replace('includes','theme-files',$car_demon_pluginpath);
 	$my_tag_id = get_term_by('slug', $body_style, 'vehicle_body_style');
 	if (!empty($body_style)) {
-		$my_search = " AND $wpdb->term_taxonomy.taxonomy = 'vehicle_body_style' AND $wpdb->term_taxonomy.term_id IN(".$my_tag_id->term_id.")";
-		$str_sql = "SELECT wposts.ID
-			FROM $wpdb->posts wposts
-				LEFT JOIN $wpdb->postmeta wpostmeta ON wposts.ID = wpostmeta.post_id 
-				LEFT JOIN $wpdb->term_relationships ON (wposts.ID = $wpdb->term_relationships.object_id)
-				LEFT JOIN $wpdb->term_taxonomy ON ($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
-			WHERE wposts.post_type='cars_for_sale'
-				AND wpostmeta.meta_key = 'sold'
-				AND wpostmeta.meta_value = 'no'".$my_search.'
-				ORDER BY ID LIMIT 4';
-		$the_lists = $wpdb->get_results($str_sql);
+		if (!empty($my_tag_id)) {
+			$my_search = " AND $wpdb->term_taxonomy.taxonomy = 'vehicle_body_style' AND $wpdb->term_taxonomy.term_id IN(".$my_tag_id->term_id.")";
+			$str_sql = "SELECT wposts.ID
+				FROM $wpdb->posts wposts
+					LEFT JOIN $wpdb->postmeta wpostmeta ON wposts.ID = wpostmeta.post_id 
+					LEFT JOIN $wpdb->term_relationships ON (wposts.ID = $wpdb->term_relationships.object_id)
+					LEFT JOIN $wpdb->term_taxonomy ON ($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
+				WHERE wposts.post_type='cars_for_sale'
+					AND wpostmeta.meta_key = 'sold'
+					AND wpostmeta.meta_value = 'no'".$my_search.'
+					ORDER BY ID LIMIT 4';
+			$the_lists = $wpdb->get_results($str_sql);
+		} else {
+			$the_lists = '';		
+		}
 	} else {
 		$the_lists = '';
 	}
