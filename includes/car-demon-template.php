@@ -16,7 +16,6 @@ function car_demon_get_vehicle_sidebar() {
 	echo '</div>';
 }
 
-
 add_action('car_demon_before_main_content', 'car_demon_output_content_wrapper', 10);
 function car_demon_output_content_wrapper() {
 	echo '<div id="demon-container">';
@@ -426,7 +425,7 @@ function car_photos($post_id, $details, $vehicle_condition) {
 			$this_car .= '</div>';
 		$this_car .= '</div>';
 		// Thumbnails
-		$thumbnails = get_children( array('post_parent' => $post_id, 'post_type' => 'attachment', 'post_mime_type' =>'image') );
+		$thumbnails = get_children( array('post_parent' => $post_id, 'post_type' => 'attachment', 'post_mime_type' =>'image', 'orderby' => 'menu_order ID') );
 		$this_car .= '<div class="nohor" id="car_demon_thumbs">';
 		$cnt = 0;
 		$car_js .= 'carImg['.$cnt.']="'.trim($main_guid).'";'.chr(13);
