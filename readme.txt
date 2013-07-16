@@ -15,7 +15,7 @@ The Car Demon PlugIn is full of features. It has a general contact form, service
 
 It also contains a powerful inventory management tool with optional VinQuery Integration. It has a custom front page slider, custom header and custom theme colors. You also have an optional compare vehicles tool, multiple location support and a whole lot more.
 
-Customize The Site for Each Salesman!!!
+Customize The Site for Each Salesman!!! 
 
 Each sales person can have their own affiliate links to customize the site with their information. Contact information and forms can be routed directly to them. They can also have their own custom banner and even a customized slide on the homepage.
 
