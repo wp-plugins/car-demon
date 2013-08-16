@@ -3,8 +3,7 @@ header('Content-type: text/javascript');
 $newPath = dirname(__FILE__);
 if (!stristr(PHP_OS, 'WIN')) {
 	$is_it_iis = 'Apache';
-}
-else {
+} else {
 	$is_it_iis = 'Win';
 }
 
@@ -12,8 +11,7 @@ if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/includes/js', '', $newPath);
 	include_once($newPath."/wp-load.php");
 	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
+} else {
 	$newPath = str_replace('wp-content\plugins\car-demon\includes\js', '', $newPath);
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");

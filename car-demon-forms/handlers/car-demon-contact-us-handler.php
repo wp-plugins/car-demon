@@ -1,26 +1,9 @@
 <?php
-$newPath = dirname(__FILE__);
-if (!stristr(PHP_OS, 'WIN')) {
-	$is_it_iis = 'Apache';
-}
-else {
-	$is_it_iis = 'Win';
-}
-if ($is_it_iis == 'Apache') {
-	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/forms', '', $newPath);
-	include_once($newPath."/wp-load.php");
-	include_once($newPath."/wp-includes/wp-db.php");
-} else {
-	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\forms', '', $newPath);
-	include_once($newPath."\wp-load.php");
-	include_once($newPath."\wp-includes/wp-db.php");
-}
-if (isset($_GET['send_contact'])) {
-	require($newPath.'wp-content/plugins/car-demon/forms/car-demon-form-key-class.php');
-	$cd_formKey = new cd_formKey();
-	if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
-		//Form key is invalid, show an error  
+function cd_contact_us_handler() {
+	if ( !wp_verify_nonce( $_REQUEST['nonce'], "cd_contact_us_nonce")) {
 		echo 'Form key error! Submission could not be validated.';  
+		exit("No naughty business please");
+		//Form key is invalid, show an error  
 	} else {
 		$request_body = send_contact_request();
 		$contact_email = $_POST['send_to'];
@@ -56,7 +39,7 @@ if (isset($_GET['send_contact'])) {
 		if (isset($_SESSION['car_demon_options']['adfxml']) == 'Yes') {
 			$semi_rand = md5(time());
 			$mime_boundary = "==MULTIPART_BOUNDARY_".$semi_rand;
-			$headers .= 'Content-Type: multipart/alternative; boundary="'.$mime_boundary.'"'.$eol;
+			$headers .= 'Content-Type: multipart/mixed; boundary="'.$mime_boundary.'"'.$eol;
 			$text_body = '--'.$mime_boundary.$eol;
 			$text_body .= 'Content-Type: text/html; charset=ISO-8859-1'.$eol;
 			$text_body .= 'Content-Transfer-Encoding: 7bit'.$eol.$eol;
@@ -80,6 +63,7 @@ if (isset($_GET['send_contact'])) {
 		$thanks .= '<h4>'.__('If you have questions or concerns please call and let us know.', 'car-demon').'</h4>';
 		echo $thanks.'<br />'.$request_body;
 	}
+	exit();
 }
 
 function send_contact_request() {
@@ -92,7 +76,7 @@ function send_contact_request() {
 	$agent = $_SERVER['HTTP_USER_AGENT'];
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
-	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
+	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $blogtime );
 	$right_now .= ' '.$hour.':'.$minute.':'.$second;
 	$style = " style='margin-top: 10px; padding: 5px 0 15px 0; border: 3px solid #ADADAD; border-left-color: #ECECEC; border-top-color: #ECECEC; background: #F7F7F7;'";
 	$html = '
@@ -165,15 +149,18 @@ function send_contact_request() {
 function adfxml_contact_us() {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
-	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
+	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $blogtime );
 	$lead_date = $today_year .'-'. $today_month .'-'. $today_day .'T'.$hour.':'.$minute.':'.$second;
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];
 	$contact_needed = $_POST['contact_needed'];
 	$vendor = get_bloginfo('name');
-	$x = '<'.'?ADF VERSION "1.0"?'.'>
-		  <'.'?XML VERSION "1.0"?'.'>';
+	$blog_name = get_bloginfo('name');
+	$blog_url = site_url();
+	$blog_email = get_bloginfo('admin_email');
+	$x = '<'.'?xml version="1.0" ?'.'>
+		<'.'?adf version="1.0" ?'.'>';
 	$x .= '
 		<adf>
 			<prospect>
@@ -195,6 +182,11 @@ function adfxml_contact_us() {
 						<name part="full">'.$vendor.'</name>
 					</contact>
 				</vendor>
+				<provider>
+					<name part="full">'.$blog_name.' '.__('Contact Form', 'car-demon').'</name>
+					<url>'.$blog_url.'</url>
+					<email>'.$blog_email.'</email>
+				</provider>
 			</prospect>
 		</adf>
 	';

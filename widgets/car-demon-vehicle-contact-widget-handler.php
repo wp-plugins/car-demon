@@ -1,23 +1,6 @@
 <?php
-$newPath = dirname(__FILE__);
-if (!stristr(PHP_OS, 'WIN')) {
-	$is_it_iis = 'Apache';
-}
-else {
-	$is_it_iis = 'Win';
-}
-if ($is_it_iis == 'Apache') {
-	$newPath = str_replace('wp-content/plugins/car-demon/widgets', '', $newPath);
-	include_once($newPath."/wp-load.php");
-	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
-	$newPath = str_replace('wp-content\plugins\car-demon\widgets', '', $newPath);
-	include_once($newPath."\wp-load.php");
-	include_once($newPath."\wp-includes/wp-db.php");
-}
-if ($_GET['send_contact']) {
-	$request_body = send_contact_request();
+function cd_contact_us_widget_handler() {
+	$request_body = send_contact_widget_request();
 	if (isset($_POST['contact_location'])) {
 		$contact_location = $_POST['contact_location'];
 	}
@@ -28,8 +11,7 @@ if ($_GET['send_contact']) {
 		$location_approved = 0;
 		if ($contact_location == $user_location) {
 			$location_approved = 1;
-		}
-		else {
+		} else {
 			$location_approved = esc_attr( get_the_author_meta( 'lead_locations', $user_id ) );
 		}
 		if ($location_approved == 1) {
@@ -39,8 +21,7 @@ if ($_GET['send_contact']) {
 			$user_sales_type = 0;
 			if ($condition == 'New') {
 				$user_sales_type = get_the_author_meta('lead_new_cars', $user_id);	
-			}
-			else {
+			} else {
 				$user_sales_type = get_the_author_meta('lead_used_cars', $user_id);		
 			}
 			if ($user_sales_type == "1") {
@@ -80,7 +61,7 @@ if ($_GET['send_contact']) {
 	if (($_SESSION['car_demon_options']['adfxml']) == 'Yes') {
 		$semi_rand = md5(time());
 		$mime_boundary = "==MULTIPART_BOUNDARY_".$semi_rand;
-		$headers .= 'Content-Type: multipart/alternative; boundary="'.$mime_boundary.'"'.$eol;
+		$headers .= 'Content-Type: multipart/mixed; boundary="'.$mime_boundary.'"'.$eol;
 		$text_body = '--'.$mime_boundary.$eol;
 		$text_body .= 'Content-Type: text/html; charset=ISO-8859-1'.$eol;
 		$text_body .= 'Content-Transfer-Encoding: 7bit'.$eol.$eol;
@@ -125,9 +106,10 @@ if ($_GET['send_contact']) {
 	$thanks .= '<h3>'.__('You should receive a confirmation from us shortly.','car-demon').'</h3>';
 	$thanks .= '<h4>'.__('If you have questions or concerns please call and let us know.','car-demon').'</h4>';
 	echo $thanks.'<br />';
+	exit();
 }
 
-function send_contact_request() {
+function send_contact_widget_request() {
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];
@@ -290,14 +272,15 @@ function adfxml_vehicle_contact($location, $rep_name, $to) {
 	$vendor = get_bloginfo('name');
 	//== Vehicle
 	$interest = 'buy';
+	$location = $_POST['vehicle_location'];
+	$vin = $_POST['vehicle_vin'];
+	$stock_num = $_POST['vehicle_stock_number'];
+	$condition = $_POST['vehicle_condition'];
+	$year = $_POST['vehicle_year'];
+	$make = $_POST['vehicle_make'];
+	$model = $_POST['vehicle_model'];
 	$selected_car = $_POST['selected_car'];
-	$car_id = get_car_id_from_stock($selected_car);
-	$condition = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_condition', '','', '', '' )),0);
-	$year = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_year', '','', '', '' )),0);
-	$make = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_make', '','', '', '' )),0);
-	$model = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_model', '','', '', '' )),0);
-	$vin = rwh(get_post_meta($car_id, "_vin_value", true),0);
-	$stock_num = $selected_car;
+	$car_id = $_POST['car_id'];
 	$trim = get_post_meta($car_id, "_trim_value", true);
 	$doors = get_post_meta($car_id, "_doors_value", true);
 	$body_style = rwh(strip_tags(get_the_term_list( $car_id, 'vehicle_body_style', '','', '', '' )),0);
@@ -314,8 +297,8 @@ function adfxml_vehicle_contact($location, $rep_name, $to) {
 	$blog_name = get_bloginfo('name');
 	$blog_url = site_url();
 	$blog_email = get_bloginfo('admin_email');
-	$x = '<'.'?ADF VERSION "1.0"?'.'>
-		  <'.'?XML VERSION "1.0"?'.'>';
+	$x = '<'.'?xml version="1.0" ?'.'>
+		<'.'?adf version="1.0" ?'.'>';
 	$x .= '
 		<adf>
 			<prospect>

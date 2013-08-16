@@ -1,0 +1,192 @@
+/* CSS Document */
+.trade_msg {
+	display:none;
+	background: #f1cadf;
+	margin:10px;
+	padding:5px;
+	font-weight:bold;
+}
+.cdform {
+	margin: 10px auto 0 auto;
+	width: 460px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+.cdform fieldset {
+	margin-top: 10px;
+	padding: 5px 0 15px 0;
+	border: 1px solid #ADADAD;
+	border-left-color: #ECECEC;
+	border-top-color: #ECECEC;
+	background: #F7F7F7;
+}
+.cdform legend {
+	margin-left: 10px;
+	padding: 0 2px;
+	font: normal 20px Times;
+	color: 
+	#666;
+}
+.cdform label {
+	width: 140px;
+	margin: 4px 10px 0 0;
+	display: -moz-inline-box;
+	display: inline-block;
+	text-align: right;
+	vertical-align: top;
+}
+.cd-box-title {
+	margin-left:5px!important;
+}
+.cdlabel_right {
+	width: 190px;
+	margin: 4px 10px 0 0;
+	display: -moz-inline-box;
+	display: inline-block;
+	text-align: left;
+	vertical-align: top;
+}
+.cdform textarea, .cdform input {
+	width: 150px;
+}
+.cd_date {
+	font-size:11px;
+}
+span.reqtxt, span.emailreqtxt {
+	margin: 3px 0 0 3px;
+	font-size: 0.9em;
+	display: -moz-inline-box;
+	vertical-align: top;
+	color:#ff0000;
+}
+ol.cd-ol {
+	margin: 0!important;
+	padding: 0!important;
+}
+ol.cd-ol li {
+	background: none;
+	margin: 5px 0;
+	padding: 0;
+	list-style: none!important;
+	text-align: left;
+	line-height: 1.3em;
+}
+ol.cf-ol li.cd-box-group {
+	margin: 10px 0pt 0px !important;
+	padding-left: 100px;
+}
+input.cd-box {
+	margin: 2px 8px; 0 0;
+	width: 14px;
+	height: 22px;
+	border: none!important;
+	background: none!important;
+}
+label.cd-group-after {
+	width: 92px;
+	text-align: left;
+}
+label.cd-group-after span {
+	width: 92px;
+	display: block;
+}
+.trade_btn {
+	float:right;
+}
+.trade_checkbox {
+	width:15px;
+	margin-left:15px;
+}
+.trade_label {
+	width:250px;
+}
+.trade_img {
+	margin-left:75px;
+}
+.trade_hide {
+	display: none;
+}
+.trade_select_stock {
+	display:none;
+	margin-left:20px;
+}
+.trade_select_description {
+	display:none;
+	margin-left:20px;
+}
+.trade_reqtxt {
+	margin-left:10px;
+}
+@media only screen and (max-width : 767px) {
+	.cdform fieldset {
+		margin-left:-14px !important;
+		width: 100% !important;
+	}
+	.trade_img {
+		margin-left:5px !important;
+		width:230px !important;
+	}
+	#trade_form {
+		font-size:12px;
+		width:100% !important;
+		margin-left: 15px;
+	}
+	
+	#trade_form fieldset legend {
+		font-size:15px;
+	}
+	
+	#trade_form textarea {
+		width:240px;
+		margin-left:10px;
+	}
+	
+	#trade_form .search_btn {
+		width:125px;
+		height: 38px !important;
+		font-size:12px !important;
+	}
+	.cd-box-group input {
+		width: 50px !important;
+	}
+	#trade_form input {
+		height:25px;
+		font-size:12px !important;
+		width: 250px;
+		margin-left:10px;
+	}
+	
+	label.cd-group-after {
+		width: 202px !important;
+	}
+	
+	.cdform .cd-fs2 label {
+		width: 100px !important;
+	}
+	.cd-box-title input {
+		width: 20px !important;
+	}
+	#pick_voi_1 {
+		width: 20px;
+	}
+	
+	#pick_voi_2 {
+		width: 20px;
+	}
+	
+	#pick_voi_3 {
+		width: 20px;
+	}
+	
+	.cd-radio {
+		width: 20px !important;
+	}
+	
+	#trade_form select {
+		height:27px;
+		font-size:11px !important;
+	}
+	.not_my_car {
+		width:20px;
+	}
+}

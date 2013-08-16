@@ -112,14 +112,12 @@ function car_demon_photo_lightbox() {
 }
 
 function car_demon_email_a_friend($post_id, $vehicle_stock_number) {
-	global $cd_formKey;
 	$car_head_title = get_car_title($post_id);
 	$x = '<div id="email_friend_div" class="email_friend_div">
 		<div id="ef_contact_final_msg_tmp" class="ef_contact_final_msg_tmp"></div>
 		<div id="main_email_friend_div_tmp" class="main_email_friend_div_tmp">
 		<h2>'. __('Send this car to a friend', 'car-demon') .'</h2><hr />
 			<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment" id="email_friend_form_tmp" name="email_friend_form_tmp">
-			'. $cd_formKey->outputKey() .'
 			<input type="hidden" name="ef_stock_num_tmp" id="ef_stock_num_tmp" value="'. $vehicle_stock_number .'" />
 					<fieldset class="cd-fs1">
 					<legend>'. __('Your Information', 'car-demon') .'</legend>

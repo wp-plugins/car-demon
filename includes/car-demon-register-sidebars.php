@@ -9,7 +9,6 @@ function car_demon_register_sidebars() {
 		'after_title' => '</h2>',
 	));
 }
-
 function car_demon_register_mobile_sidebars() {
 	register_sidebar(array(
 		'name'=> __('Mobile Header', 'car-demon'),

@@ -49,7 +49,7 @@ if ($_GET['send_email']) {
 		if (($_SESSION['car_demon_options']['adfxml_friend']) == 'Yes') {
 			$semi_rand = md5(time());
 			$mime_boundary = "==MULTIPART_BOUNDARY_".$semi_rand;
-			$headers .= 'Content-Type: multipart/alternative; boundary="'.$mime_boundary.'"'.$eol;
+			$headers .= 'Content-Type: multipart/mixed; boundary="'.$mime_boundary.'"'.$eol;
 			$text_body = '--'.$mime_boundary.$eol;
 			$text_body .= 'Content-Type: text/html; charset=ISO-8859-1'.$eol;
 			$text_body .= 'Content-Transfer-Encoding: 7bit'.$eol.$eol;
@@ -86,7 +86,7 @@ function send_to_friend_body() {
 	$agent = $_SERVER['HTTP_USER_AGENT'];
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
-	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
+	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $blogtime );
 	$right_now .= ' '.$hour.':'.$minute.':'.$second;
 	$style = " style='margin-top: 10px; padding: 5px 0 15px 0; border: 3px solid #ADADAD; border-left-color: #ECECEC; border-top-color: #ECECEC; background: #F7F7F7;'";
 	$html = '
@@ -162,15 +162,15 @@ function send_to_friend_body() {
 function adfxml_friend() {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
-	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
+	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $blogtime );
 	$lead_date .= $today_year .'-'. $today_month .'-'. $today_day .'T'.$hour.':'.$minute.':'.$second;
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];
 	$contact_needed = $_POST['contact_needed'];
 	$vendor = get_bloginfo('name');
-	$x = '<'.'?ADF VERSION "1.0"?'.'>
-		  <'.'?XML VERSION "1.0"?'.'>';
+	$x = '<'.'?xml version="1.0" ?'.'>
+		<'.'?adf version="1.0" ?'.'>';
 	$x .= '
 		<adf>
 			<prospect>

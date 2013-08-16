@@ -7,7 +7,6 @@
 	overflow:hidden;
 	clear:both;
 }
-
 /* Styles
 -------------------------------------------------------------- */
 .sorry {
@@ -139,7 +138,6 @@
 	float:left;
 	background-color:#FFFFFF;
 }
-
 table.cars {
 	border-width: 2px;
 	border-spacing: ;
@@ -164,58 +162,47 @@ table.cars td {
 	background-color: white;
 	-moz-border-radius: ;
 }
-
 /* =Widgets
 -------------------------------------------------------------- */
 .car-demon-widget {
 	list-style:none;
 }
-
 #widgets {
 	margin-top:44px;
 }
-
 #widgets a {
 	display:inline-block;
 	margin:0;
 	padding:3px;
 	text-decoration:none;
 }
-
 #widgets ul, #widgets p {
 	border:1px solid #f5f5f5;
 	border-top:none;
 	margin:0 0 20px;
 	padding:10px;
 }
-
 #widgets ul li {
 	list-style-type:none;
 	margin:0;
 }
-
 #widgets ul li a {
 	color:#444;
 	text-decoration:none;
 }
-
 #widgets ul li a:hover {
 	color:#000;
 }
-
 #widgets ul ul a {
 	padding:3px 0 3px 18px;
 }
-
 #widgets ul ul ul a {
 	padding:3px 0 3px 18px;
 }
-
 #widgets ul ul ul ul a {
 	border:none;
 	padding:3px 0 3px 18px;
 }
-
 #widgets .widget-title img {
 	float:right;
 	height:11px;
@@ -223,22 +210,18 @@ table.cars td {
 	top:4px;
 	width:11px;
 }
-
 #widgets .rss-date {
 	line-height:18px;
 	padding:6px 12px;
 }
-
 #widgets .rssSummary {
 	padding:10px;
 }
-
 #widgets cite {
 	font-style:normal;
 	line-height:18px;
 	padding:6px 12px;
 }
-
 #widgets .textwidget, #widgets .tagcloud {
 	border:1px solid #f5f5f5;
 	border-top:none;
@@ -247,17 +230,14 @@ table.cars td {
 	margin:0 0 20px;
 	padding:10px;
 }
-
 #widgets .textwidget a {
 	display:inline;
 }
-
 #widgets ul .children {
 	border:none;
 	margin:0;
 	padding:0;
 }
-
 #widgets .author {
 	font-weight:700;
 	padding-top:4px;
@@ -273,13 +253,11 @@ table.cars td {
 .car-demon-widget-footer a {
 	color: #CCCCCC;
 }
-
 /* =Random Cars
 -------------------------------------------------------------- */
 .random{
 	margin-bottom: 15px;
 }
-
 .random_widget_image {
 	min-width: 180px !important;
 	margin-left:15px;
@@ -298,7 +276,6 @@ table.cars td {
 	box-shadow: 0 0 5px 
 	rgba(0, 0, 0, .3);
 }
-
 .compare_widget_image_bg {
 	min-width: 120px !important;
 	margin-left:15px;
@@ -317,7 +294,6 @@ table.cars td {
 	box-shadow: 0 0 5px 
 	rgba(0, 0, 0, .3);
 }
-
 .compare_widget_image {
 	margin-left:2px;
 	margin-right:0px;
@@ -335,7 +311,6 @@ table.cars td {
 	box-shadow: 0 0 5px 
 	rgba(0, 0, 0, .3);
 }
-
 .random_title {
 	margin-top:10px;
 	margin-left:20px;
@@ -357,19 +332,15 @@ table.cars td {
 	font-weight:bold;
 	color:gray;
 }
-
 /* =Media Print
 -------------------------------------------------------------- */
 @media print {
-
 h1 {
 	page-break-before:always;
 }
-
 h1, h2, h3, h4, h5, h6 {
 	page-break-after:avoid;
 }
-
 ul, ol, dl {
 	page-break-before:avoid;
 }
@@ -377,19 +348,16 @@ ul, ol, dl {
 /*
 	Page style
 */
-
 #ribbon {
 	position:absolute;
 	z-index:500;
 }
-
 #fade_right {
 	position:absolute;
 	z-index:500;
 	cursor:pointer;
 	margin-left:265px;
 }
-
 #look_close {
 	position:absolute;
 	z-index:499;
@@ -399,12 +367,10 @@ ul, ol, dl {
 	-webkit-transition: opacity .25s ease-in-out;
 	cursor:pointer;
 }
-
 #look_close:hover {
 	display:block;
 	opacity: 1;
 }
-
 /*
 	Compare
 */
@@ -662,4 +628,10 @@ Staff Pages
 	float:left;
 	width:200px;
 	height:300px;
+}
+.cd_order_by {
+	width:80px;	
+}
+.cd_order_by_dir {
+	width:80px;	
 }

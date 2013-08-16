@@ -1,24 +1,6 @@
 <?php
-$newPath = dirname(__FILE__);
-if (!stristr(PHP_OS, 'WIN')) {
-	$is_it_iis = 'Apache';
-}
-else {
-	$is_it_iis = 'Win';
-}
-if ($is_it_iis == 'Apache') {
-	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/forms', '', $newPath);
-	include_once($newPath."/wp-load.php");
-	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
-	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\forms', '', $newPath);
-	include_once($newPath."\wp-load.php");
-	include_once($newPath."\wp-includes/wp-db.php");
-}
-?>
-<?php
-if (isset($_GET['show_stock'])) {
+
+function cd_trade_show_stock() {
 	if ($_GET['show_stock']==1) {
 		if (isset($_POST['stock_num'])) {
 			$stock_num = $_POST['stock_num'];
@@ -34,26 +16,20 @@ if (isset($_GET['show_stock'])) {
 		echo get_trade_for_vehicle($stock_num);
 	}
 }
-if (isset($_GET['send_trade'])) {
-	echo send_trade_email($newPath);
+
+function cd_trade_find_stock() {
+	echo car_demon_find_stock_info();
 }
-if (isset($_GET['action'])) {
-	if ($_GET['action']=='findStock') {
-		echo car_demon_find_stock_info();
-	}
-	if ($_GET['action']=='findVehicle') {
-		echo car_demon_find_car_info();
-	}
+function cd_trade_find_vehicle() {
+	echo car_demon_find_car_info();
 }
 
-function send_trade_email($newPath) {
-	require($newPath.'wp-content/plugins/car-demon/forms/car-demon-form-key-class.php');
-	$cd_formKey = new cd_formKey();
-	if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
-		//Form key is invalid, show an error  
+function cd_trade_handler() {
+	if ( !wp_verify_nonce( $_REQUEST['nonce'], "cd_contact_us_nonce")) {
 		echo 'Form key error! Submission could not be validated.';  
-	}  
-	else {
+		exit("No naughty business please");
+		//Form key is invalid, show an error  
+	} else {
 		$request_body = build_trade_body();
 		$trade_location = $_POST['trade_location'];
 		$selected_car = $_POST['selected_car'];
@@ -117,7 +93,7 @@ function send_trade_email($newPath) {
 		if (($_SESSION['car_demon_options']['adfxml']) == 'Yes') {
 			$semi_rand = md5(time());
 			$mime_boundary = "==MULTIPART_BOUNDARY_".$semi_rand;
-			$headers .= 'Content-Type: multipart/alternative; boundary="'.$mime_boundary.'"'.$eol;
+			$headers .= 'Content-Type: multipart/mixed; boundary="'.$mime_boundary.'"'.$eol;
 			$text_body = '--'.$mime_boundary.$eol;
 			$text_body .= 'Content-Type: text/html; charset=ISO-8859-1'.$eol;
 			$text_body .= 'Content-Transfer-Encoding: 7bit'.$eol.$eol;
@@ -142,6 +118,7 @@ function send_trade_email($newPath) {
 		$thanks .= '<h4>'.__('If you have questions or concerns please call and let us know.', 'car-demon').'</h4>';
 		echo $thanks;
 	}
+	exit();
 }
 
 function build_trade_body() {
@@ -172,7 +149,7 @@ function build_trade_body() {
 	$agent = $_SERVER['HTTP_USER_AGENT'];
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
-	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
+	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $blogtime );
 	$right_now .= ' '.$hour.':'.$minute.':'.$second;
 	$style = " style='margin-top: 10px; padding: 5px 0 15px 0; border: 3px solid #ADADAD; border-left-color: #ECECEC; border-top-color: #ECECEC; background: #F7F7F7;'";
 	$html = '
@@ -419,7 +396,7 @@ function get_trade_email($trade_location) {
 function adfxml_trade($location, $rep_name, $rep_email) {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
-	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
+	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $blogtime );
 	$lead_date .= $today_year .'-'. $today_month .'-'. $today_day .'T'.$hour.':'.$minute.':'.$second;
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
@@ -470,8 +447,8 @@ function adfxml_trade($location, $rep_name, $rep_email) {
 	$blog_name = get_bloginfo('name');
 	$blog_url = site_url();
 	$blog_email = get_bloginfo('admin_email');
-	$x = '<'.'?ADF VERSION "1.0"?'.'>
-		  <'.'?XML VERSION "1.0"?'.'>';
+	$x = '<'.'?xml version="1.0" ?'.'>
+		<'.'?adf version="1.0" ?'.'>';
 	$x .= '
 		<adf>
 			<prospect>

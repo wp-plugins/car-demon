@@ -1,26 +1,3 @@
-<?php
-header('Content-type: text/javascript');
-$newPath = dirname(__FILE__);
-if (!stristr(PHP_OS, 'WIN')) {
-	$is_it_iis = 'Apache';
-}
-else {
-	$is_it_iis = 'Win';
-}
-
-if ($is_it_iis == 'Apache') {
-	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/js', '', $newPath);
-	include_once($newPath."/wp-load.php");
-	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
-	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\js', '', $newPath);
-	include_once($newPath."\wp-load.php");
-	include_once($newPath."\wp-includes/wp-db.php");
-}
-$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-$car_demon_pluginpath = str_replace('theme-files/js','',$car_demon_pluginpath);
-?>
 // JavaScript Document
 
 function positionInfo(object) {
@@ -113,7 +90,7 @@ function CalendarControl() {
   var selectedMonth = 0;
   var selectedDay = 0;
 
-  var months = ['<?php _e('January', 'car-demon'); ?>','<?php _e('February', 'car-demon'); ?>','<?php _e('March', 'car-demon'); ?>','<?php _e('April', 'car-demon'); ?>','<?php _e('May', 'car-demon'); ?>','<?php _e('June', 'car-demon'); ?>','<?php _e('July', 'car-demon'); ?>','<?php _e('August', 'car-demon'); ?>','<?php _e('September', 'car-demon'); ?>','<?php _e('October', 'car-demon'); ?>','<?php _e('November', 'car-demon'); ?>','<?php _e('December', 'car-demon'); ?>'];
+  var months = [cdCalendarParams.jan,cdCalendarParams.feb,cdCalendarParams.mar,cdCalendarParams.apr,cdCalendarParams.may,cdCalendarParams.jun,cdCalendarParams.jul,cdCalendarParams.aug,cdCalendarParams.sep,cdCalendarParams.oct,cdCalendarParams.nov,cdCalendarParams.dec];
   var dateField = null;
 
   function getProperty(p_property){
@@ -242,10 +219,10 @@ function CalendarControl() {
     table = table + "</tr>";
     table = table + "<tr class='header'>";
 	table = table + "  <td colspan='3' class='title'>";
-	table = table + "   <?php _e('Pick Time', 'car-demon'); ?>";
+	table = table + 		cdCalendarParams.picktime;
 	table = table + "  </td>";
 	table = table + "  <td colspan='5' class='title'>";
-	table = table + "   <select id='service_time'><option value='<?php _e('Early Morning', 'car-demon'); ?>'><?php _e('Early Morning', 'car-demon'); ?></option><option value='<?php _e('Mid Morning', 'car-demon'); ?>'><?php _e('Mid Morning', 'car-demon'); ?></option><option value='<?php _e('Late Morning', 'car-demon'); ?>'><?php _e('Late Morning', 'car-demon'); ?></option><option value='<?php _e('Early Afternoon', 'car-demon'); ?>'><?php _e('Early Afternoon', 'car-demon'); ?></option><option value='<?php _e('Mid Afternoon', 'car-demon'); ?>'><?php _e('Mid Afternoon', 'car-demon'); ?></option><option value='<?php _e('Late Afternoon', 'car-demon'); ?>'><?php _e('Late Afternoon', 'car-demon'); ?></option></select>";
+	table = table + "   <select id='service_time'><option value='"+cdCalendarParams.early_morning+"'>"+cdCalendarParams.early_morning+"</option><option value='"+cdCalendarParams.mid_morning+"'>"+cdCalendarParams.mid_morning+"</option><option value='"+cdCalendarParams.late_morning+"'>"+cdCalendarParams.late_morning+"</option><option value='"+cdCalendarParams.early_afternoon+"'>"+cdCalendarParams.early_afternoon+"</option><option value='"+cdCalendarParams.mid_afternoon+"'>"+cdCalendarParams.mid_afternoon+"</option><option value='"+cdCalendarParams.late_afternoon+"'>"+cdCalendarParams.late_afternoon+"</option></select>";
 	table = table + "  </td>";
 	table = table + "</tr>";
     table = table + "<tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>";
@@ -277,7 +254,7 @@ function CalendarControl() {
       table = table + "</tr>";
     }
 
-    table = table + "<tr class='header'><th colspan='7' style='padding: 3px;'><a href='javascript:clearCalendarControl();'><?php _e('Clear', 'car-demon'); ?></a> | <a href='javascript:hideCalendarControl();'><?php _e('Close', 'car-demon'); ?></a></td></tr>";
+    table = table + "<tr class='header'><th colspan='7' style='padding: 3px;'><a href='javascript:clearCalendarControl();'>"+cdCalendarParams.clear+"</a> | <a href='javascript:hideCalendarControl();'>"+cdCalendarParams.close_it+"</a></td></tr>";
     table = table + "</table>";
 
     return table;

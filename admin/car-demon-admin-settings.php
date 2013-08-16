@@ -321,6 +321,7 @@ function car_demon_options() {
 	$default['hide_tabs'] = 'No';
 	$default['popup_images'] = 'No';
 	$default['custom_options'] = '';
+	$default['use_form_css'] = 'Yes';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -349,6 +350,7 @@ function car_demon_options() {
 	if (empty($car_demon_options['hide_tabs'])) {$car_demon_options['hide_tabs'] = $default['hide_tabs'];}
 	if (empty($car_demon_options['popup_images'])) {$car_demon_options['popup_images'] = $default['popup_images'];}
 	if (empty($car_demon_options['custom_options'])) {$car_demon_options['custom_options'] = $default['custom_options'];}
+	if (empty($car_demon_options['use_form_css'])) {$car_demon_options['use_form_css'] = $default['use_form_css'];}
 	return $car_demon_options;
 }
 
@@ -417,6 +419,12 @@ function car_demon_settings_options_do_page() {
 		echo '<br />'.__('Include ADFxml with Leads?', 'car-demon').':<br />';
 		echo '<select name="adfxml">
 				<option value="'.$car_demon_options['adfxml'].'">'.$car_demon_options['adfxml'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />';
+		echo '<br />'.__('Use Form CSS?', 'car-demon').':<br />';
+		echo '<select name="use_form_css">
+				<option value="'.$car_demon_options['use_form_css'].'">'.$car_demon_options['use_form_css'].'</option>
 				<option value="Yes">'.__('Yes', 'car-demon').'</option>
 				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
@@ -627,6 +635,7 @@ function update_car_demon_settings() {
 	if (isset($_POST['hide_tabs'])) $new['hide_tabs'] = $_POST['hide_tabs'];
 	if (isset($_POST['popup_images'])) $new['popup_images'] = $_POST['popup_images'];
 	if (isset($_POST['custom_options'])) $new['custom_options'] = $_POST['custom_options'];
+	if (isset($_POST['use_form_css'])) $new['use_form_css'] = $_POST['use_form_css'];
 	update_option( 'car_demon_options', $new );
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }

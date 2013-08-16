@@ -1,29 +1,3 @@
-<?php
-header('Content-type: text/javascript');
-$newPath = dirname(__FILE__);
-if (!stristr(PHP_OS, 'WIN')) {
-	$is_it_iis = 'Apache';
-}
-else {
-	$is_it_iis = 'Win';
-}
-
-if ($is_it_iis == 'Apache') {
-	$newPath = str_replace('wp-content/plugins/car-demon/widgets/js', '', $newPath);
-	include_once($newPath."/wp-load.php");
-	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
-	$newPath = str_replace('wp-content\plugins\car-demon\widgets\js', '', $newPath);
-	include_once($newPath."\wp-load.php");
-	include_once($newPath."\wp-includes/wp-db.php");
-}
-$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-$car_demon_pluginpath = str_replace('widgets/js','',$car_demon_pluginpath);
-$x = '';
-$hook_form_js = apply_filters('car_demon_mail_hook_js', $x, 'contact_us_vehicle', 'unk');
-$hook_form_js_data = apply_filters('car_demon_mail_hook_js_data', $x, 'contact_us_vehicle', 'unk');
-?>
 // JavaScript Document
 function clearField(fld) {
 	if (fld.value == "Your Name") {
@@ -35,40 +9,34 @@ function setField(fld) {
 function car_demon_validate() {
 	var msg = "";
 	var name_valid = 0;
+	document.forms["contact_form"].style.display = "none";
 	if (contact_form.cd_name.value == "") {
-		var msg = "You must enter your name.<br />";
+		var msg = cdContactWidgetParams.error1+"<br />";
 		cd_not_valid("cd_name");
 	} else {
 		var name_valid = 1;
 	}
 	if (contact_form.cd_name.value == "Your Name") {
-		var msg = "You must enter your name.<br />";
+		var msg = cdContactWidgetParams.error2+"<br />";
 		cd_not_valid("cd_name");
 	} else {
 		if (name_valid == 1) {
 			cd_valid("cd_name");
 		}
 	}
-	<?php
-	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
-		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
-	?>
-	if (contact_form.cd_phone.value == "") {
-		var msg = msg + "You must enter a valid Phone Number.<br />";
-		cd_not_valid("cd_phone");
-	} else {
-		if (contact_form.cd_phone.value.length != 14) {
-			var msg = msg + "The phone number you entered is not valid.<br />";
-			cd_not_valid("cd_phone");			
-		}
-		else {
-			cd_valid("cd_phone");
+	if (cdContactWidgetParams.validate_phone == 1) {
+		if (contact_form.cd_phone.value == "") {
+			var msg = msg + cdContactWidgetParams.error3+"<br />";
+			cd_not_valid("cd_phone");
+		} else {
+			if (contact_form.cd_phone.value.length != 14) {
+				var msg = msg + cdContactWidgetParams.error4+"<br />";
+				cd_not_valid("cd_phone");			
+			} else {
+				cd_valid("cd_phone");
+			}
 		}
 	}
-	<?php
-		}
-	}
-	?>
 	var e_msg = validateEmail(contact_form.cd_email);
 	if (e_msg == "") {
 		cd_valid("cd_email");
@@ -76,7 +44,7 @@ function car_demon_validate() {
 		var msg = msg + e_msg + "<br />";
 	}
 	if (contact_form.contact_needed.value == "") {
-		var msg = msg + "You did not enter a message to send.<br />";
+		var msg = msg + cdContactWidgetParams.error6+"<br />";
 		cd_not_valid("contact_needed");	
 	} else {
 		document.getElementById("contact_needed").style.background = "";
@@ -84,6 +52,7 @@ function car_demon_validate() {
 	if (msg != "") {
 		document.getElementById("contact_msg").style.display = "block";
 		document.getElementById("contact_msg").innerHTML = msg;
+		jQuery("#contact_form").fadeIn();
 		javascript:scroll(0,0);
 	} else {
 		var action = "";
@@ -105,14 +74,15 @@ function car_demon_validate() {
 		var cc = document.getElementById("cc").value;
 		var send_receipt = document.getElementById("send_receipt").value;
 		var send_receipt_msg = document.getElementById("send_receipt_msg").value;
-		var sending = "<div align='center'><h3>Sending...</h3><img src='<?php echo $car_demon_pluginpath; ?>theme-files/images/loading.gif' /></div>"
-		<?php echo $hook_form_js; ?>
+		var sending = "<div align='center'><h3>Sending...</h3><img src='"+cdContactWidgetParams.path_url+"theme-files/images/loading.gif' /></div>"
+		var nonce = document.getElementById("nonce").value;
+		jQuery(cdContactWidgetParams.hook_js);
 		document.getElementById("contact_form").innerHTML = sending;
 		jQuery.ajax({
 			type: 'POST',
-			data: {'your_name': your_name,'phone':phone, 'email':email, 'contact_needed':contact_needed, 'send_to':send_to, 'send_to_name':send_to_name, 'vehicle_vin':vehicle_vin, 'vehicle_year':vehicle_year, 'vehicle_make':vehicle_make, 'vehicle_model':vehicle_model, 'vehicle_condition':vehicle_condition, 'vehicle_location':vehicle_location, 'vehicle_stock_number':vehicle_stock_number, 'vehicle_photo':vehicle_photo, 'car_id':car_id, 'cc':cc, 'send_receipt':send_receipt, 'send_receipt_msg': send_receipt_msg<?php echo $hook_form_js_data; ?>},
-			url: "<?php echo $car_demon_pluginpath; ?>widgets/car-demon-vehicle-contact-widget-handler.php?send_contact=1",
-			timeout: 2000,
+			data: {action: 'cd_contact_us_widget_handler', 'nonce': nonce, 'your_name': your_name,'phone':phone, 'email':email, 'contact_needed':contact_needed, 'send_to':send_to, 'send_to_name':send_to_name, 'vehicle_vin':vehicle_vin, 'vehicle_year':vehicle_year, 'vehicle_make':vehicle_make, 'vehicle_model':vehicle_model, 'vehicle_condition':vehicle_condition, 'vehicle_location':vehicle_location, 'vehicle_stock_number':vehicle_stock_number, 'vehicle_photo':vehicle_photo, 'car_id':car_id, 'cc':cc, 'send_receipt':send_receipt, 'send_receipt_msg': send_receipt_msg},
+			url: cdContactWidgetParams.ajaxurl,
+			timeout: 5000,
 			error: function() {},
 			dataType: "html",
 			success: function(html){

@@ -1,4 +1,31 @@
 <?php
+function cd_compare_handler() {
+	if (isset($_SESSION['car_demon_compare'])) {
+		$compare_these = $_SESSION['car_demon_compare'];
+	} else {
+		$compare_these = '';
+	}
+	if ($_POST['add_it'] == 1) {
+		$compare_these = str_replace(','.$_POST['post_id'],'',$compare_these);
+		$compare_these = str_replace($_POST['post_id'],'',$compare_these);
+		$compare_these = $compare_these.','.$_POST['post_id'];	
+	} else {
+		$compare_these = str_replace(','.$_POST['post_id'],'',$compare_these);
+		$compare_these = str_replace($_POST['post_id'],'',$compare_these);
+	}
+	$compare_these = '@'.$compare_these;
+	$compare_these = str_replace('@,','',$compare_these);
+	$compare_these = str_replace('@','',$compare_these);
+	$_SESSION['car_demon_compare'] = $compare_these;
+	echo show_compare_vehicles();
+	exit();
+}
+
+function cd_get_compare_list() {
+	echo show_compare_list();
+	exit();
+}
+
 function show_compare_vehicles() {
 	$x = '';
 	if (isset($_SESSION['car_demon_compare'])) {

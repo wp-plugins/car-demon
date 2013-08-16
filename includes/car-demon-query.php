@@ -23,12 +23,12 @@ function car_demon_query_search() {
 		}
 		if ($_SESSION['car_demon_options']['show_sold'] != 'Yes') {
 			$meta_query = array(
-					array(
-						'key' => 'sold',
-						'value' => 'no',
-						'compare' => '='
-					)
-				);
+				array(
+					'key' => 'sold',
+					'value' => 'no',
+					'compare' => '='
+				)
+			);
 		}
 		if (isset($_GET['stock'])) {
 			if ($_GET['stock']) {
@@ -98,7 +98,6 @@ function car_demon_query_search() {
 		return $my_query;
 	}
 }
-
 function car_demon_query_archive() {
 	global $query_string;
 	$order_by = '_price_value';
@@ -150,7 +149,6 @@ function car_demon_query_archive() {
 	$my_query = wp_parse_args( $query_string, $my_query );
 	return $my_query;
 }
-
 function car_demon_sorting($page_type = 'search') {
 	$wpurl = site_url();
 	$query_string = $_SERVER['QUERY_STRING'];
@@ -183,9 +181,8 @@ function car_demon_sorting($page_type = 'search') {
 		if ($sort_price == 1) {
 			$sort_asc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=asc"><img src="'.$wpurl_img.'sort_asc.png" title="'.__('Sort Low to High', 'car-demon').'" /></a>&nbsp;';
 			$sort_desc_img = '<a href="'.$wpurl.'&order_by=_price_value&order_by_dir=desc"><img src="'.$wpurl_img.'sort_desc.png" title="'.__('Sort High to Low', 'car-demon').'" /></a>';
-				$car_demon_sorting .= '&nbsp;&nbsp;&nbsp;'.__('Price', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
+			$car_demon_sorting .= '&nbsp;&nbsp;&nbsp;'.__('Price', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
 		}
-		
 		if (isset($_SESSION['car_demon_options']['sort_miles'])) {
 			if ($_SESSION['car_demon_options']['sort_miles'] == 'No') {
 				$sort_miles = 0;
@@ -197,9 +194,44 @@ function car_demon_sorting($page_type = 'search') {
 				$car_demon_sorting .= '&nbsp;&nbsp;&nbsp;'.__('Mileage', 'car-demon').' '.$sort_asc_img.$sort_desc_img;
 		}
 	}
+	if (isset($_SESSION['car_demon_options']['drop_down_sort'])) {
+		if ($_SESSION['car_demon_options']['drop_down_sort'] == 'Yes') {
+			if ($_GET['order_by'] == '_mileage_value') {
+				$select_price = '';
+				$select_mileage = ' selected';
+			} else {
+				$select_price = ' selected';
+				$select_mileage = '';
+			}
+			if ($_GET['order_by_dir'] == 'asc') {
+				$select_desc = '';
+				$select_asc = ' selected';
+			} else {
+				$select_desc = ' selected';
+				$select_asc = '';	
+			}
+			parse_str($query_string, $output);
+			$hidden_items = '';
+			foreach ( $output as $key => $value ) {
+				if (!empty($value)) {
+					$hidden_items .= '<input type="hidden" value="'.$value.'" name="'.$value.'" />';
+				}
+			}
+			$car_demon_sorting = '<form id="frm_cd_sort" name="frm_cd_sort" action="" method="get">
+									'.$hidden_items.'
+									<span id="cd_sort_by_label" class="cd_sort_by_label">'.__('Sort By: ','car-demon').'</span>
+									<select id="order_by" name="order_by" class="cd_order_by" onchange="document.forms[\'frm_cd_sort\'].submit();">
+										<option value="_price_value"'.$select_price.'>'.__('Price', 'car-demon').'</option>
+										<option value="_mileage_value"'.$select_mileage.'>'.__('Mileage', 'car-demon').'</option>
+									</select>';
+			$car_demon_sorting .= '&nbsp;<select id="order_by_dir" name="order_by_dir" class="cd_order_by_dir" onchange="document.forms[\'frm_cd_sort\'].submit();">
+										<option value="desc"'.$select_desc.'>'.__('Desc', 'car-demon').'</option>
+										<option value="asc"'.$select_asc.'>'.__('Asc', 'car-demon').'</option>
+									</select></form>';
+		}
+	}
 	return $car_demon_sorting;
 }
-
 function car_demon_filter_search_title($title) {
 	$title = str_replace('Page not found','Search Results', $title);
 	return $title;

@@ -1,33 +1,10 @@
-<?php
-header('Content-type: text/javascript');
-$newPath = dirname(__FILE__);
-if (!stristr(PHP_OS, 'WIN')) {
-	$is_it_iis = 'Apache';
-}
-else {
-	$is_it_iis = 'Win';
-}
-
-if ($is_it_iis == 'Apache') {
-	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/js', '', $newPath);
-	include_once($newPath."/wp-load.php");
-	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
-	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\js', '', $newPath);
-	include_once($newPath."\wp-load.php");
-	include_once($newPath."\wp-includes/wp-db.php");
-}
-$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-$car_demon_pluginpath = str_replace('theme-files/js','',$car_demon_pluginpath);
-?>
 // JavaScript Document
-
 function update_car(post_id,fld) {
+	document.getElementById("car_demon_compare").innerHTML = '...processing';
 	if (fld.checked == true) {
-		var action = '1';
+		var add_it = '1';
 	} else {
-		var action = '0';
+		var add_it = '0';
 		var compareElement = document.getElementById("compare_"+post_id);
 		if (compareElement != null) {
 			document.getElementById("compare_"+post_id).checked = false;
@@ -35,9 +12,9 @@ function update_car(post_id,fld) {
 	}
 	jQuery.ajax({
 		type: 'POST',
-		data: {'post_id': post_id, 'action': action},
-		url: "<?php echo $car_demon_pluginpath; ?>includes/car-demon-handler.php?compare_car=1",
-		timeout: 2000,
+		data: {'post_id': post_id, action: 'cd_compare_handler', 'add_it': add_it},
+		url: cdCompareParams.ajaxurl,
+		timeout: 5000,
 		error: function() {},
 		dataType: "html",
 		success: function(html){
@@ -55,9 +32,9 @@ function update_car(post_id,fld) {
 function get_compare_list() {
 	jQuery.ajax({
 		type: 'POST',
-		data: {'compare_list': '1'},
-		url: "<?php echo $car_demon_pluginpath; ?>includes/car-demon-handler.php?get_compare_list=1",
-		timeout: 2000,
+		data: {action: 'cd_get_compare_list', 'compare_list': '1'},
+		url: cdCompareParams.ajaxurl,
+		timeout: 5000,
 		error: function() {},
 		dataType: "html",
 		success: function(html){
@@ -79,9 +56,9 @@ function close_car_demon_compare() {
 function print_compare() {
 	w=window.open();
 	if(!w)alert('Please enable pop-ups');
-	var new_print = '<title><?php _e('Compare Vehicles','car-demon'); ?></title>';
+	var new_print = '<title>'+cdCompareParams.msg1+'</title>';
 	var new_print = new_print + '<meta http-equiv="X-UA-Compatible" content="IE8"/>';
-	var new_print = new_print + '<link rel="stylesheet" type="text\/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />';
+	var new_print = new_print + '<link rel="stylesheet" type="text\/css" media="all" href="'+cdCompareParams.css_url+'" />';
 	var new_print = new_print + document.getElementById('car_demon_compare_box_list_cars').innerHTML;
 	w.document.write(new_print);
 	if (navigator.appName == "Microsoft Internet Explorer") {

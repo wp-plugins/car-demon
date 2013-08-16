@@ -8,7 +8,6 @@ Version: 1.2.4
 Author URI: http://www.CarDemons.com/
 Text Domain: car-demon
 Domain Path: /languages/
-
 */
 $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 include( 'includes/car-demon-query.php' );
@@ -24,6 +23,7 @@ include( 'includes/car-demon-user-control.php' );
 include( 'includes/car-demon-staff-pages.php' );
 include( 'includes/car-demon-dynamic-load.php' );
 include( 'includes/car-demon-template.php' );
+include( 'includes/car-demon-shortcodes.php' );
 include( 'admin/car-demon-admin.php' );
 include( 'admin/car-demon-cell-providers.php' );
 include( 'admin/car-demon-columns.php' );
@@ -34,22 +34,16 @@ include( 'includes/car-demon-payment-calculator.php' );
 include( 'widgets/car-demon-tag-cloud.php' );
 include( 'widgets/car-demon-random-cars.php' );
 include( 'widgets/car-demon-car-search-widget.php' );
-include( 'widgets/car-demon-vehicle-contact-widget.php' );
 include( 'widgets/car-demon-compare-widget.php' );
-include( 'forms/car-demon-service-form.php' );
-include( 'forms/car-demon-service-quote.php' );
-include( 'forms/car-demon-part-request.php' );
-include( 'forms/car-demon-contact-us.php' );
-include( 'forms/car-demon-trade-form.php' );
-include( 'forms/car-demon-finance-form.php' );
-include( 'forms/car-demon-qualify-form.php' );
+
+include( 'widgets/car-demon-vehicle-contact-widget.php' );
+
 include( 'vin-query/car-demon-vin-query.php' );
 include( 'vin-query/car-demon-vin-query-admin.php' );
+include( 'car-demon-forms/car-demon-forms.php' );
 include( 'car-demon-header.php' );
 
-add_filter('the_content', 'car_demon_shortcodes');
-add_filter('wp_head', 'car_demon_header');
-
+add_filter('wp_print_styles', 'car_demon_header');
 function car_demon_init() {
 	load_plugin_textdomain( 'car-demon', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	if (!is_admin()) {
@@ -57,15 +51,9 @@ function car_demon_init() {
 	}
 }
 add_action('init', 'car_demon_init');
-
 function start_car_demon() {
 	if (!session_id()) {
 		session_start();
-	}
-	if ( ! is_admin() ) {
-		require('forms/car-demon-form-key-class.php');
-		global $cd_formKey;
-		$cd_formKey = new cd_formKey();
 	}
 	if (isset($_GET['sales_code'])) {
 		$sales_code = $_GET['sales_code'];
@@ -96,12 +84,10 @@ if (!is_admin()) {
   add_filter('widget_text', 'car_demon_text_filter', 11);
   add_filter('the_content', 'car_demon_text_filter', 11);
 }
-
 function car_demon_text_filter($body) {
 	$text = replace_contact_info_tags(0, $body);
 	return $text;
 }
-
 function car_demon_self_url() {
     if(!isset($_SERVER['REQUEST_URI'])){
         $serverrequri = $_SERVER['PHP_SELF'];
@@ -113,7 +99,6 @@ function car_demon_self_url() {
     $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
     return $protocol."://".$_SERVER['SERVER_NAME'].$port.$serverrequri;   
 }
-
 function car_demon_subdomains() {
 	if (empty($_COOKIE['domain_check'])) {
 		$site_url = car_demon_get_site_url();
@@ -145,7 +130,6 @@ function car_demon_subdomains() {
 		}
 	}
 }
-
 function car_demon_get_site_url() {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -158,198 +142,9 @@ function car_demon_get_site_url() {
 	}
 	return $site_url;
 }
-
 function car_demon_str_left( $s1, $s2 ) {
 	return substr($s1, 0, strpos($s1, $s2));
 }
-
-function car_demon_shortcodes( $content ) {
-	if (strpos($content, '[-service_form-]')) {
-		$service_form = car_demon_service_form('normal');
-		$content = str_replace('[-service_form-]', $service_form, $content);
-	}
-	if (strpos($content, '[-service_quote-]')) {
-		$service_quote = car_demon_service_quote('normal');
-		$content = str_replace('[-service_quote-]', $service_quote, $content);
-	}
-	if (strpos($content, '[-part_request-]')) {
-		$part_quote = car_demon_part_request('normal', '', '');
-		$content = str_replace('[-part_request-]', $part_quote, $content);
-	}
-	if (strpos($content, '[-contact_us-]')) {
-		$contact_us = car_demon_contact_request('normal','','');
-		$content = str_replace('[-contact_us-]', $contact_us, $content);
-	}
-	if (strpos($content, '[-trade-]')) {
-		$trade = car_demon_trade_form(0,'normal');
-		$content = str_replace('[-trade-]', $trade, $content);
-	}
-	if (strpos($content, '[-finance_form-]')) {
-		$finance_form = car_demon_finance_form('normal');
-		$content = str_replace('[-finance_form-]', $finance_form, $content);
-	}
-	if (strpos($content, '[-staff_page-]')) {
-		$staff_page = car_demon_staff_page();
-		$content = str_replace('[-staff_page-]', $staff_page, $content);
-	}
-	return $content;
-}
-// Register Shortcodes
-function contact_us_shortcode_func( $atts ) {
-	extract( shortcode_atts( array(
-		'send_to' => 'normal',
-		'popup_id' => '',
-		'popup_button' => __('Contact Us', 'car-demon')
-	), $atts ) );
-	$contact_us = car_demon_contact_request($send_to, $popup_id, $popup_button);
-	return $contact_us;
-}
-add_shortcode( 'contact_us', 'contact_us_shortcode_func' );
-
-function car_demon_inventory_shortcode( $atts ) {
-	$x = '';
-	$car_demon_query = car_demon_query_archive();
-	query_posts($car_demon_query);
-	$total_results = $wp_query->found_posts;
-	echo car_demon_dynamic_load();
-	do_action( 'car_demon_before_main_content' );
-		echo $_SESSION['car_demon_options']['before_listings'];
-		echo car_demon_sorting('achive');
-		?>
-			<h4 class="results_found"><?php _e('Results Found','car-demon'); echo ': '.$total_results;?></h4>
-		<?php 
-		echo car_demon_nav('top', $car_demon_query);
-		/*======= Car Demon Loop ======================================================= */
-		global $wpdb;
-		$prefix = $wpdb->prefix;
-		// Filter out SOLD, map the correct template file, handle paging, etc.
-		$sql = 'SELECT ID from '.$prefix.'posts WHERE post_type="cars_for_sale" LIMIT 0,9';
-		$posts = $wpdb->get_results($sql);
-		if ($posts) {
-			foreach ($posts as $post) {
-				$post_id = $post->ID;
-				$html = apply_filters('car_demon_display_car_list_filter', car_demon_display_car_list($post_id), $post_id );
-				echo $html;
-			}
-		}
-		echo car_demon_nav('bottom', $car_demon_query);				
-	do_action( 'car_demon_after_main_content' );
-	return $x;
-}
-//add_shortcode( 'show_inventory', 'car_demon_inventory_shortcode' );
-
-function car_demon_display_car_list_filter_results($content, $post_id) {
-	$x = $content;
-	return $x;
-}
-add_filter( 'car_demon_display_car_list_filter', 'car_demon_display_car_list_filter_results', 1, 2);
-
-function parts_shortcode_func( $atts ) {
-	extract( shortcode_atts( array(
-		'location' => 'normal',
-		'popup_id' => '',
-		'popup_button' => __('Request Parts Quote', 'car-demon')
-	), $atts ) );
-	$part_quote = car_demon_part_request($location, $popup_id, $popup_button);
-	return $part_quote;
-}
-add_shortcode( 'part_request', 'parts_shortcode_func' );
-
-function service_form_shortcode_func( $atts ) {
-	extract( shortcode_atts( array(
-		'location' => 'normal',
-		'popup_id' => '',
-		'popup_button' => __('Service Appointment', 'car-demon')
-	), $atts ) );
-	$service_form = car_demon_service_form($location, $popup_id, $popup_button);
-	return $service_form;
-}
-add_shortcode( 'service_form', 'service_form_shortcode_func' );
-
-function service_quote_form_shortcode_func( $atts ) {
-	extract( shortcode_atts( array(
-		'location' => 'normal',
-		'popup_id' => '',
-		'popup_button' => __('Service Appointment', 'car-demon')
-	), $atts ) );
-	$service_quote = car_demon_service_quote($location, $popup_id, $popup_button);
-	return $service_quote;
-}
-add_shortcode( 'service_quote', 'service_quote_form_shortcode_func' );
-
-function trade_form_shortcode_func( $atts ) {
-	extract( shortcode_atts( array(
-		'location' => 'normal'
-	), $atts ) );
-	$trade_form = car_demon_trade_form(0,$location);
-	return $trade_form;
-}
-add_shortcode( 'trade', 'trade_form_shortcode_func' );
-
-function finance_form_shortcode_func( $atts ) {
-	extract( shortcode_atts( array(
-		'location' => 'normal'
-	), $atts ) );
-	$finance_form = car_demon_finance_form(0,$location);
-	return $finance_form;
-}
-add_shortcode( 'finance_form', 'finance_form_shortcode_func' );
-
-function qualify_form_shortcode_func( $atts ) {
-	extract( shortcode_atts( array(
-		'location' => 'normal',
-		'popup_id' => '',
-		'popup_button' => __('Qualify Me', 'car-demon')
-	), $atts ) );
-	$qualify_form = car_demon_qualify_form($location, $popup_id, $popup_button);
-	return $qualify_form;
-}
-add_shortcode( 'qualify', 'qualify_form_shortcode_func' );
-
-function highlight_staff_shortcode_func( $atts ) {
-	if (isset($_COOKIE["sales_code"])) {
-		$staff_id = $_COOKIE["sales_code"];
-	} else {
-		$staff_id = '';
-	}
-	extract( shortcode_atts( array(
-		'staff_id' => $staff_id,
-		'contact_id' => '',
-		'contact_button' => __('Contact Me', 'car-demon')
-	), $atts ) );
-	if (!empty($staff_id)) {
-		$highlight_staff = build_user_hcard($staff_id, 1, 1);
-		$highlight_staff = '<div class="highlight_staff">'.$highlight_staff.'</div>';
-	} else {
-		$highlight_staff = '';
-	}
-	return $highlight_staff;
-}
-add_shortcode( 'highlight_staff', 'highlight_staff_shortcode_func' );
-
-function vehicle_cloud_shortcode_func( $atts ) {
-	extract( shortcode_atts( array(
-		'taxonomy' => 'vehicle_body_style',
-		'max_num' => '',
-		'max_font' => '14',
-		'min_font' => '14'
-	), $atts ) );
-	$vehicle_cloud = vehicle_cloud($taxonomy, $max_num, $max_font, $min_font);
-	return $vehicle_cloud;
-}
-add_shortcode( 'vehicle_cloud', 'vehicle_cloud_shortcode_func' );
-
-function vehicle_search_box_shortcode_func( $atts ) {
-	extract( shortcode_atts( array(
-		'button' => 'Search Inventory',
-		'message' => ''
-	), $atts ) );
-	$vehicle_cloud = vehicle_search_box($button, $message);
-	return $vehicle_cloud;
-}
-add_shortcode( 'vehicle_search_box', 'vehicle_search_box_shortcode_func' );
-
-// End Shortcodes
 function car_demon_session() {
 	$car_demon_options = car_demon_options();
 	if (!session_id()) {
@@ -362,7 +157,6 @@ function car_demon_session() {
 	}
 }
 add_action( 'init', 'car_demon_session', 1 );
-
 function register_car_demon_menus(){
 	if ($_SESSION['car_demon_options']['mobile_theme'] == 'Yes') {
 		register_nav_menus(
@@ -373,11 +167,9 @@ function register_car_demon_menus(){
 	}
 }
 add_action( 'init', 'register_car_demon_menus' );
-
 if ( function_exists('register_sidebar') ){
 	car_demon_register_sidebars();
 }
-
 if ( ! function_exists( 'CarDemon_comment' ) ) :
 function CarDemon_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
@@ -395,7 +187,6 @@ function CarDemon_comment( $comment, $args, $depth ) {
 	));
 }
 endif;
-
 if ( ! function_exists( 'CarDemon_posted_in' ) ) :
 /**
  * Prints HTML with meta information for the current post (category, tags and permalink).
@@ -420,7 +211,6 @@ function CarDemon_posted_in() {
 	);
 }
 endif;
-
 if ( ! function_exists( 'CarDemon_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post—date/time and author.
@@ -441,14 +231,12 @@ function CarDemon_posted_on() {
 	);
 }
 endif;
-
 // Add support for Featured Images
 if (function_exists('add_theme_support')) {
     add_theme_support('post-thumbnails');
     add_image_size('index-categories', 150, 150, true);
     add_image_size('page-single', 350, 350, true);
 }
-
 function car_demon_theme_js( $content ) {
 	$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$content .= '
@@ -463,7 +251,6 @@ function car_demon_theme_js( $content ) {
 	return;
 }
 add_action('wp_head', 'car_demon_theme_js');
-
 function rwh( $x,$y ) {
 	if ($y == 0) {
 		$new_string = $x;	
@@ -472,7 +259,6 @@ function rwh( $x,$y ) {
 	}
 	return $new_string;
 }
-
 function get_car_from_stock( $selected_car ) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -498,7 +284,6 @@ function get_car_from_stock( $selected_car ) {
 	}
 	return $x;
 }
-
 function get_car_id_from_stock( $selected_car ) {
 	global $wpdb;
 	$post_id = '';
@@ -512,7 +297,6 @@ function get_car_id_from_stock( $selected_car ) {
 	}
 	return $post_id;
 }
-
 function build_location_hcard( $location, $condition ) {
 	$location = str_replace(chr(32), '-', $location);
 	$location = strtolower($location);
@@ -542,7 +326,6 @@ function build_location_hcard( $location, $condition ) {
 		$x .='<div class="job_title">'.$job_title.'</div>';
 		$x .='<div class="org">'.$user_location.'</div>';
 		$x .='<a class="email" href="mailto:'.$user_email.'">'.$user_email.'</a>';
-
 		$x .='<div class="tel">'.$user_phone.'</div>';
 		if (!empty($facebook)) { $x .='<a class="url" href="'.$facebook.'">Facebook</a>'; }
 		if (!empty($user_description)) {
@@ -558,15 +341,11 @@ function build_location_hcard( $location, $condition ) {
 	$x .='</div>';
 	return $x;
 }
-
 add_action('after_setup_theme', 'cardemon_language');
-
 function cardemon_language(){
     load_theme_textdomain('car-demon', get_template_directory() . '/languages');
 }
-
 add_action("template_redirect", 'car_demon_theme_redirect');
-
 function car_demon_theme_redirect() {
 	if ($_SESSION['car_demon_options']['use_theme_files'] == 'Yes') {
 		global $wp;
@@ -648,7 +427,6 @@ function car_demon_theme_redirect() {
 		}
 	}
 }
-
 function do_car_demon_theme_redirect( $url ) {
     global $post, $wp_query;
     if (have_posts()) {
@@ -658,9 +436,7 @@ function do_car_demon_theme_redirect( $url ) {
         $wp_query->is_404 = true;
     }
 }
-
 if ( !is_admin() ) add_filter( 'pre_get_posts', 'get_car_demon_posts' );
-
 function get_car_demon_posts( $query ) {
 	if ( is_post_type_archive('cars_for_sale') || is_tax('vehicle_condition') || is_tax('vehicle_year') || is_tax('vehicle_make') || is_tax('vehicle_model') || is_tax('vehicle_body_style') ){
 		if ($query->is_main_query()) {

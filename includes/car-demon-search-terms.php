@@ -3,8 +3,7 @@ header('Access-Control-Allow-Origin: *');
 $newPath = dirname(__FILE__);
 if (!stristr(PHP_OS, 'WIN')) {
 	$is_it_iis = 'Apache';
-}
-else {
+} else {
 	$is_it_iis = 'Win';
 }
 if ($is_it_iis == 'Apache') {

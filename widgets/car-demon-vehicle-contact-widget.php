@@ -1,5 +1,9 @@
 <?php
+include('car-demon-vehicle-contact-widget-handler.php');
 add_action( 'widgets_init', 'car_demon_vehicle_contact_load_widgets' );
+add_action("wp_ajax_cd_contact_us_widget_handler", "cd_contact_us_widget_handler");
+add_action("wp_ajax_nopriv_cd_contact_us_widget_handler", "cd_contact_us_widget_handler");
+//======
 
 function car_demon_vehicle_contact_load_widgets() {
 	register_widget( 'car_demon_vehicle_contact_Widget' );
@@ -27,6 +31,36 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 		$post_type = get_post_type($post_id);
 		if ( $post_type == 'cars_for_sale' ) {
 			if (is_single($post_id)) {
+				$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+				$car_demon_pluginpath = str_replace('widgets/', '', $car_demon_pluginpath);
+				wp_register_script('car-demon-contact-widget-js', WP_CONTENT_URL . '/plugins/car-demon/widgets/js/car-demon-vehicle-contact-widget.js');
+				$validate_phone = 0;
+				if (isset($_SESSION['car_demon_options']['validate_phone'])) {
+					if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
+						$validate_phone = 1;
+					}
+				}
+				wp_localize_script( 'car-demon-contact-widget-js', 'cdContactWidgetParams', array( 
+					'ajaxurl' => admin_url( 'admin-ajax.php' ),
+					'error1' => __('You must enter your name.', 'car-demon'),
+					'error2' => __('You must enter your name.', 'car-demon'),
+					'error3' => __('You must enter a valid Phone Number.', 'car-demon'),
+					'error4' => __('The phone number you entered is not valid.', 'car-demon'),
+					'error5' => __('You did not select who you want to send this message to.', 'car-demon'),
+					'error6' => __('You did not enter a message to send.', 'car-demon'),
+					'form_js' => apply_filters('car_demon_mail_hook_js', $x, 'contact_us', 'unk'),
+					'form_data' => apply_filters('car_demon_mail_hook_js_data', $x, 'contact_us', 'unk'),
+					'validate_phone' => $validate_phone,
+					'path_url' => $car_demon_pluginpath
+				));
+				wp_localize_script( 'car-demon-common-js', 'cdCommonParams', array(
+					'error1' => __('You didn\'t enter an email address.', 'car-demon'),
+					'error2' => __('Please enter a valid email address.', 'car-demon'),
+					'error2' => __('The email address contains illegal characters.', 'car-demon')
+				));
+				wp_enqueue_script( 'jquery' );
+				wp_enqueue_script( 'car-demon-common-js' );
+				wp_enqueue_script( 'car-demon-contact-widget-js' );
 				extract( $args );
 				/* Our variables from the widget settings. */
 				$title = apply_filters('widget_title', $instance['title'] );
@@ -41,7 +75,6 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 					echo $before_title . $title . $after_title;
 				}
 				echo '<div class="contact_us_widget">';
-					echo car_demon_display_vehicle_contacts_js($post_id, $list_phone, $cc, $send_receipt, $send_receipt_msg);
 					echo car_demon_display_vehicle_contacts($post_id, $list_phone, $cc, $send_receipt, $send_receipt_msg);
 				echo '</div>';
 				/* After widget (defined by themes). */
@@ -101,10 +134,6 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 	}
 }
 
-function car_demon_display_vehicle_contacts_js($post_id, $list_phone, $cc, $send_receipt, $send_receipt_msg) {
-	wp_enqueue_script('car-demon-contact-widget-js', WP_CONTENT_URL . '/plugins/car-demon/widgets/js/car-demon-vehicle-contact-widget.js.php');
-}
-
 function car_demon_display_vehicle_contacts($post_id, $list_phone, $cc, $send_receipt, $send_receipt_msg) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/widgets', '', $car_demon_pluginpath);
@@ -139,9 +168,10 @@ function car_demon_display_vehicle_contacts($post_id, $list_phone, $cc, $send_re
 	} else {
 		$validate_phone = '';
 	}
+	$nonce = wp_create_nonce("cd_contact_us_widget_nonce");
 	$x = $phone_contact.'
-	<div id="contact_msg" class="contact_msg"></div>
-	<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment " id="contact_form">
+		<div id="contact_msg" class="contact_msg"></div>
+		<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment " id="contact_form">
 			<input type="hidden" name="cc" id="cc" value="'.$cc.'" />
 			<input type="hidden" name="send_receipt" id="send_receipt" value="'.$send_receipt.'" />
 			<input type="hidden" name="send_receipt_msg" id="send_receipt_msg" value="'.$send_receipt_msg.'" />
@@ -156,6 +186,7 @@ function car_demon_display_vehicle_contacts($post_id, $list_phone, $cc, $send_re
 			<input type="hidden" name="vehicle_location" id="vehicle_location" value="'.$vehicle_location.'" />
 			<input type="hidden" name="vehicle_stock_number" id="vehicle_stock_number" value="'.$vehicle_stock_number.'" />
 			<input type="hidden" name="vehicle_photo" id="vehicle_photo" value="'.wp_get_attachment_thumb_url( get_post_thumbnail_id( $post_id ) ).'" />
+			<input type="hidden" name="nonce" id="nonce" value="'.$nonce.'" />
 			<fieldset class="cd-fs1">
 			<legend>Your Information</legend>
 			<ol class="cd-ol">
@@ -168,22 +199,22 @@ function car_demon_display_vehicle_contacts($post_id, $list_phone, $cc, $send_re
 	$x2 = '
 			<fieldset class="cd-fs2">
 				<legend>I have a Trade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<select>
-							<option></option>
-							<option value="Yes">Yes</option>
-							<option value="No">No</option>
-						</select>
+					<select>
+						<option></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
 				</legend>
 			</fieldset>
 			<fieldset class="cd-fs2">
 				<legend>I need Financing&nbsp;&nbsp;
-						<select>
-							<option></option>
-							<option value="Yes">Yes</option>
-							<option value="No">No</option>
-						</select>
+					<select>
+						<option></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
 				</legend>
-			</fieldset>	
+			</fieldset>
 	';
 	$add = '<img src="'.$car_demon_pluginpath.'images/btn_add_contact.png" id="add_contact_btn" class="add_contact_btn" onclick="add_contact();" class="add_contact" title="'.__('Add Contact','car-demon').'" />';
 	$remove = '<img src="'.$car_demon_pluginpath.'images/btn_remove_contact.png" id="remove_contact_btn" class="remove_contact_btn" onclick="remove_contact();" class="remove_contact" title="'.__('Remove Contact','car-demon').'" />';

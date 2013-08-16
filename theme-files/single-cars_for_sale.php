@@ -7,9 +7,10 @@
  * @since CarDemon 1.0
  */
 $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-get_header();
 wp_enqueue_script('car-demon-single-car-js', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/car-demon-single-cars.js.php');
 wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demon/theme-files/css/car-demon-single-car.css');
+
+get_header();
 echo car_demon_photo_lightbox();
 do_action( 'car_demon_before_main_content' );
 	if ( have_posts() ) while ( have_posts() ) : the_post(); 
