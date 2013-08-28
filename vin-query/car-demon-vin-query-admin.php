@@ -9,7 +9,6 @@ if (is_admin()) {
 		add_action('save_post','cd_save_car');
 	}
 }
-
 function cd_save_car($post_id) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 	  return;
@@ -32,7 +31,6 @@ function cd_save_car($post_id) {
 	}
 	return;
 }
-
 function car_demon_get_current_post_type() {
 	global $post, $typenow, $current_screen;
 	if ( $post && $post->post_type )
@@ -49,13 +47,11 @@ function car_demon_get_current_post_type() {
 		$post_type = 'post';
 	return $post_type;
 }
-
 function cardemons_automotive_inventory_decode_header() {
 	wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
 	wp_enqueue_script('car-demon-vin-query-js', WP_CONTENT_URL . '/plugins/car-demon/vin-query/js/car-demon-vin-query.js.php');
 	wp_enqueue_style('car-demon-vin-query-css', WP_CONTENT_URL . '/plugins/car-demon/vin-query/css/car-demon-vin-query.css');
 }
-
 function eg_add_dashboard_widgets() {
 	wp_add_dashboard_widget('example_dashboard_widget', 'Add a Vehicle', 'eg_add_vehicle_dashboard_widget_function');
 	global $wp_meta_boxes;
@@ -65,7 +61,6 @@ function eg_add_dashboard_widgets() {
 	$sorted_dashboard = array_merge($example_widget_backup, $normal_dashboard);
 	$wp_meta_boxes['dashboard']['normal']['core'] = $sorted_dashboard;
 }
-
 function eg_add_vehicle_dashboard_widget_function() {
 	$vin = '';
 	$post_id = '';
@@ -79,7 +74,6 @@ function eg_add_vehicle_dashboard_widget_function() {
 	$html .= '</div>';
 	echo $html;
 }
-
 function cardemons_automotive_inventory_decode($post_id) {
 	$vin_query_decode = get_post_meta($post_id, "decode_string", true);
 	$vin = get_post_meta($post_id, "_vin_value", true);
@@ -125,15 +119,14 @@ function cardemons_automotive_inventory_decode($post_id) {
 	$html .= '</div>';
 	return $html;
 }
-
 function start_decode_box() {
 	global $theme_name;
 	add_meta_box('decode-div', 'Vehicle Options', 'decode_metabox', 'cars_for_sale', 'normal', 'high');
 	add_meta_box('decode-custom', 'Custom Options', 'decode_custom_metabox', 'cars_for_sale', 'normal', 'high');
 	add_meta_box('decode-status', 'Sales Status', 'decode_sales_metabox', 'cars_for_sale', 'side', 'high');
 	add_meta_box('decode-ribbon', 'Photo Ribbon', 'decode_photo_ribbon', 'cars_for_sale', 'side', 'default');
+	add_meta_box('decode-images', 'Vehicle Photos', 'decode_images', 'cars_for_sale', 'side', 'default');
 }
-
 function decode_custom_metabox($post) {
 	$content = '';
 	$vehicle_options = '<div style="overflow:hidden;">';
@@ -180,7 +173,17 @@ function decode_custom_metabox($post) {
 	echo $content;
 	return;
 }
-
+function decode_images($post) {
+	$post_id = $post->ID;
+	echo '
+	<a href="#" class="custom_media_upload" id="manage_vehicle_photos">Manage Photos</a>
+	<img class="custom_media_image" src="" />
+		<input class="custom_media_url" type="hidden" name="attachment_url" value="">
+		<input class="custom_media_id" type="hidden" name="attachment_id" value="">
+		<input type="hidden" name="attachment_post_id" id="attachment_post_id" value="'.$post_id.'">
+	';
+	return;
+}
 function decode_photo_ribbon($post) {
 	$post_id = $post->ID;
 	$ribbon = get_post_meta($post_id, '_vehicle_ribbon', true);
@@ -237,7 +240,6 @@ function decode_photo_ribbon($post) {
 	echo '</div>';
 	return;
 }
-
 function decode_sales_metabox($post) {
 	$post_id = $post->ID;
 	$status = get_post_meta($post_id, 'sold', true);
@@ -254,13 +256,11 @@ function decode_sales_metabox($post) {
 		</select>';
 	return;
 }
-
 function decode_metabox($post) {
 	$post_id = $post->ID;
 	echo cardemons_automotive_inventory_decode($post_id);
 	return;
 }
-
 function does_vin_exist($vin) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -277,7 +277,6 @@ function does_vin_exist($vin) {
 	}
 	return $car_id;
 }
-
 function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 	if (isset($vin_query_decode['decoded_model_year'])) {$decoded_model_year = $vin_query_decode['decoded_model_year']; } else {$decoded_model_year = ''; }
 	if (isset($vin_query_decode["decoded_make"])) {$decoded_make = $vin_query_decode["decoded_make"]; } else {$decoded_make = ''; }
@@ -459,7 +458,6 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 	  </table>';
 	return $x;
 }
-
 function get_vin_query_safety_admin($vin_query_decode, $post_id) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
@@ -590,7 +588,6 @@ function get_vin_query_safety_admin($vin_query_decode, $post_id) {
 	  </table>';
 	return $x;
 }
-
 function get_vin_query_convienience_admin($vin_query_decode, $post_id) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
@@ -722,7 +719,6 @@ function get_vin_query_convienience_admin($vin_query_decode, $post_id) {
 	';
 	return $x;
 }
-
 function get_vin_query_comfort_admin($vin_query_decode, $post_id) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
@@ -992,7 +988,6 @@ function get_vin_query_comfort_admin($vin_query_decode, $post_id) {
 	';
 	return $x;
 }
-
 function get_vin_query_entertainment_admin($vin_query_decode, $post_id) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
@@ -1055,7 +1050,6 @@ function get_vin_query_entertainment_admin($vin_query_decode, $post_id) {
 	';
 	return $x;
 }
-
 function decode_select($fld, $val, $post_id) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('vin-query','',$car_demon_pluginpath);

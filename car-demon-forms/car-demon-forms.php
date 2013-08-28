@@ -12,7 +12,6 @@ include( 'handlers/car-demon-part-handler.php' );
 include( 'handlers/car-demon-service-handler.php' );
 include( 'handlers/car-demon-service-quote-handler.php' );
 include( 'handlers/car-demon-qualify-handler.php' );
-
 add_action("wp_ajax_cd_contact_us_handler", "cd_contact_us_handler");
 add_action("wp_ajax_nopriv_cd_contact_us_handler", "cd_contact_us_handler");
 //======

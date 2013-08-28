@@ -65,7 +65,6 @@ function cd_contact_us_handler() {
 	}
 	exit();
 }
-
 function send_contact_request() {
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
@@ -145,7 +144,6 @@ function send_contact_request() {
 	';
 	return $html;
 }
-
 function adfxml_contact_us() {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 

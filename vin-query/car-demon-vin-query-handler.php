@@ -10,8 +10,7 @@ if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/vin-query', '', $newPath);
 	include_once($newPath."/wp-load.php");
 	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
+} else {
 	$newPath = str_replace('wp-content\plugins\car-demon\vin-query', '', $newPath);
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
@@ -20,6 +19,15 @@ if (isset($_POST['post_id'])) $post_id = $_POST['post_id'];
 if ($_GET['decode'] == "post") {
 	$vin = $_POST['vin'];
 	car_demon_get_vin_query($post_id, $vin);
+}
+if (isset($_GET['add_car_images'])) {
+	$attachment_id = $_POST['attachment_id'];
+	$post_id = $_POST['post_id'];
+	$cd_post = array();
+	$cd_post['ID'] = $attachment_id;
+	$cd_post['post_parent'] = $post_id;
+	wp_update_post( $cd_post );
+	echo $post_id .'-'. $attachment_id;
 }
 if (isset($_GET['decode'])) {
 	if ($_GET['decode'] == "dashboard") {

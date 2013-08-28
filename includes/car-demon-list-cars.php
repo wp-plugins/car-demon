@@ -85,7 +85,6 @@ function car_demon_display_car_list($post_id) {
 		</div>';
 	return $car;
 }
-
 function car_demon_dynamic_ribbon_filter($current_ribbon, $post_id, $size) {
 	if (strpos($current_ribbon, 'no-ribbon')) {
 		$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';

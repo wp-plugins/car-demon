@@ -120,7 +120,6 @@ function get_car_contact($post_id) {
 	}
 	return $car_contact;
 }
-
 function replace_contact_info_tags($post_id, $body) {
 	if (empty($post_id)) {
 		$post_id = 0;

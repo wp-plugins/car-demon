@@ -7,23 +7,19 @@ if (is_admin()) {
 	add_filter( 'parse_query', 'filter_by_sold' );
 //	add_action( 'add_meta_boxes', 'start_admin_gallery_box' );
 }
-
 if (isset($_GET['page']) && $_GET['page'] == 'car_demon_settings_options') {
 	add_action('admin_print_scripts', 'car_demon_admin_scripts');
 	add_action('admin_print_styles', 'car_demon_admin_styles');
 }
-
 function car_demon_admin_scripts() {
 	wp_enqueue_script('media-upload');
 	wp_enqueue_script('thickbox');
 	wp_register_script('cd-upload', '/wp-content/plugins/car-demon/theme-files/js/uploader.js', array('jquery','media-upload','thickbox'));
 	wp_enqueue_script('cd-upload');
 }
-
 function car_demon_admin_styles() {
 	wp_enqueue_style('thickbox');
 }
-
 function restrict_listings_by_sold() {
     global $typenow;
     global $wp_query;
@@ -35,7 +31,6 @@ function restrict_listings_by_sold() {
 		echo '<div class="cd_admin_filter"><div class="cd_admin_filter_label">Condition</div><div class="cd_admin_filter_field"><select name="vehicle_condition" id="vehicle_condition"><option value="">All</option><option value="new">New</option><option value="preowned">Used</option></select></div></div>';
 	}
 }
-
 function filter_by_sold($query) {
 	global $pagenow;
 	$both = 0;
@@ -50,7 +45,6 @@ function filter_by_sold($query) {
 		}
 	}
 }
-
 function select_admin_locations() {
 	$html = '';
 	$args = array(
@@ -92,20 +86,16 @@ function select_admin_locations() {
 	}
 	return $html;
 }
-
 /*===============
 Admin Photo Area
 ===============*/
-
 function start_admin_gallery_box() {
 	add_meta_box('vehicle-photos', 'Vehicle Photos', 'car_demon_vehicle_photo_gallery', 'cars_for_sale', 'normal', 'high');
 }
-
 function car_demon_vehicle_photo_gallery($post) {
 	$post_id = $post->ID;
 	echo admin_car_photos($post_id);
 }
-
 function admin_car_photos($post_id) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$this_car = '<div>';
@@ -130,7 +120,7 @@ function admin_car_photos($post_id) {
 			if (!empty($guid)) {
 				if ($main_guid != $guid) {
 					$cnt = $cnt + 1;
-					$photo_array = '<img class="car_demon_thumbs" width="53" />';
+					$photo_array = '<img src="'.$guid.'" class="car_demon_thumbs" width="53" />';
 					$this_car .= $photo_array;
 				}
 			}
@@ -142,5 +132,4 @@ function admin_car_photos($post_id) {
 	$html = $this_car;
 	return $html;
 }
-
 ?>

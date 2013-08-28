@@ -17,9 +17,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-
 echo build_xml();
-
 function build_xml() {
 	$post_id = $_GET['post_id'];
 		if (empty($post_id)) {
@@ -52,7 +50,6 @@ function build_xml() {
 		$car_xml .= rwh_xml(get_post_meta($post_id, "_doors_value", true), 'doors');
 		$car_xml .= rwh_xml(get_post_meta($post_id, "_trim_value", true), 'trim');
 		$car_xml .= rwh_xml(get_post_meta($post_id, "_warranty_value", true), 'warranty');
-
 		if (function_exists(attachments_get_attachments)) {
 			$attachments = attachments_get_attachments($post_id);
 	
@@ -72,12 +69,10 @@ function build_xml() {
 			$car_demon_pluginpath = str_replace('feeds','',$car_demon_pluginpath);
 			$car_pic = $car_demon_pluginpath.'no_photo.gif';
 		}
-
 		$car_xml .= '<photo>'.$car_pic.'</photo>';
 		$car_xml .= '</vehicle></vehicleSummary>';
 	return $car_xml;
 }
-
 function rwh_xml($x,$y) {
 	$x = trim($x);
 	if (!empty($x)) {
@@ -87,14 +82,12 @@ function rwh_xml($x,$y) {
 	}
 	return $new_string;
 }
-
 function get_my_post_thumbnail_id_detail( $post_id = NULL ) {
 	global $id;
 	$post_id = ( NULL === $post_id ) ? $id : $post_id;
 	$my_pic = get_post_meta( $post_id, '_thumbnail_id', true );
 	return $my_pic;
 }
-
 function get_post_from_vin($vin) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -110,7 +103,6 @@ function get_post_from_vin($vin) {
 	}
 	return $post_id;
 }
-
 function get_post_from_stock($stock) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;

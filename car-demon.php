@@ -35,14 +35,11 @@ include( 'widgets/car-demon-tag-cloud.php' );
 include( 'widgets/car-demon-random-cars.php' );
 include( 'widgets/car-demon-car-search-widget.php' );
 include( 'widgets/car-demon-compare-widget.php' );
-
 include( 'widgets/car-demon-vehicle-contact-widget.php' );
-
 include( 'vin-query/car-demon-vin-query.php' );
 include( 'vin-query/car-demon-vin-query-admin.php' );
 include( 'car-demon-forms/car-demon-forms.php' );
 include( 'car-demon-header.php' );
-
 add_filter('wp_print_styles', 'car_demon_header');
 function car_demon_init() {
 	load_plugin_textdomain( 'car-demon', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
@@ -78,8 +75,7 @@ function start_car_demon() {
 	}
 	car_demon_subdomains();
 }
-add_action('wp', 'start_car_demon');
-
+//add_action('wp', 'start_car_demon');
 if (!is_admin()) {
   add_filter('widget_text', 'car_demon_text_filter', 11);
   add_filter('the_content', 'car_demon_text_filter', 11);

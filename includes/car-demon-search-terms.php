@@ -3,7 +3,8 @@ header('Access-Control-Allow-Origin: *');
 $newPath = dirname(__FILE__);
 if (!stristr(PHP_OS, 'WIN')) {
 	$is_it_iis = 'Apache';
-} else {
+}
+else {
 	$is_it_iis = 'Win';
 }
 if ($is_it_iis == 'Apache') {
@@ -57,7 +58,6 @@ if ($_GET['_name'] == 'search_condition') {
 		$array[] = array('0' => 'No Match');
 	}
 }
-
 if ($_GET['_name'] == 'search_year') {
 	$my_year = $_GET['_value'];
 	if (!empty($my_year)) {
@@ -231,9 +231,7 @@ if (empty($array)) {
 	$array[] = array('1' => 'No Match');
 	$array[] = array('2' => 'No Match');
 }
-
 echo json_encode( $array );
-
 function count_these_tax_items($old_val, $new_val, $type) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -303,7 +301,6 @@ function count_these_tax_items($old_val, $new_val, $type) {
 	}
 	return $my_total;
 }
-
 function count_my_active_tax_items($my_tag_name, $post_type, $taxonomy) {
 	global $wpdb;
 	$my_tag_id = get_term_by( 'slug', ''.$my_tag_name.'', ''.$taxonomy.'');

@@ -17,9 +17,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-
 echo build_csv();
-
 function build_csv() {
 	global $wpdb;
 	$query = "SELECT ID, post_content
@@ -86,7 +84,6 @@ function build_csv() {
 	}
 	return $car_csv;
 }
-
 function get_my_post_thumbnail_id( $post_id = NULL ) {
 	global $id;
 	$post_id = ( NULL === $post_id ) ? $id : $post_id;

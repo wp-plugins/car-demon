@@ -104,7 +104,6 @@ function list_part_lines($popup_id) {
 	} while ($start < $stop);
 	return $x;
 }
-
 function part_locations_radio() {
 	$args = array(
 		'style'              => 'none',

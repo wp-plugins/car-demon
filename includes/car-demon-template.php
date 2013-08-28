@@ -1,10 +1,8 @@
 <?php
-
 add_action('car_demon_sidebar', 'car_demon_get_sidebar', 10);
 function car_demon_get_sidebar() {
 	get_sidebar();
 }
-
 add_action('car_demon_vehicle_sidebar', 'car_demon_get_vehicle_sidebar', 10);
 function car_demon_get_vehicle_sidebar() {
 	echo '<div id="sideBar1" class="car_side_bar">';
@@ -15,19 +13,16 @@ function car_demon_get_vehicle_sidebar() {
 		echo '<br class="clear_car">';
 	echo '</div>';
 }
-
 add_action('car_demon_before_main_content', 'car_demon_output_content_wrapper', 10);
 function car_demon_output_content_wrapper() {
 	echo '<div id="demon-container">';
 		echo '<div id="demon-content" class="listing" role="main">';
 }
-
 add_action('car_demon_after_main_content', 'car_demon_output_content_wrapper_end', 10);
 function car_demon_output_content_wrapper_end() {
 		echo '</div><!-- #content -->';
 	echo '</div><!-- #container -->';
 }
-
 function get_car_title($post_id) {
 	If ($_SESSION['car_demon_options']['use_post_title'] == 'Yes') {
 		$car_title = get_the_title($post_id);
@@ -44,7 +39,6 @@ function get_car_title($post_id) {
 //	$car_title = substr($car_title, 0, 19);
 	return $car_title;
 }
-
 function get_car_title_slug($post_id) {
 	$car_title = get_car_title($post_id);
 	$car_title = strtolower($car_title);
@@ -52,7 +46,6 @@ function get_car_title_slug($post_id) {
 	$car_title = str_replace(chr(32), '_', $car_title);
 	return $car_title;
 }
-
 function car_demon_nav($position,$search_query) {
 	$x = '';
 	if ($position == 'top') {
@@ -83,7 +76,6 @@ function car_demon_nav($position,$search_query) {
 	$x = str_replace('none', '', $x);
 	return $x;
 }
-
 //=====Functions used exclusively in single-cars_for_sale.php
 function car_demon_photo_lightbox() {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
@@ -110,7 +102,6 @@ function car_demon_photo_lightbox() {
 	</div>';
 	return $x;
 }
-
 function car_demon_email_a_friend($post_id, $vehicle_stock_number) {
 	$car_head_title = get_car_title($post_id);
 	$x = '<div id="email_friend_div" class="email_friend_div">
@@ -141,7 +132,6 @@ function car_demon_email_a_friend($post_id, $vehicle_stock_number) {
 	</div>';
 	return $x;
 }
-
 function car_demon_vehicle_detail_tabs($post_id) {
 	$tab_cnt = 1;
 	$vin_query = '';
@@ -194,9 +184,9 @@ function car_demon_vehicle_detail_tabs($post_id) {
 	} else {
 		$vin_query_decode = '';
 	}
-	if (isset($vin_query_decode['hide_tabs'])) {
-		if ($vin_query_decode['hide_tabs'] == 'Yes') {
-			$vin_query = 0;		
+	if (isset($_SESSION['car_demon_options']['hide_tabs'])) {
+		if ($_SESSION['car_demon_options']['hide_tabs'] == 'Yes') {
+			$vin_query = 0;
 		} else {
 			$tab_cnt = $tab_cnt + 5;
 			$vin_query = 1;
@@ -278,7 +268,6 @@ function car_demon_vehicle_detail_tabs($post_id) {
 	$x .= '</div>';
 	return $x;
 }
-
 function car_demon_display_similar_cars($body_style, $current_id) {
 	global $wpdb;
 	$show_it = '';
@@ -373,7 +362,6 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 	}
 	return $car;
 }
-
 function car_photos($post_id, $details, $vehicle_condition) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
@@ -429,7 +417,6 @@ function car_photos($post_id, $details, $vehicle_condition) {
 		$car_js .= 'carImg['.$cnt.']="'.trim($main_guid).'";'.chr(13);
 		$photo_array = '<img class="car_demon_thumbs"'.$popup_imgs.' onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($main_guid).'",1);active_img('.$cnt.')\' src="'.trim($main_guid).'" width="62" />';
 		$this_car .= $photo_array;
-
 		foreach($thumbnails as $thumbnail) {
 			$guid = $thumbnail->guid;
 			if (!empty($guid)) {
@@ -477,7 +464,6 @@ function car_photos($post_id, $details, $vehicle_condition) {
 	$html = apply_filters( 'car_demon_photo_hook', $html, $post_id, $details, $vehicle_condition, 'desktop' );
 	return $html;
 }
-
 function car_demon_no_search_results($searched) {
 	$x = '<div id="post-0" class="post no-results not-found">';
 		$x .= '<h2 class="entry-title">'. __( 'Nothing Found', 'car-demon' ) .'</h2>';
@@ -495,14 +481,12 @@ function car_demon_no_search_results($searched) {
 	$x .= '</div><!-- #post-0 -->';
 	return $x;
 }
-
 function car_demon_get_the_content_with_formatting ($more_link_text = '(more...)', $stripteaser = 0, $more_file = '') {
 	$content = get_the_content($more_link_text, $stripteaser, $more_file);
 	$content = apply_filters('the_content', $content);
 	$content = str_replace(']]>', ']]&gt;', $content);
 	return $content;
 }
-
 //function car_demon_facebook_meta($title, $url, $image) {
 function car_demon_facebook_meta() {
 	$post_id = get_the_ID();

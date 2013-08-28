@@ -17,9 +17,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-
 query_posts('posts_per_page=300&post_type=cars_for_sale&meta-key=sold&meta-value=no');
-
 echo "<inventorySummary>";
 	if ( have_posts() ) : while ( have_posts() ) : the_post();
 		$post_id = $post->ID;
@@ -57,5 +55,4 @@ echo "<inventorySummary>";
 	endif;
 echo "</inventorySummary>";
 wp_reset_query();
-
 ?>

@@ -32,15 +32,15 @@ function car_demon_contact_request($send_to, $popup_id = '', $popup_button='') {
 	$x .= '
 	<div id="contact_msg'.$popup_id.'" class="contact_msg"></div>
 	<form enctype="multicontact/form-data" data-nonce="' . $nonce . '" action="?send_contact=1" method="post" class="cdform contact-appointment " id="contact_form'.$popup_id.'">
-		<input type="hidden" name="nonce" id="nonce" value="'.$nonce.'" />
-		<fieldset class="cd-fs1">
-		<legend>'.__('YOUR INFORMATION','car-demon').'</legend>
-		<ol class="cd-ol">
-			<li id="li-name" class=""><label for="cd_field_2"><span>'.__('Your Name','car-demon').'</span></label><input type="text" name="cd_name" id="cd_name" class="single fldrequired" value="'.__('Your Name', 'car-demon').'" onfocus="clearField(this)" onblur="setField(this)"><span class="reqtxt">('.__('required','car-demon').')</span></li>
-			<li id="li" class=""><label for="cd_field_"><span>'.__('Phone #','car-demon').'</span></label><input type="text" name="cd_phone" id="cd_phone" class="single fldrequired" value="" '.$validate_phone.'>'.$require_phone.'</li>
-			<li id="li-4" class=""><label for="cd_field_4"><span>'.__('Email') .'</span></label><input type="text" name="cd_email" id="cd_email" class="single fldemail fldrequired" value=""><span class="emailreqtxt">('.__('valid email required','car-demon').')</span></li>
-		</ol>
-		</fieldset>
+			<input type="hidden" name="nonce" id="nonce" value="'.$nonce.'" />
+			<fieldset class="cd-fs1">
+			<legend>'.__('YOUR INFORMATION','car-demon').'</legend>
+			<ol class="cd-ol">
+				<li id="li-name" class=""><label for="cd_field_2"><span>'.__('Your Name','car-demon').'</span></label><input type="text" name="cd_name" id="cd_name" class="single fldrequired" value="'.__('Your Name', 'car-demon').'" onfocus="clearField(this)" onblur="setField(this)"><span class="reqtxt">('.__('required','car-demon').')</span></li>
+				<li id="li" class=""><label for="cd_field_"><span>'.__('Phone #','car-demon').'</span></label><input type="text" name="cd_phone" id="cd_phone" class="single fldrequired" value="" '.$validate_phone.'>'.$require_phone.'</li>
+				<li id="li-4" class=""><label for="cd_field_4"><span>'.__('Email') .'</span></label><input type="text" name="cd_email" id="cd_email" class="single fldemail fldrequired" value=""><span class="emailreqtxt">('.__('valid email required','car-demon').')</span></li>
+			</ol>
+			</fieldset>
 	';
 	if ($send_to == 'normal') {
 		$x .= contact_locations_radio();
@@ -66,7 +66,6 @@ function car_demon_contact_request($send_to, $popup_id = '', $popup_button='') {
 	}
 	return $x;
 }
-
 function contact_locations_radio() {
 	$args = array(
 		'style'              => 'none',
@@ -195,7 +194,6 @@ function contact_locations_radio() {
 	$html = str_replace('Default - ', '', $html);
 	return $html;
 }
-
 function car_demon_get_custom_email($user_id, $lead_type, $current_location) {
 	$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 	$location_approved = 0;

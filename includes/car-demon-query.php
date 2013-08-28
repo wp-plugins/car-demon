@@ -214,7 +214,7 @@ function car_demon_sorting($page_type = 'search') {
 			$hidden_items = '';
 			foreach ( $output as $key => $value ) {
 				if (!empty($value)) {
-					$hidden_items .= '<input type="hidden" value="'.$value.'" name="'.$value.'" />';
+					$hidden_items .= '<input type="hidden" value="'.$value.'" name="'.$key.'" />';
 				}
 			}
 			$car_demon_sorting = '<form id="frm_cd_sort" name="frm_cd_sort" action="" method="get">

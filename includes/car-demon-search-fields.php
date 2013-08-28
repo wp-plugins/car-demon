@@ -7,7 +7,6 @@ function car_demon_search_years() {
 	$search_years .= '</select>&nbsp;&nbsp;&nbsp;';
 	return $search_years;
 }
-
 function car_demon_search_makes() {
 	$search_makes = '';
 	$search_makes .= '<select class="search_make" name="search_make" id="search_make">';
@@ -16,7 +15,6 @@ function car_demon_search_makes() {
 	$search_makes .= '</select>&nbsp;&nbsp;&nbsp;';
 	return $search_makes;
 }
-
 function car_demon_search_models() {
 	$search_models = '';
 	$search_models .= '<select class="search_model" name="search_model" id="search_model" onchange="car_demon_fix_model();">';
@@ -25,7 +23,6 @@ function car_demon_search_models() {
 	$search_models .= '</select>&nbsp;&nbsp;&nbsp;';
 	return $search_models;
 }
-
 function car_demon_search_condition() {
 	$search_condition = '<select class="search_condition" name="search_condition" id="search_condition">';
 		$search_condition .= '<option value="">'.__('ALL', 'car-demon').'</option>';
@@ -33,7 +30,6 @@ function car_demon_search_condition() {
 	$search_condition .= '</select>';
 	return $search_condition;
 }
-
 function car_demon_get_my_tax($taxonomy,$val) {
 	$my_tag_list = '';
 	$this_val = '';
@@ -142,7 +138,6 @@ function car_demon_get_my_tax($taxonomy,$val) {
 	}
 	return $my_tag_list;
 }
-
 function car_demon_search_price($size) {
 	if (isset($_GET['search_dropdown_'.$size.'_price'])) {
 		$price = $_GET['search_dropdown_'.$size.'_price'];
@@ -185,7 +180,6 @@ function car_demon_search_price($size) {
 	$x .= '</select>';
 	return $x;
 }
-
 function car_demon_search_tran() {
 	global $wpdb;
 	if (isset($_GET['search_dropdown_tran'])) {
@@ -209,7 +203,6 @@ function car_demon_search_tran() {
 	}
 	return $x;
 }
-
 function car_demon_search_miles() {
 	if (isset($_GET['search_dropdown_miles'])) {
 		$miles = $_GET['search_dropdown_miles'];
@@ -244,14 +237,12 @@ function car_demon_search_miles() {
 		$x .='</select>';
 	return $x;
 }
-
 function car_demon_search_body() {
 	$taxonomies = array('vehicle_body_style');
 	$args = array('orderby'=>'count','hide_empty'=>true);
 	$x = car_demon_get_terms_dropdown($taxonomies, $args);
 	return $x;
 }
-
 function car_demon_get_terms_dropdown($taxonomies, $args){
 	if (isset($_GET['search_dropdown_body'])) {
 		$body = $_GET['search_dropdown_body'];
@@ -273,7 +264,6 @@ function car_demon_get_terms_dropdown($taxonomies, $args){
 	$output .="</select>";
 return $output;
 }
-
 function car_demon_count_active_tax_items($my_tag_name, $post_type, $taxonomy) {
 	global $wpdb;
 	$my_tag_id = get_term_by( 'slug', ''.$my_tag_name.'', ''.$taxonomy.'');
@@ -289,7 +279,6 @@ function car_demon_count_active_tax_items($my_tag_name, $post_type, $taxonomy) {
 				LEFT JOIN $wpdb->term_relationships ON (wposts.ID = $wpdb->term_relationships.object_id)
 				LEFT JOIN $wpdb->term_taxonomy ON ($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
 			WHERE wposts.post_type='".$post_type."'
-				AND wposts.post_status='publish'
 				AND wpostmeta.meta_key = 'sold'
 				AND wpostmeta.meta_value = 'no'".$my_search;
 		$total_cars = mysql_fetch_array(mysql_query($query));
@@ -297,11 +286,16 @@ function car_demon_count_active_tax_items($my_tag_name, $post_type, $taxonomy) {
 	}
 	return $total_cars;
 }
-
 function car_demon_search_cars_scripts() {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
 	wp_enqueue_script('car-demon-search-js', WP_CONTENT_URL . '/plugins/car-demon/includes/js/car-demon-search.js.php');
-	wp_enqueue_style('car-demon-search-css', WP_CONTENT_URL . '/plugins/car-demon/includes/css/car-demon-search.css');
+	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
+		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
+			wp_enqueue_style('car-demon-search-css', WP_CONTENT_URL . '/plugins/car-demon/includes/css/car-demon-search.css');
+		}
+	} else {
+		wp_enqueue_style('car-demon-search-css', WP_CONTENT_URL . '/plugins/car-demon/includes/css/car-demon-search.css');
+	}
 }
 ?>

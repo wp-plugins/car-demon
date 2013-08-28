@@ -5,25 +5,21 @@ function car_demon_settings_page() {
 	add_action( 'admin_enqueue_scripts', 'car_demon_admin_car_scripts' );
 }
 add_action( 'admin_menu', 'car_demon_settings_page' );
-
 function get_my_post_thumbnail_id_detail_eil( $post_id = NULL ) {
 	global $id;
 	$post_id = ( NULL === $post_id ) ? $id : $post_id;
 	$my_pic = get_post_meta( $post_id, '_thumbnail_id', true );
 	return $my_pic;
 }
-
 function be_hidden_meta_boxes( $hidden, $screen ) {
 	if ( 'cars-for-sale' == $screen->base )
 		$hidden = array('postcustom', 'slugdiv', 'trackbacksdiv', 'postexcerpt', 'commentstatusdiv', 'commentsdiv', 'authordiv', 'revisionsdiv');
 	return $hidden;
 }
-
 function car_demon_admin_car_scripts() {
 	wp_enqueue_script('car-demon-admin-js', WP_CONTENT_URL . '/plugins/car-demon/admin/js/car-demon-admin.js.php');
 	wp_enqueue_style('car-demon-admin-css', WP_CONTENT_URL . '/plugins/car-demon/admin/css/car-demon-admin.css');
 }
-
 function car_demon_plugin_options_do_page() {
 	screen_icon();
 	echo '<div class="wrap">';
@@ -31,7 +27,6 @@ function car_demon_plugin_options_do_page() {
 		admin_contact_forms();
 	echo '</div>';
 }
-
 function admin_contact_forms() {
 	if (isset($_POST['update_location_options'])) {
 		update_car_location_options();
@@ -214,7 +209,6 @@ function admin_contact_forms() {
 		$x = $x + 1;
 	}
 }
-
 function update_car_location_options() {
 	$args = array(
 		'style'              => 'none',
@@ -290,7 +284,6 @@ function update_car_location_options() {
 		$car_demon_settings_hook = apply_filters('car_demon_admin_update_hook', $holder, $current_location);
 	}
 }
-
 function car_demon_options() {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('admin/','',$car_demon_pluginpath);
@@ -316,6 +309,7 @@ function car_demon_options() {
 	$default['show_sold'] = 'No';
 	$default['cc_admin'] = 'Yes';	
 	$default['do_sort'] = 'Yes';
+	$default['drop_down_sort'] = 'No';
 	$default['sort_price'] = 'Yes';
 	$default['sort_miles'] = 'Yes';
 	$default['hide_tabs'] = 'No';
@@ -344,6 +338,7 @@ function car_demon_options() {
 	if (empty($car_demon_options['use_post_title'])) {$car_demon_options['use_post_title'] = $default['use_post_title'];}
 	if (empty($car_demon_options['show_sold'])) {$car_demon_options['show_sold'] = $default['show_sold'];}
 	if (empty($car_demon_options['cc_admin'])) {$car_demon_options['cc_admin'] = $default['cc_admin'];}
+	if (empty($car_demon_options['drop_down_sort'])) {$car_demon_options['drop_down_sort'] = $default['drop_down_sort'];}
 	if (empty($car_demon_options['do_sort'])) {$car_demon_options['do_sort'] = $default['do_sort'];}
 	if (empty($car_demon_options['sort_price'])) {$car_demon_options['sort_price'] = $default['sort_price'];}
 	if (empty($car_demon_options['sort_miles'])) {$car_demon_options['sort_miles'] = $default['sort_miles'];}
@@ -353,7 +348,6 @@ function car_demon_options() {
 	if (empty($car_demon_options['use_form_css'])) {$car_demon_options['use_form_css'] = $default['use_form_css'];}
 	return $car_demon_options;
 }
-
 function car_demon_settings_options_do_page() {
 	echo '<div class="wrap"><div id="icon-tools" class="icon32"></div><h1>'.__('Car Demon Settings', 'car-demon').'</h1>';
 	if (isset($_POST['reset_car_demon'])) {
@@ -461,6 +455,12 @@ function car_demon_settings_options_do_page() {
 		echo '<hr />'.__('Show sorting options on vehicle listing pages?', 'car-demon').':<br />';
 		echo '<select name="do_sort">
 				<option value="'.$car_demon_options['do_sort'].'">'.$car_demon_options['do_sort'].'</option>
+				<option value="Yes">'.__('Yes', 'car-demon').'</option>
+				<option value="No">'.__('No', 'car-demon').'</option>
+			</select><br />';
+		echo '<br />'.__('Use Drop down sorting?', 'car-demon').':<br />';
+		echo '<select name="drop_down_sort">
+				<option value="'.$car_demon_options['drop_down_sort'].'">'.$car_demon_options['drop_down_sort'].'</option>
 				<option value="Yes">'.__('Yes', 'car-demon').'</option>
 				<option value="No">'.__('No', 'car-demon').'</option>
 			</select><br />';
@@ -599,7 +599,6 @@ function car_demon_settings_options_do_page() {
 		echo '[staff_page]<br />';
 	echo '</div></div>';
 }
-
 function update_car_demon_settings() {
 	$new = array();
 	$new = get_option( 'car_demon_options' );
@@ -629,6 +628,7 @@ function update_car_demon_settings() {
 	if (isset($_POST['use_post_title'])) $new['use_post_title'] = $_POST['use_post_title'];
 	if (isset($_POST['show_sold'])) $new['show_sold'] = $_POST['show_sold'];
 	if (isset($_POST['cc_admin'])) $new['cc_admin'] = $_POST['cc_admin'];
+	if (isset($_POST['drop_down_sort'])) $new['drop_down_sort'] = $_POST['drop_down_sort'];
 	if (isset($_POST['do_sort'])) $new['do_sort'] = $_POST['do_sort'];
 	if (isset($_POST['sort_price'])) $new['sort_price'] = $_POST['sort_price'];
 	if (isset($_POST['sort_miles'])) $new['sort_miles'] = $_POST['sort_miles'];
@@ -639,12 +639,10 @@ function update_car_demon_settings() {
 	update_option( 'car_demon_options', $new );
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }
-
 function reset_car_demon() {
 	delete_option('car_demon_options');
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN RESET', 'car-demon').'</h3>';
 }
-
 function get_default_finance_description() {
 	$x = '<span>'.__('This is not a contract to purchase. It is an application for financing a possible automotive purchase.', 'car-demon').' <br />
 		  <strong> '.__('You are not obligated to purchase', 'car-demon').'</strong> '.__('a vehicle if you submit this form.', 'car-demon').' </span>
@@ -655,7 +653,6 @@ function get_default_finance_description() {
 	';
 	return $x;
 }
-
 function get_default_finance_disclaimer() {
 	$x = __('
 	*TERMS AND DISCLOSURE 
@@ -797,7 +794,6 @@ function get_default_finance_disclaimer() {
 	', 'car-demon');
 	return $x;
 }
-
 function get_default_description() {
 	$x = __('This vehicle is ready to go right now.', 'car-demon');
 	return $x;

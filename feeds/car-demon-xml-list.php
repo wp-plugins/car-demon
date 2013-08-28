@@ -17,9 +17,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-
 echo build_xml();
-
 function build_xml() {
 	global $wpdb;
 	$query = "SELECT ID
@@ -63,12 +61,10 @@ function build_xml() {
 	$car_xml = '<inventorySummary>'.$car_xml.'</inventorySummary>';
 	return $car_xml;
 }
-
 function rwh_xml($x,$y) {
 	$new_string = '<'.$y.'>'.$x.'</'.$y.'>'.chr(13);
 	return $new_string;
 }
-
 function get_my_post_thumbnail_id( $post_id = NULL ) {
 	global $id;
 	$post_id = ( NULL === $post_id ) ? $id : $post_id;

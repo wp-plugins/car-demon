@@ -7,7 +7,6 @@ if (!stristr(PHP_OS, 'WIN')) {
 else {
 	$is_it_iis = 'Win';
 }
-
 if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/admin/js', '', $newPath);
 	include_once($newPath."/wp-load.php");

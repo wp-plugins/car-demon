@@ -4,19 +4,16 @@ if ($pagenow == 'profile.php' || $pagenow == 'user-edit.php') {
 	add_action('admin_print_scripts', 'car_demon_profile_scripts');
 	add_action('admin_print_styles', 'car_demon_profile_styles');
 }
-
 if ($pagenow == 'users.php') {
 //	add_action('manage_users_custom_column', 'cardemon_custom_user_column', 15, 3);
 //	add_filter('manage_users_columns', 'cardemon_user_column', 15, 1);
 }
-
 function cardemon_user_column( $defaults ) {
     $defaults['mysite-usercolumn-company'] = __('Company', 'user-column');
     $defaults['mysite-usercolumn-otherfield1'] = __('Other field 1', 'user-column');
     $defaults['mysite-usercolumn-otherfield2'] = __('Other field 2', 'user-column');
     return $defaults;
 }
-
 function cardemon_custom_user_column($value, $column_name, $id) {
     if( $column_name == 'mysite-usercolumn-company' ) {
         return get_the_author_meta( 'company', $id );
@@ -28,7 +25,6 @@ function cardemon_custom_user_column($value, $column_name, $id) {
         return get_the_author_meta( 'otherfield2', $id );
     }
 }
-
 //=================
 function car_demon_profile_scripts() {
 	wp_enqueue_script('media-upload');
@@ -40,7 +36,6 @@ function car_demon_profile_scripts() {
 function car_demon_profile_styles() {
 	wp_enqueue_style('thickbox');
 }
-
 function car_demon_add_custom_user_profile_fields( $user ) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/includes', '', $car_demon_pluginpath);
@@ -212,7 +207,6 @@ add_action( 'show_user_profile', 'car_demon_add_custom_user_profile_fields' );
 add_action( 'edit_user_profile', 'car_demon_add_custom_user_profile_fields' );
 add_action( 'personal_options_update', 'car_demon_save_custom_user_profile_fields' );
 add_action( 'edit_user_profile_update', 'car_demon_save_custom_user_profile_fields' );
-
 function car_demon_select_user_location($current_user_location) {
 	$args = array(
 		'style'              => 'none',

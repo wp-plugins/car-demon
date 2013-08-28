@@ -2,7 +2,6 @@
 add_action('manage_cars_for_sale_posts_custom_column', 'manage_cars_for_sale_columns');
 add_filter("manage_edit-cars_for_sale_columns", "my_cars_for_sale_columns");
 add_action('quick_edit_custom_box',  'max_add_quick_edit', 10, 2);
-
 function my_cars_for_sale_columns($columns) {
 	$columns = array_merge(array(
 		"cb" => "<input type=\"checkbox\" />",
@@ -16,7 +15,6 @@ function my_cars_for_sale_columns($columns) {
 	),$columns);
 	return $columns;
 }
-
 function manage_cars_for_sale_columns($column) {
 	global $post;
 	$post_id = $post->ID;
@@ -104,7 +102,6 @@ function manage_cars_for_sale_columns($column) {
 			</div>';
 	}
 }
-
 function max_add_quick_edit($column_name, $post_type) {
 	if ($column_name == 'msrp') {
 		echo '<table><tr><td>';
@@ -142,7 +139,6 @@ function max_add_quick_edit($column_name, $post_type) {
 	}
 	return;
 }
-
 function max_save_quick_edit_data($post_id) {
 	// verify if this is an auto save routine. If it is our form has not been submitted, so we dont want
 	// to do anything
@@ -193,7 +189,6 @@ function max_save_quick_edit_data($post_id) {
 	}
 	return $post_id;
 }
-
 function max_quick_edit_javascript() {
 	global $current_screen;
 	?>
@@ -211,7 +206,6 @@ function max_quick_edit_javascript() {
 	</script>
 	<?php
 }
-
 function max_expand_quick_edit_link($actions, $post) {
 	global $current_screen;
 	$nonce = wp_create_nonce( 'msrp'.$post->ID);

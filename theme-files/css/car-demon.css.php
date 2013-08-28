@@ -5,7 +5,6 @@ header("Cache-Control: must-revalidate");
 $offset = 60 * 60 ;
 $ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
 header($ExpStr);
-
 $newPath = dirname(__FILE__);
 if (!stristr(PHP_OS, 'WIN')) {
 	$is_it_iis = 'Apache';
@@ -13,7 +12,6 @@ if (!stristr(PHP_OS, 'WIN')) {
 else {
 	$is_it_iis = 'Win';
 }
-
 if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/css', '', $newPath);
 	include_once($newPath."/wp-load.php");
@@ -26,7 +24,6 @@ else {
 }
 $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 $car_demon_pluginpath = str_replace('theme-files/css','',$car_demon_pluginpath);
-
 $theme_color = '4D525D';
 $theme_color_highlight = '333';
 $theme_color_shadow = '999';
@@ -39,7 +36,6 @@ if (isset($_SESSION['car_demon_options']['theme_color_shadow'])) { $theme_color_
 if (isset($_SESSION['car_demon_options']['theme_color_button'])) { $theme_color_button = $_SESSION['car_demon_options']['theme_color_button']; }
 if (isset($_SESSION['car_demon_options']['theme_color_button_hover'])) { $theme_color_button_hover = $_SESSION['car_demon_options']['theme_color_button_hover']; }
 if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme_color_button_shadow = $_SESSION['car_demon_options']['theme_color_button_shadow']; }
-
 ?>
 /* =Search Button
 -------------------------------------------------------------- */
@@ -106,7 +102,6 @@ if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme
 	position:relative;
 	top:1px;
 }
-
 .featured-button {
 	background:url(<?php echo $car_demon_pluginpath; ?>theme-files/images/featured-button.png) 0 0 no-repeat;
 	border:none;
@@ -118,18 +113,15 @@ if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme
 	margin-left:10px;
 	margin-bottom:10px;
 }
-
 .featured-button a {
 	color:#444;
 	text-decoration:none;
 }
-
 .featured-button:hover {
 	background-position:0 -61px;
 	color:#444;
 	text-decoration:none;
 }
-
 .featured-button p {
 	font-size:18px;
 	font-weight:700;
@@ -139,13 +131,11 @@ if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme
 	text-shadow:0 1px #fff;
 	text-transform:uppercase;
 }
-
 .email_a_friend {
 	margin-left:10px;
 	margin-top: 7px;
 	float: left;
 }
-
 .remove_contact {
 	cursor: pointer;
 }
@@ -248,19 +238,15 @@ ol.cd-ol li {
 	margin:20px 0;
 	padding:0 5px;
 }
-
 .navigation a {
 	color:#444;
 }
-
 .navigation .previous {
 	float:left;
 }
-
 .navigation .next {
 	float:right;
 }
-
 .navigation .bracket {
 	font-size:36px;
 }

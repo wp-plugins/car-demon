@@ -54,7 +54,6 @@ function car_demon_get_vin_query($post_id, $vin) {
 		}
 	}
 }
-
 function get_vin_query_specs($vin_query_decode, $vehicle_vin) {
 	$x = '
 	<table class="decode_table">
@@ -185,7 +184,6 @@ function get_vin_query_specs($vin_query_decode, $vehicle_vin) {
 	  $x .= '</table>';
 	return $x;
 }
-
 function get_vin_query_safety($vin_query_decode) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
@@ -361,11 +359,16 @@ function get_vin_query_safety($vin_query_decode) {
 	$x = str_replace("N/A", $na_img, $x);
 	return $x;
 }
-
 function get_vin_query_convienience($vin_query_decode) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
-	wp_enqueue_style('car-demon-vin-query-css', WP_CONTENT_URL . '/plugins/car-demon/vin-query/css/car-demon-vin-query.css');
+	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
+		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
+			wp_enqueue_style('car-demon-vin-query-css', WP_CONTENT_URL . '/plugins/car-demon/vin-query/css/car-demon-vin-query.css');
+		}
+	} else {
+		wp_enqueue_style('car-demon-vin-query-css', WP_CONTENT_URL . '/plugins/car-demon/vin-query/css/car-demon-vin-query.css');
+	}
 	$x = '
 	<table class="decode_table">';
 	  $x .= '<tr class="decode_table_header">
@@ -538,7 +541,6 @@ function get_vin_query_convienience($vin_query_decode) {
 	$x = str_replace("N/A", $na_img, $x);
 	return $x;
 }
-
 function get_vin_query_comfort($vin_query_decode) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
@@ -876,7 +878,6 @@ function get_vin_query_comfort($vin_query_decode) {
 	$x = str_replace("N/A", $na_img, $x);
 	return $x;
 }
-
 function get_vin_query_entertainment($vin_query_decode) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);

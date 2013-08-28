@@ -10,7 +10,6 @@ function vehicle_search_box($button, $message) {
 	$box .= '</form>';
 	return $box;
 }
-
 function car_demon_search_form() {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
@@ -30,7 +29,6 @@ function car_demon_search_form() {
 	&nbsp;<span class="advanced_search_btn_hide" onclick="document.getElementById(\'advanced_search\').style.display=\'none\';" title="Hide Advanced Search">-</span>
 	</div>';
 ?>
-
 			<div class="search_left">
 				<div id="car-demon-searchr3c1" class=""><?php _e('Condition','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_condition(); ?></div>
@@ -39,7 +37,6 @@ function car_demon_search_form() {
 				<div id="car-demon-searchr3c1" class=""><?php _e('Manufacturer','car-demon'); ?>:</div>
 				<div id="car-demon-searchr4c1" class=""><?php echo car_demon_search_makes();?></div>
 			</div>
-
 			<div class="search_left">
 				<div class="search_labels"><?php _e('Year','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_years(); ?></div>
@@ -48,7 +45,6 @@ function car_demon_search_form() {
 				<div class=""><?php _e('Model','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_models();?></div>
 			</div>
-
 			<div id="car-demon-searchr6c1" class="search_min_price">
 				<div class="search_labels"><?php _e('Min Price','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_price('Min'); ?></div>
@@ -57,7 +53,6 @@ function car_demon_search_form() {
 				<div class="search_labels"><?php _e('Max Price','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_price('Max'); ?></div>
 			</div>
-
 			<div id="car-demon-searchr7c1" class="search_trans">
 				<div class="search_labels"><?php _e('Trans','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_tran(); ?></div>
@@ -67,7 +62,6 @@ function car_demon_search_form() {
 				<div class="search_labels"><?php _e('Mileage','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_miles(); ?></div>
 			</div>
-
 			<div id="car-demon-searchr8c1" class="search_body">
 				<div class="search_labels"><?php _e('Body Type','car-demon'); ?>:</div>
 				<div>
@@ -84,7 +78,6 @@ function car_demon_search_form() {
 </div>
 <?php
 }
-
 function car_demon_simple_search($size='l') {
 	$car_demon_auto_credit_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), $url = get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_auto_credit_pluginpath = str_replace('includes','',$car_demon_auto_credit_pluginpath);
@@ -138,7 +131,6 @@ function car_demon_simple_search($size='l') {
 </div>
 <?php
 }
-
 function car_demon_get_searched_by() {
 	$searched = '';
 	$query_string = $_SERVER['QUERY_STRING'];

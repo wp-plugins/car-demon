@@ -7,7 +7,6 @@ if (!stristr(PHP_OS, 'WIN')) {
 else {
 	$is_it_iis = 'Win';
 }
-
 if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/vin-query/js', '', $newPath);
 	include_once($newPath."/wp-load.php");
@@ -127,7 +126,6 @@ function edit_decode_vin(post_id) {
 	jQuery("#car_demon_light_box").lightbox_me({
 		overlayCSS: {background: 'black', opacity: .6}
 	});
-
 	document.getElementById("vin_decode_options_"+post_id).style.display = "inline";
 }
 function close_car_demon_lightbox() {
@@ -269,8 +267,48 @@ function update_ribbon(ribbon) {
 	document.getElementById('vehicle_ribbon').src = ribbon_url;
 }
 
+function cd_manage_photos(post_id, attachment) {
+    jQuery.ajax({
+        type: 'POST',
+        data: {'post_id': post_id, 'attachment_id': attachment},
+        url: "<?php echo  $car_demon_pluginpath; ?>vin-query/car-demon-vin-query-handler.php?add_car_images=1",
+        timeout: 2000,
+        error: function() {},
+        dataType: "html",
+        success: function(html){
+        var new_body = html;
+        }
+    })
+	return false;
+}
+
 jQuery(document).ready(function() {
 	var sendto = '';
+	jQuery('#manage_vehicle_photos').click(function(e) {
+        e.preventDefault();
+        var custom_uploader = wp.media({
+        	id: 'cd-frame',
+            title: 'Manage Vehicle Photos',
+            editing:   true,
+            multiple:  true,
+            library: {
+	            type: 'image'
+            },
+            button: {
+                text: 'Attach Photos to Vehicle'
+            },
+        })
+        .on('select', function() {
+			var selection = custom_uploader.state().get('selection');
+            var post_id = document.getElementById('attachment_post_id').value;
+     		selection.map( function( attachment ) {
+                attachment = attachment.toJSON();
+                // Do something with attachment.id and/or attachment.url here
+				cd_manage_photos(post_id, attachment.id);
+			})
+        })
+        .open();
+    });
 	jQuery('#custom_ribbon_btn').click(function() {
 		formfield = jQuery('#_custom_ribbon').attr('name');
 		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
@@ -282,14 +320,16 @@ jQuery(document).ready(function() {
 		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
 		sendto = '_custom_ribbon';
 		return false;
+        var original_send_to_editor = window.send_to_editor;
+        window.send_to_editor = function(html) {
+            imgurl = jQuery('img',html).attr('src');
+            jQuery('#'+sendto).val(imgurl);
+            document.getElementById('vehicle_ribbon').src = imgurl;
+            var post_id = document.getElementById('this_car_id').value;
+            fld = document.getElementById('_custom_ribbon');
+            update_vehicle_data(fld, post_id)
+            tb_remove();
+            window.send_to_editor = window.original_send_to_editor;
+        }
 	});
-	window.send_to_editor = function(html) {
-	 imgurl = jQuery('img',html).attr('src');
-	 jQuery('#'+sendto).val(imgurl);
-	 document.getElementById('vehicle_ribbon').src = imgurl;
-	 var post_id = document.getElementById('this_car_id').value;
-	 fld = document.getElementById('_custom_ribbon');
-	 update_vehicle_data(fld, post_id)
-	 tb_remove();
-	}	 
 });
