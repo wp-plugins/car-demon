@@ -1,4 +1,5 @@
 <?php
+
 function cd_parts_handler() {
 	if ( !wp_verify_nonce( $_REQUEST['nonce'], "cd_part_request_nonce")) {
 		echo 'Form key error! Submission could not be validated.';  
@@ -86,6 +87,7 @@ function cd_parts_handler() {
 	}
 	exit();
 }
+
 function send_part_request() {
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
@@ -161,6 +163,7 @@ function send_part_request() {
 		  <tr>
 			<td colspan="2" align="center">'.__('PARTS REQUESTED', 'car-demon').'</td>
 		  </tr>
+
 		  <tr>
 			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>
@@ -204,6 +207,7 @@ function send_part_request() {
 	';
 	return $html;
 }
+
 function get_part_email($part_location) {
 	$args = array(
 		'style'              => 'none',
@@ -242,6 +246,7 @@ function get_part_email($part_location) {
 	}
 	return $html;
 }
+
 function get_part_list() {
 	$part_list = $_POST['part_list'];
 	$parts = explode(',',$part_list);
@@ -255,6 +260,7 @@ function get_part_list() {
 	}
 	return $x;
 }
+
 function adfxml_parts() {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 

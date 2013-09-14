@@ -20,10 +20,12 @@ function cd_compare_handler() {
 	echo show_compare_vehicles();
 	exit();
 }
+
 function cd_get_compare_list() {
 	echo show_compare_list();
 	exit();
 }
+
 function show_compare_vehicles() {
 	$x = '';
 	if (isset($_SESSION['car_demon_compare'])) {
@@ -60,6 +62,7 @@ function show_compare_vehicles() {
 	$x = '<p>'.$x.'</p>';
 	return $x;
 }
+
 function show_compare_list() {
 	$x = '';
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';

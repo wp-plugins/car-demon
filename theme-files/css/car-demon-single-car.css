@@ -1,4 +1,5 @@
 /* CSS Document */
+
 .car_demon_main_photo {
 	padding: 3px;
 	border: 1px solid gray;
@@ -29,10 +30,10 @@
 	margin-top:15px;
 	margin-bottom:15px;
 }
-#car_features_box {  
-    margin: 0px auto 0px auto;  
-    width:635px;
-	margin-top:30px;
+#car_features_box {   
+    width:100%;
+	margin-top:50px;
+	float: left;
 }
 .car_features_box h4 {  
     font-family:Arial, Helvetica, sans-serif;  
@@ -132,18 +133,13 @@ ul.tabs {
 .car_demon_photo_box {
 	display:none;
 	background:#000000;
-	width:800px;
-	height:600px;		
-	padding: 9px;
+	max-width:90%;
+	/*height:800px;*/		
+	padding: 20px;
 	border: 3px solid gray;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	-moz-box-shadow: 0 0 5px rgba(0,0,0, .3);
-	-webkit-box-shadow: 0 0 5px 
-	rgba(0, 0, 0, .3);
-	box-shadow: 0 0 5px 
-	rgba(0, 0, 0, .3);
 }
 .close_light_box {
 	position:absolute;
@@ -152,26 +148,32 @@ ul.tabs {
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold;
 	cursor:pointer;
+	margin-bottom: 20px;
+	display: none;
 }
 .photo_next {
 	cursor:pointer;
 	position:absolute; 
 	top:465px; 
 	left:715px;
+	display: none !important;
 }
 .photo_next:hover {
 	top:467px;
 	left:717px
+	display: none !important;
 }
 .photo_prev {
 	cursor:pointer;
 	position:absolute; 
 	top:465px; 
 	left:55px;
+	display: none !important;
 }
 .photo_prev:hover {
 	top:467px;
-	left:57px
+	left:57px;
+	display: none !important;
 }
 .run_slideshow_div {
 	position:absolute;
@@ -179,6 +181,7 @@ ul.tabs {
 	font-weight:bold;
 	top:12px; 
 	left:615px;
+	display: none !important;
 }
 .car_demon_light_box_main_email {
 	margin-left:80px; margin-top:25px;

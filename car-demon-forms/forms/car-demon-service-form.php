@@ -2,6 +2,7 @@
 function car_demon_service_form($location, $popup_id = '', $popup_button='') {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/car-demon-forms/forms', '', $car_demon_pluginpath);
+
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
 			wp_enqueue_style('car-demon-service-form-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-service-form.css');
@@ -106,6 +107,7 @@ function car_demon_service_form($location, $popup_id = '', $popup_button='') {
 	}
 	return $x;
 }
+
 function service_locations_radio() {
 	$args = array(
 		'style'              => 'none',

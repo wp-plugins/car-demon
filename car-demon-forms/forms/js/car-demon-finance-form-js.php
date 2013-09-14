@@ -54,6 +54,7 @@
 			}
 		}
 		function setField(fld) {
+
 		}
 		function select_voi(my_type) {
 			if (my_type == "stock") {
@@ -327,6 +328,7 @@
 		document.getElementById(fld).style.fontweight = "bold";
 		document.getElementById(fld).style.background = "Yellow";
 	}
+
 	function cd_valid(fld) {
 		document.getElementById(fld).style.fontweight = "normal";
 		document.getElementById(fld).style.background = "#ffffff";

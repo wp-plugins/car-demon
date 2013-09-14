@@ -7,6 +7,7 @@ if (!stristr(PHP_OS, 'WIN')) {
 else {
 	$is_it_iis = 'Win';
 }
+
 if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/includes/js', '', $newPath);
 	include_once($newPath."/wp-load.php");
@@ -173,6 +174,7 @@ jQuery(function _() {
 		 jQuery.ajax(options);
 	});
 });
+
 function remove_search(fld, val, query_string) {
 	remove_this = "&"+fld+"="+val;
 	var reg = new RegExp(remove_this,"g");

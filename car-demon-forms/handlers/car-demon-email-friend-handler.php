@@ -16,6 +16,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
+
 if ($_GET['send_email']) {
 	require($newPath.'wp-content/plugins/car-demon/forms/car-demon-form-key-class.php');
 	$cd_formKey = new cd_formKey();
@@ -73,6 +74,7 @@ if ($_GET['send_email']) {
 		echo $thanks;
 	}
 }
+
 function send_to_friend_body() {
 	$your_name = $_POST['your_name'];
 	$your_email = $_POST['your_email'];
@@ -156,6 +158,7 @@ function send_to_friend_body() {
 	';
 	return $html;
 }
+
 function adfxml_friend() {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 

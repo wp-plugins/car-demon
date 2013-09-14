@@ -3,6 +3,7 @@ function car_demon_qualify_form($location, $popup_id, $popup_button) {
 	$x = '';
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('/car-demon-forms/forms', '', $car_demon_pluginpath);
+
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
 			wp_enqueue_style('car-demon-qualify-us-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-qualify.css');
@@ -72,6 +73,7 @@ function car_demon_qualify_form($location, $popup_id, $popup_button) {
 		</ol>
 		</fieldset>
 	';
+
 	if ($location == 'normal') {
 		$x .= finance_locations_radio();
 	} else {

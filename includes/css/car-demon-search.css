@@ -1,4 +1,5 @@
 /* CSS Document */
+
 input.btn {
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
@@ -124,5 +125,7 @@ input.btnhov {
 .search_year_dropdown {
 	height: 25px;
 }
+
 @media only screen and (max-width : 767px) {
+
 }

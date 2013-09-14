@@ -68,6 +68,7 @@ function car_demon_trade_form($post_id=0, $location) {
 	';
 	return $x;
 }
+
 function get_trade_for_vehicle($stock_num) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -108,6 +109,7 @@ function get_trade_for_vehicle($stock_num) {
 	';
 	return $x;
 }
+
 function select_trade_for_vehicle($hide=0) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath = str_replace('forms/','',$car_demon_pluginpath);
@@ -131,6 +133,7 @@ function select_trade_for_vehicle($hide=0) {
 	';
 	return $x;
 }
+
 function trade_locations_radio() {
 	$args = array(
 		'style'              => 'none',
@@ -194,6 +197,7 @@ function trade_locations_radio() {
 	';
 	return $html;
 }
+
 function car_demon_trade_options() {
 	$x = '
 	<fieldset class="cd-fs3">

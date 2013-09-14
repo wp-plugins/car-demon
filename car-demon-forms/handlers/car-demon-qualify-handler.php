@@ -67,6 +67,7 @@ function cd_qualify_handler() {
 	}
 	exit();
 }
+
 function send_qualify_contact_request() {
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
@@ -182,6 +183,7 @@ function send_qualify_contact_request() {
 	';
 	return $html;
 }
+
 function adfxml_qualify() {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
@@ -220,6 +222,7 @@ function adfxml_qualify() {
 	';
 	return $x;
 }
+
 function get_qualify_email($finance_location) {
 	$args = array(
 		'style'              => 'none',

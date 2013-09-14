@@ -108,6 +108,7 @@ function cd_contact_us_widget_handler() {
 	echo $thanks.'<br />';
 	exit();
 }
+
 function send_contact_widget_request() {
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
@@ -258,6 +259,7 @@ function send_contact_widget_request() {
 	';
 	return $html;
 }
+
 function adfxml_vehicle_contact($location, $rep_name, $to) {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 

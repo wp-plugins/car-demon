@@ -401,7 +401,7 @@ function car_photos($post_id, $details, $vehicle_condition) {
 			$this_car .= '<div class="car_main_photo_box">';
 				$this_car .= $current_ribbon;
 				$this_car .= '<img'.$lightbox_js.' src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="358" height="271" alt="New Ribbon" id="look_close">';
-				$this_car .= '<div id="main_thumb"><img onerror="ImgError(this, \'no_photo.gif\');" id="'.$car_title.'_pic" name="'.$car_title.'_pic" class="car_demon_main_photo" width="350px" src="';
+				$this_car .= '<div id="main_thumb"><img'.$lightbox_js.' onerror="ImgError(this, \'no_photo.gif\');" id="'.$car_title.'_pic" name="'.$car_title.'_pic" class="car_demon_main_photo" width="350px" src="';
 				$main_guid = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 				$this_car .= $main_guid;
 				$this_car .= '" /></div>';

@@ -6,6 +6,7 @@ if (!stristr(PHP_OS, 'WIN')) {
 else {
 	$is_it_iis = 'Win';
 }
+
 if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/includes', '', $newPath);
 	include_once($newPath."/wp-load.php");
@@ -29,4 +30,5 @@ if (isset($_GET['update_car'])) {
 	$val = $_POST['val'];
 	update_post_meta( $post_id, $fld, $val);
 }
+
 ?>

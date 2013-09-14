@@ -1,4 +1,5 @@
 <?php
+
 function cd_trade_show_stock() {
 	if ($_GET['show_stock']==1) {
 		if (isset($_POST['stock_num'])) {
@@ -15,12 +16,14 @@ function cd_trade_show_stock() {
 		echo get_trade_for_vehicle($stock_num);
 	}
 }
+
 function cd_trade_find_stock() {
 	echo car_demon_find_stock_info();
 }
 function cd_trade_find_vehicle() {
 	echo car_demon_find_car_info();
 }
+
 function cd_trade_handler() {
 	if ( !wp_verify_nonce( $_REQUEST['nonce'], "cd_contact_us_nonce")) {
 		echo 'Form key error! Submission could not be validated.';  
@@ -117,6 +120,7 @@ function cd_trade_handler() {
 	}
 	exit();
 }
+
 function build_trade_body() {
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
@@ -264,6 +268,7 @@ function build_trade_body() {
 	';
 	return $html;
 }
+
 function get_car_id_from_title($car_title) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -276,6 +281,7 @@ function get_car_id_from_title($car_title) {
 	}
 	return $x;
 }
+
 function car_demon_find_car_info() {
 	$q = strtolower($_GET["q"]);
 	if (!$q) return;
@@ -300,6 +306,7 @@ function car_demon_find_car_info() {
 	}
 	return $x;
 }
+
 function car_demon_find_stock_info() {
 	$q = strtolower($_GET["q"]);
 	if (!$q) return;
@@ -323,6 +330,7 @@ function car_demon_find_stock_info() {
 	}
 	return $x;
 }
+
 function get_trade_location($selected_car) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -345,6 +353,7 @@ function get_trade_location($selected_car) {
 	}
 	return $x;
 }
+
 function get_trade_email($trade_location) {
 	$args = array(
 		'style'              => 'none',
@@ -383,6 +392,7 @@ function get_trade_email($trade_location) {
 	}
 	return $html;
 }
+
 function adfxml_trade($location, $rep_name, $rep_email) {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 

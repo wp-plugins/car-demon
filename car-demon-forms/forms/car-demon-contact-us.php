@@ -66,6 +66,7 @@ function car_demon_contact_request($send_to, $popup_id = '', $popup_button='') {
 	}
 	return $x;
 }
+
 function contact_locations_radio() {
 	$args = array(
 		'style'              => 'none',
@@ -194,6 +195,7 @@ function contact_locations_radio() {
 	$html = str_replace('Default - ', '', $html);
 	return $html;
 }
+
 function car_demon_get_custom_email($user_id, $lead_type, $current_location) {
 	$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 	$location_approved = 0;

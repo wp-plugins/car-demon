@@ -4,6 +4,7 @@ function car_demon_finance_form($location) {
 	show_finance_form($location);
 	return $x;
 }
+
 function show_finance_form($location) {
 	$stock_num = '';
 	$vin = '';
@@ -40,6 +41,7 @@ function show_finance_form($location) {
 			<input type="hidden" name="vin" value="<?php echo $vin; ?>" />
 			<input type="hidden" name="location" value="<?php echo $location; ?>" />
 			<?php 
+
 			?>
 			<div class="finance_segment">
 				<?php 
@@ -155,6 +157,7 @@ function show_finance_form($location) {
 		';
 	}
 }
+
 function select_years() {
 	$start = 0;
 	$years = "<option></option>";
@@ -164,6 +167,7 @@ function select_years() {
 	} while ($start < 100);
 	return $years;	
 }
+
 function get_the_days() {
 	$start = 1;
 	do {
@@ -172,6 +176,7 @@ function get_the_days() {
 	} while ($start < 32);
 	return $days;
 }
+
 function get_the_years() {
 	$start = 0;
 	$this_year = date("Y");
@@ -183,6 +188,7 @@ function get_the_years() {
 	} while ($start < 100);
 	return $years;
 }
+
 function get_finance_for_vehicle($stock_num) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -217,6 +223,7 @@ function get_finance_for_vehicle($stock_num) {
 	';
 	return $x;
 }
+
 function select_finance_for_vehicle($hide=0) {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	$car_demon_pluginpath_images = str_replace('car-demon-forms/forms','',$car_demon_pluginpath);	
@@ -279,6 +286,7 @@ function select_finance_for_vehicle($hide=0) {
 	';
 	return $x;
 }
+
 function finance_locations_radio() {
 	$args = array(
 		'style'              => 'none',
@@ -342,6 +350,7 @@ function finance_locations_radio() {
 	';
 	return $html;
 }
+
 function get_finance_location_name($selected_car) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -363,6 +372,7 @@ function get_finance_location_name($selected_car) {
 	}
 	return $x;
 }
+
 function get_this_dislaimer($stock_num) {
 	if (empty($stock_num)) {
 		$finance_disclaimer = get_option('default_finance_disclaimer');
@@ -375,6 +385,7 @@ function get_this_dislaimer($stock_num) {
 	}
 	return $finance_disclaimer;
 }
+
 function get_finance_description($stock_num) {
 	if (empty($stock_num)) {
 		$finance_description = get_option('default_finance_description');

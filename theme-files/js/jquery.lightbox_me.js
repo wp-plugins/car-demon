@@ -15,15 +15,21 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+
+
 (function($) {
+
     $.fn.lightbox_me = function(options) {
+
         return this.each(function() {
+
             var
                 opts = $.extend({}, $.fn.lightbox_me.defaults, options),
                 $overlay = $(),
                 $self = $(this),
                 $iframe = $('<iframe id="foo" style="z-index: ' + (opts.zIndex + 1) + ';border: none; margin: 0; padding: 0; position: absolute; width: 100%; height: 100%; top: 0; left: 0; filter: mask();"/>'),
                 ie6 = ($.browser.msie && $.browser.version < 7);
+
             if (opts.showOverlay) {
                 //check if there's an existing overlay, if so, make subequent ones clear
                var $currentOverlays = $(".js_lb_overlay:visible");
@@ -33,6 +39,7 @@
                     $overlay = $('<div class="' + opts.classPrefix + '_overlay js_lb_overlay" id="lb_overlay"/>');
                 }
             }
+
             /*----------------------------------------------------
                DOM Building
             ---------------------------------------------------- */
@@ -42,9 +49,12 @@
                 $('body').append($iframe);
             } // iframe shim for ie6, to hide select elements
             $('body').append($self.hide()).append($overlay);
+
+
             /*----------------------------------------------------
                Overlay CSS stuffs
             ---------------------------------------------------- */
+
             // set css of the overlay
             if (opts.showOverlay) {
                 setOverlayHeight(); // pulled this into a function because it is called on window resize.
@@ -53,6 +63,7 @@
                 	$overlay.css(opts.overlayCSS);
                 }
             }
+
             /*----------------------------------------------------
                Animate it in.
             ---------------------------------------------------- */
@@ -66,15 +77,19 @@
                 setSelfPosition();
                 $self[opts.appearEffect](opts.lightboxSpeed, function() { opts.onLoad()});
             }
+
             /*----------------------------------------------------
                Hide parent if parent specified (parentLightbox should be jquery reference to any parent lightbox)
             ---------------------------------------------------- */
             if (opts.parentLightbox) {
                 opts.parentLightbox.fadeOut(200);
             }
+
+
             /*----------------------------------------------------
                Bind Events
             ---------------------------------------------------- */
+
             $(window).resize(setOverlayHeight)
                      .resize(setSelfPosition)
                      .scroll(setSelfPosition);
@@ -89,12 +104,17 @@
             });
             $self.bind('close', closeLightbox);
             $self.bind('reposition', setSelfPosition);
+
             
+
             /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
               -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
             /*----------------------------------------------------
                Private Functions
             ---------------------------------------------------- */
+
             /* Remove or hide all elements */
             function closeLightbox() {
                 var s = $self[0].style;
@@ -103,14 +123,17 @@
                 } else {
                     $self.add($overlay).hide();
                 }
+
                 //show the hidden parent lightbox
                 if (opts.parentLightbox) {
                     opts.parentLightbox.fadeIn(200);
                 }
+
                 $iframe.remove();
                 
 				// clean up events.
                 $self.undelegate(opts.closeSelector, "click");
+
                 $(window).unbind('reposition', setOverlayHeight);
                 $(window).unbind('reposition', setSelfPosition);
                 $(window).unbind('scroll', setSelfPosition);
@@ -119,10 +142,14 @@
                     s.removeExpression('top');
                 opts.onClose();
             }
+
+
             /* Function to bind to the window to observe the escape/enter key press */
             function observeKeyPress(e) {
                 if((e.keyCode == 27 || (e.DOM_VK_ESCAPE == 27 && e.which==0)) && opts.closeEsc) closeLightbox();
             }
+
+
             /* Set the height of the overlay
                     : if the document height is taller than the window, then set the overlay height to the document height.
                     : otherwise, just set overlay height: 100%
@@ -139,19 +166,26 @@
                     } // ie6 hack for height: 100%; TODO: handle this in IE7
                 }
             }
+
+
             /* Set the position of the modal'd window ($self)
                     : if $self is taller than the window, then make it absolutely positioned
                     : otherwise fixed
             */
             function setSelfPosition() {
                 var s = $self[0].style;
+
                 // reset CSS so width is re-calculated for margin-left CSS
                 $self.css({left: '50%', marginLeft: ($self.outerWidth() / 2) * -1,  zIndex: (opts.zIndex + 20003) });
+
+
                 /* we have to get a little fancy when dealing with height, because lightbox_me
                     is just so fancy.
                  */
+
                 // if the height of $self is bigger than the window and self isn't already position absolute
                 if (($self.height() + 80  >= $(window).height()) && ($self.css('position') != 'absolute' || ie6)) {
+
                     // we are going to make it positioned where the user can see it, but they can still scroll
                     // so the top offset is based on the user's scroll position.
                     var topOffset = $(document).scrollTop() + 40;
@@ -177,28 +211,39 @@
                         } else {
                             $self.css({ position: 'fixed'}).css(opts.modalCSS);
                         }
+
                     }
                 }
             }
+
         });
+
+
+
     };
+
     $.fn.lightbox_me.defaults = {
+
         // animation
         appearEffect: "fadeIn",
         appearEase: "",
         overlaySpeed: 250,
         lightboxSpeed: 300,
+
         // close
         closeSelector: ".close",
         closeClick: true,
         closeEsc: true,
+
         // behavior
         destroyOnClose: false,
         showOverlay: true,
         parentLightbox: false,
+
         // callbacks
         onLoad: function() {},
         onClose: function() {},
+
         // style
         classPrefix: 'lb',
         zIndex: 999,

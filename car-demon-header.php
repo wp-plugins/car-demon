@@ -4,6 +4,7 @@ add_action("wp_ajax_nopriv_cd_compare_handler", "cd_compare_handler");
 //=====
 add_action("wp_ajax_cd_get_compare_list", "cd_get_compare_list");
 add_action("wp_ajax_nopriv_cd_get_compare_list", "cd_get_compare_list");
+
 function car_demon_header() {
 	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
 	wp_enqueue_script('cd-jquery-lightbox-js', $car_demon_pluginpath.'theme-files/js/jquery.lightbox_me.js');

@@ -87,6 +87,7 @@ function cd_service_quote_handler() {
 	}
 	exit();
 }
+
 function send_service_quote_request() {
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];
@@ -200,6 +201,7 @@ function send_service_quote_request() {
 	';
 	return $html;
 }
+
 function get_service_quote_email($service_location) {
 	$args = array(
 		'style'              => 'none',
@@ -238,6 +240,7 @@ function get_service_quote_email($service_location) {
 	}
 	return $html;
 }
+
 function adfxml_service_quote() {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 

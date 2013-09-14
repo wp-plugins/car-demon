@@ -7,6 +7,7 @@ if (!stristr(PHP_OS, 'WIN')) {
 else {
 	$is_it_iis = 'Win';
 }
+
 if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/js', '', $newPath);
 	include_once($newPath."/wp-load.php");
@@ -21,14 +22,17 @@ $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option(
 $car_demon_pluginpath = str_replace('theme-files/js','',$car_demon_pluginpath);
 ?>
 // JavaScript Document
+
 function MM_swapImgRestore() { //v3.0
   var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
 }
+
 function MM_preloadImages() { //v3.0
   var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
     var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
     if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
 }
+
 function MM_findObj(n, d) { //v4.01
   var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
     d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
@@ -36,10 +40,12 @@ function MM_findObj(n, d) { //v4.01
   for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
   if(!x && d.getElementById) x=d.getElementById(n); return x;
 }
+
 function MM_swapImage() { //v3.0
   var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
    if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
 }
+
 function active_img(cnt) {
    var img = photo_img_array();
    document.getElementById("current_img_num").value = cnt;
@@ -57,6 +63,7 @@ function active_img(cnt) {
 		document.getElementById("photo_prev").style.display = 'inline';
 	}
 }
+
 function car_slide_show() {
 	if (document.getElementById('run_slideshow').checked) {
 		var image_count = document.getElementById("image_count").value;
@@ -67,6 +74,7 @@ function car_slide_show() {
 		get_next_img();
 	}
 }
+
 function get_next_img() {
 	var img = photo_img_array();
 	var num = document.getElementById("current_img_num").value;
@@ -81,6 +89,7 @@ function get_next_img() {
 	}
 	active_img(num);
 }
+
 function get_prev_img() {
 	var img = photo_img_array();
 	var num = document.getElementById("current_img_num").value;
@@ -94,6 +103,7 @@ function get_prev_img() {
 	}
 	active_img(num);
 }
+
 function car_demon_switch_tabs(active, number, tab_prefix, content_prefix) {
     for (var i=1; i < number+1; i++) {  
       document.getElementById(content_prefix+i).style.display = 'none';  

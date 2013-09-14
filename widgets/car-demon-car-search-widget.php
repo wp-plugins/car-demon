@@ -1,8 +1,10 @@
 <?php
 add_action( 'widgets_init', 'car_demon_search_car_load_widgets' );
+
 function car_demon_search_car_load_widgets() {
 	register_widget( 'car_demon_search_car_Widget' );
 }
+
 class car_demon_search_car_Widget extends WP_Widget {
 	/**
 	 * Widget setup.
@@ -10,8 +12,10 @@ class car_demon_search_car_Widget extends WP_Widget {
 	function car_demon_search_car_Widget() {
 		/* Widget settings. */
 		$widget_ops = array( 'classname' => 'car_demon_search_car', 'description' => __('Display Search Cars.', 'car-demon') );
+
 		/* Widget control settings. */
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'car_demon_search_car-widget' );
+
 		/* Create the widget. */
 		$this->WP_Widget( 'car_demon_search_car-widget', __('Car Demon search Cars', 'car-demon'), $widget_ops, $control_ops );
 	}
@@ -30,6 +34,7 @@ class car_demon_search_car_Widget extends WP_Widget {
 		}
 		/* Before widget (defined by themes). */
 		echo $before_widget;
+
 		/* Display the widget title if one was input (before and after defined by themes). */
 		if (!empty($title)) {
 			echo $before_title . $title . $after_title;
@@ -71,6 +76,7 @@ class car_demon_search_car_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'car-demon'); ?></label>
 			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="car_demon_wide" />
+
 			<label for="<?php echo $this->get_field_id( 'form_type' ); ?>"><?php _e('Form Type:', 'car-demon'); ?></label>
 			<select name="<?php echo $this->get_field_name( 'form_type' ); ?>" id="<?php echo $this->get_field_id( 'form_type' ); ?>">
 				<option value="<?php echo $instance['form_type']; ?>"><?php echo $instance['form_type']; ?></option>
