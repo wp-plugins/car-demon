@@ -176,13 +176,13 @@
 		<option value="10"><?php _e('Oct', 'car-demon'); ?></option>
 		<option value="11"><?php _e('Nov', 'car-demon'); ?></option>
 		<option value="12"><?php _e('Dec', 'car-demon'); ?></option>
-	</select>- 
+	</select> 
 	<select name="co_bdd" id="co_bdd" tabindex="63">
 		<option></option>
 		<?php
 		echo get_the_days();
 		?>
-	</select>-
+	</select>
 	<select name="co_bdy" id="co_bdy" tabindex="64">
 		<option></option>
 		<?php
