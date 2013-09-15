@@ -1,31 +1,39 @@
 <?php
-$newPath = dirname(__FILE__);
-if (!stristr(PHP_OS, 'WIN')) {
-	$is_it_iis = 'Apache';
+function cd_finance_show_stock() {
+	if ($_POST['show_stock']==1) {
+		if (isset($_POST['stock_num'])) {
+			$stock_num = $_POST['stock_num'];
+		} else {
+			$stock_num = '';
+		}
+		echo get_finance_for_vehicle($stock_num);
+	}
+	if ($_POST['show_stock']==2) {
+		$car_title = $_POST['car_title'];
+		$post_id = get_car_id_from_title($car_title);
+		$stock_num = get_post_meta($post_id, "_stock_value", true);
+		echo get_finance_for_vehicle($stock_num);
+	}
+	exit();
 }
-else {
-	$is_it_iis = 'Win';
+function cd_finance_find_stock() {
+	echo car_demon_find_stock_info();
+	exit();
 }
-if ($is_it_iis == 'Apache') {
-	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/forms', '', $newPath);
-	include_once($newPath."/wp-load.php");
-	include_once($newPath."/wp-includes/wp-db.php");
+function cd_finance_find_vehicle() {
+	echo car_demon_find_car_info();
+	exit();
 }
-else {
-	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\forms', '', $newPath);
-	include_once($newPath."\wp-load.php");
-	include_once($newPath."\wp-includes/wp-db.php");
-}
-
-require($newPath.'wp-content/plugins/car-demon/forms/car-demon-form-key-class.php');
-$cd_formKey = new cd_formKey();
-if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
-	//Form key is invalid, show an error  
-	echo 'Form key error! Submission could not be validated.';  
-}  
-else {
-	//Do the rest of your validation here  
-	send_finance_email();
+function cd_finance_handler() {
+	if ( !wp_verify_nonce( $_REQUEST['nonce'], "cd_contact_us_nonce")) {
+		echo 'Form key error! Submission could not be validated.';  
+		exit("No naughty business please");
+		//Form key is invalid, show an error  
+	}  else {
+		//Do the rest of your validation here  
+		send_finance_email();
+	}
+	exit();
 }
 
 function send_finance_email() {
@@ -291,7 +299,7 @@ function build_finance_body() {
 			<td>'.$years_on_job.'</td>
 		  </tr>
 		  <tr>
-			<td>'.__('Employer Phone'v).'</td>
+			<td>'.__('Employer Phone').'</td>
 			<td>'.$employer_phone.'</td>
 		  </tr>
 		  <tr>
@@ -695,7 +703,7 @@ function adfxml_finance($location_name, $rep_name, $rep_email) {
 	$contact_email = $_POST['ea'];
 	$phone = $_POST['hpn'];
 	$street = $_POST['co_app_street_num'].' '.$_POST['co_app_street_name'];
-	$apartment = $_POST['co_app_apt_num']);
+	$apartment = $_POST['co_app_apt_num'];
 	$city = $_POST['cty'];
 	$state = $_POST['st'];
 	$zip = $_POST['zi'];

@@ -12,6 +12,7 @@ include( 'handlers/car-demon-part-handler.php' );
 include( 'handlers/car-demon-service-handler.php' );
 include( 'handlers/car-demon-service-quote-handler.php' );
 include( 'handlers/car-demon-qualify-handler.php' );
+include( 'handlers/car-demon-finance-form-handler.php' );
 
 add_action("wp_ajax_cd_contact_us_handler", "cd_contact_us_handler");
 add_action("wp_ajax_nopriv_cd_contact_us_handler", "cd_contact_us_handler");
@@ -38,6 +39,17 @@ add_action("wp_ajax_nopriv_cd_service_quote_handler", "cd_service_quote_handler"
 //======
 add_action("wp_ajax_cd_qualify_handler", "cd_qualify_handler");
 add_action("wp_ajax_nopriv_cd_qualify_handler", "cd_qualify_handler");
+//======
+add_action("wp_ajax_cd_finance_handler", "cd_finance_handler");
+add_action("wp_ajax_nopriv_cd_finance_handler", "cd_finance_handler");
+//======
+add_action("wp_ajax_cd_finance_show_stock", "cd_finance_show_stock");
+add_action("wp_ajax_nopriv_cd_finance_show_stock", "cd_finance_show_stock");
+//======
+add_action("wp_ajax_cd_finance_find_stock", "cd_finance_find_stock");
+add_action("wp_ajax_nopriv_cd_finance_find_stock", "cd_finance_find_stock");
+add_action("wp_ajax_cd_finance_find_vehicle", "cd_finance_find_vehicle");
+add_action("wp_ajax_nopriv_cd_finance_find_vehicle", "cd_finance_find_vehicle");
 //======
 add_filter('the_posts', 'cd_conditionally_add_scripts_and_styles'); // the_posts gets triggered before wp_head
 function cd_conditionally_add_scripts_and_styles($posts){
@@ -245,6 +257,37 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'car-demon-common-js' );
 				wp_enqueue_script( 'car-demon-service-quote-js' );
 				break;
+			}
+			if (stripos($post->post_content, '[finance_form]') !== false) {
+				wp_enqueue_style('cd-jquery-autocomplete-css', WP_PLUGIN_URL.'/car-demon/theme-files/css/jquery.autocomplete.css');
+				wp_enqueue_style('cd-finance-css', WP_PLUGIN_URL.'/car-demon/car-demon-forms/forms/css/car-demon-finance.css');
+				wp_register_script("cd-finance-form-js", WP_PLUGIN_URL.'/car-demon/car-demon-forms/forms/js/car-demon-finance-form.js', array('jquery'), false, true );
+				wp_register_script("cd-jquery-autocomplete-js", WP_PLUGIN_URL.'/car-demon/theme-files/js/jquery.autocomplete.js', array('jquery') );
+				wp_register_script("car-demon-common-js", WP_PLUGIN_URL."/car-demon/car-demon-forms/forms/js/car-demon-common.js", array('jquery') );
+				$validate_phone = 0;
+				if (isset($_SESSION['car_demon_options']['validate_phone'])) {
+					if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
+						$validate_phone = 1;
+					}
+				}
+				wp_localize_script( 'cd-finance-form-js', 'cdFinanceParams', array( 
+					'ajaxurl' => admin_url( 'admin-ajax.php' ),
+					'form_js' => apply_filters('car_demon_mail_hook_js', $x, 'finance', 'unk'),
+					'form_data' => apply_filters('car_demon_mail_hook_js_data', $x, 'finance', 'unk'),
+					'error1' => __('You indicated you were interested in purchasing a vehicle but did not select one.', 'car-demon'),
+					'error2' => __('Issues were detected with your Application.', 'car-demon').'\n'. __('Please review the application and submit again.', 'car-demon'),
+					'error3' => __('Do you have a Co-Signer?', 'car-demon'),
+					'validate_phone' => $validate_phone
+				));
+				wp_localize_script( 'car-demon-common-js', 'cdCommonParams', array(
+					'error1' => __('You didn\'t enter an email address.', 'car-demon'),
+					'error2' => __('Please enter a valid email address.', 'car-demon'),
+					'error2' => __('The email address contains illegal characters.', 'car-demon')
+				));
+				wp_enqueue_script( 'jquery' );
+				wp_enqueue_script( 'car-demon-common-js' );
+				wp_enqueue_script( 'cd-jquery-autocomplete-js' );
+				wp_enqueue_script( 'cd-finance-form-js' );
 			}
 			if (stripos($post->post_content, '[qualify]') !== false) {
 				wp_register_script('car-demon-qualify-us-form-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-qualify.js');
