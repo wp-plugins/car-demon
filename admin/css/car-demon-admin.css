@@ -72,7 +72,6 @@
 .admin_cell_providers {
 	width:250px;
 }
-
 .cd_admin_filter {
 	float:left;
 }
@@ -108,4 +107,57 @@
 .cd_custom_options_box_container {
 	float: left;
 	padding: 3px;
+}
+.vehicle_option_group {
+	width:25%;
+	min-width:250px;
+	float: left;
+}
+.vehicle_option_group_items {
+	width:50%;
+	min-width:250px;
+	height:200px;
+	float: left;
+}
+.add_vehicle_option_group {
+	color: #093;
+	cursor: pointer;
+}
+.delete_vehicle_option_group {
+	color: #900;
+	cursor: pointer;
+	float: left;
+	margin-left: 15px;
+	margin-top: 5px;
+}
+.add_vehicle_option_group_form {
+	display: none;
+}
+.wrap .tab {
+	display: none;
+	margin-left: 30px;
+}
+.open_tab {
+	cursor: pointer;
+	width: 50%;
+	max-width: 250px;
+}
+.close_tab {
+	cursor: pointer;
+	width: 30%;
+	max-width: 250px;
+	float: right;
+	color: #900;
+	font-weight: bold;
+}
+.cancel_add_group {
+	cursor: pointer;
+	width: 30%;
+	max-width: 250px;
+	float: right;
+	color: #900;
+	font-weight: bold;
+}
+.btn_update_group {
+	margin-bottom: 15px;	
 }

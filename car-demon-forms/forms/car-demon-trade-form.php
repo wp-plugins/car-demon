@@ -1,13 +1,13 @@
 <?php
 function car_demon_trade_form($post_id=0, $location) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('/car-demon-forms/forms', '', $car_demon_pluginpath);
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-			wp_enqueue_style('car-demon-trade-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-trade.css');
+			wp_enqueue_style('car-demon-trade-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-trade.css');
 		}
 	} else {
-		wp_enqueue_style('car-demon-trade-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-trade.css');
+		wp_enqueue_style('car-demon-trade-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-trade.css');
 	}
 	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
@@ -68,7 +68,6 @@ function car_demon_trade_form($post_id=0, $location) {
 	';
 	return $x;
 }
-
 function get_trade_for_vehicle($stock_num) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -109,9 +108,8 @@ function get_trade_for_vehicle($stock_num) {
 	';
 	return $x;
 }
-
 function select_trade_for_vehicle($hide=0) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('forms/','',$car_demon_pluginpath);
 	if ($hide == 1) {
 		$hidden = " trade_hide";
@@ -133,7 +131,6 @@ function select_trade_for_vehicle($hide=0) {
 	';
 	return $x;
 }
-
 function trade_locations_radio() {
 	$args = array(
 		'style'              => 'none',
@@ -197,7 +194,6 @@ function trade_locations_radio() {
 	';
 	return $html;
 }
-
 function car_demon_trade_options() {
 	$x = '
 	<fieldset class="cd-fs3">

@@ -108,7 +108,7 @@ function car_demon_validate_qualify(form_id) {
 			type: 'POST',
 			data: {action: 'cd_qualify_handler', 'nonce': nonce, 'your_name': your_name, 'phone':phone, 'email':email, 'send_to':send_to, 'send_to_name':send_to_name, 'qualify_comment':qualify_comment, 'cd_city':cd_city, 'taa':taa, 'cd_employer':cd_employer, 'cd_income':cd_income, 'taj':taj, 'cd_down':cd_down, 'cd_trade':cd_trade},
 			url: cdQualifyParams.ajaxurl,
-			timeout: 2000,
+			timeout: 5000,
 			error: function() {},
 			dataType: "html",
 			success: function(html){

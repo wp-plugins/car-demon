@@ -66,7 +66,7 @@ function car_demon_validate(form_id) {
 			type: 'POST',
 			data: {action: 'cd_contact_us_handler', 'nonce': nonce, 'your_name': your_name, 'phone':phone, 'email':email, 'send_to':send_to, 'send_to_name':send_to_name, 'contact_needed':contact_needed},
 			url: cdContactParams.ajaxurl,
-			timeout: 2000,
+			timeout: 5000,
 			error: function() {},
 			dataType: "html",
 			success: function(html){

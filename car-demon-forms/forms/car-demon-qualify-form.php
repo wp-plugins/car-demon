@@ -1,15 +1,14 @@
 <?php
 function car_demon_qualify_form($location, $popup_id, $popup_button) {
 	$x = '';
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('/car-demon-forms/forms', '', $car_demon_pluginpath);
-
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-			wp_enqueue_style('car-demon-qualify-us-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-qualify.css');
+			wp_enqueue_style('car-demon-qualify-us-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-qualify.css');
 		}
 	} else {
-		wp_enqueue_style('car-demon-qualify-us-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-qualify.css');
+		wp_enqueue_style('car-demon-qualify-us-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-qualify.css');
 	}
 	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
@@ -22,13 +21,13 @@ function car_demon_qualify_form($location, $popup_id, $popup_button) {
 	}
 	if (!empty($popup_id)) {
 		wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
-		wp_enqueue_script('car-demon-qualify-popup-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-qualify-popup.js');
+		wp_enqueue_script('car-demon-qualify-popup-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-qualify-popup.js');
 		if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 			if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-				wp_enqueue_style('car-demon-qualify-popup-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-qualify-popup.css');
+				wp_enqueue_style('car-demon-qualify-popup-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-qualify-popup.css');
 			}
 		} else {
-			wp_enqueue_style('car-demon-qualify-popup-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-qualify-popup.css');
+			wp_enqueue_style('car-demon-qualify-popup-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-qualify-popup.css');
 		}
 		$x .= '<div class="qualify_form_container" id="qualify_form_container_'.$popup_id.'">';
 			$x .= '<div class="close_form" onclick="close_qualify_form(\''.$popup_id.'\');"><img src="'.$car_demon_pluginpath.'theme-files/images/close.png" /></div>';
@@ -73,7 +72,6 @@ function car_demon_qualify_form($location, $popup_id, $popup_button) {
 		</ol>
 		</fieldset>
 	';
-
 	if ($location == 'normal') {
 		$x .= finance_locations_radio();
 	} else {

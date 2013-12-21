@@ -2,7 +2,8 @@
 -------------------------------------------------------------- */
 #demon-content {
 	float:left;
-	width:635px;
+	width: 100%;
+	max-width:635px;
 	margin-left:5px;
 	overflow:hidden;
 	clear:both;

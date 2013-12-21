@@ -4,7 +4,6 @@ function clearField(fld) {
 	}
 }
 function setField(fld) {
-
 }
 function cd_get_radios(radios) {
 	var my_val = "";
@@ -47,13 +46,11 @@ function validateEmail(fld) {
 	}
 	return error;
 }
-
 var zChar = new Array(' ', '(', ')', '-', '.');
 var maxphonelength = 14;
 var phonevalue1;
 var phonevalue2;
 var cursorposition;
-
 function ParseForNumber1(object){
   phonevalue1 = ParseChar(object.value, zChar);
 }
@@ -71,9 +68,7 @@ function backspacerUP(object,e) {
   } else {
 	var keycode = e.keyCode 
   }
-
   ParseForNumber1(object)
-
   if(keycode >= 48){
 	ValidatePhone(object)
   }

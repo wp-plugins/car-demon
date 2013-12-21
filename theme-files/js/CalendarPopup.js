@@ -1,9 +1,6 @@
 // JavaScript Document
-
 function positionInfo(object) {
-
   var p_elm = object;
-
   this.getElementLeft = getElementLeft;
   function getElementLeft() {
     var x = 0;
@@ -24,7 +21,6 @@ function positionInfo(object) {
     }
     return parseInt(x);
   }
-
   this.getElementWidth = getElementWidth;
   function getElementWidth(){
     var elm;
@@ -35,12 +31,10 @@ function positionInfo(object) {
     }
     return parseInt(elm.offsetWidth);
   }
-
   this.getElementRight = getElementRight;
   function getElementRight(){
     return getElementLeft(p_elm) + getElementWidth(p_elm);
   }
-
   this.getElementTop = getElementTop;
   function getElementTop() {
     var y = 0;
@@ -61,7 +55,6 @@ function positionInfo(object) {
     }
     return parseInt(y);
   }
-
   this.getElementHeight = getElementHeight;
   function getElementHeight(){
     var elm;
@@ -72,31 +65,24 @@ function positionInfo(object) {
     }
     return parseInt(elm.offsetHeight);
   }
-
   this.getElementBottom = getElementBottom;
   function getElementBottom(){
     return getElementTop(p_elm) + getElementHeight(p_elm);
   }
 }
-
 function CalendarControl() {
-
   var calendarId = 'CalendarControl';
   var currentYear = 0;
   var currentMonth = 0;
   var currentDay = 0;
-
   var selectedYear = 0;
   var selectedMonth = 0;
   var selectedDay = 0;
-
   var months = [cdCalendarParams.jan,cdCalendarParams.feb,cdCalendarParams.mar,cdCalendarParams.apr,cdCalendarParams.may,cdCalendarParams.jun,cdCalendarParams.jul,cdCalendarParams.aug,cdCalendarParams.sep,cdCalendarParams.oct,cdCalendarParams.nov,cdCalendarParams.dec];
   var dateField = null;
-
   function getProperty(p_property){
     var p_elm = calendarId;
     var elm = null;
-
     if(typeof(p_elm) == "object"){
       elm = p_elm;
     } else {
@@ -115,11 +101,9 @@ function CalendarControl() {
       }
     }
   }
-
   function setElementProperty(p_property, p_value, p_elmId){
     var p_elm = p_elmId;
     var elm = null;
-
     if(typeof(p_elm) == "object"){
       elm = p_elm;
     } else {
@@ -130,26 +114,21 @@ function CalendarControl() {
       elm[ p_property ] = p_value;
     }
   }
-
   function setProperty(p_property, p_value) {
     setElementProperty(p_property, p_value, calendarId);
   }
-
   function getDaysInMonth(year, month) {
     return [31,((!(year % 4 ) && ( (year % 100 ) || !( year % 400 ) ))?29:28),31,30,31,30,31,31,30,31,30,31][month-1];
   }
-
   function getDayOfWeek(year, month, day) {
     var date = new Date(year,month-1,day)
     return date.getDay();
   }
-
   this.clearDate = clearDate;
   function clearDate() {
     dateField.value = '';
     hide();
   }
-
   this.setDate = setDate;
   function setDate(year, month, day) {
     if (dateField) {
@@ -163,7 +142,6 @@ function CalendarControl() {
     }
     return;
   }
-
   this.changeMonth = changeMonth;
   function changeMonth(change) {
     currentMonth += change;
@@ -175,12 +153,9 @@ function CalendarControl() {
       currentMonth = 12;
       currentYear--;
     }
-
     calendar = document.getElementById(calendarId);
-
     calendar.innerHTML = calendarDrawTable();
   }
-
   this.changeYear = changeYear;
   function changeYear(change) {
     currentYear += change;
@@ -188,29 +163,23 @@ function CalendarControl() {
     calendar = document.getElementById(calendarId);
     calendar.innerHTML = calendarDrawTable();
   }
-
   function getCurrentYear() {
     var year = new Date().getYear();
     if(year < 1900) year += 1900;
     return year;
   }
-
   function getCurrentMonth() {
     return new Date().getMonth() + 1;
   } 
-
   function getCurrentDay() {
     return new Date().getDate();
   }
-
   function calendarDrawTable() {
-
     var dayOfMonth = 1;
     var validDay = 0;
     var startDayOfWeek = getDayOfWeek(currentYear, currentMonth, dayOfMonth);
     var daysInMonth = getDaysInMonth(currentYear, currentMonth);
     var css_class = null; //CSS class for each day
-
     var table = "<table cellspacing='0' cellpadding='0' border='0'>";
     table = table + "<tr class='header'>";
     table = table + "  <td colspan='2' class='previous'><a href='javascript:changeCalendarControlMonth(-1);'>&lt;</a> <a href='javascript:changeCalendarControlYear(-1);'>&laquo;</a></td>";
@@ -226,7 +195,6 @@ function CalendarControl() {
 	table = table + "  </td>";
 	table = table + "</tr>";
     table = table + "<tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>";
-
     for(var week=0; week < 6; week++) {
       table = table + "<tr>";
       for(var dayOfWeek=0; dayOfWeek < 7; dayOfWeek++) {
@@ -235,7 +203,6 @@ function CalendarControl() {
         } else if (validDay == 1 && dayOfMonth > daysInMonth) {
           validDay = 0;
         }
-
         if(validDay) {
           if (dayOfMonth == selectedDay && currentYear == selectedYear && currentMonth == selectedMonth) {
             css_class = 'current';
@@ -244,7 +211,6 @@ function CalendarControl() {
           } else {
             css_class = 'weekday';
           }
-
           table = table + "<td><a class='"+css_class+"' href=\"javascript:setCalendarControlDate("+currentYear+","+currentMonth+","+dayOfMonth+")\">"+dayOfMonth+"</a></td>";
           dayOfMonth++;
         } else {
@@ -253,13 +219,10 @@ function CalendarControl() {
       }
       table = table + "</tr>";
     }
-
     table = table + "<tr class='header'><th colspan='7' style='padding: 3px;'><a href='javascript:clearCalendarControl();'>"+cdCalendarParams.clear+"</a> | <a href='javascript:hideCalendarControl();'>"+cdCalendarParams.close_it+"</a></td></tr>";
     table = table + "</table>";
-
     return table;
   }
-
   this.show = show;
   function show(field) {
     can_hide = 0;
@@ -271,7 +234,6 @@ function CalendarControl() {
     } else {
       dateField = field;
     }
-
     if(dateField) {
       try {
         var dateString = new String(dateField.value);
@@ -282,30 +244,22 @@ function CalendarControl() {
         selectedYear = parseInt(dateParts[2],10);
       } catch(e) {}
     }
-
     if (!(selectedYear && selectedMonth && selectedDay)) {
       selectedMonth = getCurrentMonth();
       selectedDay = getCurrentDay();
       selectedYear = getCurrentYear();
     }
-
     currentMonth = selectedMonth;
     currentDay = selectedDay;
     currentYear = selectedYear;
-
     if(document.getElementById){
-
       calendar = document.getElementById(calendarId);
       calendar.innerHTML = calendarDrawTable(currentYear, currentMonth);
-
       setProperty('display', 'block');
-
       var fieldPos = new positionInfo(dateField);
       var calendarPos = new positionInfo(calendarId);
-
       var x = fieldPos.getElementLeft();
       var y = fieldPos.getElementBottom();
-
       setProperty('left', x + "px");
       setProperty('top', y + "px");
  
@@ -318,7 +272,6 @@ function CalendarControl() {
       }
     }
   }
-
   this.hide = hide;
   function hide() {
     if(dateField) {
@@ -327,44 +280,34 @@ function CalendarControl() {
       dateField = null;
     }
   }
-
   this.visible = visible;
   function visible() {
     return dateField
   }
-
   this.can_hide = can_hide;
   var can_hide = 0;
 }
-
 var calendarControl = new CalendarControl();
-
 function showCalendarControl(textField) {
   // textField.onblur = hideCalendarControl;
   calendarControl.show(textField);
 }
-
 function clearCalendarControl() {
   calendarControl.clearDate();
 }
-
 function hideCalendarControl() {
   if (calendarControl.visible()) {
     calendarControl.hide();
   }
 }
-
 function setCalendarControlDate(year, month, day) {
   calendarControl.setDate(year, month, day);
 }
-
 function changeCalendarControlYear(change) {
   calendarControl.changeYear(change);
 }
-
 function changeCalendarControlMonth(change) {
   calendarControl.changeMonth(change);
 }
-
 document.write("<iframe id='CalendarControlIFrame' src='javascript:false;' frameBorder='0' scrolling='no'></iframe>");
 document.write("<div id='CalendarControl'></div>");

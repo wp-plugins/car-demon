@@ -6,7 +6,6 @@
  * @subpackage CarDemon 
  * @since CarDemon 1.0
  */
-
 get_header(); ?>
 	<div id="demon-container">
 		<div id="demon-content" role="main">
@@ -52,12 +51,10 @@ get_header(); ?>
 						</table>
 				</div><!-- .entry-content -->
 			</div><!-- #post-0 -->
-
 		</div><!-- #content -->
 	</div><!-- #container -->
 	<script type="text/javascript">
 		// focus on search field after it has loaded
 		document.getElementById('s') && document.getElementById('s').focus();
 	</script>
-
 <?php get_footer(); ?>

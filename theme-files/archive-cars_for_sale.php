@@ -4,7 +4,6 @@ $car_demon_query = car_demon_query_archive();
 query_posts($car_demon_query);
 $total_results = $wp_query->found_posts;
 echo car_demon_dynamic_load();
-
 do_action( 'car_demon_before_main_content' );
 	echo $_SESSION['car_demon_options']['before_listings'];
 	echo car_demon_sorting('achive');

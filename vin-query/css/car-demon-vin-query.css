@@ -49,6 +49,7 @@ ul.tabs {
 .decode_table {
 	font-size:12px;
 	width:100%;
+	table-layout: fixed;
 }
 .decode_table_header {
 	color:Black;
@@ -63,8 +64,9 @@ ul.tabs {
 	background-color:#EEEEEE;
 }
 .decode_table_label {
-	white-space:nowrap;
+	/*white-space:nowrap;*/
 	width:320px;
+	word-wrap: break-word;
 }
 .decode_disclaimer {
 	max-width:580px;font-size:8px;
@@ -77,4 +79,21 @@ ul.tabs {
 }
 .custom_ribbon_div_hide {
 	display:none;
+}
+/*
+Admin Styles
+*/
+.car_photo_admin_box {
+	background-color: inherit;
+	padding: 5px;
+}
+.car_photo_admin_box:hover {
+	background-color: #FCC;
+}
+.car_photo_remove {
+	margin-top:0px;
+	font-weight:bold;
+	cursor: pointer;
+	color: #F00;
+	font-weight: bold;
 }

@@ -1,30 +1,9 @@
 <?php
-$newPath = dirname(__FILE__);
-if (!stristr(PHP_OS, 'WIN')) {
-	$is_it_iis = 'Apache';
-}
-else {
-	$is_it_iis = 'Win';
-}
-if ($is_it_iis == 'Apache') {
-	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/forms', '', $newPath);
-	include_once($newPath."/wp-load.php");
-	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
-	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\forms', '', $newPath);
-	include_once($newPath."\wp-load.php");
-	include_once($newPath."\wp-includes/wp-db.php");
-}
-
-if ($_GET['send_email']) {
-	require($newPath.'wp-content/plugins/car-demon/forms/car-demon-form-key-class.php');
-	$cd_formKey = new cd_formKey();
-	if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
+function email_friend_handler() {
+	if ( !wp_verify_nonce( $_REQUEST['nonce'], "cd_email_friend_nonce")) {
 		//Form key is invalid, show an error  
 		echo 'Form key error! Submission could not be validated.';  
-	}  
-	else {
+	} else {
 		$request_body = send_to_friend_body();
 		$your_name = $_POST['your_name'];
 		$your_email = $_POST['your_email'];
@@ -158,7 +137,6 @@ function send_to_friend_body() {
 	';
 	return $html;
 }
-
 function adfxml_friend() {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 

@@ -22,7 +22,6 @@ function car_demon_staff_page() {
 	$x .= '</div>';
 	return $x;
 }
-
 function car_demon_corporate_users() {
 	global $wpdb;
 	$x = '';
@@ -51,16 +50,24 @@ function car_demon_corporate_users() {
 	}
 	return $x;
 }
-
 function car_demon_get_user_cards($location, $type) {
 	global $wpdb;
 	$x = '';
 	$prefix = $wpdb->prefix;
-	$sql = 'SELECT '.$prefix.'users.ID
-		FROM '.$prefix.'usermeta AS '.$prefix.'usermeta_1 
-		RIGHT JOIN ('.$prefix.'usermeta RIGHT JOIN '.$prefix.'users ON '.$prefix.'usermeta.user_id = '.$prefix.'users.ID) ON '.$prefix.'usermeta_1.user_id = '.$prefix.'users.ID
-		WHERE ((('.$prefix.'usermeta.meta_key)="staff_type") AND (('.$prefix.'usermeta.meta_value)="'.$type.'") 
-		AND (('.$prefix.'usermeta_1.meta_key)="user_location") AND (('.$prefix.'usermeta_1.meta_value)="'.$location.'"))';
+	if ( is_multisite() ) {
+		$prefix = $wpdb->base_prefix;
+		$sql = 'SELECT '.$prefix.'users.ID
+			FROM '.$prefix.'usermeta AS '.$prefix.'usermeta_1 
+			RIGHT JOIN ('.$prefix.'usermeta RIGHT JOIN '.$prefix.'users ON '.$prefix.'usermeta.user_id = '.$prefix.'users.ID) ON '.$prefix.'usermeta_1.user_id = '.$prefix.'users.ID
+			WHERE ((('.$prefix.'usermeta.meta_key)="staff_type") AND (('.$prefix.'usermeta.meta_value)="'.$type.'") 
+			AND (('.$prefix.'usermeta_1.meta_key)="user_location") AND (('.$prefix.'usermeta_1.meta_value)="'.$location.'"))';
+	} else {
+		$sql = 'SELECT '.$prefix.'users.ID
+			FROM '.$prefix.'usermeta AS '.$prefix.'usermeta_1 
+			RIGHT JOIN ('.$prefix.'usermeta RIGHT JOIN '.$prefix.'users ON '.$prefix.'usermeta.user_id = '.$prefix.'users.ID) ON '.$prefix.'usermeta_1.user_id = '.$prefix.'users.ID
+			WHERE ((('.$prefix.'usermeta.meta_key)="staff_type") AND (('.$prefix.'usermeta.meta_value)="'.$type.'") 
+			AND (('.$prefix.'usermeta_1.meta_key)="user_location") AND (('.$prefix.'usermeta_1.meta_value)="'.$location.'"))';
+	}
 	$users = $wpdb->get_results($sql);
 	if ($users) {
 		foreach ($users as $user) {
@@ -70,7 +77,6 @@ function car_demon_get_user_cards($location, $type) {
 	}
 	return $x;
 }
-
 function get_location_array() {
 	$args = array(
 		'style'              => 'none',
@@ -99,9 +105,8 @@ function get_location_array() {
 	$location_list_array = explode(',',$location_list);
 	return $location_list_array;
 }
-
 function build_user_hcard($user_id, $about = 0, $contact_form = 1) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('/includes', '', $car_demon_pluginpath);
 	$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 	$user_location = str_replace('-', ' ', $user_location);
@@ -149,7 +154,6 @@ function build_user_hcard($user_id, $about = 0, $contact_form = 1) {
 			$popup_id = 'sales_form_'.$user_id;
 			$popup_button = 'Email '. $user_f_name .' now!';
 			$x .= car_demon_contact_request($user_email, $popup_id, $popup_button);
-
 		}
 		$x .='<div class="tel">'.$user_phone.'</div>';
 		if (!empty($facebook)) { $x .='<a class="url" target="fb_win" href="'.$facebook.'">Find on Facebook</a>'; }

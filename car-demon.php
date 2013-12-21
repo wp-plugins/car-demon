@@ -8,8 +8,9 @@ Version: 1.2.4
 Author URI: http://www.CarDemons.com/
 Text Domain: car-demon
 Domain Path: /languages/
+
 */
-$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+
 include( 'includes/car-demon-query.php' );
 include( 'includes/car-demon-search-form.php' );
 include( 'includes/car-demon-create-post-types-tax.php' );
@@ -35,16 +36,16 @@ include( 'widgets/car-demon-tag-cloud.php' );
 include( 'widgets/car-demon-random-cars.php' );
 include( 'widgets/car-demon-car-search-widget.php' );
 include( 'widgets/car-demon-compare-widget.php' );
-
 include( 'widgets/car-demon-vehicle-contact-widget.php' );
-
 include( 'vin-query/car-demon-vin-query.php' );
 include( 'vin-query/car-demon-vin-query-admin.php' );
+include( 'vin-query/car-demon-vin-query-handler.php' );
 include( 'car-demon-forms/car-demon-forms.php' );
 include( 'car-demon-header.php' );
-
 add_filter('wp_print_styles', 'car_demon_header');
 function car_demon_init() {
+	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	define("CAR_DEMON_PATH", $car_demon_pluginpath);
 	load_plugin_textdomain( 'car-demon', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	if (!is_admin()) {
 		wp_enqueue_script('jquery');
@@ -79,7 +80,6 @@ function start_car_demon() {
 	car_demon_subdomains();
 }
 //add_action('wp', 'start_car_demon');
-
 if (!is_admin()) {
   add_filter('widget_text', 'car_demon_text_filter', 11);
   add_filter('the_content', 'car_demon_text_filter', 11);
@@ -300,7 +300,7 @@ function get_car_id_from_stock( $selected_car ) {
 function build_location_hcard( $location, $condition ) {
 	$location = str_replace(chr(32), '-', $location);
 	$location = strtolower($location);
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	if ($condition == 'New') {
 		$user_full_name = get_option($location.'_new_sales_name');
 		$user_email = get_option($location.'_new_sales_email');
@@ -446,4 +446,28 @@ function get_car_demon_posts( $query ) {
 	}
 	return $query;
 }
+/*
+                        ______________
+                __..=='|'   |         ``-._
+   \=====_..--'/'''    |    |              ``-._
+   |'''''      ```---..|____|_______________[)>.``-.._____
+   |\_______.....__________|____________     ''  \      __````---.._
+ ./'     /.-'_'_`-.\       |  ' '       ```````---|---/.-'_'_`=.-.__```-._
+ |.__  .'/ /     \ \`.      \                     | .'/ /     \ \`. ```-- `.
+  \  ``|| |   o   | ||-------\-------------------/--|| |   o   | ||--------|
+   "`--' \ \ _ _ / / |______________________________| \ \ _ _ / / |..----```
+          `-.....-'                                    `-.....-'
+						www.CarDemons.com
+                                            ,   ,
+             ,    ,    /\   /\             /(   )\
+            /( /\ )\  _\ \_/ /_            \ \_/ /   , /\ ,
+            |\_||_/| < \_   _/ >           /_   _\  /| || |\
+            \______/  \|X\"/X|/           | \> </ | |\_||_/|
+              _\/_   _(_  ^  _)_          (_  ^  _)  \____/
+             ( () ) /`\|V"""V|/`\       /`\|IIIII|/`\ _\/_
+               {}   \  \__ __/  /       \  \_____/  /  ()
+               ()   /\   )V(   /\       /\   )=(   /\  ()
+               {}  /  \_/\=/\_/  \     /  `-.\=/.-'  \ ()
+
+*/
 ?>

@@ -11,7 +11,7 @@ function selectItem(li) {
 		type: 'POST',
 		data: {action: 'cd_trade_handler_select_item', 'stock_num': stock_num},
 		url: cdTradeParams.ajaxurl,
-		timeout: 2000,
+		timeout: 5000,
 		error: function() {},
 		dataType: "html",
 		success: function(html){
@@ -28,7 +28,7 @@ function selectCarItem(li) {
 		type: 'POST',
 		data: {action: 'cd_trade_handler_select_car', 'car_title': car_title},
 		url: cdTradeParams.ajaxurl,
-		timeout: 2000,
+		timeout: 5000,
 		error: function() {},
 		dataType: "html",
 		success: function(html){
@@ -233,12 +233,11 @@ function car_demon_validate() {
 		cdTradeParams.hook_js;
 		var form_data = cdTradeParams.form_data;
 		var nonce = document.forms["trade_form"+form_id].nonce.value;
-
 		jQuery.ajax({
 			type: 'POST',
 			data: {action: 'cd_trade_handler', 'nonce': nonce, 'your_name': your_name,'phone':phone, 'email':email, 'trade_location':trade_location, 'year':year, 'make':make, 'model':model, 'miles':miles, 'vin':vin, 'comment':comment, 'options':options, 'selected_car':selected_car},
 			url: cdTradeParams.ajaxurl,
-			timeout: 2000,
+			timeout: 5000,
 			error: function() {},
 			dataType: "html",
 			success: function(html){
@@ -261,7 +260,6 @@ function cd_get_options() {
 	if (vals) vals = vals.substring(1); // drop leading comma
 	return vals;
 }
-
 jQuery("#select_stock_txt").autocomplete (
   cdTradeParams.ajaxurl,
   {

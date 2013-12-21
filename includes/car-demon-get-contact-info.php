@@ -43,7 +43,7 @@ function get_car_contact($post_id) {
 			$car_contact['sales_email'] = $user_info->user_email;
 			$car_contact['custom_photo'] = esc_attr( get_the_author_meta( 'profile_photo', $user_id ) );
 			if (empty($custom_photo)) {
-				$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+				$car_demon_pluginpath = CAR_DEMON_PATH;
 				$car_demon_pluginpath = str_replace('/includes', '', $car_demon_pluginpath);
 				$custom_photo = $car_demon_pluginpath.'images/person.gif';
 			}
@@ -120,7 +120,6 @@ function get_car_contact($post_id) {
 	}
 	return $car_contact;
 }
-
 function replace_contact_info_tags($post_id, $body) {
 	if (empty($post_id)) {
 		$post_id = 0;

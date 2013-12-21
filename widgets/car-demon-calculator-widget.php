@@ -1,10 +1,8 @@
 <?php
 add_action( 'widgets_init', 'car_demon_calculator_load_widgets' );
-
 function car_demon_calculator_load_widgets() {
 	register_widget( 'car_demon_calculator_Widget' );
 }
-
 class car_demon_calculator_Widget extends WP_Widget {
 	/**
 	 * Widget setup.
@@ -12,10 +10,8 @@ class car_demon_calculator_Widget extends WP_Widget {
 	function car_demon_calculator_Widget() {
 		/* Widget settings. */
 		$widget_ops = array( 'classname' => 'car_demon_calculator', 'description' => __('Loan Calculator.', 'car-demon') );
-
 		/* Widget control settings. */
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'car_demon_calculator-widget' );
-
 		/* Create the widget. */
 		$this->WP_Widget( 'car_demon_calculator-widget', __('Car Demon Loan Calculator', 'car-demon'), $widget_ops, $control_ops );
 	}
@@ -33,7 +29,6 @@ class car_demon_calculator_Widget extends WP_Widget {
 		$disclaimer2 = $instance['disclaimer2'];
 		/* Before widget (defined by themes). */
 		echo $before_widget;
-
 		/* Display the widget title if one was input (before and after defined by themes). */
 		if (!empty($title)) {
 			echo $before_title . $title . $after_title;

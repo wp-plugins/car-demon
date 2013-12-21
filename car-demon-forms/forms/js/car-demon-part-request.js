@@ -134,7 +134,7 @@ function car_demon_validate_part_request(form_id) {
 			type: 'POST',
 			data: {action: 'cd_parts_handler', 'nonce': nonce, 'your_name': your_name, 'phone':phone, 'email':email, 'part_location':part_location,'year':year, 'make':make, 'model':model, 'vin':vin, 'part_needed':part_needed, 'number_of_parts':number_of_parts, 'part_list':str},
 			url: cdPartsParams.ajaxurl,
-			timeout: 2000,
+			timeout: 5000,
 			error: function() {},
 			dataType: "html",
 			success: function(html){

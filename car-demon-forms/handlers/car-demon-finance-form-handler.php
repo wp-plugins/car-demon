@@ -1,41 +1,31 @@
 <?php
-function cd_finance_show_stock() {
-	if ($_POST['show_stock']==1) {
-		if (isset($_POST['stock_num'])) {
-			$stock_num = $_POST['stock_num'];
-		} else {
-			$stock_num = '';
-		}
-		echo get_finance_for_vehicle($stock_num);
-	}
-	if ($_POST['show_stock']==2) {
-		$car_title = $_POST['car_title'];
-		$post_id = get_car_id_from_title($car_title);
-		$stock_num = get_post_meta($post_id, "_stock_value", true);
-		echo get_finance_for_vehicle($stock_num);
-	}
-	exit();
+$newPath = dirname(__FILE__);
+if (!stristr(PHP_OS, 'WIN')) {
+	$is_it_iis = 'Apache';
 }
-function cd_finance_find_stock() {
-	echo car_demon_find_stock_info();
-	exit();
+else {
+	$is_it_iis = 'Win';
 }
-function cd_finance_find_vehicle() {
-	echo car_demon_find_car_info();
-	exit();
+if ($is_it_iis == 'Apache') {
+	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/forms', '', $newPath);
+	include_once($newPath."/wp-load.php");
+	include_once($newPath."/wp-includes/wp-db.php");
 }
-function cd_finance_handler() {
-	if ( !wp_verify_nonce( $_REQUEST['nonce'], "cd_contact_us_nonce")) {
-		echo 'Form key error! Submission could not be validated.';  
-		exit("No naughty business please");
-		//Form key is invalid, show an error  
-	}  else {
-		//Do the rest of your validation here  
-		send_finance_email();
-	}
-	exit();
+else {
+	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\forms', '', $newPath);
+	include_once($newPath."\wp-load.php");
+	include_once($newPath."\wp-includes/wp-db.php");
 }
-
+require($newPath.'wp-content/plugins/car-demon/car-demon-forms/forms/car-demon-form-key-class.php');
+$cd_formKey = new cd_formKey();
+if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
+	//Form key is invalid, show an error  
+	echo 'Form key error! Submission could not be validated.';  
+}  
+else {
+	//Do the rest of your validation here  
+	send_finance_email();
+}
 function send_finance_email() {
 	$request_body = build_finance_body();
 	$finance_location = $_POST['finance_location'];
@@ -124,7 +114,6 @@ function send_finance_email() {
 	$thanks .= '<h4>'.__('If you have questions or concerns please call and let us know.', 'car-demon').'</h4>';
 	echo $thanks;
 }
-
 function build_finance_body() {
 	$x = '';
 	$selected_car = $_POST['purchase_stock'];
@@ -410,7 +399,6 @@ function build_finance_body() {
 	';
 	return $x;
 }
-
 function get_co_buyer() {
 	$your_name = $_POST['co_fn2'] .' '. $_POST['co_mi'] .' '.$_POST['co_ln2'];
 	$phone = $_POST['co_hpn2'];
@@ -609,7 +597,6 @@ function get_co_buyer() {
 		}
 	return $x;
 }
-
 function get_finance_location($selected_car) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -630,7 +617,6 @@ function get_finance_location($selected_car) {
 	}
 	return $x;
 }
-
 function get_finance_email($finance_location) {
 	$args = array(
 		'style'              => 'none',
@@ -667,7 +653,6 @@ function get_finance_email($finance_location) {
 	}
 	return $html;
 }
-
 function adfxml_finance($location_name, $rep_name, $rep_email) {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 

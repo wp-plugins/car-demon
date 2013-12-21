@@ -1,6 +1,8 @@
 /* CSS Document */
-
 .car_demon_main_photo {
+	max-width: 358px;
+	max-height: 271px;
+	width: 100%;
 	padding: 3px;
 	border: 1px solid gray;
 	-moz-border-radius: 3px;
@@ -30,10 +32,9 @@
 	margin-top:15px;
 	margin-bottom:15px;
 }
-#car_features_box {   
-    width:100%;
-	margin-top:50px;
-	float: left;
+#car_features_box {  
+    margin: 0px auto 0px auto;  
+	margin-top:30px;
 }
 .car_features_box h4 {  
     font-family:Arial, Helvetica, sans-serif;  
@@ -133,13 +134,18 @@ ul.tabs {
 .car_demon_photo_box {
 	display:none;
 	background:#000000;
-	max-width:90%;
-	/*height:800px;*/		
-	padding: 20px;
+	width:800px;
+	height:600px;		
+	padding: 9px;
 	border: 3px solid gray;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
+	-moz-box-shadow: 0 0 5px rgba(0,0,0, .3);
+	-webkit-box-shadow: 0 0 5px 
+	rgba(0, 0, 0, .3);
+	box-shadow: 0 0 5px 
+	rgba(0, 0, 0, .3);
 }
 .close_light_box {
 	position:absolute;
@@ -148,32 +154,26 @@ ul.tabs {
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold;
 	cursor:pointer;
-	margin-bottom: 20px;
-	display: none;
 }
 .photo_next {
 	cursor:pointer;
 	position:absolute; 
 	top:465px; 
 	left:715px;
-	display: none !important;
 }
 .photo_next:hover {
 	top:467px;
 	left:717px
-	display: none !important;
 }
 .photo_prev {
 	cursor:pointer;
 	position:absolute; 
 	top:465px; 
 	left:55px;
-	display: none !important;
 }
 .photo_prev:hover {
 	top:467px;
-	left:57px;
-	display: none !important;
+	left:57px
 }
 .run_slideshow_div {
 	position:absolute;
@@ -181,7 +181,6 @@ ul.tabs {
 	font-weight:bold;
 	top:12px; 
 	left:615px;
-	display: none !important;
 }
 .car_demon_light_box_main_email {
 	margin-left:80px; margin-top:25px;
@@ -244,7 +243,7 @@ ul.tabs {
 	margin-top:2px;height:1px;
 }
 .car_buttons_div {
-	width:700px;height:63px;
+	width:100%;height:63px;
 }
 .car_buttons_div img {
 	cursor:pointer;
@@ -256,7 +255,7 @@ ul.tabs {
 	clear: both;
 }
 .car_detail_div {
-	width:600px;height:300px;margin-left:5px;
+	height:300px;margin-left:5px;
 }
 .car_main_photo_box {
 	cursor:pointer;float:left;
@@ -265,10 +264,10 @@ ul.tabs {
 	float:left;margin-left:15px;
 }
 .similar_cars_box {
-	width:650px;height:225px;margin-top:10px;
+	height:225px;margin-top:10px;
 }
 .similar_car {
-	float:left;width:210px;height:185px;
+	float:left;width:210px;min-height:185px;
 }
 .similar_car_ribbon {
 	margin-left:15px;
@@ -284,11 +283,42 @@ ul.tabs {
     filter: Alpha(Opacity=100);
     visibility : hidden;
     width : auto;
-	height: 400px;
+	height: 40%;
     z-index : 50;
     overflow : hidden;
     text-align : center;
 	-moz-box-shadow:    1px 1px 2px 2px #555;
 	-webkit-box-shadow: 1px 1px 2px 2px #555;
 	box-shadow:         1px 1px 2px 2px #555;
+}
+/*
+==========
+*/
+.nohor {
+	width: 100% !important;	
+}
+ul.tabs li, .car_features {
+	float: left;
+}
+#demon-content {
+	width: 95% !important;
+	max-width: 635px;
+}
+ul.tabs {
+	float: left;
+}
+.car_features_content {
+	float: left;	
+}
+.ribbon {
+	max-width: 112px;
+	max-height: 112px;	
+}
+.look_close {
+	max-width: 358px;
+	max-height: 271px;
+	width: 100%;
+}
+.email_friend_form input[type=text] {
+	width: 80%;
 }

@@ -4,11 +4,9 @@ add_action( 'widgets_init', 'car_demon_vehicle_contact_load_widgets' );
 add_action("wp_ajax_cd_contact_us_widget_handler", "cd_contact_us_widget_handler");
 add_action("wp_ajax_nopriv_cd_contact_us_widget_handler", "cd_contact_us_widget_handler");
 //======
-
 function car_demon_vehicle_contact_load_widgets() {
 	register_widget( 'car_demon_vehicle_contact_Widget' );
 }
-
 class car_demon_vehicle_contact_Widget extends WP_Widget {
 	/**
 	 * Widget setup.
@@ -16,10 +14,8 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 	function car_demon_vehicle_contact_Widget() {
 		/* Widget settings. */
 		$widget_ops = array( 'classname' => 'car_demon_vehicle_contact', 'description' => __('Display contact form on Vehicle Pages.', 'car-demon') );
-
 		/* Widget control settings. */
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'car_demon_vehicle_contact-widget' );
-
 		/* Create the widget. */
 		$this->WP_Widget( 'car_demon_vehicle_contact-widget', __('Car Demon Vehicle Contact', 'car-demon'), $widget_ops, $control_ops );
 	}
@@ -31,7 +27,7 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 		$post_type = get_post_type($post_id);
 		if ( $post_type == 'cars_for_sale' ) {
 			if (is_single($post_id)) {
-				$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+				$car_demon_pluginpath = CAR_DEMON_PATH;
 				$car_demon_pluginpath = str_replace('widgets/', '', $car_demon_pluginpath);
 				wp_register_script('car-demon-contact-widget-js', WP_CONTENT_URL . '/plugins/car-demon/widgets/js/car-demon-vehicle-contact-widget.js');
 				$validate_phone = 0;
@@ -133,9 +129,8 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 	<?php
 	}
 }
-
 function car_demon_display_vehicle_contacts($post_id, $list_phone, $cc, $send_receipt, $send_receipt_msg) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('/widgets', '', $car_demon_pluginpath);
 	$car_contact = get_car_contact($post_id);
 	$contact_sales_name = $car_contact['sales_name'];

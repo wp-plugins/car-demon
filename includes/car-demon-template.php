@@ -36,7 +36,9 @@ function get_car_title($post_id) {
 		$car_title = $vehicle_year . ' ' . $vehicle_make . ' '. $vehicle_model;
 	}
 	$car_title = trim($car_title);
-//	$car_title = substr($car_title, 0, 19);
+	if (isset($_SESSION['car_demon_options']['title_trim'])) {
+		$car_title = substr($car_title, 0, $_SESSION['car_demon_options']['title_trim']);
+	}
 	return $car_title;
 }
 function get_car_title_slug($post_id) {
@@ -78,7 +80,7 @@ function car_demon_nav($position,$search_query) {
 }
 //=====Functions used exclusively in single-cars_for_sale.php
 function car_demon_photo_lightbox() {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('includes/', '', $car_demon_pluginpath);
 	$x = '<div class="car_demon_light_box" id="car_demon_light_box">
 		<div class="car_demon_photo_box" id="car_demon_photo_box"">
@@ -104,13 +106,15 @@ function car_demon_photo_lightbox() {
 }
 function car_demon_email_a_friend($post_id, $vehicle_stock_number) {
 	$car_head_title = get_car_title($post_id);
+	$nonce = wp_create_nonce("cd_email_friend_nonce");
 	$x = '<div id="email_friend_div" class="email_friend_div">
 		<div id="ef_contact_final_msg_tmp" class="ef_contact_final_msg_tmp"></div>
 		<div id="main_email_friend_div_tmp" class="main_email_friend_div_tmp">
 		<h2>'. __('Send this car to a friend', 'car-demon') .'</h2><hr />
-			<form enctype="multicontact/form-data" action="?send_contact=1" method="post" class="cdform contact-appointment" id="email_friend_form_tmp" name="email_friend_form_tmp">
+			<form enctype="multicontact/form-data" data-nonce="' . $nonce . '" action="?send_contact=1" method="post" class="cdform email_friend_form" id="email_friend_form_tmp" name="email_friend_form_tmp">
+			<input type="hidden" name="nonce" id="nonce" value="'.$nonce.'" />
 			<input type="hidden" name="ef_stock_num_tmp" id="ef_stock_num_tmp" value="'. $vehicle_stock_number .'" />
-					<fieldset class="cd-fs1">
+					<fieldset class="">
 					<legend>'. __('Your Information', 'car-demon') .'</legend>
 					<ol class="cd-ol">
 						<li class=""><label for="cd_field_2"><span>'. __('Your Name', 'car-demon') .'</span></label><input type="text" name="ef_cd_name_tmp" id="ef_cd_name_tmp" class="single fldrequired" value="'. __('Your Name', 'car-demon') .'" onfocus="ef_clearField(this)" onblur="ef_setField(this)"><span class="reqtxt">*</span></li>
@@ -119,10 +123,10 @@ function car_demon_email_a_friend($post_id, $vehicle_stock_number) {
 						<li class=""><label for="cd_field_4"><span>'. __('Friend\'s Email', 'car-demon') .'</span></label><input type="text" name="ef_cd_friend_email_tmp" id="ef_cd_friend_email_tmp" class="single fldemail fldrequired" value=""><span class="emailreqtxt">*</span></li>
 					</ol>
 					</fieldset>
-					<fieldset class="cd-fs4">
+					<fieldset class="">
 					<legend>'. __('Your Message', 'car-demon') .'</legend>
 					<ol class="cd-ol">
-						<li id="li-5" class=""><textarea name="ef_comment_tmp" id="ef_comment_tmp" class="ef_comment_tmp">'. __('Check out this', 'car-demon') .' '. $car_head_title .', '. __('stock number', 'car-demon') .' '. $vehicle_stock_number .'!</textarea><br><span class="reqtxt ef_reqtxt"><br>* '. __('required', 'car-demon') .'</span></li>
+						<li id="li-5" class=""><textarea name="ef_comment_tmp" id="ef_comment_tmp" class="">'. __('Check out this', 'car-demon') .' '. $car_head_title .', '. __('stock number', 'car-demon') .' '. $vehicle_stock_number .'!</textarea><br><span class="reqtxt ef_reqtxt"><br>* '. __('required', 'car-demon') .'</span></li>
 					</ol>
 					</fieldset>
 					<div id="ef_contact_msg_tmp"></div>
@@ -152,21 +156,42 @@ function car_demon_vehicle_detail_tabs($post_id) {
 			$content = get_default_description();
 		}
 	}
+
 	$vehicle_options_list = get_post_meta($post_id, '_vehicle_options', true);
 	$vehicle_options_array = split(',',$vehicle_options_list);
 	$options_image = '<img class="custom_option_img" src="'.WP_CONTENT_URL . '/plugins/car-demon/theme-files/images/opt_standard.gif" />';
 	$include_options = 0;
-	foreach ($vehicle_options_array as $vehicle_option) {
-		if (!empty($vehicle_option)) {
+	$flag = false;
+	if (isset($_SESSION['car_demon_options']['hide_tabs'])) {
+		if ($_SESSION['car_demon_options']['hide_tabs'] == 'Yes') {
 			$include_options = 1;
-			$vehicle_options .= '<div style="float:left;width:260px;">';
-				$vehicle_options .= $options_image .'&nbsp;'. $vehicle_option.'<br />';
-			$vehicle_options .= '</div>';
 		}
 	}
 	if ($include_options == 1) {
+		$vehicle_options .= '<table class="decode_table">';
+		$vehicle_options .= '<tr class="decode_table_header">
+								<td><strong>'.__('Vehicle Options','car-demon').'</strong></td>
+								<td></td>
+							  </tr>';
+		foreach ($vehicle_options_array as $vehicle_option) {
+			if (!empty($vehicle_option)) {
+				if ($flag == true) {
+					$class = 'decode_table_even';
+					$flag = false;
+				} else {
+					$class = 'decode_table_odd';
+					$flag = true;
+				}
+				$vehicle_options .= '<tr class="'.$class.'">
+					<td class="decode_table_label">'.$vehicle_option.'</td>
+					<td>'.$options_image.'</td>
+					</tr>';
+			}
+		}
+		$vehicle_options .= '</table>';
 		$content .= $vehicle_options;
 	}
+
 	if ($_SESSION['car_demon_options']['use_about'] == 'Yes') {
 		$about = 1;
 		$tab_cnt = $tab_cnt + 1;
@@ -219,11 +244,17 @@ function car_demon_vehicle_detail_tabs($post_id) {
 			$x .= '</ul>';
 			$x .= '<div id="content_1" class="car_features_content">'.  $content .'</div>';
 			 if ($vin_query == 1) {
-				$specs = get_vin_query_specs($vin_query_decode, $vehicle_vin);
+				/*
 				$safety = get_vin_query_safety($vin_query_decode);
 				$convienience = get_vin_query_convienience($vin_query_decode);
 				$comfort = get_vin_query_comfort($vin_query_decode);
 				$entertainment = get_vin_query_entertainment($vin_query_decode);
+				*/
+				$specs = get_vin_query_specs($vin_query_decode, $vehicle_vin);
+				$safety = get_option_tab('safety',$post_id);
+				$convienience = get_option_tab('convenience',$post_id);
+				$comfort = get_option_tab('comfort',$post_id);
+				$entertainment = get_option_tab('entertainment',$post_id);
 				$x .= '<div id="content_2" class="car_features_content">'.  $specs .'</div>';
 				$x .= '<div id="content_3" class="car_features_content">'.  $safety .'</div>';
 				$x .= '<div id="content_4" class="car_features_content">'.  $convienience .'</div>';
@@ -260,7 +291,9 @@ function car_demon_vehicle_detail_tabs($post_id) {
 								else {
 									$x .= build_location_hcard($vehicle_location, $vehicle_condition);
 								} 
-							$x .= '</div><!-- #entry-author-info -->';
+								$x .= html_entity_decode(get_about_us_tab($post_id).'test');
+						 else:
+							$x .= get_about_us_tab($post_id);
 						 endif;
 					$x .= '</div>';
 			 } 
@@ -271,7 +304,7 @@ function car_demon_vehicle_detail_tabs($post_id) {
 function car_demon_display_similar_cars($body_style, $current_id) {
 	global $wpdb;
 	$show_it = '';
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('includes','theme-files',$car_demon_pluginpath);
 	$my_tag_id = get_term_by('slug', $body_style, 'vehicle_body_style');
 	if (!empty($body_style)) {
@@ -345,7 +378,7 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 						<div class="random similar_car">
 							<div class="random_img">
 								'.$current_ribbon.'
-								<img class="look_close similar_car_look_close" onclick="window.location=\''.$link.'\';" src="'. $car_demon_pluginpath .'images/look_close.png" width="188" height="143" id="look_close">
+								<img class="look_close similar_car_look_close" onclick="window.location=\''.$link.'\';" src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="188" height="143" id="look_close">
 								'.$img_output.'
 							</div>
 							<div class="random_description">
@@ -363,7 +396,7 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 	return $car;
 }
 function car_photos($post_id, $details, $vehicle_condition) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
 	$mileage_value = '';
 	$car_title = '';
@@ -374,10 +407,12 @@ function car_photos($post_id, $details, $vehicle_condition) {
 	}
 	if ($ribbon != 'custom_ribbon') {
 		$ribbon = str_replace('_', '-', $ribbon);
-		$current_ribbon = '<img src="'. $car_demon_pluginpath .'theme-files/images/ribbon-'.$ribbon.'.png" width="112" height="112" id="ribbon">';
+//		$current_ribbon = '<img src="'. $car_demon_pluginpath .'theme-files/images/ribbon-'.$ribbon.'.png" width="112" height="112" id="ribbon">';
+		$current_ribbon = '<img src="'. $car_demon_pluginpath .'theme-files/images/ribbon-'.$ribbon.'.png" id="ribbon" class="ribbon">';
 	} else {
 		$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
-		$current_ribbon = '<img src="'.$custom_ribbon_file.'" width="112" height="112" id="ribbon">';
+//		$current_ribbon = '<img src="'.$custom_ribbon_file.'" width="112" height="112" id="ribbon">';
+		$current_ribbon = '<img src="'.$custom_ribbon_file.'" id="ribbon" class="ribbon">';
 	}
 	if (isset($_SESSION['car_demon_options']['dynamic_ribbons'])) {
 		if ($_SESSION['car_demon_options']['dynamic_ribbons'] == 'Yes') {
@@ -400,8 +435,10 @@ function car_photos($post_id, $details, $vehicle_condition) {
 		$this_car .= '<div class="car_detail_div">';
 			$this_car .= '<div class="car_main_photo_box">';
 				$this_car .= $current_ribbon;
-				$this_car .= '<img'.$lightbox_js.' src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="358" height="271" alt="New Ribbon" id="look_close">';
-				$this_car .= '<div id="main_thumb"><img'.$lightbox_js.' onerror="ImgError(this, \'no_photo.gif\');" id="'.$car_title.'_pic" name="'.$car_title.'_pic" class="car_demon_main_photo" width="350px" src="';
+//				$this_car .= '<img'.$lightbox_js.' src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="358" height="271" alt="New Ribbon" id="look_close">';
+//				$this_car .= '<div id="main_thumb"><img onerror="ImgError(this, \'no_photo.gif\');" id="'.$car_title.'_pic" name="'.$car_title.'_pic" class="car_demon_main_photo" width="350px" src="';
+				$this_car .= '<img'.$lightbox_js.' src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" alt="New Ribbon" id="look_close" class="look_close">';
+				$this_car .= '<div id="main_thumb"><img onerror="ImgError(this, \'no_photo.gif\');" id="'.$car_title.'_pic" name="'.$car_title.'_pic" class="car_demon_main_photo" src="';
 				$main_guid = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 				$this_car .= $main_guid;
 				$this_car .= '" /></div>';
@@ -418,12 +455,12 @@ function car_photos($post_id, $details, $vehicle_condition) {
 		$photo_array = '<img class="car_demon_thumbs"'.$popup_imgs.' onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($main_guid).'",1);active_img('.$cnt.')\' src="'.trim($main_guid).'" width="62" />';
 		$this_car .= $photo_array;
 		foreach($thumbnails as $thumbnail) {
-			$guid = $thumbnail->guid;
+			$guid = wp_get_attachment_url($thumbnail->ID);
 			if (!empty($guid)) {
 				if ($main_guid != $guid) {
 					$cnt = $cnt + 1;
 					$car_js .= 'carImg['.$cnt.']="'.trim($guid).'";'.chr(13);
-					$photo_array = '<img class="car_demon_thumbs"'.$popup_imgs.' onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($guid).'",1);active_img('.$cnt.')\' src="'.trim($guid).'" width="62" />';
+					$photo_array = '<a href="#mainpic"><img class="car_demon_thumbs"'.$popup_imgs.' onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($guid).'",1);active_img('.$cnt.')\' src="'.trim($guid).'" width="62" /></a>';
 					$this_car .= $photo_array;
 				}
 			}
@@ -435,7 +472,7 @@ function car_photos($post_id, $details, $vehicle_condition) {
 			foreach($thumbnails as $thumbnail) {
 				$pos = strpos($thumbnail,'.jpg');
 				if($pos == true) {
-					if ($cnt > 1) {
+					if ($cnt > 0) {
 						$car_js .= 'carImg['.$cnt.']="'.trim($thumbnail).'";'.chr(13);
 						$photo_array = '<a href="#mainpic"><img class="car_demon_thumbs" style="cursor:pointer"'.$popup_imgs.' onClick=\'MM_swapImage("'.$car_title.'_pic","","'.trim($thumbnail).'",1);\' src="'.trim($thumbnail).'" width="62" /></a>';
 						$this_car .= $photo_array;
@@ -498,5 +535,27 @@ function car_demon_facebook_meta() {
 		<meta property="og:url" content="'.$url.'"/>
 		<meta property="og:image" content="'.$image.'"/>';
 	echo $x;
+}
+function car_demon_get_car($post_id) {
+	$x = get_post_meta($post_id, 'decode_string', true);
+	$x['vin'] = rwh(strip_tags(get_post_meta($post_id, "_vin_value", true)),0);
+	$x['year'] = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_year', '','', '', '' )),0);
+	$x['make'] = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_make', '','', '', '' )),0);
+	$x['model'] = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_model', '','', '', '' )),0);
+	$x['condition'] = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_condition', '','', '', '' )),0);
+	$x['body_style'] = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_body_style', '','', '', '' )),0);
+	$x['location'] = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_location', '','', '', '' )),0);
+	$x['stock_number'] = strip_tags(get_post_meta($post_id, "_stock_value", true));
+	$x['exterior_color'] = strip_tags(get_post_meta($post_id, "_exterior_color_value", true));
+	$x['interior_color'] = strip_tags(get_post_meta($post_id, "_interior_color_value", true));
+	$x['mileage'] = strip_tags(get_post_meta($post_id, "_mileage_value", true));
+	$x['fuel'] = strip_tags(get_post_meta($post_id, "_fuel_type_value", true));
+	$x['transmission'] = strip_tags(get_post_meta($post_id, "_transmission_value", true));
+	$x['cylinders'] = strip_tags(get_post_meta($post_id, "_cylinders_value", true));
+	$x['engine'] = strip_tags(get_post_meta($post_id, "_engine_value", true));
+	$x['doors'] = strip_tags(get_post_meta($post_id, "_doors_value", true));
+	$x['trim'] = strip_tags(get_post_meta($post_id, "_trim_value", true));
+	$x['warranty'] = strip_tags(get_post_meta($post_id, "_warranty_value", true));
+	return $x;
 }
 ?>

@@ -9,7 +9,6 @@ function contact_us_shortcode_func( $atts ) {
 	return $contact_us;
 }
 add_shortcode( 'contact_us', 'contact_us_shortcode_func' );
-
 function search_shortcode_func( $atts ) {
 	extract( shortcode_atts( array(
 		'size' => '0',
@@ -28,7 +27,6 @@ function search_shortcode_func( $atts ) {
 	return $search_form;
 }
 add_shortcode( 'search_form', 'search_shortcode_func' );
-
 function search_box_shortcode_func( $atts ) {
 	extract( shortcode_atts( array(
 		'button' => __('Search', 'car-demon'),
@@ -40,8 +38,6 @@ function search_box_shortcode_func( $atts ) {
 	return $search_box;
 }
 add_shortcode( 'search_box', 'search_box_shortcode_func' );
-
-
 function parts_shortcode_func( $atts ) {
 	extract( shortcode_atts( array(
 		'location' => 'normal',
@@ -138,4 +134,21 @@ function vehicle_search_box_shortcode_func( $atts ) {
 	return $vehicle_cloud;
 }
 add_shortcode( 'vehicle_search_box', 'vehicle_search_box_shortcode_func' );
+
+function staff_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+	), $atts ) );
+	$staff_page = car_demon_staff_page();
+	return $staff_page;
+}
+add_shortcode( 'staff_page', 'staff_shortcode_func' );
+//===================================================
+function car_demon_shortcodes( $content ) {
+	if (strpos($content, '[-staff_page-]')) {
+		$staff_page = car_demon_staff_page();
+		$content = str_replace('[-staff_page-]', $staff_page, $content);
+	}
+	return $content;
+}
+add_filter('the_content', 'car_demon_shortcodes');
 ?>

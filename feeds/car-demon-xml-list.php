@@ -17,9 +17,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-
 echo build_xml();
-
 function build_xml() {
 	global $wpdb;
 	$query = "SELECT ID
@@ -53,7 +51,7 @@ function build_xml() {
 		$car_xml .= rwh_xml(get_post_meta($post_id, "_warranty_value", true), 'warranty');
 		$car_pic = wp_get_attachment_thumb_url( get_my_post_thumbnail_id( $post_id ) );
 		if (empty($car_pic)) {
-			$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+			$car_demon_pluginpath = CAR_DEMON_PATH;
 			$car_demon_pluginpath = str_replace('feeds','',$car_demon_pluginpath);
 			$car_pic = $car_demon_pluginpath.'no_photo.gif';
 		}
@@ -63,12 +61,10 @@ function build_xml() {
 	$car_xml = '<inventorySummary>'.$car_xml.'</inventorySummary>';
 	return $car_xml;
 }
-
 function rwh_xml($x,$y) {
 	$new_string = '<'.$y.'>'.$x.'</'.$y.'>'.chr(13);
 	return $new_string;
 }
-
 function get_my_post_thumbnail_id( $post_id = NULL ) {
 	global $id;
 	$post_id = ( NULL === $post_id ) ? $id : $post_id;

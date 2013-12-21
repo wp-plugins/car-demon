@@ -98,7 +98,7 @@ function car_demon_validate_service_form(form_id) {
 			type: 'POST',
 			data: {action: 'cd_service_handler', 'nonce': nonce, 'your_name': your_name,'phone':phone, 'email':email, 'service_location':service_location,'pref_date':pref_date, 'alt_date':alt_date, 'waiting':waiting, 'transportation':transportation, 'year':year, 'make':make, 'model':model, 'miles':miles, 'vin':vin, 'service_needed':service_needed},
 			url: cdServiceParams.ajaxurl,
-			timeout: 2000,
+			timeout: 5000,
 			error: function() {},
 			dataType: "html",
 			success: function(html){

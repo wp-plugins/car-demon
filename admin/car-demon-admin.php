@@ -97,7 +97,7 @@ function car_demon_vehicle_photo_gallery($post) {
 	echo admin_car_photos($post_id);
 }
 function admin_car_photos($post_id) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$this_car = '<div>';
 		$this_car .= '<div class="car_detail_div">';
 			$this_car .= '<div class="car_main_photo_box">';

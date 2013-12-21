@@ -17,9 +17,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-
 echo build_csv();
-
 function build_csv() {
 	global $wpdb;
 	$query = "SELECT ID, post_content
@@ -76,7 +74,7 @@ function build_csv() {
 		$car_pic_list = str_replace(chr(11), '', $car_pic_list);
 		$car_pic_list = str_replace(chr(13), '', $car_pic_list);
 		if (empty($car_pic)) {
-			$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+			$car_demon_pluginpath = CAR_DEMON_PATH;
 			$car_demon_pluginpath = str_replace('feeds','',$car_demon_pluginpath);
 			$car_pic = $car_demon_pluginpath.'no_photo.gif';
 		}
@@ -86,7 +84,6 @@ function build_csv() {
 	}
 	return $car_csv;
 }
-
 function get_my_post_thumbnail_id( $post_id = NULL ) {
 	global $id;
 	$post_id = ( NULL === $post_id ) ? $id : $post_id;

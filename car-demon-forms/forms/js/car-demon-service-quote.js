@@ -80,7 +80,7 @@ function car_demon_validate_service_quote(form_id) {
 			type: 'POST',
 			data: {action: 'cd_service_quote_handler', 'nonce': nonce, 'your_name': your_name,'phone':phone, 'email':email, 'service_location':service_location, 'year':year, 'make':make, 'model':model, 'miles':miles, 'vin':vin, 'service_needed':service_needed},
 			url: cdServiceQuoteParams.ajaxurl,
-			timeout: 2000,
+			timeout: 5000,
 			error: function() {},
 			dataType: "html",
 			success: function(html){

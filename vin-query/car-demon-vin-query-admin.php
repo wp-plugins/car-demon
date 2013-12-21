@@ -9,6 +9,18 @@ if (is_admin()) {
 		add_action('save_post','cd_save_car');
 	}
 }
+
+function car_demon_vinquery_scripts() {
+	wp_register_script('car-demon-vinquery-js', WP_CONTENT_URL . '/plugins/car-demon/admin/js/car-demon-admin.js');
+	wp_localize_script('car-demon-vinquery-js', 'cdVinQueryParams', array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'car_demon_path' => CAR_DEMON_PATH
+	));
+	wp_enqueue_script('car-demon-vinquery-js');
+}
+add_action("wp_ajax_car_demon_vinquery", "car_demon_vinquery");
+add_action("wp_ajax_nopriv_car_demon_vinquery", "car_demon_vinquery");
+
 function cd_save_car($post_id) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 	  return;
@@ -48,8 +60,13 @@ function car_demon_get_current_post_type() {
 	return $post_type;
 }
 function cardemons_automotive_inventory_decode_header() {
+	wp_register_script('car-demon-vin-query-admin-js', WP_CONTENT_URL . '/plugins/car-demon/vin-query/js/car-demon-vin-query.js');
+	wp_localize_script('car-demon-vin-query-admin-js', 'cdVinQueryParams', array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'car_demon_path' => CAR_DEMON_PATH
+	));
+	wp_enqueue_script('car-demon-vin-query-admin-js');
 	wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
-	wp_enqueue_script('car-demon-vin-query-js', WP_CONTENT_URL . '/plugins/car-demon/vin-query/js/car-demon-vin-query.js.php');
 	wp_enqueue_style('car-demon-vin-query-css', WP_CONTENT_URL . '/plugins/car-demon/vin-query/css/car-demon-vin-query.css');
 }
 function eg_add_dashboard_widgets() {
@@ -99,10 +116,12 @@ function cardemons_automotive_inventory_decode($post_id) {
 	$html .= '
 	<div id="vin_decode_options_'.$post_id.'">';
 		$specs = get_vin_query_specs_admin($vin_query_decode, $vin, $post_id);
-		$safety = get_vin_query_safety_admin($vin_query_decode, $post_id);
-		$convienience = get_vin_query_convienience_admin($vin_query_decode, $post_id);
-		$comfort = get_vin_query_comfort_admin($vin_query_decode, $post_id);
-		$entertainment = get_vin_query_entertainment_admin($vin_query_decode, $post_id);
+		$safety = get_option_tab('safety',$post_id,'admin');
+		$convienience = get_option_tab('convenience',$post_id,'admin');
+		$comfort = get_option_tab('comfort',$post_id,'admin');
+		$entertainment = get_option_tab('entertainment',$post_id,'admin');
+	//	echo get_option_tab('about_us',$post_id,'admin');
+		echo '<hr />';
 	$html .= '
 		<ul class="tabs"> 
 			<li><a href="javascript:car_demon_switch_tabs(1, 5, \'tab_\', \'content_\');" id="tab_1">Specs</a></li>  
@@ -122,7 +141,8 @@ function cardemons_automotive_inventory_decode($post_id) {
 function start_decode_box() {
 	global $theme_name;
 	add_meta_box('decode-div', 'Vehicle Options', 'decode_metabox', 'cars_for_sale', 'normal', 'high');
-	add_meta_box('decode-custom', 'Custom Options', 'decode_custom_metabox', 'cars_for_sale', 'normal', 'high');
+//= Feature being deprecated in favor of new custom vehicle option feature.
+//	add_meta_box('decode-custom', 'Custom Options', 'decode_custom_metabox', 'cars_for_sale', 'normal', 'high');
 	add_meta_box('decode-status', 'Sales Status', 'decode_sales_metabox', 'cars_for_sale', 'side', 'high');
 	add_meta_box('decode-ribbon', 'Photo Ribbon', 'decode_photo_ribbon', 'cars_for_sale', 'side', 'default');
 	add_meta_box('decode-images', 'Vehicle Photos', 'decode_images', 'cars_for_sale', 'side', 'default');
@@ -174,14 +194,59 @@ function decode_custom_metabox($post) {
 	return;
 }
 function decode_images($post) {
+	// Show currently attached photos
 	$post_id = $post->ID;
 	echo '
-	<a href="#" class="custom_media_upload" id="manage_vehicle_photos">Manage Photos</a>
+	<div align="center">
+		<a href="#" class="custom_media_upload" id="manage_vehicle_photos"><input type="button" value="Manage Photos" class="wp-core-ui button-primary" /></a>
+	</div>
 	<img class="custom_media_image" src="" />
 		<input class="custom_media_url" type="hidden" name="attachment_url" value="">
 		<input class="custom_media_id" type="hidden" name="attachment_id" value="">
 		<input type="hidden" name="attachment_post_id" id="attachment_post_id" value="'.$post_id.'">
 	';
+	$image_list = get_post_meta($post_id, '_images_value', true);
+	$this_car = '';
+	$cnt = 1;
+	if (!empty($image_list)) {
+		echo '<h3>Imported Photos</h3><br />';
+		$thumbnails = split(",",$image_list);
+		foreach($thumbnails as $thumbnail) {
+			$pos = strpos($thumbnail,'.jpg');
+			if($pos == true) {
+				$photo_array = '<div id="car_photo_'.$cnt.'" name="car_photo_'.$cnt.'" class="car_photo_admin_box">';
+					$photo_array .= '<div class="car_photo_remove" onclick="remove_linked_car_image('.$post_id.', \''.trim($thumbnail).'\', '.$cnt.')">';
+						$photo_array .= 'X';
+					$photo_array .= '</div>';
+					$photo_array .= '<div align="center">';
+						$photo_array .= '<img class="car_demon_thumbs" style="cursor:pointer"'.$popup_imgs.' src="'.trim($thumbnail).'" width="162" />';
+					$photo_array .= '</div>';
+				$photo_array .= '</div>';
+				$this_car .= $photo_array;
+				$cnt = $cnt + 1;
+			}
+		}
+	}
+	echo $this_car;
+	$this_car = '';
+	$thumbnails = get_children( array('post_parent' => $post_id, 'post_type' => 'attachment', 'post_mime_type' =>'image', 'orderby' => 'menu_order ID') );
+	echo '<h3>Attached Photos</h3><br />';
+		foreach($thumbnails as $thumbnail) {
+			$guid = wp_get_attachment_url($thumbnail->ID);
+			if (!empty($guid)) {
+				$photo_array = '<div id="car_photo_'.$cnt.'" name="car_photo_'.$cnt.'" class="car_photo_admin_box">';
+					$photo_array .= '<div class="car_photo_remove" onclick="remove_attached_car_image('.$post_id.', \''.$thumbnail->ID.'\', '.$cnt.')">';
+						$photo_array .= 'X';
+					$photo_array .= '</div>';
+					$photo_array .= '<div align="center">';
+						$photo_array .= '<img class="car_demon_thumbs" style="cursor:pointer"'.$popup_imgs.' src="'.trim($guid).'" width="162" />';
+					$photo_array .= '</div>';
+				$photo_array .= '</div>';
+				$this_car .= $photo_array;
+			}
+		}
+	$photo_array = '<div id="car_photo_attachments">'.$photo_array.'</div>';	
+	echo $this_car;
 	return;
 }
 function decode_photo_ribbon($post) {
@@ -458,600 +523,20 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 	  </table>';
 	return $x;
 }
-function get_vin_query_safety_admin($vin_query_decode, $post_id) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
-	if (isset($vin_query_decode["decoded_child_safety_door_locks"])) {$decoded_child_safety_door_locks = $vin_query_decode["decoded_child_safety_door_locks"]; } else {$decoded_child_safety_door_locks = ''; }
-	if (isset($vin_query_decode["decoded_locking_pickup_truck_tailgate"])) {$decoded_locking_pickup_truck_tailgate = $vin_query_decode["decoded_locking_pickup_truck_tailgate"]; } else {$decoded_locking_pickup_truck_tailgate = ''; }
-	if (isset($vin_query_decode["decoded_power_door_locks"])) {$decoded_power_door_locks = $vin_query_decode["decoded_power_door_locks"]; } else {$decoded_power_door_locks = ''; }
-	if (isset($vin_query_decode["decoded_vehicle_anti_theft"])) {$decoded_vehicle_anti_theft = $vin_query_decode["decoded_vehicle_anti_theft"]; } else {$decoded_vehicle_anti_theft = ''; }
-	if (isset($vin_query_decode["decoded_4wd_awd"])) {$decoded_4wd_awd = $vin_query_decode["decoded_4wd_awd"]; } else {$decoded_4wd_awd = ''; }
-	if (isset($vin_query_decode["decoded_abs_brakes"])) {$decoded_abs_brakes = $vin_query_decode["decoded_abs_brakes"]; } else {$decoded_abs_brakes = ''; }
-	if (isset($vin_query_decode["decoded_automatic_load_leveling"])) {$decoded_automatic_load_leveling = $vin_query_decode["decoded_automatic_load_leveling"]; } else {$decoded_automatic_load_leveling = ''; }
-	if (isset($vin_query_decode["decoded_electronic_brake_assistance"])) {$decoded_electronic_brake_assistance = $vin_query_decode["decoded_electronic_brake_assistance"]; } else {$decoded_electronic_brake_assistance = ''; }
-	if (isset($vin_query_decode["decoded_limited_slip_differential"])) {$decoded_limited_slip_differential = $vin_query_decode["decoded_limited_slip_differential"]; } else {$decoded_limited_slip_differential = ''; }
-	if (isset($vin_query_decode["decoded_locking_differential"])) {$decoded_locking_differential = $vin_query_decode["decoded_locking_differential"]; } else {$decoded_locking_differential = ''; }
-	if (isset($vin_query_decode["decoded_traction_control"])) {$decoded_traction_control = $vin_query_decode["decoded_traction_control"]; } else {$decoded_traction_control = ''; }
-	if (isset($vin_query_decode["decoded_vehicle_stability_control_system"])) {$decoded_vehicle_stability_control_system = $vin_query_decode["decoded_vehicle_stability_control_system"]; } else {$decoded_vehicle_stability_control_system = ''; }
-	if (isset($vin_query_decode["decoded_driver_airbag"])) {$decoded_driver_airbag = $vin_query_decode["decoded_driver_airbag"]; } else {$decoded_driver_airbag = ''; }
-	if (isset($vin_query_decode["decoded_front_side_airbag"])) {$decoded_front_side_airbag = $vin_query_decode["decoded_front_side_airbag"]; } else {$decoded_front_side_airbag = ''; }
-	if (isset($vin_query_decode["decoded_front_side_airbag_with_head_protection"])) {$decoded_front_side_airbag_with_head_protection = $vin_query_decode["decoded_front_side_airbag_with_head_protection"]; } else {$decoded_front_side_airbag_with_head_protection = ''; }
-	if (isset($vin_query_decode["decoded_passenger_airbag"])) {$decoded_passenger_airbag = $vin_query_decode["decoded_passenger_airbag"]; } else {$decoded_passenger_airbag = ''; }
-	if (isset($vin_query_decode["decoded_side_head_curtain_airbag"])) {$decoded_side_head_curtain_airbag = $vin_query_decode["decoded_side_head_curtain_airbag"]; } else {$decoded_side_head_curtain_airbag = ''; }
-	if (isset($vin_query_decode["decoded_second_row_side_airbag"])) {$decoded_second_row_side_airbag = $vin_query_decode["decoded_second_row_side_airbag"]; } else {$decoded_second_row_side_airbag = ''; }
-	if (isset($vin_query_decode["decoded_second_row_side_airbag_with_head_protection"])) {$decoded_second_row_side_airbag_with_head_protection = $vin_query_decode["decoded_second_row_side_airbag_with_head_protection"]; } else {$decoded_second_row_side_airbag_with_head_protection = ''; }
-	if (isset($vin_query_decode["decoded_electronic_parking_aid"])) {$decoded_electronic_parking_aid = $vin_query_decode["decoded_electronic_parking_aid"]; } else {$decoded_electronic_parking_aid = ''; }
-	if (isset($vin_query_decode["decoded_first_aid_kit"])) {$decoded_first_aid_kit = $vin_query_decode["decoded_first_aid_kit"]; } else {$decoded_first_aid_kit = ''; }
-	if (isset($vin_query_decode["decoded_trunk_anti_trap_device"])) {$decoded_trunk_anti_trap_device = $vin_query_decode["decoded_trunk_anti_trap_device"]; } else {$decoded_trunk_anti_trap_device = ''; }
-	$x = '
-	<table class="decode_table">
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Anti-Theft & Locks</strong></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Child Safety Door Locks</td>
-		<td>'.decode_select('decoded_child_safety_door_locks', $decoded_child_safety_door_locks, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Locking Pickup Truck Tailgate</td>
-		<td>'.decode_select('decoded_locking_pickup_truck_tailgate',$decoded_locking_pickup_truck_tailgate, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Power Door Locks</td>
-		<td>'.decode_select('decoded_power_door_locks',$decoded_power_door_locks, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Vehicle Anti-Theft</td>
-		<td>'.decode_select('decoded_vehicle_anti_theft',$decoded_vehicle_anti_theft, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Braking & Traction</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;4WD/AWD</td>
-		<td>'.decode_select('decoded_4wd_awd',$decoded_4wd_awd, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;ABS(2-Wheel/4-Wheel)</td>
-		<td>'.decode_select('decoded_abs_brakes',$decoded_abs_brakes, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Automatic Load-Leveling</td>
-		<td>'.decode_select('decoded_automatic_load_leveling',$decoded_automatic_load_leveling, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Electronic Brake Assistance</td>
-		<td>'.decode_select('decoded_electronic_brake_assistance',$decoded_electronic_brake_assistance, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Limited Slip Differential</td>
-		<td>'.decode_select('decoded_limited_slip_differential',$decoded_limited_slip_differential, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Locking Differential</td>
-		<td>'.decode_select('decoded_locking_differential',$decoded_locking_differential, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Traction Control</td>
-		<td>'.decode_select('decoded_traction_control',$decoded_traction_control, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Vehicle Stability Control System</td>
-		<td>'.decode_select('decoded_vehicle_stability_control_system',$decoded_vehicle_stability_control_system, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Safety</strong></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Driver Airbag</td>
-		<td>'.decode_select('decoded_driver_airbag',$decoded_driver_airbag, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Front Side Airbag</td>
-		<td>'.decode_select('decoded_front_side_airbag',$decoded_front_side_airbag, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Front Side Airbag with Head Protection</td>
-		<td>'.decode_select('decoded_front_side_airbag_with_head_protection',$decoded_front_side_airbag_with_head_protection, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Passenger Airbag</td>
-		<td>'.decode_select('decoded_passenger_airbag',$decoded_passenger_airbag, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Side Head Curtain Airbag</td>
-		<td>'.decode_select('decoded_side_head_curtain_airbag',$decoded_side_head_curtain_airbag, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Second Row Side Airbag</td>
-		<td>'.decode_select('decoded_second_row_side_airbag',$decoded_second_row_side_airbag, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Second Row Side Airbag with Head Protection</td>
-		<td>'.decode_select('decoded_second_row_side_airbag_with_head_protection',$decoded_second_row_side_airbag_with_head_protection, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Electronic Parking Aid</td>
-		<td>'.decode_select('decoded_electronic_parking_aid',$decoded_electronic_parking_aid, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;First Aid Kit</td>
-		<td>'.decode_select('decoded_first_aid_kit',$decoded_first_aid_kit, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Trunk Anti-Trap Device</td>
-		<td>'.decode_select('decoded_trunk_anti_trap_device',$decoded_trunk_anti_trap_device, $post_id).'</td>
-	  </tr>
-	  <tr>
-		<td class="lastrowinpage" colspan="2">&nbsp;</td>
-	  </tr>
-	  </table>';
-	return $x;
+function get_about_us_tab($post_id) {
+	$map = cd_get_vehicle_map();
+	$x = '';
+	if (isset($map['about_us'])) {
+		foreach($map['about_us'] as $tab_group => $value) {
+			$x .= '<h2>'.$tab_group.'</h2>';
+			$x .= '<p>'.$value.'</p>';
+		}
+	}
+	return $x;	
 }
-function get_vin_query_convienience_admin($vin_query_decode, $post_id) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
-	if (isset($vin_query_decode["decoded_keyless_entry"])) {$decoded_keyless_entry = $vin_query_decode["decoded_keyless_entry"]; } else {$decoded_keyless_entry = ''; }
-	if (isset($vin_query_decode["decoded_remote_ignition"])) {$decoded_remote_ignition = $vin_query_decode["decoded_remote_ignition"]; } else {$decoded_remote_ignition = ''; }
-	if (isset($vin_query_decode["decoded_cruise_control"])) {$decoded_cruise_control = $vin_query_decode["decoded_cruise_control"]; } else {$decoded_cruise_control = ''; }
-	if (isset($vin_query_decode["decoded_tachometer"])) {$decoded_tachometer = $vin_query_decode["decoded_tachometer"]; } else {$decoded_tachometer = ''; }
-	if (isset($vin_query_decode["decoded_tilt_steering"])) {$decoded_tilt_steering = $vin_query_decode["decoded_tilt_steering"]; } else {$decoded_tilt_steering = ''; }
-	if (isset($vin_query_decode["decoded_tilt_steering_column"])) {$decoded_tilt_steering_column = $vin_query_decode["decoded_tilt_steering_column"]; } else {$decoded_tilt_steering_column = ''; }
-	if (isset($vin_query_decode["decoded_heated_steering_wheel"])) {$decoded_heated_steering_wheel = $vin_query_decode["decoded_heated_steering_wheel"]; } else {$decoded_heated_steering_wheel = ''; }
-	if (isset($vin_query_decode["decoded_leather_steering_wheel"])) {$decoded_leather_steering_wheel = $vin_query_decode["decoded_leather_steering_wheel"]; } else {$decoded_leather_steering_wheel = ''; }
-	if (isset($vin_query_decode["decoded_steering_wheel_mounted_controls"])) {$decoded_steering_wheel_mounted_controls = $vin_query_decode["decoded_steering_wheel_mounted_controls"]; } else {$decoded_steering_wheel_mounted_controls = ''; }
-	if (isset($vin_query_decode["decoded_telescopic_steering_column"])) {$decoded_telescopic_steering_column = $vin_query_decode["decoded_telescopic_steering_column"]; } else {$decoded_telescopic_steering_column = ''; }
-	if (isset($vin_query_decode["decoded_adjustable_foot_pedals"])) {$decoded_adjustable_foot_pedals = $vin_query_decode["decoded_adjustable_foot_pedals"]; } else {$decoded_adjustable_foot_pedals = ''; }
-	if (isset($vin_query_decode["decoded_genuine_wood_trim"])) {$decoded_genuine_wood_trim = $vin_query_decode["decoded_genuine_wood_trim"]; } else {$decoded_genuine_wood_trim = ''; }
-	if (isset($vin_query_decode["decoded_tire_pressure_monitor"])) {$decoded_tire_pressure_monitor = $vin_query_decode["decoded_tire_pressure_monitor"]; } else {$decoded_tire_pressure_monitor = ''; }
-	if (isset($vin_query_decode["decoded_trip_computer"])) {$decoded_trip_computer = $vin_query_decode["decoded_trip_computer"]; } else {$decoded_trip_computer = ''; }
-	if (isset($vin_query_decode["decoded_cargo_area_cover"])) {$decoded_cargo_area_cover = $vin_query_decode["decoded_cargo_area_cover"]; } else {$decoded_cargo_area_cover = ''; }
-	if (isset($vin_query_decode["decoded_cargo_area_tiedowns"])) {$decoded_cargo_area_tiedowns = $vin_query_decode["decoded_cargo_area_tiedowns"]; } else {$decoded_cargo_area_tiedowns = ''; }
-	if (isset($vin_query_decode["decoded_cargo_net"])) {$decoded_cargo_net = $vin_query_decode["decoded_cargo_net"]; } else {$decoded_cargo_net = ''; }
-	if (isset($vin_query_decode["decoded_load_bearing_exterior_rack"])) {$decoded_load_bearing_exterior_rack = $vin_query_decode["decoded_load_bearing_exterior_rack"]; } else {$decoded_load_bearing_exterior_rack = ''; }
-	if (isset($vin_query_decode["decoded_pickup_truck_bed_liner"])) {$decoded_pickup_truck_bed_liner = $vin_query_decode["decoded_pickup_truck_bed_liner"]; } else {$decoded_pickup_truck_bed_liner = ''; }
-	if (isset($vin_query_decode["decoded_power_sunroof"])) {$decoded_power_sunroof = $vin_query_decode["decoded_power_sunroof"]; } else {$decoded_power_sunroof = ''; }
-	if (isset($vin_query_decode["decoded_removable_top"])) {$decoded_removable_top = $vin_query_decode["decoded_removable_top"]; } else {$decoded_removable_top = ''; }
-	if (isset($vin_query_decode["decoded_manual_sunroof"])) {$decoded_manual_sunroof = $vin_query_decode["decoded_manual_sunroof"]; } else {$decoded_manual_sunroof = ''; }
-	$x = '
-	<table class="decode_table">
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Remote Controls & Release</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Keyless Entry</td>
-		<td>'.decode_select('decoded_keyless_entry',$decoded_keyless_entry, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Remote Ignition</td>
-		<td>'.decode_select('decoded_remote_ignition',$decoded_remote_ignition, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Interior Features</strong></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Cruise Control</td>
-		<td>'.decode_select('decoded_cruise_control',$decoded_cruise_control, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Tachometer</td>
-		<td>'.decode_select('decoded_tachometer',$decoded_tachometer, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Tilt Steering Wheel</td>
-		<td>'.decode_select('decoded_tilt_steering',$decoded_tilt_steering, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Tilt Steering Column</td>
-		<td>'.decode_select('decoded_tilt_steering_column',$decoded_tilt_steering_column, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Heated Steering Wheel</td>
-		<td>'.decode_select('decoded_heated_steering_wheel',$decoded_heated_steering_wheel, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Leather Steering Wheel</td>
-		<td>'.decode_select('decoded_leather_steering_wheel',$decoded_leather_steering_wheel, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Steering Wheel Mounted Controls</td>
-		<td>'.decode_select('decoded_steering_wheel_mounted_controls',$decoded_steering_wheel_mounted_controls, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Telescopic Steering Column</td>
-		<td>'.decode_select('decoded_telescopic_steering_column',$decoded_telescopic_steering_column, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Adjustable Foot Pedals</td>
-		<td>'.decode_select('decoded_adjustable_foot_pedals',$decoded_adjustable_foot_pedals, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Genuine Wood Trim</td>
-		<td>'.decode_select('decoded_genuine_wood_trim',$decoded_genuine_wood_trim, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Tire Inflation/Pressure Monitor</td>
-		<td>'.decode_select('decoded_tire_pressure_monitor',$decoded_tire_pressure_monitor, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Trip Computer</td>
-		<td>'.decode_select('decoded_trip_computer',$decoded_trip_computer, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Storage</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Cargo Area Cover</td>
-		<td>'.decode_select('decoded_cargo_area_cover',$decoded_cargo_area_cover, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Cargo Area Tiedowns</td>
-		<td>'.decode_select('decoded_cargo_area_tiedowns',$decoded_cargo_area_tiedowns, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Cargo Net</td>
-		<td>'.decode_select('decoded_cargo_net',$decoded_cargo_net, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Load Bearing Exterior Rack</td>
-		<td>'.decode_select('decoded_load_bearing_exterior_rack',$decoded_load_bearing_exterior_rack, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Pickup Truck Bed Liner</td>
-		<td>'.decode_select('decoded_pickup_truck_bed_liner',$decoded_pickup_truck_bed_liner, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Roof</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Power Sunroof/Moonroof</td>
-		<td>'.decode_select('decoded_power_sunroof',$decoded_power_sunroof, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Manual Sunroof/Moonroof</td>
-		<td>'.decode_select('decoded_removable_top',$decoded_removable_top, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Removable/Convertible Top</td>
-		<td>'.decode_select('decoded_manual_sunroof',$decoded_manual_sunroof, $post_id).'</td>
-	  </tr>
-	</table>
-	';
-	return $x;
-}
-function get_vin_query_comfort_admin($vin_query_decode, $post_id) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
-	if (isset($vin_query_decode["decoded_air_conditioning"])) {$decoded_air_conditioning = $vin_query_decode["decoded_air_conditioning"]; } else {$decoded_air_conditioning = ''; }
-	if (isset($vin_query_decode["decoded_separate_driver_front_passenger_climate_controls"])) {$decoded_separate_driver_front_passenger_climate_controls = $vin_query_decode["decoded_separate_driver_front_passenger_climate_controls"]; } else {$decoded_separate_driver_front_passenger_climate_controls = ''; }
-	if (isset($vin_query_decode["decoded_driver_multi_adjustable_power_seat"])) {$decoded_driver_multi_adjustable_power_seat = $vin_query_decode["decoded_driver_multi_adjustable_power_seat"]; } else {$decoded_driver_multi_adjustable_power_seat = ''; }
-	if (isset($vin_query_decode["decoded_front_cooled_seat"])) {$decoded_front_cooled_seat = $vin_query_decode["decoded_front_cooled_seat"]; } else {$decoded_front_cooled_seat = ''; }
-	if (isset($vin_query_decode["decoded_front_heated_seat"])) {$decoded_front_heated_seat = $vin_query_decode["decoded_front_heated_seat"]; } else {$decoded_front_heated_seat = ''; }
-	if (isset($vin_query_decode["decoded_front_power_lumbar_support"])) {$decoded_front_power_lumbar_support = $vin_query_decode["decoded_front_power_lumbar_support"]; } else {$decoded_front_power_lumbar_support = ''; }
-	if (isset($vin_query_decode["decoded_front_power_memory_seat"])) {$decoded_front_power_memory_seat = $vin_query_decode["decoded_front_power_memory_seat"]; } else {$decoded_front_power_memory_seat = ''; }
-	if (isset($vin_query_decode["decoded_front_split_bench_seat"])) {$decoded_front_split_bench_seat = $vin_query_decode["decoded_front_split_bench_seat"]; } else {$decoded_front_split_bench_seat = ''; }
-	if (isset($vin_query_decode["decoded_leather_seat"])) {$decoded_leather_seat = $vin_query_decode["decoded_leather_seat"]; } else {$decoded_leather_seat = ''; }
-	if (isset($vin_query_decode["decoded_passenger_multi_adjustable_power_seat"])) {$decoded_passenger_multi_adjustable_power_seat = $vin_query_decode["decoded_passenger_multi_adjustable_power_seat"]; } else {$decoded_passenger_multi_adjustable_power_seat = ''; }
-	if (isset($vin_query_decode["decoded_second_row_folding_seat"])) {$decoded_second_row_folding_seat = $vin_query_decode["decoded_second_row_folding_seat"]; } else {$decoded_second_row_folding_seat = ''; }
-	if (isset($vin_query_decode["decoded_second_row_heated_seat"])) {$decoded_second_row_heated_seat = $vin_query_decode["decoded_second_row_heated_seat"]; } else {$decoded_second_row_heated_seat = ''; }
-	if (isset($vin_query_decode["decoded_second_row_multi_adjustable_power_seat"])) {$decoded_second_row_multi_adjustable_power_seat = $vin_query_decode["decoded_second_row_multi_adjustable_power_seat"]; } else {$decoded_second_row_multi_adjustable_power_seat = ''; }
-	if (isset($vin_query_decode["decoded_second_row_removable_seat"])) {$decoded_second_row_removable_seat = $vin_query_decode["decoded_second_row_removable_seat"]; } else {$decoded_second_row_removable_seat = ''; }
-	if (isset($vin_query_decode["decoded_third_row_removable_seat"])) {$decoded_third_row_removable_seat = $vin_query_decode["decoded_third_row_removable_seat"]; } else {$decoded_third_row_removable_seat = ''; }
-	if (isset($vin_query_decode["decoded_automatic_headlights"])) {$decoded_automatic_headlights = $vin_query_decode["decoded_automatic_headlights"]; } else {$decoded_automatic_headlights = ''; }
-	if (isset($vin_query_decode["decoded_daytime_running_lights"])) {$decoded_daytime_running_lights = $vin_query_decode["decoded_daytime_running_lights"]; } else {$decoded_daytime_running_lights = ''; }
-	if (isset($vin_query_decode["decoded_fog_lights"])) {$decoded_fog_lights = $vin_query_decode["decoded_fog_lights"]; } else {$decoded_fog_lights = ''; }
-	if (isset($vin_query_decode["decoded_high_intensity_discharge_headlights"])) {$decoded_high_intensity_discharge_headlights = $vin_query_decode["decoded_high_intensity_discharge_headlights"]; } else {$decoded_high_intensity_discharge_headlights = ''; }
-	if (isset($vin_query_decode["decoded_pickup_truck_cargo_box_light"])) {$decoded_pickup_truck_cargo_box_light = $vin_query_decode["decoded_pickup_truck_cargo_box_light"]; } else {$decoded_pickup_truck_cargo_box_light = ''; }
-	if (isset($vin_query_decode["decoded_running_boards"])) {$decoded_running_boards = $vin_query_decode["decoded_running_boards"]; } else {$decoded_running_boards = ''; }
-	if (isset($vin_query_decode["decoded_front_air_dam"])) {$decoded_front_air_dam = $vin_query_decode["decoded_front_air_dam"]; } else {$decoded_front_air_dam = ''; }
-	if (isset($vin_query_decode["decoded_rear_spoiler"])) {$decoded_rear_spoiler = $vin_query_decode["decoded_rear_spoiler"]; } else {$decoded_rear_spoiler = ''; }
-	if (isset($vin_query_decode["decoded_skid_plate"])) {$decoded_skid_plate = $vin_query_decode["decoded_skid_plate"]; } else {$decoded_skid_plate = ''; }
-	if (isset($vin_query_decode["decoded_splash_guards"])) {$decoded_splash_guards = $vin_query_decode["decoded_splash_guards"]; } else {$decoded_splash_guards = ''; }
-	if (isset($vin_query_decode["decoded_wind_deflector_for_convertibles"])) {$decoded_wind_deflector_for_convertibles = $vin_query_decode["decoded_wind_deflector_for_convertibles"]; } else {$decoded_wind_deflector_for_convertibles = ''; }
-	if (isset($vin_query_decode["decoded_power_sliding_side_van_door"])) {$decoded_power_sliding_side_van_door = $vin_query_decode["decoded_power_sliding_side_van_door"]; } else {$decoded_power_sliding_side_van_door = ''; }
-	if (isset($vin_query_decode["decoded_power_trunk_lid"])) {$decoded_power_trunk_lid = $vin_query_decode["decoded_power_trunk_lid"]; } else {$decoded_power_trunk_lid = ''; }
-	if (isset($vin_query_decode["decoded_alloy_wheels"])) {$decoded_alloy_wheels = $vin_query_decode["decoded_alloy_wheels"]; } else {$decoded_alloy_wheels = ''; }
-	if (isset($vin_query_decode["decoded_chrome_wheels"])) {$decoded_chrome_wheels = $vin_query_decode["decoded_chrome_wheels"]; } else {$decoded_chrome_wheels = ''; }
-	if (isset($vin_query_decode["decoded_steel_wheels"])) {$decoded_steel_wheels = $vin_query_decode["decoded_steel_wheels"]; } else {$decoded_steel_wheels = ''; }
-	if (isset($vin_query_decode["decoded_full_size_spare_tire"])) {$decoded_full_size_spare_tire = $vin_query_decode["decoded_full_size_spare_tire"]; } else {$decoded_full_size_spare_tire = ''; }
-	if (isset($vin_query_decode["decoded_run_flat_tires"])) {$decoded_run_flat_tires = $vin_query_decode["decoded_run_flat_tires"]; } else {$decoded_run_flat_tires = ''; }
-	if (isset($vin_query_decode["decoded_power_windows"])) {$decoded_power_windows = $vin_query_decode["decoded_power_windows"]; } else {$decoded_power_windows = ''; }
-	if (isset($vin_query_decode["decoded_glass_rear_window_on_convertible"])) {$decoded_glass_rear_window_on_convertible = $vin_query_decode["decoded_glass_rear_window_on_convertible"]; } else {$decoded_glass_rear_window_on_convertible = ''; }
-	if (isset($vin_query_decode["decoded_sliding_rear_pickup_truck_window"])) {$decoded_sliding_rear_pickup_truck_window = $vin_query_decode["decoded_sliding_rear_pickup_truck_window"]; } else {$decoded_sliding_rear_pickup_truck_window = ''; }
-	if (isset($vin_query_decode["decoded_electrochromic_exterior_rearview_mirror"])) {$decoded_electrochromic_exterior_rearview_mirror = $vin_query_decode["decoded_electrochromic_exterior_rearview_mirror"]; } else {$decoded_electrochromic_exterior_rearview_mirror = ''; }
-	if (isset($vin_query_decode["decoded_heated_exterior_mirror"])) {$decoded_heated_exterior_mirror = $vin_query_decode["decoded_heated_exterior_mirror"]; } else {$decoded_heated_exterior_mirror = ''; }
-	if (isset($vin_query_decode["decoded_electrochromic_interior_rearview_mirror"])) {$decoded_electrochromic_interior_rearview_mirror = $vin_query_decode["decoded_electrochromic_interior_rearview_mirror"]; } else {$decoded_electrochromic_interior_rearview_mirror = ''; }
-	if (isset($vin_query_decode["decoded_power_adjustable_exterior_mirror"])) {$decoded_power_adjustable_exterior_mirror = $vin_query_decode["decoded_power_adjustable_exterior_mirror"]; } else {$decoded_power_adjustable_exterior_mirror = ''; }
-	if (isset($vin_query_decode["decoded_interval_wipers"])) {$decoded_interval_wipers = $vin_query_decode["decoded_interval_wipers"]; } else {$decoded_interval_wipers = ''; }
-	if (isset($vin_query_decode["decoded_rain_sensing_wipers"])) {$decoded_rain_sensing_wipers = $vin_query_decode["decoded_rain_sensing_wipers"]; } else {$decoded_rain_sensing_wipers = ''; }
-	if (isset($vin_query_decode["decoded_rear_wiper"])) {$decoded_rear_wiper = $vin_query_decode["decoded_rear_wiper"]; } else {$decoded_rear_wiper = ''; }
-	if (isset($vin_query_decode["decoded_rear_window_defogger"])) {$decoded_rear_window_defogger = $vin_query_decode["decoded_rear_window_defogger"]; } else {$decoded_rear_window_defogger = ''; }
-	if (isset($vin_query_decode["decoded_tow_hitch_receiver"])) {$decoded_tow_hitch_receiver = $vin_query_decode["decoded_tow_hitch_receiver"]; } else {$decoded_tow_hitch_receiver = ''; }
-	if (isset($vin_query_decode["decoded_towing_preparation_package"])) {$decoded_towing_preparation_package = $vin_query_decode["decoded_towing_preparation_package"]; } else {$decoded_towing_preparation_package = ''; }
-	$x ='
-	<table class="decode_table">
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Climate Control</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Air Conditioning</td>
-		<td>'.decode_select('decoded_air_conditioning',$decoded_air_conditioning, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Separate Driver/Front Passenger Climate Controls</td>
-		<td>'.decode_select('decoded_separate_driver_front_passenger_climate_controls',$decoded_separate_driver_front_passenger_climate_controls, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Seat</strong></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Driver Multi-Adjustable Power Seat</td>
-		<td>'.decode_select('decoded_driver_multi_adjustable_power_seat',$decoded_driver_multi_adjustable_power_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Front Cooled Seat</td>
-		<td>'.decode_select('decoded_front_cooled_seat',$decoded_front_cooled_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Front Heated Seat</td>
-		<td>'.decode_select('decoded_front_heated_seat',$decoded_front_heated_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Front Power Lumbar Support</td>
-		<td>'.decode_select('decoded_front_power_lumbar_support',$decoded_front_power_lumbar_support, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Front Power Memory Seat</td>
-		<td>'.decode_select('decoded_front_power_memory_seat',$decoded_front_power_memory_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Front Split Bench Seat</td>
-		<td>'.decode_select('decoded_front_split_bench_seat',$decoded_front_split_bench_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Leather Seat</td>
-		<td>'.decode_select('decoded_leather_seat',$decoded_leather_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Passenger Multi-Adjustable Power Seat</td>
-		<td>'.decode_select('decoded_passenger_multi_adjustable_power_seat',$decoded_passenger_multi_adjustable_power_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Second Row Folding Seat</td>
-		<td>'.decode_select('decoded_second_row_folding_seat',$decoded_second_row_folding_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Second Row Heated Seat</td>
-		<td>'.decode_select('decoded_second_row_heated_seat',$decoded_second_row_heated_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Second Row Multi-Adjustable Power Seat</td>
-		<td>'.decode_select('decoded_second_row_multi_adjustable_power_seat',$decoded_second_row_multi_adjustable_power_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Second Row Removable Seat</td>
-		<td>'.decode_select('decoded_second_row_removable_seat',$decoded_second_row_removable_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Third Row Removable Seat</td>
-		<td>'.decode_select('decoded_third_row_removable_seat',$decoded_third_row_removable_seat, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Exterior Lighting</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Automatic Headlights</td>
-		<td>'.decode_select('decoded_automatic_headlights',$decoded_automatic_headlights, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Daytime Running Lights</td>
-		<td>'.decode_select('decoded_daytime_running_lights',$decoded_daytime_running_lights, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Fog Lights</td>
-		<td>'.decode_select('decoded_fog_lights',$decoded_fog_lights, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;High Intensity Discharge Headlights</td>
-		<td>'.decode_select('decoded_high_intensity_discharge_headlights',$decoded_high_intensity_discharge_headlights, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Pickup Truck Cargo Box Light</td>
-		<td>'.decode_select('decoded_pickup_truck_cargo_box_light',$decoded_pickup_truck_cargo_box_light, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Exterior Features</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Bodyside/Cab Step or Running Board</td>
-		<td>'.decode_select('decoded_running_boards',$decoded_running_boards, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Front Air Dam</td>
-		<td>'.decode_select('decoded_front_air_dam',$decoded_front_air_dam, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Rear Spoiler</td>
-		<td>'.decode_select('decoded_rear_spoiler',$decoded_rear_spoiler, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Skid Plate or Underbody Protection</td>
-		<td>'.decode_select('decoded_skid_plate',$decoded_skid_plate, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Splash Guards</td>
-		<td>'.decode_select('decoded_splash_guards',$decoded_splash_guards, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Wind Deflector or Buffer for Convertible</td>
-		<td>'.decode_select('decoded_wind_deflector_for_convertibles',$decoded_wind_deflector_for_convertibles, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Power Sliding Side Van Door</td>
-		<td>'.decode_select('decoded_power_sliding_side_van_door',$decoded_power_sliding_side_van_door, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Power Trunk Lid</td>
-		<td>'.decode_select('decoded_power_trunk_lid',$decoded_power_trunk_lid, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Wheels</strong></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Alloy Wheels</td>
-		<td>'.decode_select('decoded_alloy_wheels',$decoded_alloy_wheels, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Chrome Wheels</td>
-		<td>'.decode_select('decoded_chrome_wheels',$decoded_chrome_wheels, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Steel Wheels</td>
-		<td>'.decode_select('decoded_steel_wheels',$decoded_steel_wheels, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Tires</strong></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Full Size Spare Tire</td>
-		<td>'.decode_select('decoded_full_size_spare_tire',$decoded_full_size_spare_tire, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Run Flat Tires</td>
-		<td>'.decode_select('decoded_run_flat_tires',$decoded_run_flat_tires, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Windows</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Power Windows</td>
-		<td>'.decode_select('decoded_power_windows',$decoded_power_windows, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Glass Rear Window on Convertible</td>
-		<td>'.decode_select('decoded_glass_rear_window_on_convertible',$decoded_glass_rear_window_on_convertible, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Sliding Rear Pickup Truck Window</td>
-		<td>'.decode_select('decoded_sliding_rear_pickup_truck_window',$decoded_sliding_rear_pickup_truck_window, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Mirrors</strong></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Electrochromic Exterior Rearview Mirror</td>
-		<td>'.decode_select('decoded_electrochromic_exterior_rearview_mirror',$decoded_electrochromic_exterior_rearview_mirror, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Heated Exterior Mirror</td>
-		<td>'.decode_select('decoded_heated_exterior_mirror',$decoded_heated_exterior_mirror, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Electrochromic Interior Rearview Mirror</td>
-		<td>'.decode_select('decoded_electrochromic_interior_rearview_mirror',$decoded_electrochromic_interior_rearview_mirror, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Power Adjustable Exterior Mirror</td>
-		<td>'.decode_select('decoded_power_adjustable_exterior_mirror',$decoded_power_adjustable_exterior_mirror, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Wipers</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Interval Wipers</td>
-		<td>'.decode_select('decoded_interval_wipers',$decoded_interval_wipers, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Rain Sensing Wipers</td>
-		<td>'.decode_select('decoded_rain_sensing_wipers',$decoded_rain_sensing_wipers, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Rear Wiper</td>
-		<td>'.decode_select('decoded_rear_wiper',$decoded_rear_wiper, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Rear Window Defogger</td>
-		<td>'.decode_select('decoded_rear_window_defogger',$decoded_rear_window_defogger, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Towings</strong></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Tow Hitch Receiver</td>
-		<td>'.decode_select('decoded_tow_hitch_receiver',$decoded_tow_hitch_receiver, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Towing Preparation Package</td>
-		<td>'.decode_select('decoded_towing_preparation_package',$decoded_towing_preparation_package, $post_id).'</td>
-	  </tr>
-	</table>
-	';
-	return $x;
-}
-function get_vin_query_entertainment_admin($vin_query_decode, $post_id) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
-	if (isset($vin_query_decode["decoded_am_fm_radio"])) {$decoded_am_fm_radio = $vin_query_decode["decoded_am_fm_radio"]; } else {$decoded_am_fm_radio = ''; }
-	if (isset($vin_query_decode["decoded_cassette_player"])) {$decoded_cassette_player = $vin_query_decode["decoded_cassette_player"]; } else {$decoded_cassette_player = ''; }
-	if (isset($vin_query_decode["decoded_cd_player"])) {$decoded_cd_player = $vin_query_decode["decoded_cd_player"]; } else {$decoded_cd_player = ''; }
-	if (isset($vin_query_decode["decoded_cd_changer"])) {$decoded_cd_changer = $vin_query_decode["decoded_cd_changer"]; } else {$decoded_cd_changer = ''; }
-	if (isset($vin_query_decode["decoded_dvd_player"])) {$decoded_dvd_player = $vin_query_decode["decoded_dvd_player"]; } else {$decoded_dvd_player = ''; }
-	if (isset($vin_query_decode["decoded_voice_activated_telephone"])) {$decoded_voice_activated_telephone = $vin_query_decode["decoded_voice_activated_telephone"]; } else {$decoded_voice_activated_telephone = ''; }
-	if (isset($vin_query_decode["decoded_navigation_aid"])) {$decoded_navigation_aid = $vin_query_decode["decoded_navigation_aid"]; } else {$decoded_navigation_aid = ''; }
-	if (isset($vin_query_decode["decoded_second_row_sound_controls"])) {$decoded_second_row_sound_controls = $vin_query_decode["decoded_second_row_sound_controls"]; } else {$decoded_second_row_sound_controls = ''; }
-	if (isset($vin_query_decode["decoded_subwoofer"])) {$decoded_subwoofer = $vin_query_decode["decoded_subwoofer"]; } else {$decoded_subwoofer = ''; }
-	if (isset($vin_query_decode["decoded_telematics_system"])) {$decoded_telematics_system = $vin_query_decode["decoded_telematics_system"]; } else {$decoded_telematics_system = ''; }
-	$x = '
-	<table class="decode_table">
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>Equipment - Entertainment, Communication & Navigation</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;AM/FM Radio</td>
-		<td>'.decode_select('decoded_am_fm_radio',$decoded_am_fm_radio, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Cassette Player</td>
-		<td>'.decode_select('decoded_cassette_player',$decoded_cassette_player, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;CD Player</td>
-		<td>'.decode_select('decoded_cd_player',$decoded_cd_player, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;CD Changer</td>
-		<td>'.decode_select('decoded_cd_changer',$decoded_cd_changer, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;DVD Player</td>
-		<td>'.decode_select('decoded_dvd_player',$decoded_dvd_player, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Hands Free/Voice Activated Telephone</td>
-		<td>'.decode_select('decoded_voice_activated_telephone',$decoded_voice_activated_telephone, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Navigation Aid</td>
-		<td>'.decode_select('decoded_navigation_aid',$decoded_navigation_aid, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Second Row Sound Controls or Accessories</td>
-		<td>'.decode_select('decoded_second_row_sound_controls',$decoded_second_row_sound_controls, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Subwoofer</td>
-		<td>'.decode_select('decoded_subwoofer',$decoded_subwoofer, $post_id).'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;Telematic Systems</td>
-		<td>'.decode_select('decoded_telematics_system',$decoded_telematics_system, $post_id).'</td>
-	  </tr>
-	</table>
-	';
-	return $x;
-}
+
 function decode_select($fld, $val, $post_id) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('vin-query','',$car_demon_pluginpath);
 	$val = trim($val);
 	$no_check = '';

@@ -29,7 +29,6 @@
 			<font color="#FF0000" size="-1"><?php _e('STREET NAME REQUIRED', 'car-demon'); ?></font>
 		</div>
 	</div>
-
 	<div class="finance_coapplicant_cell">
 		<?php _e('Street Type', 'car-demon'); ?>
 	</div>

@@ -5,28 +5,23 @@ header("Cache-Control: must-revalidate");
 $offset = 60 * 60 ;
 $ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
 header($ExpStr);
-
 $newPath = dirname(__FILE__);
 if (!stristr(PHP_OS, 'WIN')) {
 	$is_it_iis = 'Apache';
-}
-else {
+} else {
 	$is_it_iis = 'Win';
 }
-
 if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/css', '', $newPath);
 	include_once($newPath."/wp-load.php");
 	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
+} else {
 	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\css', '', $newPath);
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+$car_demon_pluginpath = CAR_DEMON_PATH;
 $car_demon_pluginpath = str_replace('theme-files/css','',$car_demon_pluginpath);
-
 $theme_color = '4D525D';
 $theme_color_highlight = '333';
 $theme_color_shadow = '999';
@@ -39,7 +34,6 @@ if (isset($_SESSION['car_demon_options']['theme_color_shadow'])) { $theme_color_
 if (isset($_SESSION['car_demon_options']['theme_color_button'])) { $theme_color_button = $_SESSION['car_demon_options']['theme_color_button']; }
 if (isset($_SESSION['car_demon_options']['theme_color_button_hover'])) { $theme_color_button_hover = $_SESSION['car_demon_options']['theme_color_button_hover']; }
 if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme_color_button_shadow = $_SESSION['car_demon_options']['theme_color_button_shadow']; }
-
 ?>
 /* =Search Button
 -------------------------------------------------------------- */
@@ -106,7 +100,6 @@ if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme
 	position:relative;
 	top:1px;
 }
-
 .featured-button {
 	background:url(<?php echo $car_demon_pluginpath; ?>theme-files/images/featured-button.png) 0 0 no-repeat;
 	border:none;
@@ -118,18 +111,15 @@ if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme
 	margin-left:10px;
 	margin-bottom:10px;
 }
-
 .featured-button a {
 	color:#444;
 	text-decoration:none;
 }
-
 .featured-button:hover {
 	background-position:0 -61px;
 	color:#444;
 	text-decoration:none;
 }
-
 .featured-button p {
 	font-size:18px;
 	font-weight:700;
@@ -139,13 +129,11 @@ if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme
 	text-shadow:0 1px #fff;
 	text-transform:uppercase;
 }
-
 .email_a_friend {
 	margin-left:10px;
 	margin-top: 7px;
 	float: left;
 }
-
 .remove_contact {
 	cursor: pointer;
 }
@@ -171,7 +159,7 @@ if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme
 	font-weight:bold;
 }
 .cdform {
-	width: 250px;
+	width: 100%;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
 }
@@ -198,6 +186,14 @@ if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme
 	text-align: right;
 	vertical-align: top;
 }
+.cd-box-group label {
+	width: 120px;
+	margin: 4px 10px 10px 6px;
+	display: -moz-inline-box;
+	display: inline-block;
+	text-align: left;
+	vertical-align: top;
+}
 .cd-box-title {
 	margin-left:5px!important;
 }
@@ -209,15 +205,16 @@ if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme
 	text-align: left;
 	vertical-align: top;
 }
-.cdform textarea, .cdform input {
-	width: 150px;
+.cdform textarea {
+	width: 94%;
+    margin-left: 2%;
 }
 .cd_date {
 	font-size:11px;
 }
 span.reqtxt, span.emailreqtxt {
 	margin: 3px 0 0 3px;
-	font-size: 0.9em;
+	fo	nt-size: 0.9em;
 	display: -moz-inline-box;
 	vertical-align: top;
 	color:#ff0000;
@@ -237,6 +234,9 @@ ol.cd-ol li {
 .cd-sb {
 	width:240px !important;
 }
+.vcard .photo {
+	width: inherit !important;
+}
 /* Navigation Style
 -------------------------------------------------------------- */
 .navigation {
@@ -248,19 +248,15 @@ ol.cd-ol li {
 	margin:20px 0;
 	padding:0 5px;
 }
-
 .navigation a {
 	color:#444;
 }
-
 .navigation .previous {
 	float:left;
 }
-
 .navigation .next {
 	float:right;
 }
-
 .navigation .bracket {
 	font-size:36px;
 }
@@ -314,4 +310,7 @@ ol.cd-ol li {
 	border: 1px solid #303030;
 	color: #303030;
 	background-color: #FFFFFF;
+}
+.search_car_box select {
+	height: 20px;
 }

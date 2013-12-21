@@ -1,7 +1,7 @@
 <?php
 function car_demon_contact_request($send_to, $popup_id = '', $popup_button='') {
 	$x = '';
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('/car-demon-forms/forms', '', $car_demon_pluginpath);
 	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
@@ -17,13 +17,13 @@ function car_demon_contact_request($send_to, $popup_id = '', $popup_button='') {
 	}
 	if (!empty($popup_id)) {
 		wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
-		wp_enqueue_script('car-demon-contact-us-popup-js', WP_CONTENT_URL . '/plugins/car-demon/forms/js/car-demon-contact-us-popup.js');
+		wp_enqueue_script('car-demon-contact-us-popup-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-contact-us-popup.js');
 		if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 			if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-				wp_enqueue_style('car-demon-contact-us-popup-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-contact-us-popup.css');
+				wp_enqueue_style('car-demon-contact-us-popup-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-contact-us-popup.css');
 			}
 		} else {
-			wp_enqueue_style('car-demon-contact-us-css', WP_CONTENT_URL . '/plugins/car-demon/forms/css/car-demon-contact-us.css');
+			wp_enqueue_style('car-demon-contact-us-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-contact-us.css');
 		}
 		$x .= '<div class="contact_form_container" id="contact_form_container_'.$popup_id.'">';
 			$x .= '<div class="close_form" onclick="close_contact_form(\''.$popup_id.'\');"><img src="'.$car_demon_pluginpath.'theme-files/images/close.png" /></div>';
@@ -66,7 +66,6 @@ function car_demon_contact_request($send_to, $popup_id = '', $popup_button='') {
 	}
 	return $x;
 }
-
 function contact_locations_radio() {
 	$args = array(
 		'style'              => 'none',
@@ -195,7 +194,6 @@ function contact_locations_radio() {
 	$html = str_replace('Default - ', '', $html);
 	return $html;
 }
-
 function car_demon_get_custom_email($user_id, $lead_type, $current_location) {
 	$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 	$location_approved = 0;

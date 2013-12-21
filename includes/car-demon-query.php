@@ -56,10 +56,42 @@ function car_demon_query_search() {
 		// Search decode field
 		if (isset($_GET['criteria'])) {
 			if ($_GET['criteria']) {
-				$meta_query = array_merge($meta_query, array(array('key' => 'decode_string','value' => $_GET['criteria'], 'compare' => 'LIKE', 'type' => 'text')));
+				if (strpos($_GET['criteria'], ',')) {
+					$criteria_array = explode(',', $_GET['criteria']);
+					foreach($criteria_array as $search_criteria) {
+						$meta_query = array_merge($meta_query, array(array('key' => 'decode_string','value' => $search_criteria, 'compare' => 'LIKE', 'type' => 'text')));
+					}
+				} else {
+					$meta_query = array_merge($meta_query, array(array('key' => 'decode_string','value' => $_GET['criteria'], 'compare' => 'LIKE', 'type' => 'text')));
+				}
 			}
 		}
-		
+		if (isset($_GET['search_location'])) {
+			$search_location = $_GET['search_location'];
+			$my_query = array(
+					'post_type' => 'cars_for_sale',
+					'is_paged' => true,
+					'paged' => $paged,
+					'posts_per_page' => 9,
+					'meta_query' => $meta_query,
+					'orderby' => 'meta_value_num',
+					'meta_key' => $order_by,
+					'order'    => $order_by_dir,
+					'taxonomy' =>'vehicle_location',
+					'term' => $search_location
+				);
+		} else {
+			$my_query = array(
+					'post_type' => 'cars_for_sale',
+					'is_paged' => true,
+					'paged' => $paged,
+					'posts_per_page' => 9,
+					'meta_query' => $meta_query,
+					'orderby' => 'meta_value_num',
+					'meta_key' => $order_by,
+					'order'    => $order_by_dir
+				);		
+		}
 		$my_query = array(
 				'post_type' => 'cars_for_sale',
 				'is_paged' => true,
@@ -68,7 +100,9 @@ function car_demon_query_search() {
 				'meta_query' => $meta_query,
 				'orderby' => 'meta_value_num',
 				'meta_key' => $order_by,
-				'order'    => $order_by_dir
+				'order'    => $order_by_dir,
+				'taxonomy' =>'vehicle_location',
+				'term' => $search_location
 			);
 			if (isset($_GET['search_year'])) {
 				if ($_GET['search_year']) {

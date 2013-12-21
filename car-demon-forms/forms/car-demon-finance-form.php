@@ -4,13 +4,13 @@ function car_demon_finance_form($location) {
 	show_finance_form($location);
 	return $x;
 }
-
 function show_finance_form($location) {
 	$stock_num = '';
 	$vin = '';
 	$location = '';
 	$bad = '';
 	$fin = '';
+	include('js/car-demon-finance-form-js.php');
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
 			echo '<style>';
@@ -22,7 +22,7 @@ function show_finance_form($location) {
 			include('css/car-demon-finance.css');
 		echo '</style>';	
 	}
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('/car-demon-forms/forms', '', $car_demon_pluginpath);
 	if ($_SESSION['car_demon_options']['secure_finance'] == 'Yes') {
 		if ( empty( $_SERVER['HTTPS'] ) ) {
@@ -40,7 +40,6 @@ function show_finance_form($location) {
 			<input type="hidden" name="vin" value="<?php echo $vin; ?>" />
 			<input type="hidden" name="location" value="<?php echo $location; ?>" />
 			<?php 
-
 			?>
 			<div class="finance_segment">
 				<?php 
@@ -156,7 +155,6 @@ function show_finance_form($location) {
 		';
 	}
 }
-
 function select_years() {
 	$start = 0;
 	$years = "<option></option>";
@@ -166,7 +164,6 @@ function select_years() {
 	} while ($start < 100);
 	return $years;	
 }
-
 function get_the_days() {
 	$start = 1;
 	do {
@@ -175,7 +172,6 @@ function get_the_days() {
 	} while ($start < 32);
 	return $days;
 }
-
 function get_the_years() {
 	$start = 0;
 	$this_year = date("Y");
@@ -187,7 +183,6 @@ function get_the_years() {
 	} while ($start < 100);
 	return $years;
 }
-
 function get_finance_for_vehicle($stock_num) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -222,9 +217,8 @@ function get_finance_for_vehicle($stock_num) {
 	';
 	return $x;
 }
-
 function select_finance_for_vehicle($hide=0) {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath_images = str_replace('car-demon-forms/forms','',$car_demon_pluginpath);	
 	if ($hide == 1) {
 		$hidden = " finance_hidden";
@@ -245,12 +239,46 @@ function select_finance_for_vehicle($hide=0) {
 			<li id="li-7items" class="cd-box-group">
 	';
 	$x .= '
+	<script>
+	   jQuery("#select_stock_txt").autocomplete(
+		  "'.$car_demon_pluginpath_images.'theme-files/forms/car-demon-trade-form-handler.php",
+		  {
+		  		extraParams: {action:"findStock"},
+				delay:10,
+				minChars:2,
+				matchSubset:1,
+				matchContains:1,
+				cacheLength:10,
+				onItemSelect:selectItem,
+				onFindValue:findValue,
+				formatItem:formatItem,
+				autoFill:true,
+				width:300
+			}
+		);
+	   jQuery("#select_car_txt").autocomplete(
+		  "'.$car_demon_pluginpath_images.'theme-files/forms/car-demon-trade-form-handler.php",
+		  {
+		  		extraParams: {action:"findVehicle"},
+				delay:10,
+				minChars:2,
+				matchSubset:1,
+				matchContains:1,
+				cacheLength:10,
+				onItemSelect:selectCarItem,
+				onFindValue:findValue,
+				formatItem:formatCarItem,
+				autoFill:false,
+				width:300
+			}
+		);
+	</script>';
+	$x .= '
 			</li>
 		</ol>
 	';
 	return $x;
 }
-
 function finance_locations_radio() {
 	$args = array(
 		'style'              => 'none',
@@ -314,7 +342,6 @@ function finance_locations_radio() {
 	';
 	return $html;
 }
-
 function get_finance_location_name($selected_car) {
 	global $wpdb;
 	$prefix = $wpdb->prefix;
@@ -336,7 +363,6 @@ function get_finance_location_name($selected_car) {
 	}
 	return $x;
 }
-
 function get_this_dislaimer($stock_num) {
 	if (empty($stock_num)) {
 		$finance_disclaimer = get_option('default_finance_disclaimer');
@@ -349,7 +375,6 @@ function get_this_dislaimer($stock_num) {
 	}
 	return $finance_disclaimer;
 }
-
 function get_finance_description($stock_num) {
 	if (empty($stock_num)) {
 		$finance_description = get_option('default_finance_description');
