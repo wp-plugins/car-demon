@@ -268,12 +268,12 @@ function update_ribbon(ribbon) {
 			var ribbon_url = custom_ribbon;
 		} else {
 			ribbon = ribbon.replace('_','-');
-			var ribbon_url = '<?php echo $car_demon_pluginpath; ?>theme-files/images/ribbon-'+ribbon+'.png';		
+			var ribbon_url = cdVinQueryParams.car_demon_path+'theme-files/images/ribbon-'+ribbon+'.png';		
 		}
 	} else {
 		ribbon = ribbon.replace('_','-');
 		document.getElementById('custom_ribbon_div').style.display = 'none';
-		var ribbon_url = '<?php echo $car_demon_pluginpath; ?>theme-files/images/ribbon-'+ribbon+'.png';
+		var ribbon_url = cdVinQueryParams.car_demon_path+'theme-files/images/ribbon-'+ribbon+'.png';
 	}
 	document.getElementById('vehicle_ribbon').src = ribbon_url;
 }
