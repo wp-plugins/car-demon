@@ -36,7 +36,7 @@ function remove_attached_car_image(post_id, attachment_id, cnt) {
         document.getElementById("car_photo_"+cnt).style.display = "none";
         jQuery.ajax({
             type: 'POST',
-			data: {'post_id': post_id, 'action': 'car_demon_vinquery', 'attachment_id': attachment_id, 'option': 'remove_car_linked_image'},
+			data: {'post_id': post_id, 'action': 'car_demon_vinquery', 'attachment_id': attachment_id, 'option': 'remove_car_attached_image'},
 			url: cdVinQueryParams.ajaxurl,
             timeout: 5000,
             error: function() {
@@ -108,7 +108,7 @@ function update_decode_option(fld, post_id) {
 	}
 	jQuery.ajax({
 		type: 'POST',
-		data: {'post_id': post_id, 'action': 'car_demon_vinquery', 'fld': fld_name, 'val': val, 'option': 'update'},
+		data: {'post_id': post_id, 'action': 'car_demon_vinquery', 'fld': fld_name, 'val': val, 'option': 'update_data'},
 		url: cdVinQueryParams.ajaxurl,
 		timeout: 5000,
 		error: function() {},
@@ -281,7 +281,7 @@ function update_ribbon(ribbon) {
 function cd_manage_photos(post_id, attachment) {
     jQuery.ajax({
         type: 'POST',
-		data: {'post_id': post_id, 'action': 'car_demon_vinquery', 'attachment_id': attachment_id, 'option': 'add_car_images'},
+		data: {'post_id': post_id, 'action': 'car_demon_vinquery', 'attachment_id': attachment, 'option': 'add_car_images'},
 		url: cdVinQueryParams.ajaxurl,
         timeout: 5000,
         error: function() {},

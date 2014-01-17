@@ -31,6 +31,7 @@ function car_demon_vinquery() {
 			$image_list = str_replace($_POST['car_link'].',','',$image_list);
 			$image_list = str_replace($_POST['car_link'],'',$image_list);
 			update_post_meta($post_id, '_images_value', $image_list);
+			echo $image_list;
 			echo 'Image Removed';
 		}
 		if ($_POST['option'] == 'remove_car_attached_image') {
@@ -71,7 +72,7 @@ function car_demon_vinquery() {
 			$details = get_post_meta($post_id, 'decode_string', true);
 			update_post_meta($post_id, 'decode_string', $details);
 		}
-		if ($_POST['option'] == "update_data") {
+		if ($_POST['option'] == "update") {
 			$fld = $_POST['fld'];
 			$post_id = $_POST['post_id'];
 			if ($fld == 'vin') {
@@ -83,9 +84,17 @@ function car_demon_vinquery() {
 			}
 			update_post_meta($post_id, $fld, $val);
 		}
-		if ($_POST['option'] == 'update') {
+		if ($_POST['option'] == 'update_data') {
 			$fld = $_POST['fld'];
 			$val = $_POST['val'];
+			$post_id = $_POST['post_id'];
+			if ($fld == 'vin') {
+				$fld = '_vin_value';
+			}
+			$val = $_POST['val'];
+			if	($fld == 'vehicle_options') {
+				$fld = '_vehicle_options';
+			}
 			$vin_query_decode = get_post_meta($post_id, "decode_string", true);
 			$vin_query_decode[$fld] = $_POST['val'];
 			update_post_meta($post_id, 'decode_string', $vin_query_decode);
@@ -123,6 +132,8 @@ function car_demon_vinquery() {
 				update_post_meta($post_id, '_mileage_value', $_POST['val']);
 			} elseif ($fld == 'vehicle_options') {
 				update_post_meta($post_id, '_vehicle_options', $_POST['val']);
+			} else {
+				update_post_meta($post_id, $fld, $val);	
 			}
 		}
 		if ($_POST['option'] == 'remove') {

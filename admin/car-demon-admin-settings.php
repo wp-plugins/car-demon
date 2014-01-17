@@ -313,7 +313,7 @@ function car_demon_options() {
 	$default['currency_symbol'] = '$';
 	$default['currency_symbol_after'] = '';
 	$default['vinquery_id'] = '';
-	$default['vinquery_type'] = '1';
+	$default['vinquery_type'] = '0';
 	$default['use_about'] = 'Yes';
 	$default['adfxml'] = 'No';
 	$default['use_compare'] = 'Yes';
@@ -339,7 +339,7 @@ function car_demon_options() {
 	$default['custom_options'] = '';
 	$default['use_form_css'] = 'Yes';
 	$default['use_vehicle_css'] = 'Yes';
-	$default['title_trim'] = '';
+	$default['title_trim'] = '49';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -392,255 +392,352 @@ function car_demon_settings_form() {
 	}
 	$car_demon_options = car_demon_options();
 	echo '<hr />';
-	echo '<form action="" method="get">';
+	echo '<form action="" id="cd_settings" name="cd_settings" method="get">';
 		echo '<input type="hidden" name="post_type" value="cars_for_sale" />';
 		echo '<input type="hidden" name="page" value="car_demon_settings_options" />';
 		echo '<input type="hidden" name="edit_vehicle_options" value="1" />';
-		echo '<input type="submit" value="Edit Vehicle Option Tabs" />';
+		//= js submit button is down below in tab options
+		//= echo '<input type="submit" value="Edit Vehicle Option Tabs" />';
 	echo '</form>';
 	echo '<form action="" method="post">';
+		//= Save Start
+		echo '<fieldset class="cd_admin_group">';
+			echo '<legend>';
+				echo __('Save settings','car-demon');
+			echo '</legend>';
+			echo '<blockquote>';
+				echo __('After you make your changes click the "Update Car Demon" button.','car-demon').'<br />';
+			echo '</blockquote>';			
+			echo '<p><input type="submit" value="'.__('Update Car Demon', 'car-demon').'" />';
+			echo '<input type="submit" name="reset_car_demon" value="'.__('Reset to Default', 'car-demon').'" /></p>';
+		echo '</fieldset>';
+		//= Save Stop
+
 		echo '<input type="hidden" name="update_car_demon" value="1" />';
-		echo '<br />'.__('Disable Finance Form if it isn\'t loaded with SSL', 'car-demon').':<br />';
-		echo '<select name="secure_finance">
-			<option value="'.$car_demon_options['secure_finance'].'">'.$car_demon_options['secure_finance'].'</option>
-			<option value="Yes">Yes</option>
-			<option value="No">No</option>
-			</select><br />';
-		echo '<br />*'.__('Currency Symbol', 'car-demon').':<br />';
-		echo '<input type="text" name="currency_symbol" value="'.$car_demon_options['currency_symbol'].'" /><br />';
-		echo '<br />*'.__('Currency Symbol After Price', 'car-demon').':<br />';
-		echo '<input type="text" name="currency_symbol_after" value="'.$car_demon_options['currency_symbol_after'].'" /><br />';
-		echo '<br />*'.__('VinQuery.com Access Code', 'car-demon').':<br />';
-		echo '<input type="text" name="vinquery_id" value="'.$car_demon_options['vinquery_id'].'" />';
-		echo '*(optional)<br />';
-		$vinquery_type_num = $car_demon_options['vinquery_type'];
-		if (empty($vinquery_type_num)) {
-			$vinquery_type_num = 1;
-		}
-		$select_basic = '';
-		$select_standard = '';
-		$select_extended = '';
-		$select_lite = '';
-		if ($vinquery_type_num == 0) {
-			$select_basic = ' selected';
-		} elseif ($vinquery_type_num == 1) {
-			$select_standard = ' selected';
-		} elseif ($vinquery_type_num == 2) {
-			$select_extended = ' selected';
-		} elseif ($vinquery_type_num == 3) {
-			$select_lite = ' selected';
-		}
-		echo '<br />'.__('VinQuery.com Report Type', 'car-demon').':<br />';
-		echo '<select name="vinquery_type">
-				<option value="2"'.$select_extended.'>'.__('Extended', 'car-demon').'</option>
-				<option value="1"'.$select_standard.'>'. __('Standard', 'car-demon') .'</option>
-				<option value="0"'.$select_basic.'>'. __('Basic', 'car-demon') .'</option>
-				<option value="3"'.$select_lite.'>'. __('Lite', 'car-demon') .'</option>
-			</select><br />';
-		echo '<br />'.__('Blind Carbon Copy Forms to Admin?', 'car-demon').':<br />';
-		echo '<select name="cc_admin">
-				<option value="'.$car_demon_options['cc_admin'].'">'.$car_demon_options['cc_admin'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Show sold vehicles in search results?', 'car-demon').':<br />';
-		echo '<select name="show_sold">
-				<option value="'.$car_demon_options['show_sold'].'">'.$car_demon_options['show_sold'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Include ADFxml with Leads?', 'car-demon').':<br />';
-		echo '<select name="adfxml">
-				<option value="'.$car_demon_options['adfxml'].'">'.$car_demon_options['adfxml'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Use Form CSS?', 'car-demon').':<br />';
-		echo '<select name="use_form_css">
-				<option value="'.$car_demon_options['use_form_css'].'">'.$car_demon_options['use_form_css'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Use Vehicle CSS?', 'car-demon').':<br />';
-		echo '<select name="use_vehicle_css">
-				<option value="'.$car_demon_options['use_vehicle_css'].'">'.$car_demon_options['use_vehicle_css'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Hide all Vehicle Option Tabs?', 'car-demon').':<br />';
-		echo '<select name="hide_tabs">
-				<option value="'.$car_demon_options['hide_tabs'].'">'.$car_demon_options['hide_tabs'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Use About Tab on Vehicle Pages', 'car-demon').':<br />';
-		echo '<select name="use_about">
-				<option value="'.$car_demon_options['use_about'].'">'.$car_demon_options['use_about'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Use Compare Vehicle Option', 'car-demon').':<br />';
-		echo '<select name="use_compare">
-				<option value="'.$car_demon_options['use_compare'].'">'.$car_demon_options['use_compare'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Load Next Inventory Page on Scroll', 'car-demon').':<br />';
-		echo '<select name="dynamic_load">
-				<option value="'.$car_demon_options['dynamic_load'].'">'.$car_demon_options['dynamic_load'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Use Popup Images', 'car-demon').':<br />';
-		echo '<select name="popup_images">
-				<option value="'.$car_demon_options['popup_images'].'">'.$car_demon_options['popup_images'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<hr />'.__('Show sorting options on vehicle listing pages?', 'car-demon').':<br />';
-		echo '<select name="do_sort">
-				<option value="'.$car_demon_options['do_sort'].'">'.$car_demon_options['do_sort'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Use Drop down sorting?', 'car-demon').':<br />';
-		echo '<select name="drop_down_sort">
-				<option value="'.$car_demon_options['drop_down_sort'].'">'.$car_demon_options['drop_down_sort'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Sort By Price? - Sorting options must be set to yes to use this feature.', 'car-demon').':<br />';
-		echo '<select name="sort_price">
-				<option value="'.$car_demon_options['sort_price'].'">'.$car_demon_options['sort_price'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Sort By Mileage? - Sorting options must be set to yes to use this feature.', 'car-demon').':<br />';
-		echo '<select name="sort_miles">
-				<option value="'.$car_demon_options['sort_miles'].'">'.$car_demon_options['sort_miles'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><hr />';
-		echo '<br />'.__('Use included theme files?', 'car-demon').':<br />';
-		echo '<select name="use_theme_files">
-				<option value="'.$car_demon_options['use_theme_files'].'">'.$car_demon_options['use_theme_files'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Use Title field for Vehicle Titles? - If No then title will be "Year Make Model"', 'car-demon').':<br />';
-		echo '<select name="use_post_title">
-				<option value="'.$car_demon_options['use_post_title'].'">'.$car_demon_options['use_post_title'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Trim title', 'car-demon').':<br />';
-		echo '<input type="text" name="title_trim" value="'.$car_demon_options['title_trim'].'" /><br />';
-		echo '<br />'.__('Use Dynamic Ribbons?', 'car-demon').':<br />';
-		echo '<select name="dynamic_ribbons">
-				<option value="'.$car_demon_options['dynamic_ribbons'].'">'.$car_demon_options['dynamic_ribbons'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Validate Phone Numbers?', 'car-demon').':<br />';
-		echo '<select name="validate_phone">
-				<option value="'.$car_demon_options['validate_phone'].'">'.$car_demon_options['validate_phone'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		echo '<br />'.__('Display before listings:', 'car-demon').'<br />';
-		echo '<textarea name="before_listings" rows="5" cols="60">'.$car_demon_options['before_listings'].'</textarea><br />';
-		echo '<br />'.__('Is Mobile Theme Installed?', 'car-demon').':<br />';
-		echo '<select name="mobile_theme">
-				<option value="'.$car_demon_options['mobile_theme'].'">'.$car_demon_options['mobile_theme'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
-			</select><br />';
-		if ($car_demon_options['mobile_theme'] == 'Yes') {
-			echo '<br />'.__('Use Default Mobile Header with Mobile Logo?', 'car-demon').':<br />';
-			echo '<select name="mobile_header">
-				<option value="'.$car_demon_options['mobile_header'].'">'.$car_demon_options['mobile_header'].'</option>
-				<option value="Yes">'.__('Yes', 'car-demon').'</option>
-				<option value="No">'.__('No', 'car-demon').'</option>
+		//= Currency Start
+		echo '<fieldset class="cd_admin_group">';
+			echo '<legend>';
+				echo __('Currency Options','car-demon');
+			echo '</legend>';
+			echo '<br />*'.__('Currency Symbol', 'car-demon').':<br />';
+			echo '<input type="text" name="currency_symbol" value="'.$car_demon_options['currency_symbol'].'" /><br />';
+			echo '<br />*'.__('Currency Symbol After Price', 'car-demon').':<br />';
+			echo '<input type="text" name="currency_symbol_after" value="'.$car_demon_options['currency_symbol_after'].'" /><br />';
+		echo '</fieldset>';
+		//= Currency Stop
+
+		//= VinQuery Start		
+		echo '<fieldset class="cd_admin_group">';
+			echo '<legend>';
+				echo __('VinQuery Options','car-demon');
+			echo '</legend>';
+			echo '<br />*'.__('VinQuery.com Access Code', 'car-demon').':<br />';
+			echo '<input type="text" name="vinquery_id" value="'.$car_demon_options['vinquery_id'].'" />';
+			echo '*(optional)<br />';
+			$vinquery_type_num = $car_demon_options['vinquery_type'];
+			if (empty($vinquery_type_num)) {
+				$vinquery_type_num = 0;
+			}
+			$select_basic = '';
+			$select_standard = '';
+			$select_extended = '';
+			$select_lite = '';
+			if ($vinquery_type_num == 0) {
+				$select_basic = ' selected';
+			} elseif ($vinquery_type_num == 1) {
+				$select_standard = ' selected';
+			} elseif ($vinquery_type_num == 2) {
+				$select_extended = ' selected';
+			} elseif ($vinquery_type_num == 3) {
+				$select_lite = ' selected';
+			}
+			echo '<br />'.__('VinQuery.com Report Type', 'car-demon').':<br />';
+			echo '<select name="vinquery_type">
+					<option value="2"'.$select_extended.'>'.__('Extended', 'car-demon').'</option>
+					<option value="1"'.$select_standard.'>'. __('Standard', 'car-demon') .'</option>
+					<option value="0"'.$select_basic.'>'. __('Basic', 'car-demon') .'</option>
+					<option value="3"'.$select_lite.'>'. __('Lite', 'car-demon') .'</option>
 				</select><br />';
-			echo '<br />'.__('Mobile Header Logo', 'car-demon').'<br />';
-			echo '<table><tr valign="top">
-				<td><label for="upload_mobile_logo">
-				<input name="mobile_logo" id="mobile_logo" type="text" size="36" value="'.$car_demon_options['mobile_logo'].'" />
-				<input id="upload_mobile_logo_button" type="button" value="'.__('Upload Logo', 'car-demon').'" />
-				<br />'.__('Enter a URL or upload an image for the Mobile Logo. 169x58 px', 'car-demon').'
-				</label></td>
-				</tr></table>';
-			echo '<br />'.__('Mobile Chat Code', 'car-demon').'<br />';
-			echo '<textarea name="mobile_chat_code" rows="5" cols="60">'.$car_demon_options['mobile_chat_code'].'</textarea><br />';
-		}
-		echo '<p><input type="submit" value="'.__('Update Car Demon', 'car-demon').'" />';
-		echo '<input type="submit" name="reset_car_demon" value="'.__('Reset to Default', 'car-demon').'" /></p>';
+		echo '</fieldset>';
+		//= VinQuery Stop
+
+		//= Style Option Start
+		echo '<fieldset class="cd_admin_group">';
+			echo '<legend>';
+				echo __('Style Options','car-demon');
+			echo '</legend>';
+			//==============
+			echo '<br />'.__('Use Form CSS?', 'car-demon').':<br />';
+			echo '<select name="use_form_css">
+					<option value="'.$car_demon_options['use_form_css'].'">'.$car_demon_options['use_form_css'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Use Vehicle CSS?', 'car-demon').':<br />';
+			echo '<select name="use_vehicle_css">
+					<option value="'.$car_demon_options['use_vehicle_css'].'">'.$car_demon_options['use_vehicle_css'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Use included theme files?', 'car-demon').':<br />';
+			echo '<select name="use_theme_files">
+					<option value="'.$car_demon_options['use_theme_files'].'">'.$car_demon_options['use_theme_files'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Use Title field for Vehicle Titles? - If No then title will be "Year Make Model"', 'car-demon').':<br />';
+			echo '<select name="use_post_title">
+					<option value="'.$car_demon_options['use_post_title'].'">'.$car_demon_options['use_post_title'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Trim title', 'car-demon').':<br />';
+			echo '<input type="text" name="title_trim" value="'.$car_demon_options['title_trim'].'" /><br />';
+			echo '<br />'.__('Use Dynamic Ribbons?', 'car-demon').':<br />';
+			echo '<select name="dynamic_ribbons">
+					<option value="'.$car_demon_options['dynamic_ribbons'].'">'.$car_demon_options['dynamic_ribbons'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Use Popup Images', 'car-demon').':<br />';
+			echo '<select name="popup_images">
+					<option value="'.$car_demon_options['popup_images'].'">'.$car_demon_options['popup_images'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+		echo '</fieldset>';
+		//= Style Option Stop
+
+		//= Tab Option Start
+		echo '<fieldset class="cd_admin_group">';
+			echo '<legend>';
+				echo __('Tab Options','car-demon');
+			echo '</legend>';
+			echo '<br />'.__('Hide all Vehicle Option Tabs?', 'car-demon').':<br />';
+			echo '<select name="hide_tabs">
+					<option value="'.$car_demon_options['hide_tabs'].'">'.$car_demon_options['hide_tabs'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Use About Tab on Vehicle Pages', 'car-demon').':<br />';
+			echo '<select name="use_about">
+					<option value="'.$car_demon_options['use_about'].'">'.$car_demon_options['use_about'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			if ($car_demon_options['hide_tabs'] == 'Yes') {
+				echo '<br />'.__('Custom Vehicle Options', 'car-demon').':<br />';
+				echo '<textarea name="custom_options" cols="60" rows="6">'.$car_demon_options['custom_options'].' </textarea><br />';
+				echo __('Separate options with a comma. The options you enter here will appear on the vehicle edit page under "Custom Options"','car-demon');
+			} else {
+				echo '<br /><input type="button" value="Edit Vehicle Option Tabs" onclick="document.cd_settings.submit();" /><br />';
+			}
+		echo '</fieldset>';
+		//= Tab Option Stop
+
+		//= List Option Start
+		echo '<fieldset class="cd_admin_group">';
+			echo '<legend>';
+				echo __('List Options','car-demon');
+			echo '</legend>';
+			//==============
+			echo '<br />'.__('Display before listings:', 'car-demon').'<br />';
+			echo '<textarea name="before_listings" rows="5" cols="60">'.$car_demon_options['before_listings'].'</textarea><br />';
+			echo '<br />'.__('Load Next Inventory Page on Scroll', 'car-demon').':<br />';
+			echo '<select name="dynamic_load">
+					<option value="'.$car_demon_options['dynamic_load'].'">'.$car_demon_options['dynamic_load'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Show sold vehicles in search results?', 'car-demon').':<br />';
+			echo '<select name="show_sold">
+					<option value="'.$car_demon_options['show_sold'].'">'.$car_demon_options['show_sold'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Use Compare Vehicle Option', 'car-demon').':<br />';
+			echo '<select name="use_compare">
+					<option value="'.$car_demon_options['use_compare'].'">'.$car_demon_options['use_compare'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select> '.__('You must use the vehicle compare widget to display the list to your visitors .','car-demon').'<br />';
+			echo '<hr />'.__('Show sorting options on vehicle listing pages?', 'car-demon').':<br />';
+			echo '<select name="do_sort">
+					<option value="'.$car_demon_options['do_sort'].'">'.$car_demon_options['do_sort'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<blockquote>';
+				echo '<hr />'.__('Use Drop down sorting?', 'car-demon').':<br />';
+				echo '<select name="drop_down_sort">
+						<option value="'.$car_demon_options['drop_down_sort'].'">'.$car_demon_options['drop_down_sort'].'</option>
+						<option value="Yes">'.__('Yes', 'car-demon').'</option>
+						<option value="No">'.__('No', 'car-demon').'</option>
+					</select><br />';
+				echo '<br />'.__('Sort By Price? - Sorting options must be set to yes to use this feature.', 'car-demon').':<br />';
+				echo '<select name="sort_price">
+						<option value="'.$car_demon_options['sort_price'].'">'.$car_demon_options['sort_price'].'</option>
+						<option value="Yes">'.__('Yes', 'car-demon').'</option>
+						<option value="No">'.__('No', 'car-demon').'</option>
+					</select><br />';
+				echo '<br />'.__('Sort By Mileage? - Sorting options must be set to yes to use this feature.', 'car-demon').':<br />';
+				echo '<select name="sort_miles">
+						<option value="'.$car_demon_options['sort_miles'].'">'.$car_demon_options['sort_miles'].'</option>
+						<option value="Yes">'.__('Yes', 'car-demon').'</option>
+						<option value="No">'.__('No', 'car-demon').'</option>
+					</select><br />';
+			echo '</blockquote>';
+		echo '</fieldset>';
+		//= List Option Stop
+
+		//= Form Option Start
+		echo '<fieldset class="cd_admin_group">';
+			echo '<legend>';
+				echo __('Form Options','car-demon');
+			echo '</legend>';
+			//==============
+			echo '<br />'.__('You also need to setup the information on the Contact Information page.', 'car-demon').':<hr />';
+			echo '<br />'.__('Blind Carbon Copy Forms to Admin?', 'car-demon').':<br />';
+			echo '<select name="cc_admin">
+					<option value="'.$car_demon_options['cc_admin'].'">'.$car_demon_options['cc_admin'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Include ADFxml with Leads?', 'car-demon').':<br />';
+			echo '<select name="adfxml">
+					<option value="'.$car_demon_options['adfxml'].'">'.$car_demon_options['adfxml'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Validate Phone Numbers?', 'car-demon').':<br />';
+			echo '<select name="validate_phone">
+					<option value="'.$car_demon_options['validate_phone'].'">'.$car_demon_options['validate_phone'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			echo '<br />'.__('Disable Finance Form if it isn\'t loaded with SSL', 'car-demon').':<br />';
+			echo '<select name="secure_finance">
+				<option value="'.$car_demon_options['secure_finance'].'">'.$car_demon_options['secure_finance'].'</option>
+				<option value="Yes">Yes</option>
+				<option value="No">No</option>
+				</select><br />';
+		echo '</fieldset>';
+		//= Form Option Stop
+
+		//= Mobile Option Start
+		echo '<fieldset class="cd_admin_group">';
+			echo '<legend>';
+				echo __('Mobile Options','car-demon');
+			echo '</legend>';
+			echo '<br />'.__('Is Mobile Theme Installed?', 'car-demon').':<br />';
+			echo '<select name="mobile_theme">
+					<option value="'.$car_demon_options['mobile_theme'].'">'.$car_demon_options['mobile_theme'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
+			if ($car_demon_options['mobile_theme'] == 'Yes') {
+				echo '<br />'.__('Use Default Mobile Header with Mobile Logo?', 'car-demon').':<br />';
+				echo '<select name="mobile_header">
+					<option value="'.$car_demon_options['mobile_header'].'">'.$car_demon_options['mobile_header'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+					</select><br />';
+				echo '<br />'.__('Mobile Header Logo', 'car-demon').'<br />';
+				echo '<table><tr valign="top">
+					<td><label for="upload_mobile_logo">
+					<input name="mobile_logo" id="mobile_logo" type="text" size="36" value="'.$car_demon_options['mobile_logo'].'" />
+					<input id="upload_mobile_logo_button" type="button" value="'.__('Upload Logo', 'car-demon').'" />
+					<br />'.__('Enter a URL or upload an image for the Mobile Logo. 169x58 px', 'car-demon').'
+					</label></td>
+					</tr></table>';
+				echo '<br />'.__('Mobile Chat Code', 'car-demon').'<br />';
+				echo '<textarea name="mobile_chat_code" rows="5" cols="60">'.$car_demon_options['mobile_chat_code'].'</textarea><br />';
+			}
+		echo '</fieldset>';
+		//= Mobile Option Stop
+
+		//= Save Start
+		echo '<fieldset class="cd_admin_group">';
+			echo '<legend>';
+				echo __('Save settings','car-demon');
+			echo '</legend>';
+			echo '<p><input type="submit" value="'.__('Update Car Demon', 'car-demon').'" />';
+			echo '<input type="submit" name="reset_car_demon" value="'.__('Reset to Default', 'car-demon').'" /></p>';
+		echo '</fieldset>';
+		//= Save Stop
 	echo '</form>';
-	echo '<hr />';
-	echo '<h2>'.__('Car Demon Pages', 'car-demon').'</h2>';
-	echo '<div class="admin_pages_div">';
-		echo '<p>'.__('Car Demon comes with support for adding several custom forms and pages. You can quickly and easily add these pages by clicking the buttons below or you can create your own pages and simply paste the shortcode you want to use into the content of the page.', 'car-demon').'</p>';
-	echo '</div>';
-	if (isset($_POST['add_page'])) {
-		$title = $_POST['title'];
-		$type = $_POST['type'];
-		$new_page_id = car_demon_add_page($title, $type);
-		$link = get_permalink($new_page_id);
-		echo '<a href="'.$link.'" target="_blank">New '.$title.' Page</a>';
-	}
-	echo '<div class="admin_add_pages_div">';
-		echo '<form method="POST" action="">';
-			echo '<input type="hidden" name="type" value="contact" />';
-			echo '<input type="hidden" name="title" value="Contact Us" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Contact Us Page', 'car-demon').'" />';
-		echo '</form>';
-		echo '<form method="POST" action="">';
-			echo '<input type="hidden" name="type" value="service_appointment" />';
-			echo '<input type="hidden" name="title" value="Service Appointment" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Service Appointment Page', 'car-demon').'" />';
-		echo '</form>';
-		echo '<form method="POST" action="">';
-			echo '<input type="hidden" name="type" value="service_quote" />';
-			echo '<input type="hidden" name="title" value="Service Quote" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Service Quote Page', 'car-demon').'" />';
-		echo '</form>';
-		echo '<form method="POST" action="">';
-			echo '<input type="hidden" name="type" value="parts" />';
-			echo '<input type="hidden" name="title" value="Parts Quote" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Parts Quote Page', 'car-demon').'" />';
-		echo '</form>';
-		echo '<form method="POST" action="">';
-			echo '<input type="hidden" name="type" value="trade" />';
-			echo '<input type="hidden" name="title" value="Trade In" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Trade In Page', 'car-demon').'" />';
-		echo '</form>';
-		echo '<form method="POST" action="">';
-			echo '<input type="hidden" name="type" value="finance" />';
-			echo '<input type="hidden" name="title" value="Finance Application" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Finanace Application Page', 'car-demon').'" />';
-		echo '</form>';
-		echo '<form method="POST" action="">';
-			echo '<input type="hidden" name="type" value="qualify" />';
-			echo '<input type="hidden" name="title" value="Pre-Qualify" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Pre-Qualify Page', 'car-demon').'" />';
-		echo '</form>';
-		echo '<form method="POST" action="">';
-			echo '<input type="hidden" name="type" value="staff" />';
-			echo '<input type="hidden" name="title" value="Staff Page" />';
-			echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Staff Page', 'car-demon').'" />';
-		echo '</form>';
-	echo '</div>';
-	echo '<div class="admin_add_pages_shortcodes">';
-		echo '<h3 class="admin_add_pages_shortcodes">'.__('Shortcodes', 'car-demon').'</h3>';
-		echo '[contact_us]<br />';
-		echo '[service_form]<br />';
-		echo '[service_quote]<br />';
-		echo '[part_request]<br />';
-		echo '[trade]<br />';
-		echo '[finance_form]<br />';
-		echo '[qualify]<br />';
-		echo '[staff_page]<br />';
-	echo '</div></div>';
+	echo '<fieldset class="cd_admin_group">';
+		echo '<legend>';
+			echo __('Save settings','car-demon');
+		echo '</legend>';
+		echo '<h2>'.__('Car Demon Pages', 'car-demon').'</h2>';
+		echo '<div class="admin_pages_div">';
+			echo '<p>'.__('Car Demon comes with support for adding several custom forms and pages. You can quickly and easily add these pages by clicking the buttons below or you can create your own pages and simply paste the shortcode you want to use into the content of the page.', 'car-demon').'</p>';
+		echo '</div>';
+		if (isset($_POST['add_page'])) {
+			$title = $_POST['title'];
+			$type = $_POST['type'];
+			$new_page_id = car_demon_add_page($title, $type);
+			$link = get_permalink($new_page_id);
+			echo '<a href="'.$link.'" target="_blank">New '.$title.' Page</a>';
+		}
+		echo '<div class="admin_add_pages_div">';
+			echo '<form method="POST" action="">';
+				echo '<input type="hidden" name="type" value="contact" />';
+				echo '<input type="hidden" name="title" value="Contact Us" />';
+				echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Contact Us Page', 'car-demon').'" />';
+			echo '</form>';
+			echo '<form method="POST" action="">';
+				echo '<input type="hidden" name="type" value="service_appointment" />';
+				echo '<input type="hidden" name="title" value="Service Appointment" />';
+				echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Service Appointment Page', 'car-demon').'" />';
+			echo '</form>';
+			echo '<form method="POST" action="">';
+				echo '<input type="hidden" name="type" value="service_quote" />';
+				echo '<input type="hidden" name="title" value="Service Quote" />';
+				echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Service Quote Page', 'car-demon').'" />';
+			echo '</form>';
+			echo '<form method="POST" action="">';
+				echo '<input type="hidden" name="type" value="parts" />';
+				echo '<input type="hidden" name="title" value="Parts Quote" />';
+				echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Parts Quote Page', 'car-demon').'" />';
+			echo '</form>';
+			echo '<form method="POST" action="">';
+				echo '<input type="hidden" name="type" value="trade" />';
+				echo '<input type="hidden" name="title" value="Trade In" />';
+				echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Trade In Page', 'car-demon').'" />';
+			echo '</form>';
+			echo '<form method="POST" action="">';
+				echo '<input type="hidden" name="type" value="finance" />';
+				echo '<input type="hidden" name="title" value="Finance Application" />';
+				echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Finanace Application Page', 'car-demon').'" />';
+			echo '</form>';
+			echo '<form method="POST" action="">';
+				echo '<input type="hidden" name="type" value="qualify" />';
+				echo '<input type="hidden" name="title" value="Pre-Qualify" />';
+				echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Pre-Qualify Page', 'car-demon').'" />';
+			echo '</form>';
+			echo '<form method="POST" action="">';
+				echo '<input type="hidden" name="type" value="staff" />';
+				echo '<input type="hidden" name="title" value="Staff Page" />';
+				echo '<input type="submit" class="admin_add_pages_btn" name="add_page" value="'.__('Add Staff Page', 'car-demon').'" />';
+			echo '</form>';
+		echo '</div>';
+		echo '<div class="admin_add_pages_shortcodes">';
+			echo '<h3 class="admin_add_pages_shortcodes">'.__('Shortcodes', 'car-demon').'</h3>';
+			echo '<blockquote>';
+				echo '[contact_us]<br />';
+				echo '[service_form]<br />';
+				echo '[service_quote]<br />';
+				echo '[part_request]<br />';
+				echo '[trade]<br />';
+				echo '[finance_form]<br />';
+				echo '[qualify]<br />';
+				echo '[staff_page]<br />';
+			echo '</blockquote>';
+		echo '</div>';
+	echo '</fieldset>';
+	//= Save Stop
 }
 function update_car_demon_settings() {
 	$new = array();

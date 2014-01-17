@@ -11,7 +11,8 @@ function car_demon_create_post_type() {
       'public' => true,
       'rewrite' => array('slug' => 'cars-for-sale'),
 	  'has_archive' => true,
-	  'supports' => array('title','editor','thumbnail')
+	  'supports' => array('title','editor','thumbnail','comments'),
+	  'menu_icon' => plugins_url( '../images/cd_icon.png', __FILE__ )
     )
   );
 }

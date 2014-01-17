@@ -37,7 +37,7 @@
 	font-size:10px;
 }
 .admin_default_description {
-	width:580px;height:100px;
+	max-width:580px;height:100px;
 }
 .admin_finance_size {
 	width:50px !important;
@@ -49,21 +49,20 @@
 	font-weight:bold;color:#FF0000;
 }
 .admin_update_options_btn {
-	margin-left: 300px; margin-top: 15px; width: 100px !important;
+	margin-left: 250px; margin-top: 15px; width: 130px !important;
 }
 .admin_pages_div {
-	width: 500px;
+	max-width: 500px;
 }
 .admin_add_pages_div {
 	float:left;width:300px;
 }
 .admin_add_pages_btn {
 	cursor:pointer;
+	width:90%;
 }
 .admin_add_pages_shortcodes {
-	float:left;width:300px;margin-left:10px;
-}
-.admin_add_pages_shortcodes {
+	float:left;max-width:300px;margin-left:10px;
 	margin-top:0px;
 }
 .admin_settings_updated_title {
@@ -160,4 +159,12 @@
 }
 .btn_update_group {
 	margin-bottom: 15px;	
+}
+.cd_admin_group {
+	margin-left: 15px;
+	border: solid 1px;
+	padding: 10px;
+	max-width: 600px;
+	margin-top: 15px;
+//	float: left;
 }

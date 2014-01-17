@@ -37,7 +37,9 @@ function get_car_title($post_id) {
 	}
 	$car_title = trim($car_title);
 	if (isset($_SESSION['car_demon_options']['title_trim'])) {
-		$car_title = substr($car_title, 0, $_SESSION['car_demon_options']['title_trim']);
+		if ($_SESSION['car_demon_options']['title_trim'] > 1) {
+			$car_title = substr($car_title, 0, $_SESSION['car_demon_options']['title_trim']);
+		}
 	}
 	return $car_title;
 }
@@ -140,6 +142,7 @@ function car_demon_vehicle_detail_tabs($post_id) {
 	$tab_cnt = 1;
 	$vin_query = '';
 	$about_cnt = 2;
+	$vehicle_vin = rwh(strip_tags(get_post_meta($post_id, "_vin_value", true)),0);
 	$content = car_demon_get_the_content_with_formatting();
 	$content = trim($content);
 	if (empty($content)) {
@@ -189,9 +192,8 @@ function car_demon_vehicle_detail_tabs($post_id) {
 			}
 		}
 		$vehicle_options .= '</table>';
-		$content .= $vehicle_options;
+		$included_options = $vehicle_options;
 	}
-
 	if ($_SESSION['car_demon_options']['use_about'] == 'Yes') {
 		$about = 1;
 		$tab_cnt = $tab_cnt + 1;
@@ -203,12 +205,14 @@ function car_demon_vehicle_detail_tabs($post_id) {
 			car_demon_get_vin_query($post_id, $vehicle_vin);
 		}
 	}
-	$vin_query_decode_array = get_post_meta($post_id, 'decode_string');
-	if ($vin_query_decode_array) {
-		$vin_query_decode = $vin_query_decode_array[0];
-	} else {
-		$vin_query_decode = '';
+	$vin_query_decode = get_post_meta($post_id, "decode_string", true);
+	//= If we aren't showing the tabs then grab the specs and add it to the content
+	//= then add the included options we created above
+	if ($include_options == 1) {
+		$specs = get_vin_query_specs($vin_query_decode, $vehicle_vin);
+		$content .= $specs.$included_options;
 	}
+	
 	if (isset($_SESSION['car_demon_options']['hide_tabs'])) {
 		if ($_SESSION['car_demon_options']['hide_tabs'] == 'Yes') {
 			$vin_query = 0;
@@ -222,24 +226,24 @@ function car_demon_vehicle_detail_tabs($post_id) {
 		$vin_query = 1;
 		$about_cnt = 7;
 	}
-	if (isset($_SESSION['car_demon_options']['hide_tabs'])) {
-		if ($_SESSION['car_demon_options']['hide_tabs'] == 'Yes') {
+	if (isset($vin_query_decode['hide_tabs'])) {
+		if ($vin_query_decode['hide_tabs'] == 'Yes') {
 			$vin_query = 0;
 		}
 	}
 	$x = '<div id="car_features_box" class="car_features_box">';
 		$x .= '<div class="car_features">';
 			$x .= '<ul class="tabs">';
-				$x .= '<li><a href="javascript:car_demon_switch_tabs(1, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_1" class="active">'. __('Description', 'car-demon') .'</a></li>';
+				$x .= '<li class="tab_inactive tab_active"><a href="javascript:car_demon_switch_tabs(1, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_1" class="active">'. __('Description', 'car-demon') .'</a></li>';
 				 if ($vin_query == 1) { 
-					$x .= '<li><a href="javascript:car_demon_switch_tabs(2, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_2">'. __('Specs', 'car-demon') .'</a></li>';
-					$x .= '<li><a href="javascript:car_demon_switch_tabs(3, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_3">'. __('Safety', 'car-demon') .'</a></li>';
-					$x .= '<li><a href="javascript:car_demon_switch_tabs(4, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_4">'. __('Convenience', 'car-demon') .'</a></li>';
-					$x .= '<li><a href="javascript:car_demon_switch_tabs(5, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_5">'. __('Comfort', 'car-demon') .'</a></li>';
-					$x .= '<li><a href="javascript:car_demon_switch_tabs(6, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_6">'. __('Entertainment', 'car-demon') .'</a></li>';
+					$x .= '<li class="tab_inactive"><a href="javascript:car_demon_switch_tabs(2, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_2">'. __('Specs', 'car-demon') .'</a></li>';
+					$x .= '<li class="tab_inactive"><a href="javascript:car_demon_switch_tabs(3, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_3">'. __('Safety', 'car-demon') .'</a></li>';
+					$x .= '<li class="tab_inactive"><a href="javascript:car_demon_switch_tabs(4, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_4">'. __('Convenience', 'car-demon') .'</a></li>';
+					$x .= '<li class="tab_inactive"><a href="javascript:car_demon_switch_tabs(5, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_5">'. __('Comfort', 'car-demon') .'</a></li>';
+					$x .= '<li class="tab_inactive"><a href="javascript:car_demon_switch_tabs(6, '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_6">'. __('Entertainment', 'car-demon') .'</a></li>';
 				 } 
 				 if ($about == 1) { 
-					$x .= '<li><a href="javascript:car_demon_switch_tabs('.  $about_cnt .', '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_'.  $about_cnt .'">'. __('About', 'car-demon') .'</a></li>';
+					$x .= '<li class="tab_inactive"><a href="javascript:car_demon_switch_tabs('.  $about_cnt .', '.  $tab_cnt .', \'tab_\', \'content_\');" id="tab_'.  $about_cnt .'">'. __('About', 'car-demon') .'</a></li>';
 				 } 
 			$x .= '</ul>';
 			$x .= '<div id="content_1" class="car_features_content">'.  $content .'</div>';
@@ -556,6 +560,9 @@ function car_demon_get_car($post_id) {
 	$x['doors'] = strip_tags(get_post_meta($post_id, "_doors_value", true));
 	$x['trim'] = strip_tags(get_post_meta($post_id, "_trim_value", true));
 	$x['warranty'] = strip_tags(get_post_meta($post_id, "_warranty_value", true));
+	$x['title'] = get_car_title($post_id);
+	$x['title_slug'] = get_car_title_slug($post_id);
+	$x['car_link'] = get_permalink($post_id);
 	return $x;
 }
 ?>

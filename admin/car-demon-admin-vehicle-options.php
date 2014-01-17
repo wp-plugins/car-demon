@@ -36,36 +36,36 @@ function get_default_specs_maps() {
 }
 function get_default_safety_maps() {
 	$map = array();
-	$map['Equipment - Anti-Theft & Locks'] = 'Child Safety Door Locks,Locking Pickup Truck Tailgate,Power Door Locks,Vehicle Anti-Theft';
-	$map['Equipment - Braking & Traction'] = '4WD/AWD,ABS(2-Wheel/4-Wheel),Automatic Load-Leveling,Electronic Brake Assistance,Limited Slip Differential,Locking Differential,Traction Control,Vehicle Stability Control System';
-	$map['Equipment - Safety'] = 'Driver Airbag,Front Side Airbag,Front Side Airbag with Head Protection,Passenger Airbag,Side Head Curtain Airbag,Second Row Side Airbag,Second Row Side Airbag with Head Protection,Electronic Parking Aid,First Aid Kit,Trunk Anti-Trap Device';
+	$map[__('Equipment - Anti-Theft & Locks','car-demon')] = __('Child Safety Door Locks,Locking Pickup Truck Tailgate,Power Door Locks,Vehicle Anti-Theft', 'car-demon');
+	$map[__('Equipment - Braking & Traction','car-demon')] = __('4WD/AWD,ABS(2-Wheel/4-Wheel),Automatic Load-Leveling,Electronic Brake Assistance,Limited Slip Differential,Locking Differential,Traction Control,Vehicle Stability Control System', 'car-demon');
+	$map[__('Equipment - Safety','car-demon')] = __('Driver Airbag,Front Side Airbag,Front Side Airbag with Head Protection,Passenger Airbag,Side Head Curtain Airbag,Second Row Side Airbag,Second Row Side Airbag with Head Protection,Electronic Parking Aid,First Aid Kit,Trunk Anti-Trap Device', 'car-demon');
 	return $map;
 }
 function get_default_convenience_maps() {
 	$map = array();
-	$map['Equipment - Remote Controls & Release'] = 'Keyless Entry,Remote Ignition';
-	$map['Equipment - Interior Features'] = 'Cruise Control,Tachometer,Tilt Steering Wheel,Tilt Steering Column,Heated Steering Wheel,Leather Steering Wheel,Steering Wheel Mounted Controls,Telescopic Steering Column,Adjustable Foot Pedals,Genuine Wood Trim,Tire Inflation/Pressure Monitor,Trip Computer';
-	$map['Equipment - Storage'] = 'Cargo Area Cover,Cargo Area Tiedowns,Cargo Net,Load Bearing Exterior Rack,Pickup Truck Bed Liner';
-	$map['Equipment - Roof'] = 'Power Sunroof/Moonroof,Manual Sunroof/Moonroof,Removable/Convertible Top';
-	$map['Equipment - Climate Control'] = 'Air Conditioning,Separate Driver/Front Passenger Climate Controls';
+	$map[__('Equipment - Remote Controls & Release','car-demon')] = __('Keyless Entry,Remote Ignition', 'car-demon');
+	$map[__('Equipment - Interior Features','car-demon')] = __('Cruise Control,Tachometer,Tilt Steering Wheel,Tilt Steering Column,Heated Steering Wheel,Leather Steering Wheel,Steering Wheel Mounted Controls,Telescopic Steering Column,Adjustable Foot Pedals,Genuine Wood Trim,Tire Inflation/Pressure Monitor,Trip Computer', 'car-demon');
+	$map[__('Equipment - Storage','car-demon')] = __('Cargo Area Cover,Cargo Area Tiedowns,Cargo Net,Load Bearing Exterior Rack,Pickup Truck Bed Liner', 'car-demon');
+	$map[__('Equipment - Roof','car-demon')] = __('Power Sunroof/Moonroof,Manual Sunroof/Moonroof,Removable/Convertible Top', 'car-demon');
+	$map[__('Equipment - Climate Control','car-demon')] = __('Air Conditioning,Separate Driver/Front Passenger Climate Controls', 'car-demon');
 	return $map;
 }
 function get_default_comfort_maps() {
 	$map = array();
-	$map['Equipment - Seat'] = 'Driver Multi-Adjustable Power Seat,Front Cooled Seat,Front Heated Seat,Front Power Lumbar Support,Front Power Memory Seat,Front Split Bench Seat,Leather Seat,Passenger Multi-Adjustable Power Seat,Second Row Folding Seat,Second Row Heated Seat,Second Row Multi-Adjustable Power Seat,Second Row Removable Seat,Third Row Removable Seat';
-	$map['Equipment - Exterior Lighting'] = 'Automatic Headlights,Daytime Running Lights,Fog Lights,High Intensity Discharge Headlights,Pickup Truck Cargo Box Light';
-	$map['Equipment - Exterior Features'] = 'Bodyside/Cab Step or Running Board,Front Air Dam,Rear Spoiler,Skid Plate or Underbody Protection,Splash Guards,Wind Deflector or Buffer for Convertible,Power Sliding Side Van Door,Power Trunk Lid';
-	$map['Equipment - Wheels'] = 'Alloy Wheels,Chrome Wheels,Steel Wheels';
-	$map['Equipment - Tires'] = 'Full Size Spare Tire,Run Flat Tires';
-	$map['Equipment - Windows'] = 'Power Windows,Glass Rear Window on Convertible,Sliding Rear Pickup Truck Window';
-	$map['Equipment - Mirrors'] = 'Electrochromic Exterior Rearview Mirror,Heated Exterior Mirror,Electrochromic Interior Rearview Mirror,Power Adjustable Exterior Mirror';
-	$map['Equipment - Wipers'] = 'Interval Wipers,Rain Sensing Wipers,Rear Wiper,Rear Window Defogger';
-	$map['Equipment - Towings'] = 'Tow Hitch Receiver,Towing Preparation Package';
+	$map[__('Equipment - Seat','car-demon')] = __('Driver Multi-Adjustable Power Seat,Front Cooled Seat,Front Heated Seat,Front Power Lumbar Support,Front Power Memory Seat,Front Split Bench Seat,Leather Seat,Passenger Multi-Adjustable Power Seat,Second Row Folding Seat,Second Row Heated Seat,Second Row Multi-Adjustable Power Seat,Second Row Removable Seat,Third Row Removable Seat', 'car-demon');
+	$map[__('Equipment - Exterior Lighting','car-demon')] = __('Automatic Headlights,Daytime Running Lights,Fog Lights,High Intensity Discharge Headlights,Pickup Truck Cargo Box Light', 'car-demon');
+	$map[__('Equipment - Exterior Features','car-demon')] = __('Bodyside/Cab Step or Running Board,Front Air Dam,Rear Spoiler,Skid Plate or Underbody Protection,Splash Guards,Wind Deflector or Buffer for Convertible,Power Sliding Side Van Door,Power Trunk Lid', 'car-demon');
+	$map[__('Equipment - Wheels','car-demon')] = __('Alloy Wheels,Chrome Wheels,Steel Wheels', 'car-demon');
+	$map[__('Equipment - Tires','car-demon')] = __('Full Size Spare Tire,Run Flat Tires', 'car-demon');
+	$map[__('Equipment - Windows','car-demon')] = __('Power Windows,Glass Rear Window on Convertible,Sliding Rear Pickup Truck Window', 'car-demon');
+	$map[__('Equipment - Mirrors','car-demon')] = __('Electrochromic Exterior Rearview Mirror,Heated Exterior Mirror,Electrochromic Interior Rearview Mirror,Power Adjustable Exterior Mirror', 'car-demon');
+	$map[__('Equipment - Wipers','car-demon')] = __('Interval Wipers,Rain Sensing Wipers,Rear Wiper,Rear Window Defogger', 'car-demon');
+	$map[__('Equipment - Towings','car-demon')] = __('Tow Hitch Receiver,Towing Preparation Package', 'car-demon');
 	return $map;
 }
 function get_default_entertainment_maps() {
 	$map = array();
-	$map['Equipment - Entertainment, Communication & Navigation'] = 'AM/FM Radio,Cassette Player,CD Player,CD Changer,DVD Player,Hands Free/Voice Activated Telephone,Navigation Aid,Second Row Sound Controls or Accessories,Subwoofer,Telematic Systems';
+	$map[__('Equipment - Entertainment, Communication & Navigation','car-demon')] = __('AM/FM Radio,Cassette Player,CD Player,CD Changer,DVD Player,Hands Free/Voice Activated Telephone,Navigation Aid,Second Row Sound Controls or Accessories,Subwoofer,Telematic Systems', 'car-demon');
 	return $map;
 }
 function get_default_about_us_maps() {
@@ -87,7 +87,6 @@ function get_option_tab($tab, $post_id, $type='') {
 	$vehicle_option_array = get_post_meta($post_id, '_vehicle_options', true);
 	$vehicle_option_array = explode(',',$vehicle_option_array);
 	$map = cd_get_vehicle_map();
-
 	$x = '
 	<table class="decode_table">';
 	$x .= '<tr class="decode_table_header">
@@ -126,14 +125,18 @@ function get_option_tab($tab, $post_id, $type='') {
 						$slug = str_replace('-','_',$slug);
 						$slug = str_replace('2_wheel_4_wheel_','brakes',$slug);
 						if ($type == 'admin') {
-							$content = decode_select('decoded_'.$slug, $vin_query_decode['decoded_'.$slug], $post_id);
+							if (isset($vin_query_decode['decoded_'.$slug])) {
+								$content = decode_select('decoded_'.$slug, $vin_query_decode['decoded_'.$slug], $post_id);
+							} else {
+								$content = decode_select('decoded_'.$slug, '', $post_id);
+							}
 							$x .= '<tr class="'.$class.'">
 								<td class="decode_table_label">'.$option.'</td>
 								<td>'.$content.'</td>
 								</tr>';
 						} else {
-							$content = $vin_query_decode['decoded_'.$slug];	
-							if (isset($vin_query_decode['decoded_'.$slug])) {
+							$content = $vin_query_decode['decoded_'.$slug];
+							if (isset($vin_query_decode['decoded_'.$slug]) || isset($vin_query_decode[$slug]) || isset($vin_query_decode['decoded_'.$option]) || isset($vin_query_decode[$option])) {
 								if(!empty($content)) {
 									$x .= '<tr class="'.$class.'">
 										<td class="decode_table_label">'.$option.'</td>
@@ -147,16 +150,11 @@ function get_option_tab($tab, $post_id, $type='') {
 				//= Loop through option meta and get those too
 				if (!empty($vehicle_option_array)) {
 					foreach($vehicle_option_array as $option_item) {
+						$option_item = trim($option_item);
+						$option_item = ucwords($option_item);
 						if (in_array($option_item, $option_array)) {
-							$slug = strtolower($option_item);
-							$slug = str_replace(' ','_',$slug);
-							$slug = str_replace('/','_',$slug);
-							$slug = str_replace('(','_',$slug);
-							$slug = str_replace(')','_',$slug);
-							$slug = str_replace('-','_',$slug);
-							$slug = str_replace('2_wheel_4_wheel_','brakes',$slug);
 							$label = str_replace('_',' ',$option_item);
-							$label = strtoupper($label);
+							$label = ucwords($label);
 							if ($type == 'admin') {
 								$content = decode_select('decoded_'.$slug, 'Std.', $post_id);
 								$x .= '<tr class="'.$class.'">
@@ -177,6 +175,7 @@ function get_option_tab($tab, $post_id, $type='') {
 						}
 					}
 				}
+				//= End Option Loop
 			}
 		}
 	}

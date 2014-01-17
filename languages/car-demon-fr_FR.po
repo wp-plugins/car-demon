@@ -1,0 +1,2804 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Car Demon 1.1.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-13 09:09-0500\n"
+"PO-Revision-Date: 2014-01-13 09:22-0500\n"
+"Last-Translator: Guy labbé <info@guylabbe.ca>\n"
+"Language-Team: Car Demons <support@cardemons.com>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Oups! La page est introuvable."
+
+#: ../404.php:19
+msgid ""
+"It looks like nothing was found at this location. Maybe try one of the links "
+"below or a search?"
+msgstr ""
+"Il semble que rien n'ait été trouvé à cette destination. Vous pourriez peut-"
+"être tenter votre chance avec l'un des liens ci-dessous ou avec la recherche?"
+
+#: ../404.php:27
+msgid "Most Used Categories"
+msgstr "Catégories les plus utilisées"
+
+#: ../404.php:44
+#, php-format
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Jetez un coup d'œil aux archives mensuelles. %1$s"
+
+#: ../archive-cars_for_sale.php:11 ../search.php:24
+msgid "Results Found"
+msgstr "Résultats trouvés"
+
+#: ../archive.php:31
+#, php-format
+msgid "Author: %s"
+msgstr "Auteur : %s"
+
+#: ../archive.php:39
+#, php-format
+msgid "Day: %s"
+msgstr "Jour : %s"
+
+#: ../archive.php:42
+#, php-format
+msgid "Month: %s"
+msgstr "Mois : %s"
+
+#: ../archive.php:45
+#, php-format
+msgid "Year: %s"
+msgstr "Année : %s"
+
+#: ../archive.php:48
+msgid "Asides"
+msgstr "À côtés"
+
+#: ../archive.php:51
+msgid "Images"
+msgstr "Images"
+
+#: ../archive.php:54
+msgid "Videos"
+msgstr "Vidéos"
+
+#: ../archive.php:57
+msgid "Quotes"
+msgstr "Soumissions"
+
+#: ../archive.php:60
+msgid "Links"
+msgstr "Liens"
+
+#: ../archive.php:63 ../sidebar.php:17
+msgid "Archives"
+msgstr "Archives"
+
+#: ../comments.php:36 ../comments.php:56
+msgid "Comment navigation"
+msgstr "Navigation des commentaires"
+
+#: ../comments.php:37 ../comments.php:57
+msgid "&larr; Older Comments"
+msgstr "&larr; Commentaires précédents"
+
+#: ../comments.php:38 ../comments.php:58
+msgid "Newer Comments &rarr;"
+msgstr "Commentaires suivants &rarr;"
+
+#: ../comments.php:68
+msgid "Comments are closed."
+msgstr "Les commentaires sont fermés."
+
+#: ../content-page.php:18 ../content-single.php:20 ../content.php:27
+#: ../image.php:60
+msgid "Pages:"
+msgstr "Pages:"
+
+#: ../content-page.php:23 ../content-single.php:61 ../content.php:61
+#: ../image.php:34 ../image.php:78 ../inc/template-tags.php:71
+#: ../inc/template-tags.php:90
+msgid "Edit"
+msgstr "Modifier"
+
+#: ../content-single.php:29 ../content-single.php:32 ../content.php:38
+#: ../content.php:48
+msgid ", "
+msgstr ""
+
+#: ../content-single.php:37
+#, php-format
+msgid ""
+"This entry was tagged %2$s. Bookmark the <a href=\"%3$s\" title=\"Permalink "
+"to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+
+#: ../content-single.php:39
+#, php-format
+msgid ""
+"Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark"
+"\">permalink</a>."
+msgstr ""
+"Placer le <a href=\"%3$s\" title=\"Permalien vers %4$s\" rel=\"bookmark"
+"\">permalien</a> en marque-page."
+
+#: ../content-single.php:45
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" "
+"title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+"Cet item a été publié dans %1$s et contient les mots-clés suivants : %2$s. "
+"Placez <a href=\"%3$s\" title=\"Lien vers : %4$s\" rel=\"bookmark\">le lien</"
+"a> en marque-page."
+
+#: ../content-single.php:47
+#, php-format
+msgid ""
+"This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title="
+"\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+"Cette entrée a été publiée dans %1$s. Placer le <a href=\"%3$s\" title="
+"\"Permalien vers %4$s\" rel=\"bookmark\">permalien</a> en marque-page."
+
+#: ../content.php:24
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Continuer la lecture <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../content.php:42
+#, php-format
+msgid "Posted in %1$s"
+msgstr "Publié dans %1$s"
+
+#: ../content.php:52
+#, php-format
+msgid "Tagged %1$s"
+msgstr "Taggé dans %1$s"
+
+#: ../content.php:58
+msgid "Leave a comment"
+msgstr "Laisser un commentaire"
+
+#: ../content.php:58
+msgid "1 Comment"
+msgstr "1 Commentaire"
+
+#: ../content.php:58
+msgid "% Comments"
+msgstr "% Commentaires"
+
+#: ../functions.php:48
+msgid "Primary Menu"
+msgstr "Menu primaire"
+
+#: ../functions.php:72
+msgid "Sidebar"
+msgstr "Barre latérale"
+
+#: ../functions.php:228
+msgid "Vehicle Detail Pages"
+msgstr "Pages de détails du véhicule"
+
+#: ../functions.php:230
+msgid "Widgets in this area will be shown on the vehicle detail page."
+msgstr ""
+"Les widgets dans cette zone seront affichés dans la page des détails du "
+"véhicule."
+
+#: ../image.php:23
+#, php-format
+msgid ""
+"Published <span class=\"entry-date\"><time class=\"entry-date\" datetime="
+"\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size "
+"image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" "
+"rel=\"gallery\">%8$s</a>"
+msgstr ""
+"Publié le <span class=\"entry-date\"><time class=\"entry-date\" datetime="
+"\"%1$s\">%2$s</time></span> à <a href=\"%3$s\" title=\"Link to full-size "
+"image\">%4$s &times; %5$s</a> dans <a href=\"%6$s\" title=\"Return to %7$s\" "
+"rel=\"gallery\">%8$s</a>"
+
+#: ../image.php:39
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Précédent"
+
+#: ../image.php:40
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Suivant <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../image.php:69
+#, php-format
+msgid ""
+"<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a "
+"comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" "
+"title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr ""
+"<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Publier "
+"un commentaire</a> ou laisser un trackback : <a class=\"trackback-link\" "
+"href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">URL du "
+"trackback</a>."
+
+#: ../image.php:71
+#, php-format
+msgid ""
+"Comments are closed, but you can leave a trackback: <a class=\"trackback-link"
+"\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback"
+"\">Trackback URL</a>."
+msgstr ""
+
+#: ../image.php:73
+msgid ""
+"Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond"
+"\" title=\"Post a comment\">post a comment</a>."
+msgstr ""
+
+#: ../image.php:75
+msgid "Both comments and trackbacks are currently closed."
+msgstr ""
+
+#: ../no-results.php:13
+msgid "Nothing Found"
+msgstr "Aucun résultat"
+
+#: ../no-results.php:19
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: ../no-results.php:23
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+"Désolé, mais aucun résultat n'a été trouvé avec vos critères de recherche. "
+"S'il vous plaît utiliser un champ de sélection plus grand."
+
+#: ../no-results.php:28
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: ../search.php:20
+msgid "Search Results:"
+msgstr "Résultats de recherche:"
+
+#: ../sidebar.php:24
+msgid "Meta"
+msgstr "Méta"
+
+#: ../single-cars_for_sale.php:92
+msgid "Condition:"
+msgstr "Condition:"
+
+#: ../single-cars_for_sale.php:93 ../includes/cars-for-sale.php:98
+msgid "Mileage:"
+msgstr "Odomètre:"
+
+#: ../single-cars_for_sale.php:94
+msgid "Stock#:"
+msgstr "#stock:"
+
+#: ../single-cars_for_sale.php:95
+msgid "VIN#:"
+msgstr "# VIN :"
+
+#: ../single-cars_for_sale.php:96
+msgid "Color:"
+msgstr "Couleur extérieure:"
+
+#: ../single-cars_for_sale.php:97 ../includes/cars-for-sale.php:100
+msgid "Transmission:"
+msgstr "Transmission:"
+
+#: ../single-cars_for_sale.php:98
+msgid "Engine:"
+msgstr "Cylindres:"
+
+#: ../admin/car-demon-front-page-admin.php:82
+msgid "Car Demon Front Page Settings"
+msgstr "Paramètres Car Demon pour la page d'accueil"
+
+#: ../admin/car-demon-front-page-admin.php:97
+msgid "Number of Slides on Homepage"
+msgstr "Nombre de diapositives sur la page d'accueil"
+
+#: ../admin/car-demon-front-page-admin.php:115
+#: ../admin/car-demon-front-page-admin.php:117
+#: ../admin/car-demon-front-page-admin.php:119
+#: ../admin/car-demon-front-page-admin.php:123
+#: ../admin/car-demon-front-page-admin.php:126
+#: ../admin/car-demon-front-page-admin.php:129
+msgid "Custom Slide #"
+msgstr "Diapositive personnalisée #"
+
+#: ../admin/car-demon-front-page-admin.php:117
+msgid "Title"
+msgstr "Titre"
+
+#: ../admin/car-demon-front-page-admin.php:119
+msgid "Image URL"
+msgstr "URL de l'image"
+
+#: ../admin/car-demon-front-page-admin.php:121
+msgid "Upload Slide #"
+msgstr "Téléverser Diapo #"
+
+#: ../admin/car-demon-front-page-admin.php:121
+msgid "Image"
+msgstr ""
+
+#: ../admin/car-demon-front-page-admin.php:122
+msgid "Image Size: 364x274px"
+msgstr "Taille de l'image : 364x274px"
+
+#: ../admin/car-demon-front-page-admin.php:122
+msgid "Enter a URL or upload an image for the slide."
+msgstr "Entrer l'adresse URL ou téléversez une image pour la diapositive"
+
+#: ../admin/car-demon-front-page-admin.php:123
+msgid "Image Link"
+msgstr "Lien de l'image"
+
+#: ../admin/car-demon-front-page-admin.php:126
+msgid "Mobile Image Link"
+msgstr "Lien de l'image mobile"
+
+#: ../admin/car-demon-front-page-admin.php:129
+msgid "Text"
+msgstr "Texte"
+
+#: ../admin/car-demon-front-page-admin.php:168
+#: ../admin/car-demon-theme-admin-settings.php:236
+msgid "SETTINGS HAVE BEEN UPDATED"
+msgstr "LES PARAMÈTRES ONT ÉTÉ MISES À JOUR"
+
+#: ../admin/car-demon-front-page-admin.php:173
+#: ../admin/car-demon-theme-admin-settings.php:241
+msgid "SETTINGS HAVE BEEN RESET"
+msgstr "LES PARAMÈTRES ONT ÉTÉ RÉINITIALISÉS"
+
+#: ../admin/car-demon-theme-admin-settings.php:75
+msgid "Car Demon Theme Settings"
+msgstr "Paramètres du thème Car Demon"
+
+#: ../admin/car-demon-theme-admin-settings.php:90
+msgid "Custom Theme Colors"
+msgstr "Couleurs personnalisées pour le thème"
+
+#: ../admin/car-demon-theme-admin-settings.php:100
+msgid "Select custom colors for your theme."
+msgstr "Sélectionner des couleurs personnalisées pour votre thème."
+
+#: ../admin/car-demon-theme-admin-settings.php:123
+msgid "Add Custom Favicon .gif or .png"
+msgstr "Ajouter un favicon personnalisé (.gif ou .png)"
+
+#: ../admin/car-demon-theme-admin-settings.php:127
+#: ../admin/car-demon-theme-admin-settings.php:135
+msgid "Upload Icon"
+msgstr "Téléverser une icône"
+
+#: ../admin/car-demon-theme-admin-settings.php:128
+#: ../admin/car-demon-theme-admin-settings.php:136
+msgid "Enter a URL or upload an image for the icon."
+msgstr "Entrer l'adresse URL ou téléversez une image pour l'icône"
+
+#: ../admin/car-demon-theme-admin-settings.php:131
+msgid "Add Custom Favicon .ico"
+msgstr "Ajouter un favicon personnalisé (.ico)"
+
+#: ../inc/extras.php:66
+#, php-format
+msgid "Page %s"
+msgstr "Page %s"
+
+#: ../inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "Navigation de l'article"
+
+#: ../inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Anciennes publications"
+
+#: ../inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Nouvelles publications <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "Ping :"
+
+#: ../inc/template-tags.php:81
+#, php-format
+msgid "%s <span class=\"says\">says:</span>"
+msgstr ""
+
+#: ../inc/template-tags.php:94
+msgid "Your comment is awaiting moderation."
+msgstr "Votre commentaire sera modéré sous peu."
+
+#: ../inc/template-tags.php:177
+#, php-format
+msgid ""
+"Posted on <a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\">%3$s</a><span "
+"class=\"byline\"> by <span class=\"author vcard\"><a class=\"url fn n\" href="
+"\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+msgstr ""
+"Publié le <a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\">%3$s</a><span "
+"class=\"byline\"> par <span class=\"author vcard\"><a class=\"url fn n\" "
+"href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+
+#: ../inc/template-tags.php:182
+#, php-format
+msgid "View all posts by %s"
+msgstr "Voir tous les articles par %s"
+
+#: ../includes/body_style_widget.php:12
+msgid "Display body style icons for user selection."
+msgstr ""
+"Afficher les icônes du style de carrosserie pour la sélection par "
+"l'utilisateur"
+
+#: ../includes/body_style_widget.php:16
+msgid "Body Style Widget"
+msgstr "Widget Style de la carrosserie"
+
+#: ../includes/body_style_widget.php:53 ../includes/vehicle_widget.php:53
+msgid "Great Deals"
+msgstr "Offres incroyables"
+
+#: ../includes/body_style_widget.php:54
+msgid "5"
+msgstr "5"
+
+#: ../includes/body_style_widget.php:59 ../includes/calculator_widget.php:83
+#: ../includes/vehicle_widget.php:59
+msgid "Title:"
+msgstr "Titre"
+
+#: ../includes/body_style_widget.php:62
+msgid "Show Body Style:"
+msgstr "Afficher le style de la carrosserie"
+
+#: ../includes/calculator_widget.php:14
+msgid "Loan Calculator."
+msgstr "Calculateur de prêt"
+
+#: ../includes/calculator_widget.php:18
+msgid "Car Demon Pro Loan Calculator"
+msgstr "Calculateur de prêt Car demon Pro"
+
+#: ../includes/calculator_widget.php:73
+msgid "Loan Calculator"
+msgstr "Calculateur d'emprunt"
+
+#: ../includes/calculator_widget.php:74
+msgid "25000"
+msgstr "25000"
+
+#: ../includes/calculator_widget.php:75
+msgid "10"
+msgstr "10"
+
+#: ../includes/calculator_widget.php:76
+msgid "60"
+msgstr "60"
+
+#: ../includes/calculator_widget.php:77
+msgid "It is not an offer for credit nor a quote."
+msgstr "Ce n'est pas une offre de crédit ni une soumission."
+
+#: ../includes/calculator_widget.php:78
+msgid ""
+"This calculator provides an estimated monthly payment. Your actual payment "
+"may vary based upon your specific loan and final purchase price."
+msgstr ""
+"Cet outil de calcul fournit une estimation des paiements mensuels. Votre "
+"paiement réel peut varier selon le terme, le prix d'achat final et le taux "
+"d'intérêt de votre prêt."
+
+#: ../includes/calculator_widget.php:85
+msgid "Price:"
+msgstr "Prix:"
+
+#: ../includes/calculator_widget.php:87
+msgid "APR:"
+msgstr "APR :"
+
+#: ../includes/calculator_widget.php:89
+msgid "Term:"
+msgstr "Terme:"
+
+#: ../includes/calculator_widget.php:91
+msgid "Disclaimer #1:"
+msgstr "Avis de renonciation #1:"
+
+#: ../includes/calculator_widget.php:93
+msgid "Disclaimer #2:"
+msgstr "Avis de renonciation #2:"
+
+#: ../includes/calculator_widget.php:116
+msgid ""
+"Please fill out the form and click calculate to estimate your monthly "
+"payment."
+msgstr ""
+"Veuillez remplir ce formulaire et cliquer sur l'onglet calculer pour avoir "
+"une estimation de votre paiement mensuel."
+
+#: ../includes/calculator_widget.php:157
+msgid "*Estimated Monthly Payment"
+msgstr "*Montant mensuel estimé"
+
+#: ../includes/cars-for-sale.php:72
+msgid "Compare"
+msgstr "Comparer"
+
+#: ../includes/cars-for-sale.php:79
+msgid "Stock #"
+msgstr "Numéro de stock"
+
+#: ../includes/cars-for-sale.php:83
+msgid "SPECIAL PRICE"
+msgstr "PRIX SPÉCIAL"
+
+#: ../includes/cars-for-sale.php:94
+msgid "Vehicle Highlights"
+msgstr ""
+
+#: ../includes/cars-for-sale.php:99
+msgid "Exterior:"
+msgstr "Couleur extérieure"
+
+#: ../includes/cars-for-sale.php:105
+msgid "CLICK HERE FOR DETAILS"
+msgstr "Cliquez ici pour les détails"
+
+#: ../includes/vehicle_widget.php:12
+msgid "Display Pro Cars."
+msgstr "Afficher les véhicules"
+
+#: ../includes/vehicle_widget.php:16
+msgid "Car Demon Pro Cars"
+msgstr "Véhicules Car Demon Pro"
+
+#: ../includes/vehicle_widget.php:54
+msgid "1"
+msgstr "1"
+
+#: ../includes/vehicle_widget.php:62
+msgid "# of Cars:"
+msgstr "Nombre de véhicules"
+
+#: ../includes/vehicle_widget.php:242
+msgid "SOLD"
+msgstr "VENDU"
+
+#~ msgid "Contact Us"
+#~ msgstr "Contactez-nous"
+
+#~ msgid "Request Parts Quote"
+#~ msgstr "Demander une soumission pour des pièces"
+
+#~ msgid "Service Appointment"
+#~ msgstr "Rendez-vous avec le service"
+
+#~ msgid "Qualify Me"
+#~ msgstr "Me qualifier"
+
+#~ msgid "sales"
+#~ msgstr "ventes"
+
+#~ msgid "Car Demon Contact Options"
+#~ msgstr "Car Demon Nous joindre"
+
+#~ msgid "Contact Information"
+#~ msgstr "Contactez-nous"
+
+#~ msgid "Facebook Fan Page"
+#~ msgstr "Page Facebook"
+
+#~ msgid "New Sales Name"
+#~ msgstr "Départements - véhicules neufs"
+
+#~ msgid "New Sales Number"
+#~ msgstr "Numéro de téléphone véhicules neufs"
+
+#~ msgid "New Sales Email"
+#~ msgstr "Courriel - Département véhicules neufs"
+
+#~ msgid "Used Sales Name"
+#~ msgstr "Département - véhicules d'occasion"
+
+#~ msgid "Used Sales Number"
+#~ msgstr "Numéro de téléphone véhicules d'occasion"
+
+#~ msgid "Used Sales Email"
+#~ msgstr "Courriel - Département véhicules d'occasion"
+
+#~ msgid "Default Description"
+#~ msgstr "Description"
+
+#~ msgid "Service Name"
+#~ msgstr "Département du service"
+
+#~ msgid "Service Number"
+#~ msgstr "Numéro de téléphone département du service"
+
+#~ msgid "Service Email"
+#~ msgstr "Courriel - Département du service"
+
+#~ msgid "Parts Name"
+#~ msgstr "Département des pièces"
+
+#~ msgid "Parts Number"
+#~ msgstr "Numéro de téléphone - Département des pièces"
+
+#~ msgid "Parts Email"
+#~ msgstr "Courriel - Département des pièces"
+
+#~ msgid "Finance Name"
+#~ msgstr "Financement automobile"
+
+#~ msgid "Finance Number"
+#~ msgstr "Numéro de téléphone - financement automobile"
+
+#~ msgid "Finance Email"
+#~ msgstr "Courriel - financement automobile"
+
+#~ msgid "Link to Finance Form"
+#~ msgstr "Lien pour formulaire de demande de financement automobile"
+
+#~ msgid "Pop Up Finance Form"
+#~ msgstr "pop up formulaire de demande de financement automoible"
+
+#~ msgid "*Finance Disclaimer"
+#~ msgstr "*Clause de non-responsabilité"
+
+#~ msgid "*Finance Description"
+#~ msgstr "Description financement automobile"
+
+#~ msgid "Trade Name"
+#~ msgstr "Évaluer votre véhicule d'occasion"
+
+#~ msgid "Trade Number"
+#~ msgstr "Numéro de téléphone évaluation véhicule d'occasion"
+
+#~ msgid "Trade Email"
+#~ msgstr "Courriel - évaluation véhicule d'occasion"
+
+#~ msgid "Link to Trade Form"
+#~ msgstr "Lien pour le formulaire d'évaluation de votre véhicule d'occasion"
+
+#~ msgid "Show Prices on New"
+#~ msgstr "Prix véhicule neuf"
+
+#~ msgid "Show Prices on Used"
+#~ msgstr "Prix véhicule d'occasion"
+
+#~ msgid "New Large Photo Url"
+#~ msgstr "grande photo véhicule neuf"
+
+#~ msgid "New Small Photo Url"
+#~ msgstr "petite photo véhicule neuf"
+
+#~ msgid "Used Large Photo Url"
+#~ msgstr "Grande photo véhicule neuf"
+
+#~ msgid "Used Small Photo Url"
+#~ msgstr "Petite photo véhicule d'occasion"
+
+#~ msgid "Update Options"
+#~ msgstr "Option de mise à jour"
+
+#~ msgid "Currency Symbol"
+#~ msgstr "Symbole de monnaie"
+
+#~ msgid "Currency Symbol After Price"
+#~ msgstr "Symbole de monnaie après le prix"
+
+#~ msgid "VinQuery.com Access Code"
+#~ msgstr "Code d'accès VinQuery.com"
+
+#~ msgid "VinQuery.com Report Type"
+#~ msgstr "Type de rapport VinQuery.com"
+
+#~ msgid "Extended"
+#~ msgstr "Prolongé"
+
+#~ msgid "Standard"
+#~ msgstr "Standard"
+
+#~ msgid "Basic"
+#~ msgstr "De Base"
+
+#~ msgid "Lite"
+#~ msgstr "Allégée"
+
+#~ msgid "Yes"
+#~ msgstr "Oui"
+
+#~ msgid "No"
+#~ msgstr "Non"
+
+#~ msgid "Show sold vehicles in search results?"
+#~ msgstr "Véhicules vendus"
+
+#~ msgid "Include ADFxml with Leads?"
+#~ msgstr "Inclure ADFxml avec les pistes potentiels"
+
+#~ msgid "Hide all Vehicle Option Tabs?"
+#~ msgstr "Caché les onglets d'options de tous les véhicules"
+
+#~ msgid "Use About Tab on Vehicle Pages"
+#~ msgstr "Utiliser l'onglet À propos sur les pages de véhicules"
+
+#~ msgid "Use Compare Vehicle Option"
+#~ msgstr "Utiliser la comparaison d'options des véhicules"
+
+#~ msgid "Load Next Inventory Page on Scroll"
+#~ msgstr "Télécharger les prochaines pages d'inventaire"
+
+#~ msgid "Use Popup Images"
+#~ msgstr "Utiliser les images Popup"
+
+#~ msgid "Show sorting options on vehicle listing pages?"
+#~ msgstr "Afficher les options sur la page d'inventaire de véhicules"
+
+#~ msgid ""
+#~ "Sort By Price? - Sorting options must be set to yes to use this feature."
+#~ msgstr ""
+#~ "Afficher par prix? - L'option doit être à oui pour utiliser cette fonction"
+
+#~ msgid ""
+#~ "Sort By Mileage? - Sorting options must be set to yes to use this feature."
+#~ msgstr ""
+#~ "Afficher par kilométrage? L'option doit être à oui pour utiliser cette "
+#~ "fonction"
+
+#~ msgid "Use included theme files?"
+#~ msgstr "Utiliser les fichiers inclus dans le thème?"
+
+#~ msgid ""
+#~ "Use Title field for Vehicle Titles? - If No then title will be \"Year "
+#~ "Make Model\""
+#~ msgstr ""
+#~ "Utiliser le champ Titre pour le Titre du Véhicule? - Si non, le titre "
+#~ "sera \"Année Marque Modèle\""
+
+#~ msgid "Validate Phone Numbers?"
+#~ msgstr "Valider le numéro de téléphone?"
+
+#~ msgid "Is Mobile Theme Installed?"
+#~ msgstr "Est-ce que la version mobile du thème est installée?"
+
+#~ msgid "Use Default Mobile Header with Mobile Logo?"
+#~ msgstr ""
+#~ "Utiliser l'en-tête par défaut de la version mobile avec le logo Mobile?"
+
+#~ msgid "Mobile Header Logo"
+#~ msgstr "Logo Mobile de l'en-tête"
+
+#~ msgid "Mobile Chat Code"
+#~ msgstr "Code d'accès discussion instantanée"
+
+#~ msgid "Update Car Demon"
+#~ msgstr "Mise à jour Car Demon"
+
+#~ msgid "Reset to Default"
+#~ msgstr "Réinitialiser les paramètres par défaut"
+
+#~ msgid "Car Demon Pages"
+#~ msgstr "Pages Car Demon"
+
+#~ msgid ""
+#~ "Car Demon comes with support for adding several custom forms and pages. "
+#~ "You can quickly and easily add these pages by clicking the buttons below "
+#~ "or you can create your own pages and simply paste the shortcode you want "
+#~ "to use into the content of the page."
+#~ msgstr ""
+#~ "Car Demon vient avec un support pour l'ajout de plusieurs formulaires et "
+#~ "pages personnalisées. Vous pouvez rapidement et facilement ajouter ces "
+#~ "pages en cliquant sur le bouton ci-dessous ou en créant vos propres pages "
+#~ "et en copiant le code que vous voulez utiliser dans le contenu de la page."
+
+#~ msgid "Add Contact Us Page"
+#~ msgstr "Ajouter une page Nous Joindre"
+
+#~ msgid "Add Service Appointment Page"
+#~ msgstr "Ajouter une page Rendez-vous au service"
+
+#~ msgid "Add Service Quote Page"
+#~ msgstr "Ajouter une page soumission Département du service"
+
+#~ msgid "Add Parts Quote Page"
+#~ msgstr "Ajouter une page Département des pièeces"
+
+#~ msgid "Add Trade In Page"
+#~ msgstr "Ajouter une page Évaluer votre véhicule en ligne"
+
+#~ msgid "Add Finanace Application Page"
+#~ msgstr "Ajouter une page de demande de financement"
+
+#~ msgid "Add Pre-Qualify Page"
+#~ msgstr "Ajouter une page pré-approbation"
+
+#~ msgid "Add Staff Page"
+#~ msgstr "Ajouter une page Notre équipe"
+
+#~ msgid ""
+#~ "This is not a contract to purchase. It is an application for financing a "
+#~ "possible automotive purchase."
+#~ msgstr ""
+#~ "Ceci n'est pas un contrat de vente. C'est une application pour un "
+#~ "financement d'un possible achat d'un véhicule."
+
+#~ msgid "You are not obligated to purchase"
+#~ msgstr "Vous n'êtes pas obligé d'acheter"
+
+#~ msgid "a vehicle if you submit this form."
+#~ msgstr "un véhicule si vous envoyer ce formulaire"
+
+#~ msgid ""
+#~ "Your information is kept confidential and is used only to assist in "
+#~ "obtaining financing for a potential vehicle purchase."
+#~ msgstr ""
+#~ "Votre informations sont gardées confidentielles et seront utilisée "
+#~ "uniquement pour l'obtention d'un financement pour le véhicule que vous "
+#~ "désirez acheter."
+
+#~ msgid "*By clicking this button you agree to the terms  posted above."
+#~ msgstr ""
+#~ "*En cliquant sur ce bouton vous acceptez les termes et conditions écrit "
+#~ "au-dessus."
+
+#~ msgid "This vehicle is ready to go right now."
+#~ msgstr "Ce véhicule est prêt pour la vente."
+
+#~ msgid "Vehicle Title"
+#~ msgstr "Titre véhicule"
+
+#~ msgid "Photo"
+#~ msgstr "Photo"
+
+#~ msgid "Retail Price"
+#~ msgstr "Prix de détail"
+
+#~ msgid "Rebate"
+#~ msgstr "Rabais"
+
+#~ msgid "Discount"
+#~ msgstr "Réduction"
+
+#~ msgid "Price"
+#~ msgstr "Prix"
+
+#~ msgid "Sold"
+#~ msgstr "Vendu"
+
+#~ msgid "Calculated Price:"
+#~ msgstr "Calculer le prix"
+
+#~ msgid "Calculated Discount:"
+#~ msgstr "Calculer le rabais"
+
+#~ msgid "Rebates"
+#~ msgstr "Rabais"
+
+#~ msgid "Edit this item inline"
+#~ msgstr "Modifier cet item en ligne"
+
+#~ msgid "YOUR INFORMATION"
+#~ msgstr "Vos informations"
+
+#~ msgid "Your Name"
+#~ msgstr "Votre nom"
+
+#~ msgid "required"
+#~ msgstr "requis"
+
+#~ msgid "Phone #"
+#~ msgstr "Téléphone"
+
+#~ msgid "Email"
+#~ msgstr "Courriel"
+
+#~ msgid "valid email required"
+#~ msgstr "un courriel valide est requis"
+
+#~ msgid "Add Contact"
+#~ msgstr "Ajouter un contact"
+
+#~ msgid "Remove Contact"
+#~ msgstr "Retirer le contact"
+
+#~ msgid "Questions and Comments"
+#~ msgstr "Questions ou commentaires?"
+
+#~ msgid "SOMETHING WENT WRONG! THIS PAGE IS NOT SECURE!"
+#~ msgstr "QUELQUE CHOSE A MAL TOURNÉ! CETTE PAGE N'EST PAS SÉCURISÉE!"
+
+#~ msgid "THIS FORM HAS BEEN DISABLED FOR YOUR PROTECTION."
+#~ msgstr "Ce formulaire a été désactivé pour votre protection."
+
+#~ msgid "PLEASE CONTACT THE SITE ADMINISTRATOR FOR MORE INFORMATION."
+#~ msgstr ""
+#~ "S'il vous plaît contacter l'administrateur du site pour obtenir plus "
+#~ "d'informations."
+
+#~ msgid "Do you have a Co-Signer"
+#~ msgstr "Avez-vous un co-signataire"
+
+#~ msgid "Enter Co-Signer"
+#~ msgstr "Entrer co-signataire"
+
+#~ msgid "Co-Signer"
+#~ msgstr "Co-signataire"
+
+#~ msgid "Vehicle of Interest"
+#~ msgstr "Véhicule intéressant"
+
+#~ msgid "This is"
+#~ msgstr "C'est"
+
+#~ msgid "NOT"
+#~ msgstr "NON"
+
+#~ msgid "the vehicle I'm interested in."
+#~ msgstr "Le véhicule que je suis intéressé"
+
+#~ msgid "VIN"
+#~ msgstr "VIN"
+
+#~ msgid "Vehicle"
+#~ msgstr "Véhicule"
+
+#~ msgid "What Vehicle are you Interested In Purchasing?"
+#~ msgstr "Quel véhicule êtes-vous intéressé à acheter?"
+
+#~ msgid "I know the stock#"
+#~ msgstr "Je connais le numéro de stock"
+
+#~ msgid "I would like to search for it"
+#~ msgstr "Je désire recherché pour"
+
+#~ msgid "(enter year, make or model)"
+#~ msgstr "(Entrer année, marque ou modèle)"
+
+#~ msgid "I haven't made up my mind."
+#~ msgstr "Je n'ai pas prit ma décision"
+
+#~ msgid "Finance Location"
+#~ msgstr "Localisation du financement"
+
+#~ msgid "Select your preferred Finance Location"
+#~ msgstr "Sélectionner votre localisation préférée pour le financement"
+
+#~ msgid "Your Information"
+#~ msgstr "Votre information"
+
+#~ msgid "Add Part"
+#~ msgstr "Ajouter une pièce"
+
+#~ msgid "Remove Part"
+#~ msgstr "Retirer une pièce"
+
+#~ msgid "Vehicle Information"
+#~ msgstr "Information sur le véhicule"
+
+#~ msgid "Manufacturer"
+#~ msgstr "Marque"
+
+#~ msgid "Model"
+#~ msgstr "Modèle"
+
+#~ msgid "Parts Needed"
+#~ msgstr "Pièces recherchées"
+
+#~ msgid "Request Quote"
+#~ msgstr "Demander une soumission"
+
+#~ msgid "Part Name #"
+#~ msgstr "Nom de la pièce"
+
+#~ msgid "Part Number #"
+#~ msgstr "Numéro de pièce"
+
+#~ msgid "Parts Department"
+#~ msgstr "Département des pièces"
+
+#~ msgid "Select your preferred Parts Department"
+#~ msgstr "Sélectionner votre département des pièces préféré?"
+
+#~ msgid "What city do you live in?"
+#~ msgstr "Dans quelle ville vivez-vous?"
+
+#~ msgid "How long at current address?"
+#~ msgstr "Depuis combien de temps habitez-vous à cette adresse?"
+
+#~ msgid "Under 1 Year"
+#~ msgstr "Moins de 1 an"
+
+#~ msgid "1-2 Years"
+#~ msgstr "1 à 2 ans"
+
+#~ msgid "2-3 Years"
+#~ msgstr "2 à 3 ans"
+
+#~ msgid "Over 3 Years"
+#~ msgstr "Plus de 3 ans"
+
+#~ msgid "Current Employer"
+#~ msgstr "Employeur actuel"
+
+#~ msgid "Gross Monthly Income"
+#~ msgstr "Revenu mensuel brute"
+
+#~ msgid "How long at current job?"
+#~ msgstr "Depuis combien de temps travaillez-vous à votre emploi actuel?"
+
+#~ msgid "How much can you put down?"
+#~ msgstr "Combien pouvez-vous donner en comptant?"
+
+#~ msgid "Do you have a trade in?"
+#~ msgstr "Avez-vous un échange?"
+
+#~ msgid "Schedule Service Appointment"
+#~ msgstr "Fixer un rendez-vous au service"
+
+#~ msgid "Appointment Information"
+#~ msgstr "Information pour le rendez-vous"
+
+#~ msgid "Preferred Appointment Date"
+#~ msgstr "Date désirée pour le rendez-vous"
+
+#~ msgid "Alternate Appointment Date"
+#~ msgstr "Date alternative pour le rendez-vous"
+
+#~ msgid "Will you be..."
+#~ msgstr "Allez-vous..."
+
+#~ msgid "Waiting"
+#~ msgstr "Attendre sur place"
+
+#~ msgid "Leaving Car"
+#~ msgstr "Laissé votre véhicule"
+
+#~ msgid "Do you need alternate transportation?"
+#~ msgstr "Avez-vous besoin d'un véhicule de prêt"
+
+#~ msgid "Miles"
+#~ msgstr "Kilomètres"
+
+#~ msgid "Vin"
+#~ msgstr "Vin"
+
+#~ msgid "Service Required"
+#~ msgstr "Service requis"
+
+#~ msgid "Send Appointment"
+#~ msgstr "Envoyer le demande de rendez-vous"
+
+#~ msgid "Select your preferred Service Location"
+#~ msgstr "Sélectionner la localisation préférée pour votre demande de service"
+
+#~ msgid "Service Quote"
+#~ msgstr "Soumission au département du service"
+
+#~ msgid "Purchase Information"
+#~ msgstr "Information sur l'achat"
+
+#~ msgid "Get Quote!"
+#~ msgstr "Avoir une soumission"
+
+#~ msgid "Description"
+#~ msgstr "Description"
+
+#~ msgid "enter year, make or model"
+#~ msgstr "Entrer l'année, la marque et le modèle"
+
+#~ msgid "Trade Location"
+#~ msgstr "Localisation pour l'évaluation de votre véhicule d'échange"
+
+#~ msgid "Select your preferred Trade Location"
+#~ msgstr ""
+#~ "Sélectionner votre localisation préférée pour l'évaluation de votre "
+#~ "véhicule d'échange"
+
+#~ msgid "Your Trade-In Vehicle Options"
+#~ msgstr "Les options de votre véhicule d'échange"
+
+#~ msgid "4 Wheel Drive"
+#~ msgstr "Traction intégrale"
+
+#~ msgid "ABS Brakes"
+#~ msgstr "Freins ABS"
+
+#~ msgid "Air Bag"
+#~ msgstr "Coussin gonflable"
+
+#~ msgid "Air Conditioning"
+#~ msgstr "Air climatisé"
+
+#~ msgid "Alloy Wheels"
+#~ msgstr "Jantes en alliage"
+
+#~ msgid "AM/FM Stereo"
+#~ msgstr "Radio AM/FM"
+
+#~ msgid "Anti-Theft"
+#~ msgstr "Antivol"
+
+#~ msgid "Bed Liner"
+#~ msgstr "Fond de caisse"
+
+#~ msgid "Cassette"
+#~ msgstr "Lecteur cassette"
+
+#~ msgid "Cruise Control"
+#~ msgstr "Régulateur de vitesse"
+
+#~ msgid "Dual Air Bags"
+#~ msgstr "Coussin gonflable double"
+
+#~ msgid "Dual Rear Wheels"
+#~ msgstr "Roues arrières double"
+
+#~ msgid "DVD System"
+#~ msgstr "Lecteur DVD"
+
+#~ msgid "Integrated Cellular"
+#~ msgstr "Bluetooth"
+
+#~ msgid "Leather"
+#~ msgstr "Cuir"
+
+#~ msgid "Long Bed"
+#~ msgstr "Boîte longue"
+
+#~ msgid "Luggage Rack"
+#~ msgstr "Support à bagages"
+
+#~ msgid "Moon Roof"
+#~ msgstr "Toit ouvrant panoramique"
+
+#~ msgid "Multi CD"
+#~ msgstr "Chargeur Multi CD"
+
+#~ msgid "Nav System"
+#~ msgstr "Système de navigation (GPS)"
+
+#~ msgid "Power Locks"
+#~ msgstr "Verrouillage des portes électriques"
+
+#~ msgid "Power Seats"
+#~ msgstr "Sièges électrique"
+
+#~ msgid "Power Windows"
+#~ msgstr "Vitres électriques"
+
+#~ msgid "Premium Wheels"
+#~ msgstr "Roues"
+
+#~ msgid "Privacy Glass"
+#~ msgstr "Vitre teinté"
+
+#~ msgid "Rear Air/Heat"
+#~ msgstr "Climatisation/Chauffage à l'arrière"
+
+#~ msgid "Running Boards"
+#~ msgstr "Marchepieds"
+
+#~ msgid "Short Bed"
+#~ msgstr "Boîte courte"
+
+#~ msgid "Single CD"
+#~ msgstr "Chargeur CD simple"
+
+#~ msgid "Sliding Rear Window"
+#~ msgstr "Lunette arrière coulissante"
+
+#~ msgid "Sun Roof"
+#~ msgstr "Toit ouvrant"
+
+#~ msgid "Third Seat"
+#~ msgstr "Siège troisième rangée"
+
+#~ msgid "Tilt Wheel"
+#~ msgstr "Volant inclinable"
+
+#~ msgid "Towing Package"
+#~ msgstr "Ensemble remorquage"
+
+#~ msgid "Wheel Covers"
+#~ msgstr "Enjoliveurs"
+
+#~ msgid "options not required, but help provide an accurate quote"
+#~ msgstr ""
+#~ "Options non-requises, mais elles peuvent aider à fournir une évaluation "
+#~ "plus précise."
+
+#~ msgid "Apt/Suite"
+#~ msgstr "App./Suite"
+
+#~ msgid "APT/SUITE REQUIRED"
+#~ msgstr "APP./SUITE REQUIS"
+
+#~ msgid "Street Number"
+#~ msgstr "Numéro civique"
+
+#~ msgid "STREET NUM REQUIRED"
+#~ msgstr "NUMÉRO CIVIQUE REQUIS"
+
+#~ msgid "Street Name"
+#~ msgstr "Rue"
+
+#~ msgid "STREET NAME REQUIRED"
+#~ msgstr "TYPE DE RUE REQUIS"
+
+#~ msgid "Street Type"
+#~ msgstr "Type de rue"
+
+#~ msgid "AVENUE"
+#~ msgstr "AVENUE"
+
+#~ msgid "BOULEVARD"
+#~ msgstr "BOULEVARD"
+
+#~ msgid "CIRCLE"
+#~ msgstr "CERCLE"
+
+#~ msgid "COURT"
+#~ msgstr "COUR"
+
+#~ msgid "CRESCENT"
+#~ msgstr "CROISSANT"
+
+#~ msgid "FREEWAY"
+#~ msgstr "AUTOROUTE"
+
+#~ msgid "HIGHWAY"
+#~ msgstr "Grande route"
+
+#~ msgid "LANE"
+#~ msgstr "RUELLE"
+
+#~ msgid "PARKWAY"
+#~ msgstr "PROMENADE"
+
+#~ msgid "PLACE"
+#~ msgstr "PLACE"
+
+#~ msgid "PLAZA"
+#~ msgstr "PLACE"
+
+#~ msgid "ROAD"
+#~ msgstr "ROUTE"
+
+#~ msgid "SQUARE"
+#~ msgstr "PLACE"
+
+#~ msgid "STREET"
+#~ msgstr "RUE"
+
+#~ msgid "TERRACE"
+#~ msgstr "TERRASSE"
+
+#~ msgid "TRAIL"
+#~ msgstr "SENTIER"
+
+#~ msgid "TURNPIKE"
+#~ msgstr "AUTOROUTE À PÉAGES"
+
+#~ msgid "WAY"
+#~ msgstr "Chemin"
+
+#~ msgid "STREET TYPE REQUIRED"
+#~ msgstr "TYPE DE RUE REQUIS"
+
+#~ msgid "PO Box"
+#~ msgstr "Casier postal"
+
+#~ msgid "PO BOX REQUIRED"
+#~ msgstr "CASIER POSTAL REQUIS"
+
+#~ msgid "Rural Route"
+#~ msgstr "Route rurale"
+
+#~ msgid "RURAL ROUTE REQUIRED"
+#~ msgstr "ROUTE RURAL REQUISE"
+
+#~ msgid "City"
+#~ msgstr "Ville"
+
+#~ msgid "CITY REQUIRED"
+#~ msgstr "VILLE REQUISE"
+
+#~ msgid "State"
+#~ msgstr "Province"
+
+#~ msgid "STATE REQUIRED"
+#~ msgstr "PROVINCE REQUISE"
+
+#~ msgid "Zip"
+#~ msgstr "Code postal"
+
+#~ msgid "ZIP REQUIRED"
+#~ msgstr "CODE POSTAL REQUIS"
+
+#~ msgid "Birth Date"
+#~ msgstr "Date de naissance"
+
+#~ msgid "Month-Date-Year"
+#~ msgstr "Mois-Jour-Année"
+
+#~ msgid "Jan"
+#~ msgstr "Jan"
+
+#~ msgid "Feb"
+#~ msgstr "Fév"
+
+#~ msgid "Mar"
+#~ msgstr "Mar"
+
+#~ msgid "Apr"
+#~ msgstr "Avr"
+
+#~ msgid "May"
+#~ msgstr "Mai"
+
+#~ msgid "Jun"
+#~ msgstr "Juin"
+
+#~ msgid "Jul"
+#~ msgstr "Juil"
+
+#~ msgid "Aug"
+#~ msgstr "Août"
+
+#~ msgid "Sep"
+#~ msgstr "Sep"
+
+#~ msgid "Oct"
+#~ msgstr "Oct"
+
+#~ msgid "Nov"
+#~ msgstr "Nov"
+
+#~ msgid "Dec"
+#~ msgstr "Déc"
+
+#~ msgid "DAY REQUIRED"
+#~ msgstr "JOUR REQUIS"
+
+#~ msgid "MONTH REQUIRED"
+#~ msgstr "MOIS REQUIS"
+
+#~ msgid "YEAR REQUIRED"
+#~ msgstr "ANNÉE REQUISE"
+
+#~ msgid "(Month-Date-Year)"
+#~ msgstr "(Mois-Jour-Année)"
+
+#~ msgid "STEP FIVE  - Co-Applicant Employment Info"
+#~ msgstr "ÉTAPE 5 - Information sur l'emploi du co-acheteur"
+
+#~ msgid "Employer Name"
+#~ msgstr "Employeur"
+
+#~ msgid "EMPLOYER REQUIRED"
+#~ msgstr "EMPLOYEUR REQUIS"
+
+#~ msgid "POSITION REQUIRED"
+#~ msgstr "POSTE OCCUPÉ REQUIS"
+
+#~ msgid "Years/Month at Company"
+#~ msgstr "Années/Mois pour cette entreprise"
+
+#~ msgid "YEARS REQUIRED"
+#~ msgstr "ANNÉES REQUISES"
+
+#~ msgid "MONTHS REQUIRED"
+#~ msgstr "MOIS REQUIS"
+
+#~ msgid "Employer Phone Number"
+#~ msgstr "Numéro de téléphone de l'employeur"
+
+#~ msgid "PHONE REQUIRED"
+#~ msgstr "NUMÉRO DE TÉLÉPHONE REQUIS"
+
+#~ msgid "INCOME REQUIRED"
+#~ msgstr "REVENU REQUIS"
+
+#~ msgid "Other Income"
+#~ msgstr "Autre revenu"
+
+#~ msgid "OTHER INCOME REQUIRED"
+#~ msgstr "AUTRE REVENU REQUIS"
+
+#~ msgid "Co-Applicant Previous Employment"
+#~ msgstr "Emploi précédent du co-acheteur"
+
+#~ msgid "STEP SIX  - Co-Applicant Living Situation"
+#~ msgstr "ÉTAPE 6 - Était matrimonial du co-acheteur"
+
+#~ msgid "Years/Month at Current Address"
+#~ msgstr "Année/Mois à l'adresse actuelle"
+
+#~ msgid "Do you Own or Rent ?"
+#~ msgstr "Êtes-vous locataire ou propriétaire?"
+
+#~ msgid "Own"
+#~ msgstr "Propriétaire"
+
+#~ msgid "Rent"
+#~ msgstr "Locataire"
+
+#~ msgid "Relatives"
+#~ msgstr "Relatifs"
+
+#~ msgid "REQUIRED"
+#~ msgstr "REQUIS"
+
+#~ msgid "Rent Amount/Mortgage Payment $"
+#~ msgstr "Prix loyer/hypothèque $"
+
+#~ msgid "Best Contact Place And Time"
+#~ msgstr "Meilleur moment et endroit pour vous joindre"
+
+#~ msgid "Home"
+#~ msgstr "Maison"
+
+#~ msgid "Work"
+#~ msgstr "Travail"
+
+#~ msgid "Morning   "
+#~ msgstr "Matin"
+
+#~ msgid "Morning"
+#~ msgstr "Matin"
+
+#~ msgid "Afternoon "
+#~ msgstr "Après-midi"
+
+#~ msgid "Afternoon"
+#~ msgstr "Après-midi"
+
+#~ msgid "Evening   "
+#~ msgstr "Soirée"
+
+#~ msgid "Evening"
+#~ msgstr "Soirée"
+
+#~ msgid "Previous Co-Applicant Address"
+#~ msgstr "Adresse précente du co-acheteur"
+
+#~ msgid "STEP FOUR - Co-Applicant Information"
+#~ msgstr "ÉTAPE 4 - Information sur le co-acheteur"
+
+#~ msgid "(Optional)"
+#~ msgstr "(optionnel)"
+
+#~ msgid "First Name"
+#~ msgstr "Prénom"
+
+#~ msgid "FIRST NAME REQUIRED"
+#~ msgstr "Prénom requis"
+
+#~ msgid "Middle Initial"
+#~ msgstr "Initiales"
+
+#~ msgid "Last Name"
+#~ msgstr "Nom"
+
+#~ msgid "LAST NAME REQUIRED"
+#~ msgstr "Votre nom de famille est requis"
+
+#~ msgid "Home Phone Number"
+#~ msgstr "Numéro de téléphone (maison)"
+
+#~ msgid "Email Address"
+#~ msgstr "Adresse de courriel"
+
+#~ msgid "EMAIL REQUIRED"
+#~ msgstr "Courriel requis"
+
+#~ msgid "( We secure and protect your confidential information )"
+#~ msgstr "(Nous sécurisons et protégeons vos informations confidentielles)"
+
+#~ msgid "STEP TWO  - Employment Info"
+#~ msgstr "ÉTAPE 2 - Information employeur"
+
+#~ msgid "PREVIOUS EMPLOYMENT"
+#~ msgstr "Emploi précédent"
+
+#~ msgid "STEP THREE - Living Situation"
+#~ msgstr "ÉTAPE 3 - État matrimonial"
+
+#~ msgid "PREVIOUS ADDRESS"
+#~ msgstr "Adresse précédente"
+
+#~ msgid "STREET NUM  REQUIRED"
+#~ msgstr "Numéro civique"
+
+#~ msgid "App Street Name"
+#~ msgstr "Rue"
+
+#~ msgid "STEP ONE - Personal Info"
+#~ msgstr "ÉTAPE 1 - Information personnelle"
+
+#~ msgid "Phone Number"
+#~ msgstr "Numéro de téléphone"
+
+#~ msgid "Your info is secure"
+#~ msgstr "Vos informations sont sécurisées"
+
+#~ msgid "Social Security Number"
+#~ msgstr "Numéro d'assurance sociale"
+
+#~ msgid "We secure and protect your confidential information"
+#~ msgstr "Nous sécurisons et protégeons vos informations confidentielles."
+
+#~ msgid "You didn't enter an email address."
+#~ msgstr "Vous n'avez pas entré une adresse courriel valide."
+
+#~ msgid "Please enter a valid email address."
+#~ msgstr "Veuillez entrer une adresse courriel valide."
+
+#~ msgid "The email address contains illegal characters."
+#~ msgstr "Votre adresse courriel contient des caractères incorrects."
+
+#~ msgid "You must enter your name."
+#~ msgstr "Vous devez entré votre numéro."
+
+#~ msgid "You must enter a valid Phone Number."
+#~ msgstr "Vous devez entré un numéro de téléphone valide."
+
+#~ msgid "The phone number you entered is not valid."
+#~ msgstr "Le numéro de téléphone que vous avez entré n'est pas valide."
+
+#~ msgid "You did not select who you want to send this message to."
+#~ msgstr "Vous n'avez pas sélectionné a qui vous voulez envoyé ce message."
+
+#~ msgid "You did not enter a message to send."
+#~ msgstr "Vous n'avez pas entré un message a envoyé."
+
+#~ msgid ""
+#~ "You indicated you were interested in purchasing a vehicle but did not "
+#~ "select one."
+#~ msgstr ""
+#~ "Vous avez indiqué être intéressé a acheter un véhicule mais vous n'en "
+#~ "avez pas sélectionné un."
+
+#~ msgid "Issues were detected with your Application."
+#~ msgstr "Il y a des erreurs dans votre demande."
+
+#~ msgid "Please review the application and submit again."
+#~ msgstr "Veuillez réviser cette demande et soumettre ensuite."
+
+#~ msgid "Do you have a Co-Signer?"
+#~ msgstr "Avez-vous un co-signataire?"
+
+#~ msgid "You may only add 10 parts to your request"
+#~ msgstr "Vous pouvez ajouter seulement 10 pièces dans votre demande"
+
+#~ msgid "If you need additional parts please add them in the comment area."
+#~ msgstr ""
+#~ "Si vous avez besoin de pièces additionnelles s'il vous plaît les ajouter "
+#~ "dans la section commentaires."
+
+#~ msgid "You did not select a part location."
+#~ msgstr "Vous n'avez pas sélectionné une localisation pour les pièces."
+
+#~ msgid "You need to add at least the name of one part you are looking for."
+#~ msgstr "Vous devez ajouter au moins le nom d'une pièce que vous recherchez."
+
+#~ msgid "You must enter your city."
+#~ msgstr "Vous devez entrer votre ville."
+
+#~ msgid "You must enter your employer."
+#~ msgstr "Vous devez entrer votre employeur."
+
+#~ msgid "You must enter your income."
+#~ msgstr "Vous devez entrer votre revenu."
+
+#~ msgid "You did not select a service location."
+#~ msgstr "Vous n'avez pas sélectionn une localisation pour le service."
+
+#~ msgid "You did not select a preferred appointment date."
+#~ msgstr ""
+#~ "Vous n'avez pas sélectionné le moment préférable pour votre rendez-vous."
+
+#~ msgid "You did not select an alternate appointment date."
+#~ msgstr ""
+#~ "Vous n'avez pas sélectionné un moment alternatif pour un rendez-vous."
+
+#~ msgid "You did not tell us what kind of service you need."
+#~ msgstr ""
+#~ "Vous n'avez pas spécifié le type de renseignements que vous avez de "
+#~ "besoin."
+
+#~ msgid "You must enter the year of the vehicle you wish to trade."
+#~ msgstr "Vous devez entrer l'année du véhicule que vous voulez échanger."
+
+#~ msgid "You must enter the manufacturer of the vehicle you wish to trade."
+#~ msgstr "Vous devez entrer la marque du véhicule que vous voulez échanger."
+
+#~ msgid "You must enter the model of the vehicle you wish to trade."
+#~ msgstr "Vous devez entrer le modèle du véhicule que vous voulez échanger."
+
+#~ msgid "You must enter the miles of the vehicle you wish to trade."
+#~ msgstr ""
+#~ "Vous devez entrer le kilométrage du véhicule que vous voulez échanger."
+
+#~ msgid "You did not select a trade location."
+#~ msgstr "Vous n'avez pas sélectionné la localisation d'échange."
+
+#~ msgid "Cars For Sale"
+#~ msgstr "Véhicules à vendre"
+
+#~ msgid "Car New Car"
+#~ msgstr "Véhicule neuf"
+
+#~ msgid "Make"
+#~ msgstr "Marque"
+
+#~ msgid "Condition"
+#~ msgstr "Condition"
+
+#~ msgid "Location"
+#~ msgstr "Localisation"
+
+#~ msgid "View Details"
+#~ msgstr "Voir les détails"
+
+#~ msgid "Finance Calculator"
+#~ msgstr "Calculateur de financement"
+
+#~ msgid "Estimated Price"
+#~ msgstr "Prix estimé"
+
+#~ msgid "Annual Percentage Rate"
+#~ msgstr "Taux d'intérêt annuel"
+
+#~ msgid "Total Number of Payments"
+#~ msgstr "Nombre de paiements total"
+
+#~ msgid "Calculate"
+#~ msgstr "Calculer"
+
+#~ msgid "Reset Form"
+#~ msgstr "Réinitialisé le formulaire"
+
+#~ msgid "Sort By:"
+#~ msgstr "Affiché par:"
+
+#~ msgid "Sort Low to High"
+#~ msgstr "Affiché plus bas au plus haut"
+
+#~ msgid "Sort High to Low"
+#~ msgstr "Affiché plus haut ou plus bas"
+
+#~ msgid "Mileage"
+#~ msgstr "Odomètre"
+
+#~ msgid "Mobile Header"
+#~ msgstr "En-tête mobile"
+
+#~ msgid "Mobile Front Page"
+#~ msgstr "Page principale mobile"
+
+#~ msgid "Mobile Footer"
+#~ msgstr "Bas de page mobile"
+
+#~ msgid "Mobile Car Page"
+#~ msgstr "Page mobile du véhicule"
+
+#~ msgid "Any"
+#~ msgstr "Tout"
+
+#~ msgid "ALL MAKES"
+#~ msgstr "Toutes les marques"
+
+#~ msgid "ALL MODELS"
+#~ msgstr "Tous les modèles"
+
+#~ msgid "ALL"
+#~ msgstr "Tous"
+
+#~ msgid "QUICK SEARCH"
+#~ msgstr "Recherche rapide"
+
+#~ msgid "Min Price"
+#~ msgstr "Prix Min"
+
+#~ msgid "Max Price"
+#~ msgstr "Prix Mac"
+
+#~ msgid "Trans"
+#~ msgstr "Trans"
+
+#~ msgid "Body Type"
+#~ msgstr "Type"
+
+#~ msgid "Search"
+#~ msgstr "Recherche"
+
+#~ msgid "Run Slideshow"
+#~ msgstr "Démarrer le diaporama"
+
+#~ msgid "Next"
+#~ msgstr "Suivant"
+
+#~ msgid "Previous"
+#~ msgstr "Précédent"
+
+#~ msgid "Send this car to a friend"
+#~ msgstr "Envoyé cette fiche à un ami"
+
+#~ msgid "Your Email"
+#~ msgstr "Votre courriel"
+
+#~ msgid "Friend's Name"
+#~ msgstr "Noms de vos amis"
+
+#~ msgid "Friend Name"
+#~ msgstr "Nom de votre ami"
+
+#~ msgid "Friend's Email"
+#~ msgstr "Courriel de votre ami"
+
+#~ msgid "Your Message"
+#~ msgstr "Votre message"
+
+#~ msgid "Check out this"
+#~ msgstr "Consulter la fiche de"
+
+#~ msgid "stock number"
+#~ msgstr "Numéro de stock"
+
+#~ msgid "Send Now!"
+#~ msgstr "Envoyer maintenant!"
+
+#~ msgid "Specs"
+#~ msgstr "Spécifications"
+
+#~ msgid "Safety"
+#~ msgstr "Sécurité"
+
+#~ msgid "Convenience"
+#~ msgstr "Commodité"
+
+#~ msgid "Comfort"
+#~ msgstr "Confort"
+
+#~ msgid "Entertainment"
+#~ msgstr "Divertissement"
+
+#~ msgid "About"
+#~ msgstr "À propos"
+
+#~ msgid "Other Great Deals"
+#~ msgstr "Autres offres incroyables"
+
+#~ msgid "Click for price on this"
+#~ msgstr "Cliquer pour avoir un prix"
+
+#~ msgid "Extra Profile Information"
+#~ msgstr "Information supplémentaire du profil"
+
+#~ msgid "Upload Profile Photo"
+#~ msgstr "Télécharger une photo de profil"
+
+#~ msgid "Please select a custom photo."
+#~ msgstr "Veuillez sélectionner une photo personnelle."
+
+#~ msgid "Job Title"
+#~ msgstr "Titre du poste"
+
+#~ msgid "Please enter a job title for the user."
+#~ msgstr "Veuillez entrer le titre du poste de l'utilisateur."
+
+#~ msgid "Please select user location."
+#~ msgstr "Veuillez sélectionner la localisation de l'utilisateur."
+
+#~ msgid "Staff Pages"
+#~ msgstr "Page Notre équipe"
+
+#~ msgid ""
+#~ "Select the staff type of the user to determine where they show up on the "
+#~ "staff pages."
+#~ msgstr ""
+#~ "Sélectionner le type de poste de l'utilisateur pour déterminer où il va "
+#~ "apparaître sur la page Notre équipe."
+
+#~ msgid "Advanced Sales Information"
+#~ msgstr "Informations sur le département des ventes"
+
+#~ msgid "Custom URL"
+#~ msgstr "Adresse URL du site personnel"
+
+#~ msgid ""
+#~ "Please enter user's custom URL. ie. www.custom_url.com, please make sure "
+#~ "this URL is mapped to this site."
+#~ msgstr ""
+#~ "Veuillez entrer l'adresse URL du site personnel ie.www.custom_url.com, "
+#~ "s'i vous plâit vous assurer que cette adresse URL est mis en "
+#~ "correspondance avec ce site."
+
+#~ msgid "Facebook Page"
+#~ msgstr "Page Facebook"
+
+#~ msgid "Please enter the URL to user's Facebook Profile."
+#~ msgstr "Veuillez entrer l'adresse URL de la page Facebook de l'utilisateur."
+
+#~ msgid "Please enter user's phone number."
+#~ msgstr "Veuillez entrer le numéro de téléphone de l'utilisateur."
+
+#~ msgid "Receive Lead Types"
+#~ msgstr "Recevoir les types de références"
+
+#~ msgid "Select the lead types user may receive on their custom site."
+#~ msgstr ""
+#~ "Sélectionner le type de références que l'utilisateur peut recevoir sur "
+#~ "leur site personnel."
+
+#~ msgid "Lead Locations"
+#~ msgstr "Localisation des références"
+
+#~ msgid ""
+#~ "Can user receive leads from ALL locations or just their assigned location?"
+#~ msgstr ""
+#~ "Est-ce que l'utilisateur peut recevoir des références de toutes les "
+#~ "localisations ou seulement de la localisation assignée?"
+
+#~ msgid "Selling Price"
+#~ msgstr "Prix demandé"
+
+#~ msgid "Xtra Discount"
+#~ msgstr "Rabais"
+
+#~ msgid "YOUR PRICE"
+#~ msgstr "VOTRE PRIX"
+
+#~ msgid "Not Found"
+#~ msgstr "Aucun résultat"
+
+#~ msgid "GET FINANCED"
+#~ msgstr "Faire financer"
+
+#~ msgid "TRADE-IN QUOTE"
+#~ msgstr "Évaluation d'un véhicule d'échange"
+
+#~ msgid "Share on Facebook"
+#~ msgstr "Partager sur Facebook"
+
+#~ msgid "Click to share this on Twitter"
+#~ msgstr "Cliquer pour partager sur Twitter"
+
+#~ msgid "Share on Twitter"
+#~ msgstr "Partager sur Twitter"
+
+#~ msgid "Email to a Friend"
+#~ msgstr "Partager à un ami"
+
+#~ msgid "You have not setup a contact email in the admin area of your site."
+#~ msgstr ""
+#~ "Vous n'avez pas ajouté un courriel pour nous joindre dans la section "
+#~ "administrative de votre site."
+
+#~ msgid "Contact Form from "
+#~ msgstr "Formulaire de contact"
+
+#~ msgid "Thank You"
+#~ msgstr "Merci"
+
+#~ msgid "Your Message has been sent."
+#~ msgstr "Votre message a été envoyé."
+
+#~ msgid "You should receive a confirmation from us shortly."
+#~ msgstr "Vous allez recevoir une confirmation de notre part sous peu."
+
+#~ msgid "The information you sent is below."
+#~ msgstr "L'information que vous avez envoyé est ci-dessous."
+
+#~ msgid "If you have questions or concerns please call and let us know."
+#~ msgstr "Si vous avez des questions s'il vous plaît nous contacter."
+
+#~ msgid "CONTACT INFORMATION"
+#~ msgstr "Information contact"
+
+#~ msgid "Customer Name"
+#~ msgstr "Nom du client"
+
+#~ msgid "Message Sent to"
+#~ msgstr "Message envoyé à"
+
+#~ msgid "COMMENT OR QUESTION"
+#~ msgstr "Questions ou commentaires?"
+
+#~ msgid "SENDER INFORMATION"
+#~ msgstr "Information expéditeur"
+
+#~ msgid "Time Sent"
+#~ msgstr "Heure d'envoi"
+
+#~ msgid "User Agent"
+#~ msgstr "Utilisateur"
+
+#~ msgid "Check out this car from"
+#~ msgstr "Découvrez cette voiture"
+
+#~ msgid "Your Message has been sent to your friend."
+#~ msgstr "Votre message a été envoyé à votre ami."
+
+#~ msgid "Your friend should receive their email shortly."
+#~ msgstr "Votre ami va recevoir le courriel sous peu."
+
+#~ msgid "Your Friend"
+#~ msgstr "Votre ami"
+
+#~ msgid "Message from your Friend "
+#~ msgstr "Message de votre ami"
+
+#~ msgid "You have not setup a finance email in the admin area of your site."
+#~ msgstr ""
+#~ "Vous n'avez pas ajouté un courriel pour le département de financement "
+#~ "automobile dans la section administration de votre site."
+
+#~ msgid "Finance Request from "
+#~ msgstr "Formulaire de demande de financement"
+
+#~ msgid "Your Finance Request has been sent."
+#~ msgstr "Votre demande de financement a été envoyée."
+
+#~ msgid "You should receive a confirmation shortly."
+#~ msgstr "Vous allez recevoir une confirmation sous peu."
+
+#~ msgid "PO BOX"
+#~ msgstr "Casier postal"
+
+#~ msgid "Apt"
+#~ msgstr "Appartement"
+
+#~ msgid "year(s)"
+#~ msgstr "Année(s)"
+
+#~ msgid "month(s)"
+#~ msgstr "Mois"
+
+#~ msgid "CUSTOMER INFORMATION"
+#~ msgstr "Information client"
+
+#~ msgid "Best Time to Contact"
+#~ msgstr "Meilleur moment pour vous joindre"
+
+#~ msgid "Living Situation"
+#~ msgstr "État "
+
+#~ msgid "Current Address"
+#~ msgstr "Adresse actuelle"
+
+#~ msgid "Time at Current Address"
+#~ msgstr "Durée à l'adresse actuelle"
+
+#~ msgid "Rent or Own"
+#~ msgstr "Location ou achat"
+
+#~ msgid "Monthly Payment"
+#~ msgstr "Paiement mensuel"
+
+#~ msgid "Previous Address"
+#~ msgstr "Adresse précédente"
+
+#~ msgid "Employment History"
+#~ msgstr "Historique d'emploi"
+
+#~ msgid "Employer"
+#~ msgstr "Employeur"
+
+#~ msgid "Years at Job"
+#~ msgstr "Nombres d'années à l'emploi"
+
+#~ msgid "Employer Phone"
+#~ msgstr "Téléphone de l'employeur"
+
+#~ msgid "Gross Income"
+#~ msgstr "Revenu brute"
+
+#~ msgid "Previous Employer"
+#~ msgstr "Employeur précédent"
+
+#~ msgid "CO-BUYER INFORMATION"
+#~ msgstr "Information co-acheteur"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Co-Buyer Living Situation"
+#~ msgstr "État matrimonial du co-acheteur"
+
+#~ msgid "Co-Buyer Employment History"
+#~ msgstr "Historique d'emploi du co-acheteur"
+
+#~ msgid "Co-Buyer Previous Employer"
+#~ msgstr "Ancien employeur du co-acheteur"
+
+#~ msgid "Finance Form"
+#~ msgstr "Formulaire de demande de financement"
+
+#~ msgid "You have not setup a part email in the admin area of your site."
+#~ msgstr ""
+#~ "Vous n'avez pas ajouté un courriel pour le département des pièces dans la "
+#~ "section administration de votre site."
+
+#~ msgid "Part Request from "
+#~ msgstr "Formulaire de demande au département des pièces"
+
+#~ msgid "Your Part Request has been sent."
+#~ msgstr "Votre demande au département des pièces a été envoyée."
+
+#~ msgid "You should receive a confirmation from our Parts Department Shortly."
+#~ msgstr ""
+#~ "Vous allez recevoir sous peu une confirmation du département des pièces."
+
+#~ msgid "Part Location"
+#~ msgstr "Emplacement du département des pièces"
+
+#~ msgid "VEHICLE INFORMATION"
+#~ msgstr "Information sur le véhicule"
+
+#~ msgid "Vehicle Year"
+#~ msgstr "Année du véhicule"
+
+#~ msgid "Vehicle Make"
+#~ msgstr "Marque du véhicule"
+
+#~ msgid "Vehicle Model"
+#~ msgstr "Modèle du véhicule"
+
+#~ msgid "PARTS REQUESTED"
+#~ msgstr "Demande au département des pièces"
+
+#~ msgid "COMMENTS"
+#~ msgstr "Commentaires"
+
+#~ msgid "Qualify Form from "
+#~ msgstr "Formulaire de demande de financement"
+
+#~ msgid "Time at Address"
+#~ msgstr "Depuis quand habitez-vous à la même adresse?"
+
+#~ msgid "Income"
+#~ msgstr "Revenu"
+
+#~ msgid "Time at Job"
+#~ msgstr "Depuis quand travaillez-vous à votre emploi?"
+
+#~ msgid "Down Payment"
+#~ msgstr "Acompte"
+
+#~ msgid "Has Trade"
+#~ msgstr "A échanger"
+
+#~ msgid "You have not setup a service email in the admin area of your site."
+#~ msgstr ""
+#~ "Vous n'avez pas ajouté le courriel du département du service dans la "
+#~ "section administration de votr site."
+
+#~ msgid "Service Request from "
+#~ msgstr "Formulaire de demande au département du service"
+
+#~ msgid "Your Service Request has been sent."
+#~ msgstr "Votre demande de service a été envoyée."
+
+#~ msgid ""
+#~ "You should receive a confirmation from our Service Department Shortly."
+#~ msgstr ""
+#~ "Vous allez recevoir une confirmation de la part du département du service "
+#~ "sous peu."
+
+#~ msgid "Service Location"
+#~ msgstr "Emplacement du service"
+
+#~ msgid "APPOINTMENT INFORMATION"
+#~ msgstr "Information - rendez-vous"
+
+#~ msgid "Preferred Service Date"
+#~ msgstr "Date préférée du rendez-vous au service"
+
+#~ msgid "Alternate Service Date"
+#~ msgstr "Date de rendez-vous alternative au service"
+
+#~ msgid "Customer will be"
+#~ msgstr "Client sera"
+
+#~ msgid "Needs Transportation"
+#~ msgstr "Besoin de transport"
+
+#~ msgid "Vehicle VIN"
+#~ msgstr "VIN du véhicule"
+
+#~ msgid "SERVICE REQUESTED"
+#~ msgstr "Demande au département du service"
+
+#~ msgid "Service Quote from "
+#~ msgstr "Formulaire de demande de soumission département du service"
+
+#~ msgid "Your Service Quote has been sent."
+#~ msgstr "Votre demande de soumission au service a été envoyée."
+
+#~ msgid "SERVICE QUOTE REQUESTED"
+#~ msgstr "Demande de soumission au département du service."
+
+#~ msgid "You have not setup a trade email in the admin area of your site."
+#~ msgstr ""
+#~ "Vous n'avez pas ajouté un courriel pour les échanges/évaluations dans la "
+#~ "section administration de votre site."
+
+#~ msgid "Trade Request from "
+#~ msgstr "Formulaire de demande d'échange"
+
+#~ msgid "Your Trade Request has been sent."
+#~ msgstr "Votre demande d'échange a été envoyé."
+
+#~ msgid "Options"
+#~ msgstr "Options"
+
+#~ msgid "Trade Form"
+#~ msgstr "Formulaire d'échange"
+
+#~ msgid "January"
+#~ msgstr "Janvier"
+
+#~ msgid "February"
+#~ msgstr "Février"
+
+#~ msgid "March"
+#~ msgstr "Mars"
+
+#~ msgid "April"
+#~ msgstr "Avril"
+
+#~ msgid "June"
+#~ msgstr "Juin"
+
+#~ msgid "July"
+#~ msgstr "Juillet"
+
+#~ msgid "August"
+#~ msgstr "Août"
+
+#~ msgid "September"
+#~ msgstr "Septembre"
+
+#~ msgid "October"
+#~ msgstr "Octobre"
+
+#~ msgid "November"
+#~ msgstr "Novembre"
+
+#~ msgid "December"
+#~ msgstr "Décembre"
+
+#~ msgid "Pick Time"
+#~ msgstr "Choisir l'heure"
+
+#~ msgid "Early Morning"
+#~ msgstr "Début d'avant-midi"
+
+#~ msgid "Mid Morning"
+#~ msgstr "Milieu d'avant-midi"
+
+#~ msgid "Late Morning"
+#~ msgstr "Fin d'avant-midi"
+
+#~ msgid "Early Afternoon"
+#~ msgstr "Début d'après-midi"
+
+#~ msgid "Mid Afternoon"
+#~ msgstr "Milieu d'après-midi"
+
+#~ msgid "Late Afternoon"
+#~ msgstr "Fin d'après-midi"
+
+#~ msgid "Clear"
+#~ msgstr "Effacé"
+
+#~ msgid "Close"
+#~ msgstr "Fermé"
+
+#~ msgid "Hide Tabs on vehicle display page?"
+#~ msgstr "Caché les onglets sur la page de vhicule?"
+
+#~ msgid "This option does not hide the description tab or the about us tab."
+#~ msgstr ""
+#~ "Cette n'option ne cache pas l'onglet description ou l'onglet à propos."
+
+#~ msgid ""
+#~ "Vehicle Option Tabs have been set to hidden under Car Demon settings and "
+#~ "will not appear on the front end."
+#~ msgstr ""
+#~ "Les onglets d'options de véhicule sont programmés pour être cachés dans "
+#~ "les paramètres Car Demon et ils n'apparaîtront pas sur le site pour "
+#~ "l'utilisateur."
+
+#~ msgid "Select Ribbon Banner"
+#~ msgstr "Sélectionner le ruban de bannière"
+
+#~ msgid "No Ribbon"
+#~ msgstr "Sans ruban"
+
+#~ msgid "Custom Ribbon"
+#~ msgstr "Ruban personnalisé"
+
+#~ msgid "Low Price"
+#~ msgstr "Bas prix"
+
+#~ msgid "Great Deal"
+#~ msgstr "Offre incroyable"
+
+#~ msgid "Just Added"
+#~ msgstr "Nouveau"
+
+#~ msgid "Low Miles"
+#~ msgstr "Bas kilométrage"
+
+#~ msgid "Brand New"
+#~ msgstr "Neuf"
+
+#~ msgid "VIN #"
+#~ msgstr "# VIN"
+
+#~ msgid "Stock Number"
+#~ msgstr "Numéro de stock"
+
+#~ msgid "Pricing"
+#~ msgstr "Prix"
+
+#~ msgid "Asking Price"
+#~ msgstr "Prix demandé"
+
+#~ msgid "Details"
+#~ msgstr "Détails"
+
+#~ msgid "Used"
+#~ msgstr "D'occasion"
+
+#~ msgid "Certified Used"
+#~ msgstr "D'occasion certifié"
+
+#~ msgid "New"
+#~ msgstr "Neuf"
+
+#~ msgid "Model Year"
+#~ msgstr "Année modèle"
+
+#~ msgid "Trim"
+#~ msgstr "Garniture"
+
+#~ msgid "Interior Color"
+#~ msgstr "Couleur intérieure"
+
+#~ msgid "Manufactured in"
+#~ msgstr "Fabriqué au"
+
+#~ msgid "Production Seq. Number"
+#~ msgstr "Numéro de séquence de production"
+
+#~ msgid "Specifications"
+#~ msgstr "Spécifications"
+
+#~ msgid "Engine Type"
+#~ msgstr "Type de moteur"
+
+#~ msgid "Transmission"
+#~ msgstr "Transmission"
+
+#~ msgid "Driveline"
+#~ msgstr "Transmission"
+
+#~ msgid "Tank(gallon)"
+#~ msgstr "Réservoir d'essence(Litres)"
+
+#~ msgid "Fuel Economy(City, miles/gallon)"
+#~ msgstr "Économie de carburant(Ville, Litres/100km)"
+
+#~ msgid "Fuel Economy(Highway, miles/gallon)"
+#~ msgstr "Économie d'essence (grande route, miles/gallon)"
+
+#~ msgid "Anti-Brake System"
+#~ msgstr "Système anti-frein"
+
+#~ msgid "Steering Type"
+#~ msgstr "Type de direction"
+
+#~ msgid "Length(in.)"
+#~ msgstr "Longueur(po.)"
+
+#~ msgid "Width(in.)"
+#~ msgstr "Largeur(po.)"
+
+#~ msgid "Height(in.)"
+#~ msgstr "Hauteur(po.)"
+
+#~ msgid "Disclaimer"
+#~ msgstr "Clause de non-responsabilité"
+
+#~ msgid ""
+#~ "ALTHOUGH THIS SITE CHECKS REGULARLY WITH ITS DATA SOURCES TO CONFIRM THE "
+#~ "ACCURACY AND COMPLETENESS OF THE DATA,"
+#~ msgstr ""
+#~ "Malgré que ce site vérifie régulièrement les données et les informations "
+#~ "publiées pour s'assurer de fournir des renseignements exacts et complets,"
+
+#~ msgid ""
+#~ "IT MAKES NO GUARANTY OR WARRANTY, EITHER EXPRESS OR IMPLIED, INCLUDING "
+#~ "WITHOUT LIMITATION ANY WARRANTY OR MERCHANTABILITY"
+#~ msgstr ""
+#~ "Il ne fait aucune garantie, soit implicite ou explicite, incluant sans "
+#~ "limitation toute garantie."
+
+#~ msgid ""
+#~ "DATA IN THIS REPORT FOR HIS OR HER OWN APPLICATIONS. ALL DATA IN THIS "
+#~ "REPORT ARE SUBJECT TO CHANGE WITHOUT NOTICE."
+#~ msgstr ""
+#~ "Les données dans ce rapport sont pour leurs demandes. Toutes les données "
+#~ "comprises dans ce rapport peuvent être modifiées à tout moment et sans "
+#~ "avis."
+
+#~ msgid "Legend"
+#~ msgstr "Légende"
+
+#~ msgid ""
+#~ "Std. - Standard: indicates a manufacturer-installed feature that comes "
+#~ "standard."
+#~ msgstr ""
+#~ "Std. - Standard: indique que le manufacturier offre cette option de série."
+
+#~ msgid ""
+#~ "Opt. - Optional: indicates a manufacturer-installed feature that does not "
+#~ "come standard."
+#~ msgstr ""
+#~ "Opt. - Optionnel: indique que cette fonciton est offerte en option par le "
+#~ "manufacturier."
+
+#~ msgid ""
+#~ "N/A - Not Available: indicates a feature that is not available as a "
+#~ "manufacturer-installed item."
+#~ msgstr ""
+#~ "N/D - Non disponible: indique que cette fonction n'est pas disponible "
+#~ "dans les options du manufacturier"
+
+#~ msgid "Equipment - Anti-Theft & Locks"
+#~ msgstr "Équipement - Antivol et verrouillage"
+
+#~ msgid "Child Safety Door Locks"
+#~ msgstr "Verrouillage sécurité enfants aux portes arrières"
+
+#~ msgid "Locking Pickup Truck Tailgate"
+#~ msgstr "Hayon arrière verrouillable - camion"
+
+#~ msgid "Power Door Locks"
+#~ msgstr "Verrouillage des portes électrique"
+
+#~ msgid "Vehicle Anti-Theft"
+#~ msgstr "Système antivol"
+
+#~ msgid "Equipment - Braking & Traction"
+#~ msgstr "Équipement - freins et traction"
+
+#~ msgid "4WD/AWD"
+#~ msgstr "Traction intégrale"
+
+#~ msgid "ABS(2-Wheel/4-Wheel)"
+#~ msgstr "Freins ABS"
+
+#~ msgid "Electronic Brake Assistance"
+#~ msgstr "Freins assistés"
+
+#~ msgid "Limited Slip Differential"
+#~ msgstr "Différentiel à glissement limité"
+
+#~ msgid "Locking Differential"
+#~ msgstr "Différentiel bloqué"
+
+#~ msgid "Traction Control"
+#~ msgstr "Contrôle de traction"
+
+#~ msgid "Vehicle Stability Control System"
+#~ msgstr "Système de contrôle de la stabilité du véhicule"
+
+#~ msgid "Equipment - Safety"
+#~ msgstr "Équipement - sécurité"
+
+#~ msgid "Driver Airbag"
+#~ msgstr "Coussin gonflable côté conducteur"
+
+#~ msgid "Front Side Airbag"
+#~ msgstr "Coussin gonflable avant"
+
+#~ msgid "Front Side Airbag with Head Protection"
+#~ msgstr "Coussin gonflable avant avec protection de la tête"
+
+#~ msgid "Passenger Airbag"
+#~ msgstr "Coussin gonflable côté passager"
+
+#~ msgid "Side Head Curtain Airbag"
+#~ msgstr "Rideau gonflable latéraux"
+
+#~ msgid "Second Row Side Airbag"
+#~ msgstr "Siège deuxième rangée - coussin gonflable latéral"
+
+#~ msgid "Second Row Side Airbag with Head Protection"
+#~ msgstr ""
+#~ "Siège deuxième rangée - coussin gonflable latéral avec protection de la "
+#~ "tête"
+
+#~ msgid "Electronic Parking Aid"
+#~ msgstr "Stationnement actif"
+
+#~ msgid "First Aid Kit"
+#~ msgstr "Ensemble premiers soins"
+
+#~ msgid "Trunk Anti-Trap Device"
+#~ msgstr "Dispositif de sortie du coffre"
+
+#~ msgid "Standard Option"
+#~ msgstr "Option standard"
+
+#~ msgid "Optional"
+#~ msgstr "Optionnel"
+
+#~ msgid "Equipment - Remote Controls & Release"
+#~ msgstr "Équipement - contrôle à distance"
+
+#~ msgid "Keyless Entry"
+#~ msgstr "Entrée sans clé"
+
+#~ msgid "Remote Ignition"
+#~ msgstr "Démarreur à distance"
+
+#~ msgid "Equipment - Interior Features"
+#~ msgstr "Équipement - intérieure"
+
+#~ msgid "Tachometer"
+#~ msgstr "Tachymètre"
+
+#~ msgid "Tilt Steering Wheel"
+#~ msgstr "Volant ajustable"
+
+#~ msgid "Tilt Steering Column"
+#~ msgstr "Colonne de direction inclinable"
+
+#~ msgid "Heated Steering Wheel"
+#~ msgstr "Volant chauffant"
+
+#~ msgid "Leather Steering Wheel"
+#~ msgstr "Volant gainé de cuir"
+
+#~ msgid "Telescopic Steering Column"
+#~ msgstr "Volant téléscopique"
+
+#~ msgid "Adjustable Foot Pedals"
+#~ msgstr "Pédales ajustables"
+
+#~ msgid "Genuine Wood Trim"
+#~ msgstr "Garniture en bois véritable"
+
+#~ msgid "Tire Inflation/Pressure Monitor"
+#~ msgstr "Capteur de pression des pneus"
+
+#~ msgid "Trip Computer"
+#~ msgstr "Ordinateur de voyage"
+
+#~ msgid "Equipment - Storage"
+#~ msgstr "Équipement - boîte de camion"
+
+#~ msgid "Cargo Area Cover"
+#~ msgstr "Boîte de fibre"
+
+#~ msgid "Cargo Net"
+#~ msgstr "Chargement net"
+
+#~ msgid "Pickup Truck Bed Liner"
+#~ msgstr "Fond de caisse - camion"
+
+#~ msgid "Equipment - Roof"
+#~ msgstr "Équipement - toît"
+
+#~ msgid "Power Sunroof/Moonroof"
+#~ msgstr "Toît ouvrant électrique"
+
+#~ msgid "Manual Sunroof/Moonroof"
+#~ msgstr "Toît ouvrant manuel"
+
+#~ msgid "Removable/Convertible Top"
+#~ msgstr "Toît convertible"
+
+#~ msgid "Equipment - Climate Control"
+#~ msgstr "Équipement - Climatisation et chauffage"
+
+#~ msgid "Separate Driver/Front Passenger Climate Controls"
+#~ msgstr "Climatisation avant 2 zones"
+
+#~ msgid "Equipment - Seat"
+#~ msgstr "Équipement - sièges"
+
+#~ msgid "Driver Multi-Adjustable Power Seat"
+#~ msgstr "Siège conducteur électrique - ajustable"
+
+#~ msgid "Front Cooled Seat"
+#~ msgstr "Siège avant climatisé"
+
+#~ msgid "Front Heated Seat"
+#~ msgstr "Siège avant chauffant"
+
+#~ msgid "Front Power Lumbar Support"
+#~ msgstr "Siège avant - support lombaire"
+
+#~ msgid "Front Power Memory Seat"
+#~ msgstr "Siège avant à mémoire"
+
+#~ msgid "Front Split Bench Seat"
+#~ msgstr "Siège avant - banquette"
+
+#~ msgid "Leather Seat"
+#~ msgstr "Siège en cuir"
+
+#~ msgid "Passenger Multi-Adjustable Power Seat"
+#~ msgstr "Siège passager électrique - ajustable"
+
+#~ msgid "Second Row Folding Seat"
+#~ msgstr "Siège de la deuxième rangée pliable"
+
+#~ msgid "Second Row Heated Seat"
+#~ msgstr "Siège de la deuxième rangée chauffant"
+
+#~ msgid "Second Row Multi-Adjustable Power Seat"
+#~ msgstr "Siège de la deuxième rangée électrique - ajustable"
+
+#~ msgid "Second Row Removable Seat"
+#~ msgstr "Siège de la deuxième rangée amovible"
+
+#~ msgid "Third Row Removable Seat"
+#~ msgstr "Siège de la troisième rangée amovible"
+
+#~ msgid "Equipment - Exterior Lighting"
+#~ msgstr "Équipement - lumières extérieures"
+
+#~ msgid "Automatic Headlights"
+#~ msgstr "Lumières automatique"
+
+#~ msgid "Daytime Running Lights"
+#~ msgstr "Lumières de jour"
+
+#~ msgid "Fog Lights"
+#~ msgstr "Antibrouillard"
+
+#~ msgid "High Intensity Discharge Headlights"
+#~ msgstr "Lampes à décharge"
+
+#~ msgid "Pickup Truck Cargo Box Light"
+#~ msgstr "Boîte de camion"
+
+#~ msgid "Equipment - Exterior Features"
+#~ msgstr "Équipement - extérieur"
+
+#~ msgid "Bodyside/Cab Step or Running Board"
+#~ msgstr "Marche-pied latéraux"
+
+#~ msgid "Front Air Dam"
+#~ msgstr "Prise d'air avant"
+
+#~ msgid "Rear Spoiler"
+#~ msgstr "Aileron arrière"
+
+#~ msgid "Skid Plate or Underbody Protection"
+#~ msgstr "Blindage ou protection (dessous véhicule)"
+
+#~ msgid "Splash Guards"
+#~ msgstr "Gardes-boue"
+
+#~ msgid "Wind Deflector or Buffer for Convertible"
+#~ msgstr "Déflecteur"
+
+#~ msgid "Power Sliding Side Van Door"
+#~ msgstr "Porte-coulissante électrique"
+
+#~ msgid "Power Trunk Lid"
+#~ msgstr "Coffre électrique"
+
+#~ msgid "Equipment - Wheels"
+#~ msgstr "Équipement - Roues"
+
+#~ msgid "Chrome Wheels"
+#~ msgstr "Jantes en aluminium"
+
+#~ msgid "Steel Wheels"
+#~ msgstr "Roues d'acier"
+
+#~ msgid "Equipment - Tires"
+#~ msgstr "Équipement-pneus"
+
+#~ msgid "Full Size Spare Tire"
+#~ msgstr "Pneu de secours pleine grandeur"
+
+#~ msgid "Run Flat Tires"
+#~ msgstr "Pneu de secours"
+
+#~ msgid "Equipment - Windows"
+#~ msgstr "Equipement- Vitres"
+
+#~ msgid "Glass Rear Window on Convertible"
+#~ msgstr "Lunette arrière - convertible"
+
+#~ msgid "Sliding Rear Pickup Truck Window"
+#~ msgstr "Lunette arrière èa glace coulissante"
+
+#~ msgid "Equipment - Mirrors"
+#~ msgstr "Équipement - Miroir"
+
+#~ msgid "Heated Exterior Mirror"
+#~ msgstr "Mirroir extérieur chauffé"
+
+#~ msgid "Power Adjustable Exterior Mirror"
+#~ msgstr "Miroir électrique extérieur ajustable"
+
+#~ msgid "Equipment - Wipers"
+#~ msgstr "Équipement - Essuie-glace"
+
+#~ msgid "Interval Wipers"
+#~ msgstr "Essuie-glace intermittent"
+
+#~ msgid "Rain Sensing Wipers"
+#~ msgstr "Essuie-glace détecteur de pluie"
+
+#~ msgid "Rear Wiper"
+#~ msgstr "Essuie-glace lunette arrière"
+
+#~ msgid "Rear Window Defogger"
+#~ msgstr "Dégivreur de lunette arrière"
+
+#~ msgid "Equipment - Towings"
+#~ msgstr "Équipement - Ensemble de remorquage"
+
+#~ msgid "Tow Hitch Receiver"
+#~ msgstr "Ensemble de remorquage"
+
+#~ msgid "Towing Preparation Package"
+#~ msgstr "Ensemble de remorquage"
+
+#~ msgid "Equipment - Entertainment, Communication & Navigation"
+#~ msgstr "Équipement - divertissement, communication et navigation"
+
+#~ msgid "AM/FM Radio"
+#~ msgstr "Radio AM/FM"
+
+#~ msgid "Cassette Player"
+#~ msgstr "Lecteur Cassette"
+
+#~ msgid "CD Player"
+#~ msgstr "Lecteur CD"
+
+#~ msgid "CD Changer"
+#~ msgstr "Changeur de CD"
+
+#~ msgid "DVD Player"
+#~ msgstr "Lecteur DVD"
+
+#~ msgid "Hands Free/Voice Activated Telephone"
+#~ msgstr "Bluetooth"
+
+#~ msgid "Navigation Aid"
+#~ msgstr "Outil de navigation (GPS)"
+
+#~ msgid "Subwoofer"
+#~ msgstr "Caisson de grave"
+
+#~ msgid "Telematic Systems"
+#~ msgstr "Système télématique"
+
+#~ msgid "Search Inventory"
+#~ msgstr "Rechercher dans l'inventaire"
+
+#~ msgid "Full"
+#~ msgstr "Complet"
+
+#~ msgid "Form Type:"
+#~ msgstr "Formulaire"
+
+#~ msgid "Car Demon Compare Vehicles"
+#~ msgstr "Comparaison de véhicule Car Demon"
+
+#~ msgid ""
+#~ "Select the compare checkbox next to the vehicles you'd like to compare."
+#~ msgstr ""
+#~ "Sélectionné la case comparaison du véhicule que vous désirez comparer."
+
+#~ msgid "No Vehicles Msg:"
+#~ msgstr "Aucun véhicule trouvé"
+
+#~ msgid "Display random cars."
+#~ msgstr "Afficher les véhicules de façon aléatoire"
+
+#~ msgid "Car Demon Random Cars"
+#~ msgstr "Véhicule aléatoire Car Demon"
+
+#~ msgid "3"
+#~ msgstr "3"
+
+#~ msgid "Popular Models"
+#~ msgstr "Modèles populaires"
+
+#~ msgid "cars_for_sale"
+#~ msgstr "véhicule_à_vendre"
+
+#~ msgid "vehicle_model"
+#~ msgstr "Modèle_véhicule"
+
+#~ msgid "Post Type:"
+#~ msgstr "Type de publication:"
+
+#~ msgid "Taxonomy:"
+#~ msgstr "Taxonomie"
+
+#~ msgid "max_num:"
+#~ msgstr "max_num:"
+
+#~ msgid "Vehicle Contact Form from "
+#~ msgstr "Formulaire de contact - véhicule de"
+
+#~ msgid "Your message has been received."
+#~ msgstr "Votre message a été reçu."
+
+#~ msgid "A Representative will contact you as soon as possible."
+#~ msgstr "Un conseiller vous contactera aussitôt que possible."
+
+#~ msgid "A copy of your message is below."
+#~ msgstr "Une copie de votre message ci-dessous."
+
+#~ msgid "Email Confirmation from "
+#~ msgstr "Confirmation de courriel de"
+
+#~ msgid "Vin Number"
+#~ msgstr "Numéro VIN"
+
+#~ msgid "Vehicle Contact Form"
+#~ msgstr "Formulaire de contact - véhicule"
+
+#~ msgid "Display contact form on Vehicle Pages."
+#~ msgstr "Afficher le formulaire de contact sur les pages de véhicules"
+
+#~ msgid "List Phone:"
+#~ msgstr "Téléphone"
+
+#~ msgid "CC:"
+#~ msgstr "CC:"
+
+#~ msgid "Send Confirmation Receipt:"
+#~ msgstr "Envoyer une confirmation de réception"
+
+#~ msgid "Additional Confirmation Message:"
+#~ msgstr "Message de confirmation additionnel"
+
+#~ msgid "For more information"
+#~ msgstr "Pour plus d'informations"
+
+#~ msgid "Call"
+#~ msgstr "Appeler"
+
+#~ msgid "at:"
+#~ msgstr "au:"

@@ -101,6 +101,9 @@ function cardemons_automotive_inventory_decode($post_id) {
 			$show_tabs = 0;
 		}
 	}
+	if (!isset($vin_query_decode['hide_tabs'])) {
+		$vin_query_decode['hide_tabs'] = __('No', 'car-demon');
+	}
 	if ($show_tabs == 1) {
 		$html .= __('Hide Tabs on vehicle display page?', 'car-demon').'
 			<select name="hide_tabs" id="hide_tabs" onchange="update_admin_decode(this, '.$post_id.')">
@@ -110,26 +113,34 @@ function cardemons_automotive_inventory_decode($post_id) {
 			</select><br />
 		'.__('This option does not hide the description tab or the about us tab.','car-demon').'
 		<hr />';
-	} else {
-		$html .= __('Vehicle Option Tabs have been set to hidden under Car Demon settings and will not appear on the front end.', 'car_demon_options');		
 	}
 	$html .= '
 	<div id="vin_decode_options_'.$post_id.'">';
 		$specs = get_vin_query_specs_admin($vin_query_decode, $vin, $post_id);
-		$safety = get_option_tab('safety',$post_id,'admin');
-		$convienience = get_option_tab('convenience',$post_id,'admin');
-		$comfort = get_option_tab('comfort',$post_id,'admin');
-		$entertainment = get_option_tab('entertainment',$post_id,'admin');
-	//	echo get_option_tab('about_us',$post_id,'admin');
+		global $pagenow;
+		if ( $pagenow == 'post-new.php' ) {
+			$show_tabs = 0;
+		}
+		if ($show_tabs == 1) {
+			$safety = get_option_tab('safety',$post_id,'admin');
+			$convienience = get_option_tab('convenience',$post_id,'admin');
+			$comfort = get_option_tab('comfort',$post_id,'admin');
+			$entertainment = get_option_tab('entertainment',$post_id,'admin');
+		//= Enable this to use custom options and tabs at the same time.
+		//	echo get_option_tab('about_us',$post_id,'admin');
+		} else {
+			$html .= __('Vehicle Option Tabs have been set to hidden under Car Demon settings and will not appear on the front end.', 'car_demon_options');		
+		}
 		echo '<hr />';
-	$html .= '
-		<ul class="tabs"> 
-			<li><a href="javascript:car_demon_switch_tabs(1, 5, \'tab_\', \'content_\');" id="tab_1">Specs</a></li>  
-			<li><a href="javascript:car_demon_switch_tabs(2, 5, \'tab_\', \'content_\');" id="tab_2">Safety</a></li>
-			<li><a href="javascript:car_demon_switch_tabs(3, 5, \'tab_\', \'content_\');" id="tab_3">Convenience</a></li>
-			<li><a href="javascript:car_demon_switch_tabs(4, 5, \'tab_\', \'content_\');" id="tab_4">Comfort</a></li>
-			<li><a href="javascript:car_demon_switch_tabs(5, 5, \'tab_\', \'content_\');" id="tab_5">Entertainment</a></li>
-		</ul>';
+		$html .= '<ul class="tabs">';
+			$html .= '<li><a href="javascript:car_demon_switch_tabs(1, 5, \'tab_\', \'content_\');" id="tab_1">Specs</a></li> ';
+			if ($show_tabs == 1) {			
+				$html .= '<li><a href="javascript:car_demon_switch_tabs(2, 5, \'tab_\', \'content_\');" id="tab_2">Safety</a></li>';
+				$html .= '<li><a href="javascript:car_demon_switch_tabs(3, 5, \'tab_\', \'content_\');" id="tab_3">Convenience</a></li>';
+				$html .= '<li><a href="javascript:car_demon_switch_tabs(4, 5, \'tab_\', \'content_\');" id="tab_4">Comfort</a></li>';
+				$html .= '<li><a href="javascript:car_demon_switch_tabs(5, 5, \'tab_\', \'content_\');" id="tab_5">Entertainment</a></li>';
+			}
+		$html .= '</ul>';
 		$html .= '<div id="content_1" class="car_features_content">'.$specs.'</div> ';
 		$html .= '<div id="content_2" class="car_features_content">'.$safety.'</div>  ';
 		$html .= '<div id="content_3" class="car_features_content">'.$convienience.'</div>';
@@ -141,8 +152,12 @@ function cardemons_automotive_inventory_decode($post_id) {
 function start_decode_box() {
 	global $theme_name;
 	add_meta_box('decode-div', 'Vehicle Options', 'decode_metabox', 'cars_for_sale', 'normal', 'high');
-//= Feature being deprecated in favor of new custom vehicle option feature.
-//	add_meta_box('decode-custom', 'Custom Options', 'decode_custom_metabox', 'cars_for_sale', 'normal', 'high');
+	//= Only use the custom option box if they're hiding tabs
+	if (isset($_SESSION['car_demon_options']['hide_tabs'])) {
+		if ($_SESSION['car_demon_options']['hide_tabs'] == 'Yes') {
+			add_meta_box('decode-custom', 'Custom Options', 'decode_custom_metabox', 'cars_for_sale', 'normal', 'high');
+		}
+	}
 	add_meta_box('decode-status', 'Sales Status', 'decode_sales_metabox', 'cars_for_sale', 'side', 'high');
 	add_meta_box('decode-ribbon', 'Photo Ribbon', 'decode_photo_ribbon', 'cars_for_sale', 'side', 'default');
 	add_meta_box('decode-images', 'Vehicle Photos', 'decode_images', 'cars_for_sale', 'side', 'default');
@@ -202,7 +217,7 @@ function decode_images($post) {
 	</div>
 	<img class="custom_media_image" src="" />
 		<input class="custom_media_url" type="hidden" name="attachment_url" value="">
-		<input class="custom_media_id" type="hidden" name="attachment_id" value="">
+		<input class="custom_media_id" type="hidden" name="attachment_id" id="attachment_id" value="">
 		<input type="hidden" name="attachment_post_id" id="attachment_post_id" value="'.$post_id.'">
 	';
 	$image_list = get_post_meta($post_id, '_images_value', true);
@@ -245,7 +260,7 @@ function decode_images($post) {
 				$this_car .= $photo_array;
 			}
 		}
-	$photo_array = '<div id="car_photo_attachments">'.$photo_array.'</div>';	
+	$this_car = '<div id="car_photo_attachments">'.$this_car.'</div>';	
 	echo $this_car;
 	return;
 }
