@@ -135,8 +135,8 @@ function get_option_tab($tab, $post_id, $type='') {
 								<td>'.$content.'</td>
 								</tr>';
 						} else {
-							$content = $vin_query_decode['decoded_'.$slug];
 							if (isset($vin_query_decode['decoded_'.$slug]) || isset($vin_query_decode[$slug]) || isset($vin_query_decode['decoded_'.$option]) || isset($vin_query_decode[$option])) {
+								$content = $vin_query_decode['decoded_'.$slug];
 								if(!empty($content)) {
 									$x .= '<tr class="'.$class.'">
 										<td class="decode_table_label">'.$option.'</td>
