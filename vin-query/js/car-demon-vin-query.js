@@ -326,13 +326,6 @@ jQuery(document).ready(function() {
 		formfield = jQuery('#_custom_ribbon').attr('name');
 		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
 		sendto = '_custom_ribbon';
-		return false;
-	});
-	jQuery('#_custom_ribbon').click(function() {
-		formfield = jQuery('#_custom_ribbon').attr('name');
-		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-		sendto = '_custom_ribbon';
-		return false;
         var original_send_to_editor = window.send_to_editor;
         window.send_to_editor = function(html) {
             imgurl = jQuery('img',html).attr('src');
@@ -344,5 +337,23 @@ jQuery(document).ready(function() {
             tb_remove();
             window.send_to_editor = window.original_send_to_editor;
         }
+		return false;
+	});
+	jQuery('#_custom_ribbon').click(function() {
+		formfield = jQuery('#_custom_ribbon').attr('name');
+		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+		sendto = '_custom_ribbon';
+        var original_send_to_editor = window.send_to_editor;
+        window.send_to_editor = function(html) {
+            imgurl = jQuery('img',html).attr('src');
+            jQuery('#'+sendto).val(imgurl);
+            document.getElementById('vehicle_ribbon').src = imgurl;
+            var post_id = document.getElementById('this_car_id').value;
+            fld = document.getElementById('_custom_ribbon');
+            update_vehicle_data(fld, post_id)
+            tb_remove();
+            window.send_to_editor = window.original_send_to_editor;
+        }
+		return false;
 	});
 });

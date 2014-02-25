@@ -74,7 +74,7 @@ function car_demon_nav($position,$search_query) {
 		} 
 		$x .= '</div><!-- #nav-'.$second_position.' -->';
 	} else {
-		$x .= '<div id="cd-nav-'.$second_position.'" class="navigation-'.$position.' inventory_nav"><span class="wp-pagenavi"><span class="pages">'. $wp_query->post_count; _e('Results Found', 'car-demon') .'</span></span>';
+		$x .= '<div id="cd-nav-'.$second_position.'" class="navigation-'.$position.' inventory_nav"><span class="wp-pagenavi"><span class="pages">'. $wp_query->post_count; __('Results Found', 'car-demon') .'</span></span>';
 		$x .= '</div>';
 	}
 	$x = str_replace('none', '', $x);
