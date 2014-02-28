@@ -13,9 +13,9 @@
 .cd_admin_form {
 	width: 600px;
 	background-color: #FFFFFF;
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
-	border-radius: 15px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	padding-top: 5px;
 	padding-bottom: 15px;
 	padding-right: 5px;
@@ -25,13 +25,6 @@
 	border-color: #999999;
 	margin-bottom: 10px;
 	margin-top: 20px;
-	-moz-box-shadow: 2px 2px 3px #333;
-	-webkit-box-shadow: 2px 2px 3px #333;
-	box-shadow: 2px 2px 3px #333333;
-	/* For IE 8 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
-	/* For IE 5.5 - 7 */
-	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 .small_text {
 	font-size:10px;

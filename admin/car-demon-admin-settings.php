@@ -46,6 +46,8 @@ function car_demon_plugin_options_do_page() {
 	screen_icon();
 	echo '<div class="wrap">';
 		echo "<h2>". __('Car Demon Contact Options', 'car-demon') . "</h2>";
+		echo __('For support please visit', 'car-demon').' <a href="http://www.cardemons.com" target="demon_win">www.CarDemons.com</a><br />';
+		echo __('Each location will have it\'s own contact settings. Make sure you scroll to the bottom of the page.','car-demon');
 		admin_contact_forms();
 	echo '</div>';
 }
@@ -229,6 +231,8 @@ function admin_contact_forms() {
 		</form>
 		<?php
 		$x = $x + 1;
+		echo '<br /><a href="http://www.cardemons.com" target="demon_win"><img title="Certified Support" src="'.CAR_DEMON_PATH.'images/cd-certified-support.png" /></a>';
+		echo '<br />'.__('For support please visit', 'car-demon').' <a href="http://www.cardemons.com" target="demon_win">www.CarDemons.com</a><br />';
 	}
 }
 function update_car_location_options() {
@@ -391,6 +395,8 @@ function car_demon_settings_form() {
 		}
 	}
 	$car_demon_options = car_demon_options();
+	echo __('For support please visit', 'car-demon').' <a href="http://www.cardemons.com" target="demon_win">www.CarDemons.com</a><br />';
+
 	echo '<hr />';
 	echo '<form action="" id="cd_settings" name="cd_settings" method="get">';
 		echo '<input type="hidden" name="post_type" value="cars_for_sale" />';
@@ -738,6 +744,7 @@ function car_demon_settings_form() {
 		echo '</div>';
 	echo '</fieldset>';
 	//= Save Stop
+	echo '<br /><a href="http://www.cardemons.com" target="demon_win"><img title="Certified Support" src="'.CAR_DEMON_PATH.'images/cd-certified-support.png" /></a>';
 }
 function update_car_demon_settings() {
 	$new = array();
