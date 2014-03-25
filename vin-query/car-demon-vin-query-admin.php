@@ -390,7 +390,7 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 	$car_demon_options = car_demon_options();
 	$decode_btn = '';
 	$decode_results = '';
-	if (!isset($vin_query_decode["decoded_model"])) {
+	if (empty($vin_query_decode)) {
 		$decode_results = '<div id="decode_results"></div>';
 		if (isset($car_demon_options['vinquery_id'])) {
 			if (!empty($car_demon_options['vinquery_id'])) {

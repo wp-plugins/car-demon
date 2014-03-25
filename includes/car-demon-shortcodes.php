@@ -142,6 +142,16 @@ function staff_shortcode_func( $atts ) {
 	return $staff_page;
 }
 add_shortcode( 'staff_page', 'staff_shortcode_func' );
+
+function random_cars_shortcode_func( $atts ) {
+	extract( shortcode_atts( array(
+		'amount'=> '1'
+	), $atts ) );
+	$x = car_demon_display_random_cars($amount);
+	return $x;
+}
+add_shortcode( 'random_cars', 'random_cars_shortcode_func' );
+
 //===================================================
 function car_demon_shortcodes( $content ) {
 	if (strpos($content, '[-staff_page-]')) {

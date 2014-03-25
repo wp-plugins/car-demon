@@ -662,6 +662,9 @@ function car_demon_settings_form() {
 		echo '</fieldset>';
 		//= Mobile Option Stop
 
+		//= Hook for additional settings
+		$car_demon_settings_hook = apply_filters('car_demon_settings_hook', $holder);
+
 		//= Save Start
 		echo '<fieldset class="cd_admin_group">';
 			echo '<legend>';
@@ -671,6 +674,7 @@ function car_demon_settings_form() {
 			echo '<input type="submit" name="reset_car_demon" value="'.__('Reset to Default', 'car-demon').'" /></p>';
 		echo '</fieldset>';
 		//= Save Stop
+		
 	echo '</form>';
 	echo '<fieldset class="cd_admin_group">';
 		echo '<legend>';
@@ -793,6 +797,7 @@ function update_car_demon_settings() {
 	if (isset($_POST['use_vehicle_css'])) $new['use_vehicle_css'] = $_POST['use_vehicle_css'];
 	if (isset($_POST['title_trim'])) $new['title_trim'] = $_POST['title_trim'];
 	update_option( 'car_demon_options', $new );
+	$car_demon_settings_hook = apply_filters('car_demon_settings_update_hook', $holder);
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }
 function reset_car_demon() {

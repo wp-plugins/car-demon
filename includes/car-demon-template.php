@@ -24,7 +24,7 @@ function car_demon_output_content_wrapper_end() {
 	echo '</div><!-- #container -->';
 }
 function get_car_title($post_id) {
-	If ($_SESSION['car_demon_options']['use_post_title'] == 'Yes') {
+	if ($_SESSION['car_demon_options']['use_post_title'] == 'Yes') {
 		$car_title = get_the_title($post_id);
 	} else {
 		$car_title = '';
@@ -474,7 +474,10 @@ function car_photos($post_id, $details, $vehicle_condition) {
 		if (!empty($image_list)) {
 			$thumbnails = split(",",$image_list);
 			foreach($thumbnails as $thumbnail) {
-				$pos = strpos($thumbnail,'.jpg');
+				//= $pos = strpos($thumbnail,'.jpg');
+				//= We need a different way to check if it really is an image file
+				//= maybe check file ext array?
+				$pos = true;
 				if($pos == true) {
 					if ($cnt > 0) {
 						$car_js .= 'carImg['.$cnt.']="'.trim($thumbnail).'";'.chr(13);
