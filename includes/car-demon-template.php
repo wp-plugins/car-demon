@@ -161,7 +161,7 @@ function car_demon_vehicle_detail_tabs($post_id) {
 	}
 
 	$vehicle_options_list = get_post_meta($post_id, '_vehicle_options', true);
-	$vehicle_options_array = split(',',$vehicle_options_list);
+	$vehicle_options_array = explode(',',$vehicle_options_list);
 	$options_image = '<img class="custom_option_img" src="'.WP_CONTENT_URL . '/plugins/car-demon/theme-files/images/opt_standard.gif" />';
 	$include_options = 0;
 	$flag = false;
@@ -472,7 +472,7 @@ function car_photos($post_id, $details, $vehicle_condition) {
 		// Check if vehicle has a list of photo urls that arent part of the normal gallery
 		$image_list = get_post_meta($post_id, '_images_value', true);
 		if (!empty($image_list)) {
-			$thumbnails = split(",",$image_list);
+			$thumbnails = explode(",",$image_list);
 			foreach($thumbnails as $thumbnail) {
 				//= $pos = strpos($thumbnail,'.jpg');
 				//= We need a different way to check if it really is an image file

@@ -1,5 +1,10 @@
 <?php
 function car_demon_query_search() {
+	if (isset($_SESSION['car_demon_options']['cars_per_page'])) {
+		$cars_per_page = $_SESSION['car_demon_options']['cars_per_page'];
+	} else {
+		$cars_per_page = 9;
+	}
 	if ($_GET['car']) {
 		add_filter( 'wp_title', 'car_demon_filter_search_title', 10, 3 );
 		$order_by = '_price_value';
@@ -72,7 +77,7 @@ function car_demon_query_search() {
 					'post_type' => 'cars_for_sale',
 					'is_paged' => true,
 					'paged' => $paged,
-					'posts_per_page' => 9,
+					'posts_per_page' => $cars_per_page,
 					'meta_query' => $meta_query,
 					'orderby' => 'meta_value_num',
 					'meta_key' => $order_by,
@@ -85,7 +90,7 @@ function car_demon_query_search() {
 					'post_type' => 'cars_for_sale',
 					'is_paged' => true,
 					'paged' => $paged,
-					'posts_per_page' => 9,
+					'posts_per_page' => $cars_per_page,
 					'meta_query' => $meta_query,
 					'orderby' => 'meta_value_num',
 					'meta_key' => $order_by,
@@ -96,7 +101,7 @@ function car_demon_query_search() {
 				'post_type' => 'cars_for_sale',
 				'is_paged' => true,
 				'paged' => $paged,
-				'posts_per_page' => 9,
+				'posts_per_page' => $cars_per_page,
 				'meta_query' => $meta_query,
 				'orderby' => 'meta_value_num',
 				'meta_key' => $order_by,
@@ -134,6 +139,11 @@ function car_demon_query_search() {
 }
 function car_demon_query_archive() {
 	global $query_string;
+	if (isset($_SESSION['car_demon_options']['cars_per_page'])) {
+		$cars_per_page = $_SESSION['car_demon_options']['cars_per_page'];
+	} else {
+		$cars_per_page = 9;
+	}
 	$order_by = '_price_value';
 	$order_by_dir = 'ASC';
 	if (isset($_GET['order_by'])) {
@@ -174,7 +184,7 @@ function car_demon_query_archive() {
 			'post_type' => 'cars_for_sale',
 			'is_paged' => true,
 			'paged' => $paged,
-			'posts_per_page' => 9,
+			'posts_per_page' => $cars_per_page,
 			'meta_query' => $meta_query,
 			'orderby' => 'meta_value_num',
 			'meta_key' => $order_by,

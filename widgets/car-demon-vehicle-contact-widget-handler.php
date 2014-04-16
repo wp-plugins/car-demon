@@ -162,7 +162,7 @@ function send_contact_widget_request() {
 	$agent = $_SERVER['HTTP_USER_AGENT'];
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
-	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
+	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = explode( '([^0-9])', $blogtime );
 	$right_now .= ' '.$hour.':'.$minute.':'.$second;
 	$style = " style='margin-top: 10px; padding: 5px 0 15px 0; border: 3px solid #ADADAD; border-left-color: #ECECEC; border-top-color: #ECECEC; background: #F7F7F7;'";
 	$html = '
@@ -261,7 +261,7 @@ function send_contact_widget_request() {
 function adfxml_vehicle_contact($location, $rep_name, $to) {
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
-	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = split( '([^0-9])', $blogtime );
+	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = explode( '([^0-9])', $blogtime );
 	$lead_date .= $today_year .'-'. $today_month .'-'. $today_day .'T'.$hour.':'.$minute.':'.$second;
 	$your_name = $_POST['your_name'];
 	$phone = $_POST['phone'];

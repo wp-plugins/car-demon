@@ -32,7 +32,7 @@ function show_compare_vehicles() {
 		$compare_these_array = '';
 	}
 	if ($compare_these_array) {
-		$compare_these = split(',',$compare_these_array);
+		$compare_these = explode(',',$compare_these_array);
 			if (!$compare_these) {
 				$x .= $_SESSION['car_demon_compare_options']['no_vehicles_msg'];
 			}
@@ -66,7 +66,7 @@ function show_compare_list() {
 	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
 	$compare_these_array = $_SESSION['car_demon_compare'];
 	if ($compare_these_array) {
-		$compare_these = split(',',$compare_these_array);
+		$compare_these = explode(',',$compare_these_array);
 		$x .= '<h2 class="offscreen">'.__('Compare Vehicles', 'car-demon').'</h2>';
 		$x .='<div id="car_demon_compare_box_list_cars" class="car_demon_compare_box_list_cars">';
 			foreach ($compare_these as $car) {

@@ -3,33 +3,47 @@ header("Content-Type: text/html");
 $newPath = dirname(__FILE__);
 if (!stristr(PHP_OS, 'WIN')) {
 	$is_it_iis = 'Apache';
-}
-else {
+} else {
 	$is_it_iis = 'Win';
 }
 if ($is_it_iis == 'Apache') {
 	$newPath = str_replace('wp-content/plugins/car-demon/feeds', '', $newPath);
 	include_once($newPath."/wp-load.php");
 	include_once($newPath."/wp-includes/wp-db.php");
-}
-else {
+} else {
 	$newPath = str_replace('wp-content\plugins\car-demon\feeds', '', $newPath);
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
+//= Example
+//= http://cardemonspro.com/wp-content/plugins/car-demon/feeds/car-demon-csv.php
+
 echo build_csv();
 function build_csv() {
-	global $wpdb;
+	if (is_multisite()) {
+		if (isset($_GET['dealer_id'])) {
+			$dealer_id = $_GET['dealer_id'];
+		} else {
+			return;
+		}
+		global $wpdb;
+		$wpdb->set_blog_id($dealer_id);
+		$wpdb->set_prefix($wpdb->base_prefix);
+		$prefix = $wpdb->prefix;
+	} else {
+		global $wpdb;
+		$prefix = $wpdb->prefix;
+	}
 	$query = "SELECT ID, post_content
-		FROM $wpdb->posts wposts
-			LEFT JOIN $wpdb->postmeta wpostmeta ON wposts.ID = wpostmeta.post_id 
+		FROM ".$prefix."posts wposts
+			LEFT JOIN ".$prefix."postmeta wpostmeta ON wposts.ID = wpostmeta.post_id 
 		WHERE wposts.post_type='cars_for_sale'
 			AND wpostmeta.meta_key = 'sold'
 			AND wpostmeta.meta_value = 'no'";
 //	$car_csv .= 'dealerId,dealerName,stockId,vin,year,make,model,trim,engineType,transmission,bodyStyle,used_new,certified,price,mileage,color,interior color,dealer notes,equipment list,photoUrl list'.chr(13).chr(10).chr(11);
 	$car_csv .= 'dealerId,dealerName,stockId,vin,year,make,model,trim,engineType,transmission,bodyStyle,used_new,certified,price,mileage,color,interior color,dealer notes,equipment list,photoUrl list';
 	$car_csv .= chr(13).chr(10);
-	$total_cars = $wpdb->get_results(sprintf($query));
+	$total_cars = $wpdb->get_results($query);
 	foreach ($total_cars as $total_car) {
 		$post_id =  $total_car->ID;
 		$car_options = $total_car->post_content;

@@ -32,7 +32,7 @@ function car_demon_display_car_list($post_id) {
 		else {
 			$compare_list = '';
 		}
-		$compare_these = split(',',$compare_list);
+		$compare_these = explode(',',$compare_list);
 		if (in_array($post_id,$compare_these)) {
 			$in_compare = ' checked="checked"';
 		}

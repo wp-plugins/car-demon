@@ -168,7 +168,7 @@ function decode_custom_metabox($post) {
 	$post_id = $post->ID;
 	$vehicle_options_list = get_post_meta($post_id, '_vehicle_options', true);
 	$custom_option_list = $_SESSION['car_demon_options']['custom_options'];
-	$custom_option_list_array = split(',', $custom_option_list);
+	$custom_option_list_array = explode(',', $custom_option_list);
 	$select_custom_options = '';
 	foreach ($custom_option_list_array as $custom_item) {
 		$select_custom_options .= '<option value="'.$custom_item.'">'.$custom_item.'</option>';
@@ -190,7 +190,7 @@ function decode_custom_metabox($post) {
 			'.__('You can select from the list or you can manually add and remove options in the box on the left. Make sure you seperate each option with a comma.', 'car-demon').'
 			</div>
 		</div>';
-	$vehicle_options_array = split(',',$vehicle_options_list);
+	$vehicle_options_array = explode(',',$vehicle_options_list);
 	$options_image = '<img src="'.WP_CONTENT_URL . '/plugins/car-demon/theme-files/images/opt_standard.gif" />';
 	$include_options = 0;
 	foreach ($vehicle_options_array as $vehicle_option) {
@@ -225,9 +225,10 @@ function decode_images($post) {
 	$cnt = 1;
 	if (!empty($image_list)) {
 		echo '<h3>Imported Photos</h3><br />';
-		$thumbnails = split(",",$image_list);
+		$thumbnails = explode(",",$image_list);
 		foreach($thumbnails as $thumbnail) {
-			$pos = strpos($thumbnail,'.jpg');
+//			$pos = strpos($thumbnail,'.jpg');
+			$pos = true;
 			if($pos == true) {
 				$photo_array = '<div id="car_photo_'.$cnt.'" name="car_photo_'.$cnt.'" class="car_photo_admin_box">';
 					$photo_array .= '<div class="car_photo_remove" onclick="remove_linked_car_image('.$post_id.', \''.trim($thumbnail).'\', '.$cnt.')">';

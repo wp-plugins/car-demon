@@ -344,6 +344,7 @@ function car_demon_options() {
 	$default['use_form_css'] = 'Yes';
 	$default['use_vehicle_css'] = 'Yes';
 	$default['title_trim'] = '49';
+	$default['cars_per_page'] = '9';
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -376,6 +377,7 @@ function car_demon_options() {
 	if (empty($car_demon_options['use_form_css'])) {$car_demon_options['use_form_css'] = $default['use_form_css'];}
 	if (empty($car_demon_options['use_vehicle_css'])) {$car_demon_options['use_vehicle_css'] = $default['use_vehicle_css'];}
 	if (empty($car_demon_options['title_trim'])) {$car_demon_options['title_trim'] = $default['title_trim'];}
+	if (empty($car_demon_options['cars_per_page'])) {$car_demon_options['cars_per_page'] = $default['cars_per_page'];}
 	return $car_demon_options;
 }
 function car_demon_settings_options_do_page() {
@@ -464,6 +466,10 @@ function car_demon_settings_form() {
 					<option value="0"'.$select_basic.'>'. __('Basic', 'car-demon') .'</option>
 					<option value="3"'.$select_lite.'>'. __('Lite', 'car-demon') .'</option>
 				</select><br />';
+			echo '<br /><strong>';
+			echo __('Did you know you can get 50 FREE Decodes from VinQuery?','car-demon');
+			echo '<br />';
+			echo '<a href="http://www.cardemonspro.com/vinquery-com/" target="vin_win">'.__('Sign up here!','car-demon').'</a></strong>';
 		echo '</fieldset>';
 		//= VinQuery Stop
 
@@ -547,6 +553,8 @@ function car_demon_settings_form() {
 				echo __('List Options','car-demon');
 			echo '</legend>';
 			//==============
+			echo '<br />'.__('Max number of vehicles in search results and archive pages:', 'car-demon').'<br />';
+			echo '<input type="text" name="cars_per_page" id="cars_per_page" value='.$car_demon_options['cars_per_page'].' /><br />';
 			echo '<br />'.__('Display before listings:', 'car-demon').'<br />';
 			echo '<textarea name="before_listings" rows="5" cols="60">'.$car_demon_options['before_listings'].'</textarea><br />';
 			echo '<br />'.__('Load Next Inventory Page on Scroll', 'car-demon').':<br />';
@@ -796,6 +804,7 @@ function update_car_demon_settings() {
 	if (isset($_POST['use_form_css'])) $new['use_form_css'] = $_POST['use_form_css'];
 	if (isset($_POST['use_vehicle_css'])) $new['use_vehicle_css'] = $_POST['use_vehicle_css'];
 	if (isset($_POST['title_trim'])) $new['title_trim'] = $_POST['title_trim'];
+	if (isset($_POST['cars_per_page'])) $new['cars_per_page'] = $_POST['cars_per_page'];
 	update_option( 'car_demon_options', $new );
 	$car_demon_settings_hook = apply_filters('car_demon_settings_update_hook', $holder);
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
