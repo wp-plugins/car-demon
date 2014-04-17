@@ -1,5 +1,5 @@
 === Car Demon ===
-Contributors: Jay Chuck Mailen 
+Contributors: theverylastperson, ICThawk
 Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots, auto dealer
 Requires at least: 3.4.2
