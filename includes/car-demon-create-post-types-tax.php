@@ -1,5 +1,7 @@
 <?php
-add_action( 'init', 'car_demon_create_post_type' );
+if (!function_exists('car_demon_recreate_post_type')) {
+	add_action( 'init', 'car_demon_create_post_type' );
+}
 add_action( 'init', 'car_demon_mytax_init' );
 function car_demon_create_post_type() {
   register_post_type( 'cars_for_sale',
