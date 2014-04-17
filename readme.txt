@@ -3,8 +3,8 @@ Contributors: Jay Chuck Mailen
 Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots, auto dealer
 Requires at least: 3.4.2
-Tested up to: 3.4.2
-Stable tag: 1.2.9
+Tested up to: 3.9.0
+Stable tag: 1.3.0
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead Routing, Staff Page and more.
@@ -13,11 +13,7 @@ Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead 
 
 The Car Demon PlugIn is full of features. It has a general contact form, service appointment form, service quote form, trade-in form, a fiance application and a vehicle information form all with AdfXml support.
 
-It also contains a powerful inventory management tool with optional VinQuery Integration. It also has an optional compare vehicles tool, multiple location support and a whole lot more.
-
-Customize The Site for Each Salesman!!!
-
-Each sales person can have their own affiliate links to customize the site with their information. Contact information and forms can be routed directly to them. They can also have their own custom banner and even a customized slide on the homepage.
+It also contains a powerful inventory management tool with optional VinQuery Integration, compare vehicles tool, multiple location support and a whole lot more.
 
 What can Car Demon do?
 
@@ -33,6 +29,10 @@ Easy to Use Admin Area
 
 Turn features on and off easily letting you customize your site with ease. Inventory management is a snap, quickly add and remove vehicles, upload photos & change prices.
 
+Super Fast Load Times
+
+Car Demon is optimized to load super fast, helping to reduce visitor bounce rates. With site load time now being used as a ranking factor, you'll never have to worry about your site getting hit with a Google performance penalty.
+
 
 == Installation ==
 
@@ -46,21 +46,19 @@ Go to your admin area and expand the menu for "Cars for Sale" and click on "Car 
 We've also included a few buttons on this page to help you quickly create your lead forms. You can also use the shortcodes to add forms to any post or page. It is suggested that you only add one form per page.
 
 
-Go to your admin area and click settings, then select permalinks. Add this as a custom permalink; /%postname%/%post_id%
-Now click save.
-
-
 Now it's time to setup your contact information.
 
 
 If you sell vehicles at more than one location then go to your admin area and expand the menu for "Cars for Sale", click on locations and add an entry for each lot.
 
 
-After you have setup your locations click on "Contact Settings", fill out and save the form for each location, INCLUDING THE DEFAULT. It is important to check and make sure your Finance Disclaimer and Descriptions are legal for your state. We take no responsibility for the legality of the default entries.
+After you have setup your locations click on "Contact Settings", fill out and save the form for each location, INCLUDING THE DEFAULT. It is important to check and make sure your Finance Disclaimer and Descriptions are legal for your location. We take no responsibility for the legality of the default entries.
 
 
 Adjust your theme settings and add widgets as desired.
 
+
+You're now ready to start adding vehicles to your site. You'll find a short form on the Dashboard to let you quickly add vehicles or you can click on "Add New" listed under "Cars for Sale"
 
 Please make sure you add a price to your vehicles. If you don't wish the price to be seen you can select "Do Not Show Prices" on the contact settings page.
 
@@ -210,21 +208,38 @@ For Example [part_request popup_id="1" popup_button="Request Parts"] this would 
 2. Here's a glance of what you can do with Car Demon and some of it's extensions. The site you see here is using the Car Demon Theme and the Car Demon Front Page PlugIn, both are available on our website; www.CarDemons.com
 
 == Changelog ==
+1.3.0
+* Added shortcode for random car.
+* Bug Fix - Count active items now flags only published vehicles 
+* Credit to Guy Labbé - guylabbe.ca for beta testing and bug reporting -j
+* Credit to Chris Porter for taking the lead -j
+* Added settings hooks - car_demon_settings_hook & car_demon_settings_update_hook
+* Changed _images_value file type check to always return true.
+* Added the ability to select the # of vehicles shown on archive and search pages.
+* Removed last of the split functions.
+* Notice added to alert users who do not have dashboard installed that it is available.
+* Export csv feed now supports multisite.
 = 1.2.9 =
 * Fixed staff page shortcode issue with WordPress Multi-site.
 * Improved vehicle photo management. Added quick photo delete links next to thumbnails.
-* Keyword search now supports multiple keywords separated by a comma.
 * Tweaked Finance Form css so it looks nicer on the Twenty Eleven Theme
 * Changed all $car_demon_pluginpath variables to Constant CAR_DEMON_PATH
-* Tweaked vehicle css to add some responsive features
+* Tweaked vehicle css to add some responsive starting points.
 * More work on form .css
 * Added the ability to change and modify the options displayed on the vehicle tabs.
 * Added a new ability to modify the default About Us tab. Now located with other tab options.
 * Added default mobile header image.
+* Re-enabled comments for post-type cars-for-sale.
 * Localized admin area js files
 * Localized Search js
 * Localized Single Car Scripts
 * Added new function car_demon_get_car($post_id) to return vehicle details as an array.
+* Added Spanish Translation file thanks to the efforts of Julian Gomez www.mirazamagazine.com
+* Modified the title trim to always return a title even if no trim is set
+* Added icon to cars-for-sale post type
+* Added French Translation thanks to the efforts of Guy Labbé http://guylabbe.ca/
+* Revised settings page and grouped options.
+* Adjusted admin js and revised vin query decode button to denote a vin that has already been deecoded as one that has a model field.
 = 1.2.8 =
 * Added option to unload vehicle css.
 * Added option to trim title by selected amount if desired.
@@ -368,13 +383,4 @@ For Example [part_request popup_id="1" popup_button="Request Parts"] this would 
 * Initial Public Release
 
 == Upgrade Notice ==
-
-Please make sure you back up your site files and database before upgrading.
-
-If you experience problems after upgrading then please try resaving your Car Demon Settings first.
-
-Please post any bug notices in the support forum, if a thread already exists for your issue then please add to that thread.
-
-Duplicate support threads and issues that are covered in the F.A.Q. may not receive direct replies.
-
-Thanks for all the support!
+Cross fingers
