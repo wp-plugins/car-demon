@@ -18,7 +18,7 @@ do_action( 'car_demon_before_main_content' );
 		echo $html;
 	endwhile; // End the loop. Whew. ?>
 	<?php
-	echo car_demon_nav('bottom', $wp_query);				
+	echo car_demon_nav('bottom', $wp_query);
 do_action( 'car_demon_after_main_content' );
 do_action( 'car_demon_sidebar' );
 get_footer();

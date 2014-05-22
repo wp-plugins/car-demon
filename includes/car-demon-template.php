@@ -1,27 +1,167 @@
 <?php
 add_action('car_demon_sidebar', 'car_demon_get_sidebar', 10);
 function car_demon_get_sidebar() {
-	get_sidebar();
+	$show_sidebar = cd_show_sidebar();
+	if ($show_sidebar == 1) {
+		get_sidebar();
+	}
 }
+
 add_action('car_demon_vehicle_sidebar', 'car_demon_get_vehicle_sidebar', 10);
 function car_demon_get_vehicle_sidebar() {
-	echo '<div id="sideBar1" class="car_side_bar">';
-		echo '<ul>';
-			if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Vehicle Detail Sidebar')) :
-			endif;
-		echo '</ul>';
-		echo '<br class="clear_car">';
-	echo '</div>';
+	$show_sidebar = cd_show_sidebar();
+	if ($show_sidebar == 1) {
+		echo '<div id="sideBar1" class="car_side_bar">';
+			echo '<ul>';
+				if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Vehicle Detail Sidebar')) :
+				endif;
+			echo '</ul>';
+			echo '<br class="clear_car">';
+		echo '</div>';
+	}
 }
+
+function cd_show_sidebar() {
+	$show_sidebar = 1;
+	if (is_single()) {
+		if (isset($_SESSION['car_demon_options']['right_vehicle_sidebar'])) {
+			if (!empty($_SESSION['car_demon_options']['right_vehicle_sidebar'])) {
+				$show_sidebar = 0;
+			}
+		}
+		if (isset($_SESSION['car_demon_options']['left_vehicle_sidebar'])) {
+			if (!empty($_SESSION['car_demon_options']['left_vehicle_sidebar'])) {
+				$show_sidebar = 0;
+			}
+		}
+	} else {
+		if (isset($_SESSION['car_demon_options']['right_list_sidebar'])) {
+			if (!empty($_SESSION['car_demon_options']['right_list_sidebar'])) {
+				$show_sidebar = 0;
+			}
+		}
+		if (isset($_SESSION['car_demon_options']['left_list_sidebar'])) {
+			if (!empty($_SESSION['car_demon_options']['left_list_sidebar'])) {
+				$show_sidebar = 0;
+			}
+		}
+	}
+	return $show_sidebar;
+}
+
 add_action('car_demon_before_main_content', 'car_demon_output_content_wrapper', 10);
 function car_demon_output_content_wrapper() {
-	echo '<div id="demon-container">';
-		echo '<div id="demon-content" class="listing" role="main">';
+	$cd_page_css = '';
+	if (isset($_SESSION['car_demon_options']['cd_page_id'])) {
+		if (!empty($_SESSION['car_demon_options']['cd_page_id'])) {
+			if (isset($_SESSION['car_demon_options']['cd_page_css'])) {
+				if (!empty($_SESSION['car_demon_options']['cd_page_css'])) {
+					$cd_page_css = ' class="'.$_SESSION['car_demon_options']['cd_page_css'].'"';
+				}
+			}
+			echo '<div id="'.$_SESSION['car_demon_options']['cd_page_id'].'"'.$cd_page_css.'>';
+		}
+	}
+	if (isset($_SESSION['car_demon_options']['vehicle_sidebar_class'])) {
+		$vehicle_sidebar_class = ' class="'.$_SESSION['car_demon_options']['vehicle_sidebar_class'].'"';
+	} else {
+		$vehicle_sidebar_class = '';
+	}
+	if (isset($_SESSION['car_demon_options']['sidebar_id'])) {
+		if (empty($_SESSION['car_demon_options']['sidebar_id'])) {
+			$sidebar_id = 'cd_sidebar';	
+		} else {
+			$sidebar_id = ' id="'.$_SESSION['car_demon_options']['sidebar_id'].'"';
+		}
+	} else {
+		$sidebar_id = '';
+	}
+	if (is_single()) {
+		if (isset($_SESSION['car_demon_options']['left_vehicle_sidebar'])) {
+			if (!empty($_SESSION['car_demon_options']['left_vehicle_sidebar'])) {
+				echo '<div'.$sidebar_id.$vehicle_sidebar_class.'>';
+					if (!function_exists('dynamic_sidebar') || !dynamic_sidebar($_SESSION['car_demon_options']['left_vehicle_sidebar'])) :
+					endif;
+				echo '</div>';
+			}
+		}
+	} else {
+		if (isset($_SESSION['car_demon_options']['left_list_sidebar'])) {
+			if (!empty($_SESSION['car_demon_options']['left_list_sidebar'])) {
+				echo '<div'.$sidebar_id.$vehicle_sidebar_class.'>';
+					if (!function_exists('dynamic_sidebar') || !dynamic_sidebar($_SESSION['car_demon_options']['left_list_sidebar'])) :
+					endif;
+				echo '</div>';
+			}
+		}
+	}
+	if (isset($_SESSION['car_demon_options']['vehicle_container'])) {
+		$container = ' class="'.$_SESSION['car_demon_options']['vehicle_container'].'"';
+	} else {
+		$container = '';
+	}
+	if (isset($_SESSION['car_demon_options']['cd_content_id'])) {
+		$cd_content_id = $_SESSION['car_demon_options']['cd_content_id'];
+	}
+	if (!empty($cd_content_id)) {
+		$cd_content_id = $_SESSION['car_demon_options']['cd_content_id'];
+		echo '<div id="'.$cd_content_id.'"'.$container.'>';
+			echo '<div id="demon-container">';
+				echo '<div id="demon-content" class="listing" role="main">';
+	} else {
+		echo '<div id="demon-container"'.$container.'>';
+			echo '<div id="demon-content" class="listing" role="main">';
+	}
 }
 add_action('car_demon_after_main_content', 'car_demon_output_content_wrapper_end', 10);
 function car_demon_output_content_wrapper_end() {
 		echo '</div><!-- #content -->';
 	echo '</div><!-- #container -->';
+	if (isset($_SESSION['car_demon_options']['cd_content_id'])) {
+		$cd_content_id = $_SESSION['car_demon_options']['cd_content_id'];
+	}
+	if (!empty($cd_content_id)) {
+		echo '</div><!-- #custom container -->';
+	}
+	if (isset($_SESSION['car_demon_options']['vehicle_sidebar_class'])) {
+		$list_container = ' class="'.$_SESSION['car_demon_options']['vehicle_sidebar_class'].'"';
+	} else {
+		$list_container = '';
+	}
+	if (isset($_SESSION['car_demon_options']['sidebar_id'])) {
+		if (empty($_SESSION['car_demon_options']['sidebar_id'])) {
+			$sidebar_id = 'cd_sidebar';	
+		} else {
+			$sidebar_id = ' id="'.$_SESSION['car_demon_options']['sidebar_id'].'"';
+		}
+	} else {
+		$sidebar_id = '';
+	}
+	if (is_single()) {
+		if (isset($_SESSION['car_demon_options']['right_vehicle_sidebar'])) {
+			if (!empty($_SESSION['car_demon_options']['right_vehicle_sidebar'])) {
+				echo '<div'.$sidebar_id.$list_container.'>';
+					if (!function_exists('dynamic_sidebar') || !dynamic_sidebar($_SESSION['car_demon_options']['right_vehicle_sidebar'])) :
+					endif;
+				echo '</div>';
+			}
+		}
+	} else {
+		if (isset($_SESSION['car_demon_options']['right_list_sidebar'])) {
+			if (!empty($_SESSION['car_demon_options']['right_list_sidebar'])) {
+				echo '<div'.$sidebar_id.$list_container.'>';
+					if (!function_exists('dynamic_sidebar') || !dynamic_sidebar($_SESSION['car_demon_options']['right_list_sidebar'])) :
+					endif;
+				echo '</div>';
+			}
+		}
+	}
+	if (isset($_SESSION['car_demon_options']['cd_page_id'])) {
+		if (!empty($_SESSION['car_demon_options']['cd_page_id'])) {
+			echo '</div>';
+		}
+	}
+
 }
 function get_car_title($post_id) {
 	if ($_SESSION['car_demon_options']['use_post_title'] == 'Yes') {
@@ -138,12 +278,14 @@ function car_demon_email_a_friend($post_id, $vehicle_stock_number) {
 	</div>';
 	return $x;
 }
-function car_demon_vehicle_detail_tabs($post_id) {
+function car_demon_vehicle_detail_tabs($post_id, $no_content=false) {
 	$tab_cnt = 1;
 	$vin_query = '';
 	$about_cnt = 2;
 	$vehicle_vin = rwh(strip_tags(get_post_meta($post_id, "_vin_value", true)),0);
-	$content = car_demon_get_the_content_with_formatting();
+	if ($no_content == false) {
+		$content = car_demon_get_the_content_with_formatting();
+	}
 	$content = trim($content);
 	if (empty($content)) {
 		$location_lists = get_the_terms($post_id, "vehicle_location");

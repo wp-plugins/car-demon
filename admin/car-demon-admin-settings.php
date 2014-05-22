@@ -323,7 +323,7 @@ function car_demon_options() {
 	$default['use_compare'] = 'Yes';
 	$default['dynamic_load'] = 'No';
 	$default['secure_finance'] = 'Yes';
-	$default['use_theme_files'] = 'Yes';
+	$default['use_theme_files'] = 'No';
 	$default['mobile_chat_code'] = '';
 	$default['mobile_theme'] = 'No';
 	$default['mobile_logo'] = '';
@@ -345,6 +345,21 @@ function car_demon_options() {
 	$default['use_vehicle_css'] = 'Yes';
 	$default['title_trim'] = '49';
 	$default['cars_per_page'] = '9';
+	//= Sidebars
+	$default['cd_page_id'] = '';
+	$default['cd_page_css'] = '';
+	$default['cd_content_id'] = '';
+	$default['sidebar_id'] = '';
+	$default['vehicle_sidebar_class'] = '';
+	$default['left_list_sidebar'] = '';
+	$default['right_list_sidebar'] = '';
+	$default['vehicle_container'] = '';
+	$default['left_vehicle_sidebar'] = '';
+	$default['right_vehicle_sidebar'] = '';
+	//= Content Replacement
+	$cd_cdrf_options['cd_cdrf_style'] = 'content-replacement';
+	$cd_cdrf_options['cd_cdrf_page_style'] = 'content-replacement';
+
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
 	if (empty($car_demon_options['currency_symbol'])) {$car_demon_options['currency_symbol'] = $default['currency_symbol'];}
@@ -378,6 +393,21 @@ function car_demon_options() {
 	if (empty($car_demon_options['use_vehicle_css'])) {$car_demon_options['use_vehicle_css'] = $default['use_vehicle_css'];}
 	if (empty($car_demon_options['title_trim'])) {$car_demon_options['title_trim'] = $default['title_trim'];}
 	if (empty($car_demon_options['cars_per_page'])) {$car_demon_options['cars_per_page'] = $default['cars_per_page'];}
+	//= Sidebars
+	if (empty($car_demon_options['cd_page_id'])) {$car_demon_options['cd_page_id'] = $default['cd_page_id'];}
+	if (empty($car_demon_options['cd_page_css'])) {$car_demon_options['cd_page_css'] = $default['cd_page_css'];}
+	if (empty($car_demon_options['cd_content_id'])) {$car_demon_options['cd_content_id'] = $default['cd_content_id'];}
+	if (empty($car_demon_options['vehicle_sidebar_class'])) {$car_demon_options['vehicle_sidebar_class'] = $default['vehicle_sidebar_class'];}
+	if (empty($car_demon_options['left_list_sidebar'])) {$car_demon_options['left_list_sidebar'] = $default['left_list_sidebar'];}
+	if (empty($car_demon_options['right_list_sidebar'])) {$car_demon_options['right_list_sidebar'] = $default['right_list_sidebar'];}
+	if (empty($car_demon_options['vehicle_container'])) {$car_demon_options['vehicle_container'] = $default['vehicle_container'];}
+	if (empty($car_demon_options['left_vehicle_sidebar'])) {$car_demon_options['left_vehicle_sidebar'] = $default['left_vehicle_sidebar'];}
+	if (empty($car_demon_options['right_vehicle_sidebar'])) {$car_demon_options['right_vehicle_sidebar'] = $default['right_vehicle_sidebar'];}
+	if (empty($car_demon_options['sidebar_id'])) {$car_demon_options['sidebar_id'] = $default['sidebar_id'];}	
+	//= Content Replacement
+	if (empty($car_demon_options['cd_cdrf_style'])) {$car_demon_options['cd_cdrf_style'] = $default['cd_cdrf_style'];}
+	if (empty($car_demon_options['cd_cdrf_page_style'])) {$car_demon_options['cd_cdrf_page_style'] = $default['cd_cdrf_page_style'];}	
+
 	return $car_demon_options;
 }
 function car_demon_settings_options_do_page() {
@@ -497,6 +527,54 @@ function car_demon_settings_form() {
 					<option value="Yes">'.__('Yes', 'car-demon').'</option>
 					<option value="No">'.__('No', 'car-demon').'</option>
 				</select><br />';
+				//= Sidebar and Page ID code
+				if ($car_demon_options['use_theme_files'] == 'No') {
+					$show_template_options = ' style="display:none;"';
+				} else {
+					$show_template_options = '';	
+				}
+				echo '<fieldset class="cd_admin_group"'.$show_template_options.'>';
+					echo '<legend>';
+						echo __('Advanced template options','car-demon');
+					echo '</legend>';
+					echo '<blockquote>';
+						echo '<br />'.__('These options give you greater control over the included template files.', 'car-demon').'<br />';
+						echo '<br />'.__('If you\'re not sure how to use these then please leave them set at their defaults.', 'car-demon').'<hr />';
+						echo '<br />'.__('Custom Page ID', 'car-demon').':<br />';
+							$cd_page_id = $car_demon_options['cd_page_id'];
+							echo '<input type="text" id="cd_page_id" name="cd_page_id" value="'.$cd_page_id.'" />';
+							echo '<br />'.__('If you enter an ID then the vehicle content and sidebar will be enclosed in a div with that ID.', 'car-demon').'<br />';
+						echo '<br />'.__('Custom Page CSS class', 'car-demon').':<br />';
+							$cd_page_css = $car_demon_options['cd_page_css'];
+							echo '<input type="text" id="cd_page_css" name="cd_page_css" value="'.$cd_page_css.'" />';
+							echo '<br />'.__('If you enter a class name then the vehicle content and sidebar will be enclosed in a div with that class. You must set an ID above for this to work.', 'car-demon').'<br />';
+						echo '<br /><br />'.__('Custom Sidebar ID', 'car-demon').':<br />';
+							$sidebar_id = $car_demon_options['sidebar_id'];
+							echo '<input type="text" id="sidebar_id" name="sidebar_id" value="'.$sidebar_id.'" />';
+						echo '<br />'.__('Custom Sidebar CSS class', 'car-demon').':<br />';
+							$vehicle_sidebar_class = $car_demon_options['vehicle_sidebar_class'];
+							echo '<input type="text" id="vehicle_sidebar_class" name="vehicle_sidebar_class" value="'.$vehicle_sidebar_class.'" />';
+						echo '<br /><br />'.__('Left Sidebar on List Pages', 'car-demon').':<br />';
+							$left_list_sidebar = $car_demon_options['left_list_sidebar'];
+							echo cd_sidebar_selectbox('left_list_sidebar', $left_list_sidebar);
+						echo '<br />'.__('Right Sidebar on List Pages', 'car-demon').':<br />';
+							$right_list_sidebar = $car_demon_options['right_list_sidebar'];
+							echo cd_sidebar_selectbox('right_list_sidebar', $right_list_sidebar);
+						echo '<br /><br />'.__('Left Sidebar on Vehicle Pages', 'car-demon').':<br />';
+							$left_vehicle_sidebar = $car_demon_options['left_vehicle_sidebar'];
+							echo cd_sidebar_selectbox('left_vehicle_sidebar', $left_vehicle_sidebar);
+						echo '<br />'.__('Right Sidebar on Vehicle Pages', 'car-demon').':<br />';
+							$right_vehicle_sidebar = $car_demon_options['right_vehicle_sidebar'];
+							echo cd_sidebar_selectbox('right_vehicle_sidebar', $right_vehicle_sidebar);
+						echo '<br /><br />'.__('Custom Vehicle Content ID', 'car-demon').':<br />';
+							$cd_content_id = $car_demon_options['cd_content_id'];
+							echo '<input type="text" id="cd_content_id" name="cd_content_id" value="'.$cd_content_id.'" />';
+						echo '<br />'.__('Vehicle Content CSS container class', 'car-demon').':<br />';
+							$vehicle_container = $car_demon_options['vehicle_container'];
+							echo '<input type="text" id="vehicle_container" name="vehicle_container" value="'.$vehicle_container.'" />';
+					echo '</blockquote>';
+				echo '</fieldset>';
+				//= End Sidebar Code
 			echo '<br />'.__('Use Title field for Vehicle Titles? - If No then title will be "Year Make Model"', 'car-demon').':<br />';
 			echo '<select name="use_post_title">
 					<option value="'.$car_demon_options['use_post_title'].'">'.$car_demon_options['use_post_title'].'</option>
@@ -555,14 +633,16 @@ function car_demon_settings_form() {
 			//==============
 			echo '<br />'.__('Max number of vehicles in search results and archive pages:', 'car-demon').'<br />';
 			echo '<input type="text" name="cars_per_page" id="cars_per_page" value='.$car_demon_options['cars_per_page'].' /><br />';
-			echo '<br />'.__('Display before listings:', 'car-demon').'<br />';
-			echo '<textarea name="before_listings" rows="5" cols="60">'.$car_demon_options['before_listings'].'</textarea><br />';
-			echo '<br />'.__('Load Next Inventory Page on Scroll', 'car-demon').':<br />';
-			echo '<select name="dynamic_load">
-					<option value="'.$car_demon_options['dynamic_load'].'">'.$car_demon_options['dynamic_load'].'</option>
-					<option value="Yes">'.__('Yes', 'car-demon').'</option>
-					<option value="No">'.__('No', 'car-demon').'</option>
-				</select><br />';
+			if ($car_demon_options['cd_cdrf_style'] != 'content-replacement') {
+				echo '<br />'.__('Display before listings:', 'car-demon').'<br />';
+				echo '<textarea name="before_listings" rows="5" cols="60">'.$car_demon_options['before_listings'].'</textarea><br />';
+				echo '<br />'.__('Load Next Inventory Page on Scroll', 'car-demon').':<br />';
+				echo '<select name="dynamic_load">
+						<option value="'.$car_demon_options['dynamic_load'].'">'.$car_demon_options['dynamic_load'].'</option>
+						<option value="Yes">'.__('Yes', 'car-demon').'</option>
+						<option value="No">'.__('No', 'car-demon').'</option>
+					</select><br />';
+			}
 			echo '<br />'.__('Show sold vehicles in search results?', 'car-demon').':<br />';
 			echo '<select name="show_sold">
 					<option value="'.$car_demon_options['show_sold'].'">'.$car_demon_options['show_sold'].'</option>
@@ -671,7 +751,7 @@ function car_demon_settings_form() {
 		//= Mobile Option Stop
 
 		//= Hook for additional settings
-		$car_demon_settings_hook = apply_filters('car_demon_settings_hook', $holder);
+		$car_demon_settings_hook = apply_filters('car_demon_settings_hook', $holder, $location);
 
 		//= Save Start
 		echo '<fieldset class="cd_admin_group">';
@@ -805,6 +885,17 @@ function update_car_demon_settings() {
 	if (isset($_POST['use_vehicle_css'])) $new['use_vehicle_css'] = $_POST['use_vehicle_css'];
 	if (isset($_POST['title_trim'])) $new['title_trim'] = $_POST['title_trim'];
 	if (isset($_POST['cars_per_page'])) $new['cars_per_page'] = $_POST['cars_per_page'];
+	//=Sidebars
+	if (isset($_POST['vehicle_sidebar_class'])) $new['vehicle_sidebar_class'] = $_POST['vehicle_sidebar_class'];
+	if (isset($_POST['left_list_sidebar'])) $new['left_list_sidebar'] = $_POST['left_list_sidebar'];
+	if (isset($_POST['right_list_sidebar'])) $new['right_list_sidebar'] = $_POST['right_list_sidebar'];
+	if (isset($_POST['vehicle_container'])) $new['vehicle_container'] = $_POST['vehicle_container'];
+	if (isset($_POST['left_vehicle_sidebar'])) $new['left_vehicle_sidebar'] = $_POST['left_vehicle_sidebar'];
+	if (isset($_POST['right_vehicle_sidebar'])) $new['right_vehicle_sidebar'] = $_POST['right_vehicle_sidebar'];
+	if (isset($_POST['sidebar_id'])) $new['sidebar_id'] = $_POST['sidebar_id'];
+	if (isset($_POST['cd_content_id'])) $new['cd_content_id'] = $_POST['cd_content_id'];
+	if (isset($_POST['cd_page_id'])) $new['cd_page_id'] = $_POST['cd_page_id'];
+	if (isset($_POST['cd_page_css'])) $new['cd_page_css'] = $_POST['cd_page_css'];
 	update_option( 'car_demon_options', $new );
 	$car_demon_settings_hook = apply_filters('car_demon_settings_update_hook', $holder);
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
@@ -1227,5 +1318,27 @@ function car_demon_update_option_group() {
 	$map[$group][$group_title] = $group_options;
 	update_option('cd_vehicle_option_map', $map);
 	exit();
+}
+
+function cd_sidebar_selectbox( $name = '', $current_value = false ) {
+    global $wp_registered_sidebars;
+	$sidebar_list = '';
+    if ( empty( $wp_registered_sidebars ) )
+        return;
+	$sidebar_list .= '<select name="'.$name.'" id="'.$name.'">';
+		if (empty($current_value)) {
+			$sidebar_list .= '<option value="" selected>None</option>';
+		} else {
+			$sidebar_list .= '<option value="">None</option>';
+		}
+		foreach ( $wp_registered_sidebars as $sidebar ) :
+			if ($sidebar['name'] == $current_value) {
+				$sidebar_list .= '<option value="'.$sidebar['name'].'" selected>'.$sidebar['name'].'</option>';
+			} else {
+				$sidebar_list .= '<option value="'.$sidebar['name'].'">'.$sidebar['name'].'</option>';
+			}
+		endforeach; 
+	$sidebar_list .= '</select>';	
+	return $sidebar_list;
 }
 ?>

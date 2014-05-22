@@ -1,0 +1,378 @@
+/* CSS Document */
+#demon-content {
+	max-width: 729px !important;	
+}
+#frm_cd_sort {
+	width: 250px;
+	margin-top: 15px;	
+}
+.cd_sort_by_label {
+	display: none;	
+}
+.results_found {
+	display: none;
+}
+.cd-nav-above {
+	width: 250px;
+	float: left;
+	margin-top: 15px;	
+}
+.cd-fs1 {
+	max-width: 100% !important;	
+}
+.cdform fieldset ol li label {
+	display: block;
+	margin-left: 12px;
+	text-align: left !important;
+}
+.cdform legend {
+	max-width: 95% !important;
+}
+.cdform fieldset {
+	max-width: 100% !important;
+}
+.cdform fieldset ol li input[type="text"] {
+	width: 80% !important;
+	margin-left: 8px;
+}
+.cdform fieldset ol li input[type="radio"] {
+	margin-left: 14px;
+}
+.cdform select {
+	margin-left: 8px;
+}
+.emailreqtxt {
+	float: left;
+	margin: 10px;	
+}
+.cdform legend {
+	color: #666;
+	font: inherit !important;
+	background-color: #ccc;
+	border-bottom: 2px solid #000;
+	border-right: 3px solid #333;
+	border-left: 1px solid #555;	
+}
+.contact_us_btn, .search_btn {
+	margin-left: 20% !important;
+	margin-top: 15px;
+}
+.contact_us_btn:hover, .search_btn:hover {
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #999), color-stop(1, #999) ) !important;
+	background: -moz-linear-gradient( center top, #999 5%, #999 100% ) !important;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#999') !important;
+	background-color: #999 !important;
+}
+.search_car_box select {
+	height: inherit !important;
+	max-width: 100%;
+}
+input.search_dropdown_sm {
+	height: inherit !important;
+	max-width: 100%;
+	width: 164px;
+}
+.search_header_logo, .advanced_search_btn_hide {
+	display: none;	
+}
+.cdform label {
+	width: 100% !important;	
+}
+.remove_part {
+	cursor: pointer;
+}
+.hide_parts {
+	display:none;
+}
+.remove_part_btn {
+	cursor: pointer;
+	display:none;
+	margin-left:10px;
+	margin-top:4px;
+}
+.add_part_btn {
+	cursor: pointer;
+	margin-left:10px;
+	margin-top:4px;
+}
+.part_msg {
+	display:none;
+	background: #f1cadf;
+	margin:10px;
+	padding:5px;
+	font-weight:bold;
+}
+.trade_btn {
+	float:right;
+}
+.cd-box {
+	width:15px !important;
+	margin-left: 15px !important;
+	float:left;
+}
+.cd-group-after {
+	max-width: 150px !important;
+	float:left;
+}
+.cd-ol br {
+	clear: both;
+}
+.trade_label {
+	width:250px;
+}
+.trade_img {
+	margin-left:75px;
+}
+.trade_hide {
+	display: none;
+}
+.trade_select_stock {
+	display:none;
+	margin-left:20px;
+}
+.trade_select_description {
+	display:none;
+	margin-left:20px;
+}
+.trade_reqtxt {
+	margin-left:10px;
+}
+@media only screen and (min-width : 768px) {
+	.car_item{
+		clear: both;
+		float: left;
+		font: 13px/1.231 arial,helvetica,clean,sans-serif;
+		padding:1%;
+		background-color: white;
+		margin: 15px;
+		position: relative;
+		max-width: 1100px;
+	}
+	.main_photo {
+		float: left;
+		height: auto;
+		width: 20%;
+		text-align:center;
+	}
+	.photo_thumb {
+		width:110px;
+		height:83px;
+	}
+	.description {
+		float: left;
+		width: 55%;
+		font-size:85%;
+	}
+	.car_title {
+		font-size:125%;
+		font-weight:bold;
+		color:#006699;
+		float:left;
+		width:50%;
+	}
+	.description_left{
+		float: left;
+		width: 50%;
+	}
+	.description_right{
+		float: left;
+		width: 50%;
+	}
+	.description_label {
+		float: left;
+		width: 50%;
+	}
+	.description_text {
+		float: left;
+		width: 50%;
+	}
+	.price {
+		float: left;
+		width: 23%;
+		padding-left:2%;
+	}
+	.price_label {
+		width: 50%;
+		font-size:85%;
+		color:#555;
+		float:left;
+	}
+	.price_value {
+		width: 50%;
+		font-size:95%;
+		color:#222;
+		float:left;
+	}
+	.price_line {
+		float:left;
+		width:100%;
+		border-bottom:solid;
+		border-bottom-color:#CCCCCC;
+		height:1px;
+		line-height:1px;
+	}
+	.final_price_label {
+		width: 70%;
+		font-size:100%;
+		font-weight:bold;
+		color:#050;
+		float:left;
+	}
+	.final_price_value {
+		width: 70%;
+		font-size:120%;
+		font-weight:bold;
+		color:#96262B;
+		float:right;
+		text-align:right;
+	}
+}
+@media only screen and (max-width : 767px) {
+	.compare {
+		display:none;
+	}
+	.cd_cdrf_compare {
+		display:none !important;
+	}
+	.car_item {
+		float: left;
+		font: 13px/1.231 arial,helvetica,clean,sans-serif;
+		padding:1%;
+		background-color: white;
+		margin: 15px;
+		position: relative;
+		width: 210px;
+	}
+	.main_photo {
+		height: auto;
+		text-align:center;
+	}
+	.photo_thumb {
+		width:100%;
+		height:auto;
+	}
+	.description {
+		float: left;
+		width: 100%;
+		font-size:85%;
+	}
+	.car_title {
+		font-size:125%;
+		font-weight:bold;
+		color:#006699;
+		float:left;
+		width:100%;
+	}
+	.description_left{
+		float: left;
+		width: 100%;
+	}
+	.description_right{
+		float: left;
+		width: 100%;
+	}
+	.description_label {
+		float: left;
+		width: 48%;
+	}
+	.description_text {
+		float: left;
+		width: 48%;
+	}
+	.price {
+		float: left;
+		width: 100%;
+		padding-left:2%;
+	}
+	.price_label {
+		width: 50%;
+		font-size:85%;
+		color:#555;
+		float:left;
+	}
+	.price_value {
+		width: 100%;
+		font-size:95%;
+		color:#222;
+		float:left;
+	}
+	.price_line {
+		float:left;
+		width:100%;
+		border-bottom:solid;
+		border-bottom-color:#CCCCCC;
+		height:1px;
+		line-height:1px;
+	}
+	.final_price_label {
+		width: 100%;
+		font-size:100%;
+		font-weight:bold;
+		color:#050;
+		float:left;
+	}
+	.final_price_value {
+		width: 100%;
+		font-size:120%;
+		font-weight:bold;
+		color:#96262B;
+		float:right;
+		text-align:right;
+	}
+}
+.car_item {
+	moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	background: #F9F9F9;
+	border: 1px solid #D6D6D6;
+	border-radius: 6px;
+	display: block;
+	padding: 5px;
+}
+.listing {
+	float:left;
+}
+.description_text_vin {
+	float: left;
+	width:100%;
+	text-align:right;
+}
+.compare {
+	float:right;
+	width:20%;
+}
+.compare_label {
+	float:left;
+	font-size:85%;
+	width:50%;
+	text-align:left;
+	margin-top:4px;
+}
+.compare_input {
+	float:left;
+	text-align:right;
+	width:48%;
+	padding-right:2px;
+}
+.no_price_style {
+	font-size:135%;
+	float:left;
+}
+.wp-pagenavi .pages {
+	display:none;
+}
+.listing .hentry {
+	border-bottom: 0px !important;	
+}
+.cdcr_top {
+	width: 100%;
+	float: left;	
+}
+.cdcr_archive_widget {
+	width: 100%;
+	overflow: hidden;	
+}
+/* WP-Page Navi tweaks */
+.wp-pagenavi a.last, .wp-pagenavi a.first {
+	display: none;	
+}

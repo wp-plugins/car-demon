@@ -154,5 +154,6 @@ function remove_search(fld, val, query_string) {
 	remove_this = "&"+fld+"="+val;
 	var reg = new RegExp(remove_this,"g");
 	var query_string = query_string.replace(reg, "");
-	window.location = cdSearchParams.site_url+query_string;
+	window.location = cdSearchParams.site_url+'\\?'+query_string;
+//	window.location = cdSearchParams.site_url+query_string;
 }

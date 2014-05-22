@@ -13,7 +13,7 @@ function car_demon_create_post_type() {
       'public' => true,
       'rewrite' => array('slug' => 'cars-for-sale'),
 	  'has_archive' => true,
-	  'supports' => array('title','editor','thumbnail','comments'),
+	  'supports' => array('title','editor','thumbnail','comments','excerpt'),
 	  'menu_icon' => plugins_url( '../images/cd_icon.png', __FILE__ )
     )
   );

@@ -48,7 +48,7 @@ do_action( 'car_demon_before_main_content' );
 			$detail_output .= '<li><strong>'.__('VIN#:', 'car-demon').'</strong> '.$vehicle_details['vin'].'</li>';
 			$detail_output .= '<li><strong>'.__('Color:', 'car-demon').'</strong> '.$vehicle_details['exterior_color'].'/'.$vehicle_details['interior_color'].'</li>';
 			$detail_output .= '<li><strong>'.__('Transmission:', 'car-demon').'</strong> '.$vehicle_details['decoded_transmission_long'].'</li>';
-			$detail_output .= '<li><strong>'.__('Engine:', 'car-demon').'</strong> '.$vehicle_details['decoded_engine_type'].'</li>';
+			$detail_output .= '<li><strong>'.__('Engine:', 'car-demon').'</strong> '.$vehicle_details['engine'].'</li>';
 			$detail_output .= get_vehicle_price($post_id);
 		$detail_output .= '</ul></div>';
 		echo car_demon_email_a_friend($post_id, $vehicle_details['stock_number']);

@@ -401,8 +401,9 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 	} else {
 		if (isset($car_demon_options['vinquery_id'])) {
 			if (!empty($car_demon_options['vinquery_id'])) {
-				$decode_results = '<div id="decode_results">VIN HAS BEEN DECODED.</div>';
-				$decode_btn = '<input onclick="decode_vin('. $post_id .')" type="button" name="decode_vin_'.$post_id.'" id="decode_vin_'.$post_id.'" value="Re-Decode Vin" class="btn" />';
+				//= Removed message stating Vin has been decoded
+				//	$decode_results = '<div id="decode_results">VIN HAS BEEN DECODED.</div>';
+				$decode_btn = '<input onclick="decode_vin('. $post_id .')" type="button" name="decode_vin_'.$post_id.'" id="decode_vin_'.$post_id.'" value="Decode Vin" class="btn" />';
 			}
 		}
 	}
@@ -442,7 +443,7 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 	  <tr class="decode_table_header">
 		<td colspan="2"><strong>'.__('Details', 'car-demon').'</strong></td>
 	  </tr>
-	  <tr class="decode_table_even">
+	  <tr class="decode_table_even" style="display:none;">
 		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Condition', 'car-demon').'</td>
 		<td>
 			<select id="condition" onchange="update_admin_decode(this, '.$post_id.')">

@@ -34,72 +34,79 @@ if (isset($_SESSION['car_demon_options']['theme_color_shadow'])) { $theme_color_
 if (isset($_SESSION['car_demon_options']['theme_color_button'])) { $theme_color_button = $_SESSION['car_demon_options']['theme_color_button']; }
 if (isset($_SESSION['car_demon_options']['theme_color_button_hover'])) { $theme_color_button_hover = $_SESSION['car_demon_options']['theme_color_button_hover']; }
 if (isset($_SESSION['car_demon_options']['theme_color_button_shadow'])) { $theme_color_button_shadow = $_SESSION['car_demon_options']['theme_color_button_shadow']; }
+
+if (isset($_SESSION['car_demon_options']['use_form_css'])) {
+	if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
+		?>
+		/* =Search Button
+		-------------------------------------------------------------- */
+		.search_btn {
+			-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+			-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+			box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #<?php echo $theme_color_button; ?>), color-stop(1, #<?php echo $theme_color_button_shadow; ?>) );
+			background:-moz-linear-gradient( center top, #<?php echo $theme_color_button; ?> 5%, #<?php echo $theme_color_button_shadow; ?> 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#<?php echo $theme_color_highlight; ?>', endColorstr='#<?php echo $theme_color_button_shadow; ?>');
+			background-color:#<?php echo $theme_color_button; ?>;
+			-moz-border-radius:6px;
+			-webkit-border-radius:6px;
+			border-radius:6px;
+			border:1px solid #84bbf3;
+			display:inline-block;
+			color:#ffffff !important;
+			font-family:arial;
+			font-size:15px;
+			font-weight:bold;
+			padding:6px 24px;
+			text-decoration:none;
+			text-shadow:1px 1px 0px #528ecc;
+			cursor:pointer;
+		}.search_btn:hover {
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #<?php echo $theme_color_button_hover; ?>), color-stop(1, #<?php echo $theme_color_button_shadow; ?>) );
+			background:-moz-linear-gradient( center top, #<?php echo $theme_color_button_hover; ?> 5%, #<?php echo $theme_color_button_shadow; ?> 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#<?php echo $theme_color_button_hover; ?>', endColorstr='#<?php echo $theme_color_button_shadow; ?>');
+			background-color:#<?php echo $theme_color_button_hover; ?>;
+		}.search_btn:active {
+			position:relative;
+			top:1px;
+		}
+		/* =Calc Button
+		-------------------------------------------------------------- */
+		.calc_btn {
+			-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+			-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+			box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #<?php echo $theme_color_button; ?>), color-stop(1, #<?php echo $theme_color_button_shadow; ?>) );
+			background:-moz-linear-gradient( center top, #<?php echo $theme_color_button; ?> 5%, #<?php echo $theme_color_button_shadow; ?> 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#<?php echo $theme_color_button; ?>', endColorstr='#<?php echo $theme_color_button_shadow; ?>');
+			background-color:#<?php echo $theme_color_button; ?>;
+			-moz-border-radius:6px;
+			-webkit-border-radius:6px;
+			border-radius:6px;
+			border:1px solid #84bbf3;
+			display:inline-block;
+			color:#ffffff;
+			font-family:arial;
+			font-size:11px;
+			font-weight:bold;
+			padding:6px;
+			text-decoration:none;
+			text-shadow:1px 1px 0px #528ecc;
+			width:75px;
+			cursor:pointer;
+		}.calc_btn:hover {
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #<?php echo $theme_color_button_hover; ?>), color-stop(1, #<?php echo $theme_color_button_shadow; ?>) );
+			background:-moz-linear-gradient( center top, #<?php echo $theme_color_button_hover; ?> 5%, #<?php echo $theme_color_button_shadow; ?> 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#<?php echo $theme_color_button_hover; ?>', endColorstr='#<?php echo $theme_color_button_shadow; ?>');
+			background-color:#<?php echo $theme_color_button_hover; ?>;
+		}.calc_btn:active {
+			position:relative;
+			top:1px;
+		}
+<?php
+	}
+}
 ?>
-/* =Search Button
--------------------------------------------------------------- */
-.search_btn {
-	-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #<?php echo $theme_color_button; ?>), color-stop(1, #<?php echo $theme_color_button_shadow; ?>) );
-	background:-moz-linear-gradient( center top, #<?php echo $theme_color_button; ?> 5%, #<?php echo $theme_color_button_shadow; ?> 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#<?php echo $theme_color_highlight; ?>', endColorstr='#<?php echo $theme_color_button_shadow; ?>');
-	background-color:#<?php echo $theme_color_button; ?>;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #84bbf3;
-	display:inline-block;
-	color:#ffffff !important;
-	font-family:arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:1px 1px 0px #528ecc;
-	cursor:pointer;
-}.search_btn:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #<?php echo $theme_color_button_hover; ?>), color-stop(1, #<?php echo $theme_color_button_shadow; ?>) );
-	background:-moz-linear-gradient( center top, #<?php echo $theme_color_button_hover; ?> 5%, #<?php echo $theme_color_button_shadow; ?> 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#<?php echo $theme_color_button_hover; ?>', endColorstr='#<?php echo $theme_color_button_shadow; ?>');
-	background-color:#<?php echo $theme_color_button_hover; ?>;
-}.search_btn:active {
-	position:relative;
-	top:1px;
-}
-/* =Calc Button
--------------------------------------------------------------- */
-.calc_btn {
-	-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #<?php echo $theme_color_button; ?>), color-stop(1, #<?php echo $theme_color_button_shadow; ?>) );
-	background:-moz-linear-gradient( center top, #<?php echo $theme_color_button; ?> 5%, #<?php echo $theme_color_button_shadow; ?> 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#<?php echo $theme_color_button; ?>', endColorstr='#<?php echo $theme_color_button_shadow; ?>');
-	background-color:#<?php echo $theme_color_button; ?>;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #84bbf3;
-	display:inline-block;
-	color:#ffffff;
-	font-family:arial;
-	font-size:11px;
-	font-weight:bold;
-	padding:6px;
-	text-decoration:none;
-	text-shadow:1px 1px 0px #528ecc;
-	width:75px;
-	cursor:pointer;
-}.calc_btn:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #<?php echo $theme_color_button_hover; ?>), color-stop(1, #<?php echo $theme_color_button_shadow; ?>) );
-	background:-moz-linear-gradient( center top, #<?php echo $theme_color_button_hover; ?> 5%, #<?php echo $theme_color_button_shadow; ?> 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#<?php echo $theme_color_button_hover; ?>', endColorstr='#<?php echo $theme_color_button_shadow; ?>');
-	background-color:#<?php echo $theme_color_button_hover; ?>;
-}.calc_btn:active {
-	position:relative;
-	top:1px;
-}
 .featured-button {
 	background:url(<?php echo $car_demon_pluginpath; ?>theme-files/images/featured-button.png) 0 0 no-repeat;
 	border:none;
