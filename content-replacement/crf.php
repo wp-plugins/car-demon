@@ -152,7 +152,13 @@ function car_crf_theme_redirect() {
 				if (file_exists($template_directory . '/' . $templatefilename)) {
 					$return_template = $template_directory . '/' . $templatefilename;
 				} else {
-					$return_template = $plugindir . '/theme-files/' . $theme_page_style .'/' . $templatefilename;
+					//= load index if no single or archive is found
+					$templatefilename = 'index.php';
+					if (file_exists($template_directory . '/' . $templatefilename)) {
+						$return_template = $template_directory . '/' . $templatefilename;
+					} else {				
+						$return_template = $plugindir . '/theme-files/' . $theme_page_style .'/' . $templatefilename;
+					}
 				}
 				//= If a Car Demon search is performed then redirect it so we can get the archive template
 				if (is_search()) {
@@ -168,6 +174,13 @@ function car_crf_theme_redirect() {
 			if ($_GET['car']==1) {
 					$templatefilename = 'archive.php';
 					$return_template = $template_directory . '/' . $templatefilename;
+					if (file_exists($template_directory . '/' . $templatefilename)) {
+						$return_template = $template_directory . '/' . $templatefilename;
+					} else {
+						//= load index if no single or archive is found
+						$templatefilename = 'index.php';
+						$return_template = $template_directory . '/' . $templatefilename;
+					}
 					header('HTTP/1.1 200 OK');
 					$wp_query->is_404 = false;
 					include($return_template);
@@ -206,4 +219,5 @@ add_shortcode( 'cd_cdrf_switch_theme', 'cd_cdrf_switch_theme_shortcode_func' );
 
 //= Add Widget
 include('widgets/cdcr-widget-archive.php');
+
 ?>

@@ -90,6 +90,46 @@ jQuery( "#cancel_about_us" ).click(function() {
 	jQuery("#frm_add_about_us").hide( 500, function(){});
 });
 
+function update_default_labels(fld) {
+	var field = fld.id;
+	var label = fld.value;
+	jQuery.ajax({
+		type: 'POST',
+		data: {'action': 'car_demon_update_default_labels', 'field': field, 'label': label},
+		url: cdAdminParams.ajaxurl,
+		timeout: 5000,
+		error: function() {},
+		dataType: "html",
+		success: function(html){
+			var new_body = html;
+			document.getElementById(field).style.background = "#99CC99";
+			var delay = function() { document.getElementById(field).style.background = "" };
+			setTimeout(delay, 1000);
+		}
+	})
+	return false;
+}
+
+function show_hide_default_fields(fld) {
+	var field = fld.value;
+	var checked = fld.checked;
+	jQuery.ajax({
+		type: 'POST',
+		data: {'action': 'car_demon_update_default_fields', 'field': field, 'checked': checked},
+		url: cdAdminParams.ajaxurl,
+		timeout: 5000,
+		error: function() {},
+		dataType: "html",
+		success: function(html){
+			var new_body = html;
+			document.getElementById('sh_'+field).style.background = "#99CC99";
+			var delay = function() { document.getElementById('sh_'+field).style.background = "" };
+			setTimeout(delay, 1000);
+		}
+	})
+	return false;
+}
+
 function add_option_group(group) {
 	var group_options = document.getElementById('group_options_'+group).value;
 	var title = document.getElementById('group_option_title_'+group).value;
@@ -167,10 +207,26 @@ function update_car(post_id, this_fld, fld) {
 			this_fld.style.background = "#99CC99";
 			var delay = function() { this_fld.style.background = "#FFFFFF" };
 			setTimeout(delay, 1000);
-			var msrp = document.getElementById("msrp_"+post_id).value;
-			var rebate = document.getElementById("rebate_"+post_id).value;
-			var discount = document.getElementById("discount_"+post_id).value;				
-			var price = document.getElementById("price_"+post_id).value;
+			if (document.getElementById("msrp_"+post_id)) {
+				var msrp = document.getElementById("msrp_"+post_id).value;
+			} else {
+				var msrp = 0;	
+			}
+			if (document.getElementById("rebate_"+post_id)) {
+				var rebate = document.getElementById("rebate_"+post_id).value;
+			} else {
+				var rebate = 0;	
+			}
+			if (document.getElementById("discount_"+post_id)) {
+				var discount = document.getElementById("discount_"+post_id).value;				
+			} else {
+				var discount = 0;	
+			}
+			if (document.getElementById("price_"+post_id)) {
+				var price = document.getElementById("price_"+post_id).value;
+			} else {
+				var price = 0;	
+			}
 			if (msrp == "") { msrp = 0; }
 			if (rebate == "") { rebate = 0; }
 			if (discount == "") { discount = 0; }

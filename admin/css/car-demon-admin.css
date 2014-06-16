@@ -1,4 +1,28 @@
 /* CSS Document */
+@media only screen and (min-width : 767px) {
+	.cd_save_settings {
+		position: fixed;
+		top: 30px;
+		right: 0;
+		background: #CBF8DD;	
+	}
+}
+.edit_option_tabs {
+	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	border: 0;
+	padding: 10px;
+	cursor: pointer;
+}
+.edit_option_tabs:hover {
+	background: #57F797;
+}
+.edit_option_tabs_div {
+	width: 100%;
+	float: left;
+}
 .cd_admin_form_label {
 	font-size:14px;
 	padding-right:20px;

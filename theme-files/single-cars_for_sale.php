@@ -23,10 +23,15 @@ wp_localize_script('car-demon-single-car-js', 'cdSingleCarParams', array(
 	'site_url' => get_bloginfo('wpurl')
 ));
 wp_enqueue_script('car-demon-single-car-js');
+//= Find out which of the default fields are hidden
+$show_hide = get_show_hide_fields();
+//= Get the labels for the default fields
+$field_labels = get_default_field_labels();
 
 get_header();
 echo car_demon_photo_lightbox();
 do_action( 'car_demon_before_main_content' );
+do_action( 'car_demon_vehicle_header_sidebar' );
 	if ( have_posts() ) while ( have_posts() ) : the_post();
 		$post_id = get_the_ID();
 		$vehicle_vin = rwh(strip_tags(get_post_meta($post_id, "_vin_value", true)),0);
@@ -42,13 +47,27 @@ do_action( 'car_demon_before_main_content' );
 		//===============================================================
 		$detail_output = '<div class="car_title_div"><h3 class="car_title">'.$car_head_title.'</h3>';
 		$detail_output .= '<ul>';
-			$detail_output .= '<li><strong>'.__('Condition:', 'car-demon').'</strong> '.$vehicle_details['condition'].'</li>';
-			$detail_output .= '<li><strong>'.__('Mileage:', 'car-demon').'</strong> '.$vehicle_details['mileage'].'</li>';
-			$detail_output .= '<li><strong>'.__('Stock#:', 'car-demon').'</strong> '.$vehicle_details['stock_number'].'</li>';
-			$detail_output .= '<li><strong>'.__('VIN#:', 'car-demon').'</strong> '.$vehicle_details['vin'].'</li>';
-			$detail_output .= '<li><strong>'.__('Color:', 'car-demon').'</strong> '.$vehicle_details['exterior_color'].'/'.$vehicle_details['interior_color'].'</li>';
-			$detail_output .= '<li><strong>'.__('Transmission:', 'car-demon').'</strong> '.$vehicle_details['decoded_transmission_long'].'</li>';
-			$detail_output .= '<li><strong>'.__('Engine:', 'car-demon').'</strong> '.$vehicle_details['engine'].'</li>';
+			if ($show_hide['condition'] != true) {
+				$detail_output .= '<li><strong>'.$field_labels['condition'].'</strong> '.$vehicle_details['condition'].'</li>';
+			}
+			if ($show_hide['mileage'] != true) {
+				$detail_output .= '<li><strong>'.$field_labels['mileage'].'</strong> '.$vehicle_details['mileage'].'</li>';
+			}
+			if ($show_hide['stock_number'] != true) {
+				$detail_output .= '<li><strong>'.$field_labels['stock_number'].'</strong> '.$vehicle_details['stock_number'].'</li>';
+			}
+			if ($show_hide['vin'] != true) {
+				$detail_output .= '<li><strong>'.$field_labels['vin'].'</strong> '.$vehicle_details['vin'].'</li>';
+			}
+			if ($show_hide['exterior_color'] != true) {
+				$detail_output .= '<li><strong>'.$field_labels['exterior_color'].'</strong> '.$vehicle_details['exterior_color'].'/'.$vehicle_details['interior_color'].'</li>';
+			}
+			if ($show_hide['transmission'] != true) {
+				$detail_output .= '<li><strong>'.$field_labels['transmission'].'</strong> '.$vehicle_details['decoded_transmission_long'].'</li>';
+			}
+			if ($show_hide['engine'] != true) {
+				$detail_output .= '<li><strong>'.$field_labels['engine'].'</strong> '.$vehicle_details['engine'].'</li>';
+			}
 			$detail_output .= get_vehicle_price($post_id);
 		$detail_output .= '</ul></div>';
 		echo car_demon_email_a_friend($post_id, $vehicle_details['stock_number']);

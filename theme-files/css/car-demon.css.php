@@ -221,7 +221,7 @@ if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 }
 span.reqtxt, span.emailreqtxt {
 	margin: 3px 0 0 3px;
-	fo	nt-size: 0.9em;
+	font-size: 0.9em;
 	display: -moz-inline-box;
 	vertical-align: top;
 	color:#ff0000;

@@ -117,6 +117,7 @@ function cardemons_automotive_inventory_decode($post_id) {
 	$html .= '
 	<div id="vin_decode_options_'.$post_id.'">';
 		$specs = get_vin_query_specs_admin($vin_query_decode, $vin, $post_id);
+//		$specs = get_option_tab('specs',$post_id,'admin');
 		global $pagenow;
 		if ( $pagenow == 'post-new.php' ) {
 			$show_tabs = 0;
@@ -358,6 +359,7 @@ function does_vin_exist($vin) {
 	}
 	return $car_id;
 }
+
 function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 	if (isset($vin_query_decode['decoded_model_year'])) {$decoded_model_year = $vin_query_decode['decoded_model_year']; } else {$decoded_model_year = ''; }
 	if (isset($vin_query_decode["decoded_make"])) {$decoded_make = $vin_query_decode["decoded_make"]; } else {$decoded_make = ''; }
@@ -377,6 +379,7 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 	if (isset($vin_query_decode["decoded_overall_length"])) {$decoded_overall_length = $vin_query_decode["decoded_overall_length"]; } else {$decoded_overall_length = ''; }
 	if (isset($vin_query_decode["decoded_overall_width"])) {$decoded_overall_width = $vin_query_decode["decoded_overall_width"]; } else {$decoded_overall_width = ''; }
 	if (isset($vin_query_decode["decoded_overall_height"])) {$decoded_overall_height = $vin_query_decode["decoded_overall_height"]; } else {$decoded_overall_height = ''; }
+	$show_custom_specs = false;
 	// Meta Fields
 	$stock_num = wp_kses_data(get_post_meta($post_id, '_stock_value', true));
 	$retail_price = wp_kses_data(get_post_meta($post_id, '_msrp_value', true));
@@ -407,139 +410,140 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 			}
 		}
 	}
-	$x = '
-	<table class="decode_table">
-	  <tr class="decode_table_header">
-		<td><strong>'.__('VIN #', 'car-demon').'</strong></td>
-		<td><input type="text" id="vin" name="vin" onchange="update_vehicle_data(this, '.$post_id.')" value="'.$vehicle_vin.'" />'.$remove_decode_btn.$decode_btn.$decode_results.'</td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Stock Number', 'car-demon').'</td>
-		<td><input type="text" id="stock_num" onchange="update_admin_decode(this, '.$post_id.')" value="'.$stock_num.'" /></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Mileage', 'car-demon').'</td>
-		<td><input type="text" id="mileage" onchange="update_admin_decode(this, '.$post_id.')" value="'.$mileage.'" /></td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>'.__('Pricing', 'car-demon').'</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Retail Price', 'car-demon').'</td>
-		<td><input type="text" id="msrp" onchange="update_admin_decode(this, '.$post_id.')" value="'.$retail_price.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Rebates', 'car-demon').'</td>
-		<td><input type="text" id="rebates" onchange="update_admin_decode(this, '.$post_id.')" value="'.$rebates.'" /></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Discount', 'car-demon').'</td>
-		<td><input type="text" id="discount" onchange="update_admin_decode(this, '.$post_id.')" value="'.$discount.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Asking Price', 'car-demon').'</td>
-		<td><input type="text" id="price" onchange="update_admin_decode(this, '.$post_id.')" value="'.$price.'" /></td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>'.__('Details', 'car-demon').'</strong></td>
-	  </tr>
-	  <tr class="decode_table_even" style="display:none;">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Condition', 'car-demon').'</td>
-		<td>
-			<select id="condition" onchange="update_admin_decode(this, '.$post_id.')">
-				<option value="'.$condition.'">'.$condition.'</option>
-				<option value="'.__('Used', 'car-demon').'">'.__('Used', 'car-demon').'</option>
-				<option "'.__('Certified Used', 'car-demon').'">'.__('Certified Used', 'car-demon').'</option>
-				<option "'.__('New', 'car-demon').'">'.__('New', 'car-demon').'</option>
-			</select>
-		</td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Model Year', 'car-demon').'</td>
-		<td><input type="text" id="decoded_model_year" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_model_year.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Make', 'car-demon').'</td>
-		<td><input type="text" id="decoded_make" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_make.'" /></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Model', 'car-demon').'</td>
-		<td><input type="text" id="decoded_model" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_model.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Trim', 'car-demon').'</td>
-		<td><input type="text" id="decoded_trim_level" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_trim_level.'" /></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Exterior Color', 'car-demon').'</td>
-		<td><input type="text" id="exterior_color" onchange="update_admin_decode(this, '.$post_id.')" value="'.$exterior_color.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Interior Color', 'car-demon').'</td>
-		<td><input type="text" id="interior_color" onchange="update_admin_decode(this, '.$post_id.')" value="'.$interior_color.'" /></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Manufactured in', 'car-demon').'</td>
-		<td><input type="text" id="decoded_manufactured_in" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_manufactured_in.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td>&nbsp;&nbsp;&nbsp;'.__('Production Seq. Number', 'car-demon').'</td>
-		<td><input type="text" id="decoded_production_seq_number" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_production_seq_number.'" /></td>
-	  </tr>
-	  <tr class="decode_table_header">
-		<td colspan="2"><strong>'.__('Specifications', 'car-demon').'</strong></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Body Style', 'car-demon').'</td>
-		<td><input type="text" id="decoded_body_style" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_body_style.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Engine Type', 'car-demon').'</td>
-		<td><input type="text" id="decoded_engine_type" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_engine_type.'" /></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Transmission', 'car-demon').'</td>
-		<td><input type="text" id="decoded_transmission_long" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_transmission_long.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Driveline', 'car-demon').'</td>
-		<td><input type="text" id="decoded_driveline" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_driveline.'" /></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Tank(gallon)', 'car-demon').'</td>
-		<td><input type="text" id="decoded_tank" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_tank.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Fuel Economy(City, miles/gallon)', 'car-demon').'</td>
-		<td><input type="text" id="decoded_fuel_economy_city" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_fuel_economy_city.'" /></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Fuel Economy(Highway, miles/gallon)', 'car-demon').'</td>
-		<td><input type="text" id="decoded_fuel_economy_highway" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_fuel_economy_highway.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Anti-Brake System', 'car-demon').'</td>
-		<td><input type="text" id="decoded_anti_brake_system" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_anti_brake_system.'" /></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Steering Type', 'car-demon').'</td>
-		<td><input type="text" id="decoded_steering_type" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_steering_type.'" /></td>
-	  </tr>	  
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Length(in.)', 'car-demon').'</td>
-		<td><input type="text" id="decoded_overall_length" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_overall_length.'" /></td>
-	  </tr>
-	  <tr class="decode_table_odd">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Width(in.)', 'car-demon').'</td>
-		<td><input type="text" id="decoded_overall_width" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_overall_width.'" /></td>
-	  </tr>
-	  <tr class="decode_table_even">
-		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Height(in.)', 'car-demon').'</td>
-		<td><input type="text" id="decoded_overall_height" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_overall_height.'" /></td>
-	  </tr>
-	  </table>';
+	//= Find out which of the default fields are hidden
+	$show_hide = get_show_hide_fields();
+	//= Get the labels for the default fields
+	$field_labels = get_default_field_labels();
+	//= Start displaying the specs
+	$x = '<table class="decode_table">';
+	if ($show_hide['vin'] != true) {
+		$x .= '<tr class="decode_table_header">';
+			$x .= '<td><strong>'.$field_labels['vin'].'</strong></td>';
+			$x .= '<td><input type="text" id="vin" name="vin" onchange="update_vehicle_data(this, '.$post_id.')" value="'.$vehicle_vin.'" />'.$remove_decode_btn.$decode_btn.$decode_results.'</td>';
+		$x .= '</tr>';
+	}
+	if ($show_hide['stock_number'] != true) {
+		$x .= '<tr class="decode_table_even">';
+			$x .= '<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['stock_number'].'</td>';
+			$x .= '<td><input type="text" id="stock_num" onchange="update_admin_decode(this, '.$post_id.')" value="'.$stock_num.'" /></td>';
+		$x .= '</tr>';
+	}
+	if ($show_hide['mileage'] != true) {
+		$x .= '<tr class="decode_table_odd">';
+			$x .= '<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['mileage'].'</td>';
+			$x .= '<td><input type="text" id="mileage" onchange="update_admin_decode(this, '.$post_id.')" value="'.$mileage.'" /></td>';
+		$x .= '</tr>';
+	}
+	//= Hide price header if all price fields are hidden
+	if ($show_hide['retail'] != true || $show_hide['rebates'] != true || $show_hide['discount'] != true || $show_hide['price'] != true) {
+		$x .= '<tr class="decode_table_header">';
+			$x .= '<td colspan="2"><strong>'.__('Pricing', 'car-demon').'</strong></td>';
+		$x .= '</tr>';
+	}
+	if ($show_hide['retail'] != true) {
+	  $x .= '<tr class="decode_table_odd">';
+		$x .= '<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['retail'].'</td>';
+		$x .= '<td><input type="text" id="msrp" onchange="update_admin_decode(this, '.$post_id.')" value="'.$retail_price.'" /></td>';
+	  $x .= '</tr>';
+	}
+	if ($show_hide['rebates'] != true) {
+	  $x .= '<tr class="decode_table_even">';
+		$x .= '<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['rebates'].'</td>';
+		$x .= '<td><input type="text" id="rebates" onchange="update_admin_decode(this, '.$post_id.')" value="'.$rebates.'" /></td>';
+	  $x .= '</tr>';
+	}
+	if ($show_hide['discount'] != true) {
+	  $x .= '<tr class="decode_table_odd">';
+		$x .= '<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['discount'].'</td>';
+		$x .= '<td><input type="text" id="discount" onchange="update_admin_decode(this, '.$post_id.')" value="'.$discount.'" /></td>';
+	  $x .= '</tr>';
+	}
+	if ($show_hide['price'] != true) {
+	  $x .= '<tr class="decode_table_even">';
+		$x .= '<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['price'].'</td>';
+		$x .= '<td><input type="text" id="price" onchange="update_admin_decode(this, '.$post_id.')" value="'.$price.'" /></td>';
+	  $x .= '</tr>';
+	}
+	$x .= '<tr class="decode_table_header">';
+		$x .= '<td colspan="2"><strong>'.__('Details', 'car-demon').'</strong></td>';
+	$x .= '</tr>';
+	if ($show_hide['body_style'] != true) {
+	  $x .= '<tr class="decode_table_odd">';
+		$x .= '<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['body_style'].'</td>';
+		$x .= '<td><input type="text" id="decoded_body_style" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_body_style.'" /></td>';
+	  $x .= '</tr>';
+	}
+	if ($show_hide['year'] != true) {
+	  $x .= '<tr class="decode_table_even">';
+		$x .= '<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['year'].'</td>';
+		$x .= '<td><input type="text" id="decoded_model_year" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_model_year.'" /></td>';
+	  $x .= '</tr>';
+	}
+	if ($show_hide['make'] != true) {
+	  $x .= '<tr class="decode_table_odd">';
+		$x .= '<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['make'].'</td>';
+		$x .= '<td><input type="text" id="decoded_make" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_make.'" /></td>';
+	  $x .= '</tr>';
+	}
+	if ($show_hide['model'] != true) {
+	  $x .= '<tr class="decode_table_even">';
+		$x .= '<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['model'].'</td>';
+		$x .= '<td><input type="text" id="decoded_model" onchange="update_admin_decode(this, '.$post_id.')" value="'.$decoded_model.'" /></td>';
+	  $x .= '</tr>';
+	}
+	//= BEGIN CUSTOM SPEC CODE
+	if (isset($car_demon_options['show_custom_specs'])) {
+		$show_custom_specs == $car_demon_options['show_custom_specs'];
+	} else {
+		$show_custom_specs = false;
+	}
+	if ($show_custom_specs == false) {
+		$map = cd_get_vehicle_map();
+		$specs_map = $map['specs'];
+		foreach ($specs_map as $key=>$spec_group) {
+			$x .= '<tr class="decode_table_header">
+					<td colspan="2"><strong>'.$key.'</strong></td>
+				</tr>';
+			$spec_group_array = explode(',',$spec_group);
+			$odd_even = 'even';
+			foreach($spec_group_array as $spec_item) {
+				if($odd_even == 'odd') { $odd_even = 'even'; } else {$odd_even = 'odd';}
+				$x .= custom_spec_field_admin($post_id, $spec_item, 'decoded_'.$spec_item, $odd_even, $vin_query_decode);
+			}
+		}
+	} else {
+		$x .= custom_spec_field_admin($post_id, __('Trim', 'car-demon'), 'decoded_trim_level', 'odd', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Production Seq. Number', 'car-demon'), 'decoded_production_seq_number', 'even', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Exterior Color', 'car-demon'), 'exterior_color', 'odd', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Interior Color', 'car-demon'), 'interior_color', 'even', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Manufactured in', 'car-demon'), 'decoded_manufactured_in', 'odd', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Engine Type', 'car-demon'), 'decoded_engine_type', 'even', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Transmission', 'car-demon'), 'decoded_transmission_long', 'odd', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Driveline', 'car-demon'), 'decoded_driveline', 'even', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Tank(gallon)', 'car-demon'), 'decoded_driveline', 'odd', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Fuel Economy(City, miles/gallon)', 'car-demon'), 'decoded_fuel_economy_city', 'even', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Fuel Economy(Highway, miles/gallon)', 'car-demon'), 'decoded_fuel_economy_highway', 'odd', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Anti-Brake System', 'car-demon'), 'decoded_anti_brake_system', 'even', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Steering Type', 'car-demon'), 'decoded_steering_type', 'odd', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Length(in.)', 'car-demon'), 'decoded_overall_length', 'even', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Width(in.)', 'car-demon'), 'decoded_overall_width', 'odd', $vin_query_decode);
+		$x .= custom_spec_field_admin($post_id, __('Height(in.)', 'car-demon'), 'decoded_overall_height', 'even', $vin_query_decode);
+	}
+	$x .= '</table>';
 	return $x;
 }
+
+function custom_spec_field_admin($post_id, $field, $slug, $odd_even, $vin_query_decode) {
+	if (isset($vin_query_decode[$slug])) {$value = $vin_query_decode[$slug]; } else {$value = ''; }
+	$x = '
+	  <tr class="decode_table_'.$odd_even.'">
+		<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field.'</td>
+		<td><input type="text" id="'.$slug.'" onchange="update_admin_decode(this, '.$post_id.')" value="'.$value.'" /></td>
+	  </tr>
+	';
+	return $x;	
+}
+
 function get_about_us_tab($post_id) {
 	$map = cd_get_vehicle_map();
 	$x = '';

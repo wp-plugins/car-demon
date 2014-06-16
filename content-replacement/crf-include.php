@@ -64,15 +64,20 @@ function car_crf_display_car_list($post_id) {
 				<p><a href="'.$link.'" rel="bookmark" title="'.$title.'">'.$title.'</a> | Stock #: '.$stock_value.'</p>'.$compare.'
 				<p><strong>Mileage: '.$mileage_value.'</strong></p>
 				<p>'.$vehicle_body_style.' |  '.$vehicle_transmission.'<br>'.$vehicle_engine.' | '.$vehicle_exterior_color.'</p>
-				<div class="result-price">'.get_vehicle_price_style($post_id).'</div>
+				<div class="result-price">'.get_cr_vehicle_price_style($post_id).'</div>
 			</div> <!--   result detail wrapper ends -->
 		 </div>
 	';
 	return $car;
 }
-function get_vehicle_price_style($post_id) {
+function get_cr_vehicle_price_style($post_id) {
 	$vehicle_location = strip_tags(get_the_term_list( $post_id, 'vehicle_location', '','', '', '' ));
 	$vehicle_condition = strip_tags(get_the_term_list( $post_id, 'vehicle_condition', '','', '', '' ));
+	//= Find out which of the default fields are hidden
+	$show_hide = get_show_hide_fields();
+	//= Get the labels for the default fields
+	$field_labels = get_default_field_labels();
+
 	if ($vehicle_location == '') {
 		$vehicle_location = 'Default';
 		$vehicle_location_slug = 'default';

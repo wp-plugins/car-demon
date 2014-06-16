@@ -67,6 +67,10 @@ function show_compare_list() {
 	$compare_these_array = $_SESSION['car_demon_compare'];
 	if ($compare_these_array) {
 		$compare_these = explode(',',$compare_these_array);
+		//= Find out which of the default fields are hidden
+		$show_hide = get_show_hide_fields();
+		//= Get the labels for the default fields
+		$field_labels = get_default_field_labels();
 		$x .= '<h2 class="offscreen">'.__('Compare Vehicles', 'car-demon').'</h2>';
 		$x .='<div id="car_demon_compare_box_list_cars" class="car_demon_compare_box_list_cars">';
 			foreach ($compare_these as $car) {
@@ -85,27 +89,55 @@ function show_compare_list() {
 				$stock_value = get_post_meta($post_id, "_stock_value", true);
 				$mileage_value = get_post_meta($post_id, "_mileage_value", true);
 				$detail_output = '<div class="compare_title">'.$title.'</div>';
-				$detail_output .= '<div class="compare_text">';
-					$detail_output .= 'Condition: '.$vehicle_condition;			
-				$detail_output .= '</div>';
-				$detail_output .= '<div class="compare_text">';
-					$detail_output .= 'Mileage: '.$mileage_value;
-				$detail_output .= '</div>';
-				$detail_output .= '<div class="compare_text">';
-					$detail_output .= 'Stock#: '.$stock_value;
-				$detail_output .= '</div>';
-				$detail_output .= '<div class="compare_text">';				
-					$detail_output .= 'VIN#: '.$vehicle_vin;
-				$detail_output .= '</div>';
-				$detail_output .= '<div class="compare_text">';
-					$detail_output .= 'Color: '.$vehicle_exterior_color;
-				$detail_output .= '</div>';
-				$detail_output .= '<div class="compare_text">';
-					$detail_output .= 'Transmission: '.$vehicle_transmission;
-				$detail_output .= '</div>';
-				$detail_output .= '<div class="compare_text">';
-					$detail_output .= 'Engine: '.$vehicle_engine;
-				$detail_output .= '</div>';
+				if ($show_hide['condition'] != true) {
+					if (!empty($vehicle_condition)) {
+						$detail_output .= '<div class="compare_text">';
+							$detail_output .= $field_labels['condition'].': '.$vehicle_condition;			
+						$detail_output .= '</div>';
+					}
+				}
+				if ($show_hide['mileage'] != true) {
+					if (!empty($mileage_value)) {
+						$detail_output .= '<div class="compare_text">';
+							$detail_output .= $field_labels['mileage'].': '.$mileage_value;
+						$detail_output .= '</div>';
+					}
+				}
+				if ($show_hide['stock_number'] != true) {
+					if (!empty($stock_value)) {
+						$detail_output .= '<div class="compare_text">';
+							$detail_output .= $field_labels['stock_number'].': '.$stock_value;
+						$detail_output .= '</div>';
+					}
+				}
+				if ($show_hide['vin'] != true) {
+					if (!empty($vehicle_vin)) {
+						$detail_output .= '<div class="compare_text">';				
+							$detail_output .= $field_labels['vin'].': '.$vehicle_vin;
+						$detail_output .= '</div>';
+					}
+				}
+				if ($show_hide['exterior_color'] != true) {
+					if (!empty($vehicle_exterior_color)) {
+						$detail_output .= '<div class="compare_text">';
+							$detail_output .= $field_labels['exterior_color'].': '.$vehicle_exterior_color;
+						$detail_output .= '</div>';
+					}
+				}
+				if ($show_hide['transmission'] != true) {
+					if (!empty($vehicle_transmission)) {
+						$detail_output .= '<div class="compare_text">';
+							$detail_output .= $field_labels['transmission'].': '.$vehicle_transmission;
+						$detail_output .= '</div>';
+					}
+				}
+				if ($show_hide['engine'] != true) {
+					if (!empty($vehicle_engine)) {
+						$detail_output .= '<div class="compare_text">';
+							$detail_output .= $field_labels['engine'].': '.$vehicle_engine;
+						$detail_output .= '</div>';
+					}
+				}
 				$new_price = get_vehicle_price($post_id);
 				$new_price = str_replace('class="car_selling_price"', 'class="car_selling_price car_selling_price_compare"', $new_price);
 				$new_price = str_replace('class="car_rebate', 'class="car_rebate car_rebate_compare"', $new_price);

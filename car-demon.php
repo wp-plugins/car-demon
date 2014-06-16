@@ -1,14 +1,15 @@
 <?php
-/*
-Plugin Name: Car Demon
-Plugin URI: http://www.CarDemons.com/
-Description:  Car Demon is a PlugIn designed for car dealers.
-Author: CarDemons
-Version: 1.3.06
-Author URI: http://www.CarDemons.com/
-Text Domain: car-demon
-Domain Path: /languages/
-WPCD ID: 101
+/**
+* Plugin Name: Car Demon
+* Plugin URI: http://www.CarDemons.com/
+* Description:  Car Demon is a PlugIn designed for car dealers.
+* Author: CarDemons
+* Version: 1.3.07
+* Author URI: http://www.CarDemons.com/
+* Text Domain: car-demon
+* Domain Path: /languages/
+* License: GPL2
+* WPCD ID: 101
 */
 
 include( 'includes/car-demon-query.php' );

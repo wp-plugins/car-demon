@@ -7,6 +7,20 @@ function car_demon_get_sidebar() {
 	}
 }
 
+add_action('car_demon_vehicle_header_sidebar', 'car_demon_get_vehicle_header_sidebar', 10);
+function car_demon_get_vehicle_header_sidebar() {
+	$show_sidebar = cd_show_sidebar();
+	if ($show_sidebar == 1) {
+		echo '<div id="vehicle_header_widget" class="vehicle_header_widget">';
+			echo '<ul>';
+				if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Vehicle Header Sidebar')) :
+				endif;
+			echo '</ul>';
+			echo '<br class="clear_car">';
+		echo '</div>';
+	}
+}
+
 add_action('car_demon_vehicle_sidebar', 'car_demon_get_vehicle_sidebar', 10);
 function car_demon_get_vehicle_sidebar() {
 	$show_sidebar = cd_show_sidebar();
@@ -309,6 +323,13 @@ function car_demon_vehicle_detail_tabs($post_id, $no_content=false) {
 	$flag = false;
 	if (isset($_SESSION['car_demon_options']['hide_tabs'])) {
 		if ($_SESSION['car_demon_options']['hide_tabs'] == 'Yes') {
+			$include_options = 1;
+		}
+	}
+	//= If vehicle has hide tab setting true then hide tabs
+	$vin_query_decode = get_post_meta($post_id, "decode_string", true);
+	if (isset($vin_query_decode['hide_tabs'])) {
+		if ($vin_query_decode['hide_tabs'] == 'Yes') {
 			$include_options = 1;
 		}
 	}

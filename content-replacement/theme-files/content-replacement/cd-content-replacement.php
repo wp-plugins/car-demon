@@ -32,7 +32,7 @@ function cd_filter_vehicle_content($content) {
 
 include('cdcr-single-content.php');
 function cd_single_vehicle_content($post_id, $content) {
-	$x = cdcr_single_content($content);
+	$x = cdcr_single_content_2($content);
 	return $x;
 }
 
@@ -67,6 +67,8 @@ function cd_replace_query($query) {
 			if (isset($_GET['car'])) {
 				if ($_GET['car']=='1') {
 					$search_query = car_demon_query_search();
+					//= Load the code for the autoload on scroll
+					echo car_demon_dynamic_load();
 					foreach ($search_query as $key=>$val) {
 						$query->query_vars[$key] = $val;
 					}
@@ -79,6 +81,8 @@ function cd_replace_query($query) {
 		if (is_post_type_archive('cars_for_sale')) {
 			//= Set $query equal to Car Demon archive Query
 			$search_query = car_demon_query_archive();
+			//= Load the code for the autoload on scroll
+			echo car_demon_dynamic_load();
 			foreach ($search_query as $key=>$val) {
 				$query->query_vars[$key] = $val;
 			}

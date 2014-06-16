@@ -8,17 +8,27 @@ function car_demon_display_car_list($post_id) {
 	$vehicle_condition = strip_tags(get_the_term_list( $post_id, 'vehicle_condition', '','', '', '' ));
 	$title = get_car_title($post_id);
 	$stock_value = get_post_meta($post_id, "_stock_value", true);
+	//= Find out which of the default fields are hidden
+	$show_hide = get_show_hide_fields();
+	//= Get the labels for the default fields
+	$field_labels = get_default_field_labels();
 	$mileage_value = get_post_meta($post_id, "_mileage_value", true);
 	$detail_output = '<span class="random_title">'.$title.'</span><br />';
-	$detail_output .= '<span class="random_text">';
-		$detail_output .= __('Condition:', 'car-demon').' '.$vehicle_condition.'<br />';			
-	$detail_output .= '</span>';
-	$detail_output .= '<span class="random_text">';
-		$detail_output .= __('Mileage:', 'car-demon').' '.$mileage_value.'<br />';
-	$detail_output .= '</span>';
-	$detail_output .= '<span class="random_text">';
-		$detail_output .= __('Stock#:', 'car-demon').' '.$stock_value;
-	$detail_output .= '</span>';
+	if ($show_hide['condition'] != true) {
+		$detail_output .= '<span class="random_text">';
+			$detail_output .= $field_labels['condition'].' '.$vehicle_condition.'<br />';			
+		$detail_output .= '</span>';
+	}
+	if ($show_hide['mileage'] != true) {
+		$detail_output .= '<span class="random_text">';
+			$detail_output .= $field_labels['mileage'].' '.$mileage_value.'<br />';
+		$detail_output .= '</span>';
+	}
+	if ($show_hide['stock_number'] != true) {
+		$detail_output .= '<span class="random_text">';
+			$detail_output .= $field_labels['stock_number'].' '.$stock_value;
+		$detail_output .= '</span>';
+	}
 	if (isset($_SESSION['car_demon_options']['use_compare'])) {
 		$use_compare = $_SESSION['car_demon_options']['use_compare'];
 	} else {

@@ -32,6 +32,7 @@ function get_default_description_maps() {
 }
 function get_default_specs_maps() {
 	$map = array();
+	$map[__('Specifications', 'car-demon')] = __('Trim Level, Production Seq. Number, Exterior Color, Interior Color, Manufactured in, Engine Type, Transmission, Driveline, Tank (gallon),Fuel Economy (City miles/gallon),Fuel Economy (Highway miles/gallon),Anti-Brake System,Steering Type,Length (in.),Width (in.),Height (in.)','car-demon');
 	return $map;
 }
 function get_default_safety_maps() {

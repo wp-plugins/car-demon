@@ -55,35 +55,59 @@ function cdcr_loop($content, $post_id) {
 //		$x .= $title;
 	$x .= '</div>';
 	$x .= $compare;
-	$x .= '
-		<div class="description">
-			<div class="description_left">
-				<div class="description_label">Stock #:</div>
-				<div class="description_text">'.$vehicle_stock_number.'</div>
-				<div class="description_label">Condition:</div>
-				<div class="description_text">'. $vehicle_condition.'</div>
-				<div class="description_label">Year:</div>
-				<div class="description_text">'. $vehicle_year.'</div>
-				<div class="description_label">Make:</div>
-				<div class="description_text">'. $vehicle_make.'</div>
-				<div class="description_label">Model:</div>
-				<div class="description_text">'. $vehicle_model.'</div>
-				<div class="description_label">Body Style:</div>
-				<div class="description_text">'. $vehicle_body_style.'</div>
-			</div>
-			<div class="description_right">
-				<div class="description_label">Transmission:</div>
-				<div class="description_text">'. $vehicle_transmission.'</div>
-				<div class="description_label">Mileage:</div>
-				<div class="description_text">'. $vehicle_mileage.'</div>
-				<div class="description_label">Ext. Color:</div>
-				<div class="description_text">'. $vehicle_exterior_color.'</div>
-				<div class="description_label">Vin Number:</div>
-				<div class="description_text_vin">'. $vehicle_vin.'</div>
-			</div>
-		</div>
-		';
-	$x .= get_vehicle_price_style($post_id);
+	//= Find out which of the default fields are hidden
+	$show_hide = get_show_hide_fields();
+	//= Get the labels for the default fields
+	$field_labels = get_default_field_labels();
+
+	$x .= '<div class="description">';
+		$x .= '<div class="description_left">';
+			if ($show_hide['stock_number'] != true) {
+				$x .= '<div class="description_label">'.$field_labels['stock_number'].':</div>';
+				$x .= '<div class="description_text">'.$vehicle_stock_number.'</div>';
+			}
+			if (!empty($vehicle_transmission)) {
+				$x .= '<div class="description_label">'.$field_labels['condition'].':</div>';
+				$x .= '<div class="description_text">'. $vehicle_condition.'</div>';
+			}
+			if ($show_hide['year'] != true) {
+				$x .= '<div class="description_label">'.$field_labels['year'].':</div>';
+				$x .= '<div class="description_text">'. $vehicle_year.'</div>';
+			}
+			if ($show_hide['make'] != true) {
+				$x .= '<div class="description_label">'.$field_labels['make'].':</div>';
+				$x .= '<div class="description_text">'. $vehicle_make.'</div>';
+			}
+			if ($show_hide['model'] != true) {
+				$x .= '<div class="description_label">'.$field_labels['model'].':</div>';
+				$x .= '<div class="description_text">'. $vehicle_model.'</div>';
+			}
+			if ($show_hide['body_style'] != true) {
+				$x .= '<div class="description_label">'.$field_labels['body_style'].':</div>';
+				$x .= '<div class="description_text">'. $vehicle_body_style.'</div>';
+			}
+		$x .= '</div>';
+		$x .= '<div class="description_right">';
+			if (!empty($vehicle_transmission)) {
+				$x .= '<div class="description_label">'.$field_labels['transmission'].':</div>';
+				$x .= '<div class="description_text">'. $vehicle_transmission.'</div>';
+			}
+			if ($show_hide['mileage'] != true) {
+				$x .= '<div class="description_label">'.$field_labels['mileage'].':</div>';
+				$x .= '<div class="description_text">'. $vehicle_mileage.'</div>';
+			}
+			if (!empty($vehicle_exterior_color)) {
+				$x .= '<div class="description_label">'.$field_labels['exterior_color'].':</div>';
+				$x .= '<div class="description_text">'. $vehicle_exterior_color.'</div>';
+			}
+			if ($show_hide['vin'] != true) {
+				$x .= '<div class="description_label">'.$field_labels['vin'].':</div>';
+				$x .= '<div class="description_text_vin">'. $vehicle_vin.'</div>';
+			}
+		$x .= '</div>';
+	$x .= '</div>';
+	//$x .= get_cr_vehicle_price_style($post_id);
+	$x .= get_vehicle_price($post_id);
 	return $x;
 }
 ?>

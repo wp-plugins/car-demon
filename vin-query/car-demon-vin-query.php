@@ -57,137 +57,91 @@ function car_demon_get_vin_query($post_id, $vin) {
 	}
 }
 function get_vin_query_specs($vin_query_decode, $vehicle_vin) {
-	$x = '
-	<table class="decode_table">
-	  <tr class="decode_table_header">
-		<td><strong>'.__('VIN #', 'car-demon').'</strong></td>
-		<td>'.$vehicle_vin.'</td>
-	  </tr>';
-		if (isset($vin_query_decode['decoded_model_year'])) {
-			$x .= '<tr class="decode_table_odd">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Model Year', 'car-demon').'</td>
-				<td>'.$vin_query_decode['decoded_model_year'].'</td>
-				</tr>';
+	//= Find out which of the default fields are hidden
+	$show_hide = get_show_hide_fields();
+	//= Get the labels for the default fields
+	$field_labels = get_default_field_labels();
+	$x = '<table class="decode_table">';
+		if ($show_hide['vin'] != true) {
+			$x .= '<tr class="decode_table_header">';
+				$x .= '<td><strong>'.$field_labels['vin'].'</strong></td>';
+				$x .= '<td>'.$vehicle_vin.'</td>';
+			$x .= '</tr>';
 		}
-		if (isset($vin_query_decode['decoded_make'])) {
-			$x .= '<tr class="decode_table_even">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Make', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_make"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_model'])) {
-			$x .= '<tr class="decode_table_odd">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Model', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_model"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_trim_level'])) {
-			$x .= '<tr class="decode_table_even">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Trim', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_trim_level"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_manufactured_in'])) {
-			$x .= '<tr class="decode_table_odd">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Manufactured in', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_manufactured_in"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_production_seq_number'])) {
-			$x .= '<tr class="decode_table_even">
-				<td>&nbsp;&nbsp;&nbsp;'.__('Production Seq. Number', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_production_seq_number"].'</td>
-				</tr>';
-		}
-		$x .= '<tr class="decode_table_header">
-			<td colspan="2"><strong>Specifications</strong></td>
-			</tr>';
 		if (isset($vin_query_decode['decoded_body_style'])) {
-			$x .= '<tr class="decode_table_odd">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Body Style', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_body_style"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_engine_type'])) {
-			$x .= '<tr class="decode_table_even">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Engine Type', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_engine_type"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_transmission_long'])) {
-			$x .= '<tr class="decode_table_odd">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Transmission', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_transmission_long"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_driveline'])) {
-			$x .= '<tr class="decode_table_even">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Driveline', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_driveline"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_tank'])) {
-			$x .= '<tr class="decode_table_odd">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Tank(gallon)', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_tank"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_fuel_economy_city'])) {
-			$x .= '<tr class="decode_table_even">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Fuel Economy(City, miles/gallon)', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_fuel_economy_city"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_fuel_economy_highway'])) {
-			$x .= '<tr class="decode_table_odd">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Fuel Economy(Highway, miles/gallon)', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_fuel_economy_highway"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_anti_brake_system'])) {
-			$x .= '<tr class="decode_table_even">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Anti-Brake System', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_anti_brake_system"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_steering_type'])) {
-			$x .= '<tr class="decode_table_odd">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Steering Type', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_steering_type"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_overall_length'])) {
-			$x .= '<tr class="decode_table_even">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Length(in.)', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_overall_length"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_overall_width'])) {
-			$x .= '<tr class="decode_table_odd">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Width(in.)', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_overall_width"].'</td>
-				</tr>';
-		}
-		if (isset($vin_query_decode['decoded_overall_height'])) {
-			$x .= '<tr class="decode_table_even">
-				<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.__('Height(in.)', 'car-demon').'</td>
-				<td>'.$vin_query_decode["decoded_overall_height"].'</td>
-				</tr>';
-		}
-		/*
-		$option_array = get_post_meta($new_id, '_vehicle_options');	
-		$option_array = explode(',',$option_array);
-		foreach($option_array as $option_item) {
-			if (isset($vin_query_decode['decoded_'.$option_item])) {
-				$label = str_replace('_',' ',$option_item);
-				$label = strtoupper($label);
-				$x .= '<tr class="decode_table_even">
-					<td class="decode_table_label">'.$label.'</td>
-					<td>'.$vin_query_decode['decoded_'.$option_item].'</td>
+			if ($show_hide['body_style'] != true) {
+				$x .= '<tr class="decode_table_odd">
+					<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['body_style'].'</td>
+					<td>'.$vin_query_decode["decoded_body_style"].'</td>
 					</tr>';
 			}
 		}
-		*/
+		if (isset($vin_query_decode['decoded_model_year'])) {
+			if ($show_hide['year'] != true) {
+				$x .= '<tr class="decode_table_odd">
+					<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['year'].'</td>
+					<td>'.$vin_query_decode['decoded_model_year'].'</td>
+					</tr>';
+			}
+		}
+		if (isset($vin_query_decode['decoded_make'])) {
+			if ($show_hide['make'] != true) {
+				$x .= '<tr class="decode_table_even">
+					<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['make'].'</td>
+					<td>'.$vin_query_decode["decoded_make"].'</td>
+					</tr>';
+			}
+		}
+		if (isset($vin_query_decode['decoded_model'])) {
+			if ($show_hide['model'] != true) {
+				$x .= '<tr class="decode_table_odd">
+					<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field_labels['model'].'</td>
+					<td>'.$vin_query_decode["decoded_model"].'</td>
+					</tr>';
+			}
+		}
+		if (isset($car_demon_options['show_custom_specs'])) {
+			$show_custom_specs == $car_demon_options['show_custom_specs'];
+		} else {
+			$show_custom_specs = false;
+		}
+		//= BEGIN CUSTOM SPEC CODE
+		if ($show_custom_specs == false) {
+			$map = cd_get_vehicle_map();
+			$specs_map = $map['specs'];
+			foreach ($specs_map as $key=>$spec_group) {
+				$x .= '<tr class="decode_table_header">
+						<td colspan="2"><strong>'.$key.'</strong></td>
+					</tr>';
+				$spec_group_array = explode(',',$spec_group);
+				$odd_even = 'even';
+				foreach($spec_group_array as $spec_item) {
+					if($odd_even == 'odd') { $odd_even = 'even'; } else {$odd_even = 'odd';}
+					$x .= custom_spec_field($post_id, $spec_item, 'decoded_'.$spec_item, $odd_even, $vin_query_decode);
+				}
+			}
+		} else {
+			  $x .= '<tr class="decode_table_header">
+						<td colspan="2"><strong>'.__('Specifications', 'car-demon').'</strong></td>
+					</tr>';
+				$x .= custom_spec_field($post_id, __('Trim', 'car-demon'), 'decoded_trim_level', 'odd', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Production Seq. Number', 'car-demon'), 'decoded_production_seq_number', 'even', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Exterior Color', 'car-demon'), 'exterior_color', 'odd', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Interior Color', 'car-demon'), 'interior_color', 'even', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Manufactured in', 'car-demon'), 'decoded_manufactured_in', 'odd', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Engine Type', 'car-demon'), 'decoded_engine_type', 'even', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Transmission', 'car-demon'), 'decoded_transmission_long', 'odd', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Driveline', 'car-demon'), 'decoded_driveline', 'even', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Tank(gallon)', 'car-demon'), 'decoded_driveline', 'odd', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Fuel Economy (City, miles/gallon)', 'car-demon'), 'decoded_fuel_economy_city', 'even', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Fuel Economy (Highway, miles/gallon)', 'car-demon'), 'decoded_fuel_economy_highway', 'odd', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Anti-Brake System', 'car-demon'), 'decoded_anti_brake_system', 'even', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Steering Type', 'car-demon'), 'decoded_steering_type', 'odd', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Length(in.)', 'car-demon'), 'decoded_overall_length', 'even', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Width(in.)', 'car-demon'), 'decoded_overall_width', 'odd', $vin_query_decode);
+				$x .= custom_spec_field($post_id, __('Height(in.)', 'car-demon'), 'decoded_overall_height', 'even', $vin_query_decode);
+		}
+		//= END CUSTOM SPECS
 		$x .= '<tr class="decode_table_header">
 			<td class="disclaimerrow" colspan="2"><strong>'.__('Disclaimer', 'car-demon').'</strong></td>
 			</tr>';
@@ -207,5 +161,18 @@ function get_vin_query_specs($vin_query_decode, $vehicle_vin) {
 	$na_img = '<img src="'.$car_demon_pluginpath . 'theme-files/images/opt_na.gif" title="'.__('NA', 'car-demon').'" alt="'.__('NA', 'car-demon').'" />';
 	$x = str_replace("N/A", $na_img, $x);
 	return $x;
+}
+
+function custom_spec_field($post_id, $field, $slug, $odd_even, $vin_query_decode) {
+	if (isset($vin_query_decode[$slug])) {$value = $vin_query_decode[$slug]; } else {$value = ''; }
+	if (!empty($value)) {
+		$x = '
+		  <tr class="decode_table_'.$odd_even.'">
+			<td class="decode_table_label">&nbsp;&nbsp;&nbsp;'.$field.'</td>
+			<td class="'.$slug.'">'.$value.'</td>
+		  </tr>
+		';
+	}
+	return $x;	
 }
 ?>

@@ -35,6 +35,10 @@ add_action("wp_ajax_car_demon_remove_option_group", "car_demon_remove_option_gro
 add_action("wp_ajax_nopriv_car_demon_remove_option_group", "car_demon_remove_option_group");
 add_action("wp_ajax_car_demon_update_option_group", "car_demon_update_option_group");
 add_action("wp_ajax_nopriv_car_demon_update_option_group", "car_demon_update_option_group");
+add_action("wp_ajax_car_demon_update_default_fields", "car_demon_update_default_fields");
+add_action("wp_ajax_nopriv_car_demon_update_default_fields", "car_demon_update_default_fields");
+add_action("wp_ajax_car_demon_update_default_labels", "car_demon_update_default_labels");
+add_action("wp_ajax_nopriv_car_demon_update_default_labels", "car_demon_update_default_labels");
 
 function car_demon_admin_update() {
 	$post_id = $_POST['post_id'];
@@ -439,7 +443,7 @@ function car_demon_settings_form() {
 	echo '</form>';
 	echo '<form action="" method="post">';
 		//= Save Start
-		echo '<fieldset class="cd_admin_group">';
+		echo '<fieldset class="cd_admin_group cd_save_settings">';
 			echo '<legend>';
 				echo __('Save settings','car-demon');
 			echo '</legend>';
@@ -615,13 +619,14 @@ function car_demon_settings_form() {
 					<option value="Yes">'.__('Yes', 'car-demon').'</option>
 					<option value="No">'.__('No', 'car-demon').'</option>
 				</select><br />';
-			if ($car_demon_options['hide_tabs'] == 'Yes') {
+			//= Next segment needs to be deprecated
+			//= Change next value to Yes to enable this feature
+			if ($car_demon_options['hide_tabs'] == 'Hide') {
 				echo '<br />'.__('Custom Vehicle Options', 'car-demon').':<br />';
 				echo '<textarea name="custom_options" cols="60" rows="6">'.$car_demon_options['custom_options'].' </textarea><br />';
 				echo __('Separate options with a comma. The options you enter here will appear on the vehicle edit page under "Custom Options"','car-demon');
-			} else {
-				echo '<br /><input type="button" value="Edit Vehicle Option Tabs" onclick="document.cd_settings.submit();" /><br />';
 			}
+			echo '<div class="edit_option_tabs_div"><input type="button" value="Edit Vehicle Option Tabs" onclick="document.cd_settings.submit();" class="edit_option_tabs" /></div>';
 		echo '</fieldset>';
 		//= Tab Option Stop
 
@@ -636,13 +641,13 @@ function car_demon_settings_form() {
 			if ($car_demon_options['cd_cdrf_style'] != 'content-replacement') {
 				echo '<br />'.__('Display before listings:', 'car-demon').'<br />';
 				echo '<textarea name="before_listings" rows="5" cols="60">'.$car_demon_options['before_listings'].'</textarea><br />';
-				echo '<br />'.__('Load Next Inventory Page on Scroll', 'car-demon').':<br />';
-				echo '<select name="dynamic_load">
-						<option value="'.$car_demon_options['dynamic_load'].'">'.$car_demon_options['dynamic_load'].'</option>
-						<option value="Yes">'.__('Yes', 'car-demon').'</option>
-						<option value="No">'.__('No', 'car-demon').'</option>
-					</select><br />';
 			}
+			echo '<br />'.__('Load Next Inventory Page on Scroll', 'car-demon').':<br />';
+			echo '<select name="dynamic_load">
+					<option value="'.$car_demon_options['dynamic_load'].'">'.$car_demon_options['dynamic_load'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
 			echo '<br />'.__('Show sold vehicles in search results?', 'car-demon').':<br />';
 			echo '<select name="show_sold">
 					<option value="'.$car_demon_options['show_sold'].'">'.$car_demon_options['show_sold'].'</option>
@@ -690,7 +695,7 @@ function car_demon_settings_form() {
 				echo __('Form Options','car-demon');
 			echo '</legend>';
 			//==============
-			echo '<br />'.__('You also need to setup the information on the Contact Information page.', 'car-demon').':<hr />';
+			echo '<br />'.__('You also need to setup the information on the Contact Information page.', 'car-demon').'<hr />';
 			echo '<br />'.__('Blind Carbon Copy Forms to Admin?', 'car-demon').':<br />';
 			echo '<select name="cc_admin">
 					<option value="'.$car_demon_options['cc_admin'].'">'.$car_demon_options['cc_admin'].'</option>
@@ -766,7 +771,7 @@ function car_demon_settings_form() {
 	echo '</form>';
 	echo '<fieldset class="cd_admin_group">';
 		echo '<legend>';
-			echo __('Save settings','car-demon');
+			echo __('Shortcodes','car-demon');
 		echo '</legend>';
 		echo '<h2>'.__('Car Demon Pages', 'car-demon').'</h2>';
 		echo '<div class="admin_pages_div">';
@@ -1069,6 +1074,13 @@ function car_demon_settings_edit_vehicle_options() {
 	$comfort_options = $options['comfort'];
 	$entertainment_options = $options['entertainment'];
 	$about_us_options = $options['about_us'];
+	if (isset($_SESSION['car_demon_options']['hide_tabs'])) {
+		if ($_SESSION['car_demon_options']['hide_tabs'] == 'Yes') {
+			$show_tabs = 0;
+		} else {
+			$show_tabs = 1;	
+		}
+	}
 	echo '<div class="wrap"><div id="icon-tools" class="icon32"></div><h1>'.__('Edit Vehicle Option Tabs', 'car-demon').'</h1>';
 	echo '<blockquote>';
 		_e('Add and remove the groups and options that appear under the different vehicle information tabs.','car-demon');
@@ -1098,9 +1110,35 @@ function car_demon_settings_edit_vehicle_options() {
 				echo '<div class="clear"></div>';
 			}
 		echo '</div>';
+		*/
 		echo '<h3 class="open_tab" id="cd_open_specs">+ '.__('Specs Tab', 'car-demon').'</h3>';
 		echo '<div class="tab" id="specs_tab">';
 			echo '<h5 class="close_tab" id="cd_close_specs">- '.__('Close Tab', 'car-demon').'</h5>';
+			echo '<form method="post" action="">';
+				echo '<fieldset class="cd_admin_group">';
+					echo '<legend>'.__('Manage default fields','car-demon').'</legend>';
+					echo '<h4>'.__('Check the box next to each field to hide it.','car-demon').'</h4>';
+					echo '<h4>'.__('You may also relabel the field by changing the value in the box.','car-demon').'</h4>';
+					echo '<h5>'.__('These label changes are only reflected in the page content and do not change URL structures.','car-demon').'</h5>';
+					echo '<blockquote>';
+						$show_hide = get_show_hide_fields();
+						$field_labels = get_default_field_labels();
+						echo '<div id="sh_vin"><input type="checkbox"'.($show_hide['vin']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="vin" /><input type="text" id="label_vin" value="'.$field_labels['vin'].'" onchange="update_default_labels(this);" /> '.__('Vin','car-demon').'</div>';
+						echo '<div id="sh_stock_number"><input type="checkbox"'.($show_hide['stock_number']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="stock_number" /><input type="text" id="label_stock_number" value="'.$field_labels['stock_number'].'" onchange="update_default_labels(this);" /> '.__('Stock Number','car-demon').'</div>';
+						echo '<div id="sh_mileage"><input type="checkbox"'.($show_hide['mileage']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="mileage" /><input type="text" id="label_mileage" value="'.$field_labels['mileage'].'" onchange="update_default_labels(this);" /> '.__('Mileage','car-demon').'</div>';
+						echo '<div id="sh_body_style"><input type="checkbox"'.($show_hide['body_style']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="body_style" /><input type="text" id="label_body_style" value="'.$field_labels['body_style'].'" onchange="update_default_labels(this);" /> '.__('Body Style','car-demon').'</div>';
+						echo '<div id="sh_year"><input type="checkbox"'.($show_hide['year']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="year" /><input type="text" id="label_year" value="'.$field_labels['year'].'" onchange="update_default_labels(this);" /> '.__('Year','car-demon').'</div>';
+						echo '<div id="sh_make"><input type="checkbox"'.($show_hide['make']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="make" /><input type="text" id="label_make" value="'.$field_labels['make'].'" onchange="update_default_labels(this);" /> '.__('Make','car-demon').'</div>';
+						echo '<div id="sh_model"><input type="checkbox"'.($show_hide['model']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="model" /><input type="text" id="label_model" value="'.$field_labels['model'].'" onchange="update_default_labels(this);" /> '.__('Model','car-demon').'</div>';
+						echo '<div id="sh_retail"><input type="checkbox"'.($show_hide['retail']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="retail" /><input type="text" id="label_retail" value="'.$field_labels['retail'].'" onchange="update_default_labels(this);" /> '.__('Retail Price','car-demon').'</div>';
+						echo '<div id="sh_rebates"><input type="checkbox"'.($show_hide['rebates']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="rebates" /><input type="text" id="label_rebates" value="'.$field_labels['rebates'].'" onchange="update_default_labels(this);" /> '.__('Rebates','car-demon').'</div>';
+						echo '<div id="sh_discount"><input type="checkbox"'.($show_hide['discount']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="discount" /><input type="text" id="label_discount" value="'.$field_labels['discount'].'" onchange="update_default_labels(this);" /> '.__('Discount','car-demon').'</div>';
+						echo '<div id="sh_price"><input type="checkbox"'.($show_hide['price']==true ? ' checked' : '').' onclick="show_hide_default_fields(this);" value="price" /><input type="text" id="label_price" value="'.$field_labels['price'].'" onchange="update_default_labels(this);" /> '.__('Price','car-demon').'</div>';
+						echo '<h5>'.__('These values should update as soon as you make changes.','car-demon').'<h5>';
+						echo '<h5>'.__('The vehicle search widget requires you to use a Stock # and may not behave properly if this field is hidden.','car-demon').'<h5>';
+					echo '</blockquote>';
+				echo '</fieldset>';
+			echo '</form>';
 			echo '<h4 class="add_vehicle_option_group" id="cd_add_specs"> + '.__('Add Group', 'car-demon').'</h4>';
 			echo add_vehicle_option_group_form('specs');
 			if (!empty($specs_options)) {
@@ -1122,136 +1160,145 @@ function car_demon_settings_edit_vehicle_options() {
 				echo '<div class="clear"></div>';
 			}
 		echo '</div>';
-		*/
-		echo '<h3 class="open_tab" id="cd_open_safety">+ '.__('Safety Tab', 'car-demon').'</h3>';
-		echo '<div class="tab" id="safety_tab">';
-			echo '<h5 class="close_tab" id="cd_close_safety">- '.__('Close Tab', 'car-demon').'</h5>';
-			echo '<h4 class="add_vehicle_option_group" id="cd_add_safety"> + '.__('Add Group', 'car-demon').'</h4>';
-			echo add_vehicle_option_group_form('safety');
-			if (!empty($safety_options)) {
-				echo '<blockquote>';
-					foreach ($safety_options as $group => $value) {
-						echo '<div id="group_'.$group.'">';
-							echo '<input type="text" value="'.$group.'" class="vehicle_option_group" id="vehicle_option_group_'.$group.'" />';
-							echo '<div class="delete_vehicle_option_group" onclick="remove_option_group(\'safety\',\''.$group.'\')">X - Delete this group</div>';
-							echo '<div class="clear"></div>';
-							echo '<textarea class="vehicle_option_group_items" id="vehicle_option_group_items_'.$group.'">';
-								echo $value;
-							echo '</textarea>';
-							echo '<div class="clear"></div>';
-							echo '<input type="submit" value="Update Group" class="btn_update_group" onclick="update_option_group(\'safety\',\''.$group.'\')" />';
-							echo '<div class="clear"></div>';
-						echo '</div>';
-					}
-				echo '</blockquote>';
-				echo '<div class="clear"></div>';
-			}
-		echo '</div>';
-
-		echo '<h3 class="open_tab" id="cd_open_convenience">+ '.__('Convenience Tab', 'car-demon').'</h3>';
-		echo '<div class="tab" id="convenience_tab">';
-			echo '<h5 class="close_tab" id="cd_close_convenience">- '.__('Close Tab', 'car-demon').'</h5>';
-			echo '<h4 class="add_vehicle_option_group" id="cd_add_convenience"> + '.__('Add Group', 'car-demon').'</h4>';
-			echo add_vehicle_option_group_form('convenience');
-			if (!empty($convenience_options)) {
-				echo '<blockquote>';
-					foreach ($convenience_options as $group => $value) {
-						echo '<div id="group_'.$group.'">';
-							echo '<input type="text" value="'.$group.'" class="vehicle_option_group" id="vehicle_option_group_'.$group.'" />';
-							echo '<div class="delete_vehicle_option_group" onclick="remove_option_group(\'convenience\',\''.$group.'\')">X - Delete this group</div>';
-							echo '<div class="clear"></div>';
-							echo '<textarea class="vehicle_option_group_items" id="vehicle_option_group_items_'.$group.'">';
-								echo $value;
-							echo '</textarea>';
-							echo '<div class="clear"></div>';
-							echo '<input type="submit" value="Update Group" class="btn_update_group" onclick="update_option_group(\'convenience\',\''.$group.'\')" />';
-							echo '<div class="clear"></div>';
-						echo '</div>';
-					}
-				echo '</blockquote>';
-				echo '<div class="clear"></div>';
-			}
-		echo '</div>';
-
-		echo '<h3 class="open_tab" id="cd_open_comfort">+ '.__('Comfort Tab', 'car-demon').'</h3>';
-		echo '<div class="tab" id="comfort_tab">';
-			echo '<h5 class="close_tab" id="cd_close_comfort">- '.__('Close Tab', 'car-demon').'</h5>';
-			echo '<h4 class="add_vehicle_option_group" id="cd_add_comfort"> + '.__('Add Group', 'car-demon').'</h4>';
-			echo add_vehicle_option_group_form('comfort');
-			if (!empty($comfort_options)) {
-				echo '<blockquote>';
-					foreach ($comfort_options as $group => $value) {
-						echo '<div id="group_'.$group.'">';
-							echo '<input type="text" value="'.$group.'" class="vehicle_option_group" id="vehicle_option_group_'.$group.'" />';
-							echo '<div class="delete_vehicle_option_group" onclick="remove_option_group(\'comfort\',\''.$group.'\')">X - Delete this group</div>';
-							echo '<div class="clear"></div>';
-							echo '<textarea class="vehicle_option_group_items" id="vehicle_option_group_items_'.$group.'">';
-								echo $value;
-							echo '</textarea>';
-							echo '<div class="clear"></div>';
-							echo '<input type="submit" value="Update Group" class="btn_update_group" onclick="update_option_group(\'comfort\',\''.$group.'\')" />';
-							echo '<div class="clear"></div>';
-						echo '</div>';
-					}
-				echo '</blockquote>';
-				echo '<div class="clear"></div>';
-			}
-		echo '</div>';
-
-		echo '<h3 class="open_tab" id="cd_open_entertainment">+ '.__('Entertainment Tab', 'car-demon').'</h3>';
-		echo '<div class="tab" id="entertainment_tab">';
-			echo '<h5 class="close_tab" id="cd_close_entertainment">- '.__('Close Tab', 'car-demon').'</h5>';
-			echo '<h4 class="add_vehicle_option_group" id="cd_add_entertainment"> + '.__('Add Group', 'car-demon').'</h4>';
-			echo add_vehicle_option_group_form('entertainment');
-			if (!empty($entertainment_options)) {
-				echo '<blockquote>';
-					foreach ($entertainment_options as $group => $value) {
-						echo '<div id="group_'.$group.'">';
-							echo '<input type="text" value="'.$group.'" class="vehicle_option_group" id="vehicle_option_group_'.$group.'" />';
-							echo '<div class="delete_vehicle_option_group" onclick="remove_option_group(\'entertainment\',\''.$group.'\')">X - Delete this group</div>';
-							echo '<div class="clear"></div>';
-							echo '<textarea class="vehicle_option_group_items" id="vehicle_option_group_items_'.$group.'">';
-								echo $value;
-							echo '</textarea>';
-							echo '<div class="clear"></div>';
-							echo '<input type="submit" value="Update Group" class="btn_update_group" onclick="update_option_group(\'entertainment\',\''.$group.'\')" />';
-							echo '<div class="clear"></div>';
-						echo '</div>';
-					}
-				echo '</blockquote>';
-				echo '<div class="clear"></div>';
-			}
-		echo '</div>';
-
-		echo '<h3 class="open_tab" id="cd_open_about_us">+ '.__('About Us Tab', 'car-demon').'</h3>';
-		echo '<div class="tab" id="about_us_tab">';
-			echo '<h5 class="close_tab" id="cd_close_about_us">- '.__('Close Tab', 'car-demon').'</h5>';
-			echo '<h4 class="add_vehicle_option_group" id="cd_add_about_us"> + '.__('Add Group', 'car-demon').'</h4>';
-			echo add_vehicle_option_group_form('about_us');
-			if (!empty($about_us_options)) {
-				echo '<blockquote>';
-					foreach ($about_us_options as $group => $value) {
-						echo '<div id="group_'.$group.'">';
-							echo '<input type="text" value="'.$group.'" class="vehicle_option_group" id="vehicle_option_group_'.$group.'" />';
-							echo '<div class="delete_vehicle_option_group" onclick="remove_option_group(\'about_us\',\''.$group.'\')">X - Delete this group</div>';
-							echo '<div class="clear"></div>';
-							echo '<textarea class="vehicle_option_group_items" id="vehicle_option_group_items_'.$group.'">';
-								echo $value;
-							echo '</textarea>';
-							echo '<div class="clear"></div>';
-							echo '<input type="submit" value="Update Group" class="btn_update_group" onclick="update_option_group(\'about_us\',\''.$group.'\')" />';
-							echo '<div class="clear"></div>';
-						echo '</div>';
-					}
-				echo '</blockquote>';
-				echo '<div class="clear"></div>';
-				_e('The About Us tab works slightly differently than the other tabs.','car-demon');
-				echo '<br />';
-				_e('It displays each title and description area as a block of text with a title, it does not display items delimited by a comma.','car-demon');
-				echo '<div class="clear"></div>';
-			}
-		echo '</div>';
+		if ($show_tabs == 1) {
+			echo '<h3 class="open_tab" id="cd_open_safety">+ '.__('Safety Tab', 'car-demon').'</h3>';
+			echo '<div class="tab" id="safety_tab">';
+				echo '<h5 class="close_tab" id="cd_close_safety">- '.__('Close Tab', 'car-demon').'</h5>';
+				echo '<h4 class="add_vehicle_option_group" id="cd_add_safety"> + '.__('Add Group', 'car-demon').'</h4>';
+				echo add_vehicle_option_group_form('safety');
+				if (!empty($safety_options)) {
+					echo '<blockquote>';
+						foreach ($safety_options as $group => $value) {
+							echo '<div id="group_'.$group.'">';
+								echo '<input type="text" value="'.$group.'" class="vehicle_option_group" id="vehicle_option_group_'.$group.'" />';
+								echo '<div class="delete_vehicle_option_group" onclick="remove_option_group(\'safety\',\''.$group.'\')">X - Delete this group</div>';
+								echo '<div class="clear"></div>';
+								echo '<textarea class="vehicle_option_group_items" id="vehicle_option_group_items_'.$group.'">';
+									echo $value;
+								echo '</textarea>';
+								echo '<div class="clear"></div>';
+								echo '<input type="submit" value="Update Group" class="btn_update_group" onclick="update_option_group(\'safety\',\''.$group.'\')" />';
+								echo '<div class="clear"></div>';
+							echo '</div>';
+						}
+					echo '</blockquote>';
+					echo '<div class="clear"></div>';
+				}
+			echo '</div>';
+	
+			echo '<h3 class="open_tab" id="cd_open_convenience">+ '.__('Convenience Tab', 'car-demon').'</h3>';
+			echo '<div class="tab" id="convenience_tab">';
+				echo '<h5 class="close_tab" id="cd_close_convenience">- '.__('Close Tab', 'car-demon').'</h5>';
+				echo '<h4 class="add_vehicle_option_group" id="cd_add_convenience"> + '.__('Add Group', 'car-demon').'</h4>';
+				echo add_vehicle_option_group_form('convenience');
+				if (!empty($convenience_options)) {
+					echo '<blockquote>';
+						foreach ($convenience_options as $group => $value) {
+							echo '<div id="group_'.$group.'">';
+								echo '<input type="text" value="'.$group.'" class="vehicle_option_group" id="vehicle_option_group_'.$group.'" />';
+								echo '<div class="delete_vehicle_option_group" onclick="remove_option_group(\'convenience\',\''.$group.'\')">X - Delete this group</div>';
+								echo '<div class="clear"></div>';
+								echo '<textarea class="vehicle_option_group_items" id="vehicle_option_group_items_'.$group.'">';
+									echo $value;
+								echo '</textarea>';
+								echo '<div class="clear"></div>';
+								echo '<input type="submit" value="Update Group" class="btn_update_group" onclick="update_option_group(\'convenience\',\''.$group.'\')" />';
+								echo '<div class="clear"></div>';
+							echo '</div>';
+						}
+					echo '</blockquote>';
+					echo '<div class="clear"></div>';
+				}
+			echo '</div>';
+	
+			echo '<h3 class="open_tab" id="cd_open_comfort">+ '.__('Comfort Tab', 'car-demon').'</h3>';
+			echo '<div class="tab" id="comfort_tab">';
+				echo '<h5 class="close_tab" id="cd_close_comfort">- '.__('Close Tab', 'car-demon').'</h5>';
+				echo '<h4 class="add_vehicle_option_group" id="cd_add_comfort"> + '.__('Add Group', 'car-demon').'</h4>';
+				echo add_vehicle_option_group_form('comfort');
+				if (!empty($comfort_options)) {
+					echo '<blockquote>';
+						foreach ($comfort_options as $group => $value) {
+							echo '<div id="group_'.$group.'">';
+								echo '<input type="text" value="'.$group.'" class="vehicle_option_group" id="vehicle_option_group_'.$group.'" />';
+								echo '<div class="delete_vehicle_option_group" onclick="remove_option_group(\'comfort\',\''.$group.'\')">X - Delete this group</div>';
+								echo '<div class="clear"></div>';
+								echo '<textarea class="vehicle_option_group_items" id="vehicle_option_group_items_'.$group.'">';
+									echo $value;
+								echo '</textarea>';
+								echo '<div class="clear"></div>';
+								echo '<input type="submit" value="Update Group" class="btn_update_group" onclick="update_option_group(\'comfort\',\''.$group.'\')" />';
+								echo '<div class="clear"></div>';
+							echo '</div>';
+						}
+					echo '</blockquote>';
+					echo '<div class="clear"></div>';
+				}
+			echo '</div>';
+	
+			echo '<h3 class="open_tab" id="cd_open_entertainment">+ '.__('Entertainment Tab', 'car-demon').'</h3>';
+			echo '<div class="tab" id="entertainment_tab">';
+				echo '<h5 class="close_tab" id="cd_close_entertainment">- '.__('Close Tab', 'car-demon').'</h5>';
+				echo '<h4 class="add_vehicle_option_group" id="cd_add_entertainment"> + '.__('Add Group', 'car-demon').'</h4>';
+				echo add_vehicle_option_group_form('entertainment');
+				if (!empty($entertainment_options)) {
+					echo '<blockquote>';
+						foreach ($entertainment_options as $group => $value) {
+							echo '<div id="group_'.$group.'">';
+								echo '<input type="text" value="'.$group.'" class="vehicle_option_group" id="vehicle_option_group_'.$group.'" />';
+								echo '<div class="delete_vehicle_option_group" onclick="remove_option_group(\'entertainment\',\''.$group.'\')">X - Delete this group</div>';
+								echo '<div class="clear"></div>';
+								echo '<textarea class="vehicle_option_group_items" id="vehicle_option_group_items_'.$group.'">';
+									echo $value;
+								echo '</textarea>';
+								echo '<div class="clear"></div>';
+								echo '<input type="submit" value="Update Group" class="btn_update_group" onclick="update_option_group(\'entertainment\',\''.$group.'\')" />';
+								echo '<div class="clear"></div>';
+							echo '</div>';
+						}
+					echo '</blockquote>';
+					echo '<div class="clear"></div>';
+				}
+			echo '</div>';
+		}
+		if ($_SESSION['car_demon_options']['use_about'] == 'Yes') {
+			$about = 1;
+			echo '<h3 class="open_tab" id="cd_open_about_us">+ '.__('About Us Tab', 'car-demon').'</h3>';
+			echo '<div class="tab" id="about_us_tab">';
+				echo '<h5 class="close_tab" id="cd_close_about_us">- '.__('Close Tab', 'car-demon').'</h5>';
+				echo '<h4 class="add_vehicle_option_group" id="cd_add_about_us"> + '.__('Add Group', 'car-demon').'</h4>';
+				echo add_vehicle_option_group_form('about_us');
+				if (!empty($about_us_options)) {
+					echo '<blockquote>';
+						foreach ($about_us_options as $group => $value) {
+							echo '<div id="group_'.$group.'">';
+								echo '<input type="text" value="'.$group.'" class="vehicle_option_group" id="vehicle_option_group_'.$group.'" />';
+								echo '<div class="delete_vehicle_option_group" onclick="remove_option_group(\'about_us\',\''.$group.'\')">X - Delete this group</div>';
+								echo '<div class="clear"></div>';
+								echo '<textarea class="vehicle_option_group_items" id="vehicle_option_group_items_'.$group.'">';
+									echo $value;
+								echo '</textarea>';
+								echo '<div class="clear"></div>';
+								echo '<input type="submit" value="Update Group" class="btn_update_group" onclick="update_option_group(\'about_us\',\''.$group.'\')" />';
+								echo '<div class="clear"></div>';
+							echo '</div>';
+						}
+					echo '</blockquote>';
+					echo '<div class="clear"></div>';
+					_e('The About Us tab works slightly differently than the other tabs.','car-demon');
+					echo '<br />';
+					_e('It displays each title and description area as a block of text with a title, it does not display items delimited by a comma.','car-demon');
+					echo '<div class="clear"></div>';
+				}
+			echo '</div>';
+		}
 		echo '<br />';
+		//= If tabs are hidden give an alert
+		if ($show_tabs == 0) {
+			echo '<h3 id="cd_disabled_tabs">'.__('You currently have additional tabs diabled.', 'car-demon').'</h3>';
+			echo '<h5 id="cd_disabled_tabs_msg">'.__('You may turn them back on from the main Car Demon Settings Page.', 'car-demon').'</h5>';
+		}
+		
 		_e('If you delete a group or option here then it will no longer show on the vehicles.', 'car-demon');
 		echo '<br />';
 		_e('However, the information is not removed from the vehicles, it is retained but hidden.', 'car-demon');
@@ -1340,5 +1387,102 @@ function cd_sidebar_selectbox( $name = '', $current_value = false ) {
 		endforeach; 
 	$sidebar_list .= '</select>';	
 	return $sidebar_list;
+}
+
+function get_default_field_labels() {
+	$labels = array();
+	$labels['vin'] = __('Vin #','car-demon');
+	$labels['stock_number'] = __('Stock #','car-demon');
+	$labels['mileage'] = __('Mileage','car-demon');
+	$labels['body_style'] = __('Body Style','car-demon');
+	$labels['year'] = __('Year','car-demon');
+	$labels['make'] = __('Make','car-demon');
+	$labels['model'] = __('Model','car-demon');
+	$labels['retail'] = __('Retail Price','car-demon');
+	$labels['rebates'] = __('Rebates','car-demon');
+	$labels['discount'] = __('Discount','car-demon');
+	$labels['price'] = __('Asking Price','car-demon');
+	//= These fields are not changable at this point
+	$labels['condition'] = __('Condition','car-demon');
+	$labels['transmission'] = __('Transmission','car-demon');
+	$labels['exterior_color'] = __('Exterior Color','car-demon');
+	$labels['interior_color'] = __('Interior Color','car-demon');
+	$labels['engine'] = __('Engine','car-demon');
+	$label_options = get_option( 'cd_default_field_labels', $labels );
+	if (!isset($label_options['vin'])) $label_options['vin'] = $labels['vin'];
+	if (!isset($label_options['stock_number'])) $label_options['stock_number'] = $labels['stock_number'];
+	if (!isset($label_options['mileage'])) $label_options['mileage'] = $labels['mileage'];
+	if (!isset($label_options['body_style'])) $label_options['body_style'] = $labels['body_style'];
+	if (!isset($label_options['year'])) $label_options['year'] = $labels['year'];
+	if (!isset($label_options['make'])) $label_options['make'] = $labels['make'];
+	if (!isset($label_options['model'])) $label_options['model'] = $labels['model'];
+	if (!isset($label_options['retail'])) $label_options['retail'] = $labels['retail'];
+	if (!isset($label_options['rebates'])) $label_options['rebates'] = $labels['rebates'];
+	if (!isset($label_options['discount'])) $label_options['discount'] = $labels['discount'];
+	if (!isset($label_options['price'])) $label_options['price'] = $labels['price'];
+	if (!isset($label_options['condition'])) $label_options['condition'] = $labels['condition'];
+	if (!isset($label_options['transmission'])) $label_options['transmission'] = $labels['transmission'];
+	if (!isset($label_options['exterior_color'])) $label_options['exterior_color'] = $labels['exterior_color'];
+	if (!isset($label_options['interior_color'])) $label_options['interior_color'] = $labels['interior_color'];
+	if (!isset($label_options['engine'])) $label_options['engine'] = $labels['engine'];
+	return $label_options;	
+}
+
+function get_show_hide_fields() {
+	$fields = array();
+	$fields['vin'] = 0;
+	$fields['stock_number'] = 0;
+	$fields['mileage'] = 0;
+	$fields['body_style'] = 0;
+	$fields['year'] = 0;
+	$fields['make'] = 0;
+	$fields['model'] = 0;
+	$labels['retail'] = 0;
+	$labels['rebates'] = 0;
+	$labels['discount'] = 0;
+	$labels['price'] = 0;
+	$labels['condition'] = 0;
+	$labels['transmission'] = 0;
+	$labels['exterior_color'] = 0;
+	$labels['interior_color'] = 0;
+	$labels['engine'] = 0;
+	$field_options = get_option( 'cd_show_hide_labels', $fields );
+	if (!isset($field_options['vin'])) $field_options['vin'] = $fields['vin'];
+	if (!isset($field_options['stock_number'])) $field_options['stock_number'] = $fields['stock_number'];
+	if (!isset($field_options['mileage'])) $field_options['mileage'] = $fields['mileage'];
+	if (!isset($field_options['body_style'])) $field_options['body_style'] = $fields['body_style'];
+	if (!isset($field_options['year'])) $field_options['year'] = $fields['year'];
+	if (!isset($field_options['make'])) $field_options['make'] = $fields['make'];
+	if (!isset($field_options['model'])) $field_options['model'] = $fields['model'];
+	if (!isset($field_options['retail'])) $field_options['retail'] = $fields['retail'];
+	if (!isset($field_options['rebates'])) $field_options['rebates'] = $fields['rebates'];
+	if (!isset($field_options['discount'])) $field_options['discount'] = $fields['discount'];
+	if (!isset($field_options['price'])) $field_options['price'] = $fields['price'];
+	if (!isset($field_options['condition'])) $field_options['condition'] = $fields['condition'];
+	if (!isset($field_options['transmission'])) $field_options['transmission'] = $fields['transmission'];
+	if (!isset($field_options['exterior_color'])) $field_options['exterior_color'] = $fields['exterior_color'];
+	if (!isset($field_options['interior_color'])) $field_options['interior_color'] = $fields['interior_color'];
+	if (!isset($field_options['engine'])) $field_options['engine'] = $fields['engine'];
+	return $field_options;	
+}
+
+function car_demon_update_default_labels() {
+	$field = $_POST['field'];
+	$field = str_replace('label_','',$field);
+	$label = $_POST['label'];
+	$labels = get_default_field_labels();
+	$labels[$field] = $label;
+	update_option('cd_default_field_labels', $labels);
+	exit();	
+}
+
+function car_demon_update_default_fields() {
+	$field = $_POST['field'];
+	$checked = $_POST['checked'];
+	if ($checked == 'false') $checked = '';
+	$fields = get_show_hide_fields();
+	$fields[$field] = $checked;
+	update_option('cd_show_hide_labels', $fields);
+	exit();	
 }
 ?>

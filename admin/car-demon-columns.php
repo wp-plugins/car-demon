@@ -3,16 +3,38 @@ add_action('manage_cars_for_sale_posts_custom_column', 'manage_cars_for_sale_col
 add_filter("manage_edit-cars_for_sale_columns", "my_cars_for_sale_columns");
 add_action('quick_edit_custom_box',  'max_add_quick_edit', 10, 2);
 function my_cars_for_sale_columns($columns) {
+	//= Find out which of the default fields are hidden
+	$show_hide = get_show_hide_fields();
+
+	$columns = array_merge(array(
+		"sold" => __('Sold', 'car-demon')
+	),$columns);
+	if ($show_hide['price'] != true) {
+		$columns = array_merge(array(
+			"price" => __('Price', 'car-demon')
+		),$columns);
+	}
+	if ($show_hide['discount'] != true) {
+		$columns = array_merge(array(
+			"discount" => __('Discount', 'car-demon')
+		),$columns);
+	}
+	if ($show_hide['rebates'] != true) {
+		$columns = array_merge(array(
+			"rebate" => __('Rebate', 'car-demon')
+		),$columns);
+	}
+	if ($show_hide['retail'] != true) {
+		$columns = array_merge(array(
+			"msrp" => __('Retail Price', 'car-demon')
+		),$columns);
+	}
 	$columns = array_merge(array(
 		"cb" => "<input type=\"checkbox\" />",
 		"title" => __('Vehicle Title', 'car-demon'),
 		"photo" => __('Photo', 'car-demon'),
-		"msrp" => __('Retail Price', 'car-demon'),
-		"rebate" => __('Rebate', 'car-demon'),
-		"discount" => __('Discount', 'car-demon'),
-		"price" => __('Price', 'car-demon'),
-		"sold" => __('Sold', 'car-demon')
 	),$columns);
+
 	return $columns;
 }
 function manage_cars_for_sale_columns($column) {
@@ -31,67 +53,75 @@ function manage_cars_for_sale_columns($column) {
 	$attachments = get_children( array( 'post_parent' => $post_id ) );
 	$count = count( $attachments );
 	$car_image = '<img width="75" src="'.$car_pic.'" /><br />('.$count.')';
+
+	//= Find out which of the default fields are hidden
+	$show_hide = get_show_hide_fields();
+	//= Get the labels for the default fields
+	$field_labels = get_default_field_labels();
+
 	if ("ID" == $column) {
 		echo $post_id;
-	}
-	elseif ("photo" == $column) {
+	} elseif ("photo" == $column) {
 		echo $car_image;
-	}
-	elseif ("msrp" == $column) {
-		echo '<input type="text" id="msrp_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_msrp_value\');" size="6" value="'.get_post_meta($post_id, '_msrp_value', true).'" />';
-		$msrp_label = get_post_meta($post_id, '_msrp_label', true);
-		if (empty($msrp_label)) {
-			$msrp_label = __('Selling Price', 'car-demon');
-		}
-		echo '<br /><br />edit label';
-		echo '<br /><input type="text" id="msrp_label_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_msrp_label\');" size="6" value="'.$msrp_label.'" />';
-	}
-	elseif ("rebate" == $column) {
-		echo  '<input type="text" id="rebate_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_rebates_value\');" size="6" value="'.get_post_meta($post_id, '_rebates_value', true).'" />';
-		$rebate_label = get_post_meta($post_id, '_rebate_label', true);
-		if (empty($rebate_label)) {
-			$rebate_label = __('Rebate', 'car-demon');
-		}	
-		echo '<br /><br />edit label';
-		echo '<br /><input type="text" id="rebate_label_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_rebate_label\');" size="6" value="'.$rebate_label.'" />';
-	}
-	elseif ("discount" == $column) {
-		echo '<input type="text" id="discount_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_discount_value\');" size="6" value="'.get_post_meta($post_id, '_discount_value', true).'" />';
-		$discount_label = get_post_meta($post_id, '_discount_label', true);
-		if (empty($discount_label)) {
-			$discount_label = __('Xtra Discount', 'car-demon');
-		}	
-		echo '<br /><br />edit label';
-		echo '<br /><input type="text" id="discount_label_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_discount_label\');" size="6" value="'.$discount_label.'" />';
-	}
-	elseif ("price" == $column) {
-		$price_color = '';
-		$msrp = get_post_meta($post_id, '_msrp_value', true);
-		$rebates = get_post_meta($post_id, '_rebates_value', true);
-		$discounts = get_post_meta($post_id, '_discount_value', true);
-		if (empty($msrp)) {$msrp = 0;}
-		if (empty($rebates)) {$rebates = 0;}
-		if (empty($discounts)) {$discounts = 0;}
-		$calculated_price = $msrp - $rebates - $discounts;
-		$final_price = get_post_meta($post_id, '_price_value', true);
-		$calculated_discount = $final_price - $msrp;
-		echo __('Calculated Price:', 'car-demon').' <span id="calc_price_'.$post_id.'">'.$calculated_price.'</span><br />';
-		echo __('Calculated Discount:', 'car-demon').' <span id="calc_discounts_'.$post_id.'">'.$calculated_discount.'</span><br />';
-		echo '<span id="calc_error_'.$post_id.'"></span>';
-		if ($calculated_price != $final_price) {
-			if (!empty($msrp)) {
-				$price_color = ' style="background-color:#FFB3B3;"';
+	} elseif ("msrp" == $column) {
+		if ($show_hide['retail'] != true) {
+			echo '<input type="text" id="msrp_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_msrp_value\');" size="6" value="'.get_post_meta($post_id, '_msrp_value', true).'" />';
+			$msrp_label = get_post_meta($post_id, '_msrp_label', true);
+			if (empty($msrp_label)) {
+				$msrp_label = $field_labels['retail'];
 			}
+			echo '<br /><br />edit label';
+			echo '<br /><input type="text" id="msrp_label_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_msrp_label\');" size="6" value="'.$msrp_label.'" />';
 		}
-		echo '<input'.$price_color.' id="price_'.$post_id.'" type="text" onchange="update_car('.$post_id.', this, \'_price_value\');" size="6" value="'.$final_price.'" />';
-		$price_label = get_post_meta($post_id, '_price_label', true);
-		if (empty($price_label)) {
-			$price_label = __('Your Price', 'car-demon');
-		}	
-		echo '<br /><br />edit label';
-		echo '<br /><input type="text" id="price_label_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_price_label\');" size="6" value="'.$price_label.'" />';
-	}
-	elseif ("sold" == $column) {
+	} elseif ("rebate" == $column) {
+		if ($show_hide['rebates'] != true) {
+			echo  '<input type="text" id="rebate_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_rebates_value\');" size="6" value="'.get_post_meta($post_id, '_rebates_value', true).'" />';
+			$rebate_label = get_post_meta($post_id, '_rebate_label', true);
+			if (empty($rebate_label)) {
+				$rebate_label = $field_labels['rebates'];
+			}	
+			echo '<br /><br />edit label';
+			echo '<br /><input type="text" id="rebate_label_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_rebate_label\');" size="6" value="'.$rebate_label.'" />';
+		}
+	} elseif ("discount" == $column) {
+		if ($show_hide['discount'] != true) {
+			echo '<input type="text" id="discount_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_discount_value\');" size="6" value="'.get_post_meta($post_id, '_discount_value', true).'" />';
+			$discount_label = get_post_meta($post_id, '_discount_label', true);
+			if (empty($discount_label)) {
+				$discount_label = $field_labels['discount'];
+			}	
+			echo '<br /><br />edit label';
+			echo '<br /><input type="text" id="discount_label_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_discount_label\');" size="6" value="'.$discount_label.'" />';
+		}
+	} elseif ("price" == $column) {
+		if ($show_hide['price'] != true) {
+			$price_color = '';
+			$msrp = get_post_meta($post_id, '_msrp_value', true);
+			$rebates = get_post_meta($post_id, '_rebates_value', true);
+			$discounts = get_post_meta($post_id, '_discount_value', true);
+			if (empty($msrp)) {$msrp = 0;}
+			if (empty($rebates)) {$rebates = 0;}
+			if (empty($discounts)) {$discounts = 0;}
+			$calculated_price = $msrp - $rebates - $discounts;
+			$final_price = get_post_meta($post_id, '_price_value', true);
+			$calculated_discount = $final_price - $msrp;
+			echo __('Calculated Price:', 'car-demon').' <span id="calc_price_'.$post_id.'">'.$calculated_price.'</span><br />';
+			echo __('Calculated Discount:', 'car-demon').' <span id="calc_discounts_'.$post_id.'">'.$calculated_discount.'</span><br />';
+			echo '<span id="calc_error_'.$post_id.'"></span>';
+			if ($calculated_price != $final_price) {
+				if (!empty($msrp)) {
+					$price_color = ' style="background-color:#FFB3B3;"';
+				}
+			}
+			echo '<input'.$price_color.' id="price_'.$post_id.'" type="text" onchange="update_car('.$post_id.', this, \'_price_value\');" size="6" value="'.$final_price.'" />';
+			$price_label = get_post_meta($post_id, '_price_label', true);
+			if (empty($price_label)) {
+				$price_label = $field_labels['price'];
+			}	
+			echo '<br /><br />edit label';
+			echo '<br /><input type="text" id="price_label_'.$post_id.'" onchange="update_car('.$post_id.', this, \'_price_label\');" size="6" value="'.$price_label.'" />';
+		}
+	} elseif ("sold" == $column) {
 		$sold = get_post_meta($post_id, 'sold', true);
 		echo '<div id="show_sold_'.$post_id.'">
 				<select id="is_sold_'.$post_id.'" onchange="update_car_sold('.$post_id.', this, \'sold\')">

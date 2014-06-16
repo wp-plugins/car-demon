@@ -1,42 +1,66 @@
 <?php
+function car_demon_dynamic_load_legacy() {
+	$html = '';
+	$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$pluginpath = str_replace('includes', 'theme-files', $pluginpath);
+	$html = '
+		<link rel="stylesheet" type="text/css" media="all" href="'.$pluginpath.'css/jquery.ias.css" />
+		<script language="javascript" type="text/javascript" src="'.$pluginpath.'js/jquery.ias.min.js"></script>
+		<script>
+			jQuery.ias({
+			  container 	: ".listing",
+					// Enter the selector of the element containing
+					// your items that you want to paginate.
+			 
+			  item		: ".random",
+					// Enter the selector of the element that each
+					// item has. Make sure the elements are inside
+					// the container element.
+			 
+			  pagination	: ".navigation",
+					// Enter the selector of the element that contains
+					// your regular pagination links, like next,
+					// previous and the page numbers. This element
+					// will be hidden when IAS loads.
+			 
+			  next		: ".nextpostslink",
+					// Enter the selector of the link element that
+					// links to the next page. The href attribute
+					// of this element will be used to get the items
+					// from the next page.
+			 
+			  loader	: "<img src=\''.$pluginpath.'images/ajax-loader.gif\' />"
+					// Enter the url to the loader image. This image
+					// will be displayed when the next page with items
+					// is loaded via AJAX.
+			});
+		</script>
+	';
+	return $html;
+}
 function car_demon_dynamic_load() {
 	$html = '';
 	if ($_SESSION['car_demon_options']['dynamic_load'] == 'Yes') {
-		$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-		$pluginpath = str_replace('includes', 'theme-files', $pluginpath);
-		$html = '
-			<link rel="stylesheet" type="text/css" media="all" href="'.$pluginpath.'css/jquery.ias.css" />
-			<script language="javascript" type="text/javascript" src="'.$pluginpath.'js/jquery.ias.min.js"></script>
-			<script>
-				jQuery.ias({
-				  container 	: ".listing",
-						// Enter the selector of the element containing
-						// your items that you want to paginate.
-				 
-				  item		: ".random",
-						// Enter the selector of the element that each
-						// item has. Make sure the elements are inside
-						// the container element.
-				 
-				  pagination	: ".navigation",
-						// Enter the selector of the element that contains
-						// your regular pagination links, like next,
-						// previous and the page numbers. This element
-						// will be hidden when IAS loads.
-				 
-				  next		: ".nextpostslink",
-						// Enter the selector of the link element that
-						// links to the next page. The href attribute
-						// of this element will be used to get the items
-						// from the next page.
-				 
-				  loader	: "<img src=\''.$pluginpath.'images/ajax-loader.gif\' />"
-						// Enter the url to the loader image. This image
-						// will be displayed when the next page with items
-						// is loaded via AJAX.
-				});
-			</script>
-		';
+		$cd_cdrf_options = array();
+		$cd_cdrf_options = get_option( 'car_demon_options', $default );
+		if ($cd_cdrf_options['cd_cdrf_style'] != 'content-replacement') {
+			$html = car_demon_dynamic_load_legacy();
+		} else {
+			$pluginpath = CAR_DEMON_PATH;
+			wp_enqueue_style('car-demon-dynamic-load-css', $pluginpath.'theme-files/css/jquery.ias.css');
+			wp_register_script("car-demon-dynamic-load-core-js", $pluginpath.'theme-files/js/jquery.ias.min.js', array('jquery') );
+			wp_register_script("car-demon-dynamic-load-js", CAR_DEMON_PATH.'includes/js/car-demon-dynamic-load.js', array('jquery') );
+			wp_localize_script( 'car-demon-dynamic-load-js', 'cdDynamicLoad', array(
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'container' => '.grid-box.width100',
+				'vehicle_item' => '.item',
+				'pagination' => '.pagination',
+				'next' => '.next',
+				'loader' => '<img src="'.$pluginpath.'/theme-files/images/ajax-loader.gif" />'
+			));
+			wp_enqueue_script( 'car-demon-dynamic-load-core-js' );
+			wp_enqueue_script( 'car-demon-dynamic-load-js' );
+		}
 	}
 	return $html;
 }
