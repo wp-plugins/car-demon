@@ -4,7 +4,7 @@
 * Plugin URI: http://www.CarDemons.com/
 * Description:  Car Demon is a PlugIn designed for car dealers.
 * Author: CarDemons
-* Version: 1.3.07
+* Version: 1.3.1
 * Author URI: http://www.CarDemons.com/
 * Text Domain: car-demon
 * Domain Path: /languages/
@@ -348,7 +348,7 @@ add_action('after_setup_theme', 'cardemon_language');
 function cardemon_language(){
     load_theme_textdomain('car-demon', get_template_directory() . '/languages');
 }
-add_action("template_redirect", 'car_demon_theme_redirect');
+add_action("template_redirect", 'car_demon_theme_redirect', 1);
 function car_demon_theme_redirect() {
 	if ($_SESSION['car_demon_options']['use_theme_files'] == 'Yes') {
 		global $wp;
@@ -465,9 +465,11 @@ function cd_admin_notice() {
 			$user_id = $current_user->ID;
 			/* Check that the user hasn't already clicked to ignore the message */
 		if ( ! get_user_meta($user_id, 'cd_ignore_notice') ) {
+/*
 			echo '<div class="updated"><p>';
-			printf(__('Please install the latest version of <a href="http://www.cardemonspro.com/store/products/car-demons-dashboard/" target="cduwin" title="Download Now &raquo;">our free Update Notifications plugin</a> which helps you stay up-to-date with the most stable, secure versions of our themes and plugins.<br /><a href="http://www.cardemonspro.com/store/products/car-demons-dashboard/" target="cduwin">More information &raquo;</a>| <a href="%1$s">Hide Notice</a>', 'car-demon'), '?cd_nag_ignore=0');
+			printf(__('Please install the latest version of <a href="http://cardemons.com/product/car-demons-dashboard/" target="cduwin" title="Download Now &raquo;">our free Update Notifications plugin</a> which helps you stay up-to-date with the most stable, secure versions of our themes and plugins.<br /><a href="http://cardemons.com/product/car-demons-dashboard/" target="cduwin">More information &raquo;</a>| <a href="%1$s">Hide Notice</a>', 'car-demon'), '?cd_nag_ignore=0');
 			echo "</p></div>";
+*/
 		}
 	}
 }
@@ -480,6 +482,26 @@ function cd_nag_ignore() {
              add_user_meta($user_id, 'cd_ignore_notice', 'true', true);
 	}
 }
+
+function car_crf_activate() {
+	$cd_cdrf_options = array();
+	$cd_cdrf_options = get_option( 'car_demon_options', $default );
+	$cd_cdrf_options['use_theme_files'] = 'No';
+	$cd_cdrf_options['cd_cdrf_style'] = 'content-replacement';
+	$cd_cdrf_options['cd_cdrf_page_style'] = 'content-replacement';
+	update_option( 'car_demon_options', $cd_cdrf_options );
+}
+register_activation_hook( __FILE__, 'car_crf_activate' );
+
+function car_crf_deactivate() {
+	$cd_cdrf_options = array();
+	$cd_cdrf_options = get_option( 'car_demon_options', $default );
+	$cd_cdrf_options['use_theme_files'] = 'Yes';
+	$cd_cdrf_options['cd_cdrf_style'] = 'default';
+	$cd_cdrf_options['cd_cdrf_page_style'] = 'default';	
+	update_option( 'car_demon_options', $cd_cdrf_options );
+}
+register_deactivation_hook( __FILE__, 'car_crf_deactivate' );
 /*
                         ______________
                 __..=='|'   |         ``-._

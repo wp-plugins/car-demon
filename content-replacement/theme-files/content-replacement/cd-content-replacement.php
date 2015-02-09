@@ -3,30 +3,33 @@
 add_filter( 'the_content', 'cd_filter_vehicle_content', 20 );
 add_filter( 'the_excerpt', 'cd_filter_vehicle_content', 20 );
 function cd_filter_vehicle_content($content) {
-	$post_id = get_the_ID();
-	$post_type = get_post_type( $post_id );
-	//= If it's a cars_for_sale post type then keep going
-	if ('cars_for_sale' == $post_type) {
-		if ( is_single() ) {
-			//= If it's single then it's the single vehicle page
-			$content .= cd_single_vehicle_content($post_id, $content);
-		}
-		if (is_post_type_archive('cars_for_sale') || is_tax( 'vehicle_year' ) || is_tax( 'vehicle_make' ) || is_tax( 'vehicle_model' ) || is_tax( 'vehicle_condition' ) || is_tax( 'vehicle_body_style' ) || is_tax( 'vehicle_location' )) {
-			// If it's an archive page then filter the loop
-			$content .= cd_loop_vehicle_content($post_id, $content);
-		}
-	}
-	//= If it's a search page then it needs to be filtered
-	if ( is_search() ) {
-		//= Handle search page
-		if ($post_type == 'cars_for_sale') {
-			if (isset($_GET['car'])) {
-				$content .= cd_loop_vehicle_content($post_id, $content);
+	if (!is_admin()) {
+		$post_id = get_the_ID();
+		$post_type = get_post_type( $post_id );
+		//= If it's a cars_for_sale post type then keep going
+		if ('cars_for_sale' == $post_type) {
+			if ( is_single() ) {
+				//= If it's single then it's the single vehicle page
+				$content .= cd_single_vehicle_content($post_id, $content);
+			}
+			if (is_post_type_archive('cars_for_sale') || is_tax( 'vehicle_year' ) || is_tax( 'vehicle_make' ) || is_tax( 'vehicle_model' ) || is_tax( 'vehicle_condition' ) || is_tax( 'vehicle_body_style' ) || is_tax( 'vehicle_location' )) {
+				// If it's an archive page then filter the loop
+				$content = cd_loop_vehicle_content($post_id, $content);
 			}
 		}
+		//= If it's a search page then it needs to be filtered
+		if ( is_search() ) {
+			//= Handle search page
+			if ($post_type == 'cars_for_sale') {
+				if (isset($_GET['car'])) {
+					if (empty($content)) {
+						$content = cd_loop_vehicle_content($post_id, $content);
+					}
+				}
+			}
+		}
+		// Returns the content.
 	}
-    // Returns the content.
-
     return $content;
 }
 
@@ -47,7 +50,6 @@ function cd_loop_vehicle_content($post_id, $content) {
 			/*first post*/
 			//= If it's the first post then add everything you want above listings here
 	//	}
-
 	$x .= cdcr_loop($content, $post_id);
 	return $x;
 }

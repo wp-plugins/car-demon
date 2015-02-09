@@ -257,3 +257,6 @@
 		margin-left:20px !important;	
 	}
 }
+#select_stock_txt {
+	max-width:175px;	
+}

@@ -4,12 +4,10 @@ function findValue(li) {
 	if( !!li.extra ) var sValue = li.extra[0];
 	else var sValue = li.selectValue;
 }
-function selectItem(li) {
-	findValue(li);
-	var stock_num = li.selectValue;
+function selectItem(car_title) {
 	jQuery.ajax({
 		type: 'POST',
-		data: {action: 'cd_trade_handler_select_item', 'stock_num': stock_num},
+		data: {action: 'cd_trade_show_stock', 'car_title': car_title, 'show_stock': 2},
 		url: cdTradeParams.ajaxurl,
 		timeout: 5000,
 		error: function() {},
@@ -21,12 +19,10 @@ function selectItem(li) {
 		}
 	})
 }
-function selectCarItem(li) {
-	findValue(li);
-	var car_title = li.selectValue;
+function selectCarItem(car_title) {
 	jQuery.ajax({
 		type: 'POST',
-		data: {action: 'cd_trade_handler_select_car', 'car_title': car_title},
+		data: {action: 'cd_trade_show_stock', 'car_title': car_title, 'show_stock': 2},
 		url: cdTradeParams.ajaxurl,
 		timeout: 5000,
 		error: function() {},
@@ -260,35 +256,39 @@ function cd_get_options() {
 	if (vals) vals = vals.substring(1); // drop leading comma
 	return vals;
 }
+
 jQuery("#select_stock_txt").autocomplete (
-  cdTradeParams.ajaxurl,
   {
-		extraParams: {action:"cd_trade_find_stock"},
+		source:cdTradeParams.ajaxurl+"?show_stock=2&action=cd_trade_find_vehicle",
 		delay:10,
 		minChars:2,
 		matchSubset:1,
 		matchContains:1,
 		cacheLength:10,
-		onItemSelect:selectItem,
-		onFindValue:findValue,
-		formatItem:formatItem,
-		autoFill:true,
-		width:300
-	}
-);
-jQuery("#select_car_txt").autocomplete (
-  cdTradeParams.ajaxurl,
-  {
-		extraParams: {action:"cd_trade_find_vehicle"},
-		delay:10,
-		minChars:2,
-		matchSubset:1,
-		matchContains:1,
-		cacheLength:10,
-		onItemSelect:selectCarItem,
 		onFindValue:findValue,
 		formatItem:formatCarItem,
-		autoFill:false,
-		width:300
+		autoFill:true,
+		width:300,
+       select: function(event, ui) {
+			selectItem(ui.item.value);
+        }
+	}
+);
+
+jQuery("#select_car_txt").autocomplete (
+  {
+		source:cdTradeParams.ajaxurl+"?show_stock=2&action=cd_trade_find_vehicle",
+		delay:10,
+		minChars:2,
+		matchSubset:1,
+		matchContains:1,
+		cacheLength:10,
+		onFindValue:findValue,
+		formatItem:formatCarItem,
+		autoFill:true,
+		width:300,
+       select: function(event, ui) {
+			selectCarItem(ui.item.value);
+        }
 	}
 );

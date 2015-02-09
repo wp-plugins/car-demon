@@ -19,7 +19,7 @@ if ($is_it_iis == 'Apache') {
 	include_once($newPath."\wp-includes/wp-db.php");
 }
 //= Example
-//= http://cardemonspro.com/wp-content/plugins/car-demon/feeds/car-demon-csv.php
+//= http://cardemons.com/wp-content/plugins/car-demon/feeds/car-demon-csv.php
 ob_end_clean();
 echo build_csv();
 function build_csv() {

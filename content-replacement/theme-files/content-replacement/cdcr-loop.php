@@ -46,6 +46,27 @@ function cdcr_loop($content, $post_id) {
 	}
 	$main_photo = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 	//= Build the HTML for each vehicle
+	//= Get Ribbon
+		$ribbon = get_post_meta($post_id, '_vehicle_ribbon', true);
+	if (empty($ribbon)) {
+		$ribbon = 'no-ribbon';
+	}
+	if ($ribbon != 'custom_ribbon') {
+		$ribbon = str_replace('_', '-', $ribbon);
+		$current_ribbon = '<img class="inventory_ribbon" src="'. CAR_DEMON_PATH .'theme-files/images/ribbon-'.$ribbon.'.png" width="76" height="76" id="ribbon">';
+	} else {
+		$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
+		$current_ribbon = '<img class="inventory_ribbon" src="'.$custom_ribbon_file.'" width="76" height="76" id="ribbon">';
+	}
+	$x = '';
+	if (isset($_SESSION['car_demon_options']['dynamic_ribbons'])) {
+		if ($_SESSION['car_demon_options']['dynamic_ribbons'] == 'Yes') {
+			$current_ribbon = car_demon_dynamic_ribbon_filter($current_ribbon, $post_id, '76');
+		}
+	}
+
+	//= Get Main Photo
+	$x .= $current_ribbon;	
 	$x .= '<div class="main_photo">';
 		$x .= '<a href="'.$link.'">';
 			$x .= '<img class="photo_thumb" src="'.$main_photo.'" alt="" title="'.$title.'">';
@@ -106,8 +127,8 @@ function cdcr_loop($content, $post_id) {
 			}
 		$x .= '</div>';
 	$x .= '</div>';
-	//$x .= get_cr_vehicle_price_style($post_id);
-	$x .= get_vehicle_price($post_id);
+	$x .= get_cr_vehicle_price_style($post_id);
+	//$x .= get_vehicle_price($post_id);
 	return $x;
 }
 ?>

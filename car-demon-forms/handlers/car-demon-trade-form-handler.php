@@ -1,6 +1,12 @@
 <?php
 function cd_trade_show_stock() {
-	if ($_GET['show_stock']==1) {
+	if(isset($_GET['show_stock'])) {
+		$show_stock = $_GET['show_stock'];
+	}
+	if(isset($_POST['show_stock'])) {
+		$show_stock = $_POST['show_stock'];
+	}
+	if ($show_stock==1) {
 		if (isset($_POST['stock_num'])) {
 			$stock_num = $_POST['stock_num'];
 		} else {
@@ -8,18 +14,21 @@ function cd_trade_show_stock() {
 		}
 		echo get_trade_for_vehicle($stock_num);
 	}
-	if ($_GET['show_stock']==2) {
+	if ($show_stock==2) {
 		$car_title = $_POST['car_title'];
 		$post_id = get_car_id_from_title($car_title);
 		$stock_num = get_post_meta($post_id, "_stock_value", true);
 		echo get_trade_for_vehicle($stock_num);
 	}
+	exit();
 }
 function cd_trade_find_stock() {
 	echo car_demon_find_stock_info();
+	exit();
 }
 function cd_trade_find_vehicle() {
 	echo car_demon_find_car_info();
+	exit();
 }
 function cd_trade_handler() {
 	if ( !wp_verify_nonce( $_REQUEST['nonce'], "cd_contact_us_nonce")) {
@@ -278,6 +287,9 @@ function get_car_id_from_title($car_title) {
 }
 function car_demon_find_car_info() {
 	$q = strtolower($_GET["q"]);
+	if (isset($_GET["term"])) {
+		$q = strtolower($_GET["term"]);
+	}
 	if (!$q) return;
 	$items = array();
 	global $wpdb;
@@ -290,18 +302,23 @@ function car_demon_find_car_info() {
 		WHERE ((('.$prefix.'postmeta.meta_key)="sold") AND (('.$prefix.'postmeta.meta_value)="no") AND (('.$prefix.'postmeta_1.meta_key)="_stock_value"))
 		and '.$prefix.'posts.post_title like "%'.$q.'%" and '.$prefix.'posts.post_status="publish";
 	';
-	$x = '';
+	$a_json = array();
 	$posts = $wpdb->get_results($sql);
 	if ($posts) {
 		foreach ($posts as $post) {
 			$post_id = $post->ID;
-			$x .= $post->post_title .'|'. $post->stock .chr(13).chr(10).chr(11);
+			array_push($a_json, $post->post_title);
 		}
 	}
-	return $x;
+	$json = json_encode($a_json);
+	header("Content-Type: application/json");
+	return $json;
 }
 function car_demon_find_stock_info() {
 	$q = strtolower($_GET["q"]);
+	if (isset($_GET["term"])) {
+		$q = strtolower($_GET["term"]);
+	}
 	if (!$q) return;
 	$items = array();
 	global $wpdb;

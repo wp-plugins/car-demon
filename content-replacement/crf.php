@@ -1,26 +1,6 @@
 <?php
 include('crf-include.php');
 
-function car_crf_activate() {
-	$cd_cdrf_options = array();
-	$cd_cdrf_options = get_option( 'car_demon_options', $default );
-	$cd_cdrf_options['use_theme_files'] = 'No';
-	$cd_cdrf_options['cd_cdrf_style'] = 'content-replacement';
-	$cd_cdrf_options['cd_cdrf_page_style'] = 'content-replacement';
-	update_option( 'car_demon_options', $cd_cdrf_options );
-}
-//register_activation_hook( __FILE__, 'car_crf_activate' );
-
-function car_crf_deactivate() {
-	$cd_cdrf_options = array();
-	$cd_cdrf_options = get_option( 'car_demon_options', $default );
-	$cd_cdrf_options['use_theme_files'] = 'Yes';
-	$cd_cdrf_options['cd_cdrf_style'] = 'default';
-	$cd_cdrf_options['cd_cdrf_page_style'] = 'default';	
-	update_option( 'car_demon_options', $cd_cdrf_options );
-}
-//register_deactivation_hook( __FILE__, 'car_crf_deactivate' );
-
 function cd_cdrf_theme_switch($newname, $newtheme) {
 	// Switch Car Demon Style if Predetermined Theme has been activated, if not it sets it back to default style.
 	$cd_cdrf_options = get_option('car_demon_options');
@@ -110,10 +90,12 @@ function cdcr_load_replacement() {
 		include('theme-files/content-replacement/cd-content-replacement.php');
 	}
 }
-add_action( 'init', 'cdcr_load_replacement' );
+if (!is_admin()) {
+	add_action( 'init', 'cdcr_load_replacement' );
+}
 
 function car_crf_theme_redirect() {
-	if ($_SESSION['car_demon_options']['use_theme_files'] != 'Yes') {
+	if ($_SESSION['car_demon_options']['cd_cdrf_style'] != 'default') {
 		if (isset($_SESSION['car_demon_options']['is_mobile'])) {
 			$is_mobile = $_SESSION['car_demon_options']['is_mobile'];
 		} else {

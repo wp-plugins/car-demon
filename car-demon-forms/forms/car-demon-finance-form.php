@@ -10,13 +10,13 @@ function show_finance_form($location) {
 	$location = '';
 	$bad = '';
 	$fin = '';
-	include('js/car-demon-finance-form-js.php');
+
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
-		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
+//		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
 			echo '<style>';
 				include('css/car-demon-finance.css');
 			echo '</style>';
-		}
+//		}
 	} else {
 		echo '<style>';
 			include('css/car-demon-finance.css');
@@ -154,6 +154,7 @@ function show_finance_form($location) {
 			</script>
 		';
 	}
+	include('js/car-demon-finance-form-js.php');
 }
 function select_years() {
 	$start = 0;
@@ -238,41 +239,7 @@ function select_finance_for_vehicle($hide=0) {
 			</li>
 			<li id="li-7items" class="cd-box-group">
 	';
-	$x .= '
-	<script>
-	   jQuery("#select_stock_txt").autocomplete(
-		  "'.$car_demon_pluginpath_images.'theme-files/forms/car-demon-trade-form-handler.php",
-		  {
-		  		extraParams: {action:"findStock"},
-				delay:10,
-				minChars:2,
-				matchSubset:1,
-				matchContains:1,
-				cacheLength:10,
-				onItemSelect:selectItem,
-				onFindValue:findValue,
-				formatItem:formatItem,
-				autoFill:true,
-				width:300
-			}
-		);
-	   jQuery("#select_car_txt").autocomplete(
-		  "'.$car_demon_pluginpath_images.'theme-files/forms/car-demon-trade-form-handler.php",
-		  {
-		  		extraParams: {action:"findVehicle"},
-				delay:10,
-				minChars:2,
-				matchSubset:1,
-				matchContains:1,
-				cacheLength:10,
-				onItemSelect:selectCarItem,
-				onFindValue:findValue,
-				formatItem:formatCarItem,
-				autoFill:false,
-				width:300
-			}
-		);
-	</script>';
+
 	$x .= '
 			</li>
 		</ol>

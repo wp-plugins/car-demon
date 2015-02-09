@@ -360,6 +360,11 @@ function car_demon_options() {
 	$default['vehicle_container'] = '';
 	$default['left_vehicle_sidebar'] = '';
 	$default['right_vehicle_sidebar'] = '';
+	//= Auto Load Inventory Options
+	$default['dl_container'] = '.grid-box.width100';
+	$default['dl_items'] = '.item';
+	$default['dl_pagination'] = '.pagination';
+	$default['dl_next'] = '.next';
 	//= Content Replacement
 	$cd_cdrf_options['cd_cdrf_style'] = 'content-replacement';
 	$cd_cdrf_options['cd_cdrf_page_style'] = 'content-replacement';
@@ -411,6 +416,11 @@ function car_demon_options() {
 	//= Content Replacement
 	if (empty($car_demon_options['cd_cdrf_style'])) {$car_demon_options['cd_cdrf_style'] = $default['cd_cdrf_style'];}
 	if (empty($car_demon_options['cd_cdrf_page_style'])) {$car_demon_options['cd_cdrf_page_style'] = $default['cd_cdrf_page_style'];}	
+	//= Auto Load Inventory Options
+	if (empty($car_demon_options['dl_container'])) {$car_demon_options['dl_container'] = $default['dl_container'];}	
+	if (empty($car_demon_options['dl_items'])) {$car_demon_options['dl_items'] = $default['dl_items'];}	
+	if (empty($car_demon_options['dl_pagination'])) {$car_demon_options['dl_pagination'] = $default['dl_pagination'];}	
+	if (empty($car_demon_options['dl_next'])) {$car_demon_options['dl_next'] = $default['dl_next'];}	
 
 	return $car_demon_options;
 }
@@ -648,6 +658,21 @@ function car_demon_settings_form() {
 					<option value="Yes">'.__('Yes', 'car-demon').'</option>
 					<option value="No">'.__('No', 'car-demon').'</option>
 				</select><br />';
+				echo '<fieldset class="cd_admin_group">';
+					echo '<legend>';
+						echo __('Auto Load Inventory Options','car-demon');
+					echo '</legend>';
+					echo '<br />'.__('You must match the object settings of your theme for dynamic load to work.', 'car-demon').'<br />';
+					echo '<br />'.__('You can use an ID or a Class to id an opject.', 'car-demon').'<br /><br />';
+					echo '<br />'.__('Class or ID of content container - default .grid-box.width100', 'car-demon').'<br />';
+					echo '<input type="text" name="dl_container" id="dl_container" value="'.$car_demon_options['dl_container'].'" /><br />';
+					echo '<br />'.__('Class or ID of item containers - default .item', 'car-demon').'<br />';
+					echo '<input type="text" name="dl_items" id="dl_items" value="'.$car_demon_options['dl_items'].'" /><br />';
+					echo '<br />'.__('Class or ID of pagination container - default .pagination', 'car-demon').'<br />';
+					echo '<input type="text" name="dl_pagination" id="dl_pagination" value="'.$car_demon_options['dl_pagination'].'" /><br />';
+					echo '<br />'.__('Class or ID of pagination next container container - default .next-post a', 'car-demon').'<br />';
+					echo '<input type="text" name="dl_next" id="dl_next" value="'.$car_demon_options['dl_next'].'" /><br />';
+				echo '</fieldset>';
 			echo '<br />'.__('Show sold vehicles in search results?', 'car-demon').':<br />';
 			echo '<select name="show_sold">
 					<option value="'.$car_demon_options['show_sold'].'">'.$car_demon_options['show_sold'].'</option>
@@ -901,6 +926,11 @@ function update_car_demon_settings() {
 	if (isset($_POST['cd_content_id'])) $new['cd_content_id'] = $_POST['cd_content_id'];
 	if (isset($_POST['cd_page_id'])) $new['cd_page_id'] = $_POST['cd_page_id'];
 	if (isset($_POST['cd_page_css'])) $new['cd_page_css'] = $_POST['cd_page_css'];
+	if (isset($_POST['dl_container'])) $new['dl_container'] = $_POST['dl_container'];
+	if (isset($_POST['dl_items'])) $new['dl_items'] = $_POST['dl_items'];
+	if (isset($_POST['dl_pagination'])) $new['dl_pagination'] = $_POST['dl_pagination'];
+	if (isset($_POST['dl_next'])) $new['dl_next'] = $_POST['dl_next'];
+
 	update_option( 'car_demon_options', $new );
 	$car_demon_settings_hook = apply_filters('car_demon_settings_update_hook', $holder);
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';

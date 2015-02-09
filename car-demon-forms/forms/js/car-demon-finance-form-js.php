@@ -8,13 +8,16 @@
 			if( !!li.extra ) var sValue = li.extra[0];
 			else var sValue = li.selectValue;
 		}
-		function selectItem(li) {
-			findValue(li);
-			var stock_num = li.selectValue;
+<?php
+		$car_demon_pluginpath = CAR_DEMON_PATH;
+		$car_demon_pluginpath_images = str_replace('car-demon-forms/forms','',$car_demon_pluginpath);	
+		$cd_wp_admin = str_replace('wp-content/plugins/car-demon','',$car_demon_pluginpath);	
+?>
+		function selectItem(car_title) {
 			jQuery.ajax({
 				type: 'POST',
-				data: {'stock_num': stock_num},
-				url: "<?php echo $car_demon_pluginpath; ?>theme-files/forms/car-demon-trade-form-handler.php?show_stock=1",
+				data: {action: 'cd_trade_show_stock', 'car_title': car_title, 'show_stock': 2},
+				url: "<?php echo $cd_wp_admin ?>wp-admin/admin-ajax.php?show_stock=2&action=cd_trade_find_vehicle",
 				timeout: 5000,
 				error: function() {},
 				dataType: "html",
@@ -25,13 +28,11 @@
 				}
 			})
 		}
-		function selectCarItem(li) {
-			findValue(li);
-			var car_title = li.selectValue;
+		function selectCarItem(car_title) {
 			jQuery.ajax({
 				type: 'POST',
-				data: {'car_title': car_title},
-				url: "<?php echo $car_demon_pluginpath; ?>theme-files/forms/car-demon-trade-form-handler.php?show_stock=2",
+				data: {action: 'cd_trade_show_stock', 'car_title': car_title, 'show_stock': 2},
+				url: "<?php echo $cd_wp_admin ?>wp-admin/admin-ajax.php?show_stock=2&action=cd_trade_find_vehicle",
 				timeout: 5000,
 				error: function() {},
 				dataType: "html",
@@ -524,6 +525,49 @@
 		parent.frames[1].document.forms[0].child.value = parent.frames[0].document.forms[0].parent.value;
 		alert(document.frames("myFrame").document.forms("app_form").elements("app_first_name").value);
 	}
+	<?php
+		$car_demon_pluginpath = CAR_DEMON_PATH;
+		$car_demon_pluginpath_images = str_replace('car-demon-forms/forms','',$car_demon_pluginpath);	
+		$cd_wp_admin = str_replace('wp-content/plugins/car-demon','',$car_demon_pluginpath);	
+//http://carchimps.com/wp-content/plugins/car-demon/theme-files/forms/car-demon-trade-form-handler.php?show_stock=2
+	?>
+
+jQuery("#select_stock_txt").autocomplete (
+  {
+		source: "<?php echo $cd_wp_admin ?>wp-admin/admin-ajax.php?show_stock=2&action=cd_trade_find_vehicle",
+		delay:10,
+		minChars:2,
+		matchSubset:1,
+		matchContains:1,
+		cacheLength:10,
+		onFindValue:findValue,
+		formatItem:formatCarItem,
+		autoFill:true,
+		width:300,
+       select: function(event, ui) {
+			selectItem(ui.item.value);
+        }
+	}
+);
+
+jQuery("#select_car_txt").autocomplete (
+  {
+		source: "<?php echo $cd_wp_admin ?>wp-admin/admin-ajax.php?show_stock=2&action=cd_trade_find_vehicle",
+		delay:10,
+		minChars:2,
+		matchSubset:1,
+		matchContains:1,
+		cacheLength:10,
+		onFindValue:findValue,
+		formatItem:formatCarItem,
+		autoFill:true,
+		width:300,
+       select: function(event, ui) {
+			selectCarItem(ui.item.value);
+        }
+	}
+);
+
 </script>
 	<style>
 	.finance_msg {

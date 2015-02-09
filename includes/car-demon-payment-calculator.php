@@ -18,7 +18,7 @@ function car_demon_calculator_form($price, $apr, $term, $disclaimer1, $disclaime
 	}
 	?>
 		<form name="calc" action="" class="car_demon_calc">
-		  <div align="center"><strong><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/calculator.gif" with="20" />&nbsp;<span class="car_demon_calc_title"><?php _e('Loan Calculator','car-demon'); ?></span></strong></div>
+		  <div align="center"><strong><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/calculator.gif" class="cd_calculator" width="20" />&nbsp;<span class="car_demon_calc_title"><?php _e('Loan Calculator','car-demon'); ?></span></strong></div>
 		  <hr width="100%">
 		  <div align="center" class="calc_text"><?php _e('Please fill out the form and click calculate to estimate your monthly payment.','car-demon'); ?></div>
 		  <table align="center" class="calc_table">

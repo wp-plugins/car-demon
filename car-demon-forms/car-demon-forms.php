@@ -89,6 +89,26 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'car-demon-contact-us-form-js' );
 				break;
 			}
+			if (stripos($post->post_content, '[finance_form') !== false) {
+				wp_localize_script( 'car-demon-trade-form-js', 'cdTradeParams', array( 
+					'ajaxurl' => admin_url( 'admin-ajax.php' ),
+					'error1' => __('You must enter your name.', 'car-demon'),
+					'error2' => __('You must enter your name.', 'car-demon'),
+					'error3' => __('You must enter a valid Phone Number.', 'car-demon'),
+					'error4' => __('The phone number you entered is not valid.', 'car-demon'),
+					'error5' => __('You did not select who you want to send this message to.', 'car-demon'),
+					'error6' => __('You did not enter a message to send.', 'car-demon'),
+					'error7' => __('You must enter the year of the vehicle you wish to trade.', 'car-demon'),
+					'error8' => __('You must enter the manufacturer of the vehicle you wish to trade.', 'car-demon'),
+					'error9' => __('You must enter the model of the vehicle you wish to trade.', 'car-demon'),
+					'error10' => __('You must enter the miles of the vehicle you wish to trade.', 'car-demon'),
+					'error11' => __('You indicated you were interested in purchasing a vehicle but did not select one.', 'car-demon'),
+					'error12' => __('You did not select a trade location.', 'car-demon'),
+					'form_js' => apply_filters('car_demon_mail_hook_js', $x, 'trade', 'unk'),
+					'form_data' => apply_filters('car_demon_mail_hook_js_data', $x, 'trade', 'unk'),
+					'validate_phone' => $validate_phone
+				));
+			}
 			if (stripos($post->post_content, '[trade') !== false) {
 				wp_enqueue_style('cd-jquery-autocomplete-css', WP_PLUGIN_URL.'/car-demon/theme-files/css/jquery.autocomplete.css');
 				wp_register_script("cd-jquery-autocomplete-js", WP_PLUGIN_URL.'/car-demon/theme-files/js/jquery.autocomplete.js', array('jquery') );
