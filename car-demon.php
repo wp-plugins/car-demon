@@ -171,7 +171,7 @@ function register_car_demon_menus(){
 }
 add_action( 'init', 'register_car_demon_menus' );
 if ( function_exists('register_sidebar') ){
-	car_demon_register_sidebars();
+	add_action( 'widgets_init', 'car_demon_register_sidebars', 2 );
 }
 if ( ! function_exists( 'CarDemon_comment' ) ) :
 function CarDemon_comment( $comment, $args, $depth ) {
