@@ -1,10 +1,10 @@
-﻿<?php
+<?php
 /**
 * Plugin Name: Car Demon
 * Plugin URI: http://www.CarDemons.com/
 * Description:  Car Demon is a PlugIn designed for car dealers.
 * Author: CarDemons
-* Version: 1.3.2
+* Version: 1.3.3
 * Author URI: http://www.CarDemons.com/
 * Text Domain: car-demon
 * Domain Path: /languages/
@@ -44,11 +44,10 @@ include( 'vin-query/car-demon-vin-query-handler.php' );
 include( 'car-demon-forms/car-demon-forms.php' );
 include( 'car-demon-header.php' );
 include( 'content-replacement/crf.php' );
-
+$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+define("CAR_DEMON_PATH", $car_demon_pluginpath);
 add_filter('wp_print_styles', 'car_demon_header');
 function car_demon_init() {
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	define("CAR_DEMON_PATH", $car_demon_pluginpath);
 	load_plugin_textdomain( 'car-demon', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	if (!is_admin()) {
 		wp_enqueue_script('jquery');
@@ -100,6 +99,7 @@ function car_demon_self_url() {
     $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
     $protocol = car_demon_str_left(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
     $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
+
     return $protocol."://".$_SERVER['SERVER_NAME'].$port.$serverrequri;   
 }
 function car_demon_subdomains() {
@@ -485,7 +485,7 @@ function cd_nag_ignore() {
 
 function car_crf_activate() {
 	$cd_cdrf_options = array();
-	$cd_cdrf_options = get_option( 'car_demon_options', $default );
+	$cd_cdrf_options = get_option( 'car_demon_options' );
 	$cd_cdrf_options['use_theme_files'] = 'No';
 	$cd_cdrf_options['cd_cdrf_style'] = 'content-replacement';
 	$cd_cdrf_options['cd_cdrf_page_style'] = 'content-replacement';
@@ -495,7 +495,7 @@ register_activation_hook( __FILE__, 'car_crf_activate' );
 
 function car_crf_deactivate() {
 	$cd_cdrf_options = array();
-	$cd_cdrf_options = get_option( 'car_demon_options', $default );
+	$cd_cdrf_options = get_option( 'car_demon_options' );
 	$cd_cdrf_options['use_theme_files'] = 'Yes';
 	$cd_cdrf_options['cd_cdrf_style'] = 'default';
 	$cd_cdrf_options['cd_cdrf_page_style'] = 'default';	
