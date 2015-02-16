@@ -212,6 +212,7 @@ function decode_custom_metabox($post) {
 function decode_images($post) {
 	// Show currently attached photos
 	$post_id = $post->ID;
+	$popup_imgs = '';
 	echo '
 	<div align="center">
 		<a href="#" class="custom_media_upload" id="manage_vehicle_photos"><input type="button" value="Manage Photos" class="wp-core-ui button-primary" /></a>
