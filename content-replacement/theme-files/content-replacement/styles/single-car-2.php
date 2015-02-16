@@ -18,7 +18,7 @@
 		$mileage = $car["mileage"];
 		$msrp = $car["msrp"];
 		$price = $car["price"];
-		$condition = $car["condition"];
+		$vehicle_condition = $car["condition"];
 		$decoded_model_year = $car["decoded_model_year"];
 		$decoded_make = $car["decoded_make"];
 		$decoded_model = $car["decoded_model"];
@@ -53,17 +53,20 @@
 
 	*/
 	//= Let's set some of the common fields to variables
-	$vin = $car['_vin_value'];
-	$car_title = $car['title'];
-	$car_head_title = $car['title_slug'];
-	$car_url = $car['car_link'];
+	if (isset($car['_vin_value'])) $vin = $car['_vin_value'];
+	if (isset($car['title'])) $car_title = $car['title'];
+	if (isset($car['title_slug'])) $car_head_title = $car['title_slug'];
+	if (isset($car['car_link'])) $car_url = $car['car_link'];
+	if (isset($car["condition"])) $vehicle_condition = $car["condition"];
 	//= Let's clean up one of the fields that stores a slug
-	$location = $car['location'];
+	if (isset($car['location'])) $location = $car['location'];
 	$location = str_replace('-', ' ', $location);
 	$location = ucwords($location);
 	//= Since this is the single car page we want to get all the details for this vehicle
 	//= This includes all vehicle option data in an array
 	$vehicle_details = get_post_meta($post_id, 'decode_string', true);
+	//= We aren't using detail output for content replacement so set it to a blank value
+	$detail_output = '';
 	//= Now let's get the contact information array for this vehicle
 	$car_contact = get_car_contact($post_id);
 	//= Let's set a couple of the contact fields to variables
@@ -235,15 +238,17 @@
                     $key_name = ucwords($key_name);
 					$key = str_replace('decoded_','',$key);
 					$key = str_replace('model_','',$key);
-					if ($show_hide[$key] != true && !empty($car_option)) {
-						echo '<tr>';
-							if (isset($field_labels[$key])) {
-								echo '<td class="detail_label detail_'.$key.'"><b>'.$field_labels[$key].'</b></td>';
-							} else {
-								echo '<td class="detail_label detail_'.$key.'"><b>'.$key_name.'</b></td>';
-							}
-							echo '<td class="detail_value detail_'.$key.'"> '.$car_option.' </td>';
-						echo '</tr>';
+					if (isset($show_hide[$key])) {
+						if ($show_hide[$key] != true && !empty($car_option)) {
+							echo '<tr>';
+								if (isset($field_labels[$key])) {
+									echo '<td class="detail_label detail_'.$key.'"><b>'.$field_labels[$key].'</b></td>';
+								} else {
+									echo '<td class="detail_label detail_'.$key.'"><b>'.$key_name.'</b></td>';
+								}
+								echo '<td class="detail_value detail_'.$key.'"> '.$car_option.' </td>';
+							echo '</tr>';
+						}
 					}
                 }
             }

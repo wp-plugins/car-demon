@@ -45,6 +45,9 @@ function cdcr_loop($content, $post_id) {
 		$link = $link .'?sales_code='.$_COOKIE["sales_code"];
 	}
 	$main_photo = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
+	if (empty($main_photo)) {
+		$main_photo = CAR_DEMON_PATH.'images/no_photo.gif';
+	}
 	//= Build the HTML for each vehicle
 	//= Get Ribbon
 		$ribbon = get_post_meta($post_id, '_vehicle_ribbon', true);
@@ -69,7 +72,7 @@ function cdcr_loop($content, $post_id) {
 	$x .= $current_ribbon;	
 	$x .= '<div class="main_photo">';
 		$x .= '<a href="'.$link.'">';
-			$x .= '<img class="photo_thumb" src="'.$main_photo.'" alt="" title="'.$title.'">';
+			$x .= '<img class="photo_thumb" onerror="ImgError(this, \'no_photo.gif\');" src="'.$main_photo.'" alt="" title="'.$title.'">';
 		$x .= '</a>';
 	$x .= '</div>';
 	$x .= '<div class="car_title">';

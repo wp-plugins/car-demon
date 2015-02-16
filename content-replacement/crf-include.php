@@ -93,6 +93,7 @@ function get_cr_vehicle_price_style($post_id) {
 		$show_price = get_option($vehicle_location_slug.'_show_used_prices');
 	}
 	$price = '';
+	$spacer = '';
 	if ($show_price == 'Yes') {
 		$vehicle_price = get_post_meta($post_id, "_price_value", true);
 		$vehicle_price_pack = (int)$vehicle_price;
@@ -103,7 +104,6 @@ function get_cr_vehicle_price_style($post_id) {
 		$rebate = get_post_meta($post_id, "_rebates_value", true);
 		$dealer_discount = get_post_meta($post_id, "_discount_value", true);
 		$your_price = $vehicle_price;
-		$spacer = "";
 		if (!empty($selling_price)) {
 			$price .= '<div id="selling_price" class="car_selling_price_style">'.__('Selling Price', 'car-demon').': $'. $selling_price .'</div>';
 		}

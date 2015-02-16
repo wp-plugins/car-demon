@@ -299,6 +299,8 @@ function car_demon_vehicle_detail_tabs($post_id, $no_content=false) {
 	$vehicle_vin = rwh(strip_tags(get_post_meta($post_id, "_vin_value", true)),0);
 	if ($no_content == false) {
 		$content = car_demon_get_the_content_with_formatting();
+	} else {
+		$content = '';	
 	}
 	$content = trim($content);
 	if (empty($content)) {
@@ -372,7 +374,7 @@ function car_demon_vehicle_detail_tabs($post_id, $no_content=false) {
 	//= If we aren't showing the tabs then grab the specs and add it to the content
 	//= then add the included options we created above
 	if ($include_options == 1) {
-		$specs = get_vin_query_specs($vin_query_decode, $vehicle_vin);
+		$specs = get_vin_query_specs($vin_query_decode, $vehicle_vin, $post_id);
 		$content .= $specs.$included_options;
 	}
 	
@@ -417,7 +419,7 @@ function car_demon_vehicle_detail_tabs($post_id, $no_content=false) {
 				$comfort = get_vin_query_comfort($vin_query_decode);
 				$entertainment = get_vin_query_entertainment($vin_query_decode);
 				*/
-				$specs = get_vin_query_specs($vin_query_decode, $vehicle_vin);
+				$specs = get_vin_query_specs($vin_query_decode, $vehicle_vin, $post_id);
 				$safety = get_option_tab('safety',$post_id);
 				$convienience = get_option_tab('convenience',$post_id);
 				$comfort = get_option_tab('comfort',$post_id);

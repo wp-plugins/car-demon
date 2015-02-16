@@ -88,6 +88,7 @@ function get_option_tab($tab, $post_id, $type='') {
 	$vehicle_option_array = get_post_meta($post_id, '_vehicle_options', true);
 	$vehicle_option_array = explode(',',$vehicle_option_array);
 	$map = cd_get_vehicle_map();
+	$flag = '';
 	$x = '
 	<table class="decode_table">';
 	$x .= '<tr class="decode_table_header">
@@ -136,13 +137,15 @@ function get_option_tab($tab, $post_id, $type='') {
 								<td>'.$content.'</td>
 								</tr>';
 						} else {
-							$content = $vin_query_decode['decoded_'.$slug];
-							if (isset($vin_query_decode['decoded_'.$slug]) || isset($vin_query_decode[$slug]) || isset($vin_query_decode['decoded_'.$option]) || isset($vin_query_decode[$option])) {
-								if(!empty($content)) {
-									$x .= '<tr class="'.$class.'">
-										<td class="decode_table_label">'.$option.'</td>
-										<td>'.$content.'</td>
-										</tr>';
+							if (isset($vin_query_decode['decoded_'.$slug])) {
+								$content = $vin_query_decode['decoded_'.$slug];
+								if (isset($vin_query_decode['decoded_'.$slug]) || isset($vin_query_decode[$slug]) || isset($vin_query_decode['decoded_'.$option]) || isset($vin_query_decode[$option])) {
+									if(!empty($content)) {
+										$x .= '<tr class="'.$class.'">
+											<td class="decode_table_label">'.$option.'</td>
+											<td>'.$content.'</td>
+											</tr>';
+									}
 								}
 							}
 						}

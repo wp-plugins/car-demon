@@ -56,7 +56,7 @@ function car_demon_get_vin_query($post_id, $vin) {
 		}
 	}
 }
-function get_vin_query_specs($vin_query_decode, $vehicle_vin) {
+function get_vin_query_specs($vin_query_decode, $vehicle_vin, $post_id) {
 	//= Find out which of the default fields are hidden
 	$show_hide = get_show_hide_fields();
 	//= Get the labels for the default fields
@@ -164,6 +164,7 @@ function get_vin_query_specs($vin_query_decode, $vehicle_vin) {
 }
 
 function custom_spec_field($post_id, $field, $slug, $odd_even, $vin_query_decode) {
+	$x = '';
 	if (isset($vin_query_decode[$slug])) {$value = $vin_query_decode[$slug]; } else {$value = ''; }
 	if (!empty($value)) {
 		$x = '

@@ -124,7 +124,7 @@ function car_crf_theme_redirect() {
 			wp_enqueue_script('cr-style-js', WP_CONTENT_URL . '/plugins/car-demon/content-replacement/theme-files/content-replacement/cr-js.php');
 			//= Start Content Replacement
 			if ($theme_style == 'content-replacement' && !is_home()) {
-				if ($wp->query_vars["cars_for_sale"]) {
+				if (isset($wp->query_vars["cars_for_sale"])) {
 					$templatefilename = 'single.php';
 				} else {
 					$templatefilename = 'archive.php';
@@ -153,25 +153,26 @@ function car_crf_theme_redirect() {
 					}
 				}
 			//= If the Car Search is set in the QueryString then load the archive template
-			if ($_GET['car']==1) {
-					$templatefilename = 'archive.php';
-					$return_template = $template_directory . '/' . $templatefilename;
-					if (file_exists($template_directory . '/' . $templatefilename)) {
+				if (isset($_GET['car'])) {
+					if ($_GET['car']==1) {
+						$templatefilename = 'archive.php';
 						$return_template = $template_directory . '/' . $templatefilename;
-					} else {
-						//= load index if no single or archive is found
-						$templatefilename = 'index.php';
-						$return_template = $template_directory . '/' . $templatefilename;
+						if (file_exists($template_directory . '/' . $templatefilename)) {
+							$return_template = $template_directory . '/' . $templatefilename;
+						} else {
+							//= load index if no single or archive is found
+							$templatefilename = 'index.php';
+							$return_template = $template_directory . '/' . $templatefilename;
+						}
+						header('HTTP/1.1 200 OK');
+						$wp_query->is_404 = false;
+						include($return_template);
+						die();
+						do_car_crf_theme_redirect($return_template);
 					}
-					header('HTTP/1.1 200 OK');
-					$wp_query->is_404 = false;
-					include($return_template);
-					die();
 				}
-				do_car_crf_theme_redirect($return_template);
 			}
 			//= End Content Replacement
-
 		}
 	}
 }

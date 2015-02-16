@@ -1467,15 +1467,16 @@ function get_show_hide_fields() {
 	$fields['year'] = 0;
 	$fields['make'] = 0;
 	$fields['model'] = 0;
-	$labels['retail'] = 0;
-	$labels['rebates'] = 0;
-	$labels['discount'] = 0;
-	$labels['price'] = 0;
-	$labels['condition'] = 0;
-	$labels['transmission'] = 0;
-	$labels['exterior_color'] = 0;
-	$labels['interior_color'] = 0;
-	$labels['engine'] = 0;
+	$fields['retail'] = 0;
+	$fields['rebates'] = 0;
+	$fields['discount'] = 0;
+	$fields['price'] = 0;
+	$fields['condition'] = 0;
+	$fields['transmission'] = 0;
+	$fields['exterior_color'] = 0;
+	$fields['interior_color'] = 0;
+	$fields['engine'] = 0;
+	$fields['location'] = 0;
 	$field_options = get_option( 'cd_show_hide_labels', $fields );
 	if (!isset($field_options['vin'])) $field_options['vin'] = $fields['vin'];
 	if (!isset($field_options['stock_number'])) $field_options['stock_number'] = $fields['stock_number'];
@@ -1493,6 +1494,7 @@ function get_show_hide_fields() {
 	if (!isset($field_options['exterior_color'])) $field_options['exterior_color'] = $fields['exterior_color'];
 	if (!isset($field_options['interior_color'])) $field_options['interior_color'] = $fields['interior_color'];
 	if (!isset($field_options['engine'])) $field_options['engine'] = $fields['engine'];
+	if (!isset($field_options['location'])) $field_options['location'] = $fields['location'];
 	return $field_options;	
 }
 

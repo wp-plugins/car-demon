@@ -47,6 +47,7 @@ add_action("wp_ajax_nopriv_email_friend_handler", "email_friend_handler");
 add_filter('the_posts', 'cd_conditionally_add_scripts_and_styles'); // the_posts gets triggered before wp_head
 function cd_conditionally_add_scripts_and_styles($posts){
 	if (empty($posts)) return $posts;
+	$x = '';
 	$use_css = 1;
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
@@ -57,11 +58,11 @@ function cd_conditionally_add_scripts_and_styles($posts){
 	}
 	if ($use_css == 1) {
 		$shortcode_found = false; // use this flag to see if styles and scripts need to be enqueued
+		$validate_phone = 0;
 		foreach ($posts as $post) {
 			if (stripos($post->post_content, '[contact_us') !== false) {
 				wp_register_script("car-demon-common-js", WP_PLUGIN_URL."/car-demon/car-demon-forms/forms/js/car-demon-common.js", array('jquery') );
 				wp_register_script("car-demon-contact-us-form-js", WP_PLUGIN_URL.'/car-demon/car-demon-forms/forms/js/car-demon-contact-us.js', array('jquery') );
-				$validate_phone = 0;
 				if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 					if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
 						$validate_phone = 1;

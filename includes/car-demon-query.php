@@ -5,7 +5,7 @@ function car_demon_query_search() {
 	} else {
 		$cars_per_page = 9;
 	}
-	if ($_GET['car']) {
+	if (isset($_GET['car'])) {
 		add_filter( 'wp_title', 'car_demon_filter_search_title', 10, 3 );
 		$order_by = '_price_value';
 		$order_by_dir = 'ASC';
@@ -95,7 +95,8 @@ function car_demon_query_search() {
 					'orderby' => 'meta_value_num',
 					'meta_key' => $order_by,
 					'order'    => $order_by_dir
-				);		
+				);
+			$search_location = '';
 		}
 		$my_query = array(
 				'post_type' => 'cars_for_sale',
