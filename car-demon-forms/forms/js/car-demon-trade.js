@@ -44,23 +44,31 @@ function select_voi(my_type) {
 	if (my_type == "stock") {
 		document.getElementById("select_description").style.display = "none";
 		document.getElementById("select_stock").style.display = "block";
-		document.getElementById("trade_locations").style.display = "none";
+		if (document.getElementById("trade_locations")) {
+			document.getElementById("trade_locations").style.display = "none";
+		}
 		document.getElementById("select_stock").value = "";
 	}
 	if (my_type == "search") {
 		document.getElementById("select_stock").style.display = "none";
 		document.getElementById("select_description").style.display = "block";
-		document.getElementById("trade_locations").style.display = "none";
+		if (document.getElementById("trade_locations")) {
+			document.getElementById("trade_locations").style.display = "none";
+		}
 	}
 	if (my_type == "na") {
 		document.getElementById("select_stock").style.display = "none";
 		document.getElementById("select_description").style.display = "none";
-		document.getElementById("trade_locations").style.display = "block";
+		if (document.getElementById("trade_locations")) {
+			document.getElementById("trade_locations").style.display = "block";
+		}
 	}			
 }
 function show_voi() {
 	document.getElementById("find_voi").style.display = "block";
-	document.getElementById("trade_locations").style.display = "block";
+	if (document.getElementById("trade_locations")) {
+		document.getElementById("trade_locations").style.display = "block";
+	}
 	document.getElementById("not_voi").style.display = "none";
 	document.getElementById("show_voi").style.display = "none";
 	document.getElementById("select_description").style.display = "none";

@@ -4,7 +4,7 @@
 * Plugin URI: http://CarDemons.com/
 * Description:  Car Demon is a PlugIn designed for car dealers.
 * Author: CarDemons
-* Version: 1.3.5
+* Version: 1.3.6
 * Author URI: http://CarDemons.com/
 * Text Domain: car-demon
 * Domain Path: /languages/

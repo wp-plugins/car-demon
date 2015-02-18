@@ -311,6 +311,7 @@ function finance_locations_radio() {
 }
 function get_finance_location_name($selected_car) {
 	global $wpdb;
+	$x= '';
 	$prefix = $wpdb->prefix;
 	$sql = "Select post_id, meta_value from ".$prefix."postmeta WHERE meta_key='_stock_value' and meta_value = '".$selected_car."'";
 	$posts = $wpdb->get_results($sql);

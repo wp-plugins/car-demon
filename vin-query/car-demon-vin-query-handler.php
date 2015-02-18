@@ -20,7 +20,7 @@ function car_demon_vinquery() {
 					$photo_array .= 'X';
 				$photo_array .= '</div>';
 				$photo_array .= '<div align="center">';
-					$photo_array .= '<img class="car_demon_thumbs" style="cursor:pointer"'.$popup_imgs.' src="'.trim($guid).'" width="162" />';
+					$photo_array .= '<img class="car_demon_thumbs" style="cursor:pointer" src="'.trim($guid).'" width="162" />';
 				$photo_array .= '</div>';
 			$photo_array .= '</div>';
 			echo $photo_array;

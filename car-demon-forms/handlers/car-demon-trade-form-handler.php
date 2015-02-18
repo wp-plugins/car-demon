@@ -286,7 +286,10 @@ function get_car_id_from_title($car_title) {
 	return $x;
 }
 function car_demon_find_car_info() {
-	$q = strtolower($_GET["q"]);
+	$q = '';
+	if (isset($_GET['q'])) {
+		$q = strtolower($_GET["q"]);
+	}
 	if (isset($_GET["term"])) {
 		$q = strtolower($_GET["term"]);
 	}
