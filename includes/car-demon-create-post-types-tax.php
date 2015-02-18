@@ -27,7 +27,7 @@ function car_demon_mytax_init() {
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
       'rewrite' => array('slug' => 'vehicle_year'),
-	  'show_ui' => true
+	  'show_ui' => false
     )
   );
   register_taxonomy(
@@ -38,7 +38,7 @@ function car_demon_mytax_init() {
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
       'rewrite' => array('slug' => 'make'),
-	  'show_ui' => true
+	  'show_ui' => false
     )
   );
   register_taxonomy(
@@ -49,7 +49,7 @@ function car_demon_mytax_init() {
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
       'rewrite' => array('slug' => 'model'),
-	  'show_ui' => true
+	  'show_ui' => false
     )
   );
   register_taxonomy(
