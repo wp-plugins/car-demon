@@ -23,7 +23,7 @@ function cdcr_loop($content, $post_id) {
 		if ($_SESSION['car_demon_options']['use_compare'] == 'Yes') {
 			$in_compare = '';
 			if (isset($_SESSION['car_demon_compare'])) {
-				$compare_these = split(',',$_SESSION['car_demon_compare']);
+				$compare_these = explode(',',$_SESSION['car_demon_compare']);
 			} else {
 				$compare_these = array();
 			}

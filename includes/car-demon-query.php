@@ -241,16 +241,26 @@ function car_demon_sorting($page_type = 'search') {
 	}
 	if (isset($_SESSION['car_demon_options']['drop_down_sort'])) {
 		if ($_SESSION['car_demon_options']['drop_down_sort'] == 'Yes') {
-			if ($_GET['order_by'] == '_mileage_value') {
-				$select_price = '';
-				$select_mileage = ' selected';
+			if (isset($_GET['order_by'])) {
+				if ($_GET['order_by'] == '_mileage_value') {
+					$select_price = '';
+					$select_mileage = ' selected';
+				} else {
+					$select_price = ' selected';
+					$select_mileage = '';
+				}
 			} else {
 				$select_price = ' selected';
 				$select_mileage = '';
 			}
-			if ($_GET['order_by_dir'] == 'asc') {
-				$select_desc = '';
-				$select_asc = ' selected';
+			if (isset($_GET['order_by_dir'])) {
+				if ($_GET['order_by_dir'] == 'asc') {
+					$select_desc = '';
+					$select_asc = ' selected';
+				} else {
+					$select_desc = ' selected';
+					$select_asc = '';	
+				}
 			} else {
 				$select_desc = ' selected';
 				$select_asc = '';	

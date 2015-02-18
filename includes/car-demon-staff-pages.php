@@ -153,9 +153,11 @@ function build_user_hcard($user_id, $about = 0, $contact_form = 1) {
 		} else {
 			$popup_id = 'sales_form_'.$user_id;
 			$popup_button = 'Email '. $user_f_name .' now!';
-			$x .= car_demon_contact_request($user_email, $popup_id, $popup_button);
+			$staff_contact_form = car_demon_contact_request($user_email, $popup_id, $popup_button);
+			$staff_contact_form = str_replace('search_btn contact_us_btn','search_btn contact_us_btn staff_btn',$staff_contact_form);
+			$x .= $staff_contact_form;
 		}
-		$x .='<div class="tel">'.$user_phone.'</div>';
+		$x .='<div class="tel">'.__('Call','car-demon').' '.$user_f_name.' '.__('at', 'car-demon').' '.$user_phone.'</div>';
 		if (!empty($facebook)) { $x .='<a class="url" target="fb_win" href="'.$facebook.'">Find on Facebook</a>'; }
 		if (!empty($user_description)) {
 			if (strlen($user_description) < 100) {

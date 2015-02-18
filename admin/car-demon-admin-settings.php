@@ -349,6 +349,8 @@ function car_demon_options() {
 	$default['use_vehicle_css'] = 'Yes';
 	$default['title_trim'] = '49';
 	$default['cars_per_page'] = '9';
+	$default['cd_cdrf_style'] = '';
+	$default['cd_cdrf_page_style'] = '';
 	//= Sidebars
 	$default['cd_page_id'] = '';
 	$default['cd_page_css'] = '';
@@ -781,6 +783,8 @@ function car_demon_settings_form() {
 		//= Mobile Option Stop
 
 		//= Hook for additional settings
+		$holder = '';
+		$location = '';
 		$car_demon_settings_hook = apply_filters('car_demon_settings_hook', $holder, $location);
 
 		//= Save Start
@@ -932,6 +936,7 @@ function update_car_demon_settings() {
 	if (isset($_POST['dl_next'])) $new['dl_next'] = $_POST['dl_next'];
 
 	update_option( 'car_demon_options', $new );
+	$holder = '';
 	$car_demon_settings_hook = apply_filters('car_demon_settings_update_hook', $holder);
 	echo '<h3 class="admin_settings_updated_title">'.__('SETTINGS HAVE BEEN UPDATED', 'car-demon').'</h3>';
 }

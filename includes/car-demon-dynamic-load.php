@@ -1,8 +1,7 @@
 <?php
 function car_demon_dynamic_load_legacy() {
 	$html = '';
-	$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	$pluginpath = str_replace('includes', 'theme-files', $pluginpath);
+	$pluginpath = CAR_DEMON_PATH.'/theme-files/';
 	$html = '
 		<link rel="stylesheet" type="text/css" media="all" href="'.$pluginpath.'css/jquery.ias.css" />
 		<script language="javascript" type="text/javascript" src="'.$pluginpath.'js/jquery.ias.min.js"></script>
@@ -42,8 +41,11 @@ function car_demon_dynamic_load() {
 	$html = '';
 	if ($_SESSION['car_demon_options']['dynamic_load'] == 'Yes') {
 		$cd_cdrf_options = array();
-		$cd_cdrf_options = get_option( 'car_demon_options', $default );
-		if ($cd_cdrf_options['cd_cdrf_style'] != 'content-replacement') {
+		$cd_cdrf_options = get_option( 'car_demon_options' );
+		if (!isset($cd_cdrf_options['cd_cdrf_style'])) {
+			$cd_cdrf_options['cd_cdrf_style'] = '';	
+		}
+		if (empty($cd_cdrf_options['cd_cdrf_style'])) {
 			$html = car_demon_dynamic_load_legacy();
 		} else {
 			$dynamic_options = array();
@@ -74,7 +76,7 @@ function car_demon_dynamic_load() {
 				'vehicle_item' => $dynamic_options['vehicle_item'],
 				'pagination' => $dynamic_options['pagination'],
 				'next' => $dynamic_options['next'],
-				'loader' => '<img src="'.$pluginpath.'/theme-files/images/ajax-loader.gif" />'
+				'loader' => '<img src="'.$pluginpath.'theme-files/images/ajax-loader.gif" />'
 			));
 			wp_enqueue_script( 'car-demon-dynamic-load-core-js' );
 			wp_enqueue_script( 'car-demon-dynamic-load-js' );

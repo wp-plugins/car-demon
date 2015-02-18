@@ -51,11 +51,14 @@ function get_vehicle_price($post_id) {
 		$dealer_discount = get_post_meta($post_id, "_discount_value", true);
 		$your_price = $vehicle_price;
 		$spacer = "";
-		if ($show_hide['retail'] == true) {$selling_price = '';}
-		if ($show_hide['rebate'] == true) {$rebate = '';}
-		if ($show_hide['discount'] == true) {$dealer_discount = '';}
-		if ($show_hide['price'] == true) {$show_price = '';} else {$show_price = 1;}
-		
+		if (isset($show_hide['retail']))
+			if ($show_hide['retail'] == true) {$selling_price = '';}
+		if (isset($show_hide['rebate']))
+			if ($show_hide['rebate'] == true) {$rebate = '';}
+		if(isset($show_hide['discount']))
+			if ($show_hide['discount'] == true) {$dealer_discount = '';}
+		if (isset($show_hide['price']))
+			if ($show_hide['price'] == true) {$show_price = '';} else {$show_price = 1;}
 		if (!empty($selling_price)) {
 			$selling_price_label = get_post_meta($post_id, '_msrp_label', true);
 			if (empty($selling_price_label)) {

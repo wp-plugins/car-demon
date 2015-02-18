@@ -62,7 +62,7 @@ function service_quote_form_shortcode_func( $atts ) {
 	extract( shortcode_atts( array(
 		'location' => 'normal',
 		'popup_id' => '',
-		'popup_button' => __('Service Appointment', 'car-demon')
+		'popup_button' => __('Service Quote', 'car-demon')
 	), $atts ) );
 	$service_quote = car_demon_service_quote($location, $popup_id, $popup_button);
 	return $service_quote;
@@ -153,6 +153,7 @@ function random_cars_shortcode_func( $atts ) {
 add_shortcode( 'random_cars', 'random_cars_shortcode_func' );
 
 //===================================================
+//= Legacy shortcode
 function car_demon_shortcodes( $content ) {
 	if (strpos($content, '[-staff_page-]')) {
 		$staff_page = car_demon_staff_page();

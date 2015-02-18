@@ -206,6 +206,7 @@ function get_car_title_slug($post_id) {
 }
 function car_demon_nav($position,$search_query) {
 	$x = '';
+	global $wp_query;
 	if ($position == 'top') {
 		$second_position = 'above';
 		$third_position = '-top';
@@ -336,7 +337,7 @@ function car_demon_vehicle_detail_tabs($post_id, $no_content=false) {
 		}
 	}
 	if ($include_options == 1) {
-		$vehicle_options .= '<table class="decode_table">';
+		$vehicle_options = '<table class="decode_table">';
 		$vehicle_options .= '<tr class="decode_table_header">
 								<td><strong>'.__('Vehicle Options','car-demon').'</strong></td>
 								<td></td>

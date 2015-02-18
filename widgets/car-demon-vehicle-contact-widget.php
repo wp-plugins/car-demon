@@ -25,6 +25,7 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		$post_id = $GLOBALS['post']->ID;
 		$post_type = get_post_type($post_id);
+		$x = '';
 		if ( $post_type == 'cars_for_sale' ) {
 			if (is_single($post_id)) {
 				$car_demon_pluginpath = CAR_DEMON_PATH;
