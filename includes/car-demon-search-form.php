@@ -78,8 +78,7 @@ function car_demon_search_form() {
 <?php
 }
 function car_demon_simple_search($size='l') {
-	$car_demon_auto_credit_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), $url = get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	$car_demon_auto_credit_pluginpath = str_replace('includes','',$car_demon_auto_credit_pluginpath);
+	$car_demon_auto_credit_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('car-demon-auto-credit','car-demon', $car_demon_auto_credit_pluginpath);
 	car_demon_search_cars_scripts();
 	$url = get_option('siteurl');

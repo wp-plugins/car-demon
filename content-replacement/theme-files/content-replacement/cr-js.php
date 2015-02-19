@@ -15,8 +15,7 @@ if ($is_it_iis == 'Apache') {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-$car_demon_pluginpath = str_replace('forms/js','',$car_demon_pluginpath);
+$car_demon_pluginpath = CAR_DEMON_PATH;
 $x = '';
 $hook_form_js = apply_filters('car_demon_mail_hook_js', $x, 'contact_us', 'unk');
 $hook_form_js_data = apply_filters('car_demon_mail_hook_js_data', $x, 'contact_us', 'unk');

@@ -1,6 +1,6 @@
 <?php
 function cdcr_single_content($content) {
-	$cd_cdrf_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$cd_cdrf_pluginpath = CAR_DEMON_PATH;
 	$post_id = get_the_ID();
 	$vehicle_vin = rwh(strip_tags(get_post_meta($post_id, "_vin_value", true)),0);
 	$car_title = get_car_title_slug($post_id);
@@ -56,7 +56,7 @@ function cdcr_single_content_2($content) {
 	include_once('styles/single-car-2.php');
 }
 function cdcr_single_content_3($content) {
-	$cd_cdrf_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$cd_cdrf_pluginpath = CAR_DEMON_PATH;
 	$post_id = get_the_ID();
 	$vehicle_vin = rwh(strip_tags(get_post_meta($post_id, "_vin_value", true)),0);
 	$car_title = get_car_title_slug($post_id);

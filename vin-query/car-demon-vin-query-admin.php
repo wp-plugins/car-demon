@@ -92,7 +92,7 @@ function eg_add_vehicle_dashboard_widget_function() {
 	echo $html;
 }
 function cardemons_automotive_inventory_decode($post_id) {
-	$vin_query_decode = get_post_meta($post_id, "decode_string", true);
+	$vin_query_decode = car_demon_get_car($post_id);
 	$vin = get_post_meta($post_id, "_vin_value", true);
 	$html = '';
 	$show_tabs = 1;
@@ -494,11 +494,11 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 	}
 	//= BEGIN CUSTOM SPEC CODE
 	if (isset($car_demon_options['show_custom_specs'])) {
-		$show_custom_specs == $car_demon_options['show_custom_specs'];
+		$show_custom_specs = $car_demon_options['show_custom_specs'];
 	} else {
-		$show_custom_specs = false;
+		$show_custom_specs = 'No';
 	}
-	if ($show_custom_specs == false) {
+	if ($show_custom_specs == 'Yes') {
 		$map = cd_get_vehicle_map();
 		$specs_map = $map['specs'];
 		foreach ($specs_map as $key=>$spec_group) {
@@ -509,7 +509,10 @@ function get_vin_query_specs_admin($vin_query_decode, $vehicle_vin, $post_id) {
 			$odd_even = 'even';
 			foreach($spec_group_array as $spec_item) {
 				if($odd_even == 'odd') { $odd_even = 'even'; } else {$odd_even = 'odd';}
-				$x .= custom_spec_field_admin($post_id, $spec_item, 'decoded_'.$spec_item, $odd_even, $vin_query_decode);
+				$spec_item_slug = trim($spec_item);
+				$spec_item_slug = strtolower($spec_item_slug);
+				$spec_item_slug = str_replace(' ', '_', $spec_item_slug);
+				$x .= custom_spec_field_admin($post_id, $spec_item, 'decoded_'.$spec_item_slug, $odd_even, $vin_query_decode);
 			}
 		}
 	} else {

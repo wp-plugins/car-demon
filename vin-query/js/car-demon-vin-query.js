@@ -205,8 +205,10 @@ function dashboard_send_alert() {
 }
 function decode_vin(post_id) {
 	var loading = "<span class='decode_loading'><img src='"+cdVinQueryParams.car_demon_path+"images/wpspin_light.gif'>&nbsp;Loading...</span>";
-	document.getElementById("decode_results").style.display = 'block';
-	document.getElementById("decode_results").innerHTML = loading;
+	if (document.getElementById("decode_results")) {
+		document.getElementById("decode_results").style.display = 'block';
+		document.getElementById("decode_results").innerHTML = loading;
+	}
 	var vin = document.getElementById("vin").value
 	jQuery.ajax({
 		type: 'POST',

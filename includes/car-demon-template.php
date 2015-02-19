@@ -366,9 +366,10 @@ function car_demon_vehicle_detail_tabs($post_id, $no_content=false) {
 	} else {
 		$about = '';
 	}
+	$car = car_demon_get_car($post_id);
 	if (!empty($_SESSION['car_demon_options']['vinquery_id'])) {
-		if ($vehicle_year > 1984) {
-			car_demon_get_vin_query($post_id, $vehicle_vin);
+		if ($car['year'] > 1984) {
+			car_demon_get_vin_query($post_id, $car['vin']);
 		}
 	}
 	$vin_query_decode = get_post_meta($post_id, "decode_string", true);
@@ -605,11 +606,10 @@ function car_photos($post_id, $details, $vehicle_condition) {
 		$this_car .= '<div class="car_detail_div">';
 			$this_car .= '<div class="car_main_photo_box">';
 				$this_car .= $current_ribbon;
-//				$this_car .= '<img'.$lightbox_js.' src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" width="358" height="271" alt="New Ribbon" id="look_close">';
-//				$this_car .= '<div id="main_thumb"><img onerror="ImgError(this, \'no_photo.gif\');" id="'.$car_title.'_pic" name="'.$car_title.'_pic" class="car_demon_main_photo" width="350px" src="';
 				$this_car .= '<img'.$lightbox_js.' src="'. $car_demon_pluginpath .'theme-files/images/look_close.png" alt="New Ribbon" id="look_close" class="look_close">';
 				$this_car .= '<div id="main_thumb"><img onerror="ImgError(this, \'no_photo.gif\');" id="'.$car_title.'_pic" name="'.$car_title.'_pic" class="car_demon_main_photo" src="';
 				$main_guid = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
+				$main_guid = trim($main_guid);
 				$this_car .= $main_guid;
 				$this_car .= '" /></div>';
 			$this_car .= '</div>';
@@ -643,6 +643,10 @@ function car_photos($post_id, $details, $vehicle_condition) {
 				//= $pos = strpos($thumbnail,'.jpg');
 				//= We need a different way to check if it really is an image file
 				//= maybe check file ext array?
+				$thumbnail = trim($thumbnail);
+				if (empty($thumbnail)) {
+					continue;	
+				}
 				$pos = true;
 				if($pos == true) {
 					if ($cnt > 0) {
@@ -711,6 +715,9 @@ function car_demon_facebook_meta() {
 }
 function car_demon_get_car($post_id) {
 	$x = get_post_meta($post_id, 'decode_string', true);
+	$x['title'] = get_car_title($post_id);
+	$x['title_slug'] = get_car_title_slug($post_id);
+	$x['car_link'] = get_permalink($post_id);
 	$x['vin'] = rwh(strip_tags(get_post_meta($post_id, "_vin_value", true)),0);
 	$x['year'] = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_year', '','', '', '' )),0);
 	$x['make'] = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_make', '','', '', '' )),0);
@@ -719,19 +726,31 @@ function car_demon_get_car($post_id) {
 	$x['body_style'] = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_body_style', '','', '', '' )),0);
 	$x['location'] = rwh(strip_tags(get_the_term_list( $post_id, 'vehicle_location', '','', '', '' )),0);
 	$x['stock_number'] = strip_tags(get_post_meta($post_id, "_stock_value", true));
-	$x['exterior_color'] = strip_tags(get_post_meta($post_id, "_exterior_color_value", true));
-	$x['interior_color'] = strip_tags(get_post_meta($post_id, "_interior_color_value", true));
 	$x['mileage'] = strip_tags(get_post_meta($post_id, "_mileage_value", true));
+	//= Begin potential custom spec items
+	if(isset($x['decoded_exterior_color'])) {
+		$x['exterior_color'] = $x['decoded_exterior_color'];
+	} else {
+		$x['exterior_color'] = strip_tags(get_post_meta($post_id, "_exterior_color_value", true));
+	}
+	if(isset($x['decoded_interior_color'])) {
+		$x['interior_color'] = $x['decoded_interior_color'];
+	} else {
+		$x['interior_color'] = strip_tags(get_post_meta($post_id, "_interior_color_value", true));
+	}
 	$x['fuel'] = strip_tags(get_post_meta($post_id, "_fuel_type_value", true));
-	$x['transmission'] = strip_tags(get_post_meta($post_id, "_transmission_value", true));
+
+	if(isset($x['decoded_transmission_long'])) {
+		$x['transmission'] = $x['decoded_transmission_long'];
+	} else {
+		$x['transmission'] = strip_tags(get_post_meta($post_id, "_transmission_value", true));
+	}
+	
 	$x['cylinders'] = strip_tags(get_post_meta($post_id, "_cylinders_value", true));
 	$x['engine'] = strip_tags(get_post_meta($post_id, "_engine_value", true));
 	$x['doors'] = strip_tags(get_post_meta($post_id, "_doors_value", true));
 	$x['trim'] = strip_tags(get_post_meta($post_id, "_trim_value", true));
 	$x['warranty'] = strip_tags(get_post_meta($post_id, "_warranty_value", true));
-	$x['title'] = get_car_title($post_id);
-	$x['title_slug'] = get_car_title_slug($post_id);
-	$x['car_link'] = get_permalink($post_id);
 	return $x;
 }
 ?>

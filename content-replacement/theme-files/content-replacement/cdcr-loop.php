@@ -1,8 +1,7 @@
 <?php
 //= Template part for vehicle archive and search loops
 function cdcr_loop($content, $post_id) {
-	$cd_cdrf_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	$cd_cdrf_pluginpath = str_replace('includes', '', $cd_cdrf_pluginpath);
+	$cd_cdrf_pluginpath = CAR_DEMON_PATH;
 	$vehicle_year = strip_tags(get_the_term_list( $post_id, 'vehicle_year', '','', '', '' ));
 	$vehicle_make = strip_tags(get_the_term_list( $post_id, 'vehicle_make', '','', '', '' ));
 	$vehicle_model = strip_tags(get_the_term_list( $post_id, 'vehicle_model', '','', '', '' ));

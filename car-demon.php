@@ -4,7 +4,7 @@
 * Plugin URI: http://CarDemons.com/
 * Description:  Car Demon is a PlugIn designed for car dealers.
 * Author: CarDemons
-* Version: 1.3.6
+* Version: 1.3.7
 * Author URI: http://CarDemons.com/
 * Text Domain: car-demon
 * Domain Path: /languages/
@@ -45,7 +45,9 @@ include( 'car-demon-forms/car-demon-forms.php' );
 include( 'car-demon-header.php' );
 include( 'content-replacement/crf.php' );
 require_once( 'includes/suggested_required.php' );
-$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+//= Legacy PlugIn path code
+//= $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+$car_demon_pluginpath = WP_PLUGIN_URL . '/car-demon/';
 define("CAR_DEMON_PATH", $car_demon_pluginpath);
 add_filter('wp_print_styles', 'car_demon_header');
 function car_demon_init() {
@@ -242,7 +244,7 @@ if (function_exists('add_theme_support')) {
     add_image_size('page-single', 350, 350, true);
 }
 function car_demon_theme_js( $content ) {
-	$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$pluginpath = CAR_DEMON_PATH;
 	$content .= '
 	<script>
 		function ImgError(source, pic){

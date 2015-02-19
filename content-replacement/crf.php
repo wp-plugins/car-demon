@@ -23,7 +23,7 @@ function car_crf() {
 }
 //= Output Admin Page
 function cd_cdrf_style_options_do_page() {
-	$cd_cdrf_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+	$cd_cdrf_pluginpath = CAR_DEMON_PATH;
 	$cd_cdrf_options = get_option('car_demon_options');
 	if (isset($_POST['submit'])) {
 		$cd_cdrf_options['cd_cdrf_style'] = $_POST['cd_cdrf_style'];

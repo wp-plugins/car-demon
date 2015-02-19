@@ -69,7 +69,8 @@ function car_demon_mytax_init() {
       'label' => __('Body Style', 'car-demon'),
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
-      'rewrite' => array('slug' => 'body_style')
+      'rewrite' => array('slug' => 'body_style'),
+	  'show_ui' => false
     )
   );
   register_taxonomy(

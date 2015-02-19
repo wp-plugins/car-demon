@@ -161,7 +161,7 @@ function car_demon_decode_new_vin($vin) {
 		if (empty($has_car_been_decoded)) {
 			car_demon_decode_vin($post_id, $vin);
 		}
-		$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
+		$pluginpath = CAR_DEMON_PATH;
 		$rootpath = str_replace('wp-content/plugins/car-demons/','',$pluginpath);
 		$this_post = get_post($does_vin_exist); 
 		$title = $this_post->post_title;

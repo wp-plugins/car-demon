@@ -100,13 +100,14 @@ function get_vin_query_specs($vin_query_decode, $vehicle_vin, $post_id) {
 					</tr>';
 			}
 		}
+		$car_demon_options = car_demon_options();
 		if (isset($car_demon_options['show_custom_specs'])) {
-			$show_custom_specs == $car_demon_options['show_custom_specs'];
+			$show_custom_specs = $car_demon_options['show_custom_specs'];
 		} else {
-			$show_custom_specs = false;
+			$show_custom_specs = 'No';
 		}
 		//= BEGIN CUSTOM SPEC CODE
-		if ($show_custom_specs == false) {
+		if ($show_custom_specs == 'Yes') {
 			$map = cd_get_vehicle_map();
 			$specs_map = $map['specs'];
 			foreach ($specs_map as $key=>$spec_group) {
@@ -117,7 +118,10 @@ function get_vin_query_specs($vin_query_decode, $vehicle_vin, $post_id) {
 				$odd_even = 'even';
 				foreach($spec_group_array as $spec_item) {
 					if($odd_even == 'odd') { $odd_even = 'even'; } else {$odd_even = 'odd';}
-					$x .= custom_spec_field($post_id, $spec_item, 'decoded_'.$spec_item, $odd_even, $vin_query_decode);
+					$spec_item_slug = trim($spec_item);
+					$spec_item_slug = strtolower($spec_item_slug);
+					$spec_item_slug = str_replace(' ', '_', $spec_item_slug);
+					$x .= custom_spec_field($post_id, $spec_item, 'decoded_'.$spec_item_slug, $odd_even, $vin_query_decode);
 				}
 			}
 		} else {
@@ -152,8 +156,7 @@ function get_vin_query_specs($vin_query_decode, $vehicle_vin, $post_id) {
 			'.__('DATA IN THIS REPORT FOR HIS OR HER OWN APPLICATIONS. ALL DATA IN THIS REPORT ARE SUBJECT TO CHANGE WITHOUT NOTICE.', 'car-demon').'</div></td>
 		  </tr>';
 	  $x .= '</table>';
-	$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-	$car_demon_pluginpath = str_replace('vin-query', '', $car_demon_pluginpath);
+	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$standard_img = '<img src="'.$car_demon_pluginpath . 'theme-files/images/opt_standard.gif" title="'.__('Standard Option', 'car-demon').'" alt="'.__('Standard Option', 'car-demon').'" />';
 	$x = str_replace("Std.", $standard_img, $x);
 	$opt_img = '<img src="'.$car_demon_pluginpath . 'theme-files/images/opt_optional.gif" title="'.__('Optional', 'car-demon').'" alt="'.__('Optional', 'car-demon').'" />';

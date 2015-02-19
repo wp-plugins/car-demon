@@ -337,7 +337,7 @@ function car_demon_options() {
 	$default['before_listings'] = '';
 	$default['use_post_title'] = 'No';
 	$default['show_sold'] = 'No';
-	$default['cc_admin'] = 'Yes';	
+	$default['cc_admin'] = 'Yes';
 	$default['do_sort'] = 'Yes';
 	$default['drop_down_sort'] = 'No';
 	$default['sort_price'] = 'Yes';
@@ -351,6 +351,7 @@ function car_demon_options() {
 	$default['cars_per_page'] = '9';
 	$default['cd_cdrf_style'] = '';
 	$default['cd_cdrf_page_style'] = '';
+	$default['show_custom_specs'] = 'Yes';
 	//= Sidebars
 	$default['cd_page_id'] = '';
 	$default['cd_page_css'] = '';
@@ -368,8 +369,8 @@ function car_demon_options() {
 	$default['dl_pagination'] = '.pagination';
 	$default['dl_next'] = '.next';
 	//= Content Replacement
-	$cd_cdrf_options['cd_cdrf_style'] = 'content-replacement';
-	$cd_cdrf_options['cd_cdrf_page_style'] = 'content-replacement';
+	$default['cd_cdrf_style'] = 'content-replacement';
+	$default['cd_cdrf_page_style'] = 'content-replacement';
 
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
@@ -404,6 +405,7 @@ function car_demon_options() {
 	if (empty($car_demon_options['use_vehicle_css'])) {$car_demon_options['use_vehicle_css'] = $default['use_vehicle_css'];}
 	if (empty($car_demon_options['title_trim'])) {$car_demon_options['title_trim'] = $default['title_trim'];}
 	if (empty($car_demon_options['cars_per_page'])) {$car_demon_options['cars_per_page'] = $default['cars_per_page'];}
+	if (empty($car_demon_options['show_custom_specs'])) {$car_demon_options['show_custom_specs'] = $default['show_custom_specs'];}
 	//= Sidebars
 	if (empty($car_demon_options['cd_page_id'])) {$car_demon_options['cd_page_id'] = $default['cd_page_id'];}
 	if (empty($car_demon_options['cd_page_css'])) {$car_demon_options['cd_page_css'] = $default['cd_page_css'];}
@@ -414,15 +416,15 @@ function car_demon_options() {
 	if (empty($car_demon_options['vehicle_container'])) {$car_demon_options['vehicle_container'] = $default['vehicle_container'];}
 	if (empty($car_demon_options['left_vehicle_sidebar'])) {$car_demon_options['left_vehicle_sidebar'] = $default['left_vehicle_sidebar'];}
 	if (empty($car_demon_options['right_vehicle_sidebar'])) {$car_demon_options['right_vehicle_sidebar'] = $default['right_vehicle_sidebar'];}
-	if (empty($car_demon_options['sidebar_id'])) {$car_demon_options['sidebar_id'] = $default['sidebar_id'];}	
+	if (empty($car_demon_options['sidebar_id'])) {$car_demon_options['sidebar_id'] = $default['sidebar_id'];}
 	//= Content Replacement
 	if (empty($car_demon_options['cd_cdrf_style'])) {$car_demon_options['cd_cdrf_style'] = $default['cd_cdrf_style'];}
-	if (empty($car_demon_options['cd_cdrf_page_style'])) {$car_demon_options['cd_cdrf_page_style'] = $default['cd_cdrf_page_style'];}	
+	if (empty($car_demon_options['cd_cdrf_page_style'])) {$car_demon_options['cd_cdrf_page_style'] = $default['cd_cdrf_page_style'];}
 	//= Auto Load Inventory Options
-	if (empty($car_demon_options['dl_container'])) {$car_demon_options['dl_container'] = $default['dl_container'];}	
-	if (empty($car_demon_options['dl_items'])) {$car_demon_options['dl_items'] = $default['dl_items'];}	
-	if (empty($car_demon_options['dl_pagination'])) {$car_demon_options['dl_pagination'] = $default['dl_pagination'];}	
-	if (empty($car_demon_options['dl_next'])) {$car_demon_options['dl_next'] = $default['dl_next'];}	
+	if (empty($car_demon_options['dl_container'])) {$car_demon_options['dl_container'] = $default['dl_container'];}
+	if (empty($car_demon_options['dl_items'])) {$car_demon_options['dl_items'] = $default['dl_items'];}
+	if (empty($car_demon_options['dl_pagination'])) {$car_demon_options['dl_pagination'] = $default['dl_pagination'];}
+	if (empty($car_demon_options['dl_next'])) {$car_demon_options['dl_next'] = $default['dl_next'];}
 
 	return $car_demon_options;
 }
@@ -641,6 +643,23 @@ function car_demon_settings_form() {
 			echo '<div class="edit_option_tabs_div"><input type="button" value="Edit Vehicle Option Tabs" onclick="document.cd_settings.submit();" class="edit_option_tabs" /></div>';
 		echo '</fieldset>';
 		//= Tab Option Stop
+
+		//= Legacy Option Start
+		//= Allow users to return to legacy show_custom_specs option
+		if (isset($_GET['advanced'])) {
+			echo '<fieldset class="cd_admin_group">';
+				echo '<legend>';
+					echo __('Legacy Options','car-demon');
+				echo '</legend>';
+				echo '<br />'.__('Use Custom Specs?', 'car-demon').':<br />';
+				echo '<br />'.__('This option was added to allow support for users that can not migrate to the new custom specs code. If you are having problems viewing your vehicle specs or if information does not appear to be updating then try setting this to No.', 'car-demon').'<br />';
+				echo '<select name="show_custom_specs">
+						<option value="'.$car_demon_options['show_custom_specs'].'">'.$car_demon_options['show_custom_specs'].'</option>
+						<option value="Yes">'.__('Yes', 'car-demon').'</option>
+						<option value="No">'.__('No', 'car-demon').'</option>
+					</select><br />';
+			echo '</fieldset>';
+		}
 
 		//= List Option Start
 		echo '<fieldset class="cd_admin_group">';
@@ -919,6 +938,9 @@ function update_car_demon_settings() {
 	if (isset($_POST['use_vehicle_css'])) $new['use_vehicle_css'] = $_POST['use_vehicle_css'];
 	if (isset($_POST['title_trim'])) $new['title_trim'] = $_POST['title_trim'];
 	if (isset($_POST['cars_per_page'])) $new['cars_per_page'] = $_POST['cars_per_page'];
+	//= Legacy Specs option
+	
+	if (isset($_POST['show_custom_specs'])) $new['show_custom_specs'] = $_POST['show_custom_specs'];
 	//=Sidebars
 	if (isset($_POST['vehicle_sidebar_class'])) $new['vehicle_sidebar_class'] = $_POST['vehicle_sidebar_class'];
 	if (isset($_POST['left_list_sidebar'])) $new['left_list_sidebar'] = $_POST['left_list_sidebar'];

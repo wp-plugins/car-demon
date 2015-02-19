@@ -12,8 +12,7 @@ else {
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-$car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-$car_demon_pluginpath = str_replace('js','',$car_demon_pluginpath);
+$car_demon_pluginpath = CAR_DEMON_PATH;
 ?>
 LightboxOptions = Object.extend({
     fileLoadingImage:        '<?php echo $car_demon_pluginpath; ?>images/loading_2.gif',     

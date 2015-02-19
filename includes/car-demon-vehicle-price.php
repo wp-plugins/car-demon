@@ -104,8 +104,7 @@ function get_vehicle_price($post_id) {
 	}
 	$sold_status = get_post_meta($post_id, "sold", true);
   	if ($sold_status == 'yes') {
-		$pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-		$pluginpath = str_replace('includes','',$pluginpath);
+		$pluginpath = CAR_DEMON_PATH;
 		$price = '<div id="your_price_text" class="your_price_text">';
 			$price .= '<img src="'.$pluginpath.'theme-files\images\sold.gif" alt="Sold" title="Sold" /><br />';
 		$price .= '</div>';

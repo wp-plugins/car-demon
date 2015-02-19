@@ -80,14 +80,14 @@ do_action( 'car_demon_vehicle_header_sidebar' );
 					if ($car_contact['finance_popup'] == 'Yes') {
 					?>
 					<div class="featured-button">
-						<p><a onclick="window.open('<?php echo $contact_finance_url .'?stock_num='.$vehicle_details['stock_num']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>','finwin','width=<?php echo $car_contact['finance_width']; ?>, height=<?php echo $car_contact['finance_height']; ?>, menubar=0, resizable=0')"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
+						<p><a onclick="window.open('<?php echo $contact_finance_url .'?stock_num='.$vehicle_details['stock_number']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>','finwin','width=<?php echo $car_contact['finance_width']; ?>, height=<?php echo $car_contact['finance_height']; ?>, menubar=0, resizable=0')"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
 					</div>
 					<?php 
 					}
 					else {
 					?>
 					<div class="featured-button">
-						<p><a href="<?php echo $contact_finance_url .'?stock_num='.$vehicle_details['stock_num']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
+						<p><a href="<?php echo $contact_finance_url .'?stock_num='.$vehicle_details['stock_number']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
 					</div>
 			<?php 
 					}
@@ -95,7 +95,7 @@ do_action( 'car_demon_vehicle_header_sidebar' );
 				if (!empty($contact_trade_url)) {
 				?>
 					<div class="featured-button">
-						<p><a <?php echo 'href="'.$contact_trade_url .'?stock_num='.$vehicle_details['stock_num']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
+						<p><a <?php echo 'href="'.$contact_trade_url .'?stock_num='.$vehicle_details['stock_number']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
 					</div>
 			<?php
 				}
@@ -111,7 +111,7 @@ do_action( 'car_demon_vehicle_header_sidebar' );
 				</div>
 			</div>
 			<div class="car-demon-entry-content">
-				<?php echo car_photos($post_id, $detail_output, $vehicle_condition); ?>
+				<?php echo car_photos($post_id, $detail_output, $vehicle_details['condition']); ?>
 				<?php echo car_demon_display_similar_cars($vehicle_details['decoded_body_style'], $post_id); ?>
 				<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'car-demon' ), 'after' => '</div>' ) ); ?>
 			</div><!-- .car-demon-entry-content -->
