@@ -4,7 +4,7 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots, auto dealer
 Requires at least: 3.4.2
 Tested up to: 4.1
-Stable tag: 1.3.0
+Stable tag: 1.3.9
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead 
@@ -313,6 +313,20 @@ opening each vehicle.
 Car Demon Theme. For more information visit our website; www.CarDemons.com
 
 == Changelog ==
+1.3.9
+* Improved support for handling multiple popup forms on a single page
+* Improved support for displaying form error messages by insuring page scrolls to top of msg
+* Resolved issue with transmission field vs. transmission field long
+1.3.8
+* Change all mail() functions to wp_mail() to keep consistent with WordPress
+* Modified Server hash code to prevent potential issues for IIS users
+1.3.7
+* Switched stock_num references to stock_number
+* Removed taxonomy UIs on single vehicle edit pages to reduce confusion
+* Modified dynamic spec options to fix issues with some legacy fields not populating
+* Added hidden admin option to allow usage of legacy specs code
+* Updated CAR_DEMON_PATH constant to use prefered method of determining plugin path
+* Resolved random blank thumbnail issue on single cars pages
 1.3.6
 * Added support for jquery ui to handle auto load on forms
 1.3.5
@@ -555,5 +569,10 @@ entered.
 * Initial Public Release
 
 == Upgrade Notice ==
-The newest release of Car Demon has a featured called Content Replacement that makes it much easier to use with a wider range of themes. If you experience issues after upgrading go to Appearances->Car Display Options and make sure the option is set to default.
+Please remember to backup your site before upgrading. If you experience issues after upgrading go to Appearances->Car Display Options and make sure the option is set to default. If you still have issues please post your problem at the Car Demon support forum at WordPress.org 
+
+Please be as detailed as possible and include a link to your site. It might also be helpful to know what version you upgraded from.
+
+You might consider downloading a copy of the previous version that you were using from the Developers tab on the Car Demon page at WordPress.org
+
 It might also be helpful to cross fingers, spin around three times and backup everything before you upgrade. Just a suggestion.
