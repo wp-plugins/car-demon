@@ -13,8 +13,7 @@
 	Here is a  sample of the fields that are available from car_demon_get_car($post_id) function
 	All custom vehicle options will be available
 		$_vin_value = $car["_vin_value"];
-		$stock_num = $car["stock_num"];
-		$stock_number = $car["stock_number"]; //= yes they're the same
+		$stock_number = $car["stock_number"];
 		$mileage = $car["mileage"];
 		$msrp = $car["msrp"];
 		$price = $car["price"];
@@ -270,14 +269,14 @@
                 if ($car_contact['finance_popup'] == 'Yes') {
                 ?>
                 <div class="featured-button">
-                    <p><a onclick="window.open('<?php echo $contact_finance_url .'?stock_num='.$vehicle_details['stock_num']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>','finwin','width=<?php echo $car_contact['finance_width']; ?>, height=<?php echo $car_contact['finance_height']; ?>, menubar=0, resizable=0')"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
+                    <p><a onclick="window.open('<?php echo $contact_finance_url .'?stock_num='.$vehicle_details['stock_number']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>','finwin','width=<?php echo $car_contact['finance_width']; ?>, height=<?php echo $car_contact['finance_height']; ?>, menubar=0, resizable=0')"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
                 </div>
                 <?php 
                 }
                 else {
                 ?>
                 <div class="featured-button">
-                    <p><a href="<?php echo $contact_finance_url .'?stock_num='.$vehicle_details['stock_num']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
+                    <p><a href="<?php echo $contact_finance_url .'?stock_num='.$vehicle_details['stock_number']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('GET FINANCED', 'car-demon'); ?></a></p>
                 </div>
         <?php 
                 }
@@ -285,7 +284,7 @@
             if (!empty($contact_trade_url)) {
             ?>
                 <div class="featured-button">
-                    <p><a <?php echo 'href="'.$contact_trade_url .'?stock_num='.$vehicle_details['stock_num']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
+                    <p><a <?php echo 'href="'.$contact_trade_url .'?stock_num='.$vehicle_details['stock_number']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
                 </div>
         <?php
             }

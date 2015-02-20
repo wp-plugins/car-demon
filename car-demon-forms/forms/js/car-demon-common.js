@@ -16,12 +16,16 @@ function cd_get_radios(radios) {
 	return my_val;
 }
 function cd_not_valid(fld, form_id) {
-	document.forms[form_id][fld].style.fontweight = "bold";
-	document.forms[form_id][fld].style.background = "Yellow";
+	if(document.forms[form_id][fld]) {
+		document.forms[form_id][fld].style.fontweight = "bold";
+		document.forms[form_id][fld].style.background = "Yellow";
+	}
 }
 function cd_valid(fld, form_id) {
-	document.forms[form_id][fld].style.fontweight = "normal";
-	document.forms[form_id][fld].style.background = "#ffffff";
+	if (document.forms[form_id][fld]) {
+		document.forms[form_id][fld].style.fontweight = "normal";
+		document.forms[form_id][fld].style.background = "#ffffff";
+	}
 }
 function trim(s) {
   return s.replace(/^\s+|\s+$/, '');

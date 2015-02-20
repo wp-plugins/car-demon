@@ -318,6 +318,8 @@
 		//HANDLE FAILURE WITH MESSAGES
 		if (xFail == 1) {
 			alert('<?php _e('Issues were detected with your Application.', 'car-demon'); ?> \n <?php _e('Please review the application and submit again.', 'car-demon'); ?>');
+			var top = document.getElementById('frm_app').offsetTop; //Getting Y of target element
+			window.scrollTo(0, top);
 		}
 		else {
 			send_entire_form();
@@ -529,7 +531,6 @@
 		$car_demon_pluginpath = CAR_DEMON_PATH;
 		$car_demon_pluginpath_images = str_replace('car-demon-forms/forms','',$car_demon_pluginpath);	
 		$cd_wp_admin = str_replace('wp-content/plugins/car-demon','',$car_demon_pluginpath);	
-//http://carchimps.com/wp-content/plugins/car-demon/theme-files/forms/car-demon-trade-form-handler.php?show_stock=2
 	?>
 
 jQuery("#select_stock_txt").autocomplete (

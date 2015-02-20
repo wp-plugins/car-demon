@@ -218,8 +218,13 @@ function car_demon_validate() {
 	if (msg != "") {
 		document.getElementById("trade_msg").style.display = "block";
 		document.getElementById("trade_msg").innerHTML = msg;
-		jQuery("#trade_form"+form_id).fadeIn();
-		javascript:scroll(0,0);
+		jQuery("#trade_form"+form_id).fadeIn(
+			function () {
+				var top = document.getElementById('trade_msg'+form_id).offsetTop; //Getting Y of target element
+				window.scrollTo(0, top);
+			}
+		);
+		return;
 	} else {
 		var action = "";
 		var your_name = document.getElementById("cd_name").value;

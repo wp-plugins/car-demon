@@ -68,7 +68,7 @@ function cd_conditionally_add_scripts_and_styles($posts){
 	if ($use_css == 1) {
 		$shortcode_found = false; // use this flag to see if styles and scripts need to be enqueued
 		foreach ($posts as $post) {
-			if (stripos($post->post_content, '[contact_us') !== false) {
+			if (stripos($post->post_content, '[contact_us') !== false || stripos($post->post_content, '[staff') !== false) {
 				wp_register_script("car-demon-common-js", WP_PLUGIN_URL."/car-demon/car-demon-forms/forms/js/car-demon-common.js", array('jquery') );
 				wp_register_script("car-demon-contact-us-form-js", WP_PLUGIN_URL.'/car-demon/car-demon-forms/forms/js/car-demon-contact-us.js', array('jquery') );
 				$validate_phone = 0;
@@ -97,7 +97,6 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'jquery' );
 				wp_enqueue_script( 'car-demon-common-js' );
 				wp_enqueue_script( 'car-demon-contact-us-form-js' );
-				break;
 			}
 			if (stripos($post->post_content, '[finance_form') !== false) {
 				$validate_phone = 0;
@@ -163,7 +162,6 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'cd-jquery-autocomplete-js' );
 				wp_enqueue_script( 'car-demon-common-js' );
 				wp_enqueue_script( 'car-demon-trade-form-js' );
-				break;
 			}
 			if (stripos($post->post_content, '[part_request') !== false) {
 				wp_register_script('car-demon-part-request-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-part-request.js');
@@ -196,7 +194,6 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'jquery' );
 				wp_enqueue_script( 'car-demon-common-js' );
 				wp_enqueue_script( 'car-demon-part-request-js' );
-				break;
 			}
 			if (stripos($post->post_content, '[service_form') !== false) {
 				wp_register_script('car-demon-service-form-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-service-form.js');
@@ -254,7 +251,6 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'car-demon-common-js' );
 				wp_enqueue_script( 'car-demon-service-form-js' );
 				wp_enqueue_script( 'car-demon-service-calendar-js' );
-				break;
 			}
 			if (stripos($post->post_content, '[service_quote') !== false) {
 				wp_register_script('car-demon-service-quote-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-service-quote.js');
@@ -285,7 +281,6 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'jquery' );
 				wp_enqueue_script( 'car-demon-common-js' );
 				wp_enqueue_script( 'car-demon-service-quote-js' );
-				break;
 			}
 			if (stripos($post->post_content, '[qualify') !== false) {
 				wp_register_script('car-demon-qualify-us-form-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-qualify.js');
@@ -318,7 +313,6 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'jquery' );
 				wp_enqueue_script( 'car-demon-common-js' );
 				wp_enqueue_script( 'car-demon-qualify-us-form-js' );
-				break;
 			}
 		}
 	}

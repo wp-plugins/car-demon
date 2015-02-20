@@ -10,7 +10,6 @@ function show_finance_form($location) {
 	$location = '';
 	$bad = '';
 	$fin = '';
-
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 //		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
 			echo '<style>';
@@ -232,7 +231,7 @@ function select_finance_for_vehicle($hide=0) {
 			<li id="" class="cd-box-title"><input onclick="select_voi(\'stock\');" name="pick_voi" id="pick_voi_1" type="radio" value="1" /> '.__('I know the stock#', 'car-demon').'</li>
 			<li id="select_stock" class="finance_select_stock"><span>Stock #</span>&nbsp;<input class="ac_input" type="text" id="select_stock_txt" /></li>
 			<li id="" class="cd-box-title"><input name="pick_voi" id="pick_voi_2" onclick="select_voi(\'search\');" type="radio" value="2" /> '.__('I would like to search for it', 'car-demon').'</li>
-			<li id="select_description" class="finance_select_stock"><span>Description</span>&nbsp;<input type="text"  id="select_car_txt" />&nbsp;'.__('(enter year, make or model)', 'car-demon').'</li>
+			<li id="select_description" class="finance_select_stock"><span>Description</span>&nbsp;<input type="text"  id="select_car_txt" /><span>&nbsp;'.__('(enter year, make or model)', 'car-demon').'</span></li>
 			<li id="" class="cd-box-title"><input name="pick_voi" id="pick_voi_3" onclick="select_voi(\'na\');" type="radio" checked="checked" value="3" /> '.__('I haven\'t made up my mind.', 'car-demon').'</li>
 			<li id="" class="cd-box-title">
 				<img src="'.$car_demon_pluginpath_images.'theme-files/images/no_vehicle.gif" width="175" class="finance_no_img" />

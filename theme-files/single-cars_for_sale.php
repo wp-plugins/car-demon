@@ -6,6 +6,7 @@
  * @subpackage CarDemon 
  * @since CarDemon 1.0
  */
+
 $car_demon_pluginpath = CAR_DEMON_PATH;
 if (isset($_SESSION['car_demon_options']['use_vehicle_css'])) {
 	if ($_SESSION['car_demon_options']['use_vehicle_css'] != 'No') {

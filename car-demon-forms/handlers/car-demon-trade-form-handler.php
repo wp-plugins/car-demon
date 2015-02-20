@@ -113,7 +113,7 @@ function cd_trade_handler() {
 		else {
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 		}
-		mail($to, $subject, $email_body, $headers);
+		wp_mail($to, $subject, $email_body, $headers);
 		$selected_car = $_POST['selected_car'];
 		$car_id = get_car_id_from_stock($selected_car);
 		$holder = '';		

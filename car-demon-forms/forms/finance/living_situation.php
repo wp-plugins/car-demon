@@ -9,7 +9,7 @@
 	<div class="finance_applicant_cell">
 		<select name="yaca" id="yaca" tabindex="32" onChange="AddAddresses(this,1);">
 			<?php echo select_years(); ?>
-		</select> /
+		</select><span class="cd_fin_dash">-</span>
 		<select id="maca" name="maca" tabindex="33">
 			<option value="" selected="selected"></option>
 			<option value="0">0 <?php _e('Months', 'car-demon'); ?></option>

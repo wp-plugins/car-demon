@@ -74,7 +74,7 @@ function cd_service_handler() {
 		else {
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 		}
-		mail($to, $subject, $email_body, $headers);
+		wp_mail($to, $subject, $email_body, $headers);
 		$post_id = '';
 		$holder = '';
 		apply_filters('car_demon_mail_hook_complete', $holder, 'service_appointment', $to, $subject, $email_body, $headers, $_POST['email'], $post_id, $service_location);

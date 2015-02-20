@@ -96,8 +96,13 @@ function car_demon_validate_part_request(form_id) {
 	if (msg != "") {
 		document.getElementById("part_msg"+form_id).style.display = "block";
 		document.getElementById("part_msg"+form_id).innerHTML = msg;
-		jQuery("#part_form"+form_id).fadeIn();
-		javascript:scroll(0,0);
+		jQuery("#part_form"+form_id).fadeIn(
+			function () {
+				var top = document.getElementById('part_msg'+form_id).offsetTop; //Getting Y of target element
+				window.scrollTo(0, top);
+			}
+		);
+		return;
 	} else {
 		var action = "";
 		var your_name = document.forms["part_form"+form_id].cd_name.value;

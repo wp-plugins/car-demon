@@ -104,7 +104,7 @@ function send_finance_email() {
 	} else {
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 	}
-	mail($to, $subject, $email_body, $headers);
+	wp_mail($to, $subject, $email_body, $headers);
 	$selected_car = $_POST['selected_car'];
 	$post_id = get_car_id_from_stock($selected_car);
 	apply_filters('car_demon_mail_hook_complete', $holder, 'finance', $to, $subject, $email_body, $headers, $_POST['email'], $post_id, $finance_location);

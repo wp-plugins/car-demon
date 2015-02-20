@@ -20,7 +20,11 @@
 	if ($location == 'normal') {
 		echo finance_locations_radio();
 	} else {
-		echo '<div id="finance_locations"></div><span id="select_location"><input type="radio" style="display:none;" name="finance_location" id="finance_location_1" value="'.$location.'" checked /></span>';
+		if (empty($location)) {
+			echo '<div id="finance_locations"></div><span id="select_location"><input type="radio" style="display:none;" name="finance_location" id="finance_location_1" value="default" checked /></span>';
+		} else {
+			echo '<div id="finance_locations"></div><span id="select_location"><input type="radio" style="display:none;" name="finance_location" id="finance_location_1" value="'.$location.'" checked /></span>';
+		}
 	}
 	?>
 </fieldset>

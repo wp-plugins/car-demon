@@ -52,7 +52,13 @@ function car_demon_validate(form_id) {
 	if (msg != "") {
 		document.getElementById("contact_msg"+form_id).style.display = "block";
 		document.getElementById("contact_msg"+form_id).innerHTML = msg;
-		jQuery("#contact_form"+form_id).fadeIn();
+		jQuery("#contact_form"+form_id).fadeIn(
+			function () {
+				var top = document.getElementById('contact_msg'+form_id).offsetTop; //Getting Y of target element
+				window.scrollTo(0, top);
+			}
+		);
+		return;
 	} else {
 		jQuery(cdContactParams.hook_js);
 		var action = "";

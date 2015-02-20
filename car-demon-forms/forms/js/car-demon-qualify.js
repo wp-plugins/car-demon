@@ -90,8 +90,13 @@ function car_demon_validate_qualify(form_id) {
 	if (msg != "") {
 		document.getElementById("qualify_msg"+form_id).style.display = "block";
 		document.getElementById("qualify_msg"+form_id).innerHTML = msg;
-		jQuery("#qualify_form"+form_id).fadeIn();
-		javascript:scroll(0,0);
+		jQuery("#qualify_form"+form_id).fadeIn(
+			function () {
+				var top = document.getElementById('qualify_msg'+form_id).offsetTop; //Getting Y of target element
+				window.scrollTo(0, top);
+			}
+		);
+		return;
 	} else {
 		var action = "";
 		var your_name = document.forms["qualify_form"+form_id].cd_name.value;

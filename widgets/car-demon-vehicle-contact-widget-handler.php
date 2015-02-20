@@ -74,7 +74,7 @@ function cd_contact_us_widget_handler() {
 	} else {
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 	}
-	mail($to, $subject, $email_body, $headers);
+	wp_mail($to, $subject, $email_body, $headers);
 	$contact_location = $_POST['vehicle_location'];
 	$contact_location = strtolower($contact_location);
 	$contact_location = str_replace(' ', '-', $contact_location);

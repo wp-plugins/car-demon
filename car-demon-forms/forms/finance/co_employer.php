@@ -26,7 +26,7 @@
 	<div width="49%" class="finance_applicant_cell">
 		<select name="co_yac2" id="co_yac2" tabindex="67" onChange="AddCoEmployer(this,1);">
 		<?php echo select_years(); ?>
-		</select> /
+		</select><span class="cd_fin_dash">-</span>
 		<select id="co_mac2" name="co_mac2" tabindex="68">
 			<option value="" selected="selected"></option>
 			<option value="0">0 <?php _e('Months', 'car-demon'); ?></option>

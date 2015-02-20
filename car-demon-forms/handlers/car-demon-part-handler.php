@@ -75,7 +75,7 @@ function cd_parts_handler() {
 		}
 		$holder = '';
 		$post_id = '';
-		mail($to, $subject, $email_body, $headers);
+		wp_mail($to, $subject, $email_body, $headers);
 		apply_filters('car_demon_mail_hook_complete', $holder, 'parts', $to, $subject, $email_body, $headers, $_POST['email'], $post_id, $part_location);
 		$thanks = '<h1>'.__('Thank You', 'car-demon').'</h1>';
 		$thanks .= '<h2>'.__('Your Part Request has been sent.', 'car-demon').'</h2>';

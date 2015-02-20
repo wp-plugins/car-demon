@@ -28,7 +28,7 @@
 		<select name="p2yac" id="p2yac" tabindex="27" onChange="AddEmployers(this,2);">
 			<?php echo select_years(); ?>
 		</select>
-		/
+		<span class="cd_fin_dash">-</span>
 		<select id="p2mac" name="p2mac" tabindex="28">
 			<option value="" selected="selected"></option>
 			<option value="0">0 <?php _e('Months', 'car-demon'); ?></option>
