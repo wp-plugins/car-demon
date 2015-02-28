@@ -167,7 +167,7 @@ function select_years() {
 function get_the_days() {
 	$start = 1;
 	do {
-		$days .= "<option value='". $start ."'>". $start ."</option>";
+		$days = "<option value='". $start ."'>". $start ."</option>";
 		$start = $start + 1;
 	} while ($start < 32);
 	return $days;
@@ -177,7 +177,7 @@ function get_the_years() {
 	$this_year = date("Y");
 	$this_year = $this_year - 18;
 	do {
-		$years .= "<option value='". $this_year ."'>". $this_year ."</option>";
+		$years = "<option value='". $this_year ."'>". $this_year ."</option>";
 		$start = $start + 1;
 		$this_year = $this_year - 1;
 	} while ($start < 100);

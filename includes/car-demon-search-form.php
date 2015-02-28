@@ -1,6 +1,6 @@
 <?php
 function vehicle_search_box($button, $message) {
-	$url = get_option('siteurl');
+	$url = get_bloginfo('wpurl');
 	$box = '<form action="'.$url.'" method="get" class="vehicle_search_box" id="vehicle_search_box" name="vehicle_search_box" />';
 		$box .= '<input type="hidden" name="s" value="cars" />';
 		$box .= '<input type="hidden" name="car" value="1" />';
@@ -14,7 +14,7 @@ function car_demon_search_form() {
 	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
 	car_demon_search_cars_scripts();
-	$url = get_option('siteurl');
+	$url = get_bloginfo('wpurl');
 ?>
 <div class="search_car_box_frame">
 	<div id="car-demon-search-cars" class="search_car_box">

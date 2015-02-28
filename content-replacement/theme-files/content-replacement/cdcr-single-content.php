@@ -53,7 +53,11 @@ function cdcr_single_content($content) {
 	return $x;
 }
 function cdcr_single_content_2($content) {
+	ob_start();
 	include_once('styles/single-car-2.php');
+	$output = ob_get_contents();
+	ob_end_clean();
+	return $output;
 }
 function cdcr_single_content_3($content) {
 	$cd_cdrf_pluginpath = CAR_DEMON_PATH;

@@ -371,6 +371,7 @@ function car_demon_options() {
 	//= Content Replacement
 	$default['cd_cdrf_style'] = 'content-replacement';
 	$default['cd_cdrf_page_style'] = 'content-replacement';
+	$default['cd_slug'] = get_option('car-demon-slug','cars-for-sale');
 
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
@@ -406,6 +407,7 @@ function car_demon_options() {
 	if (empty($car_demon_options['title_trim'])) {$car_demon_options['title_trim'] = $default['title_trim'];}
 	if (empty($car_demon_options['cars_per_page'])) {$car_demon_options['cars_per_page'] = $default['cars_per_page'];}
 	if (empty($car_demon_options['show_custom_specs'])) {$car_demon_options['show_custom_specs'] = $default['show_custom_specs'];}
+	if (empty($car_demon_options['cd_slug'])) {$car_demon_options['cd_slug'] = $default['cd_slug'];}
 	//= Sidebars
 	if (empty($car_demon_options['cd_page_id'])) {$car_demon_options['cd_page_id'] = $default['cd_page_id'];}
 	if (empty($car_demon_options['cd_page_css'])) {$car_demon_options['cd_page_css'] = $default['cd_page_css'];}
@@ -481,6 +483,19 @@ function car_demon_settings_form() {
 			echo '<input type="text" name="currency_symbol_after" value="'.$car_demon_options['currency_symbol_after'].'" /><br />';
 		echo '</fieldset>';
 		//= Currency Stop
+
+		//= Slug Start
+		echo '<fieldset class="cd_admin_group cd_slug_option">';
+			echo '<legend>';
+				echo __('URL Slug Options','car-demon');
+			echo '</legend>';
+			echo '<br />*'.__('URL path for inventory (ie cars-for-sale creates http://yoursite.com/cars-for-sale)', 'car-demon').'<br />';
+			echo '<br />*'.__('If you enter "inventory" it creates http://yoursite.com/inventory', 'car-demon').'<br />';
+			echo '<input type="text" name="cd_slug" value="'.$car_demon_options['cd_slug'].'" /><br />';
+			echo '<br />*'.__('You will need to refresh your permalinks after changing this setting.', 'car-demon').'<br />';
+			echo '<br />*'.__('Only use lower case letters, no spaces but you may use - to seperate words.', 'car-demon').'<br />';
+		echo '</fieldset>';
+		//= Slug Stop
 
 		//= VinQuery Start		
 		echo '<fieldset class="cd_admin_group">';
@@ -894,6 +909,10 @@ function car_demon_settings_form() {
 function update_car_demon_settings() {
 	$new = array();
 	$new = get_option( 'car_demon_options' );
+	if (isset($_POST['cd_slug'])) {
+		$new['cd_slug'] = $_POST['cd_slug'];
+		update_option('car-demon-slug', $new['cd_slug']);
+	}
 	if (isset($_POST['currency_symbol'])) $new['currency_symbol'] = $_POST['currency_symbol'];
 	if (isset($_POST['currency_symbol_after'])) $new['currency_symbol_after'] = $_POST['currency_symbol_after'];
 	if (isset($_POST['vinquery_id'])) $new['vinquery_id'] = $_POST['vinquery_id'];

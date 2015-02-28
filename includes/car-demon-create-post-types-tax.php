@@ -4,6 +4,11 @@ if (!function_exists('car_demon_recreate_post_type')) {
 }
 add_action( 'init', 'car_demon_mytax_init' );
 function car_demon_create_post_type() {
+  $slug = get_option('car-demon-slug');
+	if (empty($slug)) {
+		$slug = 'cars-for-sale';
+		update_option('car-demon-slug', $slug);
+	}
   register_post_type( 'cars_for_sale',
     array(
       'labels' => array(
@@ -11,7 +16,7 @@ function car_demon_create_post_type() {
         'singular_name' => __( 'Car New Car','car-demon' ),
       ),
       'public' => true,
-      'rewrite' => array('slug' => 'cars-for-sale'),
+      'rewrite' => array('slug' => $slug),
 	  'has_archive' => true,
 	  'supports' => array('title','editor','thumbnail','comments','excerpt'),
 	  'menu_icon' => plugins_url( '../images/cd_icon.png', __FILE__ )

@@ -500,7 +500,7 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 	$car = '';
 	$cnt = 0;
 	if (!empty($the_lists)) {
-		$car .= '<h3>'.__('Other Great Deals', 'car-demon').'</h3>';
+		$car .= '<span class="similar_cars_area"><h3 class="similar_cars_box_title">'.__('Other Great Deals', 'car-demon').'</h3>';
 		$car .= '<div class="similar_cars_box">';
 		foreach ($the_lists as $the_list) {
 			$post_id = $the_list->ID;
@@ -559,7 +559,7 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 				}
 			}
 		}
-		$car .= '</div>';
+		$car .= '</div></span>';
 	}
 	if ($show_it != 1) {
 		$car = '';

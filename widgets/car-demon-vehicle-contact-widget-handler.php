@@ -162,7 +162,7 @@ function send_contact_widget_request() {
 	$agent = $_SERVER['HTTP_USER_AGENT'];
 	$right_now = date(get_option('date_format'));
 	$blogtime = current_time('mysql'); 
-	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = explode( '([^0-9])', $blogtime );
+	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $blogtime );
 	$right_now .= ' '.$hour.':'.$minute.':'.$second;
 	$style = " style='margin-top: 10px; padding: 5px 0 15px 0; border: 3px solid #ADADAD; border-left-color: #ECECEC; border-top-color: #ECECEC; background: #F7F7F7;'";
 	$html = '

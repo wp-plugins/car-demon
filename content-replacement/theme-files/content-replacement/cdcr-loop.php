@@ -131,6 +131,7 @@ function cdcr_loop($content, $post_id) {
 	$x .= '</div>';
 	$x .= get_cr_vehicle_price_style($post_id);
 	//$x .= get_vehicle_price($post_id);
+	$x = apply_filters('car_demon_display_car_list_filter', $x, $post_id );
 	return $x;
 }
 ?>

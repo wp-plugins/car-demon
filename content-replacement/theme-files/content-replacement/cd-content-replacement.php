@@ -35,7 +35,8 @@ function cd_filter_vehicle_content($content) {
 
 include('cdcr-single-content.php');
 function cd_single_vehicle_content($post_id, $content) {
-	$x = cdcr_single_content_2($content);
+	$output = cdcr_single_content_2($content);
+	$x = apply_filters('car_demon_single_car_filter', $output, $post_id );
 	return $x;
 }
 

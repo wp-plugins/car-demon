@@ -52,8 +52,9 @@ function cd_forms_enqueue_style() {
 	wp_enqueue_script('jquery-ui-js', WP_PLUGIN_URL.'/car-demon/theme-files/js/jquery-ui.js', array('jquery'));
 	//= wp_enqueue_script('jquery-ui-js', 'http://code.jquery.com/ui/1.10.4/jquery-ui.js');
 }
-
-add_filter('the_posts', 'cd_conditionally_add_scripts_and_styles'); // the_posts gets triggered before wp_head
+if (!is_admin()) {
+	add_filter('the_posts', 'cd_conditionally_add_scripts_and_styles'); // the_posts gets triggered before wp_head
+}
 function cd_conditionally_add_scripts_and_styles($posts){
 	if (empty($posts)) return $posts;
 	$use_css = 1;
