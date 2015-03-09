@@ -4,7 +4,7 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots, auto dealer
 Requires at least: 3.4.2
 Tested up to: 4.1
-Stable tag: 1.3.9
+Stable tag: 1.4.0
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead 
@@ -15,7 +15,7 @@ Routing, Staff Page and more.
 
 The Car Demon PlugIn is full of features. It has a general contact form, service appointment form, service quote form, 
 
-trade-in form, a fiance application and a vehicle information form all with AdfXml support.
+trade-in form, a finance application and a vehicle information form all with AdfXml support.
 
 It also contains a powerful inventory management tool with optional VinQuery Integration, compare vehicles tool, multiple 
 
@@ -313,6 +313,21 @@ opening each vehicle.
 Car Demon Theme. For more information visit our website; www.CarDemons.com
 
 == Changelog ==
+1.4.0
+* The cars-for-sale url slug can now be changed on settings page;
+* This means your inventory can now be something like http://yoursite.com/chicago-classic-cars;
+* It also means you can do http://yoursite.com/inventory or something similar
+* Added car_demon_single_car_filter so developers can filter default single car pages
+* add_filter('car_demon_single_car_filter', 'my_car_demon_single_car',10,2);
+* add_filter('car_demon_display_car_list_filter', 'my_car_demon_car_list',10,2);
+* Then to filter add function my_car_demon_single_car($content, $post_id) etc.
+* Added Top mobile menu option
+* Added snippet to make sure form css and js don't load on Admin pages
+* Replace time and sate code on contact form widget to match other forms
+* Moved Custom sales affiliate code to only run on front side of site
+* Updated days and years variable in finance form
+* Changed search form url to get_bloginfo('wpurl');
+* Added css class similar_cars_box_title
 1.3.9
 * Improved support for handling multiple popup forms on a single page
 * Improved support for displaying form error messages by insuring page scrolls to top of msg
@@ -569,10 +584,5 @@ entered.
 * Initial Public Release
 
 == Upgrade Notice ==
-Please remember to backup your site before upgrading. If you experience issues after upgrading go to Appearances->Car Display Options and make sure the option is set to default. If you still have issues please post your problem at the Car Demon support forum at WordPress.org 
-
-Please be as detailed as possible and include a link to your site. It might also be helpful to know what version you upgraded from.
-
-You might consider downloading a copy of the previous version that you were using from the Developers tab on the Car Demon page at WordPress.org
-
+The newest release of Car Demon has a featured called Content Replacement that makes it much easier to use with a wider range of themes. If you experience issues after upgrading go to Appearances->Car Display Options and make sure the option is set to default.
 It might also be helpful to cross fingers, spin around three times and backup everything before you upgrade. Just a suggestion.
