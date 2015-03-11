@@ -739,13 +739,11 @@ function car_demon_get_car($post_id) {
 		$x['interior_color'] = strip_tags(get_post_meta($post_id, "_interior_color_value", true));
 	}
 	$x['fuel'] = strip_tags(get_post_meta($post_id, "_fuel_type_value", true));
-
 	if(isset($x['decoded_transmission_long'])) {
 		$x['transmission'] = $x['decoded_transmission_long'];
 	} else {
 		$x['transmission'] = strip_tags(get_post_meta($post_id, "_transmission_value", true));
 	}
-	
 	$x['cylinders'] = strip_tags(get_post_meta($post_id, "_cylinders_value", true));
 	$x['engine'] = strip_tags(get_post_meta($post_id, "_engine_value", true));
 	$x['doors'] = strip_tags(get_post_meta($post_id, "_doors_value", true));

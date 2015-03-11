@@ -97,7 +97,6 @@ function car_demon_vinquery() {
 			}
 			$vin_query_decode = get_post_meta($post_id, "decode_string", true);
 			$vin_query_decode[$fld] = $_POST['val'];
-			update_post_meta($post_id, 'decode_string', $vin_query_decode);
 			if ($fld == 'decoded_body_style') {
 				wp_set_post_terms( $post_id, $val, 'vehicle_body_style', false );
 			} elseif ($fld == 'decoded_model_year') {
@@ -107,6 +106,9 @@ function car_demon_vinquery() {
 			} elseif ($fld == 'decoded_model') {
 				wp_set_post_terms( $post_id, $val, 'vehicle_model', false );
 			} elseif ($fld == 'decoded_transmission_long') {
+				update_post_meta($post_id, '_transmission_value', $_POST['val']);
+			} elseif ($fld == 'decoded_transmission') {
+				$vin_query_decode['decoded_transmission_long'] = $_POST['val'];
 				update_post_meta($post_id, '_transmission_value', $_POST['val']);
 			} elseif ($fld == 'decoded_engine_type') {
 				update_post_meta($post_id, '_engine_value', $_POST['val']);	
@@ -135,6 +137,7 @@ function car_demon_vinquery() {
 			} else {
 				update_post_meta($post_id, $fld, $val);	
 			}
+			update_post_meta($post_id, 'decode_string', $vin_query_decode);
 		}
 		if ($_POST['option'] == 'remove') {
 			delete_post_meta($post_id, "decode_string");

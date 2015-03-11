@@ -134,7 +134,8 @@ function car_demon_query_search() {
 				if ($_GET['search_dropdown_body']) {
 					$my_query = array_merge ($my_query, array('vehicle_body_style' => $_GET['search_dropdown_body']));
 				}
-			}			
+			}
+		$my_query = apply_filters('car_demon_query_filter', $my_query );
 		return $my_query;
 	}
 }
@@ -192,6 +193,7 @@ function car_demon_query_archive() {
 			'order'    => $order_by_dir
 		);
 	$my_query = wp_parse_args( $query_string, $my_query );
+	$my_query = apply_filters('car_demon_query_filter', $my_query );
 	return $my_query;
 }
 function car_demon_sorting($page_type = 'search') {
@@ -285,6 +287,7 @@ function car_demon_sorting($page_type = 'search') {
 									</select></form>';
 		}
 	}
+	$car_demon_sorting = apply_filters('car_demon_sort_filter', $car_demon_sorting );
 	return $car_demon_sorting;
 }
 function car_demon_filter_search_title($title) {

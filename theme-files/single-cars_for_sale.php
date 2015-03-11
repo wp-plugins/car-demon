@@ -73,7 +73,7 @@ function car_demon_single_car($post_id) {
 			$detail_output .= '<li><strong>'.$field_labels['exterior_color'].'</strong> '.$vehicle_details['exterior_color'].'/'.$vehicle_details['interior_color'].'</li>';
 		}
 		if ($show_hide['transmission'] != true) {
-			$detail_output .= '<li><strong>'.$field_labels['transmission'].'</strong> '.$vehicle_details['decoded_transmission_long'].'</li>';
+			$detail_output .= '<li><strong>'.$field_labels['transmission'].'</strong> '.$vehicle_details['transmission'].'</li>';
 		}
 		if ($show_hide['engine'] != true) {
 			$detail_output .= '<li><strong>'.$field_labels['engine'].'</strong> '.$vehicle_details['engine'].'</li>';
