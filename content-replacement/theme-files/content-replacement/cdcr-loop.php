@@ -129,9 +129,19 @@ function cdcr_loop($content, $post_id) {
 			}
 		$x .= '</div>';
 	$x .= '</div>';
-	$x .= get_cr_vehicle_price_style($post_id);
-	//$x .= get_vehicle_price($post_id);
+	$x .= get_vehicle_price($post_id);
 	$x = apply_filters('car_demon_display_car_list_filter', $x, $post_id );
 	return $x;
+}
+add_filter('car_demon_price_filter', 'cdcr_price_filter',10,1);
+function cdcr_price_filter($price) {
+	$price = str_replace('class="car_price_details"', 'class="car_price_details_style"', $price);
+	$price = str_replace('class="car_your_price"', 'class="car_your_price_style"', $price);
+	$price = str_replace('class="car_final_price"', 'class="car_final_price_style"', $price);
+	$price = str_replace('class="car_rebate"', 'class="car_rebate_style"', $price);
+	$price = str_replace('class="car_price_text"', 'class="car_price_text_style"', $price);
+	$price = str_replace('class="car_selling_price"', 'class="car_selling_price_style"', $price);
+	$price = str_replace('class="car_dealer_discounts"', 'class="car_dealer_discounts_style"', $price);
+	return $price;
 }
 ?>

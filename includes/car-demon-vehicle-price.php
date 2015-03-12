@@ -69,7 +69,7 @@ function get_vehicle_price($post_id) {
 		if (!empty($rebate)) {
 			$rebate_label = get_post_meta($post_id, '_rebate_label', true);
 			if (empty($rebate_label)) {
-				$rebate_label = $field_labels['rebate'];
+				$rebate_label = $field_labels['rebates'];
 			}
 			$price .= '<div id="rebate" class="car_rebate"><div class="car_price_text">'. $currency_symbol. $rebate . $currency_symbol_after. '</div> :'.$rebate_label.'</div>';
 		}
@@ -109,8 +109,8 @@ function get_vehicle_price($post_id) {
 			$price .= '<img src="'.$pluginpath.'theme-files\images\sold.gif" alt="Sold" title="Sold" /><br />';
 		$price .= '</div>';
 	}
-	$price .= '</div>';
-	$price = '<div class="car_price_details" id="car_price_details">'.$spacer.$price;
+	$price = '<div class="car_price_details" id="car_price_details">'.$spacer.$price.'</div>';
+	$price = apply_filters('car_demon_price_filter', $price );
 	return $price;
 }
 ?>
