@@ -4,7 +4,7 @@ Donate link: http://www.cardemons.com/donate/
 Tags: car dealer, automotive, car sales, car lots, auto dealer
 Requires at least: 3.4.2
 Tested up to: 4.1
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2
 
 Car Demon is a PlugIn designed for car dealers. Full Inventory Management, Lead Forms with ADFxml support, Dynamic Lead 
@@ -313,9 +313,22 @@ opening each vehicle.
 Car Demon Theme. For more information visit our website; www.CarDemons.com
 
 == Changelog ==
+1.4.1
+* Added filter to Car Demon query(s) - car_demon_query_filter
+* Added filter to Car Demon sort - car_demon_sort_filter
+* Added filter to search box shortcoce - car_demon_search_shortcode_filter
+* Added filter to large search form - car_demon_search_form_filter
+* Added filter to small search form - car_demon_small_search_form_filter
+* Added filter to "search by" - car_demon_searched_by_filter
+* Added additional css classes to form elements
+* Adjusted search form item counting to use $wpdb->get_var instead of mysql_fetch_array()
+* Replaced all instances of mysql_fetch_array() with $wpdb->get_var
+* Combined transmission and transmission_long fields
+* Added filter to Car Demon price - car_demon_price_filter
+* Used price filter to adjust price styles when using content replacement
 1.4.0
 * The cars-for-sale url slug can now be changed on settings page;
-* This means your inventory can now be something like http://yoursite.com/chicago-classic-cars;
+* This means your inventory can now be http://yoursite.com/chicago-class-cars;
 * It also means you can do http://yoursite.com/inventory or something similar
 * Added car_demon_single_car_filter so developers can filter default single car pages
 * add_filter('car_demon_single_car_filter', 'my_car_demon_single_car',10,2);
@@ -323,7 +336,7 @@ Car Demon Theme. For more information visit our website; www.CarDemons.com
 * Then to filter add function my_car_demon_single_car($content, $post_id) etc.
 * Added Top mobile menu option
 * Added snippet to make sure form css and js don't load on Admin pages
-* Replace time and sate code on contact form widget to match other forms
+* Replace time and date code on contact form widget to match other forms
 * Moved Custom sales affiliate code to only run on front side of site
 * Updated days and years variable in finance form
 * Changed search form url to get_bloginfo('wpurl');
