@@ -8,6 +8,7 @@ function vehicle_search_box($button, $message) {
 		$box .= '<input type="text" name="criteria" class="search_criteria" value="" />';
 		$box .= '<input type="submit" name="submit_search" id="submit_search" value="'.$button.'" class="search_btn advanced_btn criteria_btn">';
 	$box .= '</form>';
+	$box = apply_filters('car_demon_search_shortcode_filter', $box );
 	return $box;
 }
 function car_demon_search_form() {
@@ -15,6 +16,7 @@ function car_demon_search_form() {
 	$car_demon_pluginpath = str_replace('includes','',$car_demon_pluginpath);
 	car_demon_search_cars_scripts();
 	$url = get_bloginfo('wpurl');
+	ob_start();
 ?>
 <div class="search_car_box_frame">
 	<div id="car-demon-search-cars" class="search_car_box">
@@ -29,53 +31,56 @@ function car_demon_search_form() {
 	&nbsp;<span class="advanced_search_btn_hide" onclick="document.getElementById(\'advanced_search\').style.display=\'none\';" title="Hide Advanced Search">-</span>
 	</div>';
 ?>
-			<div class="search_left">
+			<div class="search_left cd_condition_box">
 				<div id="car-demon-searchr3c1" class=""><?php _e('Condition','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_condition(); ?></div>
-			</div>
-			<div class="search_right">
+			</div><!--end condition-->
+			<div class="search_right cd_make_box">
 				<div id="car-demon-searchr3c1" class=""><?php _e('Manufacturer','car-demon'); ?>:</div>
 				<div id="car-demon-searchr4c1" class=""><?php echo car_demon_search_makes();?></div>
-			</div>
-			<div class="search_left">
+			</div><!--end make-->
+			<div class="search_left cd_year_box">
 				<div class="search_labels"><?php _e('Year','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_years(); ?></div>
-			</div>
-			<div class="search_right">
+			</div><!--end year-->
+			<div class="search_right cd_model_box">
 				<div class=""><?php _e('Model','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_models();?></div>
-			</div>
+			</div><!--end model-->
 			<div id="car-demon-searchr6c1" class="search_min_price">
 				<div class="search_labels"><?php _e('Min Price','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_price('Min'); ?></div>
-			</div>
+			</div><!--end min price-->
 			<div id="car-demon-searchr6c2" class="search_max_price">
 				<div class="search_labels"><?php _e('Max Price','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_price('Max'); ?></div>
-			</div>
+			</div><!--end max price-->
 			<div id="car-demon-searchr7c1" class="search_trans">
 				<div class="search_labels"><?php _e('Trans','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_tran(); ?></div>
-			</div>
-			
+			</div><!--end transmission-->
 			<div id="car-demon-searchr7c2" class="search_mileage">
 				<div class="search_labels"><?php _e('Mileage','car-demon'); ?>:</div>
 				<div><?php echo car_demon_search_miles(); ?></div>
-			</div>
+			</div><!--end mileage-->
 			<div id="car-demon-searchr8c1" class="search_body">
 				<div class="search_labels"><?php _e('Body Type','car-demon'); ?>:</div>
 				<div>
 					<?php echo car_demon_search_body(); ?>
 				</div>
-			</div>
+			</div><!--end body-->
 			<div id="car-demon-searchr8c2" class="search_button_box">
 			  <input type="submit" name="submit_search" id="submit_search" value="<?php _e('Search','car-demon'); ?>" class="search_btn advanced_btn">
-			</div>
-		<div id="car-demon-searchr9c1" class="search_footer"></div>
+			</div><!--end search button-->
+		<div id="car-demon-searchr9c1" class="search_footer"></div><!--end search footer-->
 </form>
 	</div>
 </div>
 <?php
+	$box = ob_get_contents();
+	ob_end_clean();
+	$box = apply_filters('car_demon_search_form_filter', $box );
+	echo $box;
 }
 function car_demon_simple_search($size='l') {
 	$car_demon_auto_credit_pluginpath = CAR_DEMON_PATH;
@@ -94,6 +99,7 @@ function car_demon_simple_search($size='l') {
 	} else {
 		$search_condition = '';
 	}
+	ob_start();
 ?>
 <div class="<?php echo $form_size; ?>">
 	<div id="car-demon-search-cars_sm" class="search_car_box_sm">
@@ -102,19 +108,19 @@ function car_demon_simple_search($size='l') {
 <input type="hidden" name="car" value="1" />
 <input type="hidden" name="search_condition" value="<?php echo $search_condition;?>" />
 		<div id="car-demon-searchr2c1" class="<?php echo $logo; ?>"><img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/search_cars.gif" alt="Search Cars" width="20" height="23" title="Search Cars" />&nbsp;<?php _e('QUICK SEARCH','car-demon'); ?></div>
-		<div class="search_left">
+		<div class="search_left cd_year_box">
 			<div id="car-demon-searchr3c1" class="search_manufacturer_title2"><?php _e('Year','car-demon'); ?>:</div>
 			<div class="search_year_dropdown"><?php echo car_demon_search_years(); ?></div>
-		</div>
-		<div class="search_right">
+		</div><!--end year-->
+		<div class="search_right cd_make_box">
 			<div id="car-demon-searchr3c1" class=""><?php _e('Manufacturer','car-demon'); ?>:</div>
 			<div id="car-demon-searchr4c1" class=""><?php echo car_demon_search_makes();?></div>
-		</div>
-		<div class="search_right">
+		</div><!--end make-->
+		<div class="search_right cd_model_box">
 			<div id="car-demon-searchr3c1" class=""><?php _e('Model','car-demon'); ?>:</div>
 			<div id="car-demon-searchr5c1" class=""><?php echo car_demon_search_models();?></div>
-		</div>
-		<div id="car-demon-searchr8c1" class="search_body"><?php _e('Body Type','car-demon'); ?>:<br /><?php echo car_demon_search_body(); ?></div>
+		</div><!--end model-->
+		<div id="car-demon-searchr8c1" class="search_body"><?php _e('Body Type','car-demon'); ?>:<br /><?php echo car_demon_search_body(); ?></div><!--end body-->
 		<div id="car-demon-searchr8c2" class="search_button_box">
 <?php
 	echo '<div class="advanced_search_btn" onclick="document.getElementById(\'advanced_search\').style.display=\'inline\';" title="Advanced Search">+</div>';
@@ -123,11 +129,15 @@ function car_demon_simple_search($size='l') {
 	</div>';
 ?>
 		  <input type="submit" name="submit_search" id="submit_search" value="<?php _e('Search','car-demon'); ?>" class="search_btn simple_btn">
-		</div>
+		</div><!--end search button-->
 </form>
 	</div>
 </div>
 <?php
+	$box = ob_get_contents();
+	ob_end_clean();
+	$box = apply_filters('car_demon_small_search_form_filter', $box );
+	echo $box;
 }
 function car_demon_get_searched_by() {
 	$searched = '';
@@ -196,6 +206,7 @@ function car_demon_get_searched_by() {
 	if (!empty($searched)) {
 		$searched = '<div class="searched_by">'.$searched.'</div>';
 	}
+	$searched = apply_filters('car_demon_searched_by_filter', $searched );
 	return $searched;
 }
 ?>

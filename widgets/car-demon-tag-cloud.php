@@ -208,8 +208,7 @@ function car_demon_count_active_items($my_tag_name, $post_type, $taxonomy) {
 			WHERE wposts.post_type='".$post_type."'
 				AND wpostmeta.meta_key = 'sold'
 				AND wpostmeta.meta_value = 'no'".$my_search;
-		$total_cars = mysql_fetch_array(mysql_query($query));
-		$total_cars = $total_cars['num'];
+		$total_cars = $wpdb->get_var($query);
 	}
 	return $total_cars;
 }

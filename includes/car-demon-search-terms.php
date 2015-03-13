@@ -281,8 +281,8 @@ function count_these_tax_items($old_val, $new_val, $type) {
 		$my_slug = $my_term->slug;
 		$my_total = count_my_active_tax_items($my_slug, 'cars_for_sale', 'vehicle_year');	
 	} else {
-		$total_cars = mysql_fetch_array(mysql_query($str_sql));
-		$my_total = $total_cars['new_name'];	
+		$total_cars = $wpdb->get_var($str_sql);
+		$my_total = $total_cars;	
 	}
 	return $my_total;
 }
@@ -300,8 +300,7 @@ function count_my_active_tax_items($my_tag_name, $post_type, $taxonomy) {
 			WHERE wposts.post_type='".$post_type."'
 				AND wpostmeta.meta_key = 'sold'
 				AND wpostmeta.meta_value = 'no'".$my_search;
-		$total_cars = mysql_fetch_array(mysql_query($query));
-		$total_cars = $total_cars[num];
+		$total_cars = $wpdb->get_var($str_sql);
 	}
 	return $total_cars;
 }
