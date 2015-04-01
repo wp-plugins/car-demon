@@ -24,8 +24,12 @@ add_action("wp_ajax_nopriv_car_demon_vinquery", "car_demon_vinquery");
 function cd_save_car($post_id) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 	  return;
-	if ( 'cars_for_sale' == $_POST['post_type'] ) {
-		if ( !current_user_can( 'edit_post', $post_id ) ) {
+	if (!isset($_POST['post_type'])) {
+		if ( 'cars_for_sale' == $_POST['post_type'] ) {
+			if ( !current_user_can( 'edit_post', $post_id ) ) {
+				return;
+			}
+		} else {
 			return;
 		}
 	} else {
@@ -131,6 +135,10 @@ function cardemons_automotive_inventory_decode($post_id) {
 		//	echo get_option_tab('about_us',$post_id,'admin');
 		} else {
 			$html .= __('Vehicle Option Tabs have been set to hidden under Car Demon settings and will not appear on the front end.', 'car_demon_options');		
+			$safety = '';
+			$convienience = '';
+			$comfort = '';
+			$entertainment = '';
 		}
 		echo '<hr />';
 		$html .= '<ul class="tabs">';

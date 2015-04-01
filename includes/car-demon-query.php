@@ -10,19 +10,19 @@ function car_demon_query_search() {
 		$order_by = '_price_value';
 		$order_by_dir = 'ASC';
 		if (isset($_GET['order_by'])) {
-			$order_by = $_GET['order_by'];
+			$order_by = sanitize_text_field($_GET['order_by']);
 		}
 		if (isset($_GET['order_by_dir'])) {
-			$order_by_dir = $_GET['order_by_dir'];
+			$order_by_dir = sanitize_text_field($_GET['order_by_dir']);
 		}	
 		$paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 		if (isset($_GET['search_dropdown_Min_price'])) {
-			$min_price = $_GET['search_dropdown_Min_price'];
+			$min_price = sanitize_text_field($_GET['search_dropdown_Min_price']);
 		} else {
 			$min_price = '';
 		}
 		if (isset($_GET['search_dropdown_Max_price'])) {
-			$max_price = $_GET['search_dropdown_Max_price'];
+			$max_price = sanitize_text_field($_GET['search_dropdown_Max_price']);
 		} else {
 			$max_price = '';
 		}
@@ -37,17 +37,20 @@ function car_demon_query_search() {
 		}
 		if (isset($_GET['stock'])) {
 			if ($_GET['stock']) {
-				$meta_query = array_merge($meta_query, array(array('key' => '_stock_value','value' => $_GET['stock'], 'compare' => '=', 'type' => 'text')));
+				$stock = sanitize_text_field($_GET['stock']);
+				$meta_query = array_merge($meta_query, array(array('key' => '_stock_value','value' => $stock, 'compare' => '=', 'type' => 'text')));
 			}
 		}
 		if (isset($_GET['search_dropdown_miles'])) {
 			if ($_GET['search_dropdown_miles']) {
-				$meta_query = array_merge($meta_query, array(array('key' => '_mileage_value','value' => $_GET['search_dropdown_miles'], 'compare' => '<', 'type' => 'numeric')));
+				$miles = sanitize_text_field($_GET['search_dropdown_miles']);
+				$meta_query = array_merge($meta_query, array(array('key' => '_mileage_value','value' => $miles, 'compare' => '<', 'type' => 'numeric')));
 			}
 		}
 		if (isset($_GET['search_dropdown_tran'])) {
 			if ($_GET['search_dropdown_tran']) {
-				$meta_query = array_merge($meta_query, array(array('key' => '_transmission_value','value' => $_GET['search_dropdown_tran'], 'compare' => '=', 'type' => 'text')));
+				$trans = sanitize_text_field($_GET['search_dropdown_tran']);
+				$meta_query = array_merge($meta_query, array(array('key' => '_transmission_value','value' => $trans, 'compare' => '=', 'type' => 'text')));
 			}
 		}
 		if ($max_price > 0) {
@@ -60,19 +63,20 @@ function car_demon_query_search() {
 		}
 		// Search decode field
 		if (isset($_GET['criteria'])) {
-			if ($_GET['criteria']) {
-				if (strpos($_GET['criteria'], ',')) {
-					$criteria_array = explode(',', $_GET['criteria']);
+			$criteria = sanitize_text_field($_GET['criteria']);
+			if ($criteria) {
+				if (strpos($criteria, ',')) {
+					$criteria_array = explode(',', $criteria);
 					foreach($criteria_array as $search_criteria) {
 						$meta_query = array_merge($meta_query, array(array('key' => 'decode_string','value' => $search_criteria, 'compare' => 'LIKE', 'type' => 'text')));
 					}
 				} else {
-					$meta_query = array_merge($meta_query, array(array('key' => 'decode_string','value' => $_GET['criteria'], 'compare' => 'LIKE', 'type' => 'text')));
+					$meta_query = array_merge($meta_query, array(array('key' => 'decode_string','value' => $criteria, 'compare' => 'LIKE', 'type' => 'text')));
 				}
 			}
 		}
 		if (isset($_GET['search_location'])) {
-			$search_location = $_GET['search_location'];
+			$search_location = sanitize_text_field($_GET['search_location']);
 			$my_query = array(
 					'post_type' => 'cars_for_sale',
 					'is_paged' => true,
@@ -112,27 +116,32 @@ function car_demon_query_search() {
 			);
 			if (isset($_GET['search_year'])) {
 				if ($_GET['search_year']) {
-					$my_query = array_merge ($my_query, array('vehicle_year' => $_GET['search_year']));
+					$search_year = sanitize_text_field($_GET['search_year']);
+					$my_query = array_merge ($my_query, array('vehicle_year' => $search_year));
 				}
 			}
 			if (isset($_GET['search_condition'])) {
 				if ($_GET['search_condition']) {
-					$my_query = array_merge ($my_query, array('vehicle_condition' => $_GET['search_condition']));
+					$search_condition = sanitize_text_field($_GET['search_condition']);
+					$my_query = array_merge ($my_query, array('vehicle_condition' => $search_condition));
 				}
 			}
 			if (isset($_GET['search_make'])) {
 				if ($_GET['search_make']) {
-					$my_query = array_merge ($my_query, array('vehicle_make' => $_GET['search_make']));
+					$search_make = sanitize_text_field($_GET['search_make']);
+					$my_query = array_merge ($my_query, array('vehicle_make' => $search_make));
 				}
 			}
 			if (isset($_GET['search_model'])) {
 				if ($_GET['search_model']) {
-					$my_query = array_merge ($my_query, array('vehicle_model' => $_GET['search_model']));
+					$search_model = sanitize_text_field($_GET['search_model']);
+					$my_query = array_merge ($my_query, array('vehicle_model' => $search_model));
 				}
 			}
 			if (isset($_GET['search_dropdown_body'])) {
 				if ($_GET['search_dropdown_body']) {
-					$my_query = array_merge ($my_query, array('vehicle_body_style' => $_GET['search_dropdown_body']));
+					$search_dropdown_body = sanitize_text_field($_GET['search_dropdown_body']);
+					$my_query = array_merge ($my_query, array('vehicle_body_style' => $search_dropdown_body));
 				}
 			}
 		$my_query = apply_filters('car_demon_query_filter', $my_query );
@@ -149,28 +158,24 @@ function car_demon_query_archive() {
 	$order_by = '_price_value';
 	$order_by_dir = 'ASC';
 	if (isset($_GET['order_by'])) {
-		$order_by = $_GET['order_by'];
-	}
-	else {
+		$order_by = sanitize_text_field($_GET['order_by']);
+	} else {
 		$order_by = '';
 	}
 	if (isset($_GET['order_by_dir'])) {
-		$order_by_dir = $_GET['order_by_dir'];
-	}
-	else {
+		$order_by_dir = sanitize_text_field($_GET['order_by_dir']);
+	} else {
 		$order_by_dir = '';
 	}
 	$paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 	if (isset($_GET['search_dropdown_Min_price'])) {
-		$min_price = $_GET['search_dropdown_Min_price'];
-	}
-	else {
+		$min_price = sanitize_text_field($_GET['search_dropdown_Min_price']);
+	} else {
 		$min_price = '';
 	}
 	if (isset($_GET['search_dropdown_Max_price'])) {
-		$max_price = $_GET['search_dropdown_Max_price'];
-	}
-	else {
+		$max_price = sanitize_text_field($_GET['search_dropdown_Max_price']);
+	} else {
 		$max_price = '';
 	}
 	if ($_SESSION['car_demon_options']['show_sold'] != 'Yes') {

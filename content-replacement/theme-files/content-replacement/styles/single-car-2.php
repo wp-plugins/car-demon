@@ -280,11 +280,11 @@
                 </div>
         <?php 
                 }
-            } 
+            }
             if (!empty($contact_trade_url)) {
             ?>
                 <div class="featured-button">
-                    <p><a <?php echo 'href="'.$contact_trade_url .'?stock_num='.$vehicle_details['stock_number']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
+                    <p><a <?php echo 'href="'.$contact_trade_url .'?stock_num='.$car['stock_number']; ?>&sales_code=<?php echo $car_contact['sales_code']; ?>"><?php _e('TRADE-IN QUOTE', 'car-demon'); ?></a></p>
                 </div>
         <?php
             }
