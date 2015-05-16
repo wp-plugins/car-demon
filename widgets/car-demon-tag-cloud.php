@@ -206,6 +206,7 @@ function car_demon_count_active_items($my_tag_name, $post_type, $taxonomy) {
 				LEFT JOIN $wpdb->term_relationships ON (wposts.ID = $wpdb->term_relationships.object_id)
 				LEFT JOIN $wpdb->term_taxonomy ON ($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
 			WHERE wposts.post_type='".$post_type."'
+				AND wposts.post_status = 'publish'
 				AND wpostmeta.meta_key = 'sold'
 				AND wpostmeta.meta_value = 'no'".$my_search;
 		$total_cars = $wpdb->get_var($query);

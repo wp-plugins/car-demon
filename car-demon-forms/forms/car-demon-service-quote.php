@@ -4,10 +4,10 @@ function car_demon_service_quote($location, $popup_id = '', $popup_button='') {
 	$car_demon_pluginpath = str_replace('/car-demon-forms/forms', '', $car_demon_pluginpath);
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-			wp_enqueue_style('car-demon-service-quote-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-service-quote.css');
+			wp_enqueue_style('car-demon-service-quote-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-service-quote.css');
 		}
 	} else {
-		wp_enqueue_style('car-demon-service-quote-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-service-quote.css');
+		wp_enqueue_style('car-demon-service-quote-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-service-quote.css');
 	}
 	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
@@ -20,14 +20,14 @@ function car_demon_service_quote($location, $popup_id = '', $popup_button='') {
 	}
 	$x = '';
 	if (!empty($popup_id)) {
-		wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
-		wp_enqueue_script('car-demon-service-quote-popup-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-service-quote-popup.js');
+		wp_enqueue_script('car-demon-jquery-lightbox', plugins_url() . '/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
+		wp_enqueue_script('car-demon-service-quote-popup-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-service-quote-popup.js');
 		if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 			if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-				wp_enqueue_style('car-demon-service-quote-popup-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-service-quote-popup.css');
+				wp_enqueue_style('car-demon-service-quote-popup-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-service-quote-popup.css');
 			}
 		} else {
-			wp_enqueue_style('car-demon-service-quote-popup-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-service-quote-popup.css');
+			wp_enqueue_style('car-demon-service-quote-popup-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-service-quote-popup.css');
 		}
 		$x .= '<div class="service_quote_container" id="service_quote_container_'.$popup_id.'">';
 			$x .= '<div class="close_form" onclick="close_service_quote_popup(\''.$popup_id.'\');"><img src="'.$car_demon_pluginpath.'theme-files/images/close.png" /></div>';

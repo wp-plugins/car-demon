@@ -10,7 +10,7 @@ function car_demon_get_vin_query($post_id, $vin) {
 		if (empty($decode_saved)) {
 			$url = "http://vinquery.com/ws_POQCXTYNO1D/xml_v100_QA7RTS8Y.aspx?accessCode=".$vinquery_id."&vin=".$vin."&reportType=".$report_type;
 			// test URL for sample import
-			// $url = WP_CONTENT_URL . '/plugins/car-demon/vin-query/extended_sample.xml';
+			// $url = plugins_url() . '/car-demon/vin-query/extended_sample.xml';
 			$xml = simplexml_load_file($url);
 			if ($xml) {
 				$car_details = $xml->VIN->Vehicle->Item;

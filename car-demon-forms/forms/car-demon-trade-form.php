@@ -4,10 +4,10 @@ function car_demon_trade_form($post_id=0, $location) {
 	$car_demon_pluginpath = str_replace('/car-demon-forms/forms', '', $car_demon_pluginpath);
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-			wp_enqueue_style('car-demon-trade-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-trade.css');
+			wp_enqueue_style('car-demon-trade-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-trade.css');
 		}
 	} else {
-		wp_enqueue_style('car-demon-trade-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-trade.css');
+		wp_enqueue_style('car-demon-trade-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-trade.css');
 	}
 	if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 		if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {

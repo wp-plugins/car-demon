@@ -35,7 +35,7 @@ function cd_cdrf_style_options_do_page() {
 		}
 		update_option( 'car_demon_options', $cd_cdrf_options );
 	}
-	wp_enqueue_style('car-demon-style-admin-css', WP_CONTENT_URL . '/plugins/car-demon/content-replacement/crf-admin.css');
+	wp_enqueue_style('car-demon-style-admin-css', plugins_url() . '/car-demon/content-replacement/crf-admin.css');
 	echo '<h1>Car Display Options</h1>';
 	echo '<h3>'.__('The default option will load the original, default template files.', 'car-demon').'</h3>';
 	echo '<h3>'.__('Content replacement will use your existing Theme\'s template files.', 'car-demon').'</h3>';
@@ -116,12 +116,12 @@ function car_crf_theme_redirect() {
 			$template_directory = get_template_directory();
 
 			//= Use this css and js for everything right now
-			wp_enqueue_style('cr-style-css', WP_CONTENT_URL . '/plugins/car-demon/content-replacement/theme-files/content-replacement/cr-style.css');
+			wp_enqueue_style('cr-style-css', plugins_url() . '/car-demon/content-replacement/theme-files/content-replacement/cr-style.css');
 			//= TO DO Load Single Car css only on single car page
 //			if (is_single() || $post_type = 'cars_for_sale') {
-				wp_enqueue_style('cr-style-single-car', WP_CONTENT_URL . '/plugins/car-demon/content-replacement/theme-files/content-replacement/cr-single-car.css');
+				wp_enqueue_style('cr-style-single-car', plugins_url() . '/car-demon/content-replacement/theme-files/content-replacement/cr-single-car.css');
 //			}
-			wp_enqueue_script('cr-style-js', WP_CONTENT_URL . '/plugins/car-demon/content-replacement/theme-files/content-replacement/cr-js.php');
+			wp_enqueue_script('cr-style-js', plugins_url() . '/car-demon/content-replacement/theme-files/content-replacement/cr-js.php');
 			//= Start Content Replacement
 			if ($theme_style == 'content-replacement' && !is_home()) {
 				if (isset($wp->query_vars["cars_for_sale"])) {

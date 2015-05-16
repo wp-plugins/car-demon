@@ -9,14 +9,14 @@
 
 if (isset($_SESSION['car_demon_options']['use_vehicle_css'])) {
 	if ($_SESSION['car_demon_options']['use_vehicle_css'] != 'No') {
-		wp_enqueue_style('car-demon-vin-query-css', WP_CONTENT_URL . '/plugins/car-demon/vin-query/css/car-demon-vin-query.css');
-		wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demon/theme-files/css/car-demon-single-car.css');
+		wp_enqueue_style('car-demon-vin-query-css', plugins_url() . '/car-demon/vin-query/css/car-demon-vin-query.css');
+		wp_enqueue_style('car-demon-single-car-css', plugins_url() . '/car-demon/theme-files/css/car-demon-single-car.css');
 	}
 } else {
-	wp_enqueue_style('car-demon-vin-query-css', WP_CONTENT_URL . '/plugins/car-demon/vin-query/css/car-demon-vin-query.css');
-	wp_enqueue_style('car-demon-single-car-css', WP_CONTENT_URL . '/plugins/car-demon/theme-files/css/car-demon-single-car.css');
+	wp_enqueue_style('car-demon-vin-query-css', plugins_url() . '/car-demon/vin-query/css/car-demon-vin-query.css');
+	wp_enqueue_style('car-demon-single-car-css', plugins_url() . '/car-demon/theme-files/css/car-demon-single-car.css');
 }
-wp_register_script('car-demon-single-car-js', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/car-demon-single-cars.js');
+wp_register_script('car-demon-single-car-js', plugins_url() . '/car-demon/theme-files/js/car-demon-single-cars.js');
 wp_localize_script('car-demon-single-car-js', 'cdSingleCarParams', array(
 	'ajaxurl' => admin_url( 'admin-ajax.php' ),
 	'car_demon_path' => CAR_DEMON_PATH,

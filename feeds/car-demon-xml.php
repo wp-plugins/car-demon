@@ -47,7 +47,7 @@ echo "<inventorySummary>";
 			echo "<vin>".$vehicle_vin."</vin>";
 			$vehicle_price = get_post_meta($post_id, "_price_value", true);
 			echo "<price>".$vehicle_price."</price>";
-			echo "<dealer>Max Motors</dealer>";
+			echo "<dealer></dealer>";
 			echo "<url>". get_permalink($post_id) ."</url>";
 			echo "<photo>".wp_get_attachment_thumb_url( get_post_thumbnail_id( $post_id ) )."</photo>";
 		echo "</vehicle>";

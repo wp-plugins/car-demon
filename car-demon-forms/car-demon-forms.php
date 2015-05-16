@@ -47,9 +47,9 @@ add_action("wp_ajax_nopriv_email_friend_handler", "email_friend_handler");
 add_action( 'wp_enqueue_scripts', 'cd_forms_enqueue_style' );
 function cd_forms_enqueue_style() {
 	//= Load jquery-ui.css so autocomplete will work
-	wp_enqueue_style('jquery-ui-css', WP_PLUGIN_URL.'/car-demon/theme-files/css/jquery-ui.css');
+	wp_enqueue_style('jquery-ui-css', plugins_url().'/car-demon/theme-files/css/jquery-ui.css');
 	//= wp_enqueue_style('jquery-ui-css', 'http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css');
-	wp_enqueue_script('jquery-ui-js', WP_PLUGIN_URL.'/car-demon/theme-files/js/jquery-ui.js', array('jquery'));
+	wp_enqueue_script('jquery-ui-js', plugins_url().'/car-demon/theme-files/js/jquery-ui.js', array('jquery'));
 	//= wp_enqueue_script('jquery-ui-js', 'http://code.jquery.com/ui/1.10.4/jquery-ui.js');
 }
 if (!is_admin()) {
@@ -70,8 +70,8 @@ function cd_conditionally_add_scripts_and_styles($posts){
 		$shortcode_found = false; // use this flag to see if styles and scripts need to be enqueued
 		foreach ($posts as $post) {
 			if (stripos($post->post_content, '[contact_us') !== false || stripos($post->post_content, '[staff') !== false) {
-				wp_register_script("car-demon-common-js", WP_PLUGIN_URL."/car-demon/car-demon-forms/forms/js/car-demon-common.js", array('jquery') );
-				wp_register_script("car-demon-contact-us-form-js", WP_PLUGIN_URL.'/car-demon/car-demon-forms/forms/js/car-demon-contact-us.js', array('jquery') );
+				wp_register_script("car-demon-common-js", plugins_url()."/car-demon/car-demon-forms/forms/js/car-demon-common.js", array('jquery') );
+				wp_register_script("car-demon-contact-us-form-js", plugins_url().'/car-demon/car-demon-forms/forms/js/car-demon-contact-us.js', array('jquery') );
 				$validate_phone = 0;
 				if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 					if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
@@ -126,10 +126,10 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				));
 			}
 			if (stripos($post->post_content, '[trade') !== false) {
-				wp_enqueue_style('cd-jquery-autocomplete-css', WP_PLUGIN_URL.'/car-demon/theme-files/css/jquery.autocomplete.css');
-				wp_register_script("cd-jquery-autocomplete-js", WP_PLUGIN_URL.'/car-demon/theme-files/js/jquery.autocomplete.js', array('jquery') );
-				wp_register_script("car-demon-common-js", WP_PLUGIN_URL."/car-demon/car-demon-forms/forms/js/car-demon-common.js", array('jquery') );
-				wp_register_script("car-demon-trade-form-js", WP_PLUGIN_URL.'/car-demon/car-demon-forms/forms/js/car-demon-trade.js', array('jquery'), false, true );
+				wp_enqueue_style('cd-jquery-autocomplete-css', plugins_url().'/car-demon/theme-files/css/jquery.autocomplete.css');
+				wp_register_script("cd-jquery-autocomplete-js", plugins_url().'/car-demon/theme-files/js/jquery.autocomplete.js', array('jquery') );
+				wp_register_script("car-demon-common-js", plugins_url()."/car-demon/car-demon-forms/forms/js/car-demon-common.js", array('jquery') );
+				wp_register_script("car-demon-trade-form-js", plugins_url().'/car-demon/car-demon-forms/forms/js/car-demon-trade.js', array('jquery'), false, true );
 				$validate_phone = 0;
 				if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 					if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
@@ -165,8 +165,8 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'car-demon-trade-form-js' );
 			}
 			if (stripos($post->post_content, '[part_request') !== false) {
-				wp_register_script('car-demon-part-request-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-part-request.js');
-				wp_register_script('car-demon-common-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-common.js');
+				wp_register_script('car-demon-part-request-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-part-request.js');
+				wp_register_script('car-demon-common-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-common.js');
 				$validate_phone = 0;
 				if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 					if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
@@ -197,9 +197,9 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'car-demon-part-request-js' );
 			}
 			if (stripos($post->post_content, '[service_form') !== false) {
-				wp_register_script('car-demon-service-form-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-service-form.js');
-				wp_register_script('car-demon-common-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-common.js');
-				wp_register_script('car-demon-service-calendar-js', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/CalendarPopup.js');
+				wp_register_script('car-demon-service-form-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-service-form.js');
+				wp_register_script('car-demon-common-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-common.js');
+				wp_register_script('car-demon-service-calendar-js', plugins_url() . '/car-demon/theme-files/js/CalendarPopup.js');
 				$validate_phone = 0;
 				if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 					if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
@@ -254,8 +254,8 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'car-demon-service-calendar-js' );
 			}
 			if (stripos($post->post_content, '[service_quote') !== false) {
-				wp_register_script('car-demon-service-quote-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-service-quote.js');
-				wp_register_script('car-demon-common-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-common.js');
+				wp_register_script('car-demon-service-quote-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-service-quote.js');
+				wp_register_script('car-demon-common-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-common.js');
 				$validate_phone = 0;
 				if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 					if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {
@@ -284,8 +284,8 @@ function cd_conditionally_add_scripts_and_styles($posts){
 				wp_enqueue_script( 'car-demon-service-quote-js' );
 			}
 			if (stripos($post->post_content, '[qualify') !== false) {
-				wp_register_script('car-demon-qualify-us-form-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-qualify.js');
-				wp_register_script('car-demon-common-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-common.js');
+				wp_register_script('car-demon-qualify-us-form-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-qualify.js');
+				wp_register_script('car-demon-common-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-common.js');
 				$validate_phone = 0;
 				if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 					if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {

@@ -18,14 +18,14 @@ function be_hidden_meta_boxes( $hidden, $screen ) {
 	return $hidden;
 }
 function car_demon_admin_car_scripts() {
-	wp_register_script('car-demon-admin-js', WP_CONTENT_URL . '/plugins/car-demon/admin/js/car-demon-admin.js','','',true);
+	wp_register_script('car-demon-admin-js', plugins_url() . '/car-demon/admin/js/car-demon-admin.js','','',true);
 	wp_localize_script( 'car-demon-admin-js', 'cdAdminParams', array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
 		'error1' => __('You must fill out both fields before adding a new option group.','car-demon'),
 		'msg_update' => __('Option Group Updated','car-demon')
 	));
 	wp_enqueue_script('car-demon-admin-js');
-	wp_enqueue_style('car-demon-admin-css', WP_CONTENT_URL . '/plugins/car-demon/admin/css/car-demon-admin.css');
+	wp_enqueue_style('car-demon-admin-css', plugins_url() . '/car-demon/admin/css/car-demon-admin.css');
 }
 add_action("wp_ajax_car_demon_admin_update", "car_demon_admin_update");
 add_action("wp_ajax_nopriv_car_demon_admin_update", "car_demon_admin_update");
@@ -904,6 +904,21 @@ function car_demon_settings_form() {
 		echo '</div>';
 	echo '</fieldset>';
 	//= Save Stop
+	echo '<fieldset class="cd_admin_group">';
+		echo '<legend>';
+			echo __('Taxonomy UI Option','car-demon');
+		echo '</legend>';
+		$show_ui = get_option('cd_show_tax_ui', false);
+		if ($show_ui == true) {
+			echo '<a href="?post_type=cars_for_sale&page=car_demon_settings_options&show_ui=0">';
+				_e('Hide Taxonomy UI', 'car-demon');
+			echo '</a>';
+		} else if ($show_ui == false) {
+			echo '<a href="?post_type=cars_for_sale&page=car_demon_settings_options&show_ui=1">';
+				_e('Show Taxonomy UI', 'car-demon');
+			echo '</a>';
+		}
+	echo '</fieldset>';
 	echo '<br /><a href="http://www.cardemons.com" target="demon_win"><img title="Certified Support" src="'.CAR_DEMON_PATH.'images/cd-certified-support.png" /></a>';
 }
 function update_car_demon_settings() {

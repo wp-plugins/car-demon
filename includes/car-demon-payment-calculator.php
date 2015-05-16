@@ -10,10 +10,10 @@ function car_demon_calculator_form($price, $apr, $term, $disclaimer1, $disclaime
 			$price = "25000";
 		}
 	}
-	wp_enqueue_script('car-demon-payment-calculator-js', WP_CONTENT_URL . '/plugins/car-demon/widgets/js/car-demon-calculator-widget.js');
+	wp_enqueue_script('car-demon-payment-calculator-js', plugins_url() . '/car-demon/widgets/js/car-demon-calculator-widget.js');
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-			wp_enqueue_style('car-demon-payment-calculator-css', WP_CONTENT_URL . '/plugins/car-demon/widgets/css/car-demon-calculator-widget.css');
+			wp_enqueue_style('car-demon-payment-calculator-css', plugins_url() . '/car-demon/widgets/css/car-demon-calculator-widget.css');
 		}
 	}
 	?>

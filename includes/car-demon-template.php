@@ -321,7 +321,7 @@ function car_demon_vehicle_detail_tabs($post_id, $no_content=false) {
 
 	$vehicle_options_list = get_post_meta($post_id, '_vehicle_options', true);
 	$vehicle_options_array = explode(',',$vehicle_options_list);
-	$options_image = '<img class="custom_option_img" src="'.WP_CONTENT_URL . '/plugins/car-demon/theme-files/images/opt_standard.gif" />';
+	$options_image = '<img class="custom_option_img" src="'.plugins_url() . '/car-demon/theme-files/images/opt_standard.gif" />';
 	$include_options = 0;
 	$flag = false;
 	if (isset($_SESSION['car_demon_options']['hide_tabs'])) {

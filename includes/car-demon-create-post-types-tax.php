@@ -24,6 +24,16 @@ function car_demon_create_post_type() {
   );
 }
 function car_demon_mytax_init() {
+  $show_ui = get_option('cd_show_tax_ui', false);
+  if(isset($_GET['show_ui'])) {
+	  if ($_GET['show_ui'] == 1) {
+		  update_option('cd_show_tax_ui', true);
+	  	  $show_ui = true;
+	  } else if ($_GET['show_ui'] == 0) {
+		  update_option('cd_show_tax_ui', false);
+		  $show_ui = false;
+	  }
+  }
   register_taxonomy(
     'vehicle_year',
     'cars_for_sale',
@@ -32,7 +42,7 @@ function car_demon_mytax_init() {
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
       'rewrite' => array('slug' => 'vehicle_year'),
-	  'show_ui' => false
+	  'show_ui' => $show_ui
     )
   );
   register_taxonomy(
@@ -43,7 +53,7 @@ function car_demon_mytax_init() {
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
       'rewrite' => array('slug' => 'make'),
-	  'show_ui' => false
+	  'show_ui' => $show_ui
     )
   );
   register_taxonomy(
@@ -54,7 +64,7 @@ function car_demon_mytax_init() {
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
       'rewrite' => array('slug' => 'model'),
-	  'show_ui' => false
+	  'show_ui' => $show_ui
     )
   );
   register_taxonomy(
@@ -64,7 +74,8 @@ function car_demon_mytax_init() {
       'label' => __('Condition', 'car-demon'),
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
-      'rewrite' => array('slug' => 'condition')
+      'rewrite' => array('slug' => 'condition'),
+	  'show_ui' => $show_ui
     )
   );
   register_taxonomy(
@@ -75,7 +86,7 @@ function car_demon_mytax_init() {
       'sort' => true,
       'args' => array('orderby' => 'term_order'),
       'rewrite' => array('slug' => 'body_style'),
-	  'show_ui' => false
+	  'show_ui' => $show_ui
     )
   );
   register_taxonomy(

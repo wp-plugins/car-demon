@@ -30,7 +30,7 @@ class car_demon_vehicle_contact_Widget extends WP_Widget {
 			if (is_single($post_id)) {
 				$car_demon_pluginpath = CAR_DEMON_PATH;
 				$car_demon_pluginpath = str_replace('widgets/', '', $car_demon_pluginpath);
-				wp_register_script('car-demon-contact-widget-js', WP_CONTENT_URL . '/plugins/car-demon/widgets/js/car-demon-vehicle-contact-widget.js');
+				wp_register_script('car-demon-contact-widget-js', plugins_url() . '/car-demon/widgets/js/car-demon-vehicle-contact-widget.js');
 				$validate_phone = 0;
 				if (isset($_SESSION['car_demon_options']['validate_phone'])) {
 					if ($_SESSION['car_demon_options']['validate_phone'] == 'Yes') {

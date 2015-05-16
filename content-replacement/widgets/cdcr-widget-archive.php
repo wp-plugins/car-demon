@@ -68,7 +68,7 @@ class car_demon_cdcr_archive_Widget extends WP_Widget {
 function car_demon_cdcr_archive_form() {
 	$x = '';
 	global $wp_query;
-	wp_register_script('crf-car-demon-search-js', WP_CONTENT_URL . '/plugins/car-demon/includes/js/car-demon-search.js');
+	wp_register_script('crf-car-demon-search-js', plugins_url() . '/car-demon/includes/js/car-demon-search.js');
 	wp_localize_script('crf-car-demon-search-js', 'cdSearchParams', array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
 		'car_demon_path' => CAR_DEMON_PATH,

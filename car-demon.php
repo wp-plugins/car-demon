@@ -4,7 +4,7 @@
 * Plugin URI: http://CarDemons.com/
 * Description:  Car Demon is a PlugIn designed for car dealers.
 * Author: CarDemons
-* Version: 1.4.2
+* Version: 1.4.3
 * Author URI: http://CarDemons.com/
 * Text Domain: car-demon
 * Domain Path: /languages/
@@ -47,7 +47,7 @@ include( 'content-replacement/crf.php' );
 require_once( 'includes/suggested_required.php' );
 //= Legacy PlugIn path code
 //= $car_demon_pluginpath = str_replace(str_replace('\\', '/', ABSPATH), get_option('siteurl').'/', str_replace('\\', '/', dirname(__FILE__))).'/';
-$car_demon_pluginpath = WP_PLUGIN_URL . '/car-demon/';
+$car_demon_pluginpath = plugins_url() . '/car-demon/';
 define("CAR_DEMON_PATH", $car_demon_pluginpath);
 add_filter('wp_print_styles', 'car_demon_header');
 function car_demon_init() {
@@ -356,27 +356,31 @@ add_action('after_setup_theme', 'cardemon_language');
 function cardemon_language(){
     load_theme_textdomain('car-demon', get_template_directory() . '/languages');
 }
-add_action("template_redirect", 'car_demon_theme_redirect', 1);
-function car_demon_theme_redirect() {
+add_action("template_include", 'car_demon_theme_redirect', 1);
+function car_demon_theme_redirect($original_template) {
 	if ($_SESSION['car_demon_options']['use_theme_files'] == 'Yes') {
 		global $wp;
 		$plugindir = dirname( __FILE__ );
 		// Custom Post Type cars_for_sale
 		$template_directory = get_template_directory();
-		if (isset($wp->query_vars["post_type"]) == 'cars_for_sale') {
-			if (isset($wp->query_vars["cars_for_sale"])) {
-				$templatefilename = 'single-cars_for_sale.php';
-				add_action('wp_head', 'car_demon_facebook_meta');
+		if (isset($wp->query_vars["post_type"])) {
+			if ($wp->query_vars["post_type"] == 'cars_for_sale') {
+				if (isset($wp->query_vars["cars_for_sale"])) {
+					$templatefilename = 'single-cars_for_sale.php';
+					add_action('wp_head', 'car_demon_facebook_meta');
+				} else {
+					$templatefilename = 'archive-cars_for_sale.php';	
+				}
+				if (file_exists($template_directory . '/' . $templatefilename)) {
+					$return_template = $template_directory . '/' . $templatefilename;
+				} else {
+					$return_template = $plugindir . '/theme-files/' . $templatefilename;
+				}
+				do_car_demon_theme_redirect($return_template);
 			} else {
-				$templatefilename = 'archive-cars_for_sale.php';	
+				return $original_template;
 			}
-			if (file_exists($template_directory . '/' . $templatefilename)) {
-				$return_template = $template_directory . '/' . $templatefilename;
-			} else {
-				$return_template = $plugindir . '/theme-files/' . $templatefilename;
-			}
-			do_car_demon_theme_redirect($return_template);
-		// Custom Taxonomy
+			// Custom Taxonomy
 		} elseif (isset($wp->query_vars["vehicle_condition"])) {
 			$templatefilename = 'archive-cars_for_sale.php';
 			if (file_exists($template_directory . '/' . $templatefilename)) {
@@ -435,7 +439,12 @@ function car_demon_theme_redirect() {
 				include($return_template);
 				die();
 			}
+		} else {
+			return $original_template;
 		}
+		return $return_template;
+	} else {
+		return $original_template;
 	}
 }
 function do_car_demon_theme_redirect( $url ) {

@@ -16,14 +16,14 @@ function car_demon_contact_request($send_to, $popup_id = '', $popup_button='') {
 		$require_phone = '';
 	}
 	if (!empty($popup_id)) {
-		wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
-		wp_enqueue_script('car-demon-contact-us-popup-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-contact-us-popup.js');
+		wp_enqueue_script('car-demon-jquery-lightbox', plugins_url() . '/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
+		wp_enqueue_script('car-demon-contact-us-popup-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-contact-us-popup.js');
 		if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 			if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-				wp_enqueue_style('car-demon-contact-us-popup-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-contact-us-popup.css');
+				wp_enqueue_style('car-demon-contact-us-popup-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-contact-us-popup.css');
 			}
 		} else {
-			wp_enqueue_style('car-demon-contact-us-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-contact-us.css');
+			wp_enqueue_style('car-demon-contact-us-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-contact-us.css');
 		}
 		$x .= '<div class="contact_form_container" id="contact_form_container_'.$popup_id.'">';
 			$x .= '<div class="close_form" onclick="close_contact_form(\''.$popup_id.'\');"><img src="'.$car_demon_pluginpath.'theme-files/images/close.png" /></div>';

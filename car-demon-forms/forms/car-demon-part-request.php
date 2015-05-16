@@ -16,24 +16,24 @@ function car_demon_part_request($location, $popup_id = '', $popup_button='') {
 		$require_phone = '';
 	}
 	if (!empty($popup_id)) {
-		wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
-		wp_enqueue_script('car-demon-part-request-popup-js', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/js/car-demon-part-request-popup.js');
+		wp_enqueue_script('car-demon-jquery-lightbox', plugins_url() . '/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
+		wp_enqueue_script('car-demon-part-request-popup-js', plugins_url() . '/car-demon/car-demon-forms/forms/js/car-demon-part-request-popup.js');
 		if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 			if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-				wp_enqueue_style('car-demon-part-request-popup-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-part-request-popup.css');
+				wp_enqueue_style('car-demon-part-request-popup-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-part-request-popup.css');
 			}
 		} else {
-			wp_enqueue_style('car-demon-part-request-popup-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-part-request-popup.css');
+			wp_enqueue_style('car-demon-part-request-popup-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-part-request-popup.css');
 		}
 		$x .= '<div class="parts_form_container" id="parts_form_container_'.$popup_id.'">';
 			$x .= '<div class="close_form" onclick="close_parts_popup(\''.$popup_id.'\');"><img src="'.$car_demon_pluginpath.'theme-files/images/close.png" /></div>';
 	}
 	if (isset($_SESSION['car_demon_options']['use_form_css'])) {
 		if ($_SESSION['car_demon_options']['use_form_css'] != 'No') {
-			wp_enqueue_style('car-demon-part-request-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-part-request.css');
+			wp_enqueue_style('car-demon-part-request-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-part-request.css');
 		}
 	} else {
-		wp_enqueue_style('car-demon-part-request-css', WP_CONTENT_URL . '/plugins/car-demon/car-demon-forms/forms/css/car-demon-part-request.css');
+		wp_enqueue_style('car-demon-part-request-css', plugins_url() . '/car-demon/car-demon-forms/forms/css/car-demon-part-request.css');
 	}
 	$nonce = wp_create_nonce("cd_part_request_nonce");
 	$x .= '

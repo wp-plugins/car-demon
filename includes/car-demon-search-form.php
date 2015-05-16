@@ -137,7 +137,7 @@ function car_demon_simple_search($size='l') {
 	$box = ob_get_contents();
 	ob_end_clean();
 	$box = apply_filters('car_demon_small_search_form_filter', $box );
-	echo $box;
+	return $box;
 }
 function car_demon_get_searched_by() {
 	$searched = '';

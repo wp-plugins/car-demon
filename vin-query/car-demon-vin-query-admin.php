@@ -11,7 +11,7 @@ if (is_admin()) {
 }
 
 function car_demon_vinquery_scripts() {
-	wp_register_script('car-demon-vinquery-js', WP_CONTENT_URL . '/plugins/car-demon/admin/js/car-demon-admin.js');
+	wp_register_script('car-demon-vinquery-js', plugins_url() . '/car-demon/admin/js/car-demon-admin.js');
 	wp_localize_script('car-demon-vinquery-js', 'cdVinQueryParams', array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
 		'car_demon_path' => CAR_DEMON_PATH
@@ -64,14 +64,14 @@ function car_demon_get_current_post_type() {
 	return $post_type;
 }
 function cardemons_automotive_inventory_decode_header() {
-	wp_register_script('car-demon-vin-query-admin-js', WP_CONTENT_URL . '/plugins/car-demon/vin-query/js/car-demon-vin-query.js');
+	wp_register_script('car-demon-vin-query-admin-js', plugins_url() . '/car-demon/vin-query/js/car-demon-vin-query.js');
 	wp_localize_script('car-demon-vin-query-admin-js', 'cdVinQueryParams', array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
 		'car_demon_path' => CAR_DEMON_PATH
 	));
 	wp_enqueue_script('car-demon-vin-query-admin-js');
-	wp_enqueue_script('car-demon-jquery-lightbox', WP_CONTENT_URL . '/plugins/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
-	wp_enqueue_style('car-demon-vin-query-css', WP_CONTENT_URL . '/plugins/car-demon/vin-query/css/car-demon-vin-query.css');
+	wp_enqueue_script('car-demon-jquery-lightbox', plugins_url() . '/car-demon/theme-files/js/jquery.lightbox_me.js', array('jquery'));
+	wp_enqueue_style('car-demon-vin-query-css', plugins_url() . '/car-demon/vin-query/css/car-demon-vin-query.css');
 }
 function eg_add_dashboard_widgets() {
 	wp_add_dashboard_widget('example_dashboard_widget', 'Add a Vehicle', 'eg_add_vehicle_dashboard_widget_function');
@@ -205,7 +205,7 @@ function decode_custom_metabox($post) {
 			</div>
 		</div>';
 	$vehicle_options_array = explode(',',$vehicle_options_list);
-	$options_image = '<img src="'.WP_CONTENT_URL . '/plugins/car-demon/theme-files/images/opt_standard.gif" />';
+	$options_image = '<img src="'.plugins_url() . '/car-demon/theme-files/images/opt_standard.gif" />';
 	$include_options = 0;
 	foreach ($vehicle_options_array as $vehicle_option) {
 		if (!empty($vehicle_option)) {
@@ -322,7 +322,7 @@ function decode_photo_ribbon($post) {
 		</select><br />';
 	if ($ribbon != 'custom_ribbon') {
 		$ribbon = str_replace('_', '-', $ribbon);
-		$ribbon_url = WP_CONTENT_URL . '/plugins/car-demon/theme-files/images/ribbon-'.$ribbon.'.png';
+		$ribbon_url = plugins_url() . '/car-demon/theme-files/images/ribbon-'.$ribbon.'.png';
 		echo '<img src="'.$ribbon_url.'" id="vehicle_ribbon" name="vehicle_ribbon" /><br />';
 		$custom_ribbon_div_class = 'custom_ribbon_div_hide';
 	} else {
