@@ -34,6 +34,8 @@ function car_demon_query_search() {
 					'compare' => '='
 				)
 			);
+		} else {
+			$meta_query = '';
 		}
 		if (isset($_GET['stock'])) {
 			if ($_GET['stock']) {

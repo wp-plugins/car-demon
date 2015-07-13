@@ -3,6 +3,28 @@
 	$car_demon_pluginpath = str_replace('/forms/js', '', $car_demon_pluginpath);
 ?>
 <script language="javascript">
+		jQuery( document ).ready(function($) {
+			$('.finance_applicant_cell input').on('change', function() {
+				var $elements = $('.finance_applicant_cell input, div');
+				$(this).css('background', '#fff');
+				if ($elements.eq($elements.index(this) + 1).hasClass('finance_hide_notice')) {
+					$elements.eq($elements.index(this) + 1).slideUp();
+				}
+				if ($elements.eq($elements.index(this) + 2).hasClass('finance_hide_notice')) {
+					$elements.eq($elements.index(this) + 2).slideUp();
+				}
+			});
+			$('.finance_applicant_cell select').on('change', function() {
+				var $elements = $('.finance_applicant_cell select, div');
+				$(this).css('background', '#fff');
+				if ($elements.eq($elements.index(this) + 1).hasClass('finance_hide_notice')) {
+					$elements.eq($elements.index(this) + 1).slideUp();
+				}
+				if ($elements.eq($elements.index(this) + 2).hasClass('finance_hide_notice')) {
+					$elements.eq($elements.index(this) + 2).slideUp();
+				}
+			});
+		});
 		function findValue(li) {
 			if( li == null ) return alert("No match!");
 			if( !!li.extra ) var sValue = li.extra[0];
@@ -128,8 +150,8 @@
 	function send_entire_form() {
 		jQuery.ajax({
 			type: 'POST',
-			data: $("#frm_app").serialize(),
-			url: "<?php echo $car_demon_pluginpath; ?>theme-files/forms/car-demon-finance-form-handler.php?send_finance=1",
+			data: jQuery("#frm_app").serialize(),
+			url: "<?php echo $car_demon_pluginpath; ?>car-demon-forms/handlers/car-demon-finance-form-handler.php?send_finance=1",
 			timeout: 5000,
 			error: function() {},
 			dataType: "html",
@@ -141,111 +163,113 @@
 	}
 	
 	function mainValidation() {
+		var $ = jQuery;
+		$('#sbtValidate').prop('disabled', true);
 		var xFail = 0
 		var xTmp = 'bobfrog'+document.frm_app.app_street_num.value
 		if (xTmp != 'bobfrog') {
-			if (document.frm_app.app_street_num.value == '') {document.getElementById('msgDivapp_street_num').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivapp_street_num').style.display = 'none'}
-			if (document.frm_app.app_street_name.value == '') {document.getElementById('msgDivapp_street_name').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivapp_street_name').style.display = 'none'}
+			if (document.frm_app.app_street_num.value == '') {document.getElementById('msgDivapp_street_num').style.display = 'block'; var xFail = '/n No Street';} else {document.getElementById('msgDivapp_street_num').style.display = 'none'}
+			if (document.frm_app.app_street_name.value == '') {document.getElementById('msgDivapp_street_name').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivapp_street_name').style.display = 'none'}
 		}
 		var xTmp = 'bobfrog'+document.frm_app.app_po_box_num.value
 		if (xTmp != 'bobfrog') {
-			if (document.frm_app.app_po_box_num.value == '') {document.getElementById('msgDivapp_po_box_num').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivapp_po_box_num').style.display = 'none'}
+			if (document.frm_app.app_po_box_num.value == '') {document.getElementById('msgDivapp_po_box_num').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivapp_po_box_num').style.display = 'none'}
 		}
-		if (document.frm_app.app_street_type.value == '') {document.getElementById('msgDivapp_street_type').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivapp_street_type').style.display = 'none'}
-		if (document.frm_app.yaca.value == '') {document.getElementById('msgDivyaca').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivyaca').style.display = 'none'}
-		if (document.frm_app.bdy.value == '') {document.getElementById('msgDivbdy').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivbdy').style.display = 'none'}
-		if (document.frm_app.ea.value == '') {document.getElementById('msgDivea').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivea').style.display = 'none'}
-		if (document.frm_app.en.value == '') {document.getElementById('msgDiven').style.display = ''; var xFail = 1;} else {document.getElementById('msgDiven').style.display = 'none'}
-		if (document.frm_app.epn.value == '') {document.getElementById('msgDivepn').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivepn').style.display = 'none'}
-		if (document.frm_app.fn.value == '') {document.getElementById('msgDivfn').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivfn').style.display = 'none'}
-		if (document.frm_app.gmi.value == '') {document.getElementById('msgDivgmi').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivgmi').style.display = 'none'}
-		if (document.frm_app.ln.value == '') {document.getElementById('msgDivln').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivln').style.display = 'none'}
-		if (document.frm_app.mac.value == '') {document.getElementById('msgDivmac').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivmac').style.display = 'none'}
-		if (document.frm_app.maca.value == '') {document.getElementById('msgDivmaca').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivmaca').style.display = 'none'}
-		if (document.frm_app.oi.value == '') {document.getElementById('msgDivoi').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivoi').style.display = 'none'}
-		if (document.frm_app.ramp.value == '') {document.getElementById('msgDivramp').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivramp').style.display = 'none'}
-		if (document.frm_app.roo.value == '') {document.getElementById('msgDivroo').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivroo').style.display = 'none'}
-		if (document.frm_app.st.value == '') {document.getElementById('msgDivst').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivst').style.display = 'none'}
-		if (document.frm_app.yac.value == '') {document.getElementById('msgDivyac').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivyac').style.display = 'none'}
-		if (document.frm_app.zi.value == '') {document.getElementById('msgDivzi').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivzi').style.display = 'none'}
-		if (document.frm_app.p.value == '') {document.getElementById('msgDivp').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp').style.display = 'none'}
-		if (document.frm_app.bcp.value == '') {document.getElementById('msgDivbcp').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivbcp').style.display = 'none'}
-		if (document.frm_app.hpn.value == '') {document.getElementById('msgDivhpn').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivhpn').style.display = 'none'}
-		if (document.frm_app.ssn.value == '') {document.getElementById('msgDivssn').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivssn').style.display = 'none'}
-		if (document.frm_app.cty.value == '') {document.getElementById('msgDivcty').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivcty').style.display = 'none'}
-		if (document.frm_app.bct.value == '') {document.getElementById('msgDivbct').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivbct').style.display = 'none'}
-		if (document.frm_app.bdd.value == '') {document.getElementById('msgDivbdd').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivbdd').style.display = 'none'}
-		if (document.frm_app.bdm.value == '') {document.getElementById('msgDivbdm').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivbdm').style.display = 'none'}
+		if (document.frm_app.app_street_type.value == '') {document.getElementById('msgDivapp_street_type').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivapp_street_type').style.display = 'none'}
+		if (document.frm_app.yaca.value == '') {document.getElementById('msgDivyaca').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivyaca').style.display = 'none'}
+		if (document.frm_app.bdy.value == '') {document.getElementById('msgDivbdy').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivbdy').style.display = 'none'}
+		if (document.frm_app.ea.value == '') {document.getElementById('msgDivea').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivea').style.display = 'none'}
+		if (document.frm_app.en.value == '') {document.getElementById('msgDiven').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDiven').style.display = 'none'}
+		if (document.frm_app.epn.value == '') {document.getElementById('msgDivepn').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivepn').style.display = 'none'}
+		if (document.frm_app.fn.value == '') {document.getElementById('msgDivfn').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivfn').style.display = 'none'}
+		if (document.frm_app.gmi.value == '') {document.getElementById('msgDivgmi').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivgmi').style.display = 'none'}
+		if (document.frm_app.ln.value == '') {document.getElementById('msgDivln').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivln').style.display = 'none'}
+		if (document.frm_app.mac.value == '') {document.getElementById('msgDivmac').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivmac').style.display = 'none'}
+		if (document.frm_app.maca.value == '') {document.getElementById('msgDivmaca').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivmaca').style.display = 'none'}
+		if (document.frm_app.oi.value == '') {document.getElementById('msgDivoi').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivoi').style.display = 'none'}
+		if (document.frm_app.ramp.value == '') {document.getElementById('msgDivramp').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivramp').style.display = 'none'}
+		if (document.frm_app.roo.value == '') {document.getElementById('msgDivroo').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivroo').style.display = 'none'}
+		if (document.frm_app.st.value == '') {document.getElementById('msgDivst').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivst').style.display = 'none'}
+		if (document.frm_app.yac.value == '') {document.getElementById('msgDivyac').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivyac').style.display = 'none'}
+		if (document.frm_app.zi.value == '') {document.getElementById('msgDivzi').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivzi').style.display = 'none'}
+		if (document.frm_app.p.value == '') {document.getElementById('msgDivp').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp').style.display = 'none'}
+		if (document.frm_app.bcp.value == '') {document.getElementById('msgDivbcp').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivbcp').style.display = 'none'}
+		if (document.frm_app.hpn.value == '') {document.getElementById('msgDivhpn').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivhpn').style.display = 'none'}
+		if (document.frm_app.ssn.value == '') {document.getElementById('msgDivssn').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivssn').style.display = 'none'}
+		if (document.frm_app.cty.value == '') {document.getElementById('msgDivcty').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivcty').style.display = 'none'}
+		if (document.frm_app.bct.value == '') {document.getElementById('msgDivbct').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivbct').style.display = 'none'}
+		if (document.frm_app.bdd.value == '') {document.getElementById('msgDivbdd').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivbdd').style.display = 'none'}
+		if (document.frm_app.bdm.value == '') {document.getElementById('msgDivbdm').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivbdm').style.display = 'none'}
 		if (document.frm_app.yaca.value < 2) {
 			var xTmp = 'bobfrog'+document.frm_app.p1app_street_num.value
 			if (xTmp != 'bobfrog') {
-				if (document.frm_app.p1app_street_num.value == '') {document.getElementById('msgDivp1app_street_num').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1app_street_num').style.display = 'none'}
-				if (document.frm_app.p1app_street_name.value == '') {document.getElementById('msgDivp1app_street_name').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1app_street_name').style.display = 'none'}
+				if (document.frm_app.p1app_street_num.value == '') {document.getElementById('msgDivp1app_street_num').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1app_street_num').style.display = 'none'}
+				if (document.frm_app.p1app_street_name.value == '') {document.getElementById('msgDivp1app_street_name').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1app_street_name').style.display = 'none'}
 			}
 			var xTmp = 'bobfrog'+document.frm_app.p1app_po_box_num.value
 			if (xTmp != 'bobfrog') {
-				if (document.frm_app.p1app_po_box_num.value == '') {document.getElementById('msgDivap1pp_po_box_num').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1app_po_box_num').style.display = 'none'}
+				if (document.frm_app.p1app_po_box_num.value == '') {document.getElementById('msgDivap1pp_po_box_num').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1app_po_box_num').style.display = 'none'}
 			}
-			if (document.frm_app.p1cty.value == '') {document.getElementById('msgDivp1cty').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1cty').style.display = 'none'}
-			if (document.frm_app.p1st.value == '') {document.getElementById('msgDivp1st').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1st').style.display = 'none'}
-			if (document.frm_app.p1zi.value == '') {document.getElementById('msgDivp1zi').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1zi').style.display = 'none'}
-			if (document.frm_app.p1app_street_type.value == '') {document.getElementById('msgDivp1app_street_type').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1app_street_type').style.display = 'none'}
+			if (document.frm_app.p1cty.value == '') {document.getElementById('msgDivp1cty').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1cty').style.display = 'none'}
+			if (document.frm_app.p1st.value == '') {document.getElementById('msgDivp1st').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1st').style.display = 'none'}
+			if (document.frm_app.p1zi.value == '') {document.getElementById('msgDivp1zi').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1zi').style.display = 'none'}
+			if (document.frm_app.p1app_street_type.value == '') {document.getElementById('msgDivp1app_street_type').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1app_street_type').style.display = 'none'}
 		}
 	
 		if (document.frm_app.yac.value < 2) {
-			if (document.frm_app.p2p.value == '') {document.getElementById('msgDivp2p').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp2p').style.display = 'none'}
-			if (document.frm_app.p2en.value == '') {document.getElementById('msgDivp2en').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp2en').style.display = 'none'}
-			if (document.frm_app.p2epn.value == '') {document.getElementById('msgDivp2epn').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp2epn').style.display = 'none'}
-			if (document.frm_app.p2gmi.value == '') {document.getElementById('msgDivp2gmi').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp2gmi').style.display = 'none'}
-			if (document.frm_app.p2mac.value == '') {document.getElementById('msgDivp2mac').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp2mac').style.display = 'none'}
-			if (document.frm_app.p2oi.value == '') {document.getElementById('msgDivp2oi').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp2oi').style.display = 'none'}
-			if (document.frm_app.p2yac.value == '') {document.getElementById('msgDivp2yac').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp2yac').style.display = 'none'}
+			if (document.frm_app.p2p.value == '') {document.getElementById('msgDivp2p').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp2p').style.display = 'none'}
+			if (document.frm_app.p2en.value == '') {document.getElementById('msgDivp2en').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp2en').style.display = 'none'}
+			if (document.frm_app.p2epn.value == '') {document.getElementById('msgDivp2epn').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp2epn').style.display = 'none'}
+			if (document.frm_app.p2gmi.value == '') {document.getElementById('msgDivp2gmi').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp2gmi').style.display = 'none'}
+			if (document.frm_app.p2mac.value == '') {document.getElementById('msgDivp2mac').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp2mac').style.display = 'none'}
+			if (document.frm_app.p2oi.value == '') {document.getElementById('msgDivp2oi').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp2oi').style.display = 'none'}
+			if (document.frm_app.p2yac.value == '') {document.getElementById('msgDivp2yac').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp2yac').style.display = 'none'}
 		}
 		//if copapp yes
 		if (document.frm_app.MakeCoSigner.value == 'Yes') {
 			document.getElementById('CoSignerDiv').style.display = 'inline-block';
-			if (document.frm_app.co_app_street_num.value == '') {document.getElementById('msgDivco_app_street_num').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_app_street_num').style.display = 'none'}
-			if (document.frm_app.co_app_street_name.value == '') {document.getElementById('msgDivco_app_street_name').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_app_street_name').style.display = 'none'}
-			if (document.frm_app.co_app_street_type.value == '') {document.getElementById('msgDivco_app_street_type').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_app_street_type').style.display = 'none'}
-			if (document.frm_app.co_hpn2.value == '') {document.getElementById('msgDivco_hpn2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_hpn2').style.display = 'none'}
-			if (document.frm_app.co_bcp2.value == '') {document.getElementById('msgDivco_bcp2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_bcp2').style.display = 'none'}
-			if (document.frm_app.co_bct2.value == '') {document.getElementById('msgDivco_bct2 ').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_bct2 ').style.display = 'none'}
-			if (document.frm_app.co_bdd.value == '') {document.getElementById('msgDivco_bdd').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_bdd').style.display = 'none'}
-			if (document.frm_app.co_bdm.value == '') {document.getElementById('msgDivco_bdm').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_bdm').style.display = 'none'}
-			if (document.frm_app.co_bdy.value == '') {document.getElementById('msgDivco_bdy').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_bdy').style.display = 'none'}
-			if (document.frm_app.co_cty2.value == '') {document.getElementById('msgDivco_cty2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_cty2').style.display = 'none'}
-			if (document.frm_app.co_ea2.value == '') {document.getElementById('msgDivco_ea2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_ea2').style.display = 'none'}
-			if (document.frm_app.co_en2.value == '') {document.getElementById('msgDivco_en2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_en2').style.display = 'none'}
-			if (document.frm_app.co_epn2.value == '') {document.getElementById('msgDivco_epn2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_epn2').style.display = 'none'}
-			if (document.frm_app.co_fn2.value == '') {document.getElementById('msgDivco_fn2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_fn2').style.display = 'none'}
-			if (document.frm_app.co_gmi2.value == '') {document.getElementById('msgDivco_gmi2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_gmi2').style.display = 'none'}
-			if (document.frm_app.co_ln2.value == '') {document.getElementById('msgDivco_ln2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_ln2').style.display = 'none'}
-			if (document.frm_app.co_mac2.value == '') {document.getElementById('msgDivco_mac2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_mac2').style.display = 'none'}
-			if (document.frm_app.co_maca2.value == '') {document.getElementById('msgDivco_maca2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_maca2').style.display = 'none'}
-			if (document.frm_app.co_oi2.value == '') {document.getElementById('msgDivco_oi2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_oi2').style.display = 'none'}
-			if (document.frm_app.co_p2.value == '') {document.getElementById('msgDivco_p2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_p2').style.display = 'none'}
-			if (document.frm_app.co_ramp2.value == '') {document.getElementById('msgDivco_ramp2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_ramp2').style.display = 'none'}
-			if (document.frm_app.co_roo2.value == '') {document.getElementById('msgDivco_roo2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_roo2').style.display = 'none'}
-			if (document.frm_app.co_ssn2.value == '') {document.getElementById('msgDivco_ssn2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_ssn2').style.display = 'none'}
-			if (document.frm_app.co_st2.value == '') {document.getElementById('msgDivco_st2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_st2').style.display = 'none'}
-			if (document.frm_app.co_yaca2.value == '') {document.getElementById('msgDivco_yaca2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_yaca2').style.display = 'none'}
-			if (document.frm_app.co_zi2.value == '') {document.getElementById('msgDivco_zi2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivco_zi2').style.display = 'none'}
+			if (document.frm_app.co_app_street_num.value == '') {document.getElementById('msgDivco_app_street_num').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_app_street_num').style.display = 'none'}
+			if (document.frm_app.co_app_street_name.value == '') {document.getElementById('msgDivco_app_street_name').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_app_street_name').style.display = 'none'}
+			if (document.frm_app.co_app_street_type.value == '') {document.getElementById('msgDivco_app_street_type').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_app_street_type').style.display = 'none'}
+			if (document.frm_app.co_hpn2.value == '') {document.getElementById('msgDivco_hpn2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_hpn2').style.display = 'none'}
+			if (document.frm_app.co_bcp2.value == '') {document.getElementById('msgDivco_bcp2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_bcp2').style.display = 'none'}
+			if (document.frm_app.co_bct2.value == '') {document.getElementById('msgDivco_bct2 ').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_bct2 ').style.display = 'none'}
+			if (document.frm_app.co_bdd.value == '') {document.getElementById('msgDivco_bdd').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_bdd').style.display = 'none'}
+			if (document.frm_app.co_bdm.value == '') {document.getElementById('msgDivco_bdm').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_bdm').style.display = 'none'}
+			if (document.frm_app.co_bdy.value == '') {document.getElementById('msgDivco_bdy').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_bdy').style.display = 'none'}
+			if (document.frm_app.co_cty2.value == '') {document.getElementById('msgDivco_cty2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_cty2').style.display = 'none'}
+			if (document.frm_app.co_ea2.value == '') {document.getElementById('msgDivco_ea2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_ea2').style.display = 'none'}
+			if (document.frm_app.co_en2.value == '') {document.getElementById('msgDivco_en2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_en2').style.display = 'none'}
+			if (document.frm_app.co_epn2.value == '') {document.getElementById('msgDivco_epn2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_epn2').style.display = 'none'}
+			if (document.frm_app.co_fn2.value == '') {document.getElementById('msgDivco_fn2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_fn2').style.display = 'none'}
+			if (document.frm_app.co_gmi2.value == '') {document.getElementById('msgDivco_gmi2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_gmi2').style.display = 'none'}
+			if (document.frm_app.co_ln2.value == '') {document.getElementById('msgDivco_ln2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_ln2').style.display = 'none'}
+			if (document.frm_app.co_mac2.value == '') {document.getElementById('msgDivco_mac2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_mac2').style.display = 'none'}
+			if (document.frm_app.co_maca2.value == '') {document.getElementById('msgDivco_maca2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_maca2').style.display = 'none'}
+			if (document.frm_app.co_oi2.value == '') {document.getElementById('msgDivco_oi2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_oi2').style.display = 'none'}
+			if (document.frm_app.co_p2.value == '') {document.getElementById('msgDivco_p2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_p2').style.display = 'none'}
+			if (document.frm_app.co_ramp2.value == '') {document.getElementById('msgDivco_ramp2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_ramp2').style.display = 'none'}
+			if (document.frm_app.co_roo2.value == '') {document.getElementById('msgDivco_roo2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_roo2').style.display = 'none'}
+			if (document.frm_app.co_ssn2.value == '') {document.getElementById('msgDivco_ssn2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_ssn2').style.display = 'none'}
+			if (document.frm_app.co_st2.value == '') {document.getElementById('msgDivco_st2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_st2').style.display = 'none'}
+			if (document.frm_app.co_yaca2.value == '') {document.getElementById('msgDivco_yaca2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_yaca2').style.display = 'none'}
+			if (document.frm_app.co_zi2.value == '') {document.getElementById('msgDivco_zi2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivco_zi2').style.display = 'none'}
 			if (document.frm_app.co_yaca2.value < 2) {
-				if (document.frm_app.p1co_app_street_name.value == '') {document.getElementById('msgDivp1co_app_street_name').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_app_street_name').style.display = 'none'}
-				if (document.frm_app.p1co_app_street_num.value == '') {document.getElementById('msgDivp1co_app_street_num').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_app_street_num').style.display = 'none'}
-				if (document.frm_app.p1co_cty2.value == '') {document.getElementById('msgDivp1co_cty2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_cty2').style.display = 'none'}
-				if (document.frm_app.p1co_app_street_type.value == '') {document.getElementById('msgDivp1co_app_street_type').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_app_street_type').style.display = 'none'}
-				if (document.frm_app.p1co_st2.value == '') {document.getElementById('msgDivp1co_st2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_st2').style.display = 'none'}
-				if (document.frm_app.p1co_zi2.value == '') {document.getElementById('msgDivp1co_zi2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_zi2').style.display = 'none'}
+				if (document.frm_app.p1co_app_street_name.value == '') {document.getElementById('msgDivp1co_app_street_name').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_app_street_name').style.display = 'none'}
+				if (document.frm_app.p1co_app_street_num.value == '') {document.getElementById('msgDivp1co_app_street_num').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_app_street_num').style.display = 'none'}
+				if (document.frm_app.p1co_cty2.value == '') {document.getElementById('msgDivp1co_cty2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_cty2').style.display = 'none'}
+				if (document.frm_app.p1co_app_street_type.value == '') {document.getElementById('msgDivp1co_app_street_type').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_app_street_type').style.display = 'none'}
+				if (document.frm_app.p1co_st2.value == '') {document.getElementById('msgDivp1co_st2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_st2').style.display = 'none'}
+				if (document.frm_app.p1co_zi2.value == '') {document.getElementById('msgDivp1co_zi2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_zi2').style.display = 'none'}
 			}
 			if (document.frm_app.co_yac2.value < 2) {
-				if (document.frm_app.p1co_oi2.value == '') {document.getElementById('msgDivp1co_oi2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_oi2').style.display = 'none'}
-				if (document.frm_app.p1co_gmi2.value == '') {document.getElementById('msgDivp1co_gmi2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_gmi2').style.display = 'none'}
-				if (document.frm_app.p1co_en2.value == '') {document.getElementById('msgDivp1co_en2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_en2').style.display = 'none'}
-				if (document.frm_app.p1co_epn2.value == '') {document.getElementById('msgDivp1co_epn2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_epn2').style.display = 'none'}
-				if (document.frm_app.p1co_mac2.value == '') {document.getElementById('msgDivp1co_mac2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_mac2').style.display = 'none'}
-				if (document.frm_app.p1co_p2.value == '') {document.getElementById('msgDivp1co_p2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_p2').style.display = 'none'}
-				if (document.frm_app.p1co_yac2.value == '') {document.getElementById('msgDivp1co_yac2').style.display = ''; var xFail = 1;} else {document.getElementById('msgDivp1co_yac2').style.display = 'none'}
+				if (document.frm_app.p1co_oi2.value == '') {document.getElementById('msgDivp1co_oi2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_oi2').style.display = 'none'}
+				if (document.frm_app.p1co_gmi2.value == '') {document.getElementById('msgDivp1co_gmi2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_gmi2').style.display = 'none'}
+				if (document.frm_app.p1co_en2.value == '') {document.getElementById('msgDivp1co_en2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_en2').style.display = 'none'}
+				if (document.frm_app.p1co_epn2.value == '') {document.getElementById('msgDivp1co_epn2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_epn2').style.display = 'none'}
+				if (document.frm_app.p1co_mac2.value == '') {document.getElementById('msgDivp1co_mac2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_mac2').style.display = 'none'}
+				if (document.frm_app.p1co_p2.value == '') {document.getElementById('msgDivp1co_p2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_p2').style.display = 'none'}
+				if (document.frm_app.p1co_yac2.value == '') {document.getElementById('msgDivp1co_yac2').style.display = 'block'; var xFail = 1;} else {document.getElementById('msgDivp1co_yac2').style.display = 'none'}
 			}
 		}
 		//=====VOI Validation
@@ -316,7 +340,8 @@
 			}
 		//=====END VOI Validation
 		//HANDLE FAILURE WITH MESSAGES
-		if (xFail == 1) {
+		if (xFail != 0) {
+			$('#sbtValidate').prop('disabled', false);
 			alert('<?php _e('Issues were detected with your Application.', 'car-demon'); ?> \n <?php _e('Please review the application and submit again.', 'car-demon'); ?>');
 			var top = document.getElementById('frm_app').offsetTop; //Getting Y of target element
 			window.scrollTo(0, top);
@@ -526,6 +551,14 @@
 	function updateFrm() {
 		parent.frames[1].document.forms[0].child.value = parent.frames[0].document.forms[0].parent.value;
 		alert(document.frames("myFrame").document.forms("app_form").elements("app_first_name").value);
+	}
+	
+	function cd_bad_fin_field(fld) {
+		var $ = jQuery;
+		$(fld).css('background', '#f00');
+		setTimeout(function(){
+			$(fld).css('background', '#f00');
+		}, 3000);
 	}
 	<?php
 		$car_demon_pluginpath = CAR_DEMON_PATH;

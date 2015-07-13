@@ -230,6 +230,7 @@ function send_service_request() {
 	return $html;
 }
 function get_service_email($service_location) {
+	$html = '';
 	$args = array(
 		'style'              => 'none',
 		'show_count'         => 0,

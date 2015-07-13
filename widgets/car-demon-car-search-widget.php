@@ -35,13 +35,13 @@ class car_demon_search_car_Widget extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 		if ($form_type == 'Simple Narrow') {
-			car_demon_simple_search('s');
+			echo car_demon_simple_search('s');
 		}
 		elseif ($form_type == 'Simple Wide') {
-			car_demon_simple_search('l');
+			echo car_demon_simple_search('l');
 		}
 		else {
-			car_demon_search_form();
+			echo car_demon_search_form();
 		}
 		/* After widget (defined by themes). */
 		echo $after_widget;

@@ -7,29 +7,26 @@ else {
 	$is_it_iis = 'Win';
 }
 if ($is_it_iis == 'Apache') {
-	$newPath = str_replace('wp-content/plugins/car-demon/theme-files/forms', '', $newPath);
+	$newPath = str_replace('wp-content/plugins/car-demon/car-demon-forms/handlers', '', $newPath);
 	include_once($newPath."/wp-load.php");
 	include_once($newPath."/wp-includes/wp-db.php");
 }
 else {
-	$newPath = str_replace('wp-content\plugins\car-demon\theme-files\forms', '', $newPath);
+	$newPath = str_replace('wp-content\plugins\car-demon\car-demon-forms\handlers', '', $newPath);
 	include_once($newPath."\wp-load.php");
 	include_once($newPath."\wp-includes/wp-db.php");
 }
-require($newPath.'wp-content/plugins/car-demon/car-demon-forms/forms/car-demon-form-key-class.php');
-$cd_formKey = new cd_formKey();
-if(!isset($_POST['form_key']) || !$cd_formKey->validate()) {  
-	//Form key is invalid, show an error  
-	echo 'Form key error! Submission could not be validated.';  
-}  
-else {
-	//Do the rest of your validation here  
-	send_finance_email();
-}
+
+send_finance_email();
+
 function send_finance_email() {
 	$request_body = build_finance_body();
 	$finance_location = $_POST['finance_location'];
-	$selected_car = $_POST['purchase_stock'];
+	if (isset($_POST['purchase_stock'])) {
+		$selected_car = $_POST['purchase_stock'];
+	} else {
+		$selected_car = '';
+	}
 	if (empty($selected_car)) {
 		$finance_email = get_finance_email($finance_location);
 	} else {
@@ -41,6 +38,9 @@ function send_finance_email() {
 	$site_name = get_bloginfo('name');
 	$no_cc = 0;
 	$email_body = $request_body;
+	if (isset($_POST['send_to'])) {
+		$finance_email = sanitize_text_field($_POST['send_to']);
+	}
 	if (empty($finance_email)) {
 		$finance_email = $admin_email;
 		$no_cc = 1;
@@ -54,7 +54,7 @@ function send_finance_email() {
 		$eol="\n";
 	}
 	$to = $finance_email;
-	if ($_COOKIE["sales_code"]) {
+	if (isset($_COOKIE["sales_code"])) {
 		$user_id = $_COOKIE["sales_code"];
 		$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
 		$location_approved = 0;
@@ -75,7 +75,7 @@ function send_finance_email() {
 			}		
 		}
 	}
-	$from_name = $_POST['fn'] .' '. $_POST['mi'] .' '.$_POST['ln'];
+	$from_name = sanitize_text_field($_POST['fn']) .' '. sanitize_text_field($_POST['mi']) .' '.sanitize_text_field($_POST['ln']);
 	$subject = __('Finance Request from ', 'car-demon').$site_name;
 	$headers = "From: " . strip_tags($_POST['ea']) . "\r\n";
 	$headers .= "Reply-To: " . strip_tags($_POST['ea']) . "\r\n";
@@ -105,9 +105,10 @@ function send_finance_email() {
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
 	}
 	wp_mail($to, $subject, $email_body, $headers);
-	$selected_car = $_POST['selected_car'];
 	$post_id = get_car_id_from_stock($selected_car);
-	apply_filters('car_demon_mail_hook_complete', $holder, 'finance', $to, $subject, $email_body, $headers, $_POST['email'], $post_id, $finance_location);
+	$holder = '';
+	
+	apply_filters('car_demon_mail_hook_complete', $holder, 'finance', $to, $subject, $email_body, $headers, sanitize_text_field($_POST['ea']), $post_id, $finance_location);
 	$thanks = '<br /><h1>'.__('Thank You', 'car-demon').'</h1>';
 	$thanks .= '<br /><h2>'.__('Your Finance Request has been sent.', 'car-demon').'</h2>';
 	$thanks .= '<h3>'.__('You should receive a confirmation shortly.', 'car-demon').'</h3>';
@@ -116,8 +117,12 @@ function send_finance_email() {
 }
 function build_finance_body() {
 	$x = '';
-	$selected_car = $_POST['purchase_stock'];
-	$finance_location = $_POST['finance_location'];
+	if (isset($_POST['purchase_stock'])) {
+		$selected_car = sanitize_text_field($_POST['purchase_stock']);
+	} else {
+		$selected_car = '';
+	}
+	$finance_location = sanitize_text_field($_POST['finance_location']);
 	if (empty($selected_car)) {
 		$selected_car = 'Not Decided';
 		$finance_email = get_finance_email($finance_location);
@@ -128,51 +133,53 @@ function build_finance_body() {
 		$finance_email = get_finance_email($finance_location);
 		$finance_location .= ' ('.$finance_email.')';
 	}
-	$comment = $_POST['comment'];
-	$your_name = $_POST['fn'] .' '. $_POST['mi'] .' '.$_POST['ln'];
+	$comment = sanitize_text_field($_POST['comment']);
+	$your_name = sanitize_text_field($_POST['fn']) .' '. sanitize_text_field($_POST['mi']) .' '.sanitize_text_field($_POST['ln']);
 	$phone = $_POST['hpn'];
 	$email = $_POST['ea'];
 	$ssn = $_POST['ssn'];
 	$address = '';
-	if ($_POST['app_rural_route']) { $address .= ' '.__('RR', 'car-demon').' '.$_POST['app_rural_route']; }
-	if ($_POST['app_po_box_num']) { $address .= ' '.__('PO BOX', 'car-demon').' '.$_POST['app_po_box_num']; }
-	if ($_POST['app_apt_num']) { $address .= ' '.__('Apt', 'car-demon').' '.$_POST['app_apt_num']; }
-	if ($_POST['app_street_num']) { $address .= ' '.$_POST['app_street_num']; }	
-	if ($_POST['app_street_name']) { $address .= ' '.$_POST['app_street_name']; }
-	if ($_POST['app_street_type']) { $address .= ' '.$_POST['app_street_type']; }	
-	$city = $_POST['cty'];
-	$state = $_POST['st'];
-	$zip = $_POST['zi'];
+	if (isset($_POST['app_rural_route'])) { $address .= ' '.__('RR', 'car-demon').' '.sanitize_text_field($_POST['app_rural_route']); }
+	if (isset($_POST['app_po_box_num'])) { $address .= ' '.__('PO BOX', 'car-demon').' '.sanitize_text_field($_POST['app_po_box_num']); }
+	if (isset($_POST['app_apt_num'])) { $address .= ' '.__('Apt', 'car-demon').' '.sanitize_text_field($_POST['app_apt_num']); }
+	if (isset($_POST['app_street_num'])) { $address .= ' '.sanitize_text_field($_POST['app_street_num']); }	
+	if (isset($_POST['app_street_name'])) { $address .= ' '.sanitize_text_field($_POST['app_street_name']); }
+	if (isset($_POST['app_street_type'])) { $address .= ' '.sanitize_text_field($_POST['app_street_type']); }	
+	$city = sanitize_text_field($_POST['cty']);
+	$state = sanitize_text_field($_POST['st']);
+	$zip = sanitize_text_field($_POST['zi']);
 	$address .= '<br />'.$city.', '.$state.' '.$zip;
-	$birthdate = $_POST['bdy'] .'-'. $_POST['bdm'] .'-'. $_POST['bdd'];
-	$employer = $_POST['en'];
-	$job_title = $_POST['p'];
-	$years_on_job = $_POST['yac'] .' '.__('year(s)', 'car-demon').' '.$_POST['mac'] .' '.__('month(s)', 'car-demon');
-	$employer_phone = $_POST['epn'];
+	$birthdate = sanitize_text_field($_POST['bdy']) .'-'. sanitize_text_field($_POST['bdm']) .'-'. sanitize_text_field($_POST['bdd']);
+	$employer = sanitize_text_field($_POST['en']);
+	$job_title = sanitize_text_field($_POST['p']);
+	$years_on_job = sanitize_text_field($_POST['yac']) .' '.__('year(s)', 'car-demon').' '.sanitize_text_field($_POST['mac']) .' '.__('month(s)', 'car-demon');
+	$employer_phone = sanitize_text_field($_POST['epn']);
 	setlocale(LC_MONETARY, get_locale());
 	$my_local_settings = localeconv();
 	if ($my_local_settings['int_curr_symbol'] == "") setlocale(LC_MONETARY, 'en_US');
-	$gross_income = money_format("%.0n", $_POST['gmi']);
-	$other_income = money_format("%.0n", $_POST['oi']);
-	$p_employer = $_POST['p2en'];
-	$p_job_title = $_POST['p2p'];
-	$p_years_on_job = $_POST['p2yac'] .' '.__('year(s)', 'car-demon').' '.$_POST['p2mac'] .' '.__('month(s)', 'car-demon');
-	$p_employer_phone = $_POST['p2epn'];
-	if ($_POST['p2gmi']) { $p_gross_income = money_format("%.0n", $_POST['p2gmi']); }
-	if ($_POST['p2oi']) { $p_other_income = money_format("%.0n", $_POST['p2oi']); }
-	$time_at_address = $_POST['yaca'] .' '.__('year(s)', 'car-demon').' '.$_POST['maca'] .' '.__('month(s)', 'car-demon');
-	$rent_or_own = $_POST['roo'];
-	$monthly_payment = money_format("%.0n", $_POST['ramp']);
+	$gross_income = cd_money_format("%.0n", sanitize_text_field($_POST['gmi']));
+	if (isset($_POST['oi'])) {
+		$other_income = cd_money_format("%.0n", sanitize_text_field($_POST['oi']));
+	}
+	$p_employer = sanitize_text_field($_POST['p2en']);
+	$p_job_title = sanitize_text_field($_POST['p2p']);
+	$p_years_on_job = sanitize_text_field($_POST['p2yac']) .' '.__('year(s)', 'car-demon').' '.sanitize_text_field($_POST['p2mac']) .' '.__('month(s)', 'car-demon');
+	$p_employer_phone = sanitize_text_field($_POST['p2epn']);
+	if ($_POST['p2gmi']) { $p_gross_income = cd_money_format("%.0n", sanitize_text_field($_POST['p2gmi'])); }
+	if ($_POST['p2oi']) { $p_other_income = cd_money_format("%.0n", sanitize_text_field($_POST['p2oi'])); }
+	$time_at_address = sanitize_text_field($_POST['yaca']) .' '.__('year(s)', 'car-demon').' '.sanitize_text_field($_POST['maca']) .' '.__('month(s)', 'car-demon');
+	$rent_or_own = sanitize_text_field($_POST['roo']);
+	$monthly_payment = cd_money_format("%.0n", sanitize_text_field($_POST['ramp']));
 	$p_address = '';
-	if ($_POST['p1app_rural_route']) { $p_address .= ' '.__('RR', 'car-demon').' '.$_POST['p1app_rural_route']; }
-	if ($_POST['p1app_po_box_num']) { $p_address .= ' '.__('PO BOX', 'car-demon').' '.$_POST['p1app_po_box_num']; }
-	if ($_POST['p1app_apt_num']) { $p_address .= ' '.__('Apt', 'car-demon').' '.$_POST['p1app_apt_num']; }
-	if ($_POST['p1app_street_num']) { $p_address .= ' '.$_POST['p1app_street_num']; }	
-	if ($_POST['p1app_street_name']) { $p_address .= ' '.$_POST['p1app_street_name']; }
-	if ($_POST['p1app_street_type']) { $p_address .= ' '.$_POST['p1app_street_type']; }	
-	$p_city = $_POST['p1cty'];
-	$p_state = $_POST['p1st'];
-	$p_zip = $_POST['p1zi'];
+	if ($_POST['p1app_rural_route']) { $p_address .= ' '.__('RR', 'car-demon').' '.sanitize_text_field($_POST['p1app_rural_route']); }
+	if ($_POST['p1app_po_box_num']) { $p_address .= ' '.__('PO BOX', 'car-demon').' '.sanitize_text_field($_POST['p1app_po_box_num']); }
+	if ($_POST['p1app_apt_num']) { $p_address .= ' '.__('Apt', 'car-demon').' '.sanitize_text_field($_POST['p1app_apt_num']); }
+	if ($_POST['p1app_street_num']) { $p_address .= ' '.sanitize_text_field($_POST['p1app_street_num']); }	
+	if ($_POST['p1app_street_name']) { $p_address .= ' '.sanitize_text_field($_POST['p1app_street_name']); }
+	if ($_POST['p1app_street_type']) { $p_address .= ' '.sanitize_text_field($_POST['p1app_street_type']); }	
+	$p_city = sanitize_text_field($_POST['p1cty']);
+	$p_state = sanitize_text_field($_POST['p1st']);
+	$p_zip = sanitize_text_field($_POST['p1zi']);
 	$p_address .= '<br />'.$p_city.', '.$p_state.' '.$p_zip;	
 	$ip = $_SERVER['REMOTE_ADDR'];
 	$agent = $_SERVER['HTTP_USER_AGENT'];
@@ -181,8 +188,8 @@ function build_finance_body() {
 	list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $blogtime );
 	$right_now .= ' '.$hour.':'.$minute.':'.$second;
 	$style = " style='margin-top: 10px; padding: 5px 0 15px 0; border: 3px solid #ADADAD; border-left-color: #ECECEC; border-top-color: #ECECEC; background: #F7F7F7;'";
-	$best_time_to_contact = $_POST['bcp'] .' '.$_POST['bct'];
-	$co_buyer = $_POST['co_fn2'];
+	$best_time_to_contact = sanitize_text_field($_POST['bcp']) .' '.sanitize_text_field($_POST['bct']);
+	$co_buyer = sanitize_text_field($_POST['co_fn2']);
 	$x = '
 		<table align="center" width="450" border="0"'.$style.'>
 		  <tr>
@@ -376,8 +383,12 @@ function build_finance_body() {
 		  <tr>
 			<td colspan="2"><hr class="hr_margin" /></td>
 		  </tr>';
-		$location = $_POST['finance_location'];
-		$selected_car = $_POST['purchase_stock'];
+		$location = sanitize_text_field($_POST['finance_location']);
+		if (isset($_POST['purchase_stock'])) {
+			$selected_car = sanitize_text_field($_POST['purchase_stock']);
+		} else {
+			$selected_car = '';
+		}
 		if (!empty($selected_car)) {
 			$location = get_finance_location($selected_car);
 		}
@@ -423,17 +434,17 @@ function get_co_buyer() {
 	setlocale(LC_MONETARY, get_locale());
 	$my_local_settings = localeconv();
 	if ($my_local_settings['int_curr_symbol'] == "") setlocale(LC_MONETARY, 'en_US');
-	$gross_income = money_format("%.0n", $_POST['co_gmi2']);
-	$other_income = money_format("%.0n", $_POST['co_oi2']);
+	$gross_income = cd_money_format("%.0n", $_POST['co_gmi2']);
+	$other_income = cd_money_format("%.0n", $_POST['co_oi2']);
 	$p_employer = $_POST['p1co_en2'];
 	$p_job_title = $_POST['p1co_p2'];
 	$p_years_on_job = $_POST['p1co_yac1'] .' '.__('year(s)', 'car-demon').' '.$_POST['p1co_mac2'] .' '.__('month(s)', 'car-demon');
 	$p_employer_phone = $_POST['p1co_epn2'];
-	if ($_POST['p1co_gmi2']) { $p_gross_income = money_format("%.0n", $_POST['p1co_gmi2']); }
-	if ($_POST['p1co_oi2']) { $p_other_income = money_format("%.0n", $_POST['p1co_oi2']); }
+	if ($_POST['p1co_gmi2']) { $p_gross_income = cd_money_format("%.0n", $_POST['p1co_gmi2']); }
+	if ($_POST['p1co_oi2']) { $p_other_income = cd_money_format("%.0n", $_POST['p1co_oi2']); }
 	$time_at_address = $_POST['co_yaca2'] .' '.__('year(s)', 'car-demon').' '.$_POST['co_maca2'] .' '.__('month(s)', 'car-demon');
 	$rent_or_own = $_POST['co_roo2'];
-	$monthly_payment = money_format("%.0n", $_POST['co_ramp2']);
+	$monthly_payment = cd_money_format("%.0n", $_POST['co_ramp2']);
 	$p_address = '';
 	if ($_POST['p1co_app_rural_route']) { $p_address .= ' '.__('RR', 'car-demon').' '.$_POST['p1co_app_rural_route']; }
 	if ($_POST['p1co_app_po_box_num']) { $p_address .= ' '.__('PO BOX', 'car-demon').' '.$_POST['p1co_app_po_box_num']; }
@@ -617,7 +628,9 @@ function get_finance_location($selected_car) {
 	}
 	return $x;
 }
+
 function get_finance_email($finance_location) {
+	$html = '';
 	$args = array(
 		'style'              => 'none',
 		'show_count'         => 0,
@@ -628,6 +641,8 @@ function get_finance_email($finance_location) {
 		'taxonomy'           => 'vehicle_location'
 		);
 	$locations = get_categories( $args );
+	$location_list = '';
+	$location_name_list = '';
 	foreach ($locations as $location) {
 		$location_list .= ','.$location->slug;
 		$location_name_list .= ','.$location->cat_name;
@@ -758,5 +773,9 @@ function adfxml_finance($location_name, $rep_name, $rep_email) {
 		</adf>
 	';
 	return $x;
+}
+
+function cd_money_format($format, $number) {
+	return $number;
 }
 ?>

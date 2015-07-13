@@ -30,8 +30,7 @@
 				<?php echo select_years(); ?>
 			 </select><span class="cd_fin_dash">-</span>
 			  <select id="mac" name="mac" tabindex="21">
-				<option value="" selected="selected"></option>
-				<option value="0">0 <?php _e('Months', 'car-demon'); ?></option>
+				<option value="0" selected="selected">0 <?php _e('Months', 'car-demon'); ?></option>
 				<option value="1">1 <?php _e('Months', 'car-demon'); ?></option>
 				<option value="2">2 <?php _e('Months', 'car-demon'); ?></option>
 				<option value="3">3 <?php _e('Months', 'car-demon'); ?></option>

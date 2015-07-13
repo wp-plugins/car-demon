@@ -78,9 +78,10 @@ function trade_form_shortcode_func( $atts ) {
 add_shortcode( 'trade', 'trade_form_shortcode_func' );
 function finance_form_shortcode_func( $atts ) {
 	extract( shortcode_atts( array(
-		'location' => 'normal'
+		'location' => 'normal',
+		'send_to' => ''
 	), $atts ) );
-	$finance_form = car_demon_finance_form(0,$location);
+	$finance_form = car_demon_finance_form($location, $send_to);
 	return $finance_form;
 }
 add_shortcode( 'finance_form', 'finance_form_shortcode_func' );

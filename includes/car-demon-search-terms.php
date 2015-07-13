@@ -1,4 +1,4 @@
-<?php
+z<?php
 function car_demon_search_cars() {
 	global $wpdb;
 	$prefix = $wpdb->prefix;

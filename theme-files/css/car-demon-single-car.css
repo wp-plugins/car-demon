@@ -322,3 +322,6 @@ ul.tabs {
 .email_friend_form input[type=text] {
 	width: 80%;
 }
+.similar_cars_box #look_close {
+	max-width: 188px;
+}

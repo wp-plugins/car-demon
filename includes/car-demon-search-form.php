@@ -80,7 +80,7 @@ function car_demon_search_form() {
 	$box = ob_get_contents();
 	ob_end_clean();
 	$box = apply_filters('car_demon_search_form_filter', $box );
-	echo $box;
+	return box;
 }
 function car_demon_simple_search($size='l') {
 	$car_demon_auto_credit_pluginpath = CAR_DEMON_PATH;

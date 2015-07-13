@@ -124,7 +124,17 @@ function car_demon_single_car($post_id) {
 		</div>
 		<div class="car-demon-entry-content">
 			<?php echo car_photos($post_id, $detail_output, $vehicle_details['condition']); ?>
-			<?php echo car_demon_display_similar_cars($vehicle_details['decoded_body_style'], $post_id); ?>
+			<?php
+			$show_similar_cars = 'Yes';
+			if (isset($_SESSION['car_demon_options']['show_similar_cars'])) {
+				$show_similar_cars = $_SESSION['car_demon_options']['show_similar_cars'];
+			}		
+			if (isset($vehicle_details['decoded_body_style'])) {
+				if ($show_similar_cars == 'Yes') {
+					echo car_demon_display_similar_cars($vehicle_details['decoded_body_style'], $post_id); 
+				}
+			}
+			?>
 			<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'car-demon' ), 'after' => '</div>' ) ); ?>
 		</div><!-- .car-demon-entry-content -->
 		<?php echo car_demon_vehicle_detail_tabs($post_id); ?>

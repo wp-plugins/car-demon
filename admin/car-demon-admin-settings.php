@@ -372,6 +372,8 @@ function car_demon_options() {
 	$default['cd_cdrf_style'] = 'content-replacement';
 	$default['cd_cdrf_page_style'] = 'content-replacement';
 	$default['cd_slug'] = get_option('car-demon-slug','cars-for-sale');
+	//= Similar cars on single car page
+	$default['show_similar_cars'] = 'Yes';
 
 	$car_demon_options = array();
 	$car_demon_options = get_option( 'car_demon_options', $default );
@@ -427,7 +429,8 @@ function car_demon_options() {
 	if (empty($car_demon_options['dl_items'])) {$car_demon_options['dl_items'] = $default['dl_items'];}
 	if (empty($car_demon_options['dl_pagination'])) {$car_demon_options['dl_pagination'] = $default['dl_pagination'];}
 	if (empty($car_demon_options['dl_next'])) {$car_demon_options['dl_next'] = $default['dl_next'];}
-
+	//= Similar cars
+	if (empty($car_demon_options['show_similar_cars'])) {$car_demon_options['show_similar_cars'] = $default['show_similar_cars'];}
 	return $car_demon_options;
 }
 function car_demon_settings_options_do_page() {
@@ -608,6 +611,12 @@ function car_demon_settings_form() {
 					echo '</blockquote>';
 				echo '</fieldset>';
 				//= End Sidebar Code
+			echo '<br />'.__('Show similar cars on single vehiclepage?', 'car-demon').':<br />';
+			echo '<select name="show_similar_cars">
+					<option value="'.$car_demon_options['show_similar_cars'].'">'.$car_demon_options['show_similar_cars'].'</option>
+					<option value="Yes">'.__('Yes', 'car-demon').'</option>
+					<option value="No">'.__('No', 'car-demon').'</option>
+				</select><br />';
 			echo '<br />'.__('Use Title field for Vehicle Titles? - If No then title will be "Year Make Model"', 'car-demon').':<br />';
 			echo '<select name="use_post_title">
 					<option value="'.$car_demon_options['use_post_title'].'">'.$car_demon_options['use_post_title'].'</option>
@@ -650,7 +659,7 @@ function car_demon_settings_form() {
 				</select><br />';
 			//= Next segment needs to be deprecated
 			//= Change next value to Yes to enable this feature
-			if ($car_demon_options['hide_tabs'] == 'Hide') {
+			if ($car_demon_options['hide_tabs'] == 'Yes') {
 				echo '<br />'.__('Custom Vehicle Options', 'car-demon').':<br />';
 				echo '<textarea name="custom_options" cols="60" rows="6">'.$car_demon_options['custom_options'].' </textarea><br />';
 				echo __('Separate options with a comma. The options you enter here will appear on the vehicle edit page under "Custom Options"','car-demon');
@@ -990,6 +999,7 @@ function update_car_demon_settings() {
 	if (isset($_POST['dl_items'])) $new['dl_items'] = $_POST['dl_items'];
 	if (isset($_POST['dl_pagination'])) $new['dl_pagination'] = $_POST['dl_pagination'];
 	if (isset($_POST['dl_next'])) $new['dl_next'] = $_POST['dl_next'];
+	if (isset($_POST['show_similar_cars'])) $new['show_similar_cars'] = $_POST['show_similar_cars'];
 
 	update_option( 'car_demon_options', $new );
 	$holder = '';

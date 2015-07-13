@@ -1,4 +1,5 @@
 <?php
+
 function car_demon_service_quote($location, $popup_id = '', $popup_button='') {
 	$car_demon_pluginpath = CAR_DEMON_PATH;
 	$car_demon_pluginpath = str_replace('/car-demon-forms/forms', '', $car_demon_pluginpath);

@@ -1,10 +1,10 @@
 <?php
-function car_demon_finance_form($location) {
-	$x = '';
-	show_finance_form($location);
+function car_demon_finance_form($location, $send_to) {
+	$x = show_finance_form($location, $send_to);
 	return $x;
 }
-function show_finance_form($location) {
+function show_finance_form($location, $send_to) {
+	ob_start();
 	$stock_num = '';
 	$vin = '';
 	$location = '';
@@ -38,7 +38,10 @@ function show_finance_form($location) {
 			<input type="hidden" name="stock_num" value="<?php echo $stock_num; ?>" />
 			<input type="hidden" name="vin" value="<?php echo $vin; ?>" />
 			<input type="hidden" name="location" value="<?php echo $location; ?>" />
-			<?php 
+			<?php
+			if(!empty($send_to)) {
+				echo '<input type="hidden" name="send_to" value="'.$send_to.'" />';
+			}
 			?>
 			<div class="finance_segment">
 				<?php 
@@ -100,7 +103,7 @@ function show_finance_form($location) {
 					<?php $fin = apply_filters('car_demon_mail_hook_form', $fin, 'finance', 'unk');
 					echo $fin;
 					?>
-					<input type="button" onClick="mainValidation();" name="sbtValidate" id="sbtValidate" tabindex="97" value="Submit This Credit Application" class="search_btn finance_btn" /><br />
+					<input type="button" onClick="mainValidation();" name="sbtValidate" id="sbtValidate" tabindex="97" value="<?php _e('Submit Application', 'car-demon'); ?>" class="search_btn finance_btn" /><br />
 					<img src="<?php echo $car_demon_pluginpath; ?>theme-files/images/secure.gif" alt="Secure Encryption" width="30" height="49" /></p>
 				</div>
 			</div>
@@ -154,6 +157,9 @@ function show_finance_form($location) {
 		';
 	}
 	include('js/car-demon-finance-form-js.php');
+	$output = ob_get_contents();
+	ob_end_clean();
+	return $output;
 }
 function select_years() {
 	$start = 0;
@@ -166,8 +172,9 @@ function select_years() {
 }
 function get_the_days() {
 	$start = 1;
+	$days = '';
 	do {
-		$days = "<option value='". $start ."'>". $start ."</option>";
+		$days .= "<option value='". $start ."'>". $start ."</option>";
 		$start = $start + 1;
 	} while ($start < 32);
 	return $days;
@@ -176,8 +183,9 @@ function get_the_years() {
 	$start = 0;
 	$this_year = date("Y");
 	$this_year = $this_year - 18;
+	$years = '';
 	do {
-		$years = "<option value='". $this_year ."'>". $this_year ."</option>";
+		$years .= "<option value='". $this_year ."'>". $this_year ."</option>";
 		$start = $start + 1;
 		$this_year = $this_year - 1;
 	} while ($start < 100);

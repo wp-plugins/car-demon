@@ -111,6 +111,7 @@ function car_demon_display_random_cars($stop) {
 		$stop_at = $stop_at+1;
 		if ($stop_at<$stop) {
 			$post_id = $the_list->ID;
+			$field_labels = get_default_field_labels();
 			$vehicle_year = strip_tags(get_the_term_list( $post_id, 'vehicle_year', '','', '', '' ));
 			$vehicle_make = strip_tags(get_the_term_list( $post_id, 'vehicle_make', '','', '', '' ));
 			$vehicle_model = strip_tags(get_the_term_list( $post_id, 'vehicle_model', '','', '', '' ));
@@ -121,13 +122,13 @@ function car_demon_display_random_cars($stop) {
 			$mileage_value = get_post_meta($post_id, "_mileage_value", true);
 			$detail_output = '<span class="random_title">'.$title.'</span><br />';
 			$detail_output .= '<span class="random_text">';
-				$detail_output .= 'Condition: '.$vehicle_condition.'<br />';			
+				$detail_output .= $field_labels['condition'].': '.$vehicle_condition.'<br />';
 			$detail_output .= '</span>';
 			$detail_output .= '<span class="random_text">';
-				$detail_output .= 'Mileage: '.$mileage_value.'<br />';
+				$detail_output .= $field_labels['mileage'].': '.$mileage_value.'<br />';
 			$detail_output .= '</span>';
 			$detail_output .= '<span class="random_text">';
-				$detail_output .= 'Stock#: '.$stock_value;
+				$detail_output .= $field_labels['stock_number'].': '.$stock_value;
 			$detail_output .= '</span>';
 			$link = get_permalink($post_id);
 			$img_output = "<img onclick='window.location=\"".$link."\";' title='Click for price on this ".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image' width='180px' height='135px' src='";

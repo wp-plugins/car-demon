@@ -14,7 +14,7 @@
 	</div>
 </div>
 <div class="finance_applicant_cell">
-	<span>*</span> <?php _e('Middle Initial', 'car-demon'); ?>
+	<?php _e('Middle Initial', 'car-demon'); ?>
 </div>
 <div class="finance_applicant_cell">
 	<input type="text" name="mi" id="mi" tabindex="2" size="2" maxlength="1" />

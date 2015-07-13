@@ -9,16 +9,21 @@ function car_demon_get_sidebar() {
 
 add_action('car_demon_vehicle_header_sidebar', 'car_demon_get_vehicle_header_sidebar', 10);
 function car_demon_get_vehicle_header_sidebar() {
-	$show_sidebar = cd_show_sidebar();
-	if ($show_sidebar == 1) {
-		echo '<div id="vehicle_header_widget" class="vehicle_header_widget">';
-			echo '<ul>';
-				if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Vehicle Header Sidebar')) :
-				endif;
-			echo '</ul>';
-			echo '<br class="clear_car">';
-		echo '</div>';
+	$x = '<div id="vehicle_header_widget" class="vehicle_header_widget">';
+		$x .= '<ul>';
+			ob_start();
+			if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Vehicle Header Sidebar')) :
+			endif;
+			$output = ob_get_contents();
+			ob_end_clean();
+			$x .= $output;
+		$x .= '</ul>';
+		$x .= '<br class="clear_car">';
+	$x .= '</div>';
+	if (empty($output)) {
+		$x = '';
 	}
+	echo $x;
 }
 
 add_action('car_demon_vehicle_sidebar', 'car_demon_get_vehicle_sidebar', 10);
@@ -436,16 +441,21 @@ function car_demon_vehicle_detail_tabs($post_id, $no_content=false) {
 					$x .= '<div id="content_'.  $about_cnt .'" class="car_features_content car_features_content_about">';
 						 if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  
 							$x .= '<div id="entry-author-info">';
-								if ($_COOKIE['sales_code']) {
-									$user_id = $_COOKIE['sales_code'];
-									$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
+								if (isset($_COOKIE['sales_code'])) {
+									if ($_COOKIE['sales_code']) {
+										$user_id = $_COOKIE['sales_code'];
+										$user_location = esc_attr( get_the_author_meta( 'user_location', $user_id ) );
+										$location_approved = 0;
+										if ($vehicle_location == $user_location) {
+											$location_approved = 1;
+										} else {
+											$location_approved = esc_attr( get_the_author_meta( 'lead_locations', $user_id ) );
+										}
+									}
+								}
+								if (empty($location_approved)) {
 									$location_approved = 0;
-									if ($vehicle_location == $user_location) {
-										$location_approved = 1;
-									}
-									else {
-										$location_approved = esc_attr( get_the_author_meta( 'lead_locations', $user_id ) );
-									}
+									$user_sales_type = 0;
 								}
 								if ($location_approved == 1) {
 									$user_sales_type = 0;
@@ -502,6 +512,8 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 	if (!empty($the_lists)) {
 		$car .= '<span class="similar_cars_area"><h3 class="similar_cars_box_title">'.__('Other Great Deals', 'car-demon').'</h3>';
 		$car .= '<div class="similar_cars_box">';
+		//= Get the labels for the default fields
+		$field_labels = get_default_field_labels();
 		foreach ($the_lists as $the_list) {
 			$post_id = $the_list->ID;
 			if ($post_id != $current_id) {
@@ -517,13 +529,13 @@ function car_demon_display_similar_cars($body_style, $current_id) {
 					$mileage_value = get_post_meta($post_id, "_mileage_value", true);
 					$detail_output = '<span class="random_title">'.$title.'</span><br />';
 					$detail_output .= '<span class="random_text">';
-						$detail_output .= __('Condition:', 'car-demon').' '.$vehicle_condition.'<br />';			
+						$detail_output .= $field_labels['condition'].': '.$vehicle_condition.'<br />';
 					$detail_output .= '</span>';
 					$detail_output .= '<span class="random_text">';
-						$detail_output .= __('Mileage:', 'car-demon').' '.$mileage_value.'<br />';
+						$detail_output .= $field_labels['mileage'].': '.$mileage_value.'<br />';
 					$detail_output .= '</span>';
 					$detail_output .= '<span class="random_text">';
-						$detail_output .= __('Stock#:', 'car-demon').' '.$stock_value;
+						$detail_output .= $field_labels['stock_number'].': '.$stock_value;
 					$detail_output .= '</span>';
 					$link = get_permalink($post_id);
 					$img_output = "<img onclick='window.location=\"".$link."\";' title='".__("Click for price on this", "car-demon")." ".$title."' onerror='ImgError(this, \"no_photo.gif\");' class='random_widget_image' width='180px' height='135px' src='";
@@ -578,11 +590,9 @@ function car_photos($post_id, $details, $vehicle_condition) {
 	}
 	if ($ribbon != 'custom_ribbon') {
 		$ribbon = str_replace('_', '-', $ribbon);
-//		$current_ribbon = '<img src="'. $car_demon_pluginpath .'theme-files/images/ribbon-'.$ribbon.'.png" width="112" height="112" id="ribbon">';
 		$current_ribbon = '<img src="'. $car_demon_pluginpath .'theme-files/images/ribbon-'.$ribbon.'.png" id="ribbon" class="ribbon">';
 	} else {
 		$custom_ribbon_file = get_post_meta($post_id, '_custom_ribbon', true);
-//		$current_ribbon = '<img src="'.$custom_ribbon_file.'" width="112" height="112" id="ribbon">';
 		$current_ribbon = '<img src="'.$custom_ribbon_file.'" id="ribbon" class="ribbon">';
 	}
 	if (isset($_SESSION['car_demon_options']['dynamic_ribbons'])) {
@@ -713,6 +723,21 @@ function car_demon_facebook_meta() {
 		<meta property="og:image" content="'.$image.'"/>';
 	echo $x;
 }
+function cd_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
+    global $wpdb;
+    if( empty( $key ) )
+        return;
+
+   $r = $wpdb->get_col( $wpdb->prepare( "
+        SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
+        LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+        WHERE pm.meta_key = '%s' 
+        AND p.post_status = '%s' 
+        AND p.post_type = '%s'
+    ", $key, $status, $type ) );
+	asort($r);
+    return $r;
+}
 function car_demon_get_car($post_id) {
 	$x = get_post_meta($post_id, 'decode_string', true);
 	$x['title'] = get_car_title($post_id);
@@ -749,6 +774,7 @@ function car_demon_get_car($post_id) {
 	$x['doors'] = strip_tags(get_post_meta($post_id, "_doors_value", true));
 	$x['trim'] = strip_tags(get_post_meta($post_id, "_trim_value", true));
 	$x['warranty'] = strip_tags(get_post_meta($post_id, "_warranty_value", true));
+	$x['main_photo'] = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 	return $x;
 }
 ?>

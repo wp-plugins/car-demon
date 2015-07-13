@@ -2,81 +2,85 @@
 	<div class="finance_info_cell">
 		<?php _e('Previous Co-Applicant Address', 'car-demon'); ?>
 	</div>
-	<div class="finance_coapplicant_cell">
-		<?php _e('Apt/Suite', 'car-demon'); ?>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<input name="p1co_app_apt_num" type="text" id="p1co_app_apt_num" tabindex="85" size="6" maxlength="5" />
-		<div id="msgDivp1co_app_apt_num" class="finance_hide_notice">
-			<font color="#FF0000" size="-1"><?php _e('APT/SUITE REQUIRED', 'car-demon'); ?></font>
-		</div>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<?php _e('Street Number', 'car-demon'); ?>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<input name="p1co_app_street_num" type="text" id="p1co_app_street_num" onKeyPress="checkNum()" tabindex="86" size="6" maxlength="6" onChange="ValidateCoAppPrevAddress();" />
-		<div id="msgDivp1co_app_street_num" class="finance_hide_notice">
-			<font color="#FF0000" size="-1"><?php _e('STREET NUM REQUIRED', 'car-demon'); ?></font>
-		</div>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<?php _e('Street Name', 'car-demon'); ?>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<input name="p1co_app_street_name" type="text" maxlength="20" id="p1co_app_street_name" tabindex="87" />
-		<div id="msgDivp1co_app_street_name" class="finance_hide_notice">
-			<font color="#FF0000" size="-1"><?php _e('STREET NAME REQUIRED', 'car-demon'); ?></font>
-		</div>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<?php _e('Street Type', 'car-demon'); ?>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<select name="p1co_app_street_type" id="p1co_app_street_type" tabindex="88" class="select">
-			<option selected="selected" value=""></option>
-			<option value="<?php _e('AVENUE', 'car-demon'); ?>"><?php _e('AVENUE', 'car-demon'); ?></option>
-			<option value="<?php _e('BOULEVARD', 'car-demon'); ?>"><?php _e('BOULEVARD', 'car-demon'); ?></option>
-			<option value="<?php _e('CIRCLE', 'car-demon'); ?>"><?php _e('CIRCLE', 'car-demon'); ?></option>
-			<option value="<?php _e('COURT', 'car-demon'); ?>"><?php _e('COURT', 'car-demon'); ?></option>
-			<option value="<?php _e('CRESCENT', 'car-demon'); ?>"><?php _e('CRESCENT', 'car-demon'); ?></option>
-			<option value="<?php _e('DRIVE', 'car-demon'); ?>"><?php _e('DRIVE', 'car-demon'); ?></option>
-			<option value="<?php _e('FREEWAY', 'car-demon'); ?>"><?php _e('FREEWAY', 'car-demon'); ?></option>
-			<option value="<?php _e('HIGHWAY', 'car-demon'); ?>"><?php _e('HIGHWAY', 'car-demon'); ?></option>
-			<option value="<?php _e('LANE', 'car-demon'); ?>"><?php _e('LANE', 'car-demon'); ?></option>
-			<option value="<?php _e('PARKWAY', 'car-demon'); ?>"><?php _e('PARKWAY', 'car-demon'); ?></option>
-			<option value="<?php _e('PLACE', 'car-demon'); ?>"><?php _e('PLACE', 'car-demon'); ?></option>
-			<option value="<?php _e('PLAZA', 'car-demon'); ?>"><?php _e('PLAZA', 'car-demon'); ?></option>
-			<option value="<?php _e('ROAD', 'car-demon'); ?>"><?php _e('ROAD', 'car-demon'); ?></option>
-			<option value="<?php _e('SQUARE', 'car-demon'); ?>"><?php _e('SQUARE', 'car-demon'); ?></option>
-			<option value="<?php _e('STREET', 'car-demon'); ?>"><?php _e('STREET', 'car-demon'); ?></option>
-			<option value="<?php _e('TERRACE', 'car-demon'); ?>"><?php _e('TERRACE', 'car-demon'); ?></option>
-			<option value="<?php _e('TRAIL', 'car-demon'); ?>"><?php _e('TRAIL', 'car-demon'); ?></option>
-			<option value="<?php _e('TURNPIKE', 'car-demon'); ?>"><?php _e('TURNPIKE', 'car-demon'); ?></option>
-			<option value="<?php _e('WAY', 'car-demon'); ?>"><?php _e('WAY', 'car-demon'); ?></option>
-		</select>
-		<div id="msgDivp1co_app_street_type" class="finance_hide_notice">
-			<font color="#FF0000" size="-1"><?php _e('STREET TYPE REQUIRED', 'car-demon'); ?></font>
-		</div>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<?php _e('PO Box', 'car-demon'); ?>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<input name="p1co_app_po_box_num" type="text" id="p1co_app_po_box_num" tabindex="89" size="6" maxlength="6" onChange="ValidateCoAppPrevAddress();" />
-		<div id="msgDivp1co_app_po_box_num" class="finance_hide_notice">
-			<font color="#FF0000" size="-1"><?php _e('PO BOX REQUIRED', 'car-demon'); ?></font>
-		</div>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<?php _e('Rural Route', 'car-demon'); ?>
-	</div>
-	<div class="finance_coapplicant_cell">
-		<input name="p1co_app_rural_route" type="text" id="p1co_app_rural_route" tabindex="90" size="6" maxlength="6" onChange="ValidateCoAppPrevAddress();" />
-		<div id="msgDivp1co_app_rural_route" class="finance_hide_notice">
-			<font color="#FF0000" size="-1"><?php _e('RURAL ROUTE REQUIRED', 'car-demon'); ?></font>
-		</div>
-	</div>
+	<div class="address_part">
+        <div class="finance_coapplicant_cell">
+            <?php _e('Apt/Suite', 'car-demon'); ?>
+        </div>
+        <div class="finance_coapplicant_cell">
+            <input name="p1co_app_apt_num" type="text" id="p1co_app_apt_num" tabindex="85" size="6" maxlength="5" />
+            <div id="msgDivp1co_app_apt_num" class="finance_hide_notice">
+                <font color="#FF0000" size="-1"><?php _e('APT/SUITE REQUIRED', 'car-demon'); ?></font>
+            </div>
+        </div>
+        <div class="finance_coapplicant_cell">
+            <?php _e('Street Number', 'car-demon'); ?>
+        </div>
+        <div class="finance_coapplicant_cell">
+            <input name="p1co_app_street_num" type="text" id="p1co_app_street_num" onKeyPress="checkNum()" tabindex="86" size="6" maxlength="6" onChange="ValidateCoAppPrevAddress();" />
+            <div id="msgDivp1co_app_street_num" class="finance_hide_notice">
+                <font color="#FF0000" size="-1"><?php _e('STREET NUM REQUIRED', 'car-demon'); ?></font>
+            </div>
+        </div>
+        <div class="finance_coapplicant_cell">
+            <?php _e('Street Name', 'car-demon'); ?>
+        </div>
+        <div class="finance_coapplicant_cell">
+            <input name="p1co_app_street_name" type="text" maxlength="20" id="p1co_app_street_name" tabindex="87" />
+            <div id="msgDivp1co_app_street_name" class="finance_hide_notice">
+                <font color="#FF0000" size="-1"><?php _e('STREET NAME REQUIRED', 'car-demon'); ?></font>
+            </div>
+        </div>
+        <div class="finance_coapplicant_cell">
+            <?php _e('Street Type', 'car-demon'); ?>
+        </div>
+        <div class="finance_coapplicant_cell">
+            <select name="p1co_app_street_type" id="p1co_app_street_type" tabindex="88" class="select">
+                <option selected="selected" value=""></option>
+                <option value="<?php _e('AVENUE', 'car-demon'); ?>"><?php _e('AVENUE', 'car-demon'); ?></option>
+                <option value="<?php _e('BOULEVARD', 'car-demon'); ?>"><?php _e('BOULEVARD', 'car-demon'); ?></option>
+                <option value="<?php _e('CIRCLE', 'car-demon'); ?>"><?php _e('CIRCLE', 'car-demon'); ?></option>
+                <option value="<?php _e('COURT', 'car-demon'); ?>"><?php _e('COURT', 'car-demon'); ?></option>
+                <option value="<?php _e('CRESCENT', 'car-demon'); ?>"><?php _e('CRESCENT', 'car-demon'); ?></option>
+                <option value="<?php _e('DRIVE', 'car-demon'); ?>"><?php _e('DRIVE', 'car-demon'); ?></option>
+                <option value="<?php _e('FREEWAY', 'car-demon'); ?>"><?php _e('FREEWAY', 'car-demon'); ?></option>
+                <option value="<?php _e('HIGHWAY', 'car-demon'); ?>"><?php _e('HIGHWAY', 'car-demon'); ?></option>
+                <option value="<?php _e('LANE', 'car-demon'); ?>"><?php _e('LANE', 'car-demon'); ?></option>
+                <option value="<?php _e('PARKWAY', 'car-demon'); ?>"><?php _e('PARKWAY', 'car-demon'); ?></option>
+                <option value="<?php _e('PLACE', 'car-demon'); ?>"><?php _e('PLACE', 'car-demon'); ?></option>
+                <option value="<?php _e('PLAZA', 'car-demon'); ?>"><?php _e('PLAZA', 'car-demon'); ?></option>
+                <option value="<?php _e('ROAD', 'car-demon'); ?>"><?php _e('ROAD', 'car-demon'); ?></option>
+                <option value="<?php _e('SQUARE', 'car-demon'); ?>"><?php _e('SQUARE', 'car-demon'); ?></option>
+                <option value="<?php _e('STREET', 'car-demon'); ?>"><?php _e('STREET', 'car-demon'); ?></option>
+                <option value="<?php _e('TERRACE', 'car-demon'); ?>"><?php _e('TERRACE', 'car-demon'); ?></option>
+                <option value="<?php _e('TRAIL', 'car-demon'); ?>"><?php _e('TRAIL', 'car-demon'); ?></option>
+                <option value="<?php _e('TURNPIKE', 'car-demon'); ?>"><?php _e('TURNPIKE', 'car-demon'); ?></option>
+                <option value="<?php _e('WAY', 'car-demon'); ?>"><?php _e('WAY', 'car-demon'); ?></option>
+            </select>
+            <div id="msgDivp1co_app_street_type" class="finance_hide_notice">
+                <font color="#FF0000" size="-1"><?php _e('STREET TYPE REQUIRED', 'car-demon'); ?></font>
+            </div>
+        </div>
+    </div>
+    <div class="address_part">
+        <div class="finance_coapplicant_cell">
+            <?php _e('PO Box', 'car-demon'); ?>
+        </div>
+        <div class="finance_coapplicant_cell">
+            <input name="p1co_app_po_box_num" type="text" id="p1co_app_po_box_num" tabindex="89" size="6" maxlength="6" onChange="ValidateCoAppPrevAddress();" />
+            <div id="msgDivp1co_app_po_box_num" class="finance_hide_notice">
+                <font color="#FF0000" size="-1"><?php _e('PO BOX REQUIRED', 'car-demon'); ?></font>
+            </div>
+        </div>
+        <div class="finance_coapplicant_cell">
+            <?php _e('Rural Route', 'car-demon'); ?>
+        </div>
+        <div class="finance_coapplicant_cell">
+            <input name="p1co_app_rural_route" type="text" id="p1co_app_rural_route" tabindex="90" size="6" maxlength="6" onChange="ValidateCoAppPrevAddress();" />
+            <div id="msgDivp1co_app_rural_route" class="finance_hide_notice">
+                <font color="#FF0000" size="-1"><?php _e('RURAL ROUTE REQUIRED', 'car-demon'); ?></font>
+            </div>
+        </div>
+    </div>
 	<div class="finance_coapplicant_cell">
 		<?php _e('City', 'car-demon'); ?>
 	</div>

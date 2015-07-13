@@ -216,9 +216,9 @@ function decode_custom_metabox($post) {
 		}
 	}
 	$vehicle_options .= '</div>';
-	if ($include_options == 1) {
+//	if ($include_options == 1) {
 		$content .= $vehicle_options;
-	}
+//	}
 	echo $content;
 	return;
 }
@@ -239,7 +239,7 @@ function decode_images($post) {
 	$this_car = '';
 	$cnt = 1;
 	if (!empty($image_list)) {
-		echo '<h3>Imported Photos</h3><br />';
+		echo '<h3>'.__('Linked Photos', 'car-demon').'</h3><br />';
 		$thumbnails = explode(",",$image_list);
 		foreach($thumbnails as $thumbnail) {
 //			$pos = strpos($thumbnail,'.jpg');

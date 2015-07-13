@@ -260,3 +260,11 @@
 #select_stock_txt {
 	max-width:175px;	
 }
+.address_part {
+  border: 1px solid #ccc;
+  float: left;
+  width: 95%;
+  padding: 5px;
+  margin-top: 3px;
+  margin-bottom: 8px;
+}

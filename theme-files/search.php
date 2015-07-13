@@ -28,7 +28,8 @@ if ( $search_query->have_posts() ) {
 			/*======= Car Demon Loop ======================================================= */								 
 			while ( $search_query->have_posts() ) : $search_query->the_post();
 				$post_id = $search_query->post->ID;
-				echo car_demon_display_car_list($post_id);
+				$html = apply_filters('car_demon_display_car_list_filter', car_demon_display_car_list($post_id), $post_id );
+				echo $html;
 			endwhile;
 			/* Display navigation to next/previous pages when applicable */ ?>
 		</div>
