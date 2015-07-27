@@ -1,4 +1,37 @@
 // JavaScript Document
+jQuery( document ).ready(function($) {
+	$('.cd_admin_form h1').on('click', function() {
+		if ($(this).next('.cd_location').css('display') == 'none') {
+			$(this).next('.cd_location').slideDown();
+		} else {
+			$(this).next('.cd_location').slideUp();
+		}
+	});
+});
+
+jQuery( ".cd_admin_show_all").on('click', function() {
+	var text = jQuery(this).data('open-close-text');
+	var status = jQuery(this).data('status');
+	var html = jQuery(this).html();
+	var option_groups = jQuery('.cd_option_group');
+	if (status == 0) {
+		option_groups.slideDown();
+		jQuery(this).data('status', 1);
+	} else {
+		option_groups.slideUp();
+		jQuery(this).data('status', 0);		
+	}
+	jQuery(this).html(text);
+	jQuery(this).data('open-close-text', html);
+});
+jQuery( ".cd_admin_group legend").on('click', function() {
+	var option_group = jQuery(this).next('.cd_option_group');
+	if (option_group.css('display') == 'none') {
+		option_group.slideDown();
+	} else {
+		option_group.slideUp();		
+	}
+});
 jQuery( "#cd_open_description" ).click(function() {
 	jQuery("#description_tab").show( 500, function(){});
 });

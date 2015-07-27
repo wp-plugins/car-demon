@@ -707,7 +707,15 @@ function car_demon_no_search_results($searched) {
 }
 function car_demon_get_the_content_with_formatting ($more_link_text = '(more...)', $stripteaser = 0, $more_file = '') {
 	$content = get_the_content($more_link_text, $stripteaser, $more_file);
-	$content = apply_filters('the_content', $content);
+	$cd_cdrf_options = $_SESSION['car_demon_options'];
+	$theme_style = '';
+	if (!empty($cd_cdrf_options)) {
+		$theme_style = $cd_cdrf_options['cd_cdrf_style'];
+	}
+	// Do not apply filters if using content-replacement
+	if ($theme_style != 'content-replacement') {
+		$content = apply_filters('the_content', $content);
+	}
 	$content = str_replace(']]>', ']]&gt;', $content);
 	return $content;
 }

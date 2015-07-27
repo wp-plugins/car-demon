@@ -183,5 +183,28 @@
 	padding: 10px;
 	max-width: 600px;
 	margin-top: 15px;
-//	float: left;
+}
+.cd_admin_group legend {
+	cursor: pointer;
+}
+.cd_option_group {
+	display: none;
+}
+.cd_admin_show_all {
+	cursor: pointer;
+	max-width: 150px;
+}
+.cd_admin_form h1 {
+	margin-left: 20px;
+	font-size: 16px;
+	cursor: pointer;
+}
+.cd_location {
+	display: none;
+}
+.cd_location_nav .page-numbers {
+	border: 1px solid #000;
+	margin: 1px;
+	padding: 5px;
+	background-color: #fff;
 }

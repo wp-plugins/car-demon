@@ -10,7 +10,7 @@ function cd_filter_vehicle_content($content) {
 		if ('cars_for_sale' == $post_type) {
 			if ( is_single() ) {
 				//= If it's single then it's the single vehicle page
-				$content .= cd_single_vehicle_content($post_id, $content);
+				$content = cd_single_vehicle_content($post_id, $content);
 			}
 			if (is_post_type_archive('cars_for_sale') || is_tax( 'vehicle_year' ) || is_tax( 'vehicle_make' ) || is_tax( 'vehicle_model' ) || is_tax( 'vehicle_condition' ) || is_tax( 'vehicle_body_style' ) || is_tax( 'vehicle_location' )) {
 				// If it's an archive page then filter the loop
@@ -35,7 +35,7 @@ function cd_filter_vehicle_content($content) {
 
 include('cdcr-single-content.php');
 function cd_single_vehicle_content($post_id, $content) {
-	$output = cdcr_single_content_2($content);
+	$output = cdcr_single_content($content);
 	$x = apply_filters('car_demon_single_car_filter', $output, $post_id );
 	return $x;
 }
@@ -49,7 +49,6 @@ function cd_loop_vehicle_content($post_id, $content) {
 	//	$current_post = intval($current_post);
 	//	if( $current_post == 0 ) { 
 			/*first post*/
-			//= If it's the first post then add everything you want above listings here
 	//	}
 	$x .= cdcr_loop($content, $post_id);
 	return $x;

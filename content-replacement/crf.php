@@ -85,7 +85,6 @@ function cdcr_load_replacement() {
 		$theme_style = $cd_cdrf_options['cd_cdrf_style'];
 		$theme_page_style = $cd_cdrf_options['cd_cdrf_page_style'];
 	}
-	
 	if ($theme_style == 'content-replacement') {
 		include('theme-files/content-replacement/cd-content-replacement.php');
 	}
